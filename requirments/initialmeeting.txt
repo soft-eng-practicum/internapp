@@ -16,10 +16,10 @@ Electronic Document Signing
 
 
 Detailed Information:
-Each discipline has unique processes speficic to it
-Biology has 1 common document and 5 suppliments
+Each discipline has unique processes specific  to it
+Biology has 1 common document and 5 supplements
 Need certification statement stating all info is correct
-Application status (Approved, Denied, Applicant Resinded, Applicant Postponed, Pending, Site Declined, Further Review)
+Application status (Approved, Denied, Applicant Rescinded, Applicant Postponed, Pending, Site Declined, Further Review)
 Each site can have multiple contacts per intern
 Need dates for mou displayed
 Biology Specific Sites
