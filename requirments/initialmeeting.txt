@@ -1,0 +1,28 @@
+Application Purpose: Keep track of students, documents, and sites the students are at or interested in being an intern at.
+
+Key Features:
+Login System
+Document Upload System
+Site Document and Status Tracking
+Application Documents and Status Tracking
+Messaging System
+Download Multiple Documents In Groups
+Document Checklist
+CRUD Functions For Applications and Sites
+2 or more intern disciplines
+
+Wants:
+Electronic Document Signing 
+
+
+Detailed Information:
+Each discipline has unique processes speficic to it
+Biology has 1 common document and 5 suppliments
+Need certification statement stating all info is correct
+Application status (Approved, Denied, Applicant Resinded, Applicant Postponed, Pending, Site Declined, Further Review)
+Each site can have multiple contacts per intern
+Need dates for mou displayed
+Biology Specific Sites
+ITEC Not Specific
+Not picky about designed showed them a template for another website and they liked it
+No language or db specifications
