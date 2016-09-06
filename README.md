@@ -1,6 +1,10 @@
 Steps to run:
 <br>
 <br>
+
+
+Should we use Version1 since it's free for tracking the project?
+
 1. Pull Project<br>
 2. cd into the project directory<br>
 3. npm install<br>
