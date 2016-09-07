@@ -16,3 +16,4 @@ Project Members:
 Vimal Darji
 Taylor Brust
 Joseph Cox
+Jonathan Nguyen(UI Design)
