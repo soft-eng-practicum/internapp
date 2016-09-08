@@ -22,4 +22,4 @@ Taylor Brust(UI)
 <br>
 Joseph Cox(Dev)
 <br>
-Jonathan Nguyen(UI Design)
+Jonathan Nguyen(UI Design and Interface)
