@@ -1,6 +1,3 @@
-Steps to run:
-<br>
-<br>
 Team name - Intern App
 <br>
 Repo location - https://github.com/soft-eng-practicum/internapp
