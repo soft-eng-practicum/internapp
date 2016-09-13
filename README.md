@@ -11,8 +11,8 @@ Steps to Run:
 1. Pull Project<br>
 2. cd into the project directory<br>
 3. npm install<br>
-4. npm run start<br>
-5. http://localhost:3000/<br>
+4. node server.js<br>
+5. http://localhost:8080/<br>
 
 Project Members:
 <br>
