@@ -11,7 +11,12 @@ var userSchema = mongoose.Schema({
         password     : String,
         studentid    : String,
         fname        : String,
-        lname        : String
+        lname        : String,
+        address      : String,
+        city         : String,
+        state        : String,
+        zipcode      : String
+
     }
 });
 
