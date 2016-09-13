@@ -61,6 +61,7 @@ module.exports = function(passport) {
                 var newUser            = new User();
 
                 // set the user's local credentials and grabs data from req
+                // set the default role to user that can be changed by admin.
 
                 newUser.local.email        = email;
                 newUser.local.password     = newUser.generateHash(password);
@@ -71,6 +72,7 @@ module.exports = function(passport) {
                 newUser.local.city         = req.body.city;
                 newUser.local.state        = req.body.state;
                 newUser.local.zipcode      = req.body.zipcode;
+                newUser.local.role         = "user";
 
 
 
