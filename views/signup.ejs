@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>GGC Internship Signup</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <style>
@@ -22,43 +22,44 @@
     <% } %>
 
     <!-- LOGIN FORM -->
-    <form action="/signup" method="post">
+    <form name="signup" action="/signup" onsubmit="return validateForm()" method="post">
         <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" name="email">
+            <input type="email" class="form-control" name="email" pattern="[A-Za-z0-9._]*@ggc.edu" title="Must be a @ggc.edu email address" required>
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" name="password">
+            <input type="password" class="form-control" name="password" required>
         </div>
         <div class="form-group">
             <label>Student ID</label>
-            <input type="text" class="form-control" name="studentid">
+            <input type="text" class="form-control" name="studentid" required>
         </div>
         <div class="form-group">
             <label>First Name</label>
-            <input type="text" class="form-control" name="fname">
+            <input type="text" class="form-control" name="fname" required>
         </div>
         <div class="form-group">
             <label>Last Name</label>
-            <input type="text" class="form-control" name="lname">
+            <input type="text" class="form-control" name="lname" required>
         </div>
         <div class="form-group">
             <label>Address</label>
-            <input type="text" class="form-control" name="address">
+            <input type="text" class="form-control" name="address" required>
         </div>
         <div class="form-group">
             <label>City</label>
-            <input type="text" class="form-control" name="city">
+            <input type="text" class="form-control" name="city" required>
         </div>
         <div class="form-group">
             <label>State</label>
-            <input type="text" class="form-control" name="state">
+            <input type="text" class="form-control" name="state" required>
         </div>
         <div class="form-group">
             <label>ZipCode</label>
-            <input type="text" class="form-control" name="zipcode">
+            <input type="text" class="form-control" name="zipcode" required>
         </div>
+        
 
         <button type="submit" class="btn btn-warning btn-lg">Signup</button>
     </form>
