@@ -1,0 +1,39 @@
+#list {
+	margin:30px;
+}
+
+#student{
+	border:1px solid;
+	padding:12px;
+	margin:30px;
+	background-color:white;	
+}
+
+#emergency{
+	border:1px solid;
+	padding:12px;
+	margin:30px;
+	background-color:white;
+}
+
+#mentor{
+	border:1px solid;
+	padding:12px;
+	margin:30px;
+	background-color:white;
+}
+
+#academic{
+	border:1px solid;
+	padding:12px;
+	margin:30px;
+	background-color:white;
+}
+
+#signature{
+	border:1px solid;
+	padding: 10px;
+	margin: 30px;
+	background-color:white;
+	
+}
