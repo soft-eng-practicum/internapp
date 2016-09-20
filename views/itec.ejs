@@ -1,11 +1,135 @@
+<!-- views/signup.ejs -->
 <!doctype html>
 <html>
 <head>
-    <title>ITEC Internship Application </title>
+    <title>GGC ITECH Internship Application </title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <style>
         body        { padding-top:80px; }
     </style>
 </head>
+<body>
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-3">
+
+    <h1> ITECH Intership application.</h1>
+    <h4>
+      (1). Submit a printed, typed, and completed form and attach a printed copy of your resume. </br>
+      (2). Submite to DR. Lissa Pollacia's office, Building C, Office 2239.</br>
+      (3). Upom Receipt of the application, Dr. Pollacia will contact you to schedula an appointment. </br>
+    </br>
+
+    <h4>
+        <div class="form-group">
+          <label> Proposed Internship Semester <select>
+<option value="Fall 2016">Fall 2016</option>
+<option value="Spring 2017">Spring 2017</option>
+<option value="Summer 2017">Summer 2017</option>
+<option value="Fall 2017">Fall 2017</option>
+<option value="Spring 2018">Spring 2018</option>
+<option value="Summer 2018">Summer 2018</option>
+<option value="Fall 2018">Fall 2018</option>
+<option value="Spring 2019">Spring 2019</option>
+<option value="Summer 2019">Summer 2019</option>
+<option value="Fall 2020">Fall 2020</option>
+<option value="Spring 2020">Spring 2020</option>
+</select>
+            <class="form-control" name ="proposeditech" required>
+        </div>
+
+        <div class="form-group">
+            <label>Expected Internship Semester <select>
+  <option value="Fall 2016">Fall 2016</option>
+  <option value="Spring 2017">Spring 2017</option>
+  <option value="Summer 2017">Summer 2017</option>
+  <option value="Fall 2017">Fall 2017</option>
+  <option value="Spring 2018">Spring 2018</option>
+  <option value="Summer 2018">Summer 2018</option>
+  <option value="Fall 2018">Fall 2018</option>
+  <option value="Spring 2019">Spring 2019</option>
+  <option value="Summer 2019">Summer 2019</option>
+  <option value="Fall 2020">Fall 2020</option>
+  <option value="Spring 2020">Spring 2020</option>
+  </select>
+            <class="form-control" name="expectedgraduation" required>
+        </div>
+        <div class="form-group">
+          <label> ITECH Concentration <select>
+<option value="Interprise Systems">Enterprise Systems</option>
+<option value="Software Development">Software Development</option>
+<option value="Systems and Security">Systems and Security</option>
+<option value="Digital Media">Digital Media</option>
+</select>
+            <class="form-control" name="itechcon" required>
+        </div>
+        <div class="form-group">
+          <label> Student Classification<select>
+<option value="Junior">Junior</option>
+<option value="Senior">Senior</option>
+
+</select>
+            <class="form-control" name="studentclass" required>
+        </div>
+
+        <div class="form-group">
+            <label>Overall GPA</label>
+            <input type="text" class="form-control" name="ogpa" required>
+        </div>
+        <div class="form-group">
+            <label>ITECH Major GPA</label>
+            <input type="text" class="form-control" name="itechgpa" required>
+        </div>
+        <h4> Please list the semester you have completed these pre-requisite courses in the format of SEMESTER YEAR </h4>
+        <div class="form-group">
+            <label>ITECH 2150: Intermediate Programming</label>
+            <input type="text" class="form-control" name="itech2150" required>
+        </div>
+        <div class="form-group">
+            <label>ITECH 3100: Introduction to Networks</label>
+            <input type="text" class="form-control" name="itech3100" required>
+        </div>
+        <div class="form-group">
+            <label>ITECH 3200: Introduction to Databases </label>
+            <input type="text" class="form-control" name="itech3200" required>
+        </div>
+        <div class="form-group">
+            <label>ITECH 3900: Professional Practice and Ethics</label>
+            <input type="text" class="form-control" name="itech3900" required>
+        </div>
+
+
+
+        <h2> Mentor Information</h2>
+        <div class="form-group">
+            <label>GGC Mentor Name</label>
+            <input type="text" class="form-control" name="itechmentorname" required>
+        </div>
+        <div class="form-group">
+            <label>GGC Cellphone number</label>
+            <input type="text" class="form-control" name="itechggccellphone" required>
+        </div>
+        <div class="form-group">
+            <label>GGC Email Address</label>
+            <input type="text" class="form-control" name="itechmentoremail" required>
+        </div>
+        <div class="form-group">
+            <label>GGC Office Location</label>
+            <input type="text" class="form-control" name="itecmentoroffice" required>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+    </form>
+
+    <hr>
+
+
+
+</div>
+
+</div>
+</body>
 </html>
