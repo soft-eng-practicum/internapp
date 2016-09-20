@@ -45,17 +45,26 @@ module.exports = function(app, passport) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile',, isLoggedIn, function(req, res) {
+    app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
 
     // =====================================
-    // ITECH ==============================
+    // ITEC ================================
     // =====================================
-    app.get('/ITECH', isLoggedIn, function(req, res) {
-        res.render('ITECH.ejs', {
+    app.get('/itec', isLoggedIn, function(req, res) {
+        res.render('itec.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+    
+    // =====================================
+    // ITEC ================================
+    // =====================================
+    app.get('/bio', isLoggedIn, function(req, res) {
+        res.render('bio.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
