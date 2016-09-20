@@ -1,410 +1,697 @@
 <!-- views/itech.ejs -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>GGC ITECH Internship Application </title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <title>GGC ITECH Internship Application</title>
+    <link href=
+    "//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel=
+    "stylesheet"><!-- load bootstrap css -->
+    <link href=
+    "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    rel="stylesheet"><!-- load fontawesome -->
+
     <style>
         body        { padding-top:80px; }
     </style>
 </head>
 <body>
-<div class="container">
-
-<div class="col-sm-6 col-sm-offset-3">
-
-    <h1> ITECH Intership application</h1>
-    <h4>
-      (1). Submit a printed, typed, and completed form and attach a printed copy of your resume. </br>
-    </br>
-      (2). Submit to Dr. Lissa Pollacia's office, Building C, Office 2239.</br>
-    </br>
-      (3). Upon Receipt of the application, Dr. Pollacia will contact you to schedule an appointment. </br>
-    </br>
-    Information will be used to determine if you will be accepted to participate in the internship program. Completion of this application does no guarantee your acceptance into the internship program and/or enrollment in ITEC 4900.
-
-  </h4>
-        <div class="form-group">
-          <label> Proposed Internship Semester <select>
-<option value="Fall 2016">Fall 2016</option>
-<option value="Spring 2017">Spring 2017</option>
-<option value="Summer 2017">Summer 2017</option>
-<option value="Fall 2017">Fall 2017</option>
-<option value="Spring 2018">Spring 2018</option>
-<option value="Summer 2018">Summer 2018</option>
-<option value="Fall 2018">Fall 2018</option>
-<option value="Spring 2019">Spring 2019</option>
-<option value="Summer 2019">Summer 2019</option>
-<option value="Fall 2020">Fall 2020</option>
-<option value="Spring 2020">Spring 2020</option>
-</select>
-            <class="form-control" name ="proposeditech" required>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1>ITECH Intership application</h1>
+            <h4>(1). Submit a printed, typed, and completed form and attach a
+            printed copy of your resume.<br>
+            <br>
+            (2). Submit to Dr. Lissa Pollacia's office, Building C, Office
+            2239.<br>
+            <br>
+            (3). Upon Receipt of the application, Dr. Pollacia will contact you
+            to schedule an appointment.<br>
+            <br>
+            Information will be used to determine if you will be accepted to
+            participate in the internship program. Completion of this
+            application does no guarantee your acceptance into the internship
+            program and/or enrollment in ITEC 4900.</h4>
+            <div class="form-group">
+                <label>Proposed Internship Semester <select>
+                    <option value="Fall 2016">
+                        Fall 2016
+                    </option>
+                    <option value="Spring 2017">
+                        Spring 2017
+                    </option>
+                    <option value="Summer 2017">
+                        Summer 2017
+                    </option>
+                    <option value="Fall 2017">
+                        Fall 2017
+                    </option>
+                    <option value="Spring 2018">
+                        Spring 2018
+                    </option>
+                    <option value="Summer 2018">
+                        Summer 2018
+                    </option>
+                    <option value="Fall 2018">
+                        Fall 2018
+                    </option>
+                    <option value="Spring 2019">
+                        Spring 2019
+                    </option>
+                    <option value="Summer 2019">
+                        Summer 2019
+                    </option>
+                    <option value="Fall 2020">
+                        Fall 2020
+                    </option>
+                    <option value="Spring 2020">
+                        Spring 2020
+                    </option>
+                </select> </label>
+            </div><label></label>
+            <div class="form-group">
+                <label><label>Expected Internship Semester <select>
+                    <option value="Fall 2016">
+                        Fall 2016
+                    </option>
+                    <option value="Spring 2017">
+                        Spring 2017
+                    </option>
+                    <option value="Summer 2017">
+                        Summer 2017
+                    </option>
+                    <option value="Fall 2017">
+                        Fall 2017
+                    </option>
+                    <option value="Spring 2018">
+                        Spring 2018
+                    </option>
+                    <option value="Summer 2018">
+                        Summer 2018
+                    </option>
+                    <option value="Fall 2018">
+                        Fall 2018
+                    </option>
+                    <option value="Spring 2019">
+                        Spring 2019
+                    </option>
+                    <option value="Summer 2019">
+                        Summer 2019
+                    </option>
+                    <option value="Fall 2020">
+                        Fall 2020
+                    </option>
+                    <option value="Spring 2020">
+                        Spring 2020
+                    </option>
+                </select> </label></label>
+            </div><label></label>
+            <div class="form-group">
+                <label><label>ITECH Concentration <select>
+                    <option value="Interprise Systems">
+                        Enterprise Systems
+                    </option>
+                    <option value="Software Development">
+                        Software Development
+                    </option>
+                    <option value="Systems and Security">
+                        Systems and Security
+                    </option>
+                    <option value="Digital Media">
+                        Digital Media
+                    </option>
+                </select> </label></label>
+            </div><label></label>
+            <div class="form-group">
+                <label><label>Student Classification<select>
+                    <option value="Junior">
+                        Junior
+                    </option>
+                    <option value="Senior">
+                        Senior
+                    </option>
+                </select> </label></label>
+            </div><label></label>
+            <div class="form-group">
+                <label><label>Overall GPA</label> <input class="form-control"
+                name="ogpa" required="" type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>ITECH Major GPA</label> <input class="form-control"
+                name="itechgpa" required="" type="text">
+            </div>
+            <h4>Please list the semester you have completed these pre-requisite
+            courses in the format of SEMESTER YEAR</h4>
+            <div class="form-group">
+                <label>ITECH 2150: Intermediate Programming</label>
+                <input class="form-control" name="itech2150" required="" type=
+                "text">
+            </div>
+            <div class="form-group">
+                <label>ITECH 3100: Introduction to Networks</label>
+                <input class="form-control" name="itech3100" required="" type=
+                "text">
+            </div>
+            <div class="form-group">
+                <label>ITECH 3200: Introduction to Databases</label>
+                <input class="form-control" name="itech3200" required="" type=
+                "text">
+            </div>
+            <div class="form-group">
+                <label>ITECH 3900: Professional Practice and Ethics</label>
+                <input class="form-control" name="itech3900" required="" type=
+                "text">
+            </div>
+            <h2>Mentor Information</h2>
+            <div class="form-group">
+                <label>GGC Mentor Name</label> <input class="form-control"
+                name="itechmentorname" required="" type="text">
+            </div>
+            <div class="form-group">
+                <label>GGC Cellphone number</label> <input class="form-control"
+                name="itechggccellphone" required="" type="text">
+            </div>
+            <div class="form-group">
+                <label>GGC Email Address</label> <input class="form-control"
+                name="itechmentoremail" required="" type="text">
+            </div>
+            <div class="form-group">
+                <label>GGC Office Location</label> <input class="form-control"
+                name="itecmentoroffice" required="" type="text">
+            </div>
+            <h4>Student internships interests and goals</h4>
+            <div class="form-group">
+                <label>Decribe your major interests and strengths:</label>
+                <form action="action_page.php">
+                    <textarea cols="34" name="message" rows="8"></textarea><br>
+                </form>
+            </div>
+            <div class="form-group">
+                <label>What type of internship are you looking for, such as
+                software development, security, SAP, databse, etc:</label>
+                <form action="action_page.php">
+                    <textarea cols="34" name="message" rows="8"></textarea><br>
+                </form>
+            </div>
+            <div class="form-group">
+                <label>Are you interested in an internship focused mainly on
+                Programming and Software Development?<select>
+                    <option value="Yes">
+                        Yes
+                    </option>
+                    <option value="No">
+                        NO
+                    </option>
+                </select> </label>
+            </div><label></label>
+            <h3><label>Emergency Contact Information</label></h3>
+            <div class="form-group">
+                <label><label>Name of Contact</label> <input class=
+                "form-control" name="itechcontact" required="" type=
+                "text"></label>
+            </div>
+            <div class="form-group">
+                <label>Mailing address</label> <input class="form-control"
+                name="itechcontactmail" required="" type="text">
+            </div>
+            <div class="form-group">
+                <label>Preferred Email Address</label> <input class=
+                "form-control" name="itechcontactemail" required="" type=
+                "text">
+            </div>
+            <div class="form-group">
+                <label>City</label> <input class="form-control" name=
+                "itechcontactcity" required="" type="text">
+            </div>
+            <div class="form-group">
+                <label>State:<select>
+                    <option value="AL">
+                        Alabama
+                    </option>
+                    <option value="AK">
+                        Alaska
+                    </option>
+                    <option value="AZ">
+                        Arizona
+                    </option>
+                    <option value="AR">
+                        Arkansas
+                    </option>
+                    <option value="CA">
+                        California
+                    </option>
+                    <option value="CO">
+                        Colorado
+                    </option>
+                    <option value="CT">
+                        Connecticut
+                    </option>
+                    <option value="DE">
+                        Delaware
+                    </option>
+                    <option value="DC">
+                        District Of Columbia
+                    </option>
+                    <option value="FL">
+                        Florida
+                    </option>
+                    <option value="GA">
+                        Georgia
+                    </option>
+                    <option value="HI">
+                        Hawaii
+                    </option>
+                    <option value="ID">
+                        Idaho
+                    </option>
+                    <option value="IL">
+                        Illinois
+                    </option>
+                    <option value="IN">
+                        Indiana
+                    </option>
+                    <option value="IA">
+                        Iowa
+                    </option>
+                    <option value="KS">
+                        Kansas
+                    </option>
+                    <option value="KY">
+                        Kentucky
+                    </option>
+                    <option value="LA">
+                        Louisiana
+                    </option>
+                    <option value="ME">
+                        Maine
+                    </option>
+                    <option value="MD">
+                        Maryland
+                    </option>
+                    <option value="MA">
+                        Massachusetts
+                    </option>
+                    <option value="MI">
+                        Michigan
+                    </option>
+                    <option value="MN">
+                        Minnesota
+                    </option>
+                    <option value="MS">
+                        Mississippi
+                    </option>
+                    <option value="MO">
+                        Missouri
+                    </option>
+                    <option value="MT">
+                        Montana
+                    </option>
+                    <option value="NE">
+                        Nebraska
+                    </option>
+                    <option value="NV">
+                        Nevada
+                    </option>
+                    <option value="NH">
+                        New Hampshire
+                    </option>
+                    <option value="NJ">
+                        New Jersey
+                    </option>
+                    <option value="NM">
+                        New Mexico
+                    </option>
+                    <option value="NY">
+                        New York
+                    </option>
+                    <option value="NC">
+                        North Carolina
+                    </option>
+                    <option value="ND">
+                        North Dakota
+                    </option>
+                    <option value="OH">
+                        Ohio
+                    </option>
+                    <option value="OK">
+                        Oklahoma
+                    </option>
+                    <option value="OR">
+                        Oregon
+                    </option>
+                    <option value="PA">
+                        Pennsylvania
+                    </option>
+                    <option value="RI">
+                        Rhode Island
+                    </option>
+                    <option value="SC">
+                        South Carolina
+                    </option>
+                    <option value="SD">
+                        South Dakota
+                    </option>
+                    <option value="TN">
+                        Tennessee
+                    </option>
+                    <option value="TX">
+                        Texas
+                    </option>
+                    <option value="UT">
+                        Utah
+                    </option>
+                    <option value="VT">
+                        Vermont
+                    </option>
+                    <option value="VA">
+                        Virginia
+                    </option>
+                    <option value="WA">
+                        Washington
+                    </option>
+                    <option value="WV">
+                        West Virginia
+                    </option>
+                    <option value="WI">
+                        Wisconsin
+                    </option>
+                    <option value="WY">
+                        Wyoming
+                    </option>
+                </select> </label>
+            </div><label></label>
+            <div class="form-group">
+                <label><label>Zip Code</label> <input class="form-control"
+                name="itechcontactzip" required="" type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>Telephone Number</label> <input class="form-control"
+                name="itechcontactphone" required="" type="text">
+            </div>
+            <h3>Internship Information</h3>
+            <div class="form-group">
+                <label>Do you have a proposed internship with a company or
+                organization?<select>
+                    <option value="Yes">
+                        Yes
+                    </option>
+                    <option value="No">
+                        No
+                    </option>
+                </select></label>
+            </div><label></label>
+            <h4><label>If you selected yes, please fill out the intership
+            information below, otherwise skip to the next section of the
+            application (Potential Student Employment Conflicts)</label></h4>
+            <div class="form-group">
+                <label><label>Name of Organization</label> <input class=
+                "form-control" name="itechOrg" type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>Focus (software development, security, networking,
+                etc)</label> <input class="form-control" name="itechfocus"
+                type="text">
+            </div>
+            <div class="form-group">
+                <label>Street Address</label> <input class="form-control" name=
+                "itechOrgAddress" type="text">
+            </div>
+            <div class="form-group">
+                <label>City</label> <input class="form-control" name=
+                "itechOrgCity" type="text">
+            </div>
+            <div class="form-group">
+                <label>State: <select>
+                    <option value="AL">
+                        Alabama
+                    </option>
+                    <option value="AK">
+                        Alaska
+                    </option>
+                    <option value="AZ">
+                        Arizona
+                    </option>
+                    <option value="AR">
+                        Arkansas
+                    </option>
+                    <option value="CA">
+                        California
+                    </option>
+                    <option value="CO">
+                        Colorado
+                    </option>
+                    <option value="CT">
+                        Connecticut
+                    </option>
+                    <option value="DE">
+                        Delaware
+                    </option>
+                    <option value="DC">
+                        District Of Columbia
+                    </option>
+                    <option value="FL">
+                        Florida
+                    </option>
+                    <option value="GA">
+                        Georgia
+                    </option>
+                    <option value="HI">
+                        Hawaii
+                    </option>
+                    <option value="ID">
+                        Idaho
+                    </option>
+                    <option value="IL">
+                        Illinois
+                    </option>
+                    <option value="IN">
+                        Indiana
+                    </option>
+                    <option value="IA">
+                        Iowa
+                    </option>
+                    <option value="KS">
+                        Kansas
+                    </option>
+                    <option value="KY">
+                        Kentucky
+                    </option>
+                    <option value="LA">
+                        Louisiana
+                    </option>
+                    <option value="ME">
+                        Maine
+                    </option>
+                    <option value="MD">
+                        Maryland
+                    </option>
+                    <option value="MA">
+                        Massachusetts
+                    </option>
+                    <option value="MI">
+                        Michigan
+                    </option>
+                    <option value="MN">
+                        Minnesota
+                    </option>
+                    <option value="MS">
+                        Mississippi
+                    </option>
+                    <option value="MO">
+                        Missouri
+                    </option>
+                    <option value="MT">
+                        Montana
+                    </option>
+                    <option value="NE">
+                        Nebraska
+                    </option>
+                    <option value="NV">
+                        Nevada
+                    </option>
+                    <option value="NH">
+                        New Hampshire
+                    </option>
+                    <option value="NJ">
+                        New Jersey
+                    </option>
+                    <option value="NM">
+                        New Mexico
+                    </option>
+                    <option value="NY">
+                        New York
+                    </option>
+                    <option value="NC">
+                        North Carolina
+                    </option>
+                    <option value="ND">
+                        North Dakota
+                    </option>
+                    <option value="OH">
+                        Ohio
+                    </option>
+                    <option value="OK">
+                        Oklahoma
+                    </option>
+                    <option value="OR">
+                        Oregon
+                    </option>
+                    <option value="PA">
+                        Pennsylvania
+                    </option>
+                    <option value="RI">
+                        Rhode Island
+                    </option>
+                    <option value="SC">
+                        South Carolina
+                    </option>
+                    <option value="SD">
+                        South Dakota
+                    </option>
+                    <option value="TN">
+                        Tennessee
+                    </option>
+                    <option value="TX">
+                        Texas
+                    </option>
+                    <option value="UT">
+                        Utah
+                    </option>
+                    <option value="VT">
+                        Vermont
+                    </option>
+                    <option value="VA">
+                        Virginia
+                    </option>
+                    <option value="WA">
+                        Washington
+                    </option>
+                    <option value="WV">
+                        West Virginia
+                    </option>
+                    <option value="WI">
+                        Wisconsin
+                    </option>
+                    <option value="WY">
+                        Wyoming
+                    </option>
+                </select></label>
+            </div><label></label>
+            <div class="form-group">
+                <label><label>Zip Code</label> <input class="form-control"
+                name="itechZipCode" type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>Telephone Number</label> <input class="form-control"
+                name="itechOrgTele" type="text">
+            </div>
+            <div class="form-group">
+                <label>Name of Internship Manager</label> <input class=
+                "form-control" name="itechOrgManager" type="text">
+            </div>
+            <h3>Potential Student Employment Conflicts</h3>
+            <div class="form-group">
+                <label>Are you currently employed at this potential internship
+                site?<select>
+                    <option value="Yes">
+                        Yes
+                    </option>
+                    <option value="No">
+                        No
+                    </option>
+                </select></label>
+            </div><label></label>
+            <h3><label>If yes, please fill out the informaion below. If no,
+            then skip this portion of the application and go to the signature
+            and review portion at the bottom.</label></h3>
+            <div class="form-group">
+                <label><label>What is your current postition?</label>
+                <input class="form-control" name="itechOrgPosition" type=
+                "text"></label>
+            </div>
+            <div class="form-group">
+                <label>Is this a paid position?<select>
+                    <option value="Yes">
+                        Yes
+                    </option>
+                    <option value="No">
+                        No
+                    </option>
+                </select> </label>
+            </div><label></label>
+            <div class="form-group">
+                <label><label>What is your current postition?</label>
+                <input class="form-control" name="itechOrgPosition" type=
+                "text"></label>
+            </div>
+            <div class="form-group">
+                <label>What is your current average work hours in a
+                week?</label> <input class="form-control" name="itechOrghours"
+                type="text">
+            </div>
+            <div class="form-group">
+                <label>Will this internship represent a substantial project to
+                be completed, seperate from your normal work duties?<select>
+                    <option value="Yes">
+                        Yes
+                    </option>
+                    <option value="No">
+                        No
+                    </option>
+                </select> </label>
+            </div><label></label>
+            <div class="form-group">
+                <label><label>Are you willing to complete your internship hours
+                at a seperate time from your normal work hours?<select>
+                    <option value="Yes">
+                        Yes
+                    </option>
+                    <option value="No">
+                        No
+                    </option>
+                </select> </label></label>
+            </div><label></label>
+            <h4><label>Signatures and Review</label></h4>
+            <p><label><strong>I certify that the information contained in this
+            application is true, correct, and complete. I understand that false
+            statements reported on this application may be considered
+            sufficient cause for denial of
+            internship.</strong></label></p><label><br></label>
+            <div class="form-group">
+                <label><label>Signature of applicant</label> <input class=
+                "form-control" name="itechSignature" type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>Print name of applicant</label> <input class=
+                "form-control" name="itechSignaturePrint" required="" type=
+                "text">
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <p id="demo"></p>
+                <script>
+                document.getElementById("demo").innerHTML = Date();
+                </script>
+            </div><button class="btn btn-warning btn-lg" type=
+            "submit">Submit</button>
+            <!-- Script for printing page at bottom -->
+             <button class="btn btn-warning btn-lg" onclick="myPrint()">Print
+            this page</button>
+            <script>
+            function myPrint() {
+            window.print();
+            }
+            </script>
+            <!-- script for uploading files to page -->
+             <button class="btn btn-warning btn-lg" onclick="myUpload()">Upload
+            Files</button>
+            <script>
+            function myUpload() {
+            var x = document.createElement("INPUT");
+            x.setAttribute("type", "file");
+            document.body.appendChild(x);
+            }
+            </script>
         </div>
-
-        <div class="form-group">
-            <label>Expected Internship Semester <select>
-  <option value="Fall 2016">Fall 2016</option>
-  <option value="Spring 2017">Spring 2017</option>
-  <option value="Summer 2017">Summer 2017</option>
-  <option value="Fall 2017">Fall 2017</option>
-  <option value="Spring 2018">Spring 2018</option>
-  <option value="Summer 2018">Summer 2018</option>
-  <option value="Fall 2018">Fall 2018</option>
-  <option value="Spring 2019">Spring 2019</option>
-  <option value="Summer 2019">Summer 2019</option>
-  <option value="Fall 2020">Fall 2020</option>
-  <option value="Spring 2020">Spring 2020</option>
-  </select>
-            <class="form-control" name="expectedgraduation" required>
-        </div>
-        <div class="form-group">
-          <label> ITECH Concentration <select>
-<option value="Interprise Systems">Enterprise Systems</option>
-<option value="Software Development">Software Development</option>
-<option value="Systems and Security">Systems and Security</option>
-<option value="Digital Media">Digital Media</option>
-</select>
-            <class="form-control" name="itechcon" required>
-        </div>
-        <div class="form-group">
-          <label> Student Classification<select>
-<option value="Junior">Junior</option>
-<option value="Senior">Senior</option>
-
-</select>
-            <class="form-control" name="studentclass" required>
-        </div>
-
-        <div class="form-group">
-            <label>Overall GPA</label>
-            <input type="text" class="form-control" name="ogpa" required>
-        </div>
-        <div class="form-group">
-            <label>ITECH Major GPA</label>
-            <input type="text" class="form-control" name="itechgpa" required>
-        </div>
-        <h4> Please list the semester you have completed these pre-requisite courses in the format of SEMESTER YEAR </h4>
-        <div class="form-group">
-            <label>ITECH 2150: Intermediate Programming</label>
-            <input type="text" class="form-control" name="itech2150" required>
-        </div>
-        <div class="form-group">
-            <label>ITECH 3100: Introduction to Networks</label>
-            <input type="text" class="form-control" name="itech3100" required>
-        </div>
-        <div class="form-group">
-            <label>ITECH 3200: Introduction to Databases </label>
-            <input type="text" class="form-control" name="itech3200" required>
-        </div>
-        <div class="form-group">
-            <label>ITECH 3900: Professional Practice and Ethics</label>
-            <input type="text" class="form-control" name="itech3900" required>
-        </div>
-
-
-
-        <h2> Mentor Information</h2>
-        <div class="form-group">
-            <label>GGC Mentor Name</label>
-            <input type="text" class="form-control" name="itechmentorname" required>
-        </div>
-        <div class="form-group">
-            <label>GGC Cellphone number</label>
-            <input type="text" class="form-control" name="itechggccellphone" required>
-        </div>
-        <div class="form-group">
-            <label>GGC Email Address</label>
-            <input type="text" class="form-control" name="itechmentoremail" required>
-        </div>
-        <div class="form-group">
-            <label>GGC Office Location</label>
-            <input type="text" class="form-control" name="itecmentoroffice" required>
-        </div>
-        <h4> Student internships interests and goals </h4>
-        <div class="form-group">
-            <label>Decribe your major interests and strengths:</label>
-            <form action="action_page.php">
-  <textarea name="message" rows="8" cols="34"></textarea>
-  <br>
-            <class="form-control" name="itechq1" required>
-        </div>
-        <div class="form-group">
-            <label>What type of internship are you looking for, such as software development, security, SAP, databse, etc:</label>
-            <form action="action_page.php">
-  <textarea name="message" rows="8" cols="34"></textarea>
-  <br>
-            <class="form-control" name="itechq2" required>
-        </div>
-        <div class="form-group">
-            <label>Are you interested in an internship focused mainly on Programming and Software Development?<select>
-            <option value="Yes">Yes</option>
-            <option value="No">NO</option>
-
-            </select>
-            <class="form-control" name="itechq3" required>
-        </div>
-        <h3> Emergency Contact Information</h3>
-        <div class="form-group">
-            <label>Name of Contact</label>
-            <input type="text" class="form-control" name="itechcontact" required>
-        </div>
-        <div class="form-group">
-            <label>Mailing address</label>
-            <input type="text" class="form-control" name="itechcontactmail" required>
-        </div>
-        <div class="form-group">
-            <label>Preferred Email Address</label>
-            <input type="text" class="form-control" name="itechcontactemail" required>
-        </div>
-        <div class="form-group">
-            <label>City</label>
-            <input type="text" class="form-control" name="itechcontactcity" required>
-        </div>
-        <div class="form-group">
-            <label>State:<select>
-	<option value="AL">Alabama</option>
-	<option value="AK">Alaska</option>
-	<option value="AZ">Arizona</option>
-	<option value="AR">Arkansas</option>
-	<option value="CA">California</option>
-	<option value="CO">Colorado</option>
-	<option value="CT">Connecticut</option>
-	<option value="DE">Delaware</option>
-	<option value="DC">District Of Columbia</option>
-	<option value="FL">Florida</option>
-	<option value="GA">Georgia</option>
-	<option value="HI">Hawaii</option>
-	<option value="ID">Idaho</option>
-	<option value="IL">Illinois</option>
-	<option value="IN">Indiana</option>
-	<option value="IA">Iowa</option>
-	<option value="KS">Kansas</option>
-	<option value="KY">Kentucky</option>
-	<option value="LA">Louisiana</option>
-	<option value="ME">Maine</option>
-	<option value="MD">Maryland</option>
-	<option value="MA">Massachusetts</option>
-	<option value="MI">Michigan</option>
-	<option value="MN">Minnesota</option>
-	<option value="MS">Mississippi</option>
-	<option value="MO">Missouri</option>
-	<option value="MT">Montana</option>
-	<option value="NE">Nebraska</option>
-	<option value="NV">Nevada</option>
-	<option value="NH">New Hampshire</option>
-	<option value="NJ">New Jersey</option>
-	<option value="NM">New Mexico</option>
-	<option value="NY">New York</option>
-	<option value="NC">North Carolina</option>
-	<option value="ND">North Dakota</option>
-	<option value="OH">Ohio</option>
-	<option value="OK">Oklahoma</option>
-	<option value="OR">Oregon</option>
-	<option value="PA">Pennsylvania</option>
-	<option value="RI">Rhode Island</option>
-	<option value="SC">South Carolina</option>
-	<option value="SD">South Dakota</option>
-	<option value="TN">Tennessee</option>
-	<option value="TX">Texas</option>
-	<option value="UT">Utah</option>
-	<option value="VT">Vermont</option>
-	<option value="VA">Virginia</option>
-	<option value="WA">Washington</option>
-	<option value="WV">West Virginia</option>
-	<option value="WI">Wisconsin</option>
-	<option value="WY">Wyoming</option>
-</select>
-            <class="form-control" name="itechcontactstate" required>
-        </div>
-        <div class="form-group">
-            <label>Zip Code</label>
-            <input type="text" class="form-control" name="itechcontactzip" required>
-        </div>
-        <div class="form-group">
-            <label>Telephone Number</label>
-            <input type="text" class="form-control" name="itechcontactphone" required>
-        </div>
-<h3> Internship Information </h3>
-<div class="form-group">
-    <label>Do you have a proposed internship with a company or organization?<select>
-      <option value="Yes">Yes</option>
-    	<option value="No">No</option>
-    </select>
-    <class="form-control" name="itechintershipproposal" >
-</div>
-<h4> If you selected yes, please fill out the intership information below, otherwise skip to the next section of the application (Potential Student Employment Conflicts)</h4>
-<div class="form-group">
-    <label>Name of Organization </label>
-    <input type="text" class="form-control" name="itechOrg" >
-</div>
-<div class="form-group">
-    <label>Focus (software development, security, networking, etc)</label>
-    <input type="text" class="form-control" name="itechfocus" >
-</div>
-<div class="form-group">
-    <label>Street Address</label>
-    <input type="text" class="form-control" name="itechOrgAddress" >
-</div>
-<div class="form-group">
-    <label>City</label>
-    <input type="text" class="form-control" name="itechOrgCity" >
-</div>
-<div class="form-group">
-    <label>State: <select>
-<option value="AL">Alabama</option>
-<option value="AK">Alaska</option>
-<option value="AZ">Arizona</option>
-<option value="AR">Arkansas</option>
-<option value="CA">California</option>
-<option value="CO">Colorado</option>
-<option value="CT">Connecticut</option>
-<option value="DE">Delaware</option>
-<option value="DC">District Of Columbia</option>
-<option value="FL">Florida</option>
-<option value="GA">Georgia</option>
-<option value="HI">Hawaii</option>
-<option value="ID">Idaho</option>
-<option value="IL">Illinois</option>
-<option value="IN">Indiana</option>
-<option value="IA">Iowa</option>
-<option value="KS">Kansas</option>
-<option value="KY">Kentucky</option>
-<option value="LA">Louisiana</option>
-<option value="ME">Maine</option>
-<option value="MD">Maryland</option>
-<option value="MA">Massachusetts</option>
-<option value="MI">Michigan</option>
-<option value="MN">Minnesota</option>
-<option value="MS">Mississippi</option>
-<option value="MO">Missouri</option>
-<option value="MT">Montana</option>
-<option value="NE">Nebraska</option>
-<option value="NV">Nevada</option>
-<option value="NH">New Hampshire</option>
-<option value="NJ">New Jersey</option>
-<option value="NM">New Mexico</option>
-<option value="NY">New York</option>
-<option value="NC">North Carolina</option>
-<option value="ND">North Dakota</option>
-<option value="OH">Ohio</option>
-<option value="OK">Oklahoma</option>
-<option value="OR">Oregon</option>
-<option value="PA">Pennsylvania</option>
-<option value="RI">Rhode Island</option>
-<option value="SC">South Carolina</option>
-<option value="SD">South Dakota</option>
-<option value="TN">Tennessee</option>
-<option value="TX">Texas</option>
-<option value="UT">Utah</option>
-<option value="VT">Vermont</option>
-<option value="VA">Virginia</option>
-<option value="WA">Washington</option>
-<option value="WV">West Virginia</option>
-<option value="WI">Wisconsin</option>
-<option value="WY">Wyoming</option>
-</select>
-    <class="form-control" name="itechOrgState" >
-</div>
-<div class="form-group">
-    <label>Zip Code</label>
-    <input type="text" class="form-control" name="itechZipCode" >
-</div>
-<div class="form-group">
-    <label>Telephone Number</label>
-    <input type="text" class="form-control" name="itechOrgTele" >
-</div>
-<div class="form-group">
-    <label>Name of Internship Manager</label>
-    <input type="text" class="form-control" name="itechOrgManager" >
-</div>
-
-<h3> Potential Student Employment Conflicts </h3>
-<div class="form-group">
-    <label>Are you currently employed at this potential internship site?<select>
-      <option value="Yes">Yes</option>
-    	<option value="No">No</option>
-    </select>
-    <class="form-control" name="itechConflictEmployment" >
-</div>
-<h3> If yes, please fill out the informaion below. If no, then skip this portion of the application and go to the signature and review portion at the bottom.</h3>
-  <div class="form-group">
-      <label>What is your current postition? </label>
-      <input type="text" class="form-control" name="itechOrgPosition" >
-  </div>
-  <div class="form-group">
-      <label>Is this a paid position?<select>
-        <option value="Yes">Yes</option>
-      	<option value="No">No</option>
-      </select>
-      <class="form-control" name="itechOrgPay" >
-  </div>
-  <div class="form-group">
-      <label>What is your current postition? </label>
-      <input type="text" class="form-control" name="itechOrgPosition" >
-  </div>
-  <div class="form-group">
-      <label>What is your current average work hours in a week? </label>
-      <input type="text" class="form-control" name="itechOrghours" >
-  </div>
-  <div class="form-group">
-      <label>Will this internship represent a substantial project to be completed, seperate from your normal work duties?<select>
-        <option value="Yes">Yes</option>
-      	<option value="No">No</option>
-      </select>
-      <class="form-control" name="itechOrgInternship" >
-  </div>
-  <div class="form-group">
-      <label>Are you willing to complete your internship hours at a seperate time from your normal work hours?<select>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-      <class="form-control" name="itechOrgSeperate" >
-  </div>
-  <h4> Signatures and Review</h4>
-  <p><strong>I certify that the information contained in this application is true, correct, and complete. I understand that false statements reported on this application may be considered sufficient cause for denial of internship. </strong></p>
-</br>
-<div class="form-group">
-    <label>Signature of applicant </label>
-    <input type="text" class="form-control" name="itechSignature" >
-</div>
-<div class="form-group">
-    <label>Print name of applicant </label>
-    <input type="text" class="form-control" name="itechSignaturePrint" required >
-</div>
-<div class="form-group">
-    <label>Date</label>
-    <p id="demo"></p>
-    <script>
-document.getElementById("demo").innerHTML = Date();
-</script>
-    <class="form-control" name="itechDate" >
-</div>
-
-        <button type="submit" class="btn btn-warning btn-lg">Submit</button>
-    </form>
-<!-- Script for printing page at bottom -->
-    <button onclick="myPrint()"class="btn btn-warning btn-lg">Print this page</button>
-    <script>
-    function myPrint() {
-        window.print();
-    }
-    </script>
-<!-- script for uploading files to page -->
-    <button onclick="myUpload()"class="btn btn-warning btn-lg">Upload Files</button>
-
-    <script>
-    function myUpload() {
-        var x = document.createElement("INPUT");
-        x.setAttribute("type", "file");
-        document.body.appendChild(x);
-    }
-    </script>
-
-
-
-</div>
-
-</div>
+    </div>
 </body>
 </html>
