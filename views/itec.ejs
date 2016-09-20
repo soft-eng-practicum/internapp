@@ -18,10 +18,11 @@
     <h4>
       (1). Submit a printed, typed, and completed form and attach a printed copy of your resume. </br>
     </br>
-      (2). Submite to DR. Lissa Pollacia's office, Building C, Office 2239.</br>
+      (2). Submit to Dr. Lissa Pollacia's office, Building C, Office 2239.</br>
     </br>
-      (3). Upom Receipt of the application, Dr. Pollacia will contact you to schedula an appointment. </br>
+      (3). Upon Receipt of the application, Dr. Pollacia will contact you to schedule an appointment. </br>
     </br>
+    Information will be used to determine if you will be accepted to participate in the internship program. Completion of this application does no guarantee your acceptance into the internship program and/or enrollment in ITEC 4900.
 
   </h4>
         <div class="form-group">
@@ -361,11 +362,28 @@
       <class="form-control" name="itechOrgSeperate" >
   </div>
   <h4> Signatures and Review</h4>
-
-
+  <p><strong>I certify that the information contained in this application is true, correct, and complete. I understand that false statements reported on this application may be considered sufficient cause for denial of internship. </strong></p>
+</br>
+<div class="form-group">
+    <label>Signature of applicant </label>
+    <input type="text" class="form-control" name="itechSignature" >
+</div>
+<div class="form-group">
+    <label>Print name of applicant </label>
+    <input type="text" class="form-control" name="itechSignaturePrint" required >
+</div>
+<div class="form-group">
+    <label>Date</label>
+    <p id="demo"></p>
+    <script>
+document.getElementById("demo").innerHTML = Date();
+</script>
+    <class="form-control" name="itechDate" >
+</div>
 
         <button type="submit" class="btn btn-warning btn-lg">Submit</button>
     </form>
+
 
 
 
