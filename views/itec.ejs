@@ -46,8 +46,9 @@
 
                 <div class="form-group">
                     <label>Proposed Internship Semester Year
-                      <input type="number" name="proposedyear" min="2016" max="2030">
-                       </label></label>
+                      <select><option value="ProposedSem1"><%= new Date().getFullYear() %></option>
+                      <option value="ProposedSem2"><%= new Date().getFullYear()+1 %></option></select>
+                    </label>
                     </div><label></label>
 
             <div class="form-group">
@@ -66,9 +67,10 @@
             </div><label></label>
 
             <div class="form-group">
-                <label>Expected Internship Semester Year
-                  <input type="number" name="proposedyear" min="2016" max="2030">
-                   </label></label>
+                <label>Expected Internship Semester Year<select>
+                  <option value="ExpectedSem1"><%= new Date().getFullYear() %></option>
+                  <option value="ExpectedSem2"><%= new Date().getFullYear()+1 %></option>
+                </select>  </label></label>
                 </div><label></label>
 
 
