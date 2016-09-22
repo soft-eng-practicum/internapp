@@ -306,7 +306,7 @@
   </div>
   <div class="form-group">
       <label>City</label> <input class="form-control" name=
-      "bioSiteCity" type="text">
+      "bioSbioity" type="text">
   </div>
   <div class="form-group">
       <label>State: <select>
@@ -481,6 +481,170 @@
       "bioSiteManagerTitle" type="text">
   </div>
 
+  <h2>Proposed Preceptor Information</h2>
+  <div class="form-group">
+      <label>Name of proposed preceptor</label> <input class="form-control"
+      name="namepreceptor" required="" type="text">
+  </div>
+  <div class="form-group">
+      <label>Preceptor phone number</label> <input class="form-control"
+      name="preceptorphone" required="" type="text">
+  </div>
+  <div class="form-group">
+      <label>Preceptor email address</label> <input class="form-control"
+      name="preceptorEmail" required="" type="text">
+  </div>
+  <div class="form-group">
+      <label><label>Is this person the manager?<select>   <option value="Select">
+            Select
+        </option>
+          <option value="Yes">
+              Yes
+          </option>
+          <option value="No">
+              No
+          </option>
+
+  </select> </label></label>
+</div><label></label>
+
+
+  <div class="form-group">
+      <label>If no, what position does the proposed preceptor hold at the site?</label> <input class="form-control"
+      name="preceptorpostition" required="" type="text">
+
+<h3> Potential Student Conflicts</h3>
+      <div class="form-group">
+          <label><label>What is your current postition?</label>
+          <input class="form-control" name="bioOrgPosition" type=
+          "text"></label>
+      </div>
+      <div class="form-group">
+          <label>Is this a paid position?<select>
+            <option value="Select">
+                Select
+            </option>
+              <option value="Yes">
+                  Yes
+              </option>
+              <option value="No">
+                  No
+              </option>
+          </select> </label>
+      </div><label></label>
+      <div class="form-group">
+          <label><label>What is your current postition?</label>
+          <input class="form-control" name="bioOrgPosition" type=
+          "text"></label>
+      </div>
+      <div class="form-group">
+          <label>What is your current average work hours in a
+          week?</label> <input class="form-control" name="bioOrghours"
+          type="text">
+      </div>
+
+      <div class="form-group">
+          <label><label>Are you willing to complete your internship hours
+          at a seperate time from your normal work hours?<select>
+            <option value="Select">
+                Select
+            </option>
+              <option value="Yes">
+                  Yes
+              </option>
+              <option value="No">
+                  No
+              </option>
+          </select> </label></label>
+      </div><label></label>
+
+      <h3>If you plan on applying for more than one “Build Your Own” site, feel free to copy and paste the Proposed Site Information Section above of this application and complete.  For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).</h3>
+<h3> Education Component</h3>
+<h4>List 3 major educational objectives that you wish to achieve at the hosting facility.  Educational objectives pertain to what you want to learn on-site.</h4>
+
+For example: <br>
+<ul>
+<li>Effectively use problem solving techniques within the hospital environment and specific training area</li>
+<li>Be able to analyze data and interpret results including, but not limited to blood tests, EKGs, X-rays, scans, and patient charts.</li>
+</ul>
+
+<div class="form-group">
+    <label>1</label> <input class="form-control"
+    name="educomp1" required="" type="text">
+</div>
+<div class="form-group">
+    <label>2</label> <input class="form-control"
+    name="educomp2" required="" type="text">
+</div>
+<div class="form-group">
+    <label>3</label> <input class="form-control"
+    name="educomp3" required="" type="text">
+</div>
+
+<h3> Internship Description</h3>
+<div class="form-group">
+    <label>Describe how the internship experience at the proposed location will help you to achieve your career goals.
+      <form action="action_page.php">
+          <textarea cols="34" name="message" rows="8"></textarea><br>
+      </form>
+</div>
+
+<h4><label>Signatures and Review</label></h4>
+<p><label><strong>I certify that the information contained in this application is true, correct, and complete.  I understand that, if employed, false statements reported on this application may be considered sufficient cause for denial of a Biology Internship Experience and enrollment in the BIOL4800 Biology Internship course.
+</strong></label></p><label><br></label>
+<div class="form-group">
+    <label><label>Signature of applicant</label> <input class=
+    "form-control" name="bioSignature" type="text"></label>
+</div>
+<div class="form-group">
+    <label>Print name of applicant</label> <input class=
+    "form-control" name="bioSignaturePrint" required="" type=
+    "text">
+</div>
+
+<p><label><strong>I certify that the information contained in this application is true, correct, and complete.  This student has met all required pre-requisites and requirements for participation in the Biology Internship course. 
+</strong></label></p><label><br></label>
+<div class="form-group">
+    <label><label>Signature of Mentor</label> <input class=
+    "form-control" name="mentorbioSignature" type="text"></label>
+</div>
+<div class="form-group">
+    <label>Print name of Mentor</label> <input class=
+    "form-control" name="mentorbioSignaturePrint" required="" type=
+    "text">
+</div>
+
+<div class="form-group">
+    <label>Date</label>
+    <p id="demo"></p>
+    <script>
+    document.getElementById("demo").innerHTML = Date();
+    </script>
+
+<form action="bio_form.esj">
+</div><button class="btn btn-warning btn-lg" type=
+"submit">Submit</button>
+
+<!-- Script for printing page at bottom -->
+ <button class="btn btn-warning btn-lg" onclick="myPrint()">Print
+this page</button>
+<script>
+function myPrint() {
+window.print();
+}
+</script>
+<!-- script for uploading files to page -->
+ <button class="btn btn-warning btn-lg" onclick="myUpload()">Upload
+Files</button>
+<script>
+function myUpload() {
+var x = document.createElement("INPUT");
+x.setAttribute("type", "file");
+document.body.appendChild(x);
+}
+</script>
+
+</div>
 </div>
 </body>
 </html>
