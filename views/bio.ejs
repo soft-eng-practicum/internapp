@@ -1,174 +1,288 @@
 <!doctype html>
 <html>
 <head>
- 
-<link rel="stylesheet" href="stylesheets/styles.css">
- 
-<title>STEC 4800 Internship Application</title>
+    <title>GGC Biology Internship Application</title>
+    <link href=
+    "//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel=
+    "stylesheet"><!-- load bootstrap css -->
+    <link href=
+    "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    rel="stylesheet"><!-- load fontawesome -->
+
+    <style>
+        body        { padding-top:80px; }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1><u>Biology Intership application</u></h1>
+            <h4><strong> Submit a typed, completed and signed form with an attached, printed copy of your unofficial academic transcript (obtained from Banner) to the SST Office in the Allied Health and Sciences (H2) Building, Room 3209. </strong><br>
+            <br>
+            <strong>IMPORTANT:</strong> Please attach all required supplemental materials to complete the application packet. Information will be used to determine if you will be accepted to participate in program.  Incomplete application packets will not be reviewed.<br>
+            <br>
+            <br>
+            Information will be used to determine if you will be accepted to
+            participate in the internship program. Completion of this
+            application does not guarantee your acceptance into the internship
+            program and/or enrollment in bio 4900.</h4>
+            <div class="form-group">
+                <label>Proposed Internship Semester <select>
+                    <option value="Fall">
+                        Fall
+                    <option value="Spring">
+                        Spring
+                    </option>
+                    <option value="Summer">
+                        Summer
+                    </option>
+                  </select> </label></label>
+                </div><label></label>
 
-<p style="margin:30px;"><b><u><span style="font-size:14">Important:</span></b></u> 
-	Please attach all required supplemental materials to complete the application packet.
-	Information will be used to determine if you will be accepted to participate in program. 
-	Incomplete application packets will not be reviewed.
-</p>
-
-<div id="student">
-	<b>Student Information</b>
-	<br/>
-	<br/>
-	<form>
-	Name:<br/>
-	<input type="text" name="studentName"><br/>
-	<br/>
-	GGC Student ID#:<br/>
-	<input type="text" name="studentID"><br/>
-	<br/>
-	GGC Email address:<br/>
-	<input type="text" name="studentEmail"><br/>
-	<br/>
-	Mailing Address:<br/>
-	<input type="text" name="studentAddress"><br/>
-	<br/>
-	City:<br/>
-	<input type="text" name="studentCity"><br/>
-	<br/>
-	State:<br/>
-	<input type="text" name="studentState"><br/>
-	<br/>
-	Zip Code:<br/>
-	<input type="text" name="studentZip"><br/>
-	<br/>
-	Telephone Number:<br/>
-	<input type="text" name="studentPhone"><br/>
-	<br/>
-	</form>
+                <h3><label>Emergency Contact Information</label></h3>
+                <div class="form-group">
+                    <label><label>Name of Parent or Legal Guardian</label> <input class=
+                    "form-control" name="biocontact" required="" type=
+                    "text"></label>
+                </div>
+                <div class="form-group">
+                    <label>Mailing address</label> <input class="form-control"
+                    name="biocontactmail" required="" type="text">
+                </div>
+                <div class="form-group">
+                    <label>Preferred Email Address</label> <input class=
+                    "form-control" name="biocontactemail" required="" type=
+                    "text">
+                </div>
+                <div class="form-group">
+                    <label>City</label> <input class="form-control" name=
+                    "biocontactcity" required="" type="text">
+                </div>
+                <div class="form-group">
+                    <label>State:<select>
+                        <option value="AL">
+                            Alabama
+                        </option>
+                        <option value="AK">
+                            Alaska
+                        </option>
+                        <option value="AZ">
+                            Arizona
+                        </option>
+                        <option value="AR">
+                            Arkansas
+                        </option>
+                        <option value="CA">
+                            California
+                        </option>
+                        <option value="CO">
+                            Colorado
+                        </option>
+                        <option value="CT">
+                            Connecticut
+                        </option>
+                        <option value="DE">
+                            Delaware
+                        </option>
+                        <option value="DC">
+                            District Of Columbia
+                        </option>
+                        <option value="FL">
+                            Florida
+                        </option>
+                        <option value="GA">
+                            Georgia
+                        </option>
+                        <option value="HI">
+                            Hawaii
+                        </option>
+                        <option value="ID">
+                            Idaho
+                        </option>
+                        <option value="IL">
+                            Illinois
+                        </option>
+                        <option value="IN">
+                            Indiana
+                        </option>
+                        <option value="IA">
+                            Iowa
+                        </option>
+                        <option value="KS">
+                            Kansas
+                        </option>
+                        <option value="KY">
+                            Kentucky
+                        </option>
+                        <option value="LA">
+                            Louisiana
+                        </option>
+                        <option value="ME">
+                            Maine
+                        </option>
+                        <option value="MD">
+                            Maryland
+                        </option>
+                        <option value="MA">
+                            Massachusetts
+                        </option>
+                        <option value="MI">
+                            Michigan
+                        </option>
+                        <option value="MN">
+                            Minnesota
+                        </option>
+                        <option value="MS">
+                            Mississippi
+                        </option>
+                        <option value="MO">
+                            Missouri
+                        </option>
+                        <option value="MT">
+                            Montana
+                        </option>
+                        <option value="NE">
+                            Nebraska
+                        </option>
+                        <option value="NV">
+                            Nevada
+                        </option>
+                        <option value="NH">
+                            New Hampshire
+                        </option>
+                        <option value="NJ">
+                            New Jersey
+                        </option>
+                        <option value="NM">
+                            New Mexico
+                        </option>
+                        <option value="NY">
+                            New York
+                        </option>
+                        <option value="NC">
+                            North Carolina
+                        </option>
+                        <option value="ND">
+                            North Dakota
+                        </option>
+                        <option value="OH">
+                            Ohio
+                        </option>
+                        <option value="OK">
+                            Oklahoma
+                        </option>
+                        <option value="OR">
+                            Oregon
+                        </option>
+                        <option value="PA">
+                            Pennsylvania
+                        </option>
+                        <option value="RI">
+                            Rhode Island
+                        </option>
+                        <option value="SC">
+                            South Carolina
+                        </option>
+                        <option value="SD">
+                            South Dakota
+                        </option>
+                        <option value="TN">
+                            Tennessee
+                        </option>
+                        <option value="TX">
+                            Texas
+                        </option>
+                        <option value="UT">
+                            Utah
+                        </option>
+                        <option value="VT">
+                            Vermont
+                        </option>
+                        <option value="VA">
+                            Virginia
+                        </option>
+                        <option value="WA">
+                            Washington
+                        </option>
+                        <option value="WV">
+                            West Virginia
+                        </option>
+                        <option value="WI">
+                            Wisconsin
+                        </option>
+                        <option value="WY">
+                            Wyoming
+                        </option>
+                    </select> </label>
+                </div><label></label>
+                <div class="form-group">
+                    <label><label>Zip Code</label> <input class="form-control"
+                    name="biocontactzip" required="" type="text"></label>
+                </div>
+                <div class="form-group">
+                    <label>Telephone Number</label> <input class="form-control"
+                    name="biocontactphone" required="" type="text">
+                </div>
+<h2>Mentor Information</h2>
+<div class="form-group">
+    <label>GGC Mentor Name</label> <input class="form-control"
+    name="biomentorname" required="" type="text">
+</div>
+<div class="form-group">
+    <label>GGC Cellphone number</label> <input class="form-control"
+    name="bioggccellphone" required="" type="text">
+</div>
+<div class="form-group">
+    <label>GGC Email Address</label> <input class="form-control"
+    name="biomentoremail" required="" type="text">
+</div>
+<div class="form-group">
+    <label>GGC Office Location</label> <input class="form-control"
+    name="biomentoroffice" required="" type="text">
 </div>
 
-<div id="emergency">
-	<b>Emergency Contact Information</b>
-	<br/>
-	<br/>
-	<form>
-		Name of Parent or Legal Guardian:<br/>
-		<input type="text" name="parentName"><br/>
-		<br/>
-		Mailing Address:<br/>
-		<input type="text" name="parentAddress"><br/>
-		<br/>
-		Preferred Email Address:<br/>
-		<input type="text" name="parentEmail"><br/>
-		<br/>
-		City:<br/>
-		<input type="text" name="parentCity"><br/>
-		<br/>
-		State:<br/>
-		<input type="text" name="parentState"><br/>
-		<br/>
-		Zip Code:<br/>
-		<input type="text" name="parentZip"><br/>
-		<br/>
-		Telephone Number:<br/>
-		<input type="text" name="parentPhone"><br/>
-		<br/>
-	</form>
+<h2>Student Academic Information</h2>
+<div class="form-group">
+    <label>Number of Hours completed within Biology</label> <input class="form-control"
+    name="biohours" required="" type="text">
+</div>
+<div class="form-group">
+    <label>Major and Concentration</label> <input class="form-control"
+    name="biomajor" required="" type="text">
+</div>
+<div class="form-group">
+    <label>Overall GPA</label> <input class="form-control"
+    name="biomGPA" required="" type="text">
+</div>
+<div class="form-group">
+    <label>Program GPA</label> <input class="form-control"
+    name="bioprogramGPA" required="" type="text">
+</div>
+<div class="form-group">
+    <label>What is your intended profession/career?</label> <input class="form-control"
+    name="biocareer" required="" type="text">
 </div>
 
-<div id="mentor">
-	<b>GGC Mentor Information</b>
-	<br/>
-	<br/>
-	<form>
-		GGC Mentor Name:<br/>
-		<input type="text" name="mentorName"><br/>
-		<br/>
-		GGC Office telephone number:<br/>
-		<input type="text" name="mentorPhone"><br/>
-		<br/>
-		GGC Email Address:<br/>
-		<input type="text" name="mentorEmail"><br/>
-		<br/>	
+  <div class="form-group">
+<label>Proposed Internship Semester <select>
+    <option value="Fall">
+        Fall
+    <option value="Spring">
+        Spring
+    </option>
+    <option value="Summer">
+        Summer
+    </option>
+  </select> </label></label>
+</div><label></label>
+
+<div class="form-group">
+    <label>Proposed Internship Semester Year
+      <select><option value="bioProposedSem1"><%= new Date().getFullYear() %></option>
+      <option value="bioProposedSem2"><%= new Date().getFullYear()+1 %></option></select>
+    </label>
+    </div><label></label>
+
 </div>
-
-<div id="academic">
-	<b>Student Academic Information</b>
-	<br/>
-	<br/>
-	<form>
-		Number of hours completed within Biology major and concentration:<br/>
-		<input type="text" name="academicHours"><br/>
-		<br/>
-		Major Program:<br/>
-		<input type="text" name="academicMajor"><br/>
-		<br/>
-		What is your intended profession/career:<br/>
-		Overall GPA:<br/>
-		<input type="text" name="academicOverallGPA"><br/>
-		<br/>
-		Program GPA:<br/>
-		<input type="text" name="academicProgramGPA"><br/>
-		<br/>
-		<br/>
-		Proposed Internship semester:<br/>
-		<input type="checkbox" name="Fall" value="Fall 2016" checked>Fall 2016<br/>
-		<input type="checkbox" name="Spring" value="Spring 2016">Spring 2016<br/>
-		<input type="checkbox" name="Summer" value="Summer 2016">Summer 2016<br/>
-		<br/>
-	</form>
-</div>
-
-<ol id="list">
-	<li><b>Course Pre-Requisites: Junior or Senior Status. BIOL 3400; CHEM 1211; 1212; PHYS I &amp; II sequence</b>
-	</li> <br/>
-	<li><b>If selected for the Service Learning Internship Course, you will need to go through a backgroundcheck.</b> 
-	The background check form can be found on the Service Learning Internship site on My.GGC. You will
-	need to complete this AFTER you are selected for the course. If accepted to the program, you will need to sign
-	the form under &quotapplicant&#39;s signature&quot;, take the completed form to Student Accounts and pay $25 for the
-	background check. Staple the receipt and background check together and return to Dr. Allison D&#39;Costa
-	(adcosta@ggc.edu) or Dr. Clay Runck. <b><u>Final acceptance is contingent on &quotpassing&quot; a background check.</b></u>
-	</li> <br/>
-	<li><b>If selected for the Service Learning Internship Course, you will need to get insurance for $7.00 from</b>
-	<a href="http://www.pageinc.org/"><b></a></u>PAGE Professional Association of Georgia Educators</b></u>
-	</li> <br/>
-	<li><b>Service Learning Internships require that you spend half your time at a participating elementary
-	school implementing science labs, and the rest of your time at GGC preparing the lesson plan, labs and
-	course delivery.</b> The internship course meets on Tuesdays and Thursdays. <b>On the days you are in the
-	elementary school, your hours will be 12:30-3:00 pm,</b> and, <b>at GGC, the hours will be 12:30-1:45pm.</b> The
-	hours in the school are longer as you need to set-up equipment for the labs and clean up after lab. You will also
-	spend several hours at home preparing materials for the labs. <b>(NOTE: The course hours are different from
-	what is listed in Banner).</b>
-	</li> <br/>
-	<li><b>Service Learning Interns are expected to act and dress professionally during all visits to the
-	elementary schools, and arrive on time at the elementary school (which is about 2.5 mi from GGC).</b>
-	</li> <br/>	
-	<li><b>An important criteria for selection is public speaking ability. If you are not comfortable speaking in
-	front of people, this internship is not for you. <u>In a short interview, you must describe how this experience
-	will benefit your career.</u></b>
-	</li> <br/>
-</ol>	
-
-<p id="list">I certify that the information contained in this application is true, correct, and complete. I understand that, if
-	employed, false statements reported on this application may be considered sufficient cause for denial of a
-	Service Learning Internship Experience.
-</p>
-<br/>
-<br/>
-
-<div id="signature">
-	<form>
-		Signature:
-		<input type="text" name="signature"><br/>
-		<br/>
-	</form>
-</div>
-
-<div style="text-align:center;margin:30px;">
-	<form action="demo_form.asp">
-	Upload required documents: <input type="file" name="img" multiple><br/><br/>
-	<input type="submit">
-	</form>
-</div>
-
 </body>
 </html>
