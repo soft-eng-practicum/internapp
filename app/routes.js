@@ -61,7 +61,7 @@ module.exports = function(app, passport) {
     });
     
     // =====================================
-    // ITEC ================================
+    // BIO =================================
     // =====================================
     app.get('/bio', isLoggedIn, function(req, res) {
         res.render('bio.ejs', {
