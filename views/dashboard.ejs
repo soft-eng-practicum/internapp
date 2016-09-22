@@ -19,30 +19,14 @@
 
     <div class="row">
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3>Submitted Applications</h3>
-
-                    <p>
-                        <a href='#dummy'>Autotrader Internship</a><br>
-                        <a href='#dummy'>Sage Internship</a><br>
-                    </p>
-
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="well">
-                <h3>Applications Available</h3>
-
-                    <p>
-                        BIO Internship Application: <a href="bio">Biology </a> <br>
-                        ITEC Internship Application: <a href="/itec">ITEC</a>
-
-                    </p>
-
-            </div>
-        </div>
+        <% if (user.local.role=='user') { %>
+        <% include partials/userdashboard %>
+        <% } else if (user.local.role=='admin') { %>
+        <% include partials/admindashboard %>
+        <% } else { %>
+        <% include partials/instructordashboard %>
+        <% } %>
+        
 
     </div>
 
