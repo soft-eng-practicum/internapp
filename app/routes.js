@@ -69,7 +69,23 @@ module.exports = function(app, passport) {
         });
     });
 
-
+    // =====================================
+    // PROMOTE =============================
+    // =====================================
+    app.get('/promote', isLoggedIn, function(req, res) {
+        if(req.user.local.role=='admin'){
+          res.render('promote.ejs');   
+        }
+        else{
+           res.redirect('/dashboard'); 
+        }
+    });
+    app.post('/promote', isLoggedIn, function(req, res){
+    console.log(req.body.email + ' '+ req.body.role);
+});
+    
+    
+    
     // =====================================
     // LOGOUT ==============================
     // =====================================
@@ -77,6 +93,7 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+    
 };
 
 // route middleware to make sure a user is logged in
@@ -89,3 +106,5 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
+
+
