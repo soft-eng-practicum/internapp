@@ -46,8 +46,9 @@ module.exports = function(app, passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/dashboard', isLoggedIn, function(req, res) {
+        console.log(req.session);
         res.render('dashboard.ejs', {
-            user : req.user // get the user out of session and pass to template
+            user : req.session.passport.user // get the user out of session and pass to template
         });
     });
 
@@ -73,7 +74,7 @@ module.exports = function(app, passport) {
     // PROMOTE =============================
     // =====================================
     app.get('/promote', isLoggedIn, function(req, res) {
-        if(req.user.local.role=='admin'){
+        if(req.session.passport.user.role=='admin'){
           res.render('promote.ejs');   
         }
         else{

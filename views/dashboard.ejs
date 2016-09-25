@@ -13,15 +13,15 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1>Welcome to your dashboard <%= user.local.fname %></h1>
+        <h1>Welcome to your dashboard <%= user.fname %></h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
 
-        <% if (user.local.role=='user') { %>
+        <% if (user.role=='user') { %>
         <% include partials/userdashboard %>
-        <% } else if (user.local.role=='admin') { %>
+        <% } else if (user.role=='admin') { %>
         <% include partials/admindashboard %>
         <% } else { %>
         <% include partials/instructordashboard %>
