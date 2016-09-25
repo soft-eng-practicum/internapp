@@ -1,4 +1,5 @@
 // app/routes.js
+var User = require('./models/user');
 module.exports = function(app, passport) {
 
     // =====================================
@@ -81,8 +82,12 @@ module.exports = function(app, passport) {
            res.redirect('/dashboard'); 
         }
     });
-    app.post('/promote', isLoggedIn, function(req, res){
+    app.post('/promote', isLoggedIn, function(req, res,next){
     console.log(req.body.email + ' '+ req.body.role);
+    User.update({'local.email': req.body.email}, {'local.role': req.body.role}, function (err, status) {
+  if(err) {}
+  res.redirect('/dashboard');
+});
 });
     
     
