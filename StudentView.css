@@ -1,0 +1,54 @@
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	display:inline;
+}
+
+.boxes{
+	columns:2;
+	padding:120px;
+}
+
+.newBox{
+	width:500px;
+	height:300px;
+	border:1px solid;
+	padding:5px;
+	margin-bottom:4%;
+	text-align:center;
+	overflow:scroll;
+}
+
+.appBox{
+	width:500px;
+	height:300px;
+	border:1px solid;
+	padding:5px;
+	margin-bottom:4%;
+	text-align:center;
+	overflow:scroll;
+}
+
+.denProfBox{
+	width:500px;
+	height:300px;
+	border:1px solid;
+	padding: 5px;
+	margin-bottom:4%;
+	text-align:center;
+	overflow:scroll;
+}
+
+.denSiteBox{
+	width:500px;
+	height:300px;
+	border:1px solid;
+	padding: 5px;
+	margin-bottom:4%;
+	text-align:center;
+	overflow:scroll;
+}
