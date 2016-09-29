@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+
+<link rel="stylesheet" href="TeacherViewApp.css">
+
+<title>Student Application</title>
+
+<meta charset="UTF-8">
+
+</head>
+
+<body>
+
+<ul>
+  <li><a href="default.net">Home</a></li>
+  <li style="padding-left:30px;"><a href="messages.net">Messages</a></li>
+  <li style="padding-left:30px;"><a href="profile.net">Profile</a></li>
+  <li style="float:right"><a href="logout.net">Logout</a></li>
+</ul>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="app">
+
+<div class="stuInfo">
+<header>Student Application</header>
+</div>
+
+<div class="checkListBox">
+<header>Checklist</header>
+<br/>
+	<li>
+		<input id="checkid" type="checkbox" value="application" />
+		<label for="checkid">Application</label>
+	</li>
+	<li>
+		<input id="checkid2" type="checkbox" value="resume" />
+		<label for="checkid2">Résumé</label>
+	</li>
+	<li>
+		<input id="checkid2" type="checkbox" value="transcript" />
+		<label for="checkid2">Transcript</label>
+	</li>
+</div>
+
+</div>
+
+<div class="action">
+	<p>Desired action:</p>
+		<select>
+			<option value="approve">Accepted</option>
+			<option value="deny">Denied</option>
+			<option value="missing">Missing Requirements</option>
+			<option value="furtherReview">Further Review</option>
+			<option value="profDecline">Decline by Professor</option>
+			<option value="siteDecline">Decline by Site</option>
+		</select>
+</div>
+
+<br/>
+
+<div style="text-align:center; margin:auto;">
+<input id="submit" type="submit" value="Submit" style="text-align:center;">
+</div>
+
+<div style="text-align:center;">
+<p id="demo"></p>
+<script>
+document.getElementById("demo").innerHTML = Date();
+</script>
+</div>
+
+</body>
+
+</html>
