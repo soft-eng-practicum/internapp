@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+
+<link rel="stylesheet" href="StudentView.css">
+ 
+<title>Student View Applications</title>
+
+</head>
+
+<body>
+
+<ul>
+  <li><a href="default.asp">Home</a></li>
+  <li style="padding-left:30px;"><a href="messages.asp">Messages</a></li>
+  <li style="padding-left:30px;"><a href="profile.asp">Profile</a></li>
+  <li style="float:right"><a href="logout.asp">Logout</a></li>
+</ul>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div style="padding-left:120px;">
+<input id="submit" type="submit" value="Apply for Internship" style="text-align:center;">
+</div>
+
+<div class="boxes">
+
+<div class="newBox">
+<header>Pending Submissions</header>
+</div>
+
+<div class="appBox">
+<header>Accepted Submissions</header>
+</div>
+
+<div class="denBox">
+<header>Denied Submissions</header>
+</div>
+
+
+</div>
+
+<div style="text-align:center;">
+<p id="demo"></p>
+<script>
+document.getElementById("demo").innerHTML = Date();
+</script>
+</div>
+
+</body>
+
+</html>
