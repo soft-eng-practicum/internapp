@@ -9,7 +9,7 @@ li {
 }
 
 .boxes{
-	columns:2;
+	columns:1;
 	padding:120px;
 }
 
@@ -21,6 +21,7 @@ li {
 	margin-bottom:4%;
 	text-align:center;
 	overflow:scroll;
+	position:center;
 }
 
 .appBox{
@@ -33,17 +34,7 @@ li {
 	overflow:scroll;
 }
 
-.denProfBox{
-	width:500px;
-	height:300px;
-	border:1px solid;
-	padding: 5px;
-	margin-bottom:4%;
-	text-align:center;
-	overflow:scroll;
-}
-
-.denSiteBox{
+.denBox{
 	width:500px;
 	height:300px;
 	border:1px solid;
