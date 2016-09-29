@@ -1,1 +1,62 @@
- <a href="/promote">Promote a user</a>
+ <!doctype html>
+<html>
+<head>
+
+<link rel="stylesheet" href="TeacherView.css">
+ 
+<title>Internship Applications</title>
+
+</head>
+
+<body>
+
+<ul>
+  <li><a href="default.net">Home</a></li>
+  <li style="padding-left:30px;"><a href="messages.net">Messages</a></li>
+  <li style="padding-left:30px;"><a href="profile.net">Profile</a></li>
+  <li style="float:right"><a href="logout.net">Logout</a></li>
+</ul>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="boxes">
+
+<div class="newBox">
+<header>Newest Applications</header>
+</div>
+
+<div class="appBox">
+<header>Approved Applications</header>
+</div>
+
+<div class="denProfBox">
+<header>Denied by Professor</header>
+</div>
+
+<div class="denSiteBox">
+<header>Denied by Site</header>
+</div>
+
+<div class="misBox">
+<header>Missing Requirements</header>
+</div>
+
+<div class="revBox">
+<header>Further Review</header>
+</div>
+
+</div>
+
+<div style="text-align:center;">
+<p id="demo"></p>
+<script>
+document.getElementById("demo").innerHTML = Date();
+</script>
+</div>
+
+</body>
+
+</html>
