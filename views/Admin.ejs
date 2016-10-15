@@ -1,53 +1,33 @@
 <!doctype html>
-<html>
 <head>
-
-<link rel="stylesheet" href="Admin.css">
- 
-<title>Admin</title>
-
+    <title>Admin</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
 </head>
-
 <body>
+<div class="container">
 
-<ul>
-  <li><a href="default.net">Home</a></li>
-  <li style="padding-left:30px;"><a href="messages.net">Messages</a></li>
-  <li style="padding-left:30px;"><a href="profile.net">Profile</a></li>
-  <li style="float:right"><a href="logout.net">Logout</a></li>
-</ul>
+    <div class="page-header text-center">
+        <h1>Welcome to your dashboard <%= user.fname %></h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
 
-<br/>
-<br/>
+    <div class="row">
 
-<div style="padding-left:80px;">
-<input id="submit" type="submit" value="Add User" style="text-align:center;">
-</div>
+        <% if (user.role=='user') { %>
+        <% include partials/userdashboard %>
+        <% } else if (user.role=='admin') { %>
+        <% include partials/admindashboard %>
+        <% } else { %>
+        <% include partials/instructordashboard %>
+        <% } %>
 
-<br/>
-<br/>
 
-<input style="margin-left:80px;" type="text" name="search" placeholder="Search..">
-
-<div class="boxes">
-
-<div class="newBox">
-<header>Recently Added Teachers</header>
-</div>
-
-<div class="appBox">
-<header>Recently Added Students</header>
-</div>
+    </div>
 
 </div>
-
-<div style="text-align:center;">
-<p id="demo"></p>
-<script>
-document.getElementById("demo").innerHTML = Date();
-</script>
-</div>
-
 </body>
-
 </html>

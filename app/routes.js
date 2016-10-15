@@ -92,6 +92,27 @@ module.exports = function(app, passport) {
     });
 
     // =====================================
+    // ADMIN =================================
+    // =====================================
+
+    app.get('/admin', isLoggedIn, function(req, res) {
+        res.render('admin.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+    // =====================================
+    // ADMINDASHBOARD=================================
+    // =====================================
+
+    app.get('/admindashboard', isLoggedIn, function(req, res) {
+        res.render('admindashboard.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+
+    // =====================================
     // PROMOTE =============================
     // =====================================
     app.get('/promote', isLoggedIn, function(req, res) {
