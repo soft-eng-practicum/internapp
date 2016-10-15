@@ -61,7 +61,27 @@ module.exports = function(app, passport) {
             user : req.user // get the user out of session and pass to template
         });
     });
-    
+
+    // =====================================
+    // STUDENTVIEW =================================
+    // =====================================
+
+    app.get('/studentview', isLoggedIn, function(req, res) {
+        res.render('studentview.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+    // =====================================
+    // TEACHERVIEW=================================
+    // =====================================
+    app.get('/teachertview', isLoggedIn, function(req, res) {
+        res.render('teacherview.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+
+
     // =====================================
     // BIO =================================
     // =====================================
@@ -76,10 +96,10 @@ module.exports = function(app, passport) {
     // =====================================
     app.get('/promote', isLoggedIn, function(req, res) {
         if(req.session.passport.user.role=='admin'){
-          res.render('promote.ejs');   
+          res.render('promote.ejs');
         }
         else{
-           res.redirect('/dashboard'); 
+           res.redirect('/dashboard');
         }
     });
     app.post('/promote', isLoggedIn, function(req, res,next){
@@ -89,9 +109,9 @@ module.exports = function(app, passport) {
   res.redirect('/dashboard');
 });
 });
-    
-    
-    
+
+
+
     // =====================================
     // LOGOUT ==============================
     // =====================================
@@ -99,7 +119,7 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
-    
+
 };
 
 // route middleware to make sure a user is logged in
@@ -112,5 +132,3 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
-
-
