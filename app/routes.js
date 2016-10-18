@@ -1,5 +1,7 @@
 // app/routes.js
 var User = require('./models/user');
+var Site = require('./models/site');
+
 module.exports = function(app, passport) {
 
     // =====================================
@@ -87,6 +89,40 @@ module.exports = function(app, passport) {
     User.update({'local.email': req.body.email}, {'local.role': req.body.role}, function (err, status) {
   if(err) {}
   res.redirect('/dashboard');
+});
+});
+
+    // =====================================
+    // SITE ================================
+    // =====================================
+    app.get('/sites', isLoggedIn, function(req, res) {
+        if(true){
+          Site.find(function (err, sites) {
+  if (err) return console.error(err);
+   res.render('site.ejs', {
+            siteList : sites
+        }); 
+})
+        }
+        else{
+           res.redirect('/dashboard'); 
+        }
+    });
+    
+        app.get('/addsite', isLoggedIn, function(req, res) {
+        if(true){
+          res.render('addsite.ejs');   
+        }
+        else{
+           res.redirect('/dashboard'); 
+        }
+    });
+    
+     app.post('/addsite', isLoggedIn, function(req, res,next){
+         var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode });
+site.save(function (err, fluffy) {
+  if (err) return console.error(err);
+   res.redirect('/sites'); 
 });
 });
     
