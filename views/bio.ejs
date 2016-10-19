@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label>Mailing address</label> <input class="form-control"
-                    name="biocontactmail" required="" type="text">
+                    name="biocontactaddress" required="" type="text">
                 </div>
                 <div class="form-group">
                     <label>Preferred Email Address</label> <input class=
@@ -97,12 +97,12 @@
 
   <div class="form-group">
 <label>Proposed Internship Semester <select>
-    <option value="Fall">
+    <option value="proposedfall">
         Fall
-    <option value="Spring">
+    <option value="proposedspring">
         Spring
     </option>
-    <option value="Summer">
+    <option value="proposedsummer">
         Summer
     </option>
   </select> </label></label>
@@ -110,23 +110,23 @@
 
 <div class="form-group">
     <label>Proposed Internship Semester Year
-      <select><option value="bioProposedSem1"><%= new Date().getFullYear() %></option>
-      <option value="bioProposedSem2"><%= new Date().getFullYear()+1 %></option></select>
+      <select><option value="bioproposedsem1"><%= new Date().getFullYear() %></option>
+      <option value="bioproposedsem2"><%= new Date().getFullYear()+1 %></option></select>
     </label>
     </div><label></label>
 
     <div class="form-group">
       <h3><strong>Internship Information</strong> </h3>
   <label>Are you applying to an Internship Site previously approved by Internship committee?
-    <input type="checkbox" name="yes" value="Bioyes" checked>Yes
-    <input type="checkbox" name="yes" value="Biono">No<br/>
+    <input type="checkbox" name="yes" value="bioyes" checked>Yes
+    <input type="checkbox" name="yes" value="biono">No<br/>
     <br>
     <h3><strong> If yes, please mark which one and then complete the additional form for the specific location:</strong></h3>
-    <input type="checkbox" name="gyf" value="bioGYF" checked>Greening Youth Foundation (Supplemental Application Required)<br/>
-    <input type="checkbox" name="gshcg" value="bioGSHCG">Good Samaritan Health Center of Gwinnett (Interview Required)<br/>
-	   <input type="checkbox" name="cmd" value="bioCMD">Consultorio Medico Hispano (Interview Required)<br/>
-     <input type="checkbox" name="yrprc" value="bioYRPRC">Yerkes Regional Primate Research Center(Supplemental Application Required and Interview Required) <br/>
-     <input type="checkbox" name="usda" value="bioUSDA">US Department of Agriculture, Food Safety Inspection Services (must complete their application process)<br/>
+    <input type="checkbox" name="gyf" value="biogyf" checked>Greening Youth Foundation (Supplemental Application Required)<br/>
+    <input type="checkbox" name="gshcg" value="biogshcg">Good Samaritan Health Center of Gwinnett (Interview Required)<br/>
+	   <input type="checkbox" name="cmd" value="biocmd">Consultorio Medico Hispano (Interview Required)<br/>
+     <input type="checkbox" name="yrprc" value="bioyrprc">Yerkes Regional Primate Research Center(Supplemental Application Required and Interview Required) <br/>
+     <input type="checkbox" name="usda" value="biousda">US Department of Agriculture, Food Safety Inspection Services (must complete their application process)<br/>
      <h3>If your internship site is not listed above, then please provide the proposed information for review.<br>
        <br>
 <strong>Note:</strong>  It is conflict of interest if you have a close personal or family relationship with a proposed preceptor and/or site manager/supervisor.  Providing false information about connections between you and site staff would constitute a violation of the GGC Honor Code (see policy on academic honesty).</h3>
@@ -145,12 +145,12 @@
       type="text">
   </div>
   <div class="form-group">
-      <label>Street Address</label> <input class="form-control" name=
+      <label>Sites Street Address</label> <input class="form-control" name=
       "biositeaddress" type="text">
   </div>
   <div class="form-group">
-      <label>City</label> <input class="form-control" name=
-      "biosbioity" type="text">
+      <label>Sites City</label> <input class="form-control" name=
+      "sitebiocity" type="text">
   </div>
 
   <div class="form-group">
@@ -185,10 +185,10 @@
       <label><label>Is this person the manager?<select>   <option value="Select">
             Select
         </option>
-          <option value="Yes">
+          <option value="preceptoryes">
               Yes
           </option>
-          <option value="No">
+          <option value="preceptorno">
               No
           </option>
 
@@ -211,10 +211,10 @@
             <option value="Select">
                 Select
             </option>
-              <option value="Yes">
+              <option value="paidyes">
                   Yes
               </option>
-              <option value="No">
+              <option value="paidno">
                   No
               </option>
           </select> </label>
@@ -236,10 +236,10 @@
             <option value="Select">
                 Select
             </option>
-              <option value="Yes">
+              <option value="internyes">
                   Yes
               </option>
-              <option value="No">
+              <option value="internno">
                   No
               </option>
           </select> </label></label>
@@ -289,18 +289,6 @@ For example: <br>
     "text">
 </div>
 
-<p><label><strong>I certify that the information contained in this application is true, correct, and complete.  This student has met all required pre-requisites and requirements for participation in the Biology Internship course.
-</strong></label></p><label><br></label>
-<div class="form-group">
-    <label><label>Signature of Mentor</label> <input class=
-    "form-control" name="mentorbiosignature" type="text"></label>
-</div>
-<div class="form-group">
-    <label>Print name of Mentor</label> <input class=
-    "form-control" name="mentorbiosignatureprint" required="" type=
-    "text">
-</div>
-
 <div class="form-group">
     <label>Date</label>
     <p id="demo"></p>
@@ -318,16 +306,6 @@ this page</button>
 <script>
 function myPrint() {
 window.print();
-}
-</script>
-<!-- script for uploading files to page -->
- <button class="btn btn-warning btn-lg" onclick="myUpload()">Upload
-Files</button>
-<script>
-function myUpload() {
-var x = document.createElement("INPUT");
-x.setAttribute("type", "file");
-document.body.appendChild(x);
 }
 </script>
 
