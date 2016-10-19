@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 // define the schema for our itec model
 var itecSchema = mongoose.Schema({
 
+
+local              :{
         proposed internship semester       : {type: String, required: true,},
         proposed internship semester year    : {type: String, required: true},
         expected internship semester         : {type: String, required: true},
