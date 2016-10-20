@@ -43,16 +43,16 @@
                     "text">
                 </div>
                 <div class="form-group">
-                    <label>City</label> <input class="form-control" name=
+                    <label>Contacts City</label> <input class="form-control" name=
                     "biocontactcity" required="" type="text">
                 </div>
 
                 <div class="form-group">
-                    <label><label>Zip Code</label> <input class="form-control"
+                    <label><label>Contacts Zip Code</label> <input class="form-control"
                     name="biocontactzip" required="" type="text"></label>
                 </div>
                 <div class="form-group">
-                    <label>Telephone Number</label> <input class="form-control"
+                    <label>Contacts Telephone Number</label> <input class="form-control"
                     name="biocontactphone" required="" type="text">
                 </div>
 <h2>Mentor Information</h2>
@@ -181,20 +181,14 @@
       <label>Preceptor email address</label> <input class="form-control"
       name="preceptoremail" required="" type="text">
   </div>
+
   <div class="form-group">
-      <label><label>Is this person the manager?<select>   <option value="Select">
-            Select
-        </option>
-          <option value="preceptoryes">
-              Yes
-          </option>
-          <option value="preceptorno">
-              No
-          </option>
-
-  </select> </label></label>
-</div><label></label>
-
+<label for="major">Is this person the manager?</label>
+<select class="form-control" id="biomanager" name="biointernmanager">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+  </select>
+  </div>
 
   <div class="form-group">
       <label>If no, what position does the proposed preceptor hold at the site?</label> <input class="form-control"
@@ -207,18 +201,13 @@
           "text"></label>
       </div>
       <div class="form-group">
-          <label>Is this a paid position?<select>
-            <option value="Select">
-                Select
-            </option>
-              <option value="paidyes">
-                  Yes
-              </option>
-              <option value="paidno">
-                  No
-              </option>
-          </select> </label>
-      </div><label></label>
+
+<label for="biopaidposition">Is this a paid position?</label>
+<select class="form-control" id="biopaidposition" name="paidinternship">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+  </select>
+  </div>
       <div class="form-group">
           <label><label>What is your current postition?</label>
           <input class="form-control" name="bioorgposition" type=
@@ -231,19 +220,13 @@
       </div>
 
       <div class="form-group">
-          <label><label>Are you willing to complete your internship hours
-          at a seperate time from your normal work hours?<select>
-            <option value="Select">
-                Select
-            </option>
-              <option value="internyes">
-                  Yes
-              </option>
-              <option value="internno">
-                  No
-              </option>
-          </select> </label></label>
-      </div><label></label>
+
+<label for="internquestion">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
+<select class="form-control" id="internquestion" name="internquestionanswer">
+ <option value="yes">Yes</option>
+ <option value="no">No</option>
+ </select>
+ </div>
 
       <h3>If you plan on applying for more than one “Build Your Own” site, feel free to copy and paste the Proposed Site Information Section above of this application and complete.  For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).</h3>
 <h3> Education Component</h3>
@@ -256,15 +239,15 @@ For example: <br>
 </ul>
 
 <div class="form-group">
-    <label>1</label> <input class="form-control"
+    <label>First</label> <input class="form-control"
     name="educomp1" required="" type="text">
 </div>
 <div class="form-group">
-    <label>2</label> <input class="form-control"
+    <label>Second</label> <input class="form-control"
     name="educomp2" required="" type="text">
 </div>
 <div class="form-group">
-    <label>3</label> <input class="form-control"
+    <label>Third</label> <input class="form-control"
     name="educomp3" required="" type="text">
 </div>
 
@@ -272,7 +255,7 @@ For example: <br>
 <div class="form-group">
     <label>Describe how the internship experience at the proposed location will help you to achieve your career goals.
       <form action="action_page.php">
-          <textarea cols="34" name="message" rows="8"></textarea><br>
+          <textarea cols="34" name="internessay" rows="8"></textarea><br>
       </form>
 </div>
 
