@@ -30,96 +30,93 @@
                 <h3><label>Emergency Contact Information</label></h3>
                 <div class="form-group">
                     <label><label>Name of Parent or Legal Guardian</label> <input class=
-                    "form-control" name="biocontact" required="" type=
+                    "form-control" name="biocontact" required type=
                     "text"></label>
                 </div>
                 <div class="form-group">
                     <label>Mailing address</label> <input class="form-control"
-                    name="biocontactaddress" required="" type="text">
+                    name="biocontactaddress" required type="text">
                 </div>
                 <div class="form-group">
                     <label>Preferred Email Address</label> <input class=
-                    "form-control" name="biocontactemail" required="" type=
+                    "form-control" name="biocontactemail" required type=
                     "text">
                 </div>
                 <div class="form-group">
                     <label>Contacts City</label> <input class="form-control" name=
-                    "biocontactcity" required="" type="text">
+                    "biocontactcity" required type="text">
                 </div>
 
                 <div class="form-group">
                     <label><label>Contacts Zip Code</label> <input class="form-control"
-                    name="biocontactzip" required="" type="text"></label>
+                    name="biocontactzip" required type="text"></label>
                 </div>
                 <div class="form-group">
                     <label>Contacts Telephone Number</label> <input class="form-control"
-                    name="biocontactphone" required="" type="text">
+                    name="biocontactphone" required type="text">
                 </div>
 <h2>Mentor Information</h2>
 <div class="form-group">
     <label>GGC Mentor Name</label> <input class="form-control"
-    name="biomentorname" required="" type="text">
+    name="biomentorname" required type="text">
 </div>
 <div class="form-group">
     <label>GGC Cellphone number</label> <input class="form-control"
-    name="bioggccellphone" required="" type="text">
+    name="bioggccellphone" required type="text">
 </div>
 <div class="form-group">
     <label>GGC Email Address</label> <input class="form-control"
-    name="biomentoremail" required="" type="text">
+    name="biomentoremail" required type="text">
 </div>
 <div class="form-group">
     <label>GGC Office Location</label> <input class="form-control"
-    name="biomentoroffice" required="" type="text">
+    name="biomentoroffice" required type="text">
 </div>
 
 <h2>Student Academic Information</h2>
 <div class="form-group">
     <label>Number of Hours completed within Biology</label> <input class="form-control"
-    name="biohours" required="" type="text">
+    name="biohours" required type="text">
 </div>
 <div class="form-group">
     <label>Major and Concentration</label> <input class="form-control"
-    name="biomajor" required="" type="text">
+    name="biomajor" required= type="text">
 </div>
 <div class="form-group">
     <label>Overall GPA</label> <input class="form-control"
-    name="biomgpa" required="" type="text">
+    name="biomgpa" required type="text">
 </div>
 <div class="form-group">
     <label>Program GPA</label> <input class="form-control"
-    name="bioprogramgpa" required="" type="text">
+    name="bioprogramgpa" required type="text">
 </div>
 <div class="form-group">
     <label>What is your intended profession/career?</label> <input class="form-control"
-    name="biocareer" required="" type="text">
+    name="biocareer" required type="text">
 </div>
 
-  <div class="form-group">
-<label>Proposed Internship Semester <select>
-    <option value="proposedfall">
-        Fall
-    <option value="proposedspring">
-        Spring
-    </option>
-    <option value="proposedsummer">
-        Summer
-    </option>
-  </select> </label></label>
-</div><label></label>
+<div class="form-group">
+<label for="major">Proposed Internship Semester</label>
+<select class="form-control" id="Proposedintsem" name="proposedintersemester">
+<option value="fall">Fall</option>
+<option value="spring">Spring</option>
+<option value="summer">Summer</option>
+</select>
+</div>
+
 
 <div class="form-group">
     <label>Proposed Internship Semester Year
-      <select><option value="bioproposedsem1"><%= new Date().getFullYear() %></option>
-      <option value="bioproposedsem2"><%= new Date().getFullYear()+1 %></option></select>
+      <select><option name ="bioproposedsem1" value=<%= new Date().getFullYear() %>><%= new Date().getFullYear() %></option>
+      <option name ="bioproposedsem2" value=<%= new Date().getFullYear()+1 %>><%= new Date().getFullYear()+1 %></option></select>
     </label>
     </div><label></label>
 
     <div class="form-group">
       <h3><strong>Internship Information</strong> </h3>
   <label>Are you applying to an Internship Site previously approved by Internship committee?
-    <input type="checkbox" name="yes" value="bioyes" checked>Yes
-    <input type="checkbox" name="yes" value="biono">No<br/>
+    <input type="checkbox" name="bioyes" value="yes" checked>Yes
+    <input type="checkbox" name="biono" value="no">No<br/>
     <br>
     <h3><strong> If yes, please mark which one and then complete the additional form for the specific location:</strong></h3>
     <input type="checkbox" name="gyf" value="biogyf" checked>Greening Youth Foundation (Supplemental Application Required)<br/>
@@ -171,15 +168,15 @@
   <h2>Proposed Preceptor Information</h2>
   <div class="form-group">
       <label>Name of proposed preceptor</label> <input class="form-control"
-      name="namepreceptor" required="" type="text">
+      name="namepreceptor" required type="text">
   </div>
   <div class="form-group">
       <label>Preceptor phone number</label> <input class="form-control"
-      name="preceptorphone" required="" type="text">
+      name="preceptorphone" required type="text">
   </div>
   <div class="form-group">
       <label>Preceptor email address</label> <input class="form-control"
-      name="preceptoremail" required="" type="text">
+      name="preceptoremail" required type="text">
   </div>
 
   <div class="form-group">
@@ -192,7 +189,7 @@
 
   <div class="form-group">
       <label>If no, what position does the proposed preceptor hold at the site?</label> <input class="form-control"
-      name="preceptorpostition" required="" type="text">
+      name="preceptorpostition" required type="text">
 
 <h3> Potential Student Conflicts</h3>
       <div class="form-group">
@@ -240,15 +237,15 @@ For example: <br>
 
 <div class="form-group">
     <label>First</label> <input class="form-control"
-    name="educomp1" required="" type="text">
+    name="educomp1" required type="text">
 </div>
 <div class="form-group">
     <label>Second</label> <input class="form-control"
-    name="educomp2" required="" type="text">
+    name="educomp2" required type="text">
 </div>
 <div class="form-group">
     <label>Third</label> <input class="form-control"
-    name="educomp3" required="" type="text">
+    name="educomp3" required type="text">
 </div>
 
 <h3> Internship Description</h3>
@@ -268,7 +265,7 @@ For example: <br>
 </div>
 <div class="form-group">
     <label>Print name of applicant</label> <input class=
-    "form-control" name="biosignatureprint" required="" type=
+    "form-control" name="biosignatureprint" required type=
     "text">
 </div>
 

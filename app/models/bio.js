@@ -5,8 +5,7 @@ var mongoose = require('mongoose');
 // define the schema for our itec model
 var bioSchema = mongoose.Schema({
 
-    local            : {
-      biocontact    : {type: String, required: true,},
+      biocontact    : {type: String, required: true},
       biocontactaddress : {type: String, required: true},
       biocontactemail        : {type: String, required: true},
       biocontactcity      : {type: String, required: true},
@@ -14,16 +13,14 @@ var bioSchema = mongoose.Schema({
       biocontactphone  : { type: String, required: true},
       biomentorname        : {type: String, required: true}
       bioggccellphone     : {type: String, required: true,},
-      biomentoremail {type: String, required: true},
+      biomentoremail :{type: String, required: true},
       biomentoroffice        : {type: String, required: true},
       biohours    : {type: String, required: true},
       biomajor   : {type: String, required: true},
       biomgpa   : { type: String, required: true},
-      bioprogramgpa     : {type: String, required: true}
+      bioprogramgpa     : {type: String, required: true},
       biocareer  : {type: String, required: true},
-      proposedfall : { type: String, required: true},
-      proposedspring    : {type: String, required: true},
-      proposedsummer  : {type: String, required: true},
+      proposedintersemester : {type: String, required: true},
       bioproposedsem1   : {type: String, required: true},
       bioproposedsem2  : {type: String, required: true},
       bioyes :{type: String, required: true},
@@ -46,7 +43,7 @@ var bioSchema = mongoose.Schema({
       biointernmanager : {type: String, required: true},
       preceptorpostition  : {type: String, required: true},
       bioorgposition  : { type: String, required:true},
-      paidinternship        : {type: String, required: true}
+      paidinternship        : {type: String, required: true},
       bioorgposition : {type: String, required: true},
       bioorghours   : {type: String, required: true},
       internquestionanswer: { type: String, required:true},
@@ -56,7 +53,7 @@ var bioSchema = mongoose.Schema({
       internessay   : {type: String, required: true},
       biosignature : {type: String, required: true},
       biosignatureprint { type: String, required:true},
-      biosignature  : {type: String, required: true}
+      biosignature  : {type: String, required: true},
     }
 });
 
