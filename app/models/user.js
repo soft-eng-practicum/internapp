@@ -1,23 +1,56 @@
 // app/models/user.js
 // load the things we need
 var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt-nodejs');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
 
-    local            : {
-        email        : {type: String, required: true, unique: true},
-        password     : {type: String, required: true},
-        studentid    : {type: String},
-        fname        : {type: String, required: true},
-        lname        : {type: String, required: true},
-        address      : {type: String, required: true},
-        city         : {type: String, required: true},
-        state        : {type: String, required: true},
-        zipcode      : {type: String, required: true},
-        role         : {type: String, required: true},
-        discipline   : {type: String, required: true}
+    local: {
+        email: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        password: {
+            type: String,
+            required: true
+        },
+        studentid: {
+            type: String
+        },
+        fname: {
+            type: String,
+            required: true
+        },
+        lname: {
+            type: String,
+            required: true
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        city: {
+            type: String,
+            required: true
+        },
+        state: {
+            type: String,
+            required: true
+        },
+        zipcode: {
+            type: String,
+            required: true
+        },
+        role: {
+            type: String,
+            required: true
+        },
+        discipline: {
+            type: String,
+            required: true
+        }
     }
 });
 

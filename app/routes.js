@@ -1,6 +1,7 @@
 // app/routes.js
 var User = require('./models/user');
 var Bio = require('./models/bio');
+var Itec = require('./models/itec');
 module.exports = function(app, passport) {
 
     // =====================================
@@ -62,6 +63,15 @@ module.exports = function(app, passport) {
             user : req.user // get the user out of session and pass to template
         });
     });
+    
+            app.post('/itec', isLoggedIn, function(req, res) {
+        var itecapp = new Itec(req.body);
+        itecapp.email= req.user.email;
+        itecapp.save(function (err) {
+  if (err) return console.error(err);
+    });
+        res.redirect('/dashboard');
+        });
 
     // =====================================
     // STUDENTVIEW =================================
