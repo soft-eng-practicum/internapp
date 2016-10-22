@@ -1,5 +1,6 @@
 // app/routes.js
 var User = require('./models/user');
+var Bio = require('./models/bio');
 module.exports = function(app, passport) {
 
     // =====================================
@@ -90,6 +91,15 @@ module.exports = function(app, passport) {
             user : req.user // get the user out of session and pass to template
         });
     });
+    
+        app.post('/bio', isLoggedIn, function(req, res) {
+        var bioapp = new Bio(req.body);
+        bioapp.email= req.user.email;
+        bioapp.save(function (err) {
+  if (err) return console.error(err);
+    });
+        res.redirect('/dashboard');
+        });
 
     // =====================================
     // ADMIN =================================
