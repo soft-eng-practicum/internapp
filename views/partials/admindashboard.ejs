@@ -1,45 +1,38 @@
 <!doctype html>
 <html>
 <head>
-
-<link rel="stylesheet" href="Admin.css">
- 
-<title>Admin</title>
-
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
 </head>
 
 <body>
 
 <ul>
-  <li><a href="default.net">Home</a></li>
-  <li style="padding-left:30px;"><a href="messages.net">Messages</a></li>
-  <li style="padding-left:30px;"><a href="profile.net">Profile</a></li>
-  <li style="float:right"><a href="logout.net">Logout</a></li>
+ <li><a href="default.net">Home</a></li>
+ <li style="padding-left:30px;"><a href="messages.net">Messages</a></li>
+ <li style="padding-left:30px;"><a href="profile.net">Profile</a></li>
+ <li style="float:right"><a href="logout.net">Logout</a></li>
 </ul>
 
 <br/>
 <br/>
-
-<div style="padding-left:80px;">
-<input id="submit" type="submit" value="Add User" style="text-align:center;">
-</div>
-
 <br/>
 <br/>
-
-<input style="margin-left:80px;" type="text" name="search" placeholder="Search..">
 
 <div class="boxes">
 
 <div class="newBox">
-<header>Recently Added Teachers</header>
+<header>Newest Students</header>
 </div>
 
-<div class="appBox">
-<header>Recently Added Students</header>
+<div class="newBox">
+<header>Approved Faculty</header>
 </div>
 
-</div>
 
 <div style="text-align:center;">
 <p id="demo"></p>

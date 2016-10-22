@@ -20,6 +20,6 @@ Vimal Darji(QA)
 <br>
 Taylor Brust(UI)
 <br>
-Joseph Cox(Dev)
+Joseph Cox(Dev & Database)
 <br>
 Jonathan Nguyen(UI Design and Interface)

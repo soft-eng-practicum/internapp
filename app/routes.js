@@ -1,6 +1,8 @@
 // app/routes.js
 var User = require('./models/user');
 var Site = require('./models/site');
+var Bio = require('./models/bio');
+var Itec = require('./models/itec');
 
 module.exports = function(app, passport) {
 
@@ -64,6 +66,35 @@ module.exports = function(app, passport) {
         });
     });
     
+            app.post('/itec', isLoggedIn, function(req, res) {
+        var itecapp = new Itec(req.body);
+        itecapp.email= req.user.email;
+        itecapp.save(function (err) {
+  if (err) return console.error(err);
+    });
+        res.redirect('/dashboard');
+        });
+
+    // =====================================
+    // STUDENTVIEW =================================
+    // =====================================
+
+    app.get('/studentview', isLoggedIn, function(req, res) {
+        res.render('studentview.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+    // =====================================
+    // TEACHERVIEW=================================
+    // =====================================
+    app.get('/teachertview', isLoggedIn, function(req, res) {
+        res.render('teacherview.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+
+
     // =====================================
     // BIO =================================
     // =====================================
@@ -72,16 +103,46 @@ module.exports = function(app, passport) {
             user : req.user // get the user out of session and pass to template
         });
     });
+    
+        app.post('/bio', isLoggedIn, function(req, res) {
+        var bioapp = new Bio(req.body);
+        bioapp.email= req.user.email;
+        bioapp.save(function (err) {
+  if (err) return console.error(err);
+    });
+        res.redirect('/dashboard');
+        });
+
+    // =====================================
+    // ADMIN =================================
+    // =====================================
+
+    app.get('/admin', isLoggedIn, function(req, res) {
+        res.render('admin.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+    // =====================================
+    // ADMINDASHBOARD=================================
+    // =====================================
+
+    app.get('/admindashboard', isLoggedIn, function(req, res) {
+        res.render('admindashboard.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
 
     // =====================================
     // PROMOTE =============================
     // =====================================
     app.get('/promote', isLoggedIn, function(req, res) {
         if(req.session.passport.user.role=='admin'){
-          res.render('promote.ejs');   
+          res.render('promote.ejs');
         }
         else{
-           res.redirect('/dashboard'); 
+           res.redirect('/dashboard');
         }
     });
     app.post('/promote', isLoggedIn, function(req, res,next){
@@ -91,7 +152,6 @@ module.exports = function(app, passport) {
   res.redirect('/dashboard');
 });
 });
-
     // =====================================
     // SITE ================================
     // =====================================
@@ -125,9 +185,7 @@ site.save(function (err, fluffy) {
    res.redirect('/sites'); 
 });
 });
-    
-    
-    
+
     // =====================================
     // LOGOUT ==============================
     // =====================================
@@ -135,7 +193,7 @@ site.save(function (err, fluffy) {
         req.logout();
         res.redirect('/');
     });
-    
+
 };
 
 // route middleware to make sure a user is logged in
@@ -148,5 +206,3 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
-
-
