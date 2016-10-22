@@ -162,7 +162,7 @@ module.exports = function(app, passport) {
    res.render('site.ejs', {
             siteList : sites
         }); 
-})
+});
         }
         else{
            res.redirect('/dashboard'); 
