@@ -11,7 +11,8 @@ var siteSchema = mongoose.Schema({
         state        : {type: String, required: true},
         zipcode      : {type: String, required: true},
         contacts     : [{ name: String, phone: String}],
-        mou          : {type: String, required: false}
+        mou          : {type: String, required: false},
+        mouexpiration          : {type: String, required: false}
 });
 
 // create the model for users and expose it to our app

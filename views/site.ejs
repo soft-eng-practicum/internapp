@@ -9,16 +9,38 @@
     </style>
 </head>
 <body>
-    <div class="page-header text-center">
-        <a href="/dashboard" class="btn btn-default btn-sm">Dashboard</a>
-        <a href="/addsite" class="btn btn-default btn-sm">Add Site</a>
-        <a href="/sites" class="btn btn-default btn-sm">View Sites</a>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>    
+<% include partials/nav.ejs %>   
     
-    <% siteList.forEach(function(site) { %>
-        <p> Name: <%= site.name %> Address: <%= site.address %>  City: <%= site.city %>  State: <%= site.state %>  Zipcode: <%= site.zipcode %> </p>
-    <% }); %>
-    
+    <div class="container">
+  <h2>Site Details</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Valid MOU</th>
+        <th>MOU Expiration</th>
+        <th>View Details</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% siteList.forEach(function(site) { %>
+      <tr>
+        <td><%= site.name %></td>
+        <td><%= site.address %></td>
+        <td><%= site.city %></td>
+        <% if (site.mou=='yes') { %>
+        <td><%= site.mou %></td>
+        <% } else { %>
+        <td>No</td>
+        <% } %>
+        <td><%= site.mouexpiration %></td>
+        <td><a href="#">View Details</a></td>
+      </tr>
+          <% }); %>
+    </tbody>
+  </table>
+</div>
     </body>
     </html>

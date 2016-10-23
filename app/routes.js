@@ -69,6 +69,7 @@ module.exports = function(app, passport) {
             app.post('/itec', isLoggedIn, function(req, res) {
         var itecapp = new Itec(req.body);
         itecapp.email= req.user.email;
+        itecapp.applicationstatus= 'submitted';
         itecapp.save(function (err) {
   if (err) return console.error(err);
     });
@@ -107,6 +108,7 @@ module.exports = function(app, passport) {
         app.post('/bio', isLoggedIn, function(req, res) {
         var bioapp = new Bio(req.body);
         bioapp.email= req.user.email;
+        bioapp.applicationstatus= 'submitted';
         bioapp.save(function (err) {
   if (err) return console.error(err);
     });
@@ -160,7 +162,8 @@ module.exports = function(app, passport) {
           Site.find(function (err, sites) {
   if (err) return console.error(err);
    res.render('site.ejs', {
-            siteList : sites
+            siteList : sites,
+            user : req.user
         }); 
 });
         }
@@ -171,7 +174,9 @@ module.exports = function(app, passport) {
     
         app.get('/addsite', isLoggedIn, function(req, res) {
         if(true){
-          res.render('addsite.ejs');   
+          res.render('addsite.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });   
         }
         else{
            res.redirect('/dashboard'); 

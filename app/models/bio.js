@@ -180,7 +180,8 @@ var bioSchema = mongoose.Schema({
     email: {
         type: String,
         required: true
-    }
+    },
+    applicationstatus: {type: String, required: true}
 
 });
 

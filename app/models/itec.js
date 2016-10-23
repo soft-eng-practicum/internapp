@@ -166,7 +166,8 @@ var itecSchema = mongoose.Schema({
                 type: String,
                 required: true
         },
-        email: {type: String, required: true}
+        email: {type: String, required: true},
+        applicationstatus: {type: String, required: true}
 });
 
 // create the model for users and expose it to our app

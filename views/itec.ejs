@@ -12,6 +12,7 @@
 
 <body>
     <div class="container">
+        <% include partials/nav.ejs %>
         <form name="itec" action="/itec" method="post">
             <div class="col-sm-6 col-sm-offset-3">
                 <h1>ITEC Intership application</h1>
@@ -20,15 +21,15 @@
                     <br>
                     <br> (3). Upon Receipt of the application, Dr. Pollacia will contact you to schedule an appointment.<br>
                     <br> Information will be used to determine if you will be accepted to participate in the internship program. Completion of this application does not guarantee your acceptance into the internship program and/or enrollment in ITEC 4900.</h4>
+                </div>
                 <div class="form-group">
-                    <label for="major">Proposed Internship Semester</label>
-                    <select class="form-control" name="proposedinternsemester">
+                    <label>Proposed Internship Semester</label>
+                    <select class="form-control"  name="proposedinternsemester">
                         <option value="fall">Fall</option>
                         <option value="spring">Spring</option>
                         <option value="summer">Summer</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label>Proposed Internship Year</label>
                     <input class="form-control" name="proposedinternyear" required type="number" min=<%=new Date().getFullYear() %> max="2099">
@@ -246,11 +247,12 @@
                         <div class="form-group">
                             <label>Print name of applicant</label> <input class="form-control" name="printedname" required="" type="text">
                         </div>
-                    </div><button class="btn btn-warning btn-lg" type="submit">Submit</button>
+              
+                    
+                    <button class="btn btn-warning btn-lg" type="submit">Submit</button>
 
         </form>
 
-        </div>
         </div>
 </body>
 
