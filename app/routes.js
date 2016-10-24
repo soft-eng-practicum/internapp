@@ -194,6 +194,30 @@ site.save(function (err, fluffy) {
 });
 
     // =====================================
+    // APPLICATIONS ========================
+    // =====================================
+    app.get('/applications', isLoggedIn, function(req, res) {
+        if(req.user.discipline=='bio'){
+          Bio.find({email:req.user.email},function (err, applications) {
+  if (err) return console.error(err);
+   res.render('applications.ejs', {
+            applicationList : applications,
+            user : req.user
+        }); 
+});
+        }
+        else{
+                    Itec.find({email:req.user.email},function (err, applications) {
+  if (err) return console.error(err);
+   res.render('applications.ejs', {
+            applicationList : applications,
+            user : req.user
+        }); 
+});
+        }
+    });
+
+    // =====================================
     // LOGOUT ==============================
     // =====================================
     app.get('/logout', function(req, res) {
