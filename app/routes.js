@@ -141,7 +141,9 @@ module.exports = function(app, passport) {
     // =====================================
     app.get('/promote', isLoggedIn, function(req, res) {
         if(req.session.passport.user.role=='admin'){
-          res.render('promote.ejs');
+          res.render('promote.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
         }
         else{
            res.redirect('/dashboard');
