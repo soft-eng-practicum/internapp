@@ -25,15 +25,15 @@
         </div>
         <div class="form-group">
             <label>City</label>
-            <input type="text" class="form-control" name="city" required>
+            <input type="text" class="form-control" name="city" pattern ="[A-Za-z._]*" title="Must not contain numbers" required>
         </div>
         <div class="form-group">
             <label>State</label>
-            <input type="text" class="form-control" name="state" required>
+            <input type="text" class="form-control" name="state" pattern ="[A-Z]{2}" title="Invalid format ex: GA" required>
         </div>
         <div class="form-group">
             <label>ZipCode</label>
-            <input type="text" class="form-control" name="zipcode" required>
+            <input type="text" class="form-control" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required>
         </div>
 
         <button type="submit" class="btn btn-warning btn-lg">Add Site</button>
