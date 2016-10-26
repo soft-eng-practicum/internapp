@@ -16,10 +16,10 @@ Steps to Run:
 
 Project Members:
 <br>
-Vimal Darji(QA)
+Vimal Darji(QA and Team Lead)
 <br>
-Taylor Brust(UI)
+Taylor Brust(Client Liason)
 <br>
 Joseph Cox(Dev & Database)
 <br>
-Jonathan Nguyen(UI Design and Interface)
+Jonathan Nguyen(UI Design and Document)
