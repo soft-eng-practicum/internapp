@@ -197,6 +197,28 @@ site.save(function (err, fluffy) {
     // APPLICATIONS ========================
     // =====================================
     app.get('/applications', isLoggedIn, function(req, res) {
+        if(req.user.role=='admin'||'faculty')
+        {
+                    if(req.user.discipline=='bio'){
+          Bio.find(function (err, applications) {
+  if (err) return console.error(err);
+   res.render('applications.ejs', {
+            applicationList : applications,
+            user : req.user
+        }); 
+});
+        }
+        else{
+                    Itec.find(function (err, applications) {
+  if (err) return console.error(err);
+   res.render('applications.ejs', {
+            applicationList : applications,
+            user : req.user
+        }); 
+});
+        }
+        }
+        else{
         if(req.user.discipline=='bio'){
           Bio.find({email:req.user.email},function (err, applications) {
   if (err) return console.error(err);
@@ -214,6 +236,7 @@ site.save(function (err, fluffy) {
             user : req.user
         }); 
 });
+        }
         }
     });
 
