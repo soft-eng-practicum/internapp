@@ -24,10 +24,28 @@ module.exports = function(app, passport) {
         }
     });
     
+        app.get('/site/:name', isLoggedIn, function(req, res) {
+        if(true){
+            console.log(req.params.name);
+          Site.findOne({ name: req.params.name },function (err, sitedetail) {
+              console.log(sitedetail);
+  if (err) return console.error(err);
+   res.render('sitedetail.ejs', {
+            site : sitedetail,
+            user : req.user
+        }); 
+});
+        }
+        else{
+           res.redirect('/dashboard'); 
+        }
+    });
+    
         app.get('/addsite', isLoggedIn, function(req, res) {
         if(true){
           res.render('addsite.ejs', {
-            user : req.user // get the user out of session and pass to template
+            user : req.user,
+            messages: req.flash('info')
         });   
         }
         else{
@@ -37,11 +55,23 @@ module.exports = function(app, passport) {
     
      app.post('/addsite', isLoggedIn, function(req, res,next){
          var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode });
-site.save(function (err, fluffy) {
-  if (err) return console.error(err);
-   res.redirect('/sites'); 
+site.save(function (err) {
+  if (err) 
+  {
+      req.flash('info', err)
+      res.render('addsite.ejs', {
+                      user : req.user,
+                      messages: req.flash('info')
+          });
+  }
+  else{
+   res.redirect('/sites');
+  }
 });
 });
+
+
+
 };
 
 // route middleware to make sure a user is logged in

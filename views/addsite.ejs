@@ -12,7 +12,10 @@
 <% include partials/nav.ejs %>
 
 <div class="col-sm-6 col-sm-offset-3">
-
+    <!-- show any messages that come back with authentication -->
+    <% if (messages.length > 0) { %>
+        <div class="alert alert-danger"><%= messages %></div>
+    <% } %>
     <!-- LOGIN FORM -->
     <form name="signup" action="/addsite" onsubmit="return validateForm()" method="post">
         <div class="form-group">
@@ -38,12 +41,6 @@
 
         <button type="submit" class="btn btn-warning btn-lg">Add Site</button>
     </form>
-
-    <hr>
-
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-
 </div>
 
 </div>
