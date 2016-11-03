@@ -14,7 +14,7 @@
     <thead>
       <tr>
         <th>Email</th>
-        <th>Student Number</th>
+        <th>Student ID</th>
         <th>Application Status</th>
         <th>ITEC GPA</th>
         <th>Major</th>
@@ -22,10 +22,12 @@
 </tr>
     </thead>
     <tbody>
+
+
         <% applicationList.forEach(function(application) { %>
           <tr>
             <td><%= application.email %></td>
-            <td><%= application.id %></td>
+            <td><%= application.studentid %></td>
     	<td><%= application.applicationstatus %></td>
 
     	<td><%= application.itecgpa %></td>
