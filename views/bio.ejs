@@ -1,650 +1,244 @@
 <!doctype html>
 <html>
+
 <head>
     <title>GGC Biology Internship Application</title>
-    <link href=
-    "//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel=
-    "stylesheet"><!-- load bootstrap css -->
-    <link href=
-    "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
-    rel="stylesheet"><!-- load fontawesome -->
-
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- load bootstrap css -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- load fontawesome -->
 </head>
+
 <body>
     <div class="container">
-        <div class="col-sm-6 col-sm-offset-3">
-            <h1><u>Biology Intership application</u></h1>
-            <h4><strong> Submit a typed, completed and signed form with an attached, printed copy of your unofficial academic transcript (obtained from Banner) to the SST Office in the Allied Health and Sciences (H2) Building, Room 3209. </strong><br>
-            <br>
-            <strong>IMPORTANT:</strong> Please attach all required supplemental materials to complete the application packet. Information will be used to determine if you will be accepted to participate in program.  Incomplete application packets will not be reviewed.<br>
-            <br>
-            <br>
-            Information will be used to determine if you will be accepted to
-            participate in the internship program. Completion of this
-            application does not guarantee your acceptance into the internship
-            program and/or enrollment in bio 4900.</h4>
+        <% include partials/nav.ejs %>
+        <form name="bio" action="/bio" method="post">
+            <div class="col-sm-6 col-sm-offset-3">
+                <h1><u>Biology Intership application</u></h1>
+                <h4><strong> Submit a typed, completed and signed form with an attached, printed copy of your unofficial academic transcript (obtained from Banner) to the SST Office in the Allied Health and Sciences (H2) Building, Room 3209. </strong><br>
+                    <br>
+                    <strong>IMPORTANT:</strong> Please attach all required supplemental materials to complete the application packet. Information will be used to determine if you will be accepted to participate in program. Incomplete application packets
+                    will not be reviewed.<br>
+                    <br>
+                    <br> Information will be used to determine if you will be accepted to participate in the internship program. Completion of this application does not guarantee your acceptance into the internship program and/or enrollment in bio 4900.</h4>
+            </div>
+            <h3><label>Emergency Contact Information</label></h3>
+            <div class="form-group">
+                <label><label>Name of Parent or Legal Guardian</label> <input class="form-control" name="emergencycontactname" required type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>Mailing address</label> <input class="form-control" name="emergencycontactaddress" required type="text">
+            </div>
+            <div class="form-group">
+                <label>Preferred Email Address</label> <input class="form-control" name="emergencycontactemail" required type="text">
+            </div>
+            <div class="form-group">
+                <label>Contacts City</label> <input class="form-control" name="emergencycontactcity" required type="text">
+            </div>
 
-                <h3><label>Emergency Contact Information</label></h3>
-                <div class="form-group">
-                    <label><label>Name of Parent or Legal Guardian</label> <input class=
-                    "form-control" name="biocontact" required="" type=
-                    "text"></label>
-                </div>
-                <div class="form-group">
-                    <label>Mailing address</label> <input class="form-control"
-                    name="biocontactmail" required="" type="text">
-                </div>
-                <div class="form-group">
-                    <label>Preferred Email Address</label> <input class=
-                    "form-control" name="biocontactemail" required="" type=
-                    "text">
-                </div>
-                <div class="form-group">
-                    <label>City</label> <input class="form-control" name=
-                    "biocontactcity" required="" type="text">
-                </div>
-                <div class="form-group">
-                    <label>State:<select>
-                        <option value="AL">
-                            Alabama
-                        </option>
-                        <option value="AK">
-                            Alaska
-                        </option>
-                        <option value="AZ">
-                            Arizona
-                        </option>
-                        <option value="AR">
-                            Arkansas
-                        </option>
-                        <option value="CA">
-                            California
-                        </option>
-                        <option value="CO">
-                            Colorado
-                        </option>
-                        <option value="CT">
-                            Connecticut
-                        </option>
-                        <option value="DE">
-                            Delaware
-                        </option>
-                        <option value="DC">
-                            District Of Columbia
-                        </option>
-                        <option value="FL">
-                            Florida
-                        </option>
-                        <option value="GA">
-                            Georgia
-                        </option>
-                        <option value="HI">
-                            Hawaii
-                        </option>
-                        <option value="ID">
-                            Idaho
-                        </option>
-                        <option value="IL">
-                            Illinois
-                        </option>
-                        <option value="IN">
-                            Indiana
-                        </option>
-                        <option value="IA">
-                            Iowa
-                        </option>
-                        <option value="KS">
-                            Kansas
-                        </option>
-                        <option value="KY">
-                            Kentucky
-                        </option>
-                        <option value="LA">
-                            Louisiana
-                        </option>
-                        <option value="ME">
-                            Maine
-                        </option>
-                        <option value="MD">
-                            Maryland
-                        </option>
-                        <option value="MA">
-                            Massachusetts
-                        </option>
-                        <option value="MI">
-                            Michigan
-                        </option>
-                        <option value="MN">
-                            Minnesota
-                        </option>
-                        <option value="MS">
-                            Mississippi
-                        </option>
-                        <option value="MO">
-                            Missouri
-                        </option>
-                        <option value="MT">
-                            Montana
-                        </option>
-                        <option value="NE">
-                            Nebraska
-                        </option>
-                        <option value="NV">
-                            Nevada
-                        </option>
-                        <option value="NH">
-                            New Hampshire
-                        </option>
-                        <option value="NJ">
-                            New Jersey
-                        </option>
-                        <option value="NM">
-                            New Mexico
-                        </option>
-                        <option value="NY">
-                            New York
-                        </option>
-                        <option value="NC">
-                            North Carolina
-                        </option>
-                        <option value="ND">
-                            North Dakota
-                        </option>
-                        <option value="OH">
-                            Ohio
-                        </option>
-                        <option value="OK">
-                            Oklahoma
-                        </option>
-                        <option value="OR">
-                            Oregon
-                        </option>
-                        <option value="PA">
-                            Pennsylvania
-                        </option>
-                        <option value="RI">
-                            Rhode Island
-                        </option>
-                        <option value="SC">
-                            South Carolina
-                        </option>
-                        <option value="SD">
-                            South Dakota
-                        </option>
-                        <option value="TN">
-                            Tennessee
-                        </option>
-                        <option value="TX">
-                            Texas
-                        </option>
-                        <option value="UT">
-                            Utah
-                        </option>
-                        <option value="VT">
-                            Vermont
-                        </option>
-                        <option value="VA">
-                            Virginia
-                        </option>
-                        <option value="WA">
-                            Washington
-                        </option>
-                        <option value="WV">
-                            West Virginia
-                        </option>
-                        <option value="WI">
-                            Wisconsin
-                        </option>
-                        <option value="WY">
-                            Wyoming
-                        </option>
-                    </select> </label>
-                </div><label></label>
-                <div class="form-group">
-                    <label><label>Zip Code</label> <input class="form-control"
-                    name="biocontactzip" required="" type="text"></label>
-                </div>
-                <div class="form-group">
-                    <label>Telephone Number</label> <input class="form-control"
-                    name="biocontactphone" required="" type="text">
-                </div>
-<h2>Mentor Information</h2>
-<div class="form-group">
-    <label>GGC Mentor Name</label> <input class="form-control"
-    name="biomentorname" required="" type="text">
-</div>
-<div class="form-group">
-    <label>GGC Cellphone number</label> <input class="form-control"
-    name="bioggccellphone" required="" type="text">
-</div>
-<div class="form-group">
-    <label>GGC Email Address</label> <input class="form-control"
-    name="biomentoremail" required="" type="text">
-</div>
-<div class="form-group">
-    <label>GGC Office Location</label> <input class="form-control"
-    name="biomentoroffice" required="" type="text">
-</div>
+            <div class="form-group">
+                <label><label>Contacts Zip Code</label> <input class="form-control" name="emergencycontactzipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>Contacts Telephone Number</label> <input class="form-control" name="emergencycontactphone" required type="text">
+            </div>
+            <h2>Mentor Information</h2>
+            <div class="form-group">
+                <label>GGC Mentor Name</label> <input class="form-control" name="mentorname" required type="text">
+            </div>
+            <div class="form-group">
+                <label>GGC Cellphone number</label> <input class="form-control" name="mentorcellphone" required type="text">
+            </div>
+            <div class="form-group">
+                <label>GGC Email Address</label> <input class="form-control" name="mentoremail" required type="text">
+            </div>
+            <div class="form-group">
+                <label>GGC Office Location</label> <input class="form-control" name="mentoroffice" required type="text">
+            </div>
 
-<h2>Student Academic Information</h2>
-<div class="form-group">
-    <label>Number of Hours completed within Biology</label> <input class="form-control"
-    name="biohours" required="" type="text">
-</div>
-<div class="form-group">
-    <label>Major and Concentration</label> <input class="form-control"
-    name="biomajor" required="" type="text">
-</div>
-<div class="form-group">
-    <label>Overall GPA</label> <input class="form-control"
-    name="biomGPA" required="" type="text">
-</div>
-<div class="form-group">
-    <label>Program GPA</label> <input class="form-control"
-    name="bioprogramGPA" required="" type="text">
-</div>
-<div class="form-group">
-    <label>What is your intended profession/career?</label> <input class="form-control"
-    name="biocareer" required="" type="text">
-</div>
+            <h2>Student Academic Information</h2>
+            <div class="form-group">
+                <label>Number of Hours completed within Biology</label> <input class="form-control" name="hourscompleted" required type="text">
+            </div>
+            <div class="form-group">
+                <label>Major and Concentration</label> <input class="form-control" name="major" required=t ype="text">
+            </div>
+            <div class="form-group">
+                <label>Overall GPA</label> <input class="form-control" name="gpa" required type="text">
+            </div>
+            <div class="form-group">
+                <label>Program GPA</label> <input class="form-control" name="programgpa" required type="text">
+            </div>
+            <div class="form-group">
+                <label>What is your intended profession/career?</label> <input class="form-control" name="career" required type="text">
+            </div>
 
-  <div class="form-group">
-<label>Proposed Internship Semester <select>
-    <option value="Fall">
-        Fall
-    <option value="Spring">
-        Spring
-    </option>
-    <option value="Summer">
-        Summer
-    </option>
-  </select> </label></label>
-</div><label></label>
+            <div class="form-group">
+                <label for="major">Proposed Internship Semester</label>
+                <select class="form-control" name="proposedinternsemester">
+<option value="fall">Fall</option>
+<option value="spring">Spring</option>
+<option value="summer">Summer</option>
+</select>
+            </div>
 
-<div class="form-group">
-    <label>Proposed Internship Semester Year
-      <select><option value="bioProposedSem1"><%= new Date().getFullYear() %></option>
-      <option value="bioProposedSem2"><%= new Date().getFullYear()+1 %></option></select>
-    </label>
-    </div><label></label>
 
-    <div class="form-group">
-      <h3><strong>Internship Information</strong> </h3>
-  <label>Are you applying to an Internship Site previously approved by Internship committee?
-    <input type="checkbox" name="Yes" value="Bioyes" checked>Yes
-    <input type="checkbox" name="Yes" value="Biono">No<br/>
+            <div class="form-group">
+                <label>Proposed Internship Year</label>
+                <input class="form-control" name="proposedinternyear" required type="number" min=<%=new Date().getFullYear() %> max="2099">
+            </div>
+
+            <div class="form-group">
+                <h3><strong>Internship Information</strong> </h3>
+                <label>Are you applying to an Internship Site previously approved by Internship committee?
+      <select class="form-control" name="proposedinternyear">
+          <option value="Yes" >Yes</option>
+          <option value="No">No</option>
+      </select>
     <br>
     <h3><strong> If yes, please mark which one and then complete the additional form for the specific location:</strong></h3>
-    <input type="checkbox" name="GYF" value="bioGYF" checked>Greening Youth Foundation (Supplemental Application Required)<br/>
-    <input type="checkbox" name="GSHCG" value="bioGSHCG">Good Samaritan Health Center of Gwinnett (Interview Required)<br/>
-	   <input type="checkbox" name="CMD" value="bioCMD">Consultorio Medico Hispano (Interview Required)<br/>
-     <input type="checkbox" name="YRPRC" value="bioYRPRC">Yerkes Regional Primate Research Center(Supplemental Application Required and Interview Required) <br/>
-     <input type="checkbox" name="USDA" value="bioUSDA">US Department of Agriculture, Food Safety Inspection Services (must complete their application process)<br/>
-     <h3>If your internship site is not listed above, then please provide the proposed information for review.<br>
+      <select class="form-control" name="internsite">
+          <option value="Other" >Other</option>
+          <option value="Greening Youth Foundation">Greening Youth Foundation</option>
+          <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
+          <option value="Yerkes Regional Primate Research Center">Yerkes Regional Primate Research Center</option>
+          <option value="US Department of Agriculture, Food Safety Inspection Services" >US Department of Agriculture, Food Safety Inspection Services</option>
+          <option value="Consultorio Medico Hispano">Consultorio Medico Hispano</option>
+      </select>
+     <h3>If your internship site is not listed above, then please select "Other" and provide the proposed information for review.<br>
        <br>
 <strong>Note:</strong>  It is conflict of interest if you have a close personal or family relationship with a proposed preceptor and/or site manager/supervisor.  Providing false information about connections between you and site staff would constitute a violation of the GGC Honor Code (see policy on academic honesty).</h3>
    </label></label>
-  </div><label></label>
+            </div><label></label>
 
-  <div class="form-group">
-    <h3> Proposed Site Information</h3>
+            <div class="form-group">
+                <h3> Proposed Site Information</h3>
 
-      <label><label>Name of Site</label> <input class=
-      "form-control" name="bioSite" type="text"></label>
-  </div>
-  <div class="form-group">
-      <label>Specialty (pharmacy, medical practice, etc):
-      </label> <input class="form-control" name="biofocus"
-      type="text">
-  </div>
-  <div class="form-group">
-      <label>Street Address</label> <input class="form-control" name=
-      "bioSiteAddress" type="text">
-  </div>
-  <div class="form-group">
-      <label>City</label> <input class="form-control" name=
-      "bioSbioity" type="text">
-  </div>
-  <div class="form-group">
-      <label>State: <select>
-          <option value="AL">
-              Alabama
-          </option>
-          <option value="AK">
-              Alaska
-          </option>
-          <option value="AZ">
-              Arizona
-          </option>
-          <option value="AR">
-              Arkansas
-          </option>
-          <option value="CA">
-              California
-          </option>
-          <option value="CO">
-              Colorado
-          </option>
-          <option value="CT">
-              Connecticut
-          </option>
-          <option value="DE">
-              Delaware
-          </option>
-          <option value="DC">
-              District Of Columbia
-          </option>
-          <option value="FL">
-              Florida
-          </option>
-          <option value="GA">
-              Georgia
-          </option>
-          <option value="HI">
-              Hawaii
-          </option>
-          <option value="ID">
-              Idaho
-          </option>
-          <option value="IL">
-              Illinois
-          </option>
-          <option value="IN">
-              Indiana
-          </option>
-          <option value="IA">
-              Iowa
-          </option>
-          <option value="KS">
-              Kansas
-          </option>
-          <option value="KY">
-              Kentucky
-          </option>
-          <option value="LA">
-              Louisiana
-          </option>
-          <option value="ME">
-              Maine
-          </option>
-          <option value="MD">
-              Maryland
-          </option>
-          <option value="MA">
-              Massachusetts
-          </option>
-          <option value="MI">
-              Michigan
-          </option>
-          <option value="MN">
-              Minnesota
-          </option>
-          <option value="MS">
-              Mississippi
-          </option>
-          <option value="MO">
-              Missouri
-          </option>
-          <option value="MT">
-              Montana
-          </option>
-          <option value="NE">
-              Nebraska
-          </option>
-          <option value="NV">
-              Nevada
-          </option>
-          <option value="NH">
-              New Hampshire
-          </option>
-          <option value="NJ">
-              New Jersey
-          </option>
-          <option value="NM">
-              New Mexico
-          </option>
-          <option value="NY">
-              New York
-          </option>
-          <option value="NC">
-              North Carolina
-          </option>
-          <option value="ND">
-              North Dakota
-          </option>
-          <option value="OH">
-              Ohio
-          </option>
-          <option value="OK">
-              Oklahoma
-          </option>
-          <option value="OR">
-              Oregon
-          </option>
-          <option value="PA">
-              Pennsylvania
-          </option>
-          <option value="RI">
-              Rhode Island
-          </option>
-          <option value="SC">
-              South Carolina
-          </option>
-          <option value="SD">
-              South Dakota
-          </option>
-          <option value="TN">
-              Tennessee
-          </option>
-          <option value="TX">
-              Texas
-          </option>
-          <option value="UT">
-              Utah
-          </option>
-          <option value="VT">
-              Vermont
-          </option>
-          <option value="VA">
-              Virginia
-          </option>
-          <option value="WA">
-              Washington
-          </option>
-          <option value="WV">
-              West Virginia
-          </option>
-          <option value="WI">
-              Wisconsin
-          </option>
-          <option value="WY">
-              Wyoming
-          </option>
-      </select></label>
-  </div><label></label>
+                <label><label>Name of Site</label> <input class="form-control" name="proposedsitename" type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>Specialty (pharmacy, medical practice, etc):
+      </label> <input class="form-control" name="proposedsitespecialty" type="text">
+            </div>
+            <div class="form-group">
+                <label>Sites Street Address</label> <input class="form-control" name="proposedsiteaddress" type="text">
+            </div>
+            <div class="form-group">
+                <label>Sites City</label> <input class="form-control" name="proposedsitecity" type="text">
+            </div>
+            <div class="form-group">
+                <label>Sites State</label> <input class="form-control" name="proposedsitestate" pattern ="[A-Z]{2}" title="Invalid format ex: GA" type="text">
+            </div>
+            <div class="form-group">
+                <label>Sites Zipcode</label> <input class="form-control" name="proposedsitezipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text">
+            </div>
 
-  <div class="form-group">
-      <label>Name of Site Manager</label> <input class="form-control" name=
-      "bioSiteManager" type="text">
-  </div>
+            <div class="form-group">
+                <label>Name of Site Manager</label> <input class="form-control" name="proposedsitemanagername" type="text">
+            </div>
 
-  <div class="form-group">
-      <label>Site Email Address</label> <input class="form-control" name=
-      "bioSiteEmail" type="text">
-  </div>
+            <div class="form-group">
+                <label>Site Email Address</label> <input class="form-control" name="proposedsitemanageremail" type="text">
+            </div>
 
-  <div class="form-group">
-      <label>Title of Site Manager</label> <input class="form-control" name=
-      "bioSiteManagerTitle" type="text">
-  </div>
+            <div class="form-group">
+                <label>Title of Site Manager</label> <input class="form-control" name="proposedsitemanagertitle" type="text">
+            </div>
 
-  <h2>Proposed Preceptor Information</h2>
-  <div class="form-group">
-      <label>Name of proposed preceptor</label> <input class="form-control"
-      name="namepreceptor" required="" type="text">
-  </div>
-  <div class="form-group">
-      <label>Preceptor phone number</label> <input class="form-control"
-      name="preceptorphone" required="" type="text">
-  </div>
-  <div class="form-group">
-      <label>Preceptor email address</label> <input class="form-control"
-      name="preceptorEmail" required="" type="text">
-  </div>
-  <div class="form-group">
-      <label><label>Is this person the manager?<select>   <option value="Select">
-            Select
-        </option>
-          <option value="Yes">
-              Yes
-          </option>
-          <option value="No">
-              No
-          </option>
+            <h2>Proposed Preceptor Information</h2>
+            <div class="form-group">
+                <label>Name of proposed preceptor</label> <input class="form-control" name="preceptorname" required type="text">
+            </div>
+            <div class="form-group">
+                <label>Preceptor phone number</label> <input class="form-control" name="preceptorphone" required type="text">
+            </div>
+            <div class="form-group">
+                <label>Preceptor email address</label> <input class="form-control" name="preceptoremail" required type="text">
+            </div>
 
-  </select> </label></label>
-</div><label></label>
+            <div class="form-group">
+                <label for="major">Is this person the manager?</label>
+                <select class="form-control" name="ispreceptormanager">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+  </select>
+            </div>
 
+            <div class="form-group">
+                <label>If no, what position does the proposed preceptor hold at the site?</label> <input class="form-control" name="preceptorpostition" type="text">
+                <h3> Potential Student Conflicts</h3>
+                <div class="form-group">
+                    <label for="major">Are you employed at the site?</label>
+                    <select class="form-control" name="isstudentemployedatsite">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+  </select>
+                </div>
+                <label for="major">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
+                <select class="form-control" name="doestudenthavefamilyatsite">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+  </select></div>
+            <div class="form-group">
+                <label><label>If Yes, What is your current postition?</label>
+                <input class="form-control" name="studentcurrentposition" type="text"></label>
+            </div>
+            <div class="form-group">
 
-  <div class="form-group">
-      <label>If no, what position does the proposed preceptor hold at the site?</label> <input class="form-control"
-      name="preceptorpostition" required="" type="text">
+                <label for="biopaidposition">Is this a paid position?</label>
+                <select class="form-control" name="ispaidinternship">
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+  </select>
+            </div>
+            <div class="form-group">
+                <label>What is your current average work hours in a
+          week?</label> <input class="form-control" name="studenthoursworked" type="text">
+            </div>
 
-<h3> Potential Student Conflicts</h3>
-      <div class="form-group">
-          <label><label>What is your current postition?</label>
-          <input class="form-control" name="bioOrgPosition" type=
-          "text"></label>
-      </div>
-      <div class="form-group">
-          <label>Is this a paid position?<select>
-            <option value="Select">
-                Select
-            </option>
-              <option value="Yes">
-                  Yes
-              </option>
-              <option value="No">
-                  No
-              </option>
-          </select> </label>
-      </div><label></label>
-      <div class="form-group">
-          <label><label>What is your current postition?</label>
-          <input class="form-control" name="bioOrgPosition" type=
-          "text"></label>
-      </div>
-      <div class="form-group">
-          <label>What is your current average work hours in a
-          week?</label> <input class="form-control" name="bioOrghours"
-          type="text">
-      </div>
+            <div class="form-group">
 
-      <div class="form-group">
-          <label><label>Are you willing to complete your internship hours
-          at a seperate time from your normal work hours?<select>
-            <option value="Select">
-                Select
-            </option>
-              <option value="Yes">
-                  Yes
-              </option>
-              <option value="No">
-                  No
-              </option>
-          </select> </label></label>
-      </div><label></label>
+                <label for="internquestion">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
+                <select class="form-control" id="internquestion" name="isokseperatehours">
+ <option value="yes">Yes</option>
+ <option value="no">No</option>
+ </select>
+            </div>
 
-      <h3>If you plan on applying for more than one “Build Your Own” site, feel free to copy and paste the Proposed Site Information Section above of this application and complete.  For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).</h3>
-<h3> Education Component</h3>
-<h4>List 3 major educational objectives that you wish to achieve at the hosting facility.  Educational objectives pertain to what you want to learn on-site.</h4>
+            <h3>If you plan on applying for more than one “Build Your Own” site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. For each site, you would need a proposed mentor to complete the Preceptor
+                Application (also on myGGC SST Internship Pages).</h3>
+            <h3> Education Component</h3>
+            <h4>List 3 major educational objectives that you wish to achieve at the hosting facility. Educational objectives pertain to what you want to learn on-site.</h4>
 
-For example: <br>
-<ul>
-<li>Effectively use problem solving techniques within the hospital environment and specific training area</li>
-<li>Be able to analyze data and interpret results including, but not limited to blood tests, EKGs, X-rays, scans, and patient charts.</li>
-</ul>
+            For example: <br>
+            <ul>
+                <li>Effectively use problem solving techniques within the hospital environment and specific training area</li>
+                <li>Be able to analyze data and interpret results including, but not limited to blood tests, EKGs, X-rays, scans, and patient charts.</li>
+            </ul>
 
-<div class="form-group">
-    <label>1</label> <input class="form-control"
-    name="educomp1" required="" type="text">
-</div>
-<div class="form-group">
-    <label>2</label> <input class="form-control"
-    name="educomp2" required="" type="text">
-</div>
-<div class="form-group">
-    <label>3</label> <input class="form-control"
-    name="educomp3" required="" type="text">
-</div>
+            <div class="form-group">
+                <label>First</label> <input class="form-control" name="educomp1" required type="text">
+            </div>
+            <div class="form-group">
+                <label>Second</label> <input class="form-control" name="educomp2" required type="text">
+            </div>
+            <div class="form-group">
+                <label>Third</label> <input class="form-control" name="educomp3" required type="text">
+            </div>
 
-<h3> Internship Description</h3>
-<div class="form-group">
-    <label>Describe how the internship experience at the proposed location will help you to achieve your career goals.
-      <form action="action_page.php">
-          <textarea cols="34" name="message" rows="8"></textarea><br>
-      </form>
-</div>
-
-<h4><label>Signatures and Review</label></h4>
-<p><label><strong>I certify that the information contained in this application is true, correct, and complete.  I understand that, if employed, false statements reported on this application may be considered sufficient cause for denial of a Biology Internship Experience and enrollment in the BIOL4800 Biology Internship course.
+            <h4><label>Signatures and Review</label></h4>
+            <p><label><strong>I certify that the information contained in this application is true, correct, and complete.  I understand that, if employed, false statements reported on this application may be considered sufficient cause for denial of a Biology Internship Experience and enrollment in the BIOL4800 Biology Internship course.
 </strong></label></p><label><br></label>
-<div class="form-group">
-    <label><label>Signature of applicant</label> <input class=
-    "form-control" name="bioSignature" type="text"></label>
-</div>
-<div class="form-group">
-    <label>Print name of applicant</label> <input class=
-    "form-control" name="bioSignaturePrint" required="" type=
-    "text">
-</div>
+            <div class="form-group">
+                <label><label>Signature of applicant</label> <input class="form-control" name="signature" type="text"></label>
+            </div>
+            <div class="form-group">
+                <label>Print name of applicant</label> <input class="form-control" name="printedname" required type="text">
+            </div>
 
-<p><label><strong>I certify that the information contained in this application is true, correct, and complete.  This student has met all required pre-requisites and requirements for participation in the Biology Internship course. 
-</strong></label></p><label><br></label>
-<div class="form-group">
-    <label><label>Signature of Mentor</label> <input class=
-    "form-control" name="mentorbioSignature" type="text"></label>
-</div>
-<div class="form-group">
-    <label>Print name of Mentor</label> <input class=
-    "form-control" name="mentorbioSignaturePrint" required="" type=
-    "text">
-</div>
-
-<div class="form-group">
-    <label>Date</label>
-    <p id="demo"></p>
-    <script>
-    document.getElementById("demo").innerHTML = Date();
-    </script>
-
-<form action="bio_form.esj">
-</div><button class="btn btn-warning btn-lg" type=
-"submit">Submit</button>
-
-<!-- Script for printing page at bottom -->
- <button class="btn btn-warning btn-lg" onclick="myPrint()">Print
-this page</button>
-<script>
-function myPrint() {
-window.print();
-}
-</script>
-<!-- script for uploading files to page -->
- <button class="btn btn-warning btn-lg" onclick="myUpload()">Upload
-Files</button>
-<script>
-function myUpload() {
-var x = document.createElement("INPUT");
-x.setAttribute("type", "file");
-document.body.appendChild(x);
-}
-</script>
-
-</div>
-</div>
+            <button class="btn btn-warning btn-lg" type="submit">Submit</button>
+        </form>
+    </div>
 </body>
+
 </html>

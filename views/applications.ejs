@@ -1,0 +1,42 @@
+    <!doctype html>
+<html>
+<head>
+    <title>Applications</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+</head>
+<body>
+<% include partials/nav.ejs %>
+
+    <div class="container">
+  <h2>Application Details</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Student ID</th>
+        <th>Application Status</th>
+        <th>ITEC GPA</th>
+        <th>Major</th>
+        <th>View Details</th>
+</tr>
+    </thead>
+    <tbody>
+
+
+        <% applicationList.forEach(function(application) { %>
+          <tr>
+            <td><%= application.email %></td>
+            <td><%= application.studentid %></td>
+    	<td><%= application.applicationstatus %></td>
+
+    	<td><%= application.itecgpa %></td>
+    	<td><%= application.major %></td>
+      <td><a href=<%="/application/"+application.name%>>View Details</a></td>
+  </tr>
+          <% }); %>
+    </tbody>
+  </table>
+</div>
+    </body>
+    </html>

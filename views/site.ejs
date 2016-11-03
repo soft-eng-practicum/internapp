@@ -1,0 +1,43 @@
+    <!doctype html>
+<html>
+<head>
+    <title>Site</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+</head>
+<body>
+<% include partials/nav.ejs %>   
+    
+    <div class="container">
+  <h2>Site Details</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Valid MOU</th>
+        <th>MOU Expiration</th>
+        <th>View Details</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% siteList.forEach(function(site) { %>
+      <tr>
+        <td><%= site.name %></td>
+        <td><%= site.address %></td>
+        <td><%= site.city %></td>
+        <% if (site.mou=='yes') { %>
+        <td><%= site.mou %></td>
+        <% } else { %>
+        <td>No</td>
+        <% } %>
+        <td><%= site.mouexpiration %></td>
+        <td><a href=<%="/site/"+site.name%>>View Details</a></td>
+      </tr>
+          <% }); %>
+    </tbody>
+  </table>
+</div>
+    </body>
+    </html>

@@ -16,7 +16,6 @@ module.exports = function(passport) {
     // passport needs ability to serialize and unserialize users out of session
 
     passport.serializeUser((user, done) => {
-        console.log(user.local);
         var sessionUser = {
             _id: user._id,
             email: user.local.email,

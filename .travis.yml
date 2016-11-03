@@ -5,3 +5,6 @@
 # Changes to be committed:
 #	modified:   QA Testplan.xlsm
 #
+language: node_js
+node_js:
+  - 6.9.1
