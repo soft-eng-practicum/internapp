@@ -37,9 +37,7 @@ app.post('/reset/:token', function(req, res) {
         user.save(function(err) {
             if(err){
             }
-            else{
-                res.redirect('/forgot');
-            }
+            done(err, user);
         });
       });
     },
@@ -47,7 +45,7 @@ app.post('/reset/:token', function(req, res) {
       var transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
       var mailOptions = {
         from: '"GGC Interapp Admin" <admin@ggcinternapp>', // sender address 
-                    to: req.body.email,
+                    to: user.local.email,
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.local.email + ' has just been changed.\n'
@@ -58,7 +56,8 @@ app.post('/reset/:token', function(req, res) {
       });
     }
   ], function(err) {
-    res.redirect('/');
+    req.flash('loginMessage', 'Success! Your password has been changed. Please Login!');
+    res.redirect('/login');
   });
 });
 
