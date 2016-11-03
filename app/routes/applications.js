@@ -53,6 +53,24 @@ module.exports = function(app, passport) {
                     });
                 });
             }
+
+            app.get('/application/:name', isLoggedIn, function(req, res) {
+            if(true){
+                console.log(req.params.name);
+              Applications.findOne({ name: req.params.name },function (err, applicationdetails) {
+                  console.log(applicationdetails);
+            if (err) return console.error(err);
+            res.render('applicationdetails.ejs', {
+                applications : applicationdetails,
+                user : req.user
+            });
+            });
+            }
+            else{
+               res.redirect('/dashboard');
+            }
+            });
+
         }
     });
 
