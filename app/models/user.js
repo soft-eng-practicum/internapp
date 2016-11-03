@@ -50,6 +50,12 @@ var userSchema = mongoose.Schema({
         discipline: {
             type: String,
             required: true
+        },
+        resetPasswordToken: {
+            type: String
+        },
+        resetPasswordExpires: {
+            type: Date
         }
     }
 });

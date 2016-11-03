@@ -6,6 +6,7 @@
     "test": "jasmine"
   },
   "dependencies": {
+    "async": "^2.1.2",
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.0.0",
     "connect-flash": "~0.1.1",
@@ -17,6 +18,7 @@
     "method-override": "~1.0.0",
     "mongoose": "~3.8.1",
     "morgan": "~1.0.0",
+    "nodemailer": "^2.6.4",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6"
   }

@@ -45,6 +45,8 @@ require('./app/routes/logout.js')(app, passport);
 require('./app/routes/promote.js')(app, passport); 
 require('./app/routes/signup.js')(app, passport); 
 require('./app/routes/sites.js')(app, passport); 
+require('./app/routes/forgot.js')(app, passport); 
+require('./app/routes/reset.js')(app, passport); 
 
 // launch ======================================================================
 app.listen(port);
