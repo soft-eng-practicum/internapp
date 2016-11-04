@@ -25,22 +25,33 @@ module.exports = function(app, passport) {
     });
     
         app.get('/site/:name', isLoggedIn, function(req, res) {
-        if(true){
-            console.log(req.params.name);
           Site.findOne({ name: req.params.name },function (err, sitedetail) {
-              console.log(sitedetail);
-  if (err) return console.error(err);
-   res.render('sitedetail.ejs', {
+  if (err) {
+  }
+  else{
+         res.render('sitedetail.ejs', {
             site : sitedetail,
-            user : req.user
+            user : req.user,
+            message : req.flash('info')
         }); 
+  }
+
 });
-        }
-        else{
-           res.redirect('/dashboard'); 
-        }
     });
     
+            app.post('/site/:name', isLoggedIn, function(req, res) {
+          Site.update({ name: req.params.name },{$push: {"contacts": {name: req.body.name, phone: req.body.phone}}},function (err) {
+  if (err){
+         req.flash('info','success!');
+   res.redirect('/site/'+req.params.name);
+  }
+  else{
+         req.flash('info','success!');
+   res.redirect('/site/'+req.params.name);
+  }
+
+    });
+     });
         app.get('/addsite', isLoggedIn, function(req, res) {
         if(true){
           res.render('addsite.ejs', {

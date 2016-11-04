@@ -36,7 +36,6 @@ module.exports = function(app, passport) {
     });
     
             app.post('/editprofile', function(req, res) {
-                console.log(req.user.email);
         // render the page and pass in any flash data if it exists
     User.update({'local.email': req.user.email}, {
         'local.studentid': req.body.studentid,
