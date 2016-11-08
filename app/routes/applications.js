@@ -49,6 +49,24 @@ res.render('applications.ejs', {
         user : req.user
     });
 });
+
+app.get('/applications/:name', isLoggedIn, function(req, res) {
+  Applications.findOne({ name: req.params.name },function (err, applicationdetails) {
+if (err) {
+}
+else{
+ res.render('applicationdetails.ejs', {
+    application : applicationdetails,
+    user : req.user,
+    message : req.flash('info')
+});
+});
+}
+
+
+
+});
+
     }
 
     }});
