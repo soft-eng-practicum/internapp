@@ -6,73 +6,53 @@ var Itec = require('../models/itec');
 
 module.exports = function(app, passport) {
 
-    // =====================================
-    // APPLICATIONS ========================
-    // =====================================
-    app.get('/applications', isLoggedIn, function(req, res) {
-        if (req.user.role === 'admin' || req.user.role === 'faculty'  ) {
-            if (req.user.discipline == 'bio') {
-                Bio.find(function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
-                    });
-                });
-            }
-            else {
-                Itec.find(function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
-                    });
-                });
-            }
-        }
-        else {
-            if (req.user.discipline == 'bio') {
-                Bio.find({
-                    email: req.user.email
-                }, function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
-                    });
-                });
-            }
-            else {
-                Itec.find({
-                    email: req.user.email
-                }, function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
-                    });
-                });
-            }
-
-            app.get('/application/:name', isLoggedIn, function(req, res) {
-            if(true){
-                console.log(req.params.name);
-              Applications.findOne({ name: req.params.name },function (err, applicationdetails) {
-                  console.log(applicationdetails);
-            if (err) return console.error(err);
-            res.render('applicationdetails.ejs', {
-                applications : applicationdetails,
-                user : req.user
-            });
-            });
-            }
-            else{
-               res.redirect('/dashboard');
-            }
-            });
-
-        }
+  // =====================================
+// APPLICATIONS ========================
+// =====================================
+app.get('/applications', isLoggedIn, function(req, res) {
+    if(req.user.role=='admin'||'faculty')
+    {
+                if(req.user.discipline=='bio'){
+      Bio.find(function (err, applications) {
+if (err) return console.error(err);
+res.render('applications.ejs', {
+        applicationList : applications,
+        user : req.user
     });
+});
+    }
+    else{
+                Itec.find(function (err, applications) {
+if (err) return console.error(err);
+res.render('applications.ejs', {
+        applicationList : applications,
+        user : req.user
+    });
+});
+}
+    }
+    else{
+    if(req.user.discipline=='bio'){
+      Bio.find({email:req.user.email},function (err, applications) {
+if (err) return console.error(err);
+res.render('applications.ejs', {
+        applicationList : applications,
+        user : req.user
+    });
+});
+    }
+    else{
+                Itec.find({email:req.user.email},function (err, applications) {
+if (err) return console.error(err);
+res.render('applications.ejs', {
+        applicationList : applications,
+        user : req.user
+    });
+});
+    }
+
+    }});
+
 
     // =====================================
     // ITEC ================================
