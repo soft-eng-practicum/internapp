@@ -9,12 +9,10 @@ module.exports = function(app, passport) {
     // =====================================
     // HELP PAGE (FAQ for users) ========
     // =====================================
-    app.get('/help', isLoggedIn, function(req, res) {
-        res.render('help.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
+    app.get('/help', function(req, res) {
+        res.render('help.ejs'); // load the help file
     });
-  };
+};
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
