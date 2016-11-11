@@ -24,8 +24,8 @@ module.exports = function(app, passport) {
         }
     });
     
-        app.get('/site/:name', isLoggedIn, function(req, res) {
-          Site.findOne({ name: req.params.name },function (err, sitedetail) {
+        app.get('/site/:siteid', isLoggedIn, function(req, res) {
+          Site.findOne({ _id: req.params.siteid },function (err, sitedetail) {
   if (err) {
   }
   else{
@@ -39,8 +39,8 @@ module.exports = function(app, passport) {
 });
     });
     
-            app.post('/site/:name', isLoggedIn, function(req, res) {
-          Site.update({ name: req.params.name },{$push: {"contacts": {name: req.body.name, phone: req.body.phone}}},function (err) {
+            app.post('/site/:siteid', isLoggedIn, function(req, res) {
+          Site.update({ _id: req.params.siteid },{$push: {"contacts": {name: req.body.name, phone: req.body.phone}}},function (err) {
   if (err){
          req.flash('info','success!');
    res.redirect('/site/'+req.params.name);

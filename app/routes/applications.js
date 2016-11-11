@@ -33,7 +33,7 @@ module.exports = function(app, passport) {
         else {
             if (req.user.discipline == 'bio') {
                 Bio.find({
-                    email: req.user.email
+                    useremail: req.user.email
                 }, function(err, applications) {
                     if (err) return console.error(err);
                     res.render('applications.ejs', {
@@ -44,7 +44,7 @@ module.exports = function(app, passport) {
             }
             else {
                 Itec.find({
-                    email: req.user.email
+                    useremail: req.user.email
                 }, function(err, applications) {
                     if (err) return console.error(err);
                     res.render('applications.ejs', {
