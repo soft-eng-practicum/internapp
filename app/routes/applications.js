@@ -116,7 +116,15 @@ module.exports = function(app, passport) {
 
     app.post('/bio', isLoggedIn, function(req, res) {
         var bioapp = new Bio(req.body);
-        bioapp.email = req.user.email;
+        bioapp.useremail = req.user.email;
+        bioapp.userstudentid = req.user.email;
+        bioapp.userfname = req.user.email;
+        bioapp.userlname = req.user.email;
+        bioapp.useraddress = req.user.email;
+        bioapp.usercity = req.user.email;
+        bioapp.userstate = req.user.email;
+        bioapp.userzipcode = req.user.email;
+        bioapp.userdiscipline = req.user.email;
         bioapp.applicationstatus = 'submitted';
         bioapp.save(function(err) {
             if (err) return console.error(err);
