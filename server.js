@@ -47,7 +47,7 @@ require('./app/routes/signup.js')(app, passport);
 require('./app/routes/sites.js')(app, passport);
 require('./app/routes/forgot.js')(app, passport);
 require('./app/routes/reset.js')(app, passport);
-require('./app/routes/help.js')(app, passport); 
+require('./app/routes/faq.js')(app, passport); 
 
 
 // launch ======================================================================
