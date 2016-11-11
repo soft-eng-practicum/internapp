@@ -55,6 +55,36 @@ module.exports = function(app, passport) {
             }
         }
     });
+    
+            app.get('/application/bio/:applicationid', isLoggedIn, function(req, res) {
+          Bio.findOne({ _id: req.params.applicationid },function (err, appdetail) {
+  if (err) {
+  }
+  else{
+         res.render('applicationdetails.ejs', {
+            application : appdetail,
+            user : req.user,
+            message : req.flash('info')
+        }); 
+  }
+
+});
+    });
+    
+                app.get('/application/itec/:applicationid', isLoggedIn, function(req, res) {
+          Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
+  if (err) {
+  }
+  else{
+         res.render('applicationdetails.ejs', {
+            application : appdetail,
+            user : req.user,
+            message : req.flash('info')
+        }); 
+  }
+
+});
+    });
 
     // =====================================
     // ITEC ================================
