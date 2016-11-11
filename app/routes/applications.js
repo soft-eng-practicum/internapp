@@ -97,7 +97,15 @@ module.exports = function(app, passport) {
 
     app.post('/itec', isLoggedIn, function(req, res) {
         var itecapp = new Itec(req.body);
-        itecapp.email = req.user.email;
+        itecapp.useremail = req.user.email;
+        itecapp.userstudentid = req.user.studentid;
+        itecapp.userfname = req.user.fname;
+        itecapp.userlname = req.user.lname;
+        itecapp.useraddress = req.user.address;
+        itecapp.usercity = req.user.city;
+        itecapp.userstate = req.user.state;
+        itecapp.userzipcode = req.user.zipcode;
+        itecapp.userdiscipline = req.user.discipline;
         itecapp.applicationstatus = 'submitted';
         itecapp.save(function(err) {
             if (err) return console.error(err);
@@ -117,14 +125,14 @@ module.exports = function(app, passport) {
     app.post('/bio', isLoggedIn, function(req, res) {
         var bioapp = new Bio(req.body);
         bioapp.useremail = req.user.email;
-        bioapp.userstudentid = req.user.email;
-        bioapp.userfname = req.user.email;
-        bioapp.userlname = req.user.email;
-        bioapp.useraddress = req.user.email;
-        bioapp.usercity = req.user.email;
-        bioapp.userstate = req.user.email;
-        bioapp.userzipcode = req.user.email;
-        bioapp.userdiscipline = req.user.email;
+        bioapp.userstudentid = req.user.studentid;
+        bioapp.userfname = req.user.fname;
+        bioapp.userlname = req.user.lname;
+        bioapp.useraddress = req.user.address;
+        bioapp.usercity = req.user.city;
+        bioapp.userstate = req.user.state;
+        bioapp.userzipcode = req.user.zipcode;
+        bioapp.userdiscipline = req.user.discipline;
         bioapp.applicationstatus = 'submitted';
         bioapp.save(function(err) {
             if (err) return console.error(err);
