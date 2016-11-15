@@ -6,7 +6,14 @@
     <body>
 <% include partials/nav.ejs %>
 <div class="container">
-      <%= application %>  
+  <div class="col-sm-6 col-sm-offset-3">
+  <h2>Application Information</h2>
+  </div>
+      <% if (application.userdiscipline == 'itec') { %>
+      <% include partials/itecapp.ejs %>
+      <% } else { %>
+      <% include partials/bioapp.ejs %>
+      <% } %>
 
       
       <% if (user.role=='admin' || user.role=='instructor') { %>
