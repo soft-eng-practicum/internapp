@@ -9,8 +9,8 @@
 <body>
     <% include partials/nav.ejs %>
     <div class="container">
-        <form name="bio" action="/bio" method="post">
             <div class="col-sm-6 col-sm-offset-3">
+                <form name="bio" action="/bio" method="post">
                 <h1><u>Biology Intership application</u></h1>
                 <h4><strong> Submit a typed, completed and signed form with an attached, printed copy of your unofficial academic transcript (obtained from Banner) to the SST Office in the Allied Health and Sciences (H2) Building, Room 3209. </strong><br>
                     <br>
@@ -18,7 +18,6 @@
                     will not be reviewed.<br>
                     <br>
                     <br> Information will be used to determine if you will be accepted to participate in the internship program. Completion of this application does not guarantee your acceptance into the internship program and/or enrollment in bio 4900.</h4>
-            </div>
             <h3><label>Emergency Contact Information</label></h3>
             <div class="form-group">
                 <label><label>Name of Parent or Legal Guardian</label> <input class="form-control" name="emergencycontactname" required type="text"></label>
@@ -235,6 +234,7 @@
 
             <button class="btn btn-warning btn-lg" type="submit">Submit</button>
         </form>
+    </div>
     </div>
     <% include partials/footerimports %>
 </body>
