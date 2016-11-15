@@ -15,7 +15,7 @@
       <% include partials/bioapp.ejs %>
       <% } %>
 
-      
+
       <% if (user.role=='admin' || user.role=='instructor') { %>
       <div class="col-sm-6 col-sm-offset-3">
       <h3>Change Application Status</h3>
@@ -24,8 +24,8 @@
           <label>Application Status</label>
           <select class="form-control" name="applicationstatus">
           <option value="" >Select a status</option>
-          <option value="approved" >Approved</option>
-          <option value="denied">Denied</option>
+          <option value="approved" >Complete</option>
+          <option value="denied">Incomplete</option>
           <option value="further review">Further Review</option>
           <option value="applicant rescinded" >Applicant Rescinded</option>
           <option value="applicant postponed">Applicant Postponed</option>
