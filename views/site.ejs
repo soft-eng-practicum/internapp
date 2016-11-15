@@ -17,6 +17,7 @@
         <th>City</th>
         <th>Valid MOU</th>
         <th>MOU Expiration</th>
+        <th>Edit</th>
         <th>View Details</th>
       </tr>
     </thead>
@@ -32,6 +33,7 @@
         <td>No</td>
         <% } %>
         <td><%= site.mouexpiration %></td>
+        <td><a href=<%="/site/edit/"+site._id %>>Edit</a></td>
         <td><a href=<%="/site/"+site._id %>>View Details</a></td>
       </tr>
           <% }); %>

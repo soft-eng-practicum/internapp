@@ -9,7 +9,7 @@
 <div class="container">
 <div class="col-sm-6 col-sm-offset-3">
     
-    <h1>Add Site</h1>
+<h1>Add Site</h1>
     
     <!-- show any messages that come back with authentication -->
     <% if (messages.length > 0) { %>
@@ -36,6 +36,14 @@
         <div class="form-group">
             <label>ZipCode</label>
             <input type="text" class="form-control" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required>
+        </div>
+        <div class="form-group">
+            <label>MOU on file?</label>
+            <input type="text" class="form-control" name="mou" required>
+        </div>
+        <div class="form-group">
+            <label>If yes when does it expire?</label>
+            <input type="text" class="form-control" name="mouexpiration" required>
         </div>
 
         <button type="submit" class="btn btn-warning btn-lg">Add Site</button>
