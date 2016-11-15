@@ -3,15 +3,12 @@
 <html>
 <head>
     <title>GGC Internship Signup</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+<% include partials/headerimports %>
 </head>
 <body>
+    <% include partials/nav.ejs %>
 <div class="container">
-<% include partials/nav.ejs %>
+
 <div class="col-sm-6 col-sm-offset-3">
 
     <h1>Promote</h1>
@@ -32,8 +29,10 @@
         </div>
         <button type="submit" class="btn btn-warning btn-lg">Promote</button>
         </form>
+        <br>
 </div>
 
 </div>
+<% include partials/footerimports %>
 </body>
 </html>

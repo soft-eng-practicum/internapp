@@ -3,15 +3,12 @@
 
 <head>
     <title>GGC Biology Internship Application</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- load bootstrap css -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-    <!-- load fontawesome -->
+<% include partials/headerimports %>
 </head>
 
 <body>
+    <% include partials/nav.ejs %>
     <div class="container">
-        <% include partials/nav.ejs %>
         <form name="bio" action="/bio" method="post">
             <div class="col-sm-6 col-sm-offset-3">
                 <h1><u>Biology Intership application</u></h1>
@@ -239,6 +236,7 @@
             <button class="btn btn-warning btn-lg" type="submit">Submit</button>
         </form>
     </div>
+    <% include partials/footerimports %>
 </body>
 
 </html>

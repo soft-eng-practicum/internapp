@@ -42,12 +42,11 @@ module.exports = function(app, passport) {
             app.post('/site/:siteid', isLoggedIn, function(req, res) {
           Site.update({ _id: req.params.siteid },{$push: {"contacts": {name: req.body.name, phone: req.body.phone}}},function (err) {
   if (err){
-         req.flash('info','success!');
-   res.redirect('/site/'+req.params.name);
+         req.flash('info',err);
+   res.redirect('/site/'+req.params.siteid);
   }
   else{
-         req.flash('info','success!');
-   res.redirect('/site/'+req.params.name);
+   res.redirect('/site/'+req.params.siteid);
   }
 
     });

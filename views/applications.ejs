@@ -2,8 +2,7 @@
 <html>
 <head>
     <title>Applications</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+<% include partials/headerimports %>
 </head>
 <body>
 <% include partials/nav.ejs %>
@@ -15,9 +14,9 @@
       <tr>
         <th>Email</th>
         <th>Student ID</th>
-        <th>Application Status</th>
         <th>ITEC GPA</th>
         <th>Major</th>
+        <th>Application Status</th>
         <th>More</th>
 </tr>
     </thead>
@@ -29,15 +28,15 @@
           <tr>
             <td><%= application.useremail %></td>
             <td><%= application.userstudentid %></td>
-    	<td><%= application.applicationstatus %></td>
-
     	<td><%= application.itecgpa %></td>
     	<td><%= application.major %></td>
+    	<td><%= application.applicationstatus %></td>
       <td><a href=<%="/application/"+user.discipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
     </tbody>
   </table>
 </div>
+<% include partials/footerimports %>
     </body>
     </html>

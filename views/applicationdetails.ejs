@@ -1,7 +1,36 @@
 <html>
+  <head>
+    <title>Application details</title>
+<% include partials/headerimports %>
+</head>
     <body>
-
+<% include partials/nav.ejs %>
+<div class="container">
       <%= application %>  
+
+      
+      <% if (user.role=='admin' || user.role=='instructor') { %>
+      <div class="col-sm-6 col-sm-offset-3">
+      <h3>Change Application Status</h3>
+    <form name="applicationstatus" method="post">
+        <div class="form-group">
+          <label>Application Status</label>
+          <select class="form-control" name="applicationstatus">
+          <option value="" >Select a status</option>
+          <option value="approved" >Approved</option>
+          <option value="denied">Denied</option>
+          <option value="further review">Further Review</option>
+          <option value="applicant rescinded" >Applicant Rescinded</option>
+          <option value="applicant postponed">Applicant Postponed</option>
+          <option value="site declined">Site Declined</option>
+      </select>
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Change Status</button>
+    </form>
+    </div>
+    <% } %>
+</div>
+      <% include partials/footerimports %>
     </body>
 
 

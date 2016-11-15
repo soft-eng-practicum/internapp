@@ -1,13 +1,64 @@
 <html>
+    <head>
+    <title>Site Details</title>
+<% include partials/headerimports %>
+</head>
+<% include partials/nav.ejs %>
     <body>
+        <div class="container">
         
-      <%= site %>  
+      <div class="col-sm-6 col-sm-offset-3"> 
+      <h3>Site Information:</h3>
+       <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>ZipCode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= site.name %></td>
+        <td><%= site.address %></td>
+        <td><%= site.city %></td>
+        <td><%= site.state %></td>
+        <td><%= site.zipcode %></td>
+      </tr>
+    </tbody>
+  </table> 
+      </div>
+
+      <div class="col-sm-6 col-sm-offset-3"> 
+      <br>
+      <h3>Contacts:</h3>
+      <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% site.contacts.forEach(function(contact) { %>
+      <tr>
+        <td><%= contact.name %></td>
+        <td><%= contact.phone %></td>
+      </tr>
+          <% }); %>
+    </tbody>
+  </table>
+      </div>
       
       <div class="col-sm-6 col-sm-offset-3">
     <!-- show any messages that come back with authentication -->
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
+    <hr>
+    <h3>Add Contact</h3>
 
     <form name="addsitecontacts" method="post">
         <div class="form-group">
@@ -21,7 +72,7 @@
         <button type="submit" class="btn btn-warning btn-lg">Add Contact</button>
     </form>
 </div>
-
+<% include partials/footerimports %>
     </body>
     
     

@@ -4,15 +4,12 @@
 
 <head>
     <title>GGC ITEC Internship Application</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- load bootstrap css -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-    <!-- load fontawesome -->
+<% include partials/headerimports %>
 </head>
 
 <body>
+    <% include partials/nav.ejs %>
     <div class="container">
-        <% include partials/nav.ejs %>
         <form name="itec" action="/itec" method="post">
             <div class="col-sm-6 col-sm-offset-3">
                 <h1>ITEC Intership application</h1>
@@ -254,6 +251,7 @@
         </form>
 
         </div>
+        <% include partials/footerimports %>
 </body>
 
 </html>
