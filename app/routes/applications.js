@@ -71,6 +71,19 @@ module.exports = function(app, passport) {
 });
     });
     
+                app.post('/application/bio/:applicationid', isLoggedIn, function(req, res) {
+          Bio.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/application/bio/'+req.params.applicationid);
+  }
+  else{
+   res.redirect('/application/bio/'+req.params.applicationid);
+  }
+
+    });
+     });
+    
                 app.get('/application/itec/:applicationid', isLoggedIn, function(req, res) {
           Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
   if (err) {
@@ -85,6 +98,19 @@ module.exports = function(app, passport) {
 
 });
     });
+    
+                    app.post('/application/itec/:applicationid', isLoggedIn, function(req, res) {
+          Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/application/itec/'+req.params.applicationid);
+  }
+  else{
+   res.redirect('/application/itec/'+req.params.applicationid);
+  }
+
+    });
+     });
 
     // =====================================
     // ITEC ================================
