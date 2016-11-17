@@ -201,7 +201,8 @@ var itecSchema = mongoose.Schema({
         userdiscipline: {
             type: String,
             required: true
-        }
+        },
+        documents     : [{ item: {type: String, required: true}, status: {type: String, required: true}}],
 });
 
 // create the model for users and expose it to our app

@@ -212,7 +212,8 @@ var bioSchema = mongoose.Schema({
         userdiscipline: {
             type: String,
             required: true
-        }
+        },
+        documents     : [{ item: {type: String, required: true}, status: {type: String, required: true}}],
 
 });
 

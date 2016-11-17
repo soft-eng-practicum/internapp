@@ -6,6 +6,10 @@
     <body>
 <% include partials/nav.ejs %>
 <div class="container">
+      <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
   <div class="col-sm-6 col-sm-offset-3">
   <h2>Application Information</h2>
   </div>

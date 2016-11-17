@@ -43,6 +43,7 @@
       <tr>
         <th>Name</th>
         <th>Phone Number</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -50,6 +51,7 @@
       <tr>
         <td><%= contact.name %></td>
         <td><%= contact.phone %></td>
+         <td><a href='/site/contacts/<%= site._id %>/<%= contact._id %>'>Delete</a></td>
       </tr>
           <% }); %>
     </tbody>

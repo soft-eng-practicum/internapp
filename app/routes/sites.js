@@ -66,6 +66,20 @@ module.exports = function(app, passport) {
 
     });
      });
+     
+     
+                               app.get('/site/contacts/:siteid/:documentid', isLoggedIn, function(req, res) {
+          Site.update({ _id: req.params.siteid },{$pull: {"contacts": {_id: req.params.documentid}}},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/site/'+req.params.siteid);
+  }
+  else{
+   res.redirect('/site/'+req.params.siteid);
+  }
+
+    });
+     });
 
                  app.post('/site/edit/:siteid', isLoggedIn, function(req, res) {
           Site.update({ _id: req.params.siteid },{name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode,

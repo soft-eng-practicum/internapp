@@ -83,6 +83,45 @@ module.exports = function(app, passport) {
 
     });
      });
+     
+                     app.post('/application/bio/documents/:applicationid', isLoggedIn, function(req, res) {
+          Bio.update({ _id: req.params.applicationid },{$push: {"documents": {item: req.body.item, status: req.body.status}}},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/application/bio/'+req.params.applicationid);
+  }
+  else{
+   res.redirect('/application/bio/'+req.params.applicationid);
+  }
+
+    });
+     });
+     
+                          app.get('/application/bio/documents/:applicationid/:documentid', isLoggedIn, function(req, res) {
+          Bio.update({ _id: req.params.applicationid },{$pull: {"documents": {_id: req.params.documentid}}},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/application/bio/'+req.params.applicationid);
+  }
+  else{
+   res.redirect('/application/bio/'+req.params.applicationid);
+  }
+
+    });
+     });
+     
+                               app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, function(req, res) {
+          Itec.update({ 'documents._id': req.params.documentid },{$set: {'documents.$.status': req.params.answer}},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/application/itec/'+req.params.applicationid);
+  }
+  else{
+   res.redirect('/application/itec/'+req.params.applicationid);
+  }
+
+    });
+     });
     
                 app.get('/application/itec/:applicationid', isLoggedIn, function(req, res) {
           Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
@@ -99,18 +138,9 @@ module.exports = function(app, passport) {
 });
     });
     
-                    app.post('/application/itec/:applicationid', isLoggedIn, function(req, res) {
-          Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
-  if (err){
-         req.flash('info',err);
-   res.redirect('/application/itec/'+req.params.applicationid);
-  }
-  else{
-   res.redirect('/application/itec/'+req.params.applicationid);
-  }
 
-    });
-     });
+     
+     
 
     // =====================================
     // ITEC ================================
@@ -133,11 +163,25 @@ module.exports = function(app, passport) {
         itecapp.userzipcode = req.user.zipcode;
         itecapp.userdiscipline = req.user.discipline;
         itecapp.applicationstatus = 'submitted';
+        itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
         itecapp.save(function(err) {
             if (err) return console.error(err);
         });
         res.redirect('/dashboard');
     });
+    
+                        app.post('/application/itec/:applicationid', isLoggedIn, function(req, res) {
+          Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/application/itec/'+req.params.applicationid);
+  }
+  else{
+   res.redirect('/application/itec/'+req.params.applicationid);
+  }
+
+    });
+     });
 
     // =====================================
     // BIO =================================

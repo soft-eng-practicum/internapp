@@ -291,6 +291,40 @@
 </div>
 
     <% if (user.role=='admin' || user.role=='instructor') { %>
+    <div class="col-sm-6 col-sm-offset-3">
+   <h3>Application Documents</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Recieved</th>
+        <th>Change Recieved</th>
+</tr>
+    </thead>
+
+    <tbody>
+    
+            <% application.documents.forEach(function(document) { %>
+           <tr>
+        <td>
+            <%= document.item %>
+        </td>
+                <td>
+            <%= document.status %>
+        </td>
+                        <td>
+            <% if (document.status=='no') { %>                
+            <a href='/application/itec/documents/<%= application._id %>/<%= document._id %>/yes'>Change Recieved</a>
+            <% } else { %>    
+            <a href='/application/itec/documents/<%= application._id %>/<%= document._id %>/no'>Change Recieved</a>
+            <% } %>    
+        </td>
+    </tr>
+          <% }); %>
+          </tbody>
+</table>
+</div>
+
       <div class="col-sm-6 col-sm-offset-3">
       <h3>Change Application Status</h3>
     <form name="applicationstatus" method="post">
