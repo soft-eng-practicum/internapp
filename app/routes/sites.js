@@ -55,7 +55,7 @@ module.exports = function(app, passport) {
     });
 
             app.post('/site/:siteid', isLoggedIn, function(req, res) {
-          Site.update({ _id: req.params.siteid },{$push: {"contacts": {name: req.body.name, phone: req.body.phone}}},function (err) {
+          Site.update({ _id: req.params.siteid },{$push: {"contacts": {name: req.body.name, title: req.body.title, email: req.body.email, office: req.body.office, cell: req.body.cell}}},function (err) {
   if (err){
          req.flash('info',err);
    res.redirect('/site/'+req.params.siteid);

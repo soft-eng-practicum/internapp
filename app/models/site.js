@@ -10,7 +10,7 @@ var siteSchema = mongoose.Schema({
         city         : {type: String, required: true},
         state        : {type: String, required: true},
         zipcode      : {type: String, required: true},
-        contacts     : [{ name: {type: String, required: true}, phone: {type: String, required: true}}],
+        contacts     : [{ name: {type: String, required: true}, title: {type: String}, email: {type: String}, office: {type: String},cell: {type: String}}],
         mou          : {type: String, required: false},
         mouexpiration          : {type: String, required: false}
 });
