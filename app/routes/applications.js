@@ -97,6 +97,31 @@ module.exports = function(app, passport) {
     });
      });
      
+                          app.post('/application/bio/notes/:applicationid', isLoggedIn, function(req, res) {
+          Bio.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/application/bio/'+req.params.applicationid);
+  }
+  else{
+   res.redirect('/application/bio/'+req.params.applicationid);
+  }
+
+    });
+     });
+     
+                               app.post('/application/itec/notes/:applicationid', isLoggedIn, function(req, res) {
+          Itec.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
+  if (err){
+         req.flash('info',err);
+   res.redirect('/application/itec/'+req.params.applicationid);
+  }
+  else{
+   res.redirect('/application/itec/'+req.params.applicationid);
+  }
+
+    });
+     });
                           app.get('/application/bio/documents/:applicationid/:documentid', isLoggedIn, function(req, res) {
           Bio.update({ _id: req.params.applicationid },{$pull: {"documents": {_id: req.params.documentid}}},function (err) {
   if (err){

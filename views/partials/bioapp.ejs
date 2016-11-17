@@ -377,4 +377,40 @@
         <button type="submit" class="btn btn-warning btn-lg">Change Status</button>
     </form>
     </div>
+          <div class="col-sm-6 col-sm-offset-3">
+      <h3>Notes</h3>
+        <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Note</th>
+        <th>Entered By</th>
+        <th>Date</th>
+</tr>
+    </thead>
+
+    <tbody>
+          <% application.notes.forEach(function(note) { %>
+          <tr>
+              <td><%= note.note %></td>
+              <td><%= note.user %></td>
+              <td><%= note.date %></td>
+          </tr>
+          <% }); %>
+      </tbody>
+      </table>
+      <hr>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3">
+    <form name="applicationstatus" action="/application/bio/notes/<%= application._id %>" method="post">
+        <div class="form-group">
+          <h3>Add Note</h3>
+          <br>
+      <textarea rows="4" cols="50" name="note">
+      </textarea>
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Add Note</button>
+    </form>
+    </div>
+    
     <% } %>
+    </div>

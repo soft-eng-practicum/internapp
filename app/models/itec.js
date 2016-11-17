@@ -203,6 +203,7 @@ var itecSchema = mongoose.Schema({
             required: true
         },
         documents     : [{ item: {type: String, required: true}, status: {type: String, required: true}}],
+        notes     : [{ user: {type: String, required: true}, note: {type: String, required: true}, date: { type: Date, default: Date.now }}]
 });
 
 // create the model for users and expose it to our app
