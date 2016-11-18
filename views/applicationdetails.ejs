@@ -1,7 +1,26 @@
 <html>
+  <head>
+    <title>Application details</title>
+<% include partials/headerimports %>
+</head>
     <body>
+<% include partials/nav.ejs %>
+<div class="container">
+      <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+  <div class="col-sm-6 col-sm-offset-3">
+  <h2>Application Information</h2>
+  </div>
+      <% if (application.userdiscipline == 'itec') { %>
+      <% include partials/itecapp.ejs %>
+      <% } else { %>
+      <% include partials/bioapp.ejs %>
+      <% } %>
 
-      <%= application %>  
+</div>
+      <% include partials/footerimports %>
     </body>
 
 

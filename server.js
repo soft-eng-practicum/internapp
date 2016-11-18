@@ -38,15 +38,17 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 require('./app/routes/applications.js')(app, passport); // load our routes and pass in our app and fully configured passport
-require('./app/routes/dashboard.js')(app, passport); 
-require('./app/routes/home.js')(app, passport); 
-require('./app/routes/login.js')(app, passport); 
-require('./app/routes/logout.js')(app, passport); 
-require('./app/routes/promote.js')(app, passport); 
-require('./app/routes/signup.js')(app, passport); 
-require('./app/routes/sites.js')(app, passport); 
-require('./app/routes/forgot.js')(app, passport); 
-require('./app/routes/reset.js')(app, passport); 
+require('./app/routes/dashboard.js')(app, passport);
+require('./app/routes/home.js')(app, passport);
+require('./app/routes/login.js')(app, passport);
+require('./app/routes/logout.js')(app, passport);
+require('./app/routes/promote.js')(app, passport);
+require('./app/routes/signup.js')(app, passport);
+require('./app/routes/sites.js')(app, passport);
+require('./app/routes/forgot.js')(app, passport);
+require('./app/routes/reset.js')(app, passport);
+require('./app/routes/faq.js')(app, passport); 
+
 
 // launch ======================================================================
 app.listen(port);

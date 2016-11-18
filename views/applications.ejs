@@ -2,41 +2,49 @@
 <html>
 <head>
     <title>Applications</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+<% include partials/headerimports %>
 </head>
 <body>
 <% include partials/nav.ejs %>
 
     <div class="container">
   <h2>Application Details</h2>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="applications">
     <thead>
       <tr>
+        <th>Name</th>
         <th>Email</th>
         <th>Student ID</th>
-        <th>Application Status</th>
-        <th>ITEC GPA</th>
         <th>Major</th>
-        <th>View Details</th>
+        <th>Application Status</th>
+        <th>More</th>
 </tr>
     </thead>
+
     <tbody>
 
 
         <% applicationList.forEach(function(application) { %>
           <tr>
-            <td><%= application.email %></td>
-            <td><%= application.studentid %></td>
-    	<td><%= application.applicationstatus %></td>
-
-    	<td><%= application.itecgpa %></td>
+            <td><%= application.userfname %> <%= application.userlname %></td>
+            <td><%= application.useremail %></td>
+            <td><%= application.userstudentid %></td>
     	<td><%= application.major %></td>
-      <td><a href=<%="/application/"+application.name%>>View Details</a></td>
+    	<td><%= application.applicationstatus %></td>
+      <td><a href=<%="/application/"+user.discipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
     </tbody>
   </table>
 </div>
+<% include partials/footerimports %>
+      <link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
+ 
+        <script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
+              <script type="text/javascript">
+        $(document).ready(function(){
+    $('#applications').DataTable();
+});
+        </script>
     </body>
     </html>

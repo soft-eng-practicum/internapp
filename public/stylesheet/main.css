@@ -1,0 +1,13 @@
+body {
+    background-color: #00704a;
+}
+
+.container{
+    background-color: #eee;
+}
+
+.scrollable {
+    overflow-y: scroll;
+    height: 100px;
+    resize: none; /* Remove this if you want the user to resize the textarea */
+}

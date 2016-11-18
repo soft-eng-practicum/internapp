@@ -177,11 +177,48 @@ var bioSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true
-    },
-    applicationstatus: {type: String, required: true}
+    applicationstatus: {type: String, required: true},
+    useremail: {
+            type: String,
+            required: true
+        },
+        userstudentid: {
+            type: String
+        },
+        userfname: {
+            type: String,
+            required: true
+        },
+        userlname: {
+            type: String,
+            required: true
+        },
+        useraddress: {
+            type: String,
+            required: true
+        },
+        usercity: {
+            type: String,
+            required: true
+        },
+        userstate: {
+            type: String,
+            required: true
+        },
+        userzipcode: {
+            type: String,
+            required: true
+        },
+        userdiscipline: {
+            type: String,
+            required: true
+        },
+        submissionDate:{
+                type: Date, 
+                default: Date.now
+        },
+        documents     : [{ item: {type: String, required: true}, status: {type: String, required: true}}],
+        notes     : [{ user: {type: String, required: true}, note: {type: String, required: true}, date: { type: Date, default: Date.now }}]
 
 });
 

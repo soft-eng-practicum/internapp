@@ -2,15 +2,14 @@
 <html>
 <head>
     <title>Site</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+<% include partials/headerimports %>
 </head>
 <body>
-<% include partials/nav.ejs %>   
-    
+<% include partials/nav.ejs %>
+
     <div class="container">
   <h2>Site Details</h2>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="sites">
     <thead>
       <tr>
         <th>Name</th>
@@ -18,6 +17,7 @@
         <th>City</th>
         <th>Valid MOU</th>
         <th>MOU Expiration</th>
+        <th>Edit</th>
         <th>View Details</th>
       </tr>
     </thead>
@@ -33,11 +33,21 @@
         <td>No</td>
         <% } %>
         <td><%= site.mouexpiration %></td>
-        <td><a href=<%="/site/"+site.name%>>View Details</a></td>
+        <td><a href=<%="/site/edit/"+site._id %>>Edit</a></td>
+        <td><a href=<%="/site/"+site._id %>>View Details</a></td>
       </tr>
           <% }); %>
     </tbody>
   </table>
 </div>
+<% include partials/footerimports %>
+      <link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
+ 
+        <script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
+              <script type="text/javascript">
+        $(document).ready(function(){
+    $('#sites').DataTable();
+});
+        </script>
     </body>
     </html>
