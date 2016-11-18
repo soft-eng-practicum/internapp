@@ -9,9 +9,10 @@
 
     <div class="container">
   <h2>Application Details</h2>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="applications">
     <thead>
       <tr>
+        <th>Name</th>
         <th>Email</th>
         <th>Student ID</th>
         <th>Major</th>
@@ -25,6 +26,7 @@
 
         <% applicationList.forEach(function(application) { %>
           <tr>
+            <td><%= application.userfname %> <%= application.userlname %></td>
             <td><%= application.useremail %></td>
             <td><%= application.userstudentid %></td>
     	<td><%= application.major %></td>
@@ -36,5 +38,13 @@
   </table>
 </div>
 <% include partials/footerimports %>
+      <link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
+ 
+        <script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
+              <script type="text/javascript">
+        $(document).ready(function(){
+    $('#applications').DataTable();
+});
+        </script>
     </body>
     </html>

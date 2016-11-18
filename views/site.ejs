@@ -9,7 +9,7 @@
 
     <div class="container">
   <h2>Site Details</h2>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="sites">
     <thead>
       <tr>
         <th>Name</th>
@@ -41,5 +41,13 @@
   </table>
 </div>
 <% include partials/footerimports %>
+      <link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
+ 
+        <script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
+              <script type="text/javascript">
+        $(document).ready(function(){
+    $('#sites').DataTable();
+});
+        </script>
     </body>
     </html>

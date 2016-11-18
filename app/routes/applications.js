@@ -190,9 +190,10 @@ module.exports = function(app, passport) {
         itecapp.applicationstatus = 'submitted';
         itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
         itecapp.save(function(err) {
-            if (err) return console.error(err);
+            if (err){
+            }
         });
-        res.redirect('/dashboard');
+        res.redirect('/applications');
     });
     
                         app.post('/application/itec/:applicationid', isLoggedIn, function(req, res) {
@@ -230,9 +231,10 @@ module.exports = function(app, passport) {
         bioapp.userdiscipline = req.user.discipline;
         bioapp.applicationstatus = 'submitted';
         bioapp.save(function(err) {
-            if (err) return console.error(err);
+            if (err) {
+            }
         });
-        res.redirect('/dashboard');
+        res.redirect('/applications');
     });
 
 };

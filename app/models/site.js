@@ -12,7 +12,11 @@ var siteSchema = mongoose.Schema({
         zipcode      : {type: String, required: true},
         contacts     : [{ name: {type: String, required: true}, title: {type: String}, email: {type: String}, office: {type: String},cell: {type: String}}],
         mou          : {type: String, required: false},
-        mouexpiration          : {type: String, required: false}
+        mouexpiration          : {type: String, required: false},
+                dateAdded:{
+                type: Date, 
+                default: Date.now
+        }
 });
 
 // create the model for users and expose it to our app

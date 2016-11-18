@@ -8,7 +8,10 @@
 <body>
 <% include partials/nav.ejs %>
 <div class="container">
-
+    <hr>
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
     <div class="row">
 
         <% if (user.role=='user') { %>

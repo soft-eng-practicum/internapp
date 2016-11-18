@@ -202,6 +202,10 @@ var itecSchema = mongoose.Schema({
             type: String,
             required: true
         },
+        submissionDate:{
+                type: Date, 
+                default: Date.now
+        },
         documents     : [{ item: {type: String, required: true}, status: {type: String, required: true}}],
         notes     : [{ user: {type: String, required: true}, note: {type: String, required: true}, date: { type: Date, default: Date.now }}]
 });

@@ -20,9 +20,9 @@ module.exports = function(app, passport) {
         }
     });
     app.post('/promote', isLoggedIn, function(req, res,next){
-    console.log(req.body.email + ' '+ req.body.role);
     User.update({'local.email': req.body.email}, {'local.role': req.body.role}, function (err, status) {
   if(err) {}
+   req.flash('info',req.body.email+' has been promoted to ' + req.body.role);
   res.redirect('/dashboard');
 });
 });
