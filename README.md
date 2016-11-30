@@ -7,6 +7,7 @@ Version One - https://www9.v1host.com/GeorgiaGwinnettCollege/
 Slack - https://ggc-dev.slack.com/messages/intern_app/
 <br>
 Heroku - https://ggc-internapp.herokuapp.com/
+<br>
 Steps to Run:
 <br>
 1. Pull Project<br>
