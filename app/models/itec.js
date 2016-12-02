@@ -7,87 +7,87 @@ var itecSchema = mongoose.Schema({
 
         proposedinternsemester: {
                 type: String,
-                required: true
+                required: false
         },
         proposedinternyear: {
                 type: String,
-                required: true
+                required: false
         },
         major: {
                 type: String,
-                required: true
+                required: false
         },
         classification: {
                 type: String,
-                required: true
+                required: false
         },
         gpa: {
                 type: String,
-                required: true
+                required: false
         },
         itecgpa: {
                 type: String,
-                required: true
+                required: false
         },
         itec2150: {
                 type: String,
-                required: true
+                required: false
         },
         itec3100: {
                 type: String,
-                required: true
+                required: false
         },
         itec3200: {
                 type: String,
-                required: true
+                required: false
         },
         itec3900: {
                 type: String,
-                required: true
+                required: false
         },
         emergencycontactname: {
                 type: String,
-                required: true
+                required: false
         },
         emergencycontactaddress: {
                 type: String,
-                required: true
+                required: false
         },
         emergencycontactemail: {
                 type: String,
-                required: true
+                required: false
         },
         emergencycontactcity: {
                 type: String,
-                required: true
+                required: false
         },
         emergencycontactzipcode: {
                 type: String,
-                required: true
+                required: false
         },
         emergencycontactphone: {
                 type: String,
-                required: true
+                required: false
         },
         mentorname: {
                 type: String,
-                required: true
+                required: false
         },
         mentorcellphone: {
                 type: String,
-                required: true
+                required: false
         },
         mentoremail: {
                 type: String,
-                required: true
+                required: false
         },
         mentoroffice: {
                 type: String,
-                required: true
+                required: false
         },
         interestsandstrengths: {
                 type: String,
-                required: true
+                required: false
         },
         typeofinternship: {
                 type: String,
@@ -95,112 +95,112 @@ var itecSchema = mongoose.Schema({
         },
         focusonsoftdev: {
                 type: String,
-                required: true
+                required: false
         },
         haveproposedintern: {
                 type: String,
-                required: true
+                required: false
         },
         proposedorgname: {
                 type: String,
-                required: true
+                required: false
         },
         itecfocus: {
                 type: String,
-                required: true
+                required: false
         },
         proposedorgaddress: {
                 type: String,
-                required: true
+                required: false
         },
         proposedorgcity: {
                 type: String,
-                required: true
+                required: false
         },
         proposedorgstate: {
                 type: String,
-                required: true
+                required: false
         },
         proposedorgzipcode: {
                 type: String,
-                required: true
+                required: false
         },
         proposedorgphone: {
                 type: String,
-                required: true
+                required: false
         },
         proposedorgmanager: {
                 type: String,
-                required: true
+                required: false
         },
         isemployedatsite: {
                 type: String,
-                required: true
+                required: false
         },
         employedcurrentposition: {
                 type: String,
-                required: true
+                required: false
         },
         ispaidposition: {
                 type: String,
-                required: true
+                required: false
         },
         numberofhoursworked: {
                 type: String,
-                required: true
+                required: false
         },
         isseparateproject: {
                 type: String,
-                required: true
+                required: false
         },
 
         isseparatehours: {
                 type: String,
-                required: true
+                required: false
         },
         signature: {
                 type: String,
-                required: true
+                required: false
         },
         printedname: {
                 type: String,
-                required: true
+                required: false
         },
-        applicationstatus: {type: String, required: true},
+        applicationstatus: {type: String, required: false},
             useremail: {
             type: String,
-            required: true
+            required: false
         },
         userstudentid: {
             type: String
         },
         userfname: {
             type: String,
-            required: true
+            required: false
         },
         userlname: {
             type: String,
-            required: true
+            required: false
         },
         useraddress: {
             type: String,
-            required: true
+            required: false
         },
         usercity: {
             type: String,
-            required: true
+            required: false
         },
         userstate: {
             type: String,
-            required: true
+            required: false
         },
         userzipcode: {
             type: String,
-            required: true
+            required: false
         },
         userdiscipline: {
             type: String,
-            required: true
+            required: false
         },
         submissionDate:{
                 type: Date, 
