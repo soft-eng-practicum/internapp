@@ -10,8 +10,8 @@
 
 ## New Team Members
 ---
-1. add  <br>
-2. add  <br>
+1. *add*  <br>
+2. *add*  <br>
 3. *add*  <br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
 
@@ -33,24 +33,24 @@
 ***Follow These Steps Please*** <br/>
 1. __Download files from github:__ [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 <br/>
-	&nbsp;1a. Clone the repository through Git Bash<br/>
-	&nbsp;1b. Clone using this link:  git@github.com:soft-eng-practicum/internapp.git
+	&nbsp;&nbsp;a. Clone the repository through Git Bash<br/>
+	&nbsp;&nbsp;b. Clone using this link:  git@github.com:soft-eng-practicum/internapp.git
 <br/>
-2. __Please Downoad NMP:__  [NPM]
+2. __Please Downoad NMP:__  ***[NPM]***
 <br/>
-   &nbsp;2a. Please download and install the npm <br/>
-   &nbsp;2b. This is the link : https://www.npmjs.com/
+   &nbsp; &nbsp;a. Please download and install the npm <br/>
+   &nbsp; &nbsp;b. This is the link : https://www.npmjs.com/
 <br/>
-3. __Please Downoad Node Server.js:__  [NODE]
+3. __Please Downoad Node Server.js:__  ***[NODE]***
 <br/>
-	    &nbsp;3a. Please download and install the NODE <br/>
-        &nbsp;3b. This is the link : https://nodejs.org/en/ &nbsp;(Preferred V.6.9.4 LTS)
+   &nbsp; &nbsp;a. Please download and install the NODE <br/>
+   &nbsp; &nbsp;b. This is the link : https://nodejs.org/en/ &nbsp;(Preferred V.6.9.4 LTS)
 <br/>
-4. __(Recommended) Please Downoad Express.js:__  [EXPRESS.JS]
+4. __(Recommended) Please Downoad Express.js:__  ***[EXPRESS.JS]***
 <br/>
-        &nbsp;4a. Please download and install the EXPRESS <br/>
-        &nbsp;4b. Please Follow These Steps <br/>
-        &nbsp;4c. Link : http://expressjs.com/en/starter/installing.html
+   &nbsp;&nbsp;a. Please download and install the EXPRESS <br/>
+   &nbsp;&nbsp;b. Please Follow These Steps <br/>
+   &nbsp;&nbsp;c. Link : http://expressjs.com/en/starter/installing.html
 <br/>
 	
 	
