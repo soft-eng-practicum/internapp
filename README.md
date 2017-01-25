@@ -9,14 +9,14 @@
 **Our Product:**  [InternApp](http://ggc-internapp.herokuapp.com/)
 
 ## New Team Members
----
+___
 1. *add*  <br>
 2. *add*  <br>
 3. *add*  <br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
 
 ## Old Team Members
----
+----
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
 2. *Taylor Brust :* ***Client Liason*** <br>
 3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***   
@@ -33,24 +33,24 @@
 ***Follow These Steps Please*** <br/>
 1. __Download files from github:__ [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 <br/>
-	&nbsp;&nbsp;a. Clone the repository through Git Bash<br/>
-	&nbsp;&nbsp;b. Clone using this link:  git@github.com:soft-eng-practicum/internapp.git
+	&nbsp;&nbsp;&nbsp;&nbsp;a. Clone the repository through Git Bash<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;b. Clone using this link:  git@github.com:soft-eng-practicum/internapp.git
 <br/>
 2. __Please Downoad NMP:__  ***[NPM]***
 <br/>
-    &nbsp;&nbsp;a. Please download and install the npm <br/>
-    &nbsp;&nbsp;b. This is the link : https://www.npmjs.com/
+    &nbsp;&nbsp;&nbsp;&nbsp;a. Please download and install the npm <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;b. This is the link : https://www.npmjs.com/
 <br/>
 3. __Please Downoad Node Server.js:__  ***[NODE]***
 <br/>
-    &nbsp;&nbsp;a. Please download and install the NODE <br/>
-    &nbsp;&nbsp;b. This is the link : https://nodejs.org/en/ &nbsp;(Preferred V.6.9.4 LTS)
+    &nbsp;&nbsp;&nbsp;&nbsp;a. Please download and install the NODE <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;b. This is the link : https://nodejs.org/en/ &nbsp;(Preferred V.6.9.4 LTS)
 <br/>
 4. __(Recommended) Please Downoad Express.js:__  ***[EXPRESS.JS]***
 <br/>
-   &nbsp;&nbsp;&nbsp;a. Please download and install the EXPRESS <br/>
-   &nbsp;&nbsp;&nbsp;b. Please Follow These Steps <br/>
-   &nbsp;&nbsp;&nbsp;c. Link : http://expressjs.com/en/starter/installing.html
+   &nbsp;&nbsp;&nbsp;&nbsp;a. Please download and install the EXPRESS <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;b. Please Follow These Steps <br/>
+   &nbsp;&nbsp;&nbsp;&nbsp;c. Link : http://expressjs.com/en/starter/installing.html
 <br/>
 	
 	
