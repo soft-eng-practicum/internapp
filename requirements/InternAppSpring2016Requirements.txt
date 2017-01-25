@@ -1,0 +1,35 @@
+These Requirements are a continuation of the Fall 2016 Requirements (see intitalmeeting.txt). Requirements which were not
+fulfilled by the Fall 2016 group are re-listed here, along with additional requirements.
+
+Spring 2016 Group Members: Khaled Asad, Robert Bryan, Michael Cawthon, and Blake Norman
+Fall 2016 Group Members: Taylor Burst, Joseph Cox, Vimal Darji, and Jonathan Nguyen
+
+Version: 0.0.0
+
+The following are our initial requirements for Spring 2016:
+Dr. Hammonds - Odie - Biology
+- Document Upload System
+  - For transcript uploads and essays
+  - Must allow for re-submissions.
+- Messaging System
+  - Must allow for the instructor to post feedback on individual students' application, on the essay submission,
+  and the transcript upload.
+
+Dr. Pollacia - Information Technology
+- Document Upload System
+  - For Resumes
+    - Ability to select 1 or more resumes and download to a zip file
+    - Must be able to archive old resumes for students from previous semesters
+  - For FERPA Release form
+    - Must figure out how to insure that the students are giving their permission
+    - Perhaps a pdf with a digital signature feature
+- Ability to query and report Application/Site Information
+  - Simple fix - Allow her to download what she needs for her tables in an Excel spreadsheet
+- She needs a way to keep up with what companies she has visited
+  - Must record
+    - What they discussed
+    - What types of interns they're looking for
+    - Who made the visit
+    - Where was the visit
+    - Date
+    - Time
