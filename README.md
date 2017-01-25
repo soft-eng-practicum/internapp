@@ -20,7 +20,7 @@
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
 2. *Taylor Brust :* ***Client Liason*** <br>
 3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***   
-4.*Jonathan Nguyen :* ***UI/UX Design*** & ***Documentation lead***<br>
+4. *Jonathan Nguyen :* ***UI/UX Design*** & ***Documentation lead***<br>
 
 ##  Overview
 ---
@@ -38,19 +38,19 @@
 <br/>
 2. __Please Downoad NMP:__  ***[NPM]***
 <br/>
-   &nbsp; &nbsp;a. Please download and install the npm <br/>
-   &nbsp; &nbsp;b. This is the link : https://www.npmjs.com/
+    &nbsp;&nbsp;a. Please download and install the npm <br/>
+    &nbsp;&nbsp;b. This is the link : https://www.npmjs.com/
 <br/>
 3. __Please Downoad Node Server.js:__  ***[NODE]***
 <br/>
-   &nbsp; &nbsp;a. Please download and install the NODE <br/>
-   &nbsp; &nbsp;b. This is the link : https://nodejs.org/en/ &nbsp;(Preferred V.6.9.4 LTS)
+    &nbsp;&nbsp;a. Please download and install the NODE <br/>
+    &nbsp;&nbsp;b. This is the link : https://nodejs.org/en/ &nbsp;(Preferred V.6.9.4 LTS)
 <br/>
 4. __(Recommended) Please Downoad Express.js:__  ***[EXPRESS.JS]***
 <br/>
-   &nbsp;&nbsp;a. Please download and install the EXPRESS <br/>
-   &nbsp;&nbsp;b. Please Follow These Steps <br/>
-   &nbsp;&nbsp;c. Link : http://expressjs.com/en/starter/installing.html
+   &nbsp;&nbsp;&nbsp;a. Please download and install the EXPRESS <br/>
+   &nbsp;&nbsp;&nbsp;b. Please Follow These Steps <br/>
+   &nbsp;&nbsp;&nbsp;c. Link : http://expressjs.com/en/starter/installing.html
 <br/>
 	
 	
