@@ -9,14 +9,14 @@
 **Our Product:**  [InternApp](http://ggc-internapp.herokuapp.com/)
 
 ## New Team Members
-___
+__________
 1. *add*  <br>
 2. *add*  <br>
 3. *add*  <br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
 
 ## Old Team Members
-----
+---------
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
 2. *Taylor Brust :* ***Client Liason*** <br>
 3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***   
@@ -33,7 +33,7 @@ ___
 ***Follow These Steps Please*** <br/>
 1. __Download files from github:__ [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 <br/>
-	&nbsp;&nbsp;&nbsp;&nbsp;a. Clone the repository through Git Bash<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;a. Clone the repository through GitBash<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;b. Clone using this link:  git@github.com:soft-eng-practicum/internapp.git
 <br/>
 2. __Please Downoad NMP:__  ***[NPM]***
