@@ -9,14 +9,14 @@
 **Our Product:**  [InternApp](http://ggc-internapp.herokuapp.com/)
 
 ## New Team Members
-__________
+---
 1. *add*  <br>
 2. *add*  <br>
 3. *add*  <br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
 
 ## Old Team Members
----------
+---
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
 2. *Taylor Brust :* ***Client Liason*** <br>
 3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***   
