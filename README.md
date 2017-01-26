@@ -24,7 +24,7 @@
 
 ##  Overview
 ---
-This Internship application is for Georgia Gwinnett College students.  This application will enable Biology and ITEC students to apply for jobs in the real world. This application will also allow Professors and Faculty to review the application the students submitted. <br/>
+*This Internship application is for Georgia Gwinnett College students.  This application will enable Biology and ITEC students to apply for jobs in the real world. This application will also allow Professors and Faculty to review the application the students submitted.* <br/>
 
 
 ## Installation Process
