@@ -1,4 +1,4 @@
-# Team name: DASQUAD 
+# Team name: DASQUAD
 ---
 **Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 
@@ -11,7 +11,7 @@
 ## New Team Members
 ---
 1. *add*  <br>
-2. *add*  <br>
+2. *Michael Cawthon*  [[@mcawthon]] (https://github.com/mcawthon) ***Project Manager*** & ***Client Liason***<br>
 3. *Robert Bryan* [[@rbryan21]] (https://github.com/rbryan21): ***Lead Programmer*** & ***Documentation Lead***<br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
 
@@ -51,5 +51,3 @@
    &nbsp;&nbsp;&nbsp;&nbsp;b. Please Follow These Steps <br/>
    &nbsp;&nbsp;&nbsp;&nbsp;c. Link : http://expressjs.com/en/starter/installing.html
 <br/>
-	
-	
