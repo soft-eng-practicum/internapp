@@ -12,7 +12,7 @@
 ---
 1. *add*  <br>
 2. *add*  <br>
-3. *add*  <br>
+3. *Robert Bryan* [[@rbryan21]] (https://github.com/rbryan21): ***Lead Programmer*** & ***Documentation Lead***<br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
 
 ## Old Team Members
