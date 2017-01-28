@@ -1,41 +1,35 @@
-var passport = require('passport');
-var mongoose = require('mongoose');
 var User = require('../models/user');
+var Site = require('../models/site');
+var Bio = require('../models/bio');
+var Itec = require('../models/itec');
 
 
-// GET /login
-var renderLoginPage = function(req, res, responseBody) {
-    res.render('login.ejs', {
-        message : req.flash('loginMessage')
-    });
-};
+    var renderLoginPage = function(req, res, responseBody) { 
+        res.render('login.ejs', {
+            message : req.flash('loginMessage')
+        });
+    };
 
-// POST /login
-var processLogin = function(req, res, responseBody) {
+    var processLogin = function(req, res, responseBody) {
 
-    passport.authenticate('local-login', function(err, user, info) {
+    };
 
-        if (err) {
-            console.log("error");
-            return;
-        }
+    module.exports.login = function(req, res) {
+       passport.authenticate('local-login', {
+            successRedirect : '/dashboard',
+            failureRedirect : '/login',
+            failureFlash : true
+        })(req, res, next);
+    };
 
-        if (user) {
-            res.redirect('/dashboard');
-        } else {
-            res.redirect('/login');
-        }
-    })(req, res);
-};
 
-    
+    module.exports.getLogin = function(req, res) {
+          res.render('login.ejs', {
+            message : req.flash('loginMessage')
+        });
+    };
 
-// GET /login
-module.exports.getLogin = function(req, res) {
-    renderLoginPage(req, res);
-};
 
-// POST /login
-module.exports.login = function(req, res) {
-    processLogin(req, res);
-};
+
+
+

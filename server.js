@@ -39,7 +39,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 //require('./app/routes/index')(app, passport);
-app.use('/', routes);
+require('./app/routes/index.js')(app, passport);
 
 
 
