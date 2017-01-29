@@ -10,6 +10,7 @@
     var ctrlEditProfile = require('../controllers/editprofile');
     var ctrlFAQ = require('../controllers/faq');
     var ctrlLogout = require('../controllers/logout');
+    var ctrlReset = require('../controllers/reset');
 
 
     // route middleware to make sure a user is logged in
@@ -50,8 +51,12 @@ module.exports = function(app, passport) {
         }));
 
      /* Forgot password page */
-     //app.get('/forgot', ctrlSignUp.getForgot);
-     //app.post('/forgot', ctrlSignUp.postForgot);
+     app.get('/forgot', ctrlForgot.getForgot);
+     app.post('/forgot', ctrlForgot.postForgot);
+
+     /* Reset password */
+     app.get('/reset/:token', ctrlReset.getReset);
+     app.post('/reset/:token', ctrlReset.postReset);
 
      /* Dashboard page */
      app.get('/dashboard', isLoggedIn, ctrlDashboard.loadDashboard);
@@ -61,26 +66,29 @@ module.exports = function(app, passport) {
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
     app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument); 
-    app.get('/application/itec/:applicationid', ctrlApplications.getSpecificApplication);
-    app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
-    app.post('/application/itec/:applicationid', ctrlApplications.updateApplicationStatus);
+    app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificApplication);
+    app.post('/itec', isLoggedIn, isLoggedIn, ctrlApplications.postItecApplication);
+    app.post('/application/itec/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
     app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);    
          // BIO
-    app.get('/bio', ctrlApplications.getBioApplication);
+    app.get('/bio', isLoggedIn, ctrlApplications.getBioApplication);
     app.post('/bio', ctrlApplications.postBioApplication);
-    app.get('/application/bio/:applicationid', ctrlApplications.getSpecificApplication);
-    app.post('/application/bio/:applicationid', ctrlApplications.updateApplicationStatus);
-    app.post('/application/bio/documents/:applicationid', ctrlApplications.addDocument);
-    app.post('/application/bio/notes/:applicationid', ctrlApplications.addBioNotes);
+    app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificApplication);
+    app.post('/application/bio/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
+    app.post('/application/bio/documents/:applicationid', isLoggedIn, ctrlApplications.addDocument);
+    app.post('/application/bio/notes/:applicationid', isLoggedIn, ctrlApplications.addBioNotes);
 
-    // /* Sites pages & Add Site page */
-    // router.get('/sites', ctrlSites.getSites);
-    // router.put('/site/edit/:siteid', ctrlSites.updateSite);
-    // router.get('/site/edit/:siteid', ctrlSites.getSiteToEdit);
-    // router.delete('/site/:siteid', ctrlSites.deleteSite);
-    // router.get('/site/:siteid', ctrlSites.getSiteDetails);
-    // router.post('/site/:siteid', ctrlSites.addSiteContact);
-
+    /* Sites pages & Add Site page */
+    app.get('/sites', isLoggedIn, ctrlSites.getSites);
+    app.get('/addsite', isLoggedIn, ctrlSites.getAddSite);
+    app.get('/site/contacts/:siteid/:documentid', isLoggedIn, ctrlSites.getSiteDocument);
+    app.get('/site/edit/:siteid', isLoggedIn, ctrlSites.getSiteToEdit);
+    app.get('/site/:siteid', isLoggedIn, ctrlSites.getSiteDetails);
+    app.post('/addSite', isLoggedIn, ctrlSites.postAddSite);
+    app.post('/site/:siteid', isLoggedIn, ctrlSites.addSiteContact);
+    app.put('/site/edit/:siteid', isLoggedIn, ctrlSites.updateSite);
+    app.post('/site/delete/:siteid', isLoggedIn, ctrlSites.deleteSite);
+    
     // /* Promote page */
     // router.get('/promote', ctrlPromote.getPromote);
     // router.post('/promote', ctrlPromote.promoteUser);
