@@ -35,7 +35,7 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;a. Clone the repository through GitBash<br/>
 	&nbsp;&nbsp;&nbsp;&nbsp;b. Clone using this link:  git@github.com:soft-eng-practicum/internapp.git
 <br/>
-2. __Please Downoad NMP:__  ***[NPM]***
+2. __Please Downoad NPM:__  ***[NPM]***
 <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;a. Please download and install the npm <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;b. This is the link : https://www.npmjs.com/
