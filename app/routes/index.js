@@ -86,19 +86,19 @@ module.exports = function(app, passport) {
     app.get('/site/:siteid', isLoggedIn, ctrlSites.getSiteDetails);
     app.post('/addSite', isLoggedIn, ctrlSites.postAddSite);
     app.post('/site/:siteid', isLoggedIn, ctrlSites.addSiteContact);
-    app.put('/site/edit/:siteid', isLoggedIn, ctrlSites.updateSite);
+    app.post('/site/edit/:siteid', isLoggedIn, ctrlSites.updateSite);
     app.post('/site/delete/:siteid', isLoggedIn, ctrlSites.deleteSite);
     
     /* Promote page */
     app.get('/promote', isLoggedIn, ctrlPromote.getPromote);
     app.post('/promote', isLoggedIn, ctrlPromote.promoteUser);
 
-    // /* Edit Profile page */
-    // router.get('/editprofile', ctrlEditProfile.getEditProfile);
-    // router.post('/editprofile', ctrlEditProfile.updateProfile);
+    /* Edit Profile page */
+    app.get('/editprofile', ctrlEditProfile.getEditProfile);
+    app.post('/editprofile', ctrlEditProfile.updateProfile);
 
-    // /* FAQ page */
-    // router.get('/faq', ctrlFAQ.getFAQ);
+    /* FAQ page */
+    app.get('/faq', ctrlFAQ.getFAQ);
 }
 
    
