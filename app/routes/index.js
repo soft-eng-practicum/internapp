@@ -89,9 +89,9 @@ module.exports = function(app, passport) {
     app.put('/site/edit/:siteid', isLoggedIn, ctrlSites.updateSite);
     app.post('/site/delete/:siteid', isLoggedIn, ctrlSites.deleteSite);
     
-    // /* Promote page */
-    // router.get('/promote', ctrlPromote.getPromote);
-    // router.post('/promote', ctrlPromote.promoteUser);
+    /* Promote page */
+    app.get('/promote', isLoggedIn, ctrlPromote.getPromote);
+    app.post('/promote', isLoggedIn, ctrlPromote.promoteUser);
 
     // /* Edit Profile page */
     // router.get('/editprofile', ctrlEditProfile.getEditProfile);
