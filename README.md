@@ -10,7 +10,7 @@
 
 ## New Team Members
 ---
-1. *add*  <br>
+1. *Blake Norman*  [[@bnorman37]] (https://github.com/blakenorman37) ***Testing Lead*** & ***Programmer***<br>
 2. *Michael Cawthon*  [[@mcawthon]] (https://github.com/mcawthon) ***Project Manager*** & ***Client Liason***<br>
 3. *Robert Bryan* [[@rbryan21]] (https://github.com/rbryan21): ***Lead Programmer*** & ***Documentation Lead***<br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
