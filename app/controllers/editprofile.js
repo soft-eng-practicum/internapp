@@ -1,9 +1,17 @@
+/*
+    Controller functions containing the logic for the editprofile routes
+    Authors : Joseph Cox, Robert Bryan
+*/
+
 var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
-// GET /editprofile
+/*
+    HTTP Req: GET
+    URL: '/editprofile'
+*/
 module.exports.getEditProfile = function(req, res) {
     User.findOne({
         'local.email' : req.user.email
@@ -16,7 +24,10 @@ module.exports.getEditProfile = function(req, res) {
     });
 };
 
-// POST /editprofile
+/*
+    HTTP Req: POST
+    URL: '/editprofile'
+*/
 module.exports.updateProfile = function(req, res) {
     User.update({'local.email' : req.user.email}, {
         'local.studentid' : req.body.studentid,

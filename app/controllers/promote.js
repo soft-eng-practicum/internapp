@@ -1,10 +1,17 @@
-// app/routes.js
+/*
+    Controller functions containing the logic for the promote routes
+    Authors : Joseph Cox, Robert Bryan
+*/
+
 var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
-// GET /promote
+/*
+    HTTP Req: GET
+    URL: '/promote'
+*/
 module.exports.getPromote = function(req, res) {
     if (req.session.passport.user.role == 'admin') {
         res.render('promote.ejs', {
@@ -15,7 +22,10 @@ module.exports.getPromote = function(req, res) {
     }
 };
 
-// POST /promote
+/*
+    HTTP Req: POST
+    URL: '/promote'
+*/
 module.exports.promoteUser = function(req, res) {
     User.update({'local.email' : req.body.email}, {'local.role' : req.body.role}, function(err, status) {
         if (err) {

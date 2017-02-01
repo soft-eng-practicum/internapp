@@ -1,9 +1,17 @@
+/*
+    Controller functions containing the logic for the sites routes
+    Authors : Joseph Cox, Robert Bryan
+*/
+
 var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
-// GET /sites
+/*
+    HTTP Req: GET
+    URL: '/sites'
+*/
 module.exports.getSites = function(req, res) {
     if(true) {
         Site.find(function (err, sites) {
@@ -19,7 +27,10 @@ module.exports.getSites = function(req, res) {
     }
 };
 
-// GET '/site/edit/:siteid'
+/*
+    HTTP Req: GET
+    URL: '/site/edit/:siteid'
+*/
 module.exports.getSiteToEdit = function(req, res) {
     Site.findOne({ _id: req.params.siteid },function (err, sitedetail) {
         if (err) {
@@ -35,7 +46,10 @@ module.exports.getSiteToEdit = function(req, res) {
     });
 };
 
-// GET '/site/:siteid'
+/*
+    HTTP Req: GET
+    URL: '/site/:siteid'
+*/
 module.exports.getSiteDetails = function(req, res) {
     Site.findOne({ _id: req.params.siteid },function (err, sitedetail) {
         if (err) {
@@ -51,7 +65,10 @@ module.exports.getSiteDetails = function(req, res) {
     });
 };
 
-// GET /addSite
+/*
+    HTTP Req: GET
+    URL: '/addSite'
+*/
 module.exports.getAddSite = function(req, res) {
     if(true) {
         res.render('addsite.ejs', {
@@ -63,7 +80,10 @@ module.exports.getAddSite = function(req, res) {
     }
 };
 
-// GET '/site/contacts/:siteid/:documentid'
+/*
+    HTTP Req: GET
+    URL: '/site/contacts/:siteid/:documentid'
+*/
 module.exports.getSiteDocument = function(req, res) {
     Site.update({ _id: req.params.siteid },{$pull: {"contacts": {_id: req.params.documentid}}}, 
     function (err) {
@@ -77,7 +97,10 @@ module.exports.getSiteDocument = function(req, res) {
     });
 };
 
-// POST /addSite
+/*
+    HTTP Req: POST
+    URL: '/addSite'
+*/
 module.exports.postAddSite = function(req, res) {
     var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode,
     mou: req.body.mou, mouexpiration: req.body.mouexpiration });
@@ -95,6 +118,10 @@ module.exports.postAddSite = function(req, res) {
     });
 };
 
+/*
+    HTTP Req: POST
+    URL: '/site/:siteid'
+*/
 module.exports.addSiteContact = function(req, res) {
 Site.update({ _id: req.params.siteid },{$push: {"contacts": {name: req.body.name, title: req.body.title, email: req.body.email, office: req.body.office, cell: req.body.cell}}},
 function (err) {
@@ -108,7 +135,10 @@ function (err) {
     });
 };
 
-// PUT '/site/edit/:siteid
+/*
+    HTTP Req: POST
+    URL: '/site/edit/:siteid'
+*/
 module.exports.updateSite = function(req, res) {
     Site.update({ _id: req.params.siteid },{name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode,
         mou: req.body.mou, mouexpiration: req.body.mouexpiration},
@@ -123,7 +153,10 @@ module.exports.updateSite = function(req, res) {
     });
 };
 
-// DELETE '/site/delete/:siteid'
+/*
+    HTTP Req: POST
+    URL: '/site/delete/:siteid'
+*/
 module.exports.deleteSite = function(req, res) {
     Site.remove({ _id: req.params.siteid },function (err) {
         if (err) {

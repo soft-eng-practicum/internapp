@@ -1,10 +1,18 @@
+/*
+    Controller functions containing the logic for the forgot routes
+    Authors : Joseph Cox, Robert Bryan
+*/
+
 var nodemailer = require('nodemailer');
 var User = require('../models/user');
 var crypto = require('crypto');
 var key = process.env.KEY;
 var async = require('async');
 
-// POST /forgot
+/*
+    HTTP Req: POST
+    URL: '/forgot'
+*/
 module.exports.postForgot = function(req, res) {
     async.waterfall([
         function(done) {
@@ -51,7 +59,10 @@ module.exports.postForgot = function(req, res) {
     });
 };
 
-// GET /forgot
+/*
+    HTTP Req: GET
+    URL: '/forgot'
+*/
 module.exports.getForgot = function(req, res) {
   res.render('forgot.ejs', {
             message: req.flash('info')

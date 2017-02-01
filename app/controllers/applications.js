@@ -1,23 +1,37 @@
+/*
+    Controller functions containing the logic for the application routes
+    Authors : Joseph Cox, Robert Bryan
+*/
+
 var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
-// GET /itec
+/*
+    HTTP Req: GET
+    URL: '/itec'
+*/
 module.exports.getItecApplication = function(req, res) {
     res.render('itec.ejs', {
         user: req.user
     });
 };
 
-// GET /bio
+/*
+    HTTP Req: GET
+    URL: '/bio'
+*/
 module.exports.getBioApplication = function(req, res) {
     res.render('bio.ejs', {
         user: req.user // get the user out of session and pass to template
     });
 };
 
-// GET /applications
+/*
+    HTTP Req: GET
+    URL: '/applications'
+*/
 module.exports.getApplications = function(req, res) {
     if (req.user.role === 'admin' || req.user.role === 'faculty'  ) {
             if (req.user.discipline == 'bio') {
@@ -65,7 +79,10 @@ module.exports.getApplications = function(req, res) {
         }
 };
 
-// GET /application/:id
+/*
+    HTTP Req: GET
+    URL: '/application/:id'
+*/
 module.exports.getSpecificApplication = function(req, res) {
     if (req.user.discipline == 'itec') {
         Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
@@ -97,7 +114,10 @@ module.exports.getSpecificApplication = function(req, res) {
     }
 };
 
-// POST '/application/itec/:applicationid'
+/*
+    HTTP Req: POST
+    URL: '/application/itec/:applicationid'
+*/
 module.exports.updateApplicationStatus = function(req, res) {
     Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
         if (err){
@@ -110,7 +130,10 @@ module.exports.updateApplicationStatus = function(req, res) {
     });
 };
 
-// POST '/application/itec/notes/:applicationid'
+/*
+    HTTP Req: POST
+    URL: '/application/itec/notes/:applicationid'
+*/
 module.exports.addItecNotes = function(req, res) {
  Itec.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
         if (err) {
@@ -123,7 +146,10 @@ module.exports.addItecNotes = function(req, res) {
     });
 };
 
-// POST '/application/itec/notes/:applicationid'
+/*
+    HTTP Req: POST
+    URL: '/application/bio/notes/:applicationid'
+*/
 module.exports.addBioNotes = function(req, res) {
     Bio.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
         if (err) {
@@ -136,7 +162,10 @@ module.exports.addBioNotes = function(req, res) {
     });
 };
 
-// POST '/applications/itec/documents/:applicationid/:documentid/:answer'
+/*
+    HTTP Req: POST
+    URL: '/applications/itec/documents/:applicationid/documentid/:answer'
+*/
 module.exports.updateApplicationDocument = function(req, res) {
     Itec.update({ 'documents._id': req.params.documentid },{$set: {'documents.$.status': req.params.answer}},function (err) {
         if (err){
@@ -148,7 +177,10 @@ module.exports.updateApplicationDocument = function(req, res) {
     });
 };
 
-// POST '/itec'
+/*
+    HTTP Req: POST
+    URL: '/itec'
+*/
 module.exports.postItecApplication = function(req, res) {
     var itecapp = new Itec(req.body);
     itecapp.useremail = req.user.email;
@@ -170,7 +202,10 @@ module.exports.postItecApplication = function(req, res) {
     res.redirect('/applications');
 };
 
-// POST /bio
+/*
+    HTTP Req: POST
+    URL: '/bio'
+*/
 module.exports.postBioApplication = function(req, res) {
     var bioapp = new Bio(req.body);
     bioapp.useremail = req.user.email;
@@ -191,7 +226,10 @@ module.exports.postBioApplication = function(req, res) {
     res.redirect('/applications');
 };
 
-// POST '/application/bio/documents/:applicationid'
+/*
+    HTTP Req: POST
+    URL: '/application/bio/documents/:applicationid'
+*/
 module.exports.addDocument = function(req, res) {
     Bio.update({ _id: req.params.applicationid },{$push: {"documents": {item: req.body.item, status: req.body.status}}},function (err) {
         if (err) {
@@ -203,6 +241,3 @@ module.exports.addDocument = function(req, res) {
         }
     });
 };
-
-
-

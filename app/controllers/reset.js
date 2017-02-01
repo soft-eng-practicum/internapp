@@ -1,10 +1,18 @@
+/*
+    Controller functions containing the logic for the reset routes
+    Authors : Joseph Cox, Robert Bryan
+*/
+
 var nodemailer = require('nodemailer');
 var User = require('../models/user');
 var crypto = require('crypto');
 var key = process.env.KEY;
 var async = require('async');
 
-// GET /reset
+/*
+    HTTP Req: GET
+    URL: '/reset'
+*/
 module.exports.getReset = function(req, res) {
     User.findOne({ 'local.resetPasswordToken': req.params.token,'local.resetPasswordExpires': { $gt: Date.now() } }, function(err, user) {
         if (!user) {
@@ -18,7 +26,10 @@ module.exports.getReset = function(req, res) {
   });
 };
 
-// POST /reset
+/*
+    HTTP Req: POST
+    URL: '/reset'
+*/
 module.exports.postReset = function(req, res) {
     async.waterfall([
         function(done) {
