@@ -1,3 +1,10 @@
+##  Overview
+*Internapp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored.*
+<br/>
+## Clientele
+- [Dr. Lissa Pollacia](http://www.ggc.edu/about-ggc/directory/lissa-pollacia)
+- [Dr. Latanya P. Hammonds-Odie](http://www.ggc.edu/about-ggc/directory/latanya-hammonds-odie)
+
 # Team name: dasquad
 **Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 
@@ -18,9 +25,6 @@
 2. *Taylor Brust :* ***Client Liason*** <br>
 3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***   
 4. *Jonathan Nguyen :* ***UI/UX Design*** & ***Documentation lead***<br>
-
-##  Overview
-*This Internship application is for Georgia Gwinnett College students.  This application will enable Biology and ITEC students to apply for jobs in the real world. This application will also allow Professors and Faculty to review the application the students submitted.* <br/>
 
 ## Running the application on your local machine
 1. __[Install Node.js (either version is fine)](https://nodejs.org/en/)__
