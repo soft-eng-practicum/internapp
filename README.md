@@ -5,7 +5,7 @@
 
 **Communication Tool:**  [#dasquad Slack](https://ggc-dev.slack.com/messages/intern_app/)
 
-**Our Product:**  [InternApp (currently deployed using Heroku)](http://ggc-internapp.herokuapp.com/)
+**Live Application Link:**  [InternApp](http://ggc-internapp.herokuapp.com/)
 
 ##  Overview
 *Internapp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs for both student and coordinator. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored.*
@@ -18,13 +18,13 @@
 - [Information Technology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#itec4900)
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
 
-## New Team Members
+## Spring 2017 Team Members
 1. *Blake Norman*  [[@bnorman37]] (https://github.com/blakenorman37) ***Testing Lead*** & ***Programmer***<br>
 2. *Michael Cawthon*  [[@mcawthon]] (https://github.com/mcawthon) ***Project Manager*** & ***Client Liason***<br>
 3. *Robert Bryan* [[@rbryan21]] (https://github.com/rbryan21): ***Lead Programmer*** & ***Documentation Lead***<br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
 
-## Old Team Members
+## Fall 2016 Team Members
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
 2. *Taylor Brust :* ***Client Liason*** <br>
 3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***   
