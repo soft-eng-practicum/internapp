@@ -1,3 +1,12 @@
+# Internapp - dasquad
+**Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
+
+**Process Tool and URL:**  [Version One]( https://www9.v1host.com/GeorgiaGwinnettCollege/ )
+
+**Communication Tool:**  [#dasquad Slack](https://ggc-dev.slack.com/messages/intern_app/)
+
+**Our Product:**  [InternApp (currently deployed using Heroku)](http://ggc-internapp.herokuapp.com/)
+
 ##  Overview
 *Internapp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs for both student and coordinator. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored.*
 <br/>
@@ -8,15 +17,6 @@
 ## Internship Program Information
 - [Information Technology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#itec4900)
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
-
-# Team name: dasquad
-**Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
-
-**Process Tool and URL:**  [Version One]( https://www9.v1host.com/GeorgiaGwinnettCollege/ )
-
-**Communication Tool:**  [#dasquad Slack](https://ggc-dev.slack.com/messages/intern_app/)
-
-**Our Product:**  [InternApp (currently deployed using Heroku)](http://ggc-internapp.herokuapp.com/)
 
 ## New Team Members
 1. *Blake Norman*  [[@bnorman37]] (https://github.com/blakenorman37) ***Testing Lead*** & ***Programmer***<br>
