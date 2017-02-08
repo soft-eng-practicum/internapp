@@ -1,9 +1,9 @@
 body {
-      background-image: url("../images/ggc.jpg")
+    background-color: #00704a;
 }
 
 .container{
-    background-color: #78AB46;
+    background-color: #eee;
 }
 
 .scrollable {
