@@ -40,7 +40,7 @@ module.exports = function(app, passport) {
     app.get('/login', ctrlLogin.getLogin);
     app.post('/login', 
             passport.authenticate('local-login', {
-            successRedirect : '/applications',
+            successRedirect : '/dashboard',
             failureRedirect : '/login',
             failureFlash : true
         }));
@@ -51,7 +51,7 @@ module.exports = function(app, passport) {
      /* Sign up page */
     app.get('/signup', ctrlSignUp.loadSignUp);
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/applications',
+            successRedirect : '/dashboard',
             failureRedirect : '/signup',
             failureFlash : true
         }));
@@ -94,7 +94,7 @@ module.exports = function(app, passport) {
     app.post('/site/:siteid', isLoggedIn, ctrlSites.addSiteContact);
     app.post('/site/edit/:siteid', isLoggedIn, ctrlSites.updateSite);
     app.post('/site/delete/:siteid', isLoggedIn, ctrlSites.deleteSite);
-
+    
     /* Promote page */
     app.get('/promote', isLoggedIn, ctrlPromote.getPromote);
     app.post('/promote', isLoggedIn, ctrlPromote.promoteUser);
@@ -105,8 +105,6 @@ module.exports = function(app, passport) {
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
-
-    app.get('/documentations', )
 }
 
    
