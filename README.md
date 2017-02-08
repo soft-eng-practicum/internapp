@@ -19,8 +19,8 @@
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
 
 ## Spring 2017 Team Members
-1. *Blake Norman*  [[@bnorman37]] (https://github.com/blakenorman37) ***Testing Lead*** & ***Programmer***<br>
-2. *Michael Cawthon*  [[@mcawthon]] (https://github.com/mcawthon) ***Project Manager*** & ***Client Liason***<br>
+1. *Blake Norman*  [[@bnorman37]] (https://github.com/blakenorman37) ***Project Manager*** & ***Testing Lead***<br>
+2. *Michael Cawthon*  [[@mcawthon]] (https://github.com/mcawthon) ***Data Modeler*** & ***Programmer***<br>
 3. *Robert Bryan* [[@rbryan21]] (https://github.com/rbryan21): ***Lead Programmer*** & ***Documentation Lead***<br>
 4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Database Modeler***<br>
 
