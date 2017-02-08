@@ -18,7 +18,7 @@ module.exports.getPromote = function(req, res) {
             user : req.user // get the user out of the session and pass to template
         });
     } else {
-        res.redirect('/dashboard'); // if the user is not an admin, redirect
+        res.redirect('/applications'); // if the user is not an admin, redirect
     }
 };
 
@@ -32,7 +32,7 @@ module.exports.promoteUser = function(req, res) {
             console.log(err);
         } else {
             req.flash('info', req.body.email + ' has been promoted to ' + req.body.role);
-            res.redirect('/dashboard');
+            res.redirect('/applications');
         }
     })
 };

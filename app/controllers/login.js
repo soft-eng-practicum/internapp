@@ -9,7 +9,7 @@
 */
 module.exports.login = function(req, res) {
     passport.authenticate('local-login', {
-        successRedirect : '/dashboard',
+        successRedirect : '/applications',
         failureRedirect : '/login',
         failureFlash : true
     });

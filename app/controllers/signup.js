@@ -19,7 +19,7 @@ module.exports.loadSignUp = function(req, res) {
 */
 module.exports.signup = () => {
     return {
-        successRedirect : '/dashboard',
+        successRedirect : '/applications',
         failureRedirect : '/signup'
     };
 };
