@@ -7,83 +7,83 @@ var bioSchema = mongoose.Schema({
 
     emergencycontactname: {
         type: String,
-        required: true
+        required: false
     },
     emergencycontactaddress: {
         type: String,
-        required: true
+        required: false
     },
     emergencycontactemail: {
         type: String,
-        required: true
+        required: false
     },
     emergencycontactcity: {
         type: String,
-        required: true
+        required: false
     },
     emergencycontactzipcode: {
         type: String,
-        required: true
+        required: false
     },
     emergencycontactphone: {
         type: String,
-        required: true
+        required: false
     },
     mentorname: {
         type: String,
-        required: true
+        required: false
     },
     mentorcellphone: {
         type: String,
-        required: true
+        required: false
     },
     mentoremail: {
         type: String,
-        required: true
+        required: false
     },
     mentoroffice: {
         type: String,
-        required: true
+        required: false
     },
     hourscompleted: {
         type: String,
-        required: true
+        required: false
     },
     major: {
         type: String,
-        required: true
+        required: false
     },
     gpa: {
         type: String,
-        required: true
+        required: false
     },
     programgpa: {
         type: String,
-        required: true
+        required: false
     },
     career: {
         type: String,
-        required: true
+        required: false
     },
     proposedinternsemester: {
         type: String,
-        required: true
+        required: false
     },
     proposedinternyear: {
         type: String,
-        required: true
+        required: false
     },
     internsite: {
         type: String,
-        required: true
+        required: false
     },
     proposedsitename: {
         type: String,
-        required: true
+        required: false
     },
     proposedsitespecialty: {
         type: String,
-        required: true
+        required: false
     },
     proposedsiteaddress: {
         type: String,
@@ -107,111 +107,111 @@ var bioSchema = mongoose.Schema({
     },
     proposedsitemanageremail: {
         type: String,
-        required: true
+        required: false
     },
     proposedsitemanagertitle: {
         type: String,
-        required: true
+        required: false
     },
     preceptorname: {
         type: String,
-        required: true
+        required: false
     },
     preceptorphone: {
         type: String,
-        required: true
+        required: false
     },
     preceptoremail: {
         type: String,
-        required: true
+        required: false
     },
     ispreceptormanager: {
         type: String,
-        required: true
+        required: false
     },
     preceptorpostition: {
         type: String,
-        required: true
+        required: false
     },
     isstudentemployedatsite: {
         type: String,
-        required: true
+        required: false
     },
     doestudenthavefamilyatsite: {
         type: String,
-        required: true
+        required: false
     },
     studentcurrentposition: {
         type: String,
-        required: true
+        required: false
     },
     ispaidinternship: {
         type: String,
-        required: true
+        required: false
     },
     studenthoursworked: {
         type: String,
-        required: true
+        required: false
     },
     isokseperatehours: {
         type: String,
-        required: true
+        required: false
     },
     educomp1: {
         type: String,
-        required: true
+        required: false
     },
     educomp2: {
         type: String,
-        required: true
+        required: false
     },
     educomp3: {
         type: String,
-        required: true
+        required: false
     },
     signature: {
         type: String,
-        required: true
+        required: false
     },
     printedname: {
         type: String,
-        required: true
+        required: false
     },
-    applicationstatus: {type: String, required: true},
+    applicationstatus: {type: String, required: false},
     useremail: {
             type: String,
-            required: true
+            required: false
         },
         userstudentid: {
             type: String
         },
         userfname: {
             type: String,
-            required: true
+            required: false
         },
         userlname: {
             type: String,
-            required: true
+            required: false
         },
         useraddress: {
             type: String,
-            required: true
+            required: false
         },
         usercity: {
             type: String,
-            required: true
+            required: false
         },
         userstate: {
             type: String,
-            required: true
+            required: false
         },
         userzipcode: {
             type: String,
-            required: true
+            required: false
         },
         userdiscipline: {
             type: String,
-            required: true
+            required: false
         },
         submissionDate:{
                 type: Date, 

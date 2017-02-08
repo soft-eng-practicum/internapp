@@ -1,13 +1,14 @@
 // config/passport.js
 
-// load all the things we need
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
+
+// load all the things we need
+
 
 // load up the user model
 var User = require('../app/models/user');
-
-// expose this function to our app using module.exports
-module.exports = function(passport) {
 
     // =========================================================================
     // passport session setup ==================================================
@@ -37,9 +38,6 @@ module.exports = function(passport) {
         // it's actually req.session.passport.user and comes from the session collection
         done(null, sessionUser);
     });
-
-
-
 
     // =========================================================================
     // LOCAL SIGNUP ============================================================
@@ -146,4 +144,3 @@ module.exports = function(passport) {
         }));
 
 
-};

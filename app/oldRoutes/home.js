@@ -4,17 +4,14 @@ var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
+
 module.exports = function(app, passport) {
 
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
-        res.render('index.ejs',{
-         user : req.session.passport.user
-        }); // load the index.ejs file
-    });
-};
+    
+ 
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
