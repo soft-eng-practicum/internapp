@@ -1,4 +1,10 @@
-
+/*
+    Author: Robert Bryan
+    
+    - Routing page for the entire application
+    - Utilizes the files within the controller folder
+*/
+    
     var ctrlHome = require('../controllers/home');
     var ctrlLogin = require('../controllers/login');
     var ctrlSignUp = require('../controllers/signup');
