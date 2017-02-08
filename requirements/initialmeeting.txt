@@ -12,7 +12,7 @@ CRUD Functions For Applications and Sites
 2 or more intern disciplines
 
 Wants:
-Electronic Document Signing 
+Electronic Document Signing
 
 
 Detailed Information:
@@ -26,3 +26,27 @@ Biology Specific Sites
 ITEC Not Specific
 Not picky about designed showed them a template for another website and they liked it
 No language or db specifications
+
+Spring 2016:
+- Document Upload System
+  - Requires transcript upload
+  - Essay
+- Messaging System
+- Site Status Tracking
+- Delete option for applications
+- Document checklist?
+- Download Multiple Documents in Groups
+- Electronic Document Signing
+- Is it an ITEC Site or a Biology Site?
+
+Biology don't need resumes
+3.0 Required for established sites
+
+Sent by the site
+
+
+
+Current bugs:
+- Biology applications not showing
+- Entered applications are not showing up
+-
