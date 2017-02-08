@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
 });
         }
         else{
-           res.redirect('/dashboard');
+           res.redirect('/applications');
         }
     });
 
@@ -116,7 +116,7 @@ module.exports = function(app, passport) {
         });
         }
         else{
-           res.redirect('/dashboard');
+           res.redirect('/applications');
         }
     });
 

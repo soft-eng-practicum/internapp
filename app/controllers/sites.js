@@ -23,7 +23,7 @@ module.exports.getSites = function(req, res) {
         });
     }
     else {
-        res.redirect('/dashboard');
+        res.redirect('/applications');
     }
 };
 
@@ -76,7 +76,7 @@ module.exports.getAddSite = function(req, res) {
             messages: req.flash('info')
         });
     } else {
-        res.redirect('/dashboard');
+        res.redirect('/applications');
     }
 };
 
