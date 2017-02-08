@@ -17,6 +17,7 @@
     var ctrlFAQ = require('../controllers/faq');
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
+    var ctrlDocumentation = require('../controllers/documentation');
 
 
     // route middleware to make sure a user is logged in
@@ -106,7 +107,8 @@ module.exports = function(app, passport) {
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
 
-    app.get('/documentations', )
+    /* Documentations page */
+    app.get('/documentations',isLoggedIn, ctrlDocumentation.getDocumentationPage);
 }
 
    

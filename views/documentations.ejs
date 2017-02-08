@@ -22,19 +22,7 @@
     </thead>
 
     <tbody>
-
-
-        <% applicationList.forEach(function(application) { %>
-          <tr>
-            <td><%= application.userfname %> <%= application.userlname %></td>
-            <td><%= application.useremail %></td>
-            <td><%= application.userstudentid %></td>
-    	<td><%= application.major %></td>
-    	<td><%= application.applicationstatus %></td>
-      <td><a href=<%="/application/"+user.discipline+"/"+application._id%>>View Details</a></td>
-  </tr>
-          <% }); %>
-    </tbody>
+        </tbody>
   </table>
 </div>
 <% include partials/footerimports %>
