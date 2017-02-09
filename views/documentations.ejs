@@ -1,0 +1,38 @@
+    <!doctype html>
+<html>
+<head>
+    <title>Applications</title>
+<% include partials/headerimports %>
+</head>
+<body>
+<% include partials/nav.ejs %>
+
+    <div class="container">
+  <h2>Documentations Details</h2>
+  <table class="table table-bordered" id="applications">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Student ID</th>
+        <th>Major</th>
+        <th>Documentation Status</th>
+        <th>More</th>
+</tr>
+    </thead>
+
+    <tbody>
+        </tbody>
+  </table>
+</div>
+<% include partials/footerimports %>
+      <link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
+ 
+        <script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
+              <script type="text/javascript">
+        $(document).ready(function(){
+    $('#applications').DataTable();
+});
+        </script>
+    </body>
+    </html>

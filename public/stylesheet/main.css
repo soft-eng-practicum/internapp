@@ -1,9 +1,13 @@
 body {
-    background-color: #00704a;
+    background-image: url("../images/ggc.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    opacity: .95;
 }
 
 .container{
-    background-color: #eee;
+    background-color: #d3d3d3;
 }
 
 .scrollable {
