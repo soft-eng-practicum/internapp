@@ -36,7 +36,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line
 <br/>
 2. __[Clone this github repository to your local machine](https://github.com/soft-eng-practicum/internapp)__
-3. __Navigate to the internapp folder in your terminal/command line__  
+3. __Navigate to your local internapp repository through your terminal/command prompt__  
 4. __Run the command 'npm install'__
 5. __Run the command 'npm start'__
 6. __Navigate to localhost:8000/ within your browser__
