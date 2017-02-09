@@ -19,7 +19,6 @@
     var ctrlReset = require('../controllers/reset');
     var ctrlDocumentation = require('../controllers/documentation');
 
-
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
 
