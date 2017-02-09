@@ -4,18 +4,6 @@
 */
 
 /*
-    HTTP Req: POST
-    URL: '/login'
-*/
-module.exports.login = function(req, res) {
-    passport.authenticate('local-login', {
-        successRedirect : '/applications',
-        failureRedirect : '/login',
-        failureFlash : true
-    });
-};
-
-/*
     HTTP Req: GET
     URL: '/login'
 */

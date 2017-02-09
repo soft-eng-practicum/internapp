@@ -41,7 +41,7 @@ module.exports = function(app, passport) {
     app.get('/login', ctrlLogin.getLogin);
     app.post('/login', 
             passport.authenticate('local-login', {
-            successRedirect : '/applications',
+            successRedirect : '/dashboard',
             failureRedirect : '/login',
             failureFlash : true
         }));
@@ -52,7 +52,7 @@ module.exports = function(app, passport) {
      /* Sign up page */
     app.get('/signup', ctrlSignUp.loadSignUp);
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/applications',
+            successRedirect : '/dashboard',
             failureRedirect : '/signup',
             failureFlash : true
         }));
