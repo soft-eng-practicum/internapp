@@ -21,6 +21,7 @@
     "nodemailer": "^2.6.4",
     "nodemon": "^1.11.0",
     "passport": "~0.1.17",
-    "passport-local": "~0.1.6"
+    "passport-local": "~0.1.6",
+    "serve-favicon": "^2.3.2"
   }
 }
