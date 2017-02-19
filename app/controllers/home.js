@@ -8,12 +8,8 @@
     URL: '/'
 */
 module.exports.loadHome = function(req, res) {
-
-    var user = {
-        role : "admin"
-    };
     res.render('index.ejs', {
-        user: user // pass in a user for the index.ejs to access
+        user: req.session.passport.user
     }); 
 }; 
 
