@@ -13,6 +13,7 @@
     "cookie-parser": "~1.0.0",
     "ejs": "~0.8.5",
     "express": "~4.0.0",
+    "express-fileupload": "^0.1.1",
     "express-session": "~1.0.0",
     "jasmine": "^2.5.2",
     "method-override": "~1.0.0",
