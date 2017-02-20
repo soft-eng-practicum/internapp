@@ -8,3 +8,8 @@
 language: node_js
 node_js:
   - 6.9.1
+
+addons:
+  sauce_connect:
+    username: "bnorman2"
+    access_key: "ad808933-cc0c-40d8-8e28-e7df1c3babc8"
