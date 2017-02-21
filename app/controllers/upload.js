@@ -54,6 +54,8 @@ module.exports.uploadItecResume = function(req, res) {
             console.log('Resume sent!');
             res.redirect('/upload');
         })
+
+        // TO DO: Send attachment to user logged in
 };
 
 // Upload bio essay
@@ -92,6 +94,8 @@ module.exports.uploadBioEssay = function(req, res) {
             console.log('Essay sent!');
             res.redirect('/upload');
         })
+
+        // TO DO: Send attachment to user logged in
 };
 
 //Upload bio transcript
@@ -129,4 +133,6 @@ module.exports.uploadBioTranscript = function(req, res) {
             console.log('Transcript sent!');
             res.redirect('/upload');
         })
+
+        // TO DO: Send attachment to user logged in
 };
