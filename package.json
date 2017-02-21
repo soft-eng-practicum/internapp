@@ -22,5 +22,9 @@
     "nodemon": "^1.11.0",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6"
+  },
+  "devDependencies": {
+    "karma": "^1.5.0",
+    "karma-jasmine": "^1.1.0"
   }
 }
