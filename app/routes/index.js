@@ -100,8 +100,8 @@ module.exports = function(app, passport) {
     app.post('/promote', isLoggedIn, ctrlPromote.promoteUser);
 
     /* Edit Profile page */
-    app.get('/editprofile', ctrlEditProfile.getEditProfile);
-    app.post('/editprofile', ctrlEditProfile.updateProfile);
+    app.get('/editprofile', isLoggedIn, ctrlEditProfile.getEditProfile);
+    app.post('/editprofile', isLoggedIn, ctrlEditProfile.updateProfile);
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
