@@ -23,7 +23,6 @@
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "serve-favicon": "^2.3.2"
-    "requirejs": "^2.3.3"
   },
   "devDependencies": {
     "jasmine": "^2.5.3",
