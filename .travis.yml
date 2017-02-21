@@ -7,8 +7,8 @@
 #
 language: node_js
 node_js:
-  - "6.9.1"
-  script: node_modules/karma/bin/karma start my.conf.js --single-run
+    - "0.10"
+script: node_modules/karma/bin/karma start my.conf.js --single-run
 before_install:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
