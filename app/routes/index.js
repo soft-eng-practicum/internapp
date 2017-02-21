@@ -18,6 +18,14 @@
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
     var ctrlDocumentation = require('../controllers/documentation');
+    
+    
+
+    var ctrlUpload = require('../controllers/upload');
+
+    // For document uploads
+    var fileUpload = require('express-fileupload');
+    
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
@@ -32,6 +40,8 @@
 
 
 module.exports = function(app, passport) {
+
+    app.use(fileUpload()); // default options for file upload
 
     /* Home pages */
     app.get('/', ctrlHome.loadHome);
@@ -109,53 +119,18 @@ module.exports = function(app, passport) {
     /* Documentations page */
     app.get('/documentations',isLoggedIn, ctrlDocumentation.getDocumentationPage);
 
+    
+    
+    /* Document Upload page */
+    //Place holder get for test upload page
     app.get('/upload', function(req, res) {
         res.render('upload');
     });
 
-    var fileUpload = require('express-fileupload');
-    app.use(fileUpload()); // default options
-    var nodemailer = require('nodemailer');
-    var key = process.env.KEY;
-    
-    app.post('/upload', function(req, res) {
-        var sampleFile;
-        var mailOptions;
-        var transporter;
-
-        if (!req.files) {
-            return res.flash('info', 'No files were uploaded.');
-        }
-
-        sampleFile = req.files.sampleFile;
-        // console.log(req.files.sampleFile.name);
-        // console.log( req.session.passport.user.email);
-
-        console.log(sampleFile);
-
-        transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:ggcinternapp1!@smtp.gmail.com');
-        mailOptions = {
-            from: '"GGC Interapp Admin" <admin@ggcinternapp>',
-            to: 'rbryan3@ggc.edu',
-            subject: 'Resume',
-            text: 'Resume is attached.',
-            attachments: [
-                {
-                    filename: req.files.sampleFile.name,
-                    content: sampleFile.data,
-                    encoding: 'binary'
-                }
-            ]
-        }
-        transporter.sendMail(mailOptions, function(err) {
-            if (err) {
-                console.log(err);
-            }
-            res.redirect('/upload');
-        })
-     
-
-    });
+    // Upload resume
+    app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
+    app.post('/uploadBioEssay', ctrlUpload.uploadBioEssay);
+    app.post('/uploadBioTranscript', ctrlUpload.uploadBioTranscript);
 }
 
    

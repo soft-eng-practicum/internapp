@@ -2,11 +2,30 @@
   <body>
     <form ref='uploadForm' 
       id='uploadForm' 
-      action='/upload' 
+      action='/uploadItecResume' 
       method='post' 
       encType="multipart/form-data">
-        <input type="file" name="sampleFile" />
-        <input type='submit' value='Upload!' />
-    </form>     
+        <input type="file" name="resume" />
+        <input type='submit' value='Upload Resume!' />
+    </form>
+    </br> 
+    <form ref='uploadForm' 
+      id='uploadForm' 
+      action='/uploadBioEssay' 
+      method='post' 
+      encType="multipart/form-data">
+        <input type="file" name="essay" />
+        <input type='submit' value='Upload Bio Essay!' />
+    </form> 
+    </br>
+    <form ref='uploadForm' 
+      id='uploadForm' 
+      action='/uploadBioTranscript' 
+      method='post' 
+      encType="multipart/form-data">
+        <input type="file" name="transcript" />
+        <input type='submit' value='Upload Bio Transcript!' />
+    </form> 
+    </br>     
   </body>
 </html>
