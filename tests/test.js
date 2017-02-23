@@ -3,3 +3,18 @@ describe("A suite", function() {
     expect(true).toBe(true);
   });
 });
+
+var index = ("../app/routes/index.js");
+
+var base_url = "http://ggc-internapp.herokuapp.com/";
+
+describe("Hello World Server", function() {
+  describe("GET /", function() {
+    it("returns status code 200", function(done) {
+      index.test(base_url, function(error, response, body) {
+        expect(response.statusCode).toBe(200);
+        done();
+      });
+    });
+  });
+});
