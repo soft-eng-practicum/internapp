@@ -29,6 +29,7 @@ var User = require('../app/models/user');
             zipcode: user.local.zipcode,
             role: user.local.role,
             discipline: user.local.discipline,
+            expectedGraduationDate: user.local.expectedGraduationDate,
         };
         done(null, sessionUser);
     });
@@ -88,6 +89,7 @@ var User = require('../app/models/user');
                         newUser.local.state = req.body.state;
                         newUser.local.zipcode = req.body.zipcode;
                         newUser.local.discipline = req.body.discipline;
+                        newUser.local.expectedGraduationDate = req.body.expectedGraduationDate,
                         newUser.local.role = "user";
 
 
@@ -142,5 +144,3 @@ var User = require('../app/models/user');
             });
 
         }));
-
-

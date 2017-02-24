@@ -51,6 +51,10 @@ var userSchema = mongoose.Schema({
             type: String,
             required: true
         },
+        expectedGraduationDate: {
+          type: String,
+          required: true
+        },
         resetPasswordToken: {
             type: String
         },
@@ -66,7 +70,7 @@ var userSchema = mongoose.Schema({
             username: {type: String, required: true},
             uploadDate: {type: Date, default: Date.now},
             fileName: {type: String, required: true},
-            fileType: {type: String, required: true},
+            fileType: {type: String, required: true}
           }
         ],
     }
