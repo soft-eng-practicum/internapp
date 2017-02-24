@@ -213,8 +213,12 @@ var bioSchema = mongoose.Schema({
             type: String,
             required: false
         },
+        expectedGraduationDate: {
+          type: String,
+          required: true
+        },
         submissionDate:{
-                type: Date, 
+                type: Date,
                 default: Date.now
         },
         documents     : [{ item: {type: String, required: true}, status: {type: String, required: true}}],
