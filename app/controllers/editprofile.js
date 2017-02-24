@@ -37,7 +37,6 @@ module.exports.updateProfile = function(req, res) {
         'local.city' : req.body.city,
         'local.state' : req.body.state,
         'local.zipcode' : req.body.zipcode,
-        'local.expectedGraduationDate' : req.body.expectedGraduationDate,
         'local.discipline' : req.body.discipline
     }, function(err) {
         if (err) {

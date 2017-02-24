@@ -51,10 +51,6 @@ var userSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        expectedGraduationDate: {
-          type: String,
-          required: true
-        },
         resetPasswordToken: {
             type: String
         },
