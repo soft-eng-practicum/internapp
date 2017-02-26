@@ -18,6 +18,7 @@
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
     var ctrlDocumentation = require('../controllers/documentation');
+    var ctrlMongoToCsv = require('../controllers/mongoToCsv');
     
     
 
@@ -131,6 +132,12 @@ module.exports = function(app, passport) {
     app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
     app.post('/uploadBioEssay', ctrlUpload.uploadBioEssay);
     app.post('/uploadBioTranscript', ctrlUpload.uploadBioTranscript);
+
+    // Mongo To Csv
+    app.get('/exportItec', ctrlMongoToCsv.exportItec);
+    // app.get('/exportBio', ctrlMongoToCsv);
+    // app.get('/exportUser', ctrlMongoToCsv);
+    // app.get('/exportSite', ctrlMongoToCsv);
 }
 
    
