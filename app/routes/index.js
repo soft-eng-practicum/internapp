@@ -137,7 +137,7 @@ module.exports = function(app, passport) {
     app.get('/exportItec', ctrlMongoToCsv.exportItec);
     // app.get('/exportBio', ctrlMongoToCsv);
     // app.get('/exportUser', ctrlMongoToCsv);
-    // app.get('/exportSite', ctrlMongoToCsv);
+    app.get('/exportSite', ctrlMongoToCsv.exportSite);
 }
 
    

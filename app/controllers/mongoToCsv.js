@@ -17,21 +17,22 @@ module.exports.exportBio = function(req, res) {
 };
 
 /*
-    userstudentid
-    userfname (FirstName)
-    userlname (LastName)
-    proposedinternyear
-    proposedinternsemester
-    itecgpa
-    major
-    graduation
-    notes.note
-    focusonsoftdev
+Creates a csv file utilizing the following fields from the Itec Collection:
+    - userstudentid
+    - userfname 
+    - userlname 
+    - proposedinternyear
+    - proposedinternsemester
+    - itecgpa
+    - major
+    - graduation
+    - notes[0].note (defaulted to empty string if no notes exist)
+    - focusonsoftdev
+
+ csv file saved @: projectroot/csv/itecApplicants.csv
 */
-module.exports.exportItec = function(req, res) {
-
-    console.log(path.resolve(homeDir() + '/Downloads'));
-
+module.exports.exportItec = function(req, res, next) {
+    var collectionType = 'itec';
     var itecArray = [];
     Itec.find({
 
@@ -75,23 +76,76 @@ module.exports.exportItec = function(req, res) {
                 console.log(err);
             }
             console.log('file successfully saved');
+            download(res, collectionType);
         });
     });
 
-    res.download(path.resolve(__dirname + '/../../csv/itecApplicants.csv'), function(err) {
-        console.log(err);
-    });
+   
 };
 
 /*
-    CompanyName
-    Address
-    City
-    State
-    Zip
-    MOU
+
+Creates a csv file utilizing the following fields from the Site Collection:
+ - name
+ - address
+ - city
+ - state
+ - zipcode
+ - mou
+
+ csv file saved @: projectroot/csv/internshipSites.csv
 */
 module.exports.exportSite = function(req, res) {
+    var collectionType = 'site';
+    var siteArray = [];
+    Site.find({
+    }, function(err, siteEntries) {
+        
+        siteEntries.forEach(function(siteEntry) {
+            var siteJson = {
+                CompanyName : siteEntry.name,
+                Street : siteEntry.address,
+                City : siteEntry.city,
+                State : siteEntry.state,
+                Zip : siteEntry.zipcode,
+                MOU : siteEntry.mou
+            }
+            siteArray.push(siteJson);
+        });
+        
+        // Field names for csv file
+        var fields = ['CompanyName', 'Street', 'City', 'State', 'Zip',
+        'MOU'];
 
+        var csv = json2csv({ data: siteArray, fields: fields });
+
+        fs.writeFile('csv/internshipSites.csv', csv, function(err) {
+            if (err) {
+                console.log(err);
+            }
+            console.log('file successfully saved');
+            download(res, collectionType);
+        });
+    });
 };
+
+// Downloads the csv associated with the collection type being passed in
+function download(res, collectionType) {
+    var csvPath;
+    switch (collectionType) {
+        case 'itec':
+            csvPath = path.resolve(__dirname + '/../../csv/itecApplicants.csv');
+            break;
+        case 'site':
+            csvPath = path.resolve(__dirname + '/../../csv/internshipSites.csv');
+            break;
+        default:
+            console.log("unknown collectionType");
+            res.redirect('/');
+            break;
+    }
+    res.download(csvPath, function(err) {
+        console.log('Error downloading csv: ', err);
+    });
+}
 
