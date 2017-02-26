@@ -23,118 +23,76 @@ var bioCoordinatorEmail = "rbryan3@ggc.edu";
 
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
-    var resume;
-    var mailOptions;
-    var transporter;
-    var subject = "Resume placeholder subject";
-    var text = "Resume placeholder text";
-
+    var typeOfFile = 'resume';
     if (!req.files) {
         return res.flash('info', 'No files were uploaded.');
     }
-
-    resume = req.files.resume;
-
-    transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
-        mailOptions = {
-            from: '"GGC Interapp Admin" <admin@ggcinternapp>',
-            to: [itecCoordinatorEmail, req.session.passport.user.email],
-            subject: subject,
-            text: text,
-            attachments: [
-                {
-                    filename: req.files.resume.name,
-                    content: resume.data,
-                    encoding: 'binary'
-                }
-            ]
-        }
-        transporter.sendMail(mailOptions, function(err) {
-            if (err) {
-                console.log(err);
-            }
-            console.log('Resume sent!');
-            res.redirect('/upload');
-        })
-
-        // TO DO: Send attachment to user logged in
+    sendEmail(req.files.resume, typeOfFile, req, res);
 };
 
 // Upload bio essay
 module.exports.uploadBioEssay = function(req, res) {
-    var essay;
-    var mailOptions;
-    var transporter;
-    var subject = "Essay placeholder subject";
-    var text = "Essay placeholder text";
-
+    var typeOfFile = 'essay';
     if (!req.files) {
         return res.flash('info', 'No files were uploaded.');
     }
-
-    essay = req.files.essay;
-    console.log(essay);
-
-    transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
-        mailOptions = {
-            from: '"GGC Interapp Admin" <admin@ggcinternapp>',
-            to: [bioCoordinatorEmail, req.session.passport.user.email],
-            subject: subject,
-            text: text,
-            attachments: [
-                {
-                    filename: req.files.essay.name,
-                    content: essay.data,
-                    encoding: 'binary'
-                }
-            ]
-        }
-        transporter.sendMail(mailOptions, function(err) {
-            if (err) {
-                console.log(err);
-            }
-            console.log('Essay sent!');
-            res.redirect('/upload');
-        })
-
-        // TO DO: Send attachment to user logged in
+    sendEmail(req.files.essay, typeOfFile, req, res);
 };
 
 //Upload bio transcript
 module.exports.uploadBioTranscript = function(req, res) {
-    var transcript;
-    var mailOptions;
-    var transporter;
-    var subject = "Transcript placeholder subject";
-    var text = "Transcript placeholder text";
-
+    var typeOfFile = 'transcript';
     if (!req.files) {
         return res.flash('info', 'No files were uploaded.');
     }
+    sendEmail(req.files.transcript, typeOfFile, req, res);
+};
 
-    transcript = req.files.transcript;
+function sendEmail(file, typeOfFile, req, res) {
+    var coordinatorEmail;
+    var emailSubject;
+    var emailText;
+    switch (typeOfFile) {
+        case 'transcript':
+            coordinatorEmail = bioCoordinatorEmail;
+            emailSubject = "Placeholder transcript subject";
+            emailText = "Placeholder transcript text";
+            break;
+        case 'essay':
+            coordinatorEmail = bioCoordinatorEmail;
+            emailSubject = "Placeholder essay subject";
+            emailText = "Placeholder essay text";
+            break;
+        case 'resume':
+            coordinatorEmail = itecCoordinatorEmail;
+            emailSubject = "Placeholder resume subject";
+            emailText = "Placeholder resume text";
+            break;
+        default:
+            console.log('unknown type of file found');
+            res.redirect('/upload');
+            break;
+    }
 
     transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
-        mailOptions = {
-            from: '"GGC Interapp Admin" <admin@ggcinternapp>',
-            to: [bioCoordinatorEmail, req.session.passport.user.email],
-            subject: subject,
-            text: text,
-            attachments: [
-                {
-                    filename: req.files.transcript.name,
-                    content: transcript.data,
-                    encoding: 'binary'
-                }
-            ]
-        }
-        transporter.sendMail(mailOptions, function(err) {
-            if (err) {
-                console.log(err);
+            mailOptions = {
+                from: '"GGC Interapp Admin" <admin@ggcinternapp>',
+                to: [coordinatorEmail, req.session.passport.user.email],
+                subject: emailSubject,
+                text: emailText,
+                attachments: [
+                    {
+                        filename: file.name,
+                        content: file.data,
+                        encoding: 'binary'
+                    }
+                ]
             }
-            console.log('Transcript sent!');
-            res.redirect('/upload');
-        })
-
-        // TO DO: Send attachment to user logged in
-};
+            transporter.sendMail(mailOptions, function(err) {
+                if (err) {
+                    console.log(err);
+                }
+                console.log(typeOfFile + ' sent!');
+                res.redirect('/upload');
+            })
+}
