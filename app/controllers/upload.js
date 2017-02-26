@@ -11,6 +11,9 @@ var key = process.env.KEY; // password for ggcinternapp@gmail.com
 // Setting local env in powershell
 // $env:key="password"
 
+// Setting local env in terminal
+// export KEY='password'
+
 
 
 // placeholder values
@@ -20,7 +23,6 @@ var bioCoordinatorEmail = "rbryan3@ggc.edu";
 
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
-    console.log(key);
     var resume;
     var mailOptions;
     var transporter;
@@ -36,7 +38,7 @@ module.exports.uploadItecResume = function(req, res) {
     transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
         mailOptions = {
             from: '"GGC Interapp Admin" <admin@ggcinternapp>',
-            to: itecCoordinatorEmail,
+            to: [itecCoordinatorEmail, req.session.passport.user.email],
             subject: subject,
             text: text,
             attachments: [
@@ -76,7 +78,7 @@ module.exports.uploadBioEssay = function(req, res) {
     transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
         mailOptions = {
             from: '"GGC Interapp Admin" <admin@ggcinternapp>',
-            to: bioCoordinatorEmail,
+            to: [bioCoordinatorEmail, req.session.passport.user.email],
             subject: subject,
             text: text,
             attachments: [
@@ -115,7 +117,7 @@ module.exports.uploadBioTranscript = function(req, res) {
     transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
         mailOptions = {
             from: '"GGC Interapp Admin" <admin@ggcinternapp>',
-            to: bioCoordinatorEmail,
+            to: [bioCoordinatorEmail, req.session.passport.user.email],
             subject: subject,
             text: text,
             attachments: [
