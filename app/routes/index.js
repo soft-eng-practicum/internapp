@@ -17,8 +17,6 @@
     var ctrlFAQ = require('../controllers/faq');
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
-    var ctrlDocumentation = require('../controllers/documentation');
-    
     
 
     var ctrlUpload = require('../controllers/upload');
@@ -26,6 +24,8 @@
     // For document uploads
     var fileUpload = require('express-fileupload');
     
+    var ctrlSiteNotes = require('../controllers/sitenotes');
+
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
@@ -50,7 +50,7 @@ module.exports = function(app, passport) {
     app.get('/login', ctrlLogin.getLogin);
     app.post('/login', 
             passport.authenticate('local-login', {
-            successRedirect : '/dashboard',
+            successRedirect : '/applications',
             failureRedirect : '/login',
             failureFlash : true
         }));
@@ -61,7 +61,7 @@ module.exports = function(app, passport) {
      /* Sign up page */
     app.get('/signup', ctrlSignUp.loadSignUp);
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/dashboard',
+            successRedirect : '/applications',
             failureRedirect : '/signup',
             failureFlash : true
         }));
@@ -110,17 +110,13 @@ module.exports = function(app, passport) {
     app.post('/promote', isLoggedIn, ctrlPromote.promoteUser);
 
     /* Edit Profile page */
-    app.get('/editprofile', ctrlEditProfile.getEditProfile);
-    app.post('/editprofile', ctrlEditProfile.updateProfile);
+    app.get('/editprofile', isLoggedIn, ctrlEditProfile.getEditProfile);
+    app.post('/editprofile', isLoggedIn, ctrlEditProfile.updateProfile);
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
 
-    /* Documentations page */
-    app.get('/documentations',isLoggedIn, ctrlDocumentation.getDocumentationPage);
 
-    
-    
     /* Document Upload page */
     //Place holder get for test upload page
     app.get('/upload', function(req, res) {
@@ -131,6 +127,10 @@ module.exports = function(app, passport) {
     app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
     app.post('/uploadBioEssay', ctrlUpload.uploadBioEssay);
     app.post('/uploadBioTranscript', ctrlUpload.uploadBioTranscript);
+
+    /* Site Notes page */
+    app.get('/sitenotes',isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
+
 }
 
    

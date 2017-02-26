@@ -1,33 +1,34 @@
 <% if (typeof user != 'undefined') { %>
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
+   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/dashboard">GGC Internship App</a>
+    <!-- Logo and slogan -->
+      <a href="/applications"><img src="images/logo.png"></a>
+       <a class="navbar-brand" href="/applications">&nbspGGC Internship App</a>
     </div>
-
+    
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if (user.role=='admin') { %>
         <li><a href="/applications">Applications</a></li>
-        <li><a href="/documentations">Documentations</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sites <span class="caret"></span></a>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sites Notes&nbsp&nbsp&nbsp&nbsp<span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a href="/sitenotes">Site Notes</a></li>
             <li><a href="/sites">View Sites</a></li>
             <li><a href="/addsite">Add Sites</a></li>
           </ul>
         </li>
         <li><a href="/promote">Promote</a></li>
         <% } else if (user.role=='user' || user.role=='instructor') { %>
-            <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/applications">Applications</a></li>
         <% } %>
       </ul>
@@ -50,7 +51,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/dashboard">GGC Internship App</a>
+       <!-- Logo and slogan -->
+      <a href="/applications"><img src="images/logo.png"></a>
+       <a class="navbar-brand" href="/applications">&nbspGGC Internship App</a>
     </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/faq">FAQ</a></li>

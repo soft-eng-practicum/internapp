@@ -21,7 +21,7 @@ var processLogin = function(req, res, responseBody) {
         }
 
         if (user) {
-            res.redirect('/dashboard');
+            res.redirect('/appliactions');
         } else {
             res.redirect('/login');
         }
