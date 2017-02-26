@@ -61,6 +61,26 @@ var userSchema = mongoose.Schema({
                 type: Date, 
                 default: Date.now
         },
+        section: {
+            type: String,
+            required: true
+        },
+        documentName: {
+            type: String,
+            required: true
+        },
+        type: {
+            type: String,
+            required: true
+        },
+        status: {
+            type: String,
+            required: true
+        },
+        date: {
+            type: String,
+            required: true
+        },
     }
 });
 

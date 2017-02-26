@@ -18,6 +18,7 @@
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
     var ctrlSiteNotes = require('../controllers/sitenotes');
+    var ctrlDocumentation = require('../controllers/documenatation');
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
@@ -108,6 +109,9 @@ module.exports = function(app, passport) {
 
     /* Site Notes page */
     app.get('/sitenotes',isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
+
+    /* Documenatation Page */
+    app.get('/documentation',isLoggedIn, ctrlDocumentation.getDocumentationPage);
 }
 
    
