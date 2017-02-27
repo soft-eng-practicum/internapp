@@ -1,13 +1,5 @@
     <!doctype html>
 <html>
-<style type="text/css">
-    .box{
-        color: #fff;
-        padding: 20px;
-        display: none;
-        margin-top: 20px;
-    }
-</style>
 <head>
     <title>Documentation</title>
 <% include partials/headerimports %>
@@ -22,19 +14,19 @@
     <form name="applicationstatus" method="post">
         <div class="form-group" align="left">
           <label>Major</label>
-          <select id="major">
+        <select id="major">
             <option>Choose Major</option>
             <option value="bio">Bio</option>
             <option value="itec">Itec</option>
         </select>
-        </div>
-        <div>
-    <div class="bio box"><button>test</button><br/>
-        <button type="submit" class="btn btn-warning btn-lg">test1</button>
+    </div>
+    <div class="bio box">
+        <button type="submit" class="btn btn-warning btn-lg">Essay</button><br/>
+    <button type="submit" class="btn btn-warning btn-lg">Transcript</button>
     </div>
     <div class="itec box">
-        <button type="submit" class="btn btn-warning btn-lg">test3</button>
-    </div>
+      <button type="submit" class="btn btn-warning btn-lg">Resume</button>
+  </div>
     <thead>
       <tr>
         <th>Student Name</th>
