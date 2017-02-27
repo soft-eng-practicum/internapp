@@ -14,13 +14,13 @@
     <form name="applicationstatus" method="post">
         <div class="form-group">
           <label>Major Status</label>
-          <select class="form-control" name="applicationstatus">
-          <option value="" >ITEC</option>
-          <option value="complete" >Biology</option>
+          <select class="form-control" name="applicationstatus" id="major">
+          <option value="itec" >ITEC</option>
+          <option value="bio" >Biology</option>
                </select>
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Upload1</button>
-        <button type="submit" class="btn btn-warning btn-lg">Upload2</button>
+        <button type="submit" class="btn btn-warning btn-lg" id="resume"></button>
+        <button type="submit" class="btn btn-warning btn-lg"></button>
     <thead>
       <tr>
         <th>Student Name</th>
@@ -61,6 +61,23 @@
     $('#applications').DataTable();
     
 });
+
+$('#major').on('change', function() {
+      if ( this.value == 'itec')
+      {
+           //$("#business_new").hide();
+        $("#resume").show();
+      }
+      else  if ( this.value == 'bio')
+      {
+          $("#business").hide();
+        $("#business_new").show();
+      }
+       else  
+      {
+        $("#business").hide();
+      }
+    });
 
         </script>
     </body>
