@@ -1,15 +1,14 @@
     <!doctype html>
 <html>
 <head>
-    <title>Documentation</title>
+    <title>Document Uploads</title>
 <% include partials/headerimports %>
 </head>
 <body>
 <% include partials/nav.ejs %>
      <div class="container">
-     <h2>Site Details</h2>
+     <h2>Document Uploads</h2>
      
-<form name="applicationstatus" method="post" align="left">
     <div class="form-group">
         <h4>Choose Documents to Upload</h4>
         <select id="major">
@@ -21,23 +20,40 @@
     <br>
     <div class="bio box">
         <div align ="left">
-            <input type="file" name="Essay" />
-            <input type='submit' value='Upload Essay' />
-            <br>
+        </br> 
+        <form ref='uploadForm' 
+        id='uploadForm' 
+        action='/uploadBioEssay' 
+        method='post' 
+        encType="multipart/form-data">
+            <input type="file" name="essay" />
+            <input type='submit' value='Upload Bio Essay!' />
+        </form> 
+        </br>
+        <form ref='uploadForm' 
+        id='uploadForm' 
+        action='/uploadBioTranscript' 
+        method='post' 
+        encType="multipart/form-data">
             <input type="file" name="transcript" />
-            <input type='submit' value='Upload Transcript' />
-            <br><br><br>
+            <input type='submit' value='Upload Bio Transcript!' />
+        </form> 
         </div>
     </div>
     <div class="itec box">
         <div align ="left">
-            <input type="file" name="resume" />
-            <input type='submit' value='Upload Resume' />
-            <br><br><br>
+            <form ref='uploadForm' 
+            id='uploadForm' 
+            action='/uploadItecResume' 
+            method='post' 
+            encType="multipart/form-data">
+                <input type="file" name="resume" />
+                <input type='submit' value='Upload Resume!' />
+            </form>
         </div>
     </div>
-</form>
-     
+
+<form name="applicationstatus" method="post" align="left">  
 <div align="right">
     <form method="post">
         <table class="table table-bordered" id="applications">
@@ -69,6 +85,7 @@
         </div>
     </form>
 </div>
+</form>
     
 </div> 
 <% include partials/footerimports %>
