@@ -21,6 +21,11 @@ var itecCoordinatorEmail = "rbryan3@ggc.edu";
 var bioCoordinatorEmail = "rbryan3@ggc.edu";
 
 
+module.exports.getDocumentUpload = function(req, res) {
+    res.render('documentUpload');
+}
+
+
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
     var typeOfFile = 'resume';
@@ -70,14 +75,14 @@ function sendEmail(file, typeOfFile, req, res) {
             break;
         default:
             console.log('unknown type of file found');
-            res.redirect('/upload');
+            res.redirect('/documentUpload');
             break;
     }
 
     transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
             mailOptions = {
                 from: '"GGC Interapp Admin" <admin@ggcinternapp>',
-                to: [coordinatorEmail, req.session.passport.user.email],
+                to: [coordinatorEmail], // comment out for now - req.session.passport.user.email],
                 subject: emailSubject,
                 text: emailText,
                 attachments: [
@@ -93,6 +98,6 @@ function sendEmail(file, typeOfFile, req, res) {
                     console.log(err);
                 }
                 console.log(typeOfFile + ' sent!');
-                res.redirect('/upload');
+                res.redirect('/documentUpload');
             })
 }

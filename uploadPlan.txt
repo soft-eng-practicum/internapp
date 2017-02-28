@@ -1,2 +1,0 @@
-1) Let user upload a document
-2) Take that document and email it to rbryan3@ggc.edu

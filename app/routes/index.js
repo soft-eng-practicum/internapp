@@ -19,7 +19,7 @@
     var ctrlReset = require('../controllers/reset');
     
 
-    var ctrlUpload = require('../controllers/upload');
+    var ctrlUpload = require('../controllers/documentUpload');
 
     // For document uploads
     var fileUpload = require('express-fileupload');
@@ -117,12 +117,9 @@ module.exports = function(app, passport) {
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
 
-
     /* Document Upload page */
     //Place holder get for test upload page
-    app.get('/upload', function(req, res) {
-        res.render('upload');
-    });
+    app.get('/documentUpload', ctrlUpload.getDocumentUpload);
 
     // Upload resume
     app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
