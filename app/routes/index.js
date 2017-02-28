@@ -25,6 +25,7 @@
     var fileUpload = require('express-fileupload');
     
     var ctrlSiteNotes = require('../controllers/sitenotes');
+    var ctrlDocumentation = require('../controllers/documenatation');
 
 
     // route middleware to make sure a user is logged in
@@ -131,6 +132,8 @@ module.exports = function(app, passport) {
     /* Site Notes page */
     app.get('/sitenotes',isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
 
+    /* Documenatation Page */
+    app.get('/documentation',isLoggedIn, ctrlDocumentation.getDocumentationPage);
 }
 
    
