@@ -8,54 +8,53 @@
 <% include partials/nav.ejs %>
      <div class="container">
      <h2>Site Details</h2>
-
- <table class="table table-bordered" id="applications">
-  <div style="float:right;" class="col-sm-3.5 col-sm-offset-3">
-    <form name="applicationstatus" method="post">
+     
+<form name="applicationstatus" method="post" align="center">
         <div class="form-group" align="left">
-          <label>Major</label>
-        <select id="major">
-            <option>Choose Major</option>
-            <option value="bio">Bio</option>
-            <option value="itec">Itec</option>
-        </select>
-    </div>
-    <div class="bio box">
-        <button type="submit" class="btn btn-warning">Essay</button>
-    <button type="submit" class="btn btn-warning">Transcript</button>
-    </div>
-    <div class="itec box">
-      <button type="submit" class="btn btn-warning">Resume</button>
-  </div>
-    <thead>
-      <tr>
-        <th>Student Name</th>
-        <th>Date</th>
-        <th>Section</th>
-        <th>Document Name</th>
-        <th>Type</th>
-        <th>Status</th>
-</tr>
-    </thead>
-
-    <tbody>
-        </tbody>
-        
-  </table>
-
-      <div class="col-sm-6 col-sm-offset-3">
-           <div class="form-group">
-          <h3>Add Note</h3>
-          <br>
-      <textarea rows="4" cols="50" name="note">
-      </textarea>
+            <label>Major</label>
+            <select id="major">
+                <option>Choose Major</option>
+                <option value="bio">Bio</option>
+                <option value="itec">Itec</option>
+            </select>
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Add Note</button>
+        <div class="bio box">
+            <button type="submit" class="btn btn-warning">Essay</button>
+            <button type="submit" class="btn btn-warning">Transcript</button>
+        </div>
+        <div class="itec box">
+            <button type="submit" class="btn btn-warning">Resume</button>
+            <br><br><br>
+        </div>
+</form>
+     
+<div style="float:right;" class="col-sm-3.5 col-sm-offset-3">
+    <form method="post">
+        <table class="table table-bordered" id="applications">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Date</th>
+                    <th>Section</th>
+                    <th>Document Name</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>    
+        </table>
+
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+                <h3>Add Note</h3>
+                <br>
+                <textarea rows="4" cols="50" name="note"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Add Note</button>
+        </div>
     </form>
-    </div>
-    
-         </select>
-    </div>
+</div>
     
 </div> 
 <% include partials/footerimports %>
