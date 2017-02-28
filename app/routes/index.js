@@ -117,12 +117,6 @@ module.exports = function(app, passport) {
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
 
-
-    app.get('/upload', function(req, res) {
-        res.render('upload');
-    });
-
-
     /* Document Upload page */
     //Place holder get for test upload page
     app.get('/documentUpload', ctrlUpload.getDocumentUpload);
