@@ -17,17 +17,17 @@
     <form name="promote" action="/promote" method="post">
         <div class="form-group">
             <label>Email of user to promote</label>
-            <input type="email" class="form-control" name="email" pattern="[A-Za-z0-9._]*@ggc.edu" title="Must be a @ggc.edu email address" required>
+            <input type="email" class="form-control" id="emailTxt" name="email" pattern="[A-Za-z0-9._]*@ggc.edu" title="Must be a @ggc.edu email address" required>
         </div>
         <div class="form-group">
             <label>Role to promote to</label>
-            <select name="role">
+            <select name="role" id="roleList">
                 <option value="instructor">Instructor</option>
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Promote</button>
+        <button type="submit" class="btn btn-warning btn-lg" id="promoteBtn">Promote</button>
         </form>
         <br>
 </div>

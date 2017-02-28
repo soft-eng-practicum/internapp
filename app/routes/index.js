@@ -17,8 +17,16 @@
     var ctrlFAQ = require('../controllers/faq');
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
+    
+
+    var ctrlUpload = require('../controllers/upload');
+
+    // For document uploads
+    var fileUpload = require('express-fileupload');
+    
     var ctrlSiteNotes = require('../controllers/sitenotes');
     var ctrlDocumentation = require('../controllers/documenatation');
+
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
@@ -33,6 +41,8 @@
 
 
 module.exports = function(app, passport) {
+
+    app.use(fileUpload()); // default options for file upload
 
     /* Home pages */
     app.get('/', ctrlHome.loadHome);
@@ -101,11 +111,23 @@ module.exports = function(app, passport) {
     app.post('/promote', isLoggedIn, ctrlPromote.promoteUser);
 
     /* Edit Profile page */
-    app.get('/editprofile', ctrlEditProfile.getEditProfile);
-    app.post('/editprofile', ctrlEditProfile.updateProfile);
+    app.get('/editprofile', isLoggedIn, ctrlEditProfile.getEditProfile);
+    app.post('/editprofile', isLoggedIn, ctrlEditProfile.updateProfile);
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
+
+
+    /* Document Upload page */
+    //Place holder get for test upload page
+    app.get('/upload', function(req, res) {
+        res.render('upload');
+    });
+
+    // Upload resume
+    app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
+    app.post('/uploadBioEssay', ctrlUpload.uploadBioEssay);
+    app.post('/uploadBioTranscript', ctrlUpload.uploadBioTranscript);
 
     /* Site Notes page */
     app.get('/sitenotes',isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
