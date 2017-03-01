@@ -17,42 +17,55 @@
             <option value="itec">Itec</option>
         </select>
     </div>
-    <br>
     <div class="bio box">
-        <div align ="left">
-        </br> 
-        <form ref='uploadForm' 
-        id='uploadForm' 
-        action='/uploadBioEssay' 
-        method='post' 
-        encType="multipart/form-data">
-            <input type="file" name="essay" />
-            <input type='submit' value='Upload Bio Essay!' />
-        </form> 
-        </br>
-        <form ref='uploadForm' 
-        id='uploadForm' 
-        action='/uploadBioTranscript' 
-        method='post' 
-        encType="multipart/form-data">
+          <div align ="left">
+<form ref='uploadForm' 
+         id='uploadForm' 
+          action='/uploadBioEssay' 
+          method='post' 
+          encType="multipart/form-data"
+          class="form-inline">
+    <div class="form-group">
+       <input type="file"  name="essay" />
+    </div>
+    <div class="form-group">    
+         <input type='submit' class="btn btn-success btn-sm" value='Upload Essay' />
+    </div>
+    </form>
+    <br/>
+     <form ref='uploadForm' 
+          id='uploadForm' 
+          action='/uploadBioTranscript' 
+          method='post' 
+          encType="multipart/form-data"
+          class="form-inline">
+          <div class="form-group">
             <input type="file" name="transcript" />
-            <input type='submit' value='Upload Bio Transcript!' />
-        </form> 
-        </div>
-    </div>
-    <div class="itec box">
-        <div align ="left">
-            <form ref='uploadForm' 
-            id='uploadForm' 
-            action='/uploadItecResume' 
-            method='post' 
-            encType="multipart/form-data">
-                <input type="file" name="resume" />
-                <input type='submit' value='Upload Resume!' />
-            </form>
-        </div>
-    </div>
-
+          </div>
+          <div class ="form-group">
+            <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript' />
+          </div>
+             
+          </form> 
+          </div>
+      </div>
+     <div class="itec box">
+         <div align ="left">
+             <form ref='uploadForm' 
+             id='uploadForm' 
+             action='/uploadItecResume' 
+              method='post' 
+              encType="multipart/form-data"
+              class="form-inline">
+              <div class ="form-group">
+                <input type="file" name="resume"/>
+              </div>
+              <div class="form-group">
+                <input type='submit' class="btn btn-success btn-sm" value='Upload Resume' />
+              </div>
+              </form>
+          </div>
+          
 <form name="applicationstatus" method="post" align="left">  
 <div align="right">
     <form method="post">
