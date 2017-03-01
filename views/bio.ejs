@@ -1,242 +1,509 @@
-<!doctype html>
+<!-- views/itec.ejs -->
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>GGC Biology Internship Application</title>
-<% include partials/headerimports %>
+    <% include partials/headerimports %>
 </head>
 
 <body>
-    <% include partials/nav.ejs %>
-    <div class="container">
-            <div class="col-sm-6 col-sm-offset-3">
-                <form name="bio" action="/bio" method="post">
-                <h1><u>Biology Intership application</u></h1>
-                <h4><strong> Submit a typed, completed and signed form with an attached, printed copy of your unofficial academic transcript (obtained from Banner) to the SST Office in the Allied Health and Sciences (H2) Building, Room 3209. </strong><br>
-                    <br>
-                    <strong>IMPORTANT:</strong> Please attach all required supplemental materials to complete the application packet. Information will be used to determine if you will be accepted to participate in program. Incomplete application packets
-                    will not be reviewed.<br>
-                    <br>
-                    <br> Information will be used to determine if you will be accepted to participate in the internship program. Completion of this application does not guarantee your acceptance into the internship program and/or enrollment in bio 4900.</h4>
-            <h3><label>Emergency Contact Information</label></h3>
-            <div class="form-group">
-                <label><label>Name of Parent or Legal Guardian</label> <input class="form-control" id="ecNameTxt" name="emergencycontactname" required type="text"></label>
-            </div>
-            <div class="form-group">
-                <label>Mailing address</label> <input class="form-control" id="ecAddressTxt" name="emergencycontactaddress" required type="text">
-            </div>
-            <div class="form-group">
-                <label>Preferred Email Address</label> <input class="form-control" id="ecEmailTxt" name="emergencycontactemail" required type="text">
-            </div>
-            <div class="form-group">
-                <label>Contacts City</label> <input class="form-control" id="ecCityTxt" name="emergencycontactcity" required type="text">
-            </div>
+<% include partials/nav.ejs %>
 
-            <div class="form-group">
-                <label><label>Contacts Zip Code</label> <input class="form-control" id="ecZipCodeTxt" name="emergencycontactzipcode" required pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text"></label>
-            </div>
-            <div class="form-group">
-                <label>Contacts Telephone Number</label> <input class="form-control" id="ecPhone" name="emergencycontactphone" required type="text">
-            </div>
-            <h2>Mentor Information</h2>
-            <div class="form-group">
-                <label>GGC Mentor Name</label> <input class="form-control" id="mentorNameTxt" name="mentorname" required type="text">
-            </div>
-            <div class="form-group">
-                <label>GGC Cellphone number</label> <input class="form-control" id="mentorCellTxt" name="mentorcellphone" required type="text">
-            </div>
-            <div class="form-group">
-                <label>GGC Email Address</label> <input class="form-control" id="mentorEmailTxt" name="mentoremail" required type="text">
-            </div>
-            <div class="form-group">
-                <label>GGC Office Location</label> <input class="form-control" id="mentorOfficeTxt" name="mentoroffice" required type="text">
-            </div>
-
-            <h2>Student Academic Information</h2>
-            <div class="form-group">
-                <label>Number of Hours completed within Biology</label> <input class="form-control" id="hoursTxt" name="hourscompleted" required type="text">
-            </div>
-            <div class="form-group">
-                <label>Major and Concentration</label> <input class="form-control" id="majorTxt" name="major" required=t ype="text">
-            </div>
-            <div class="form-group">
-                <label>Overall GPA</label> <input class="form-control" id="gpaTxt" name="gpa" required type="text">
-            </div>
-            <div class="form-group">
-                <label>Program GPA</label> <input class="form-control" id="programGPATxt" name="programgpa" required type="text">
-            </div>
-            <div class="form-group">
-                <label>What is your intended profession/career?</label> <input class="form-control" id="professionTxt" name="career" required type="text">
-            </div>
-
-            <div class="form-group">
-                <label for="major">Proposed Internship Semester</label>
-                <select class="form-control" id="semesterList" name="proposedinternsemester">
-<option value="fall">Fall</option>
-<option value="spring">Spring</option>
-<option value="summer">Summer</option>
-</select>
-            </div>
-
-
-            <div class="form-group">
-                <label>Proposed Internship Year</label>
-                <input class="form-control" id="yearTxt" name="proposedinternyear" required type="number" min=<%=new Date().getFullYear() %> max="2099">
-            </div>
-
-            <div class="form-group">
-                <h3><strong>Internship Information</strong> </h3>
-                <label>Are you applying to an Internship Site previously approved by Internship committee?
-      <select class="form-control" name="proposedinternyear" id="previouslyApplied">
-          <option value="Yes" >Yes</option>
-          <option value="No">No</option>
-      </select>
+<div class="container">
+    <div class="col-sm-10 col-sm-offset-1">
     <br>
-    <h3><strong> If yes, please mark which one and then complete the additional form for the specific location:</strong></h3>
-      <select class="form-control" id="additionalInfoList" name="internsite">
+
+    <h1 align="center">Biology Intership application</h1>
+        <h4 align="center">Submit a typed, completed and signed form with an 
+        attached, printed copy of your unofficial academic transcript 
+        (obtained from Banner) to the SST Office in the Allied Health 
+        and Sciences (H2) Building, Room 3209.<br><br>
+
+        <strong>IMPORTANT:</strong> Please attach all required supplemental materials 
+        to complete the application packet. Information will be used to determine 
+        if you will be accepted to participate in program. Incomplete application packets
+        <br>
+
+        Information will be used to determine if you will be accepted to 
+        participate in the internship program. Completion of this application 
+        does not guarantee your acceptance into the internship program and/or 
+        enrollment in bio 4900.</h4>
+        <br>
+
+<form name="bio" action="/bio" method="post" class="form-horizontal" _lpchecked="1">
+    <fieldset>
+    <h2 align = "center">Student Academic Information</h2>
+
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Fall</option>
+          <option>Spring</option>
+          <option>Summer</option>
+        </select>
+        <select class="form-control" id="select">
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+          <option>2021</option>
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Major and Concentration</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Fall</option>
+          <option>Spring</option>
+          <option>Summer</option>
+        </select>
+        <select class="form-control" id="select">
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+          <option>2021</option>
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Overall GPA</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Program GPA</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Number of Hours completed within Biology</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">What is your intended profession/career?</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    <br>
+
+    <h3 align="center">
+    Emergency Contact Information
+    </h3>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mailing address</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact City</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact State</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Preferred Email Address</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+      </div>
+    </div>
+    <br>
+
+    <h3 align="center">
+    Mentor Information
+    </h3>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Name</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+      </div>
+    </div>
+    <br>
+
+    <h3 align="center">
+    Internship Information
+    </h3>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Internship Site
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
           <option value="Other" >Other</option>
           <option value="Greening Youth Foundation">Greening Youth Foundation</option>
           <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
           <option value="Yerkes Regional Primate Research Center">Yerkes Regional Primate Research Center</option>
           <option value="US Department of Agriculture, Food Safety Inspection Services" >US Department of Agriculture, Food Safety Inspection Services</option>
           <option value="Consultorio Medico Hispano">Consultorio Medico Hispano</option>
-      </select>
-     <h3>If your internship site is not listed above, then please select "Other" and provide the proposed information for review.<br>
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <h3 align="center">If your internship site is not listed above, then please select "Other" and provide the proposed information for review.<br>
        <br>
-<strong>Note:</strong>  It is conflict of interest if you have a close personal or family relationship with a proposed preceptor and/or site manager/supervisor.  Providing false information about connections between you and site staff would constitute a violation of the GGC Honor Code (see policy on academic honesty).</h3>
-   </label></label>
-            </div><label></label>
+        <strong>Note:</strong>  It is conflict of interest if you have a close personal or family relationship with a proposed preceptor 
+        and/or site manager/supervisor. Providing false information about connections between you and site staff would constitute a violation
+         of the GGC Honor Code (see policy on academic honesty).</h3>
+         <br>
 
-            <div class="form-group">
-                <h3> Proposed Site Information</h3>
-
-                <label><label>Name of Site</label> <input class="form-control" id="siteNameTxt" name="proposedsitename" type="text"></label>
-            </div>
-            <div class="form-group">
-                <label>Specialty (pharmacy, medical practice, etc):
-      </label> <input class="form-control" name="proposedsitespecialty" type="text">
-            </div>
-            <div class="form-group">
-                <label>Sites Street Address</label> <input class="form-control" id="psAddressTxt" name="proposedsiteaddress" type="text">
-            </div>
-            <div class="form-group">
-                <label>Sites City</label> <input class="form-control" id="psCityTxt" name="proposedsitecity" type="text">
-            </div>
-            <div class="form-group">
-                <label>Sites State</label> <input class="form-control" id="psStateTxt" name="proposedsitestate" pattern ="[A-Z]{2}" title="Invalid format ex: GA" type="text">
-            </div>
-            <div class="form-group">
-                <label>Sites Zipcode</label> <input class="form-control" id="psZipCodeTxt" name="proposedsitezipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text">
-            </div>
-
-            <div class="form-group">
-                <label>Name of Site Manager</label> <input class="form-control" id="psManagerTxt" name="proposedsitemanagername" type="text">
-            </div>
-
-            <div class="form-group">
-                <label>Site Email Address</label> <input class="form-control" id="psManagerEmailTxt" name="proposedsitemanageremail" type="text">
-            </div>
-
-            <div class="form-group">
-                <label>Title of Site Manager</label> <input class="form-control" id="psManagerTitleTxt" name="proposedsitemanagertitle" type="text">
-            </div>
-
-            <h2>Proposed Preceptor Information</h2>
-            <div class="form-group">
-                <label>Name of proposed preceptor</label> <input class="form-control" id="preceptorNameTxt" name="preceptorname"  type="text">
-            </div>
-            <div class="form-group">
-                <label>Preceptor phone number</label> <input class="form-control" id="preceptorPhoneTxt" name="preceptorphone"  type="text">
-            </div>
-            <div class="form-group">
-                <label>Preceptor email address</label> <input class="form-control" id="preceptorEmailTxt" name="preceptoremail"  type="text">
-            </div>
-
-            <div class="form-group">
-                <label for="major">Is this person the manager?</label>
-                <select class="form-control" id="prceptorManagerList" name="ispreceptormanager">
-  <option value="yes">Yes</option>
-  <option value="no">No</option>
-  </select>
-            </div>
-
-            <div class="form-group">
-                <label>If no, what position does the proposed preceptor hold at the site?</label> <input class="form-control" id="preceptorPositionTxt" name="preceptorpostition" type="text">
-                <h3> Potential Student Conflicts</h3>
-                <div class="form-group">
-                    <label for="major">Are you employed at the site?</label>
-                    <select class="form-control" id="isStudentEmployedList" name="isstudentemployedatsite">
-  <option value="yes">Yes</option>
-  <option value="no">No</option>
-  </select>
-                </div>
-                <label for="major">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
-                <select class="form-control" id="studentRelationshipList" name="doestudenthavefamilyatsite">
-  <option value="yes">Yes</option>
-  <option value="no">No</option>
-  </select></div>
-            <div class="form-group">
-                <label><label>If Yes, What is your current position?</label>
-                <input class="form-control" id="currentPosititionTxt" name="studentcurrentposition" type="text"></label>
-            </div>
-            <div class="form-group">
-
-                <label for="biopaidposition">Is this a paid position?</label>
-                <select class="form-control" id="isPaidList" name="ispaidinternship">
-  <option value="yes">Yes</option>
-  <option value="no">No</option>
-  </select>
-            </div>
-            <div class="form-group">
-                <label>What is your current average work hours in a
-          week?</label> <input class="form-control" id="averageHoursTxt" name="studenthoursworked" type="text">
-            </div>
-
-            <div class="form-group">
-
-                <label for="internquestion">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
-                <select class="form-control" id="internquestion" name="isokseperatehours">
- <option value="yes">Yes</option>
- <option value="no">No</option>
- </select>
-            </div>
-
-            <h3>If you plan on applying for more than one “Build Your Own” site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. For each site, you would need a proposed mentor to complete the Preceptor
-                Application (also on myGGC SST Internship Pages).</h3>
-            <h3> Education Component</h3>
-            <h4>List 3 major educational objectives that you wish to achieve at the hosting facility. Educational objectives pertain to what you want to learn on-site.</h4>
-
-            For example: <br>
-            <ul>
-                <li>Effectively use problem solving techniques within the hospital environment and specific training area</li>
-                <li>Be able to analyze data and interpret results including, but not limited to blood tests, EKGs, X-rays, scans, and patient charts.</li>
-            </ul>
-
-            <div class="form-group">
-                <label>First</label> <input class="form-control" id="firstTxt" name="educomp1" required type="text">
-            </div>
-            <div class="form-group">
-                <label>Second</label> <input class="form-control" id="secondTxt" name="educomp2" required type="text">
-            </div>
-            <div class="form-group">
-                <label>Third</label> <input class="form-control" id="thirdTxt" name="educomp3" required type="text">
-            </div>
-
-            <h4><label>Signatures and Review</label></h4>
-            <p><label><strong>I certify that the information contained in this application is true, correct, and complete.  I understand that, if employed, false statements reported on this application may be considered sufficient cause for denial of a Biology Internship Experience and enrollment in the BIOL4800 Biology Internship course.
-</strong></label></p><label><br></label>
-            <div class="form-group">
-                <label><label>Signature of applicant</label> <input class="form-control" id="signatureTxt" name="signature" required type="text"></label>
-            </div>
-            <div class="form-group">
-                <label>Print name of applicant</label> <input class="form-control" id="printedNameTxt" name="printedname" required type="text">
-            </div>
-
-            <button class="btn btn-warning btn-lg" type="submit" id="submitBtn">Submit</button>
-        </form>
+         <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Name of Site</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
     </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc):</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
     </div>
-    <% include partials/footerimports %>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Site Street Address</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Site City</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Site State</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Site Zip Code</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Site Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Internship Manager</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Title of Site Manager</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    <br>
+
+    <h3 align="center">
+    Proposed Preceptor Information
+    </h3>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Name of Proposed Preceptor</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Preceptor Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Preceptor Email Address</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Is this person a Manager?</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Position of Proposed Preceptor</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    <br>
+
+    <h3 align="center">
+    Potential Student Employment Conflicts
+    </h3>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Are you currently employed at this site?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">What is your current position?</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Is this a paid position?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <h4 align="center">
+        If you plan on applying for more than one “Build Your Own” site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. 
+        For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).
+    </h4>
+    <br>
+
+    <h3 align="center">
+        Education Component
+    </h3>
+
+    <h4 align="center">
+        List 3 major educational objectives that you wish to achieve at the hosting facility. Educational objectives pertain to what you want to learn on-site.
+    </h4>
+
+    <h5 align="center">
+        For example: 
+        <div align ="left">
+        <ul>
+            <li>Effectively use problem solving techniques within the hospital environment and specific training area</li>
+            <li>Be able to analyze data and interpret results including, but not limited to blood tests, EKGs, X-rays, scans, and patient charts.</li>
+        </ul>
+        </div>
+    </h5>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">First</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Second</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Third</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    <br>
+
+    <h3 align="center">
+    Signature and Review
+    </h3>
+    <h4 align="center">
+    I certify that the information contained in this application is true, correct, and complete. 
+    I understand that, if employed, false statements reported on this application may be considered 
+    sufficient cause for denial of a Biology Internship Experience and enrollment in the BIOL4800 Biology 
+    Internship course.
+    </h4>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Signature of applicant</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+  </fieldset>
+  <button class="btn btn-success" type="submit" id="submitBtn" align="center">Submit</button>
+</form>
 </body>
-
 </html>
