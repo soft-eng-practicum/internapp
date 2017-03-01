@@ -14,7 +14,6 @@
      <% if (user.role=='user') { %>
            <h3>You can apply for an internship <a href="/<%= user.discipline %>" button type="submit" class="btn btn-warning btn-lg">HERE</button></a></h3>
      <% }  %>
-     <!-- <button>Sort by discipline</button><br><br> -->
   <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
     <thead>
       <tr>
@@ -23,13 +22,13 @@
         <th>Student ID</th>
         <th>Major</th>
         <th>Application Status</th>
+        <th>Discipline</th>
+        <th>Proposed Semester Year</th>
         <th>More</th>
 </tr>
     </thead>
 
     <tbody>
-
-
         <% applicationList.forEach(function(application) { %>
           <tr>
             <td><%= application.userfname %> <%= application.userlname %></td>
@@ -37,6 +36,8 @@
             <td><%= application.userstudentid %></td>
     	<td><%= application.major %></td>
     	<td><%= application.applicationstatus %></td>
+      <td><%= application.userdiscipline %></td>
+      <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
       <td><a href=<%="/application/"+user.discipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
@@ -51,6 +52,9 @@
         $(document).ready(function(){
     $('#applications').DataTable();
 });
+        </script>
+        <script type ="text/javascript">
+
         </script>
     </body>
     </html>
