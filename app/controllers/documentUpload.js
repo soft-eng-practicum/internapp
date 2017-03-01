@@ -22,7 +22,9 @@ var bioCoordinatorEmail = "rbryan3@ggc.edu";
 
 
 module.exports.getDocumentUpload = function(req, res) {
-    res.render('documentUpload');
+    res.render('documentUpload', {
+        user : req.session.passport.user
+    });
 }
 
 

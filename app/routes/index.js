@@ -118,8 +118,7 @@ module.exports = function(app, passport) {
     app.get('/faq', ctrlFAQ.getFAQ);
 
     /* Document Upload page */
-    //Place holder get for test upload page
-    app.get('/documentUpload', ctrlUpload.getDocumentUpload);
+    app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
 
     // Upload resume
     app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
