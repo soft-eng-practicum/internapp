@@ -7,6 +7,9 @@ var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
+var nodemailer = require('nodemailer');
+var key = process.env.KEY;
+
 
 /*
     HTTP Req: GET
@@ -119,18 +122,53 @@ module.exports.getSpecificApplication = function(req, res) {
     URL: '/application/itec/:applicationid'
 */
 module.exports.updateApplicationStatus = function(req, res) {
-    Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
-        if (err){
-            req.flash('info',err);
-            res.redirect('/application/itec/'+req.params.applicationid);
-        }
-        else{
-            res.redirect('/application/itec/'+req.params.applicationid);
-        }
-    });
+    var typeOfEmail = 'applicationStatusUpdate';
+    var studentEmail;
+    if (req.user.discipline == 'itec') {
+        Itec
+        .findById(req.params.applicationid)
+        .exec(
+                function(err, appEntry) {
+                     studentEmail = appEntry.useremail;
+                }
+            );
+        Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+            if (err){
+                req.flash('info',err);
+                res.redirect('/application/itec/'+req.params.applicationid);
+            }
+            else{
+                redirect = '/application/itec/'+req.params.applicationid;
+                //res.redirect(redirect);
+                sendEmail(req, res, typeOfEmail, userEmail, redirect);
+            }
+        });
+    } else {
+        Bio
+        .findById(req.params.applicationid)
+        .exec(
+                function(err, appEntry) {
+                    studentEmail = appEntry.useremail;
+                }
+            );
+        Bio.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+            if (err){
+                req.flash('info',err);
+                res.redirect('/application/bio/'+req.params.applicationid);
+            }
+            else{
+                redirect = '/application/bio/'+req.params.applicationid;
+                // res.redirect(redirect);
+                sendEmail(req, res, typeOfEmail, studentEmail, redirect);
+            }
+        });
+    }    
 };
 
 /*
+
+    A note has been added for this app
+
     HTTP Req: POST
     URL: '/application/itec/notes/:applicationid'
 */
@@ -138,10 +176,10 @@ module.exports.addItecNotes = function(req, res) {
  Itec.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
         if (err) {
             req.flash('info',err);
-            res.redirect('/application/itec/'+req.params.applicationid);
+            res.redirect('/application/'+req.params.applicationid);
         }
         else {
-            res.redirect('/application/itec/'+req.params.applicationid);
+            res.redirect('/application/'+req.params.applicationid);
         }
     });
 };
@@ -241,3 +279,35 @@ module.exports.addDocument = function(req, res) {
         }
     });
 };
+
+function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
+
+    var emailSubject;
+    var emailText;
+    var transporter;
+    switch (typeOfEmail) {
+        case 'applicationStatusUpdate':
+            emailSubject = '[GGC Internship Application] Application Status Changed';
+            emailText = 'Your GGC internship application status has changed to: ' + req.body.applicationstatus; 
+            break;
+        default:
+            console.log('email type not recognized')
+            res.redirect('/');
+            break;
+    }
+
+    transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
+    mailOptions = {
+        from: '"GGC Internapp Admin" <admin@ggcinternapp>',
+        to: studentEmail,
+        subject: emailSubject,
+        text: emailText
+    }
+    transporter.sendMail(mailOptions, function(err) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(typeOfEmail, ' completed!');
+        res.redirect(redirect);
+    });
+}

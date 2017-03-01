@@ -12,3 +12,4 @@ module.exports.loadHome = function(req, res) {
         user: req.session.passport.user
     }); 
 }; 
+

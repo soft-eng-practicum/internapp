@@ -18,7 +18,7 @@ module.exports.getEditProfile = function(req, res) {
     }, function(err, profile) {
         res.render('editprofile.ejs', {
             profiledetails : profile,
-            user : profile,
+            user : profile.local,
             message : req.flash('info')
         });
     });
