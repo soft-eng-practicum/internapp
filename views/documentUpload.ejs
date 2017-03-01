@@ -17,7 +17,6 @@
             <option value="itec">Itec</option>
         </select>
     </div>
-    <br>
     <div class="bio box">
         <div align ="left">
         </br> 
@@ -26,8 +25,8 @@
         action='/uploadBioEssay' 
         method='post' 
         encType="multipart/form-data">
-            <input type="file" name="essay" />
-            <input type='submit' value='Upload Bio Essay!' />
+            <input type="file"  name="essay" />
+            <input type='submit' class="btn btn-success btn-sm" value='Upload Essay' />
         </form> 
         </br>
         <form ref='uploadForm' 
@@ -35,8 +34,8 @@
         action='/uploadBioTranscript' 
         method='post' 
         encType="multipart/form-data">
-            <input type="file" name="transcript" />
-            <input type='submit' value='Upload Bio Transcript!' />
+            <input type="file"  name="transcript" />
+            <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript' />
         </form> 
         </div>
     </div>
@@ -48,9 +47,10 @@
             method='post' 
             encType="multipart/form-data">
                 <input type="file" name="resume" />
-                <input type='submit' value='Upload Resume!' />
+                <input type='submit' class="btn btn-info btn-sm" value='Upload Resume' />
             </form>
         </div>
+        <br>
     </div>
 
 <form name="applicationstatus" method="post" align="left">  
