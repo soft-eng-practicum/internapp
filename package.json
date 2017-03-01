@@ -16,6 +16,8 @@
     "express-fileupload": "^0.1.1",
     "express-session": "~1.0.0",
     "jasmine": "^2.5.2",
+    "jasmine-node": "^1.14.5",
+    "karma-script-launcher": "^1.0.0",
     "method-override": "~1.0.0",
     "mongoose": "^4.0.0",
     "morgan": "~1.0.0",
@@ -30,6 +32,10 @@
     "karma": "^1.5.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.1.0",
-    "requirejs": "^2.3.3"
+    "karma-script-launcher": "^1.0.0",
+    "karma-webpack": "^2.0.2",
+    "requirejs": "^2.3.3",
+     "request": "^2.79.0",
+    "webpack": "^2.2.1"
   }
 }

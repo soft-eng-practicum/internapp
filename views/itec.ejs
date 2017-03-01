@@ -8,251 +8,491 @@
 </head>
 
 <body>
-    <% include partials/nav.ejs %>
-        <div class="container">
-            <div class="col-sm-6 col-sm-offset-3">
-                <h1>ITEC Internship application</h1>
-                <h4>
-                    <br> Upon Receipt of the application, Dr. Pollacia will contact you to schedule an appointment.<br>
-                    <br> Information will be used to determine if you will be accepted to participate in the internship program. Completion of this application does not guarantee your acceptance into the internship program and/or enrollment in ITEC 4900.</h4>
-
-                <form name="itec" action="/itec" method="post">
-                    <div class="form-group">
-                        <label>Proposed Internship Semester</label>
-                        <select class="form-control" id="semesterList" name="proposedinternsemester">
-                        <option value="fall">Fall</option>
-                        <option value="spring">Spring</option>
-                        <option value="summer">Summer</option>
-                    </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Proposed Internship Year</label>
-                        <input class="form-control" id="yearList" name="proposedinternyear" required type="number" min=<%=new Date().getFullYear() %> max="2099">
-                    </div>
-
-                    <div class="form-group">
-                        <label>ITEC Concentration</label> <select id="major" name="major">
-                    <option value="enterprisesystems">
-                        Enterprise Systems
-                    </option>
-                    <option value="softwaredevelopment">
-                        Software Development
-                    </option>
-                    <option value="systemssecurity">
-                        Systems and Security
-                    </option>
-                    <option value="digitalmedia">
-                        Digital Media
-                    </option>
-                </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Student Classification</label><select id="classificiationList" name="classification">
-                    <option value="junior">
-                        Junior
-                    </option>
-                    <option value="senior">
-                        Senior
-                    </option>
-                </select>
-                    </div>
-                    <div class="form-group">
-                      <label>Expected Graduation Date</label> <input class="form-control" id="expectedGraduationDateTxt" name="expectedGraduationDate" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Overall GPA</label> <input class="form-control" id="gpaTxt" name="gpa" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>ITEC Major GPA</label> <input class="form-control" id="itecGPATxt" name="itecgpa" required type="text">
-                    </div>
-                    <h4>Please list the semester you have completed these pre-requisite courses in the format of SEMESTER YEAR</h4>
-                    <div class="form-group">
-                        <label>ITEC 2150: Intermediate Programming</label>
-                        <input class="form-control" id="2150Txt" name="itec2150" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>ITEC 3100: Introduction to Networks</label>
-                        <input class="form-control" id="3100Txt" name="itec3100" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>ITEC 3200: Introduction to Databases</label>
-                        <input class="form-control" id="3200Txt" name="itec3200" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>ITEC 3900: Professional Practice and Ethics</label>
-                        <input class="form-control" id="3900Txt" name="itec3900" required type="text">
-                    </div>
-                    <h3><label>Emergency Contact Information</label></h3>
-                    <div class="form-group">
-                        <label><label>Name of Parent or Legal Guardian</label> <input class="form-control" id="ecNameTxt" name="emergencycontactname" required type="text"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>Mailing address</label> <input class="form-control" id="ecAddressTxt" name="emergencycontactaddress" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Preferred Email Address</label> <input class="form-control" id="ecEmailTxt" name="emergencycontactemail" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Contacts City</label> <input class="form-control" id="ecCityTxt" name="emergencycontactcity" required type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label><label>Contacts Zip Code</label> <input class="form-control" id="ecZipCodeTxt" name="emergencycontactzipcode" pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>Contacts Telephone Number</label> <input class="form-control" id="ecPhoneTxt" name="emergencycontactphone" required type="text">
-                    </div>
-                    <h2>Mentor Information</h2>
-                    <div class="form-group">
-                        <label>GGC Mentor Name</label> <input class="form-control" id="mentorNameTxt" name="mentorname" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>GGC Cellphone number</label> <input class="form-control" id="mentorPhoneTxt" name="mentorcellphone" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>GGC Email Address</label> <input class="form-control" id="mentorEmailTxt" name="mentoremail" required type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>GGC Office Location</label> <input class="form-control" id="mentorOfficeTxt" name="mentoroffice" required type="text">
-                    </div>
-                    <h4>Student internships interests and goals</h4>
-                    <div class="form-group">
-                        <label>Decribe your major interests and strengths:</label>
-                        <textarea cols="34" id="interestTxt" name="interestsandstrengths" rows="8"></textarea><br>
-                    </div>
-                    <div class="form-group">
-                        <label>What type of internship are you looking for, such as
-                software development, security, SAP, databse, etc:</label>
-                        <textarea cols="34" id="typeTxt" name="typeofinternship" rows="8"></textarea><br>
-                    </div>
-                    <div class="form-group">
-                        <label>Are you interested in an internship focused mainly on
-                Programming and Software Development?<select name="focusonsoftdev"id="softwareDevList">
-                    <option value="yes">
-                        Yes
-                    </option>
-                    <option value="no">
-                        No
-                    </option>
-                </select> </label>
-                    </div><label></label>
-                    <h3>Internship Information</h3>
-                    <div class="form-group">
-                        <label>Do you have a proposed internship with a company or
-                organization?<select name="haveproposedintern" id="proposedList">
-                    <option value="yes">
-                        Yes
-                    </option>
-                    <option value="no">
-                        No
-                    </option>
-                </select></label>
-                    </div><label></label>
-                    <h4><label>If you selected yes, please fill out the intership
-            information below, otherwise skip to the next section of the
-            application (Potential Student Employment Conflicts)</label></h4>
-                    <div class="form-group">
-                        <label><label>Name of Organization</label> <input class="form-control" id="orgNameTxt" name="proposedorgname" type="text"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>Focus (software development, security, networking,
-                etc)</label> <input class="form-control" id="focusTxt" name="itecfocus" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Proposed Organizations Street Address</label> <input class="form-control" id="orgAddressTxt" name="proposedorgaddress" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Proposed Organizations City</label> <input class="form-control" id="orgCityTxt" name="proposedorgcity" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Proposed Organizations State</label> <input class="form-control" id="orgStateTxt" name="proposedorgstate" pattern="[A-Z]{2}" title="Invalid format ex: GA" type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label><label>Proposed Organization Zip Code</label> <input class="form-control" id="orgZipTxt" name="proposedorgzipcode" pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>Proposed Organizations Telephone Number</label> <input class="form-control" id="orgPhoneTxt" name="proposedorgphone" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Name of Internship Manager</label> <input class="form-control" id="orgManagerTxt" name="proposedorgmanager" type="text">
-                    </div>
-                    <h3>Potential Student Employment Conflicts</h3>
-                    <div class="form-group">
-                        <label>Are you currently employed at this potential internship
-                site?<select name="isemployedatsite" id="isEmployedList">
-                    <option value="yes">
-                        Yes
-                    </option>
-                    <option value="no">
-                        No
-                    </option>
-                </select></label>
-                    </div>
-                    <h3><label>If yes, please fill out the informaion below. If no,
-            then skip this portion of the application and go to the signature
-            and review portion at the bottom.</label></h3>
-                    <div class="form-group">
-                        <label><label>What is your current position?</label>
-                        <input class="form-control" id="currentPositionTxt" name="employedcurrentposition" type="text"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>Is this a paid position?<select id="isPaidList" name="ispaidposition">
-                    <option value="yes">
-                        Yes
-                    </option>
-                    <option value="no">
-                        No
-                    </option>
-                </select> </label>
-                    </div><label></label>
-
-                    <div class="form-group">
-                        <label>What is your current average work hours in a
-                week?</label> <input class="form-control" id="workHoursTxt" name="numberofhoursworked" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Will this internship represent a substantial project to
-                be completed, seperate from your normal work duties?<select id="separateProjectList" name="isseparateproject">
-                    <option value="yes">
-                        Yes
-                    </option>
-                    <option value="no">
-                        No
-                    </option>
-                </select> </label>
-                    </div><label></label>
-                    <div class="form-group">
-                        <label><label>Are you willing to complete your internship hours
-                at a seperate time from your normal work hours?<select id="separateHoursList" name="isseparatehours">
-                    <option value="yes">
-                        Yes
-                    </option>
-                    <option value="no">
-                        No
-                    </option>
-                </select> </label></label>
-                    </div><label></label>
-                    <h4><label>Signatures and Review</label></h4>
-                    <p><label><strong>I certify that the information contained in this
-            application is true, correct, and complete. I understand that false
-            statements reported on this application may be considered
-            sufficient cause for denial of
-            internship.</strong></label></p><label><br></label>
-                    <div class="form-group">
-                        <label><label>Signature of applicant</label> <input class="form-control" id="signatureTxt" name="signature" required type="text"></label>
-                    </div>
-                    <div class="form-group">
-                        <label>Print name of applicant</label> <input class="form-control" id="printedTxt" name="printedname" required="" type="text">
-                    </div>
-
-
-                    <button class="btn btn-warning btn-lg" type="submit" id="submitBtn">Submit</button>
-
-                </form>
-            </div>
+<% include partials/nav.ejs %>
+<div class="container">
+    <!--<div class="col-sm-6 col-sm-offset-3">-->
+    <div class="col-sm-10 col-sm-offset-1">
+    <br>
+        <h1 align="center">ITEC Internship application</h1>
+        <h4 align="center">Upon Receipt of the application, Dr. Pollacia will contact you to schedule 
+        an appointment.<br><br>
+        Information will be used to determine if you will be accepted to participate in 
+        the internship program. Completion of this application does not guarantee your 
+        acceptance into the internship program and/or enrollment in ITEC 4900.</h4>
+        <br>
+<form name="itec" action="/itec" method="post" class="form-horizontal" _lpchecked="1">
+  <fieldset>
+  
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Fall</option>
+          <option>Spring</option>
+          <option>Summer</option>
+        </select>
+        <select class="form-control" id="select">
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+          <option>2021</option>
+        </select>
         </div>
-        <% include partials/footerimports %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Enterprise Systems</option>
+          <option>Software Development</option>
+          <option>Digital Media</option>
+          <option>Systems and Security</option>
+        </select>
+        </div>
+      </div>
+      
+      <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Fall</option>
+          <option>Spring</option>
+          <option>Summer</option>
+        </select>
+        <select class="form-control" id="select">
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+          <option>2021</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">GPA</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">ITEC Major GPA</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <h3 align="center">
+    Please list the semester you have completed these pre-requisite courses
+    </h3>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">ITEC 2150: Intermediate Programming</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Fall</option>
+          <option>Spring</option>
+          <option>Summer</option>
+        </select>
+        <select class="form-control" id="select">
+          <option>2010</option>
+          <option>2011</option>
+          <option>2012</option>
+          <option>2013</option>
+          <option>2014</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">ITEC 3100: Intorduction to Networks</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Fall</option>
+          <option>Spring</option>
+          <option>Summer</option>
+        </select>
+        <select class="form-control" id="select">
+          <option>2010</option>
+          <option>2011</option>
+          <option>2012</option>
+          <option>2013</option>
+          <option>2014</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">ITEC 3200: Intorduction to Databases</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Fall</option>
+          <option>Spring</option>
+          <option>Summer</option>
+        </select>
+        <select class="form-control" id="select">
+          <option>2010</option>
+          <option>2011</option>
+          <option>2012</option>
+          <option>2013</option>
+          <option>2014</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">    ITEC 3900: Professional Practice and Ethics
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Fall</option>
+          <option>Spring</option>
+          <option>Summer</option>
+        </select>
+        <select class="form-control" id="select">
+          <option>2010</option>
+          <option>2011</option>
+          <option>2012</option>
+          <option>2013</option>
+          <option>2014</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    <br>
+    
+    <h3 align="center">
+    Emergency Contact Information
+    </h3>
+     
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mailing address</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact City</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact State</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Preferred Email Address</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+      </div>
+    </div>
+    <br>
+    
+    <h3 align="center">
+    Mentor Information
+    </h3>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Name</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+      </div>
+    </div>
+    <br>
+    
+    <h3 align="center">
+    Student internships interests and goals
+    </h3>
+    
+    <div class="form-group">
+      <label for="textArea" class="col-lg-5 control-label">Decribe your major interests and strengths</label>
+      <div class="col-lg-5">
+        <textarea class="form-control" rows="5" id="textArea"></textarea>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="textArea" class="col-lg-5 control-label">What type of internship are you looking for, such as software development, security, SAP, databse, etc</label>
+      <div class="col-lg-5">
+        <textarea class="form-control" rows="5" id="textArea"></textarea>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">    Are you interested in an internship focused mainly on Programming and Software Development?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    <br>
+    
+    <h3 align="center">
+    Internship Information
+    </h3>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">    Do you have a proposed internship with a company or organization?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    <br>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Name of Organization</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Focus (software development, security, networking, etc)</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Organization Street Address</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Organization City</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Organization State</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Organization Zip Code</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Organization Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Internship Manager</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+      </div>
+    </div>
+    <br>
+    
+    <h3 align="center">
+    Potential Student Employment Conflicts
+    </h3>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Are you currently employed at this potential internship site?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">What is your current position?</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Is this a paid position?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Will this internship represent a substantial project to be completed, seperate from your normal work duties?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?
+</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="select">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    <br>
+    
+    <h3 align="center">
+    Signature and Review
+    </h3>
+    <h4 align="center">
+    I certify that the information contained in this application is true, correct, and complete. I understand that false statements reported on this application may be considered sufficient cause for denial of internship.
+    </h4>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Signature of applicant</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="textArea">
+      </div>
+    </div>
+  </fieldset>
+</form>
 </body>
-
 </html>

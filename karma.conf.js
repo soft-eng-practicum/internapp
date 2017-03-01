@@ -1,6 +1,12 @@
 // Karma configuration
 // Generated on Mon Feb 20 2017 19:56:46 GMT-0500 (Eastern Standard Time)
 
+/*var path = require('path');
+var webpackConfig = require('./webpack.fig');
+var entry = path.resolve(webpackConfig.context, webpackConfig.entry);
+var preprocess = {};
+preprocess[entry] = ['webpack'];*/
+
 module.exports = function(config) {
   config.set({
 
@@ -12,11 +18,24 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
+    plugins : [               
+               'karma-firefox-launcher',
+               'karma-script-launcher',
+               'karma-jasmine',
+               'karma-requirejs'
+    ],
 
     // list of files / patterns to load in the browser
     files: [
-      'tests/*.js'
-    ],
+      'server.js',
+      'node_modules/*.js',
+      'node_modules/requirejs/require.js',
+      'node_modules/karma-require/lib/adapter.js',
+      'app/*.js',
+      'tests/*.js',
+
+      {pattern: '*.json', watched: true, served: true, included: false}
+      ],
 
 
     // list of files to exclude
@@ -26,8 +45,8 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+    preprocessors: [
+    ],
 
 
     // test results reporter to use

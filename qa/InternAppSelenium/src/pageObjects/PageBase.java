@@ -23,12 +23,6 @@ public class PageBase
 	@FindBy(linkText = "Logout")
 	private WebElement logout;
 	
-	public WebElement Wait(WebElement element)
-	{
-		WebElement wait = new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(element));
-		return wait;
-	}
-	
 	public void Logout()
 	{
 		logout.click();

@@ -22,7 +22,6 @@ public class ApplicationsPage extends PageBase
 	public ApplicationsPage open()
 	{
 		String url = driver.getCurrentUrl();
-		applicationsPage = Wait(applicationsPage);
 		applicationsPage.click();
 		WaitForUrlChange(url);
 		try 

@@ -22,7 +22,6 @@ public class EditProfilePage extends PageBase
 	public EditProfilePage open()
 	{
 		String url = driver.getCurrentUrl();
-		editProfilePage = Wait(editProfilePage);
 		editProfilePage.click();
 		WaitForUrlChange(url);
 		try 

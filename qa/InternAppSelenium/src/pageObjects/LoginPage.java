@@ -31,7 +31,6 @@ public class LoginPage extends PageBase
 	
 	public LoginPage enterEmail(String email)
 	{
-		Wait(emailTxt);
 		emailTxt.sendKeys(email);
 		return this;
 	}

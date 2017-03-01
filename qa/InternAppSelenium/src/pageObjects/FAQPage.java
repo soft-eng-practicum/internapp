@@ -22,7 +22,6 @@ public class FAQPage extends PageBase
 	public FAQPage open()
 	{
 		String url = driver.getCurrentUrl();
-		faqPage = Wait(faqPage);
 		faqPage.click();
 		WaitForUrlChange(url);
 		sleep(4000);
