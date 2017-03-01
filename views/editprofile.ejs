@@ -22,7 +22,7 @@
     <form name="editprofile" method="post">
         <div class="form-group">
             <label>Student ID</label>
-            <input type="text" class="form-control" id="studentIdTxt" name="studentid" minlength="6" pattern="900[0-9]{6}" title="Numbers only" required value=<%= profiledetails.local.studentid %>> 
+            <input type="text" class="form-control" id="studentIdTxt" name="studentid" minlength="6" pattern="900[0-9]{6}" title="Numbers only" required value=<%= profiledetails.local.studentid %>>
         </div>
         <div class="form-group">
             <label>First Name</label>
@@ -48,8 +48,9 @@
             <label>ZipCode</label>
             <input type="text" class="form-control" id="zipcodeTxt" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required value=<%= profiledetails.local.zipcode %>>
         </div>
+        <div>
         <div class="form-group" id="majorList">
-          <label for="major">Select list:</label>    
+          <label for="major">Select list:</label>
           <select class="form-control" id="major" name="discipline">
         <% if (profiledetails.local.discipline=='itec') { %>
             <option value="itec" selected>Itec</option>
