@@ -22,7 +22,6 @@ public class DocumentationsPage extends PageBase
 	public DocumentationsPage open()
 	{
 		String url = driver.getCurrentUrl();
-		documentationsPage = Wait(documentationsPage);
 		documentationsPage.click();
 		WaitForUrlChange(url);
 		try 
