@@ -10,7 +10,6 @@ var Itec = require('../models/itec');
 var nodemailer = require('nodemailer');
 var key = process.env.KEY;
 
-
 /*
     HTTP Req: GET
     URL: '/itec'
@@ -97,8 +96,8 @@ module.exports.getSpecificApplication = function(req, res) {
                 application : appdetail,
                 user : req.user,
                 message : req.flash('info')
-                }); 
-            }     
+                });
+            }
         });
     } else if (req.user.discipline == 'bio') {
         Bio.findOne({ _id: req.params.applicationid },function (err, appdetail) {
@@ -109,7 +108,7 @@ module.exports.getSpecificApplication = function(req, res) {
                 application : appdetail,
                 user : req.user,
                 message : req.flash('info')
-                }); 
+                });
             }
         });
     } else {
@@ -162,7 +161,7 @@ module.exports.updateApplicationStatus = function(req, res) {
                 sendEmail(req, res, typeOfEmail, studentEmail, redirect);
             }
         });
-    }    
+    }
 };
 
 /*
@@ -288,7 +287,7 @@ function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
     switch (typeOfEmail) {
         case 'applicationStatusUpdate':
             emailSubject = '[GGC Internship Application] Application Status Changed';
-            emailText = 'Your GGC internship application status has changed to: ' + req.body.applicationstatus; 
+            emailText = 'Your GGC internship application status has changed to: ' + req.body.applicationstatus;
             break;
         default:
             console.log('email type not recognized')
