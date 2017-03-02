@@ -1,7 +1,7 @@
 # Internapp - dasquad
 **Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 
-**Process Tool and URL:**  [Version One]( https://www9.v1host.com/GeorgiaGwinnettCollege/ )
+**Process Tool and URL:**  [Jira]( http://itec-gunay.duckdns.org:8080/ )
 
 **Communication Tool:**  [#dasquad Slack](https://ggc-dev.slack.com/messages/intern_app/)
 
