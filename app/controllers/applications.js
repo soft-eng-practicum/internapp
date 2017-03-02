@@ -176,10 +176,10 @@ module.exports.addItecNotes = function(req, res) {
  Itec.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
         if (err) {
             req.flash('info',err);
-            res.redirect('/application/'+req.params.applicationid);
+            res.redirect('/application/itec/'+req.params.applicationid);
         }
         else {
-            res.redirect('/application/'+req.params.applicationid);
+            res.redirect('/application/itec/'+req.params.applicationid);
         }
     });
 };
