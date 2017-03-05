@@ -25,6 +25,7 @@
     var fileUpload = require('express-fileupload');
     
     var ctrlSiteNotes = require('../controllers/sitenotes');
+
     var ctrlDocumentation = require('../controllers/documenatation');
 
 
@@ -131,6 +132,7 @@ module.exports = function(app, passport) {
 
     /* Site Notes page */
     app.get('/sitenotes',isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
+    app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 
     /* Documenatation Page */
     app.get('/documentation',isLoggedIn, ctrlDocumentation.getDocumentationPage);
