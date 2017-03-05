@@ -82,36 +82,6 @@ module.exports.getApplications = function(req, res) {
     URL: '/application/:id'
 */
 module.exports.getSpecificApplication = function(req, res) {
-      if (req.params.discipline = 'itec')
-      {
-        Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
-                user : req.user,
-                message : req.flash('info')
-                });
-            }
-        });
-      }
-      else
-      {
-        Bio.findOne({ _id: req.params.applicationid },function (err, appdetail) {
-            if (err) {
-            }
-            else {
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
-                user : req.user,
-                message : req.flash('info')
-                });
-            }
-        });
-      }
-    }
     if (req.user.discipline == 'itec') {
         Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
             if (err) {
