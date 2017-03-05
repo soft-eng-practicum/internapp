@@ -52,7 +52,7 @@
     	<td><%= application.applicationstatus %></td>
       <td><%= application.userdiscipline %></td>
       <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
-      <td><a href=<%="/application/"+user.discipline+"/"+application._id%>>View Details</a></td>
+      <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
     </tbody>

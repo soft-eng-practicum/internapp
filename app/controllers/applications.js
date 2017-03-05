@@ -36,18 +36,14 @@ module.exports.getBioApplication = function(req, res) {
 */
 module.exports.getApplications = function(req, res) {
     if (req.user.role === 'admin' || req.user.role === 'faculty'  ) {
-                Bio.find(function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
-                    });
-                });
-                Itec.find(function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
+                Bio.find(function(err, bioApplications) {
+                    if (err) return console.error(err);     
+                    Itec.find(function(err, itecApplications) {
+                        if (err) return console.error(err);
+                        res.render('applications.ejs', {
+                            applicationList: bioApplications.concat(itecApplications),
+                            user: req.user
+                        });
                     });
                 });
         }
@@ -79,11 +75,30 @@ module.exports.getApplications = function(req, res) {
 
 /*
     HTTP Req: GET
-    URL: '/application/:id'
+    URL: '/application/bio/:id'
 */
-module.exports.getSpecificApplication = function(req, res) {
-    if (req.user.discipline == 'itec') {
-        Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
+module.exports.getSpecificBioApplication = function(req, res) {
+        Bio.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
+            if (err) {
+                 console.log(err);
+            }
+            else {
+                res.render('applicationdetails.ejs', {
+                application : appdetail,
+                user : req.user,
+                message : req.flash('info')
+                });
+            }
+        }); 
+};
+
+
+/*
+    HTTP Req: GET
+    URL: '/application/itec/:id'
+*/
+module.exports.getSpecificItecApplication = function(req, res) {
+    Itec.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
             if (err) {
                 console.log(err);
             }
@@ -95,31 +110,17 @@ module.exports.getSpecificApplication = function(req, res) {
                 });
             }
         });
-    } else if (req.user.discipline == 'bio') {
-        Bio.findOne({ _id: req.params.applicationid },function (err, appdetail) {
-            if (err) {
-            }
-            else {
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
-                user : req.user,
-                message : req.flash('info')
-                });
-            }
-        });
-    } else {
-        console.log('discipline not found');
-    }
-};
+}
 
 /*
     HTTP Req: POST
-    URL: '/application/itec/:applicationid'
+    URL: '/application/:type(bio or itec)/:applicationid'
 */
 module.exports.updateApplicationStatus = function(req, res) {
     var typeOfEmail = 'applicationStatusUpdate';
     var studentEmail;
-    if (req.user.discipline == 'itec') {
+    console.log(req.params);
+    if (req.params.type == 'itec') {
         Itec
         .findById(req.params.applicationid)
         .exec(
@@ -135,7 +136,7 @@ module.exports.updateApplicationStatus = function(req, res) {
             else{
                 redirect = '/application/itec/'+req.params.applicationid;
                 //res.redirect(redirect);
-                sendEmail(req, res, typeOfEmail, userEmail, redirect);
+                sendEmail(req, res, typeOfEmail, studentEmail, redirect);
             }
         });
     } else {
