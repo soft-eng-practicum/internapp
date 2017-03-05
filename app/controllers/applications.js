@@ -36,7 +36,6 @@ module.exports.getBioApplication = function(req, res) {
 */
 module.exports.getApplications = function(req, res) {
     if (req.user.role === 'admin' || req.user.role === 'faculty'  ) {
-            if (req.user.discipline == 'bio') {
                 Bio.find(function(err, applications) {
                     if (err) return console.error(err);
                     res.render('applications.ejs', {
@@ -44,8 +43,6 @@ module.exports.getApplications = function(req, res) {
                         user: req.user
                     });
                 });
-            }
-            else {
                 Itec.find(function(err, applications) {
                     if (err) return console.error(err);
                     res.render('applications.ejs', {
@@ -53,7 +50,6 @@ module.exports.getApplications = function(req, res) {
                         user: req.user
                     });
                 });
-            }
         }
         else {
             if (req.user.discipline == 'bio') {
@@ -86,6 +82,36 @@ module.exports.getApplications = function(req, res) {
     URL: '/application/:id'
 */
 module.exports.getSpecificApplication = function(req, res) {
+      if (req.params.discipline = 'itec')
+      {
+        Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.render('applicationdetails.ejs', {
+                application : appdetail,
+                user : req.user,
+                message : req.flash('info')
+                });
+            }
+        });
+      }
+      else
+      {
+        Bio.findOne({ _id: req.params.applicationid },function (err, appdetail) {
+            if (err) {
+            }
+            else {
+                res.render('applicationdetails.ejs', {
+                application : appdetail,
+                user : req.user,
+                message : req.flash('info')
+                });
+            }
+        });
+      }
+    }
     if (req.user.discipline == 'itec') {
         Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
             if (err) {
