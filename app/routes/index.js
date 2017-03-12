@@ -125,9 +125,10 @@ module.exports = function(app, passport) {
     app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
 
     // Upload resume
-    app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
-    app.post('/uploadBioEssay', ctrlUpload.uploadBioEssay);
-    app.post('/uploadBioTranscript', ctrlUpload.uploadBioTranscript);
+    app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
+    app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
+    app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
+    app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
 
     /* Site Notes page */
     app.get('/sitenotes',isLoggedIn, ctrlSiteNotes.getSiteNotesPage);

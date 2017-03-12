@@ -55,6 +55,15 @@ module.exports.uploadBioTranscript = function(req, res) {
     sendEmail(req.files.transcript, typeOfFile, req, res);
 };
 
+// Upload itec ferpa
+module.exports.uploadItecFerpa = function(req, res) {
+    var typeOfFile = 'ferpa';
+    if (!req.files) {
+        return res.flash('info', 'No files were uploaded.');
+    }
+    sendEmail(req.files.ferpa, typeOfFile, req, res);
+};
+
 function sendEmail(file, typeOfFile, req, res) {
     var coordinatorEmail;
     var emailSubject;
@@ -74,6 +83,11 @@ function sendEmail(file, typeOfFile, req, res) {
             coordinatorEmail = itecCoordinatorEmail;
             emailSubject = "Placeholder resume subject";
             emailText = "Placeholder resume text";
+            break;
+        case 'ferpa':
+            coordinatorEmail = itecCoordinatorEmail;
+            emailSubject = "Placeholder ferpa subject";
+            emailText = "Placeholder ferpa text";
             break;
         default:
             console.log('unknown type of file found');
