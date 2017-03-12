@@ -19,6 +19,7 @@
     "jasmine": "^2.5.2",
     "json2csv": "^3.7.3",
     "method-override": "~1.0.0",
+    "mkdirp": "^0.5.1",
     "mongoose": "^4.0.0",
     "morgan": "~1.0.0",
     "nodemailer": "^2.6.4",

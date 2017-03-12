@@ -3,6 +3,10 @@ logs
 *.log
 npm-debug.log*
 
+# CSV files and directory
+csv/*.csv
+
+
 # Runtime data
 pids
 *.pid

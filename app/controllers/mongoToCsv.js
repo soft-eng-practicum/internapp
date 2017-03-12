@@ -7,6 +7,14 @@ var json2csv = require('json2csv');
 var fs = require('fs');
 var homeDir = require('home-dir');
 var path = require('path');
+var mkdirp = require('mkdirp');
+
+function makeCSVDirectory() {
+    mkdirp('/csv', function(err) {
+        if (err) console.error(err)
+        else console.log('CSV directory created!');
+    });
+}
 
 module.exports.exportUser = function(req, res) {
 
@@ -32,6 +40,7 @@ Creates a csv file utilizing the following fields from the Itec Collection:
  csv file saved @: projectroot/csv/itecApplicants.csv
 */
 module.exports.exportItec = function(req, res, next) {
+    makeCSVDirectory();
     var collectionType = 'itec';
     var itecArray = [];
     Itec.find({
@@ -96,6 +105,47 @@ Creates a csv file utilizing the following fields from the Site Collection:
  csv file saved @: projectroot/csv/internshipSites.csv
 */
 module.exports.exportSite = function(req, res) {
+    makeCSVDirectory();
+    var collectionType = 'site';
+    var siteArray = [];
+    Site.find({
+    }, function(err, siteEntries) {
+        
+        siteEntries.forEach(function(siteEntry) {
+            var MOU = "";
+            if ( !siteEntry.mou || siteEntry.mou.toString().toLowerCase() == "no" || siteEntry.mou == "" || siteEntry.mou == "undefined") {
+                MOU = "No";
+            } else {
+                MOU = "Yes";
+            }
+            var siteJson = {
+                CompanyName : siteEntry.name,
+                Street : siteEntry.address,
+                City : siteEntry.city,
+                State : siteEntry.state,
+                Zip : siteEntry.zipcode,
+                MOU : MOU
+            }
+            siteArray.push(siteJson);
+        });
+        
+        // Field names for csv file
+        var fields = ['CompanyName', 'Street', 'City', 'State', 'Zip',
+        'MOU'];
+
+        var csv = json2csv({ data: siteArray, fields: fields });
+
+        fs.writeFile('csv/internshipSites.csv', csv, function(err) {
+            if (err) {
+                console.log(err);
+            }
+            console.log('file successfully saved');
+            download(res, collectionType);
+        });
+    });
+};
+
+module.exports.exportBio = function(req, res) {
     var collectionType = 'site';
     var siteArray = [];
     Site.find({
@@ -145,7 +195,8 @@ function download(res, collectionType) {
             break;
     }
     res.download(csvPath, function(err) {
-        console.log('Error downloading csv: ', err);
+        if (err) console.error('Error downloading csv: ', err);
+        else console.log(collectionType, "successfully downloaded!")
     });
 }
 
