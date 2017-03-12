@@ -49,6 +49,12 @@
             <%= application.userdiscipline %>
         </td>
     </tr>
+        <tr>
+        <td>Expected Graduation Date</td>
+        <td>
+            <%= application.expectedGraduationDate%>
+        </td>
+    </tr>
     <tr>
         <td>Emergency Contact Name</td>
         <td>
@@ -401,7 +407,7 @@
       <hr>
       </div>
       <div class="col-sm-6 col-sm-offset-3">
-    <form name="applicationstatus" action="/application/itec/notes/<%= application._id %>" method="post">
+    <form name="applicationstatus" action="/application/bio/notes/<%= application._id %>" method="post">
         <div class="form-group">
           <h3>Add Note</h3>
           <br>

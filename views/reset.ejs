@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>GGC Internship Reset Password</title>
+    <title>Reset Password</title>
 <% include partials/headerimports %>
 </head>
 <body>
@@ -22,13 +22,13 @@
     <form name="signup" method="post">
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" name="password"   required>
+            <input type="password" class="form-control" id="passwordTxt" name="password"   required>
         </div>
         <div class="form-group">
             <label>Confirm Password</label>
-            <input type="password" class="form-control" name="confirmpassword"   required>
+            <input type="password" class="form-control" id="confirmedPasswordTxt" name="confirmpassword"   required>
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Reset Password</button>
+        <button type="submit" class="btn btn-warning btn-lg" id="resetBtn">Reset Password</button>
     </form>
 </div>
 </div>

@@ -9,7 +9,27 @@
 
     <div class="container">
   <h2>Application Details</h2>
-  <table class="table table-bordered" id="applications">
+     <h1>Welcome! <%= user.fname %></h1>
+
+     <% if (user.role=='user') { %>
+           <h3>You can apply for an internship <a href="/<%= user.discipline %>" button type="submit" class="btn btn-warning btn-lg">HERE</button></a></h3>
+     <% }  %>
+     <% if (user.role=='admin') { %>
+       <h6>Filter applications based on proposed internship semester year and discipline</h6>
+        <select id="semesteryear">
+          <option value=''>Select Semester Year</option>
+          <option value="Fall 2017">Fall 2017</option>
+          <option value="Spring 2018">Spring 2018</option>
+          <option value="Fall 2018">Fall 2018</option>
+        </select><br><br>
+
+        <select id="discipline">
+          <option value=''>Select Discipline</option>
+          <option value="Itec">Itec</option>
+          <option value="Bio">Biology</option>
+        </select><br><br>
+     <% }  %>
+  <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
     <thead>
       <tr>
         <th>Name</th>
@@ -17,21 +37,22 @@
         <th>Student ID</th>
         <th>Major</th>
         <th>Application Status</th>
+        <th>Discipline</th>
+        <th>Proposed Semester Year</th>
         <th>More</th>
-</tr>
+      </tr>
     </thead>
-
     <tbody>
-
-
-        <% applicationList.forEach(function(application) { %>
-          <tr>
-            <td><%= application.userfname %> <%= application.userlname %></td>
-            <td><%= application.useremail %></td>
-            <td><%= application.userstudentid %></td>
+      <% applicationList.forEach(function(application) { %>
+    <tr>
+      <td><%= application.userfname %> <%= application.userlname %></td>
+      <td><%= application.useremail %></td>
+      <td><%= application.userstudentid %></td>
     	<td><%= application.major %></td>
     	<td><%= application.applicationstatus %></td>
-      <td><a href=<%="/application/"+user.discipline+"/"+application._id%>>View Details</a></td>
+      <td><%= application.userdiscipline %></td>
+      <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
+      <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
     </tbody>
@@ -39,12 +60,24 @@
 </div>
 <% include partials/footerimports %>
       <link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
- 
         <script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
-              <script type="text/javascript">
+        <script type="text/javascript">
+        var table;
+        var semesterYear = "";
+        var discipline = "";
         $(document).ready(function(){
-    $('#applications').DataTable();
-});
+          table = $('#applications').DataTable({
+            "bFilter": true
+          });
+          $('#semesteryear').on('change', function() {
+            semesterYear = $(this).find(":selected").val()
+            table.search(semesterYear + " " + discipline).draw();
+          });
+          $('#discipline').on('change', function() {
+            discipline = $(this).find(":selected").val()
+            table.search(discipline + " " + semesterYear).draw();
+          });
+        });
         </script>
-    </body>
-    </html>
+</body>
+</html>

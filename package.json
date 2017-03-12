@@ -18,6 +18,8 @@
     "home-dir": "^1.0.0",
     "jasmine": "^2.5.2",
     "json2csv": "^3.7.3",
+    "jasmine-node": "^1.14.5",
+    "karma-script-launcher": "^1.0.0",
     "method-override": "~1.0.0",
     "mkdirp": "^0.5.1",
     "mongoose": "^4.0.0",
@@ -27,5 +29,16 @@
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "serve-favicon": "^2.3.2"
+  },
+  "devDependencies": {
+    "jasmine": "^2.5.3",
+    "karma": "^1.5.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-script-launcher": "^1.0.0",
+    "karma-webpack": "^2.0.2",
+    "requirejs": "^2.3.3",
+     "request": "^2.79.0",
+    "webpack": "^2.2.1"
   }
 }
