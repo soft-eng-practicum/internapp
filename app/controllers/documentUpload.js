@@ -20,10 +20,13 @@ var key = process.env.KEY; // password for ggcinternapp@gmail.com
 var itecCoordinatorEmail = "rbryan3@ggc.edu";
 var bioCoordinatorEmail = "rbryan3@ggc.edu";
 
+var noFilesUploadedError = " You must choose a file to upload. "
+
 
 module.exports.getDocumentUpload = function(req, res) {
     res.render('documentUpload', {
-        user : req.session.passport.user
+        user : req.session.passport.user,
+        message : req.flash('info')
     });
 }
 
@@ -31,37 +34,45 @@ module.exports.getDocumentUpload = function(req, res) {
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
     var typeOfFile = 'resume';
-    if (!req.files) {
-        return res.flash('info', 'No files were uploaded.');
+    if (!req.files.resume) {
+        req.flash('info', noFilesUploadedError);
+        res.redirect('/documentUpload');
+    } else {
+        sendEmail(req.files.resume, typeOfFile, req, res);
     }
-    sendEmail(req.files.resume, typeOfFile, req, res);
 };
 
 // Upload bio essay
 module.exports.uploadBioEssay = function(req, res) {
     var typeOfFile = 'essay';
-    if (!req.files) {
-        return res.flash('info', 'No files were uploaded.');
-    }
-    sendEmail(req.files.essay, typeOfFile, req, res);
+    if (!req.files.essay) {
+        req.flash('info', noFilesUploadedError);
+        res.redirect('/documentUpload');
+    } else {
+        sendEmail(req.files.essay, typeOfFile, req, res);
+    } 
 };
 
 //Upload bio transcript
 module.exports.uploadBioTranscript = function(req, res) {
     var typeOfFile = 'transcript';
-    if (!req.files) {
-        return res.flash('info', 'No files were uploaded.');
+    if (!req.files.transcript) {
+        req.flash('info', noFilesUploadedError);
+        res.redirect('/documentUpload');
+    } else {
+        sendEmail(req.files.transcript, typeOfFile, req, res);
     }
-    sendEmail(req.files.transcript, typeOfFile, req, res);
 };
 
 // Upload itec ferpa
 module.exports.uploadItecFerpa = function(req, res) {
     var typeOfFile = 'ferpa';
-    if (!req.files) {
-        return res.flash('info', 'No files were uploaded.');
+    if (!req.files.ferpa) {
+        req.flash('info', noFilesUploadedError);
+        res.redirect('/documentUpload');
+    } else {
+        sendEmail(req.files.ferpa, typeOfFile, req, res);
     }
-    sendEmail(req.files.ferpa, typeOfFile, req, res);
 };
 
 function sendEmail(file, typeOfFile, req, res) {
