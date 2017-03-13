@@ -12,7 +12,7 @@
      <h1>Welcome! <%= user.fname %></h1>
 
      <% if (user.role=='user') { %>
-           <h3>You can apply for an internship <a href="/<%= user.discipline %>" button type="submit" class="btn btn-warning btn-lg">HERE</button></a></h3>
+           <h3>You can apply for an internship <a href="/<%= user.discipline %>" button type="submit" class="btn btn-success btn-lg">HERE</button></a></h3>
      <% }  %>
      <% if (user.role=='admin') { %>
        <h6>Filter applications based on proposed internship semester year and discipline</h6>
