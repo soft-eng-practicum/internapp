@@ -22,7 +22,7 @@
 1. *Blake Norman*  [[@bnorman37]] (https://github.com/blakenorman37) ***Project Manager*** & ***Testing Lead***<br>
 2. *Michael Cawthon*  [[@mcawthon]] (https://github.com/mcawthon) ***Data Modeler*** & ***Programmer***<br>
 3. *Robert Bryan* [[@rbryan21]] (https://github.com/rbryan21): ***Lead Programmer*** & ***Documentation Lead***<br>
-4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Testing Lead***<br>
+4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Testing***<br>
 
 ## Fall 2016 Team Members
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
