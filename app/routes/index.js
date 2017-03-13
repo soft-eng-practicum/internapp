@@ -116,11 +116,12 @@ module.exports = function(app, passport) {
     /* Document Upload page */
     app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
 
-    // Upload routes
-    app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
-    app.post('/uploadBioEssay', ctrlUpload.uploadBioEssay);
-    app.post('/uploadBioTranscript', ctrlUpload.uploadBioTranscript);
-
+    // Upload resume
+    app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
+    app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
+    app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
+    app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
+  
     // Mongo To Csv
     app.get('/exportItec', ctrlMongoToCsv.exportItec);
     // TO DO app.get('/exportBio', ctrlMongoToCsv);
