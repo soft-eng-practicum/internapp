@@ -4,7 +4,8 @@
     - Routing page for the entire application
     - Utilizes the files within the controller folder
 */
-
+    
+    // Variables to reference the controller functions within each controller file
     var ctrlHome = require('../controllers/home');
     var ctrlLogin = require('../controllers/login');
     var ctrlSignUp = require('../controllers/signup');
@@ -17,17 +18,14 @@
     var ctrlFAQ = require('../controllers/faq');
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
-    
-
+    var ctrlMongoToCsv = require('../controllers/mongoToCsv');
     var ctrlUpload = require('../controllers/documentUpload');
+    var ctrlSiteNotes = require('../controllers/sitenotes');
 
     // For document uploads
     var fileUpload = require('express-fileupload');
-    
+
     var ctrlSiteNotes = require('../controllers/sitenotes');
-
-    var ctrlDocumentation = require('../controllers/documenatation');
-
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
@@ -39,11 +37,6 @@
     // if they aren't redirect them to the home page
     res.redirect('/');
     }
-
-function test() {
-	app.get('/', ctrlHome.loadHome);
-}
-	
 	
 module.exports = function(app, passport) {
 
@@ -88,17 +81,17 @@ module.exports = function(app, passport) {
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
     app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument); 
-    app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificApplication);
-    app.post('/itec', isLoggedIn, isLoggedIn, ctrlApplications.postItecApplication);
-    app.post('/application/itec/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
+    app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
+    app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
     app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);    
          // BIO
     app.get('/bio', isLoggedIn, ctrlApplications.getBioApplication);
-    app.post('/bio', ctrlApplications.postBioApplication);
-    app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificApplication);
-    app.post('/application/bio/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
+    app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
+    app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificBioApplication);
     app.post('/application/bio/documents/:applicationid', isLoggedIn, ctrlApplications.addDocument);
     app.post('/application/bio/notes/:applicationid', isLoggedIn, ctrlApplications.addBioNotes);
+        // BIO & ITEC
+    app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
 
     /* Sites pages & Add Site page */
     app.get('/sites', isLoggedIn, ctrlSites.getSites);
@@ -125,17 +118,19 @@ module.exports = function(app, passport) {
     /* Document Upload page */
     app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
 
-    // Upload resume
+    // Upload routes
     app.post('/uploadItecResume', ctrlUpload.uploadItecResume);
     app.post('/uploadBioEssay', ctrlUpload.uploadBioEssay);
     app.post('/uploadBioTranscript', ctrlUpload.uploadBioTranscript);
 
-    /* Site Notes page */
-    app.get('/sitenotes',isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
-    app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
+    // Mongo To Csv
+    app.get('/exportItec', ctrlMongoToCsv.exportItec);
+    // TO DO app.get('/exportBio', ctrlMongoToCsv);
+    // TO DO (maybe) app.get('/exportUser', ctrlMongoToCsv);
+    app.get('/exportSite', ctrlMongoToCsv.exportSite);
 
-    /* Documenatation Page */
-    app.get('/documentation',isLoggedIn, ctrlDocumentation.getDocumentationPage);
+    /* Site Notes page */
+    app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 }
 
    

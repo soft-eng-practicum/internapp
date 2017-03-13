@@ -52,7 +52,7 @@
     	<td><%= application.applicationstatus %></td>
       <td><%= application.userdiscipline %></td>
       <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
-      <td><a href=<%="/application/"+user.discipline+"/"+application._id%>>View Details</a></td>
+      <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
     </tbody>
@@ -60,7 +60,6 @@
 </div>
 <% include partials/footerimports %>
       <link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
         <script type="text/javascript">
         var table;
