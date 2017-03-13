@@ -4,7 +4,8 @@
     - Routing page for the entire application
     - Utilizes the files within the controller folder
 */
-
+    
+    // Variables to reference the controller functions within each controller file
     var ctrlHome = require('../controllers/home');
     var ctrlLogin = require('../controllers/login');
     var ctrlSignUp = require('../controllers/signup');
@@ -17,16 +18,12 @@
     var ctrlFAQ = require('../controllers/faq');
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
-    
-
+    var ctrlMongoToCsv = require('../controllers/mongoToCsv');
     var ctrlUpload = require('../controllers/documentUpload');
+    var ctrlSiteNotes = require('../controllers/sitenotes');
 
     // For document uploads
     var fileUpload = require('express-fileupload');
-    
-    var ctrlSiteNotes = require('../controllers/sitenotes');
-    var ctrlDocumentation = require('../controllers/documenatation');
-
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
@@ -38,11 +35,6 @@
     // if they aren't redirect them to the home page
     res.redirect('/');
     }
-
-function test() {
-	app.get('/', ctrlHome.loadHome);
-}
-	
 	
 module.exports = function(app, passport) {
 
@@ -129,12 +121,15 @@ module.exports = function(app, passport) {
     app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
     app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
     app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
+  
+    // Mongo To Csv
+    app.get('/exportItec', ctrlMongoToCsv.exportItec);
+    // TO DO app.get('/exportBio', ctrlMongoToCsv);
+    // TO DO (maybe) app.get('/exportUser', ctrlMongoToCsv);
+    app.get('/exportSite', ctrlMongoToCsv.exportSite);
 
     /* Site Notes page */
     app.get('/sitenotes',isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
-
-    /* Documenatation Page */
-    app.get('/documentation',isLoggedIn, ctrlDocumentation.getDocumentationPage);
 }
 
    
