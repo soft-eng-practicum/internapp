@@ -75,6 +75,20 @@ module.exports.uploadItecFerpa = function(req, res) {
     }
 };
 
+// Download FERPA 
+module.exports.downloadFerpa = function(req, res) {
+    res.download('./ferpa.docx', 'ferpa.docx', function(err) {
+        if (err) {
+            if (res.headersSent()) {
+               res.removeHeader("Content-Encoding");
+               req.flash('info', 'An error has occured with the file download');
+               res.redirect('/documentUpload');
+            }
+            console.error(err);
+        }
+    })
+}
+
 function sendEmail(file, typeOfFile, req, res) {
     var coordinatorEmail;
     var emailSubject;

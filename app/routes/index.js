@@ -115,6 +115,7 @@ module.exports = function(app, passport) {
 
     /* Document Upload page */
     app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
+    app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
 
     // Upload resume
     app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
