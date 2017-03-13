@@ -8,7 +8,9 @@
 <% include partials/nav.ejs %>
 <div class="container">
         <h2>Document Uploads</h2>
-
+        <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+        <% } %>
         <div class="form-group">
             <h4>Choose Documents to Upload</h4>
             <select id="major">
@@ -71,6 +73,8 @@
                 <div class="form-group">
                     <input type='submit' class="btn btn-success btn-sm" value='Upload Ferpa' />
                 </div>
+                </br>
+                <a href="/downloadFerpa">Click here to download the FERPA document</a> 
         </form>
     </div>
     <form name="documentRecords" method="post" align="left" id="documentRecordsForm">
