@@ -20,23 +20,23 @@
             </select>
         </div>
     <div class="uploadBox" id="bioBox">
-        <form ref='uploadForm' 
-                id='uploadForm' 
-                action='/uploadBioEssay' 
-                method='post' 
+        <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadBioEssay'
+                method='post'
                 encType="multipart/form-data"
                 class="form-inline">
             <div class="form-group">
             <input type="file"  name="essay" />
             </div>
-            <div class="form-group">    
-                <input type='submit' class="btn btn-success btn-sm" value='Upload Essay' required/>
+            <div class="form-group">
+                <input type='submit' class="btn btn-success btn-sm" value='Upload Essay' />
             </div>
         </form>
-        <form ref='uploadForm' 
-                id='uploadForm' 
-                action='/uploadBioTranscript' 
-                method='post' 
+        <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadBioTranscript'
+                method='post'
                 encType="multipart/form-data"
                 class="form-inline">
                 <div class="form-group">
@@ -44,14 +44,14 @@
                 </div>
                 <div class ="form-group">
                     <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript' />
-                </div>             
+                </div>
         </form>
     </div>
     <div class="uploadBox" id="itecBox">
-        <form ref='uploadForm' 
-                id='uploadForm' 
-                action='/uploadItecResume' 
-                method='post' 
+        <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadItecResume'
+                method='post'
                 encType="multipart/form-data"
                 class="form-inline">
                 <div class ="form-group">
@@ -61,10 +61,10 @@
                     <input type='submit' class="btn btn-success btn-sm" value='Upload Resume' />
                 </div>
         </form>
-        <form ref='uploadForm' 
-                id='uploadForm' 
-                action='/uploadItecFerpa' 
-                method='post' 
+        <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadItecFerpa'
+                method='post'
                 encType="multipart/form-data"
                 class="form-inline">
                 <div class ="form-group">
@@ -76,8 +76,8 @@
                 </br>
                 <a href="/downloadFerpa">Click here to download the FERPA document</a> 
         </form>
-    </div>    
-    <form name="documentRecords" method="post" align="left" id="documentRecordsForm">  
+    </div>
+    <form name="documentRecords" method="post" align="left" id="documentRecordsForm">
     <div align="right">
             <form method="post">
                 <table class="table table-bordered" id="applications">
@@ -89,10 +89,11 @@
                             <th>Document Name</th>
                             <th>Type</th>
                             <th>Status</th>
+                            <th>Feedback</th>
                         </tr>
                     </thead>
                     <tbody>
-                    </tbody>    
+                    </tbody>
                 </table>
          </form>
     </div>
