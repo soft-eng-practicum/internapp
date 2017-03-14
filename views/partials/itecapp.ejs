@@ -52,18 +52,14 @@
     <tr>
         <td>Expected Graduation Date</td>
         <td>
-            <%= application.expectedGraduationDate%>
+            <%= application.expectedGraduationSemester + ' ' + application.expectedGraduationYear %>
         </td>
     </tr>
     <tr>
-        <td>Proposed Internship Semester</td>
+        <td>Proposed Internship Date</td>
         <td>
-            <%= application.proposedinternsemester %>
+            <%= application.proposedinternsemester  + ' ' + application.proposedinternyear %>
         </td>
-    </tr>
-    <tr>
-        <td>Promosed Internship Year</td>
-        <td><%=application.proposedinternyear %></td>
     </tr>
     <tr>
         <td>Major</td>
