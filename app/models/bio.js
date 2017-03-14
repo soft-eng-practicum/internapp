@@ -73,6 +73,10 @@ var bioSchema = mongoose.Schema({
         type: String,
         required: false
     },
+    isPreviouslyApprovedSite: {
+        type: String,
+        required: false
+    },
     internsite: {
         type: String,
         required: false
@@ -213,7 +217,11 @@ var bioSchema = mongoose.Schema({
             type: String,
             required: false
         },
-        expectedGraduationDate: {
+        expectedGraduationSemester: {
+          type: String,
+          required: true
+        },
+        expectedGraduationYear: {
           type: String,
           required: true
         },
