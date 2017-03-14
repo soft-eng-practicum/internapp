@@ -77,7 +77,7 @@ module.exports.uploadItecFerpa = function(req, res) {
 
 // Download FERPA 
 module.exports.downloadFerpa = function(req, res) {
-    res.download('./ferpa.docx', 'ferpa.docx', function(err) {
+    res.download('./ferpa.pdf', 'ferpa.pdf', function(err) {
         if (err) {
             if (res.headersSent()) {
                res.removeHeader("Content-Encoding");
