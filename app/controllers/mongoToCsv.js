@@ -7,16 +7,16 @@ var json2csv = require('json2csv');
 var fs = require('fs');
 var homeDir = require('home-dir');
 var path = require('path');
-var mkdirp = require('mkdirp');
+// var mkdirp = require('mkdirp');
 
-makeCSVDirectory();
+// makeCSVDirectory();
 
-function makeCSVDirectory() {
-    mkdirp('./csv', function(err) {
-        if (err) console.error(err)
-        else console.log('CSV directory created!');
-    });
-}
+// function makeCSVDirectory() {
+//     mkdirp('./csv', function(err) {
+//         if (err) console.error(err)
+//         else console.log('CSV directory created!');
+//     });
+// }
 
 module.exports.exportUser = function(req, res) {
 
@@ -88,8 +88,6 @@ module.exports.exportItec = function(req, res, next) {
             download(res, collectionType);
         });
     });
-
-   
 };
 
 /*
