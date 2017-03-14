@@ -49,6 +49,12 @@
             <%= application.userdiscipline %>
         </td>
     </tr>
+        <tr>
+        <td>Expected Graduation Date</td>
+        <td>
+            <%= application.expectedGraduationDate%>
+        </td>
+    </tr>
     <tr>
         <td>Emergency Contact Name</td>
         <td>
@@ -355,7 +361,7 @@
             <input type="text" class="form-control" name="status" required>
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg">Add Document</button>
+        <button type="submit" class="btn btn-success btn-lg">Add Document</button>
     </form>
 </div>
       <div class="col-sm-6 col-sm-offset-3">
@@ -374,7 +380,7 @@
           <option value="site declined">Site Declined</option>
       </select>
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Change Status</button>
+        <button type="submit" class="btn btn-success btn-lg">Change Status</button>
     </form>
     </div>
           <div class="col-sm-6 col-sm-offset-3">
@@ -401,14 +407,14 @@
       <hr>
       </div>
       <div class="col-sm-6 col-sm-offset-3">
-    <form name="applicationstatus" action="/application/itec/notes/<%= application._id %>" method="post">
+    <form name="applicationstatus" action="/application/bio/notes/<%= application._id %>" method="post">
         <div class="form-group">
           <h3>Add Note</h3>
           <br>
       <textarea rows="4" cols="50" name="note">
       </textarea>
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Add Note</button>
+        <button type="submit" class="btn btn-success btn-lg">Add Note</button>
     </form>
     </div>
     

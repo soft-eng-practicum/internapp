@@ -4,7 +4,8 @@
     - Routing page for the entire application
     - Utilizes the files within the controller folder
 */
-
+    
+    // Variables to reference the controller functions within each controller file
     var ctrlHome = require('../controllers/home');
     var ctrlLogin = require('../controllers/login');
     var ctrlSignUp = require('../controllers/signup');
@@ -17,25 +18,42 @@
     var ctrlFAQ = require('../controllers/faq');
     var ctrlLogout = require('../controllers/logout');
     var ctrlReset = require('../controllers/reset');
-    var ctrlDocumentation = require('../controllers/documentation');
+    var ctrlMongoToCsv = require('../controllers/mongoToCsv');
+    var ctrlUpload = require('../controllers/documentUpload');
+    var ctrlSiteNotes = require('../controllers/sitenotes');
+
+    // For document uploads
+    var fileUpload = require('express-fileupload');
+
+    // For creating csv directory
+    var mkdirp = require('mkdirp');
+
+    var ctrlSiteNotes = require('../controllers/sitenotes');
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
+        // if user is authenticated in the session, carry on
+        if (req.isAuthenticated())
+            return next();
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+        // if they aren't redirect them to the home page
+        res.redirect('/');
     }
 
-function test() {
-	app.get('/', ctrlHome.loadHome);
-}
-	
+    // Creates a csv directory for the csv files - if not already created
+    function makeCSVDirectory(req, res, next) {
+        mkdirp('./csv', function(err) {
+            if (err) console.error(err)
+            else {
+                console.log('CSV directory created!');
+                next();
+            }
+        });
+    }
 	
 module.exports = function(app, passport) {
+
+    app.use(fileUpload()); // default options for file upload
 
     /* Home pages */
     app.get('/', ctrlHome.loadHome);
@@ -76,17 +94,17 @@ module.exports = function(app, passport) {
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
     app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument); 
-    app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificApplication);
-    app.post('/itec', isLoggedIn, isLoggedIn, ctrlApplications.postItecApplication);
-    app.post('/application/itec/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
+    app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
+    app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
     app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);    
          // BIO
     app.get('/bio', isLoggedIn, ctrlApplications.getBioApplication);
-    app.post('/bio', ctrlApplications.postBioApplication);
-    app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificApplication);
-    app.post('/application/bio/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
+    app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
+    app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificBioApplication);
     app.post('/application/bio/documents/:applicationid', isLoggedIn, ctrlApplications.addDocument);
     app.post('/application/bio/notes/:applicationid', isLoggedIn, ctrlApplications.addBioNotes);
+        // BIO & ITEC
+    app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
 
     /* Sites pages & Add Site page */
     app.get('/sites', isLoggedIn, ctrlSites.getSites);
@@ -104,14 +122,30 @@ module.exports = function(app, passport) {
     app.post('/promote', isLoggedIn, ctrlPromote.promoteUser);
 
     /* Edit Profile page */
-    app.get('/editprofile', ctrlEditProfile.getEditProfile);
-    app.post('/editprofile', ctrlEditProfile.updateProfile);
+    app.get('/editprofile', isLoggedIn, ctrlEditProfile.getEditProfile);
+    app.post('/editprofile', isLoggedIn, ctrlEditProfile.updateProfile);
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
 
-    /* Documentations page */
-    app.get('/documentations',isLoggedIn, ctrlDocumentation.getDocumentationPage);
+    /* Document Upload page */
+    app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
+    app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
+
+    // Upload resume
+    app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
+    app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
+    app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
+    app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
+  
+    // Mongo To Csv
+    app.get('/exportItec', makeCSVDirectory, ctrlMongoToCsv.exportItec);
+    // TO DO app.get('/exportBio', ctrlMongoToCsv);
+    // TO DO (maybe) app.get('/exportUser', ctrlMongoToCsv);
+    app.get('/exportSite', makeCSVDirectory, ctrlMongoToCsv.exportSite);
+
+    /* Site Notes page */
+    app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 }
 
    

@@ -15,3 +15,11 @@ body {
     height: 100px;
     resize: none; /* Remove this if you want the user to resize the textarea */
 }
+
+#uploadForm {
+    padding: .5em;
+}
+
+#documentRecordsForm {
+    padding: .5em;
+}

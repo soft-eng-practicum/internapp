@@ -1,0 +1,65 @@
+    <!doctype html>
+<html>
+<head>
+<% include partials/headerimports %>
+</head>
+<body>
+<% include partials/nav.ejs %>
+
+<div class="container">
+<h3>Site Notes</h3>
+    <table class="col-sm-3 col-sm-offset-3">
+    <table class="table table-bordered"  >
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Author</th>
+            <th>More</th>
+        </tr>
+    </thread>
+    <tbody>
+    <!-- siteList is from sitenotes.js where u name  it what ever u want as
+    long it was assigne dto database "sites" to be able to see -->
+    <!-- sou are looping all from siteList just a random name "site"-->
+     <!-- then if the "site (random name). (array) notes. length  if it dose not have antything 
+      i want u to show-->
+       <!-- site(random).notes(array).foreach (note(single array in notes)-->
+       <!--site.name means it is in inisall array vs
+       note.author(noteText) is what we created in second array-->
+        <% siteList.forEach(function(site) { %>
+        <%  if(site.notes.length != 0) { %>
+        <% site.notes.forEach(function(note) { %>
+        <tr>
+            <td><%= site.name %></td> 
+            <td><%= note.author %></td> 
+            <td><%= note.noteText %></td>
+        </tr>
+       
+        <%  }) }}); %>
+        
+    </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <form name="addsitenotes" method="post">
+            <div class="form-group">
+                <label>Enter Company Name </label>
+                <input type="text" class="form-control" name="siteName" required>
+            </div>
+           
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" name="noteText" >
+            </div>
+        
+            <button type="submit" class="btn btn-warning btn-lg">Add Note</button>
+    </form>
+</div>
+
+
+<% include partials/footerimports %>
+
+    </body>
+    
+    </html>

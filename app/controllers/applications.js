@@ -7,6 +7,8 @@ var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
+var nodemailer = require('nodemailer');
+var key = process.env.KEY;
 
 /*
     HTTP Req: GET
@@ -34,24 +36,16 @@ module.exports.getBioApplication = function(req, res) {
 */
 module.exports.getApplications = function(req, res) {
     if (req.user.role === 'admin' || req.user.role === 'faculty'  ) {
-            if (req.user.discipline == 'bio') {
-                Bio.find(function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
+                Bio.find(function(err, bioApplications) {
+                    if (err) return console.error(err);     
+                    Itec.find(function(err, itecApplications) {
+                        if (err) return console.error(err);
+                        res.render('applications.ejs', {
+                            applicationList: bioApplications.concat(itecApplications),
+                            user: req.user
+                        });
                     });
                 });
-            }
-            else {
-                Itec.find(function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
-                    });
-                });
-            }
         }
         else {
             if (req.user.discipline == 'bio') {
@@ -81,11 +75,30 @@ module.exports.getApplications = function(req, res) {
 
 /*
     HTTP Req: GET
-    URL: '/application/:id'
+    URL: '/application/bio/:id'
 */
-module.exports.getSpecificApplication = function(req, res) {
-    if (req.user.discipline == 'itec') {
-        Itec.findOne({ _id: req.params.applicationid },function (err, appdetail) {
+module.exports.getSpecificBioApplication = function(req, res) {
+        Bio.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
+            if (err) {
+                 console.log(err);
+            }
+            else {
+                res.render('applicationdetails.ejs', {
+                application : appdetail,
+                user : req.user,
+                message : req.flash('info')
+                });
+            }
+        }); 
+};
+
+
+/*
+    HTTP Req: GET
+    URL: '/application/itec/:id'
+*/
+module.exports.getSpecificItecApplication = function(req, res) {
+    Itec.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
             if (err) {
                 console.log(err);
             }
@@ -94,43 +107,64 @@ module.exports.getSpecificApplication = function(req, res) {
                 application : appdetail,
                 user : req.user,
                 message : req.flash('info')
-                }); 
-            }     
-        });
-    } else if (req.user.discipline == 'bio') {
-        Bio.findOne({ _id: req.params.applicationid },function (err, appdetail) {
-            if (err) {
+                });
             }
-            else {
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
-                user : req.user,
-                message : req.flash('info')
-                }); 
+        });
+}
+
+/*
+    HTTP Req: POST
+    URL: '/application/:type(bio or itec)/:applicationid'
+*/
+module.exports.updateApplicationStatus = function(req, res) {
+    var typeOfEmail = 'applicationStatusUpdate';
+    var studentEmail;
+    console.log(req.params);
+    if (req.params.type == 'itec') {
+        Itec
+        .findById(req.params.applicationid)
+        .exec(
+                function(err, appEntry) {
+                     studentEmail = appEntry.useremail;
+                }
+            );
+        Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+            if (err){
+                req.flash('info',err);
+                res.redirect('/application/itec/'+req.params.applicationid);
+            }
+            else{
+                redirect = '/application/itec/'+req.params.applicationid;
+                //res.redirect(redirect);
+                sendEmail(req, res, typeOfEmail, studentEmail, redirect);
             }
         });
     } else {
-        console.log('discipline not found');
+        Bio
+        .findById(req.params.applicationid)
+        .exec(
+                function(err, appEntry) {
+                    studentEmail = appEntry.useremail;
+                }
+            );
+        Bio.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+            if (err){
+                req.flash('info',err);
+                res.redirect('/application/bio/'+req.params.applicationid);
+            }
+            else{
+                redirect = '/application/bio/'+req.params.applicationid;
+                // res.redirect(redirect);
+                sendEmail(req, res, typeOfEmail, studentEmail, redirect);
+            }
+        });
     }
 };
 
 /*
-    HTTP Req: POST
-    URL: '/application/itec/:applicationid'
-*/
-module.exports.updateApplicationStatus = function(req, res) {
-    Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
-        if (err){
-            req.flash('info',err);
-            res.redirect('/application/itec/'+req.params.applicationid);
-        }
-        else{
-            res.redirect('/application/itec/'+req.params.applicationid);
-        }
-    });
-};
 
-/*
+    A note has been added for this app
+
     HTTP Req: POST
     URL: '/application/itec/notes/:applicationid'
 */
@@ -241,3 +275,35 @@ module.exports.addDocument = function(req, res) {
         }
     });
 };
+
+function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
+
+    var emailSubject;
+    var emailText;
+    var transporter;
+    switch (typeOfEmail) {
+        case 'applicationStatusUpdate':
+            emailSubject = '[GGC Internship Application] Application Status Changed';
+            emailText = 'Your GGC internship application status has changed to: ' + req.body.applicationstatus;
+            break;
+        default:
+            console.log('email type not recognized')
+            res.redirect('/');
+            break;
+    }
+
+    transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
+    mailOptions = {
+        from: '"GGC Internapp Admin" <admin@ggcinternapp>',
+        to: studentEmail,
+        subject: emailSubject,
+        text: emailText
+    }
+    transporter.sendMail(mailOptions, function(err) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(typeOfEmail, ' completed!');
+        res.redirect(redirect);
+    });
+}
