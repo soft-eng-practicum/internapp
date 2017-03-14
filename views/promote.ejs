@@ -12,7 +12,9 @@
 <div class="col-sm-6 col-sm-offset-3">
 
     <h1>Promote</h1>
-
+    <% if (message.length > 0) { %>
+            <div class="alert alert-success"><%= message %></div>
+    <% } %>
     <!-- LOGIN FORM -->
     <form name="promote" action="/promote" method="post">
         <div class="form-group">
@@ -27,7 +29,7 @@
                 <option value="user">User</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-warning btn-lg" id="promoteBtn">Promote</button>
+        <button type="submit" class="btn btn-success btn-lg" id="promoteBtn">Promote</button>
         </form>
         <br>
 </div>
