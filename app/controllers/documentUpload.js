@@ -8,6 +8,8 @@ var fileUpload = require('express-fileupload');
 var nodemailer = require('nodemailer');
 var key = process.env.KEY; // password for ggcinternapp@gmail.com
 
+var User = require('../models/user');
+
 // Setting local env in powershell
 // $env:key="password"
 
@@ -87,6 +89,64 @@ module.exports.downloadFerpa = function(req, res) {
             console.error(err);
         }
     })
+};
+
+// Add a document to the user's 
+function addDocumentToUser(fileType) {
+     // Student Name
+     var recordFileType;
+     var recordSection;
+
+     switch (fileType) {
+         case "ferpa":
+             recordFileType = "FERPA";
+             recordSection = "ITEC";
+             break;
+        case "resume":
+             recordFileType = "Resume";
+             recordSection = "ITEC";
+             break;
+        case "transcript":
+             recordFileType = "Resume";
+             recordSection = "Biology";
+             break;   
+        case "essay":
+             recordFileType = "Resume";
+             recordSection = "Biology";
+             break;                     
+        default:
+             console.error('fileType not recognized - upload record creation failed');
+             return false;
+             break;
+     }
+     
+     // Update user's document array
+     User.findOneAndUpdate({
+         'local.email' : req.user.email
+    }, {
+        $push: {
+            'documents' : {
+                'fileType' : recordFileType,
+                'fileSection' : recordSection
+            }
+        }
+    });
+    return true; 
+}
+
+// Function to "prettify" the date displayed on the home page
+function formatDate(date) {
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var year = date.getFullYear();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = month + '/' + day + '/' + year + " " + hours + ':' + minutes + ' ' + ampm;
+    return strTime;
 }
 
 function sendEmail(file, typeOfFile, req, res) {
@@ -141,4 +201,4 @@ function sendEmail(file, typeOfFile, req, res) {
                 console.log(typeOfFile + ' sent!');
                 res.redirect('/documentUpload');
             })
-}
+};
