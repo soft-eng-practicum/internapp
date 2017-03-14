@@ -24,8 +24,8 @@ public class ViewSitesPage extends PageBase
 	
 	public ViewSitesPage open()
 	{
-		sites.click();
-		viewSites.click();
+		Click(sites);
+		Click(viewSites);
 		sleep(4000);
 		return this;
 	}

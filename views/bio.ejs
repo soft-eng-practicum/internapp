@@ -40,17 +40,12 @@
       <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
-          <option>Fall</option>
-          <option>Spring</option>
-          <option>Summer</option>
+        <select class="form-control" id="semesterList" name="proposedinternsemester">
+          <option value="Fall">Fall</option>
+          <option value="Spring">Spring</option>
+          <option value="Summer">Summer</option>
         </select>
-        <select class="form-control" id="select">
-          <option>2017</option>
-          <option>2018</option>
-          <option>2019</option>
-          <option>2020</option>
-          <option>2021</option>
+        <select class="form-control yearSelect" id="yearTxt" name="proposedinternyear">
         </select>
         </div>
       </div>
@@ -59,7 +54,7 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Major and Concentration</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="majorTxt" name="major" required type="text">
       </div>
     </div>
 
@@ -68,17 +63,12 @@
       <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
-          <option>Fall</option>
-          <option>Spring</option>
-          <option>Summer</option>
+        <select class="form-control" id="graduationSemester">
+          <option value="Fall">Fall</option>
+          <option value="Spring">Spring</option>
+          <option value="Summer">Summer</option>
         </select>
-        <select class="form-control" id="select">
-          <option>2017</option>
-          <option>2018</option>
-          <option>2019</option>
-          <option>2020</option>
-          <option>2021</option>
+        <select class="form-control yearSelect" id="graduationYear">
         </select>
         </div>
       </div>
@@ -87,28 +77,28 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Overall GPA</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="gpaTxt" name="gpa" required type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Program GPA</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="programGPATxt" name="programgpa" required type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Number of Hours completed within Biology</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" required type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">What is your intended profession/career?</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="professionTxt" name="career" required type="text">
       </div>
     </div>
     <br>
@@ -120,49 +110,49 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname" required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Mailing address</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress" required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Contact City</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" required type="text">
       </div>
     </div> 
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Contact State</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="ecStateTxt">
       </div>
     </div> 
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode" required pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text">
       </div>
     </div> 
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="ecPhone" name="emergencycontactphone" required type="text">
       </div>
     </div> 
     
     <div class="form-group">
       <label for="inputEmail" class="col-lg-5 control-label">Preferred Email Address</label>
       <div class="col-lg-5">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+        <input type="text" class="form-control" id="ecEmailTxt" name="emergencycontactemail" required type="text" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
       </div>
     </div>
     <br>
@@ -174,28 +164,28 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Mentor Name</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="mentorCellTxt" name="mentorcellphone" required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
       <div class="col-lg-5">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+        <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
       </div>
     </div>
     <br>
@@ -210,9 +200,9 @@
 </label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
-          <option>Yes</option>
-          <option>No</option>
+        <select class="form-control" name="proposedinternyear" id="previouslyApplied">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
         </div>
       </div>
@@ -224,7 +214,7 @@
 </label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
+        <select class="form-control" id="additionalInfoList" name="internsite">
           <option value="Other" >Other</option>
           <option value="Greening Youth Foundation">Greening Youth Foundation</option>
           <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
@@ -246,70 +236,70 @@
          <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Name of Site</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="siteNameTxt" name="proposedsitename" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc):</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site Street Address</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="psAddressTxt" name="proposedsiteaddress" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site City</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="psCityTxt" name="proposedsitecity" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site State</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="psStateTxt" name="proposedsitestate" pattern ="[A-Z]{2}" title="Invalid format ex: GA" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site Zip Code</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="psZipCodeTxt" name="proposedsitezipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site Phone Number</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="psPhoneNumber">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Internship Manager</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="psManagerTxt" name="proposedsitemanagername" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
       <div class="col-lg-5">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+        <input type="text" class="form-control" id="psManagerEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Title of Site Manager</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="psManagerTitleTxt" name="proposedsitemanagertitle" type="text">
       </div>
     </div>
     <br>
@@ -321,21 +311,21 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Name of Proposed Preceptor</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="preceptorNameTxt" name="preceptorname"  type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Preceptor Phone Number</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="preceptorPhoneTxt" name="preceptorphone"  type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Preceptor Email Address</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="preceptorEmailTxt" name="preceptoremail"  type="text">
       </div>
     </div>
 
@@ -344,9 +334,9 @@
       <label for="select" class="col-lg-5 control-label">Is this person a Manager?</label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
-          <option>Yes</option>
-          <option>No</option>
+        <select class="form-control" id="prceptorManagerList" name="ispreceptormanager">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
         </div>
       </div>
@@ -355,7 +345,7 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Position of Proposed Preceptor</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="preceptorPositionTxt" name="preceptorpostition" type="text">
       </div>
     </div>
     <br>
@@ -370,9 +360,9 @@
 </label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
-          <option>Yes</option>
-          <option>No</option>
+        <select class="form-control" id="isStudentEmployedList" name="isstudentemployedatsite">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
         </div>
       </div>
@@ -381,7 +371,7 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">What is your current position?</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="currentPosititionTxt" name="studentcurrentposition" type="text">
       </div>
     </div>
     
@@ -391,9 +381,9 @@
 </label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
-          <option>Yes</option>
-          <option>No</option>
+        <select class="form-control" id="isPaidList" name="ispaidinternship">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
         </div>
       </div>
@@ -402,7 +392,7 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" type="text">
       </div>
     </div>
     
@@ -412,9 +402,9 @@
 </label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
-          <option>Yes</option>
-          <option>No</option>
+        <select class="form-control" id="internquestion" name="isokseperatehours">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
         </div>
       </div>
@@ -425,16 +415,16 @@
       <label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="select">
-          <option>Yes</option>
-          <option>No</option>
+        <select class="form-control"  id="studentRelationshipList" name="doestudenthavefamilyatsite">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
         </div>
       </div>
     </div>
     
     <h4 align="center">
-        If you plan on applying for more than one ‚ÄúBuild Your Own‚Äù site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. 
+        If you plan on applying for more than one ìBuild Your Ownî site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. 
         For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).
     </h4>
     <br>
@@ -460,21 +450,21 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">First</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="firstTxt" name="educomp1" required type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Second</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="secondTxt" name="educomp2" required type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Third</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="thirdTxt" name="educomp3" required type="text">
       </div>
     </div>
     <br>
@@ -492,18 +482,19 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Signature of applicant</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="signatureTxt" name="signature" required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="textArea">
+        <input class="form-control" rows="3" id="printedNameTxt" name="printedname" required type="text">
       </div>
     </div>
   </fieldset>
   <button class="btn btn-success" type="submit" id="submitBtn" align="center">Submit</button>
 </form>
+    <% include partials/footerimports %>
 </body>
 </html>
