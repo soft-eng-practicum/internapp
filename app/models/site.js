@@ -16,8 +16,14 @@ var siteSchema = mongoose.Schema({
                 dateAdded:{
                 type: Date, 
                 default: Date.now
-        }
+        },
+        notes: [{
+                 author: {type: String, required: true}, 
+                 noteText: {type: String, required: true},
+                 noteDate: {type: Date, default: Date.now}
+                }]
 });
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('Site', siteSchema);
+

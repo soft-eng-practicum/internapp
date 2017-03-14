@@ -1,0 +1,13 @@
+ <!--
+
+      
+      <div class="col-sm-6 col-sm-offset-3">
+    <! show any messages that come back with authentication 
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+    <hr>
+    <h3>Add Contact</h3>-->
+    <!-- <h2>Site Notes</h2>
+    
+    -->
