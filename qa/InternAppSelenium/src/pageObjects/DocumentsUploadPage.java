@@ -5,26 +5,32 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class FAQPage extends PageBase
+public class DocumentsUploadPage extends PageBase
 {
 	private WebDriver driver;
 	
-	@FindBy(linkText = "FAQ")
-	private WebElement faqPage;
+	@FindBy(linkText = "/documentUpload")
+	private WebElement documentationsPage;
 	
-	public FAQPage(WebDriver driver)
+	public DocumentsUploadPage(WebDriver driver)
 	{
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	public FAQPage open()
+	public DocumentsUploadPage open()
 	{
 		String url = driver.getCurrentUrl();
-		Click(faqPage);
+		Click(documentationsPage);
 		WaitForUrlChange(url);
-		sleep(4000);
+		try 
+		{
+			Thread.sleep(4000);
+		} 
+		catch (InterruptedException e)
+		{
+		}
 		return this;
 	}
 }
