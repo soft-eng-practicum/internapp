@@ -9,8 +9,10 @@ var homeDir = require('home-dir');
 var path = require('path');
 var mkdirp = require('mkdirp');
 
+makeCSVDirectory();
+
 function makeCSVDirectory() {
-    mkdirp('/csv', function(err) {
+    mkdirp('./csv', function(err) {
         if (err) console.error(err)
         else console.log('CSV directory created!');
     });
@@ -40,11 +42,9 @@ Creates a csv file utilizing the following fields from the Itec Collection:
  csv file saved @: projectroot/csv/itecApplicants.csv
 */
 module.exports.exportItec = function(req, res, next) {
-    makeCSVDirectory();
     var collectionType = 'itec';
     var itecArray = [];
     Itec.find({
-
     }, function(err, itecEntries) {
         
         itecEntries.forEach(function(itecEntry) {
@@ -105,7 +105,6 @@ Creates a csv file utilizing the following fields from the Site Collection:
  csv file saved @: projectroot/csv/internshipSites.csv
 */
 module.exports.exportSite = function(req, res) {
-    makeCSVDirectory();
     var collectionType = 'site';
     var siteArray = [];
     Site.find({
