@@ -202,7 +202,11 @@ var itecSchema = mongoose.Schema({
             type: String,
             required: false
         },
-        expectedGraduationDate: {
+        expectedGraduationYear: {
+          type: String,
+          required: true
+        },
+        expectedGraduationSemester: {
           type: String,
           required: true
         },

@@ -22,7 +22,7 @@ public class EditProfilePage extends PageBase
 	public EditProfilePage open()
 	{
 		String url = driver.getCurrentUrl();
-		editProfilePage.click();
+		Click(editProfilePage);
 		WaitForUrlChange(url);
 		try 
 		{

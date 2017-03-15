@@ -25,17 +25,30 @@
     // For document uploads
     var fileUpload = require('express-fileupload');
 
+    // For creating csv directory
+    var mkdirp = require('mkdirp');
+
     var ctrlSiteNotes = require('../controllers/sitenotes');
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
+        // if user is authenticated in the session, carry on
+        if (req.isAuthenticated())
+            return next();
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
+        // if they aren't redirect them to the home page
+        res.redirect('/');
+    }
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+    // Creates a csv directory for the csv files - if not already created
+    function makeCSVDirectory(req, res, next) {
+        mkdirp('./csv', function(err) {
+            if (err) console.error(err)
+            else {
+                console.log('CSV directory created!');
+                next();
+            }
+        });
     }
 
 module.exports = function(app, passport) {
@@ -129,10 +142,10 @@ module.exports = function(app, passport) {
     app.get('/export', isLoggedIn, ctrlMongoToCsv.getExport);
 
     // Mongo To Csv
-    app.get('/exportItec', ctrlMongoToCsv.exportItec);
+    app.get('/exportItec', makeCSVDirectory, ctrlMongoToCsv.exportItec);
     // TO DO app.get('/exportBio', ctrlMongoToCsv);
     // TO DO (maybe) app.get('/exportUser', ctrlMongoToCsv);
-    app.get('/exportSite', ctrlMongoToCsv.exportSite);
+    app.get('/exportSite', makeCSVDirectory, ctrlMongoToCsv.exportSite);
 
     /* Site Notes page */
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);

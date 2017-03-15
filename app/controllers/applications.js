@@ -241,6 +241,7 @@ module.exports.postItecApplication = function(req, res) {
     URL: '/bio'
 */
 module.exports.postBioApplication = function(req, res) {
+    console.log(req.body);
     var bioapp = new Bio(req.body);
     bioapp.useremail = req.user.email;
     bioapp.userstudentid = req.user.studentid;

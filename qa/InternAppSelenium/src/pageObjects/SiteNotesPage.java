@@ -5,24 +5,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class DocumentationsPage extends PageBase
+public class SiteNotesPage extends PageBase
 {
 	private WebDriver driver;
 	
-	@FindBy(linkText = "Documentations")
+	@FindBy(linkText = "/sitenotes")
 	private WebElement documentationsPage;
 	
-	public DocumentationsPage(WebDriver driver)
+	public SiteNotesPage(WebDriver driver)
 	{
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	public DocumentationsPage open()
+	public SiteNotesPage open()
 	{
 		String url = driver.getCurrentUrl();
-		documentationsPage.click();
+		Click(documentationsPage);
 		WaitForUrlChange(url);
 		try 
 		{
