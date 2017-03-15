@@ -146,16 +146,6 @@ module.exports = function(app, passport) {
 
     /* Site Notes page */
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
-
-    // LEAVE THIS ROUTE AT THE BOTTOM
-    // Catch all unknown urls, redirect to index page with invalid url message
-    app.get('*', function(req, res) {
-        if (req.isAuthenticated()) {
-                req.logout();
-        }
-        ctrlHome.setInvalidURL(true);
-        res.redirect('/');
-    });
 }
 
    
