@@ -6,7 +6,8 @@ var User = require('../models/user');
 // GET /login
 var renderLoginPage = function(req, res, responseBody) {
     res.render('login.ejs', {
-        message : req.flash('loginMessage')
+        message : req.flash('loginMessage'),
+        unknown : false
     });
 };
 
