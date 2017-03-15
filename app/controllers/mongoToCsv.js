@@ -9,6 +9,12 @@ var homeDir = require('home-dir');
 var path = require('path');
 var mkdirp = require('mkdirp');
 
+module.exports.getExport = function(req, res) {
+    res.render('export.ejs', {
+      user: req.user
+    });
+}
+
 makeCSVDirectory();
 
 function makeCSVDirectory() {
@@ -29,8 +35,8 @@ module.exports.exportBio = function(req, res) {
 /*
 Creates a csv file utilizing the following fields from the Itec Collection:
     - userstudentid
-    - userfname 
-    - userlname 
+    - userfname
+    - userlname
     - proposedinternyear
     - proposedinternsemester
     - itecgpa
@@ -46,10 +52,10 @@ module.exports.exportItec = function(req, res, next) {
     var itecArray = [];
     Itec.find({
     }, function(err, itecEntries) {
-        
+
         itecEntries.forEach(function(itecEntry) {
             // if the user has not entered any notes
-            if (itecEntry.notes.length == 0) { 
+            if (itecEntry.notes.length == 0) {
                 var itecJson = {
                     ID : itecEntry.userstudentid,
                     FirstName : itecEntry.userfname,
@@ -57,7 +63,7 @@ module.exports.exportItec = function(req, res, next) {
                     'ITEC GPA' : itecEntry.itecgpa,
                     Concentration : itecEntry.major,
                     Graduation : itecEntry.graduation,
-                    Notes : '', // set notes to empty 
+                    Notes : '', // set notes to empty
                     Programming : itecEntry.focusonsoftdev
                 };
             } else {
@@ -70,8 +76,8 @@ module.exports.exportItec = function(req, res, next) {
                     Graduation : itecEntry.graduation,
                     Notes : itecEntry.notes[0].note,
                     Programming : itecEntry.focusonsoftdev
-                };   
-            }      
+                };
+            }
             itecArray.push(itecJson);
         });
             // Field names for csv files
@@ -89,7 +95,7 @@ module.exports.exportItec = function(req, res, next) {
         });
     });
 
-   
+
 };
 
 /*
@@ -109,7 +115,7 @@ module.exports.exportSite = function(req, res) {
     var siteArray = [];
     Site.find({
     }, function(err, siteEntries) {
-        
+
         siteEntries.forEach(function(siteEntry) {
             var MOU = "";
             if ( !siteEntry.mou || siteEntry.mou.toString().toLowerCase() == "no" || siteEntry.mou == "" || siteEntry.mou == "undefined") {
@@ -127,7 +133,7 @@ module.exports.exportSite = function(req, res) {
             }
             siteArray.push(siteJson);
         });
-        
+
         // Field names for csv file
         var fields = ['CompanyName', 'Street', 'City', 'State', 'Zip',
         'MOU'];
@@ -149,7 +155,7 @@ module.exports.exportBio = function(req, res) {
     var siteArray = [];
     Site.find({
     }, function(err, siteEntries) {
-        
+
         siteEntries.forEach(function(siteEntry) {
             var siteJson = {
                 CompanyName : siteEntry.name,
@@ -161,7 +167,7 @@ module.exports.exportBio = function(req, res) {
             }
             siteArray.push(siteJson);
         });
-        
+
         // Field names for csv file
         var fields = ['CompanyName', 'Street', 'City', 'State', 'Zip',
         'MOU'];
@@ -198,4 +204,3 @@ function download(res, collectionType) {
         else console.log(collectionType, "successfully downloaded!")
     });
 }
-

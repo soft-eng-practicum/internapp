@@ -1,10 +1,10 @@
 /*
     Author: Robert Bryan
-    
+
     - Routing page for the entire application
     - Utilizes the files within the controller folder
 */
-    
+
     // Variables to reference the controller functions within each controller file
     var ctrlHome = require('../controllers/home');
     var ctrlLogin = require('../controllers/login');
@@ -37,7 +37,7 @@
     // if they aren't redirect them to the home page
     res.redirect('/');
     }
-	
+
 module.exports = function(app, passport) {
 
     app.use(fileUpload()); // default options for file upload
@@ -47,7 +47,7 @@ module.exports = function(app, passport) {
 
     /* Login page */
     app.get('/login', ctrlLogin.getLogin);
-    app.post('/login', 
+    app.post('/login',
             passport.authenticate('local-login', {
             successRedirect : '/applications',
             failureRedirect : '/login',
@@ -80,10 +80,10 @@ module.exports = function(app, passport) {
      app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
-    app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument); 
+    app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);
     app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
     app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
-    app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);    
+    app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);
          // BIO
     app.get('/bio', isLoggedIn, ctrlApplications.getBioApplication);
     app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
@@ -124,7 +124,10 @@ module.exports = function(app, passport) {
     app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
     app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
     app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
-  
+
+    /*Export Page*/
+    app.get('/export', isLoggedIn, ctrlMongoToCsv.getExport);
+
     // Mongo To Csv
     app.get('/exportItec', ctrlMongoToCsv.exportItec);
     // TO DO app.get('/exportBio', ctrlMongoToCsv);
@@ -134,5 +137,3 @@ module.exports = function(app, passport) {
     /* Site Notes page */
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 }
-
-   
