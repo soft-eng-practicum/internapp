@@ -28,16 +28,17 @@ var noFilesUploadedError = " You must choose a file to upload. "
 module.exports.getDocumentUpload = function(req, res) {
     res.render('documentUpload', {
         user : req.session.passport.user,
-        message : req.flash('info')
+        uploadError: req.flash('uploadError'),
+        successfulUpload: req.flash('successfulUpload')
     });
 }
 
 
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
-    var typeOfFile = 'resume';
+    var typeOfFile = 'Resume';
     if (!req.files.resume) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.resume, typeOfFile, req, res);
@@ -46,9 +47,9 @@ module.exports.uploadItecResume = function(req, res) {
 
 // Upload bio essay
 module.exports.uploadBioEssay = function(req, res) {
-    var typeOfFile = 'essay';
+    var typeOfFile = 'Essay';
     if (!req.files.essay) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.essay, typeOfFile, req, res);
@@ -57,9 +58,9 @@ module.exports.uploadBioEssay = function(req, res) {
 
 //Upload bio transcript
 module.exports.uploadBioTranscript = function(req, res) {
-    var typeOfFile = 'transcript';
+    var typeOfFile = 'Transcript';
     if (!req.files.transcript) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.transcript, typeOfFile, req, res);
@@ -68,9 +69,9 @@ module.exports.uploadBioTranscript = function(req, res) {
 
 // Upload itec ferpa
 module.exports.uploadItecFerpa = function(req, res) {
-    var typeOfFile = 'ferpa';
+    var typeOfFile = 'Ferpa';
     if (!req.files.ferpa) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.ferpa, typeOfFile, req, res);
@@ -92,7 +93,7 @@ module.exports.downloadFerpa = function(req, res) {
 };
 
 // Add a document to the user's 
-function addDocumentToUser(fileType) {
+function addDocumentToUser(fileType, userEmail) {
      // Student Name
      var recordFileType;
      var recordSection;
@@ -107,11 +108,11 @@ function addDocumentToUser(fileType) {
              recordSection = "ITEC";
              break;
         case "transcript":
-             recordFileType = "Resume";
+             recordFileType = "Transcript";
              recordSection = "Biology";
              break;   
         case "essay":
-             recordFileType = "Resume";
+             recordFileType = "Essay";
              recordSection = "Biology";
              break;                     
         default:
@@ -120,40 +121,29 @@ function addDocumentToUser(fileType) {
              break;
      }
      
+     console.log('userEmail = ', userEmail);
      // Update user's document array
      User.findOneAndUpdate({
-         'local.email' : req.user.email
+         'local.email' : userEmail
     }, {
         $push: {
-            'documents' : {
+            'local.documents' : {
                 'fileType' : recordFileType,
                 'fileSection' : recordSection
             }
         }
+    }, function(err, user) {
+        if (err) console.error(err);
+        console.log(recordFileType + ' document added to ' + userEmail);
+        return true;
     });
-    return true; 
-}
-
-// Function to "prettify" the date displayed on the home page
-function formatDate(date) {
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var year = date.getFullYear();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    var strTime = month + '/' + day + '/' + year + " " + hours + ':' + minutes + ' ' + ampm;
-    return strTime;
 }
 
 function sendEmail(file, typeOfFile, req, res) {
     var coordinatorEmail;
     var emailSubject;
     var emailText;
-    switch (typeOfFile) {
+    switch (typeOfFile.toLowerCase()) {
         case 'transcript':
             coordinatorEmail = bioCoordinatorEmail;
             emailSubject = "Placeholder transcript subject";
@@ -199,6 +189,8 @@ function sendEmail(file, typeOfFile, req, res) {
                     console.log(err);
                 }
                 console.log(typeOfFile + ' sent!');
+                addDocumentToUser(typeOfFile, req.user.email);
+                req.flash('successfulUpload', typeOfFile + ' uploaded!')
                 res.redirect('/documentUpload');
             })
 };
