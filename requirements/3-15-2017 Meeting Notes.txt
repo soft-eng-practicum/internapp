@@ -19,6 +19,10 @@ Updated biology (some overlap with itec too) requirements:
         - She wants the ability to choose the which internship date applicants to export
     - She wants the "GGC Internship App" to be renamed to GGCSST 
         - But I think she thought that because of the logo
-            - Maybe we should remove the logo? and the background picture? lol\
-            
+            - Maybe we should remove the logo? and the background picture? lol
+    - Wants us to incoporate a dashboard page which will provide the users with some guidance
+        - When they submit bio application => Display checkboxes telling them they need to upload an essay, or transcript
+            - Same for itec!
+        - I think this is a good idea as it gives the user a list of objectives to complete
+        - Perhaps we can also include links about the ITEC / BIO programs as well
                   
