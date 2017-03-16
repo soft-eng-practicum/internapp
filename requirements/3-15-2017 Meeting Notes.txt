@@ -1,0 +1,24 @@
+Met with Dr. Hammonds - Odie 3-15-2017
+
+Updated biology (some overlap with itec too) requirements:
+    - Update "Major and Concentration" field within biology application to "Concentration"
+        - Add concentrations to a dropdown within that field
+    - If they say 'No' to "Are you applying to an Internship Site previously approved by Internship committee?"
+        - Display the fields from 'Name of Site' to Education Component
+    - Renamed "Internship Site" to "Approved Internship Committee Sites" for clarity
+        - Allow for the approved internship committee sites to be updated
+    - The following paragraph within the bioapp is confusing:    
+        - "If you plan on applying for more than one �Build Your Own� site, feel 
+           free to copy and paste the Proposed Site Information Section above of 
+           this application and complete. For each site, you would need a proposed 
+           mentor to complete the Preceptor Application (also on myGGC SST Internship Pages)."   
+    - Instructor view
+        - Are allowed to add notes to the document uploads and applications
+        - ONLY ADMINS are allowed to leave feedback 
+    - Proposed internship date should be included within the biology applicants exports
+        - She wants the ability to choose the which internship date applicants to export
+    - She wants the "GGC Internship App" to be renamed to GGCSST 
+        - But I think she thought that because of the logo
+            - Maybe we should remove the logo? and the background picture? lol\
+            
+                  
