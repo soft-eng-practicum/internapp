@@ -1,3 +1,4 @@
+
 <!-- views/itec.ejs -->
 <!DOCTYPE html>
 <html>
@@ -298,14 +299,16 @@
       
       <div class="col-lg-5" class>
         <select class="form-control" name="haveproposedintern" id="proposedList">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="No">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
         </select>
         </div>
       </div>
     </div>
     <br>
     
+    <div class="exisiting">
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Name of Organization</label>
       <div class="col-lg-5">
@@ -368,7 +371,6 @@
         <input type="text" class="form-control" id="managerEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
       </div>
     </div>
-    <br>
     
     <h3 align="center">
     Potential Student Employment Conflicts
@@ -380,13 +382,15 @@
       
       <div class="col-lg-5" class>
         <select class="form-control" name="isemployedatsite" id="isEmployedList">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="Select">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
         </select>
         </div>
       </div>
     </div>
     
+    <div class="employed">
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">What is your current position?</label>
       <div class="col-lg-5">
@@ -439,6 +443,8 @@
         </div>
       </div>
     </div>
+    </div>
+    </div>
     <br>
     
     <h3 align="center">
@@ -467,3 +473,31 @@
   <% include partials/footerimports %>
 </body>
 </html>
+
+<script>
+$('.exisiting').hide();
+$(function(){
+    $('#proposedList').change(function(){
+       var opt = $(this).val();
+        if(opt == 'Yes'){
+            $('.exisiting').show();
+        }else{
+        	$('.exisiting').hide();
+          $('.employed').hide();
+          document.getElementById('isEmployedList').value="Select";
+        }
+    });
+});
+
+$('.employed').hide();
+$(function(){
+    $('#isEmployedList').change(function(){
+       var opt = $(this).val();
+        if(opt == 'Yes'){
+            $('.employed').show();
+        }else{
+        	$('.employed').hide();
+        }
+    });
+});
+</script>
