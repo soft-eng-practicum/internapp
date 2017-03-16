@@ -41,6 +41,7 @@
       
       <div class="col-lg-5" class>
         <select class="form-control" id="semesterList" name="proposedinternsemester">
+		  <option vaule="Select">Select</option>
           <option value="Fall">Fall</option>
           <option value="Spring">Spring</option>
           <option value="Summer">Summer</option>
@@ -50,11 +51,20 @@
         </div>
       </div>
     </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Major and Concentration</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="majorTxt" name="major" required type="text">
+	
+	<div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Concentration</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="majorTxt" name="major">
+			<option vaule="Select">Select</option>
+          <option value="Biochemistry">Biochemistry</option>
+          <option value="Cell Biology and Biotechnology">Cell Biology and Biotechnology</option>
+          <option value="General Biology">General Biology</option>
+		  <option value="Biology Teacher Certification">Biology Teacher Certification</option>
+        </select>
+        </div>
       </div>
     </div>
 
@@ -64,6 +74,7 @@
       
       <div class="col-lg-5" class>
         <select class="form-control" id="graduationSemester" name="expectedGraduationSemester">
+			<option vaule="Select">Select</option>
           <option value="Fall">Fall</option>
           <option value="Spring">Spring</option>
           <option value="Summer">Summer</option>
@@ -194,27 +205,28 @@
     Internship Information
     </h3>
     
-    <div class="form-group">
+<div class="form-group">
       <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?
-</label>
+      <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?</label>
       
       <div class="col-lg-5" class>
         <select class="form-control" name="isPreviouslyApprovedSite" id="previouslyApplied">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="No">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
         </select>
         </div>
       </div>
     </div>
     
+    <div class="exisiting">
     <div class="form-group">
       <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Internship Site
-</label>
+      <label for="select" class="col-lg-5 control-label">Approved Internship Committee Sites</label>
       
       <div class="col-lg-5" class>
         <select class="form-control" id="additionalInfoList" name="internsite">
+          <option value="Select">Select</option>
           <option value="Other" >Other</option>
           <option value="Greening Youth Foundation">Greening Youth Foundation</option>
           <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
@@ -231,6 +243,8 @@
         <strong>Note:</strong>  It is conflict of interest if you have a close personal or family relationship with a proposed preceptor 
         and/or site manager/supervisor. Providing false information about connections between you and site staff would constitute a violation
          of the GGC Honor Code (see policy on academic honesty).</h3>
+         </div>
+         <div class="other">
          <br>
 
          <div class="form-group">
@@ -302,6 +316,7 @@
         <input class="form-control" rows="3" id="psManagerTitleTxt" name="proposedsitemanagertitle" type="text">
       </div>
     </div>
+    </div>
     <br>
 
     <h3 align="center">
@@ -335,6 +350,7 @@
       
       <div class="col-lg-5" class>
         <select class="form-control" id="prceptorManagerList" name="ispreceptormanager">
+			<option vaule="Select">Select</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
@@ -356,75 +372,79 @@
     
     <div class="form-group">
       <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Are you currently employed at this site?
-</label>
+      <label for="select" class="col-lg-5 control-label">Are you currently employed at this site?</label>
       
       <div class="col-lg-5" class>
         <select class="form-control" id="isStudentEmployedList" name="isstudentemployedatsite">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="No">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
         </select>
         </div>
       </div>
     </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">What is your current position?</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="currentPosititionTxt" name="studentcurrentposition" type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Is this a paid position?
-</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" id="isPaidList" name="ispaidinternship">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        </div>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?
-</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" id="internquestion" name="isokseperatehours">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        </div>
-      </div>
-    </div>
+	<br/>
 
-    <div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
+	<div class="employed">
+		<div class="form-group">
+			<label for="input" class="col-lg-5 control-label">What is your current position?</label>
+			<div class="col-lg-5">
+				<input class="form-control" rows="3" id="currentPosititionTxt" name="studentcurrentposition" type="text">
+			</div>
+		</div>
+    
+		<div class="form-group">
+			<div class="form-inline">
+				<label for="select" class="col-lg-5 control-label">Is this a paid position?</label>
       
-      <div class="col-lg-5" class>
-        <select class="form-control"  id="studentRelationshipList" name="doestudenthavefamilyatsite">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        </div>
-      </div>
-    </div>
+				<div class="col-lg-5" class>
+					<select class="form-control" id="isPaidList" name="ispaidinternship">
+						<option vaule="Select">Select</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+				</div>
+			</div>
+		</div>
+    
+		<div class="form-group">
+			<label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
+			<div class="col-lg-5">
+				<input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" type="text">
+			</div>
+		</div>
+    
+		<div class="form-group">
+			<div class="form-inline">
+				<label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
+      
+				<div class="col-lg-5" class>
+					<select class="form-control" id="internquestion" name="isokseperatehours">
+						<option vaule="Select">Select</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="form-inline">
+				<label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
+      
+				<div class="col-lg-5" class>
+					<select class="form-control"  id="studentRelationshipList" name="doestudenthavefamilyatsite">
+						<option vaule="Select">Select</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
     
     <h4 align="center">
-        If you plan on applying for more than one �Build Your Own� site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. 
+        If you plan on applying for more than one ?Build Your Own? site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. 
         For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).
     </h4>
     <br>
@@ -498,3 +518,43 @@
     <% include partials/footerimports %>
 </body>
 </html>
+
+<script>
+$('.employed').hide();
+$(function(){
+    $('#isStudentEmployedList').change(function(){
+       var opt = $(this).val();
+        if(opt == 'Yes'){
+            $('.employed').show();
+        }else{
+        	$('.employed').hide();
+        }
+    });
+});
+
+$('.exisiting').hide();
+$(function(){
+    $('#previouslyApplied').change(function(){
+       var opt = $(this).val();
+        if(opt == 'Yes'){
+            $('.exisiting').show();
+        }else{
+        	$('.exisiting').hide();
+          $('.other').hide();
+          document.getElementById('additionalInfoList').value="Select";
+        }
+    });
+});
+
+$('.other').hide();
+$(function(){
+    $('#additionalInfoList').change(function(){
+       var opt = $(this).val();
+        if(opt == 'Other'){
+            $('.other').show();
+        }else{
+        	$('.other').hide();
+        }
+    });
+});
+</script>
