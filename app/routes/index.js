@@ -98,7 +98,7 @@ module.exports = function(app, passport) {
     app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
     app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);
          // BIO
-    app.get('/bio', isLoggedIn, ctrlApplications.getBioApplication);
+    app.get('/bio', ctrlApplications.getBioApplication);
     app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
     app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificBioApplication);
     app.post('/application/bio/documents/:applicationid', isLoggedIn, ctrlApplications.addDocument);
