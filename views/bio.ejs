@@ -54,7 +54,7 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Major and Concentration</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="majorTxt" name="major" required type="text">
+        <input class="form-control" rows="3" id="majorTxt" name="major" placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
       </div>
     </div>
 
@@ -77,28 +77,28 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Overall GPA</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="gpaTxt" name="gpa" required type="text">
+        <input class="form-control" rows="3" id="gpaTxt" name="gpa"  type="number" min=1 max=4 placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"   required>
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Program GPA</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="programGPATxt" name="programgpa" required type="text">
+        <input class="form-control" rows="3" id="programGPATxt" name="programgpa" type="number"  min=1 max=4  placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"    required>
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Number of Hours completed within Biology</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" required type="text">
+        <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" placeholder="Hours" pattern"^(0|[1-9][0-9]*)$"  required type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">What is your intended profession/career?</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="professionTxt" name="career" required type="text">
+        <input class="form-control" rows="3" id="professionTxt" name="career" placeholder="Profession/Career" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
       </div>
     </div>
     <br>
@@ -110,49 +110,49 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname" required type="text">
+        <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname"placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Mailing address</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress" required type="text">
+        <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress" placeholder="Address" required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Contact City</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" required type="text">
+        <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City" pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text" required>
       </div>
     </div> 
     
     <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Contact State</label>
+      <label for="input" class="col-lg-5 control-label" >Contact State</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecStateTxt">
+        <input class="form-control" rows="3" id="ecStateTxt" placeholder="State" pattern ="[A-Z]{2}" title=" Example: GA" required>
       </div>
     </div> 
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode" required pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text">
+        <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode" placeholder="Zip Code" required pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text">
       </div>
     </div> 
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecPhone" name="emergencycontactphone" required type="text">
+        <input class="form-control" rows="3" id="ecPhone" name="emergencycontactphone" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"  required type="text">
       </div>
     </div> 
     
     <div class="form-group">
       <label for="inputEmail" class="col-lg-5 control-label">Preferred Email Address</label>
       <div class="col-lg-5">
-        <input type="text" class="form-control" id="ecEmailTxt" name="emergencycontactemail" required type="text" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+        <input type="text" class="form-control" id="ecEmailTxt" name="emergencycontactemail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
       </div>
     </div>
     <br>
@@ -164,28 +164,27 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Mentor Name</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" required type="text">
+        <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="mentorCellTxt" name="mentorcellphone" required type="text">
-      </div>
+        <input class="form-control" rows="3" id="mentorCellTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" required type="text">
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" required type="text">
+        <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder=" Ex: H-3241" title="Example: H-3241"required type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
       <div class="col-lg-5">
-        <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+        <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail"  placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
       </div>
     </div>
     <br>
@@ -236,70 +235,70 @@
          <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Name of Site</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="siteNameTxt" name="proposedsitename" type="text">
+        <input class="form-control" rows="3" id="siteNameTxt" name="proposedsitename" placeholder="Site Name" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc):</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" type="text">
+        <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" placeholder="Specialty" pattern="[A-Za-z].{2,}" required title="Example: Pharmacy"  type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site Street Address</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psAddressTxt" name="proposedsiteaddress" type="text">
+        <input class="form-control" rows="3" id="psAddressTxt" name="proposedsiteaddress" placeholder="Address" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site City</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psCityTxt" name="proposedsitecity" type="text">
+        <input class="form-control" rows="3" id="psCityTxt" name="proposedsitecity" pattern="[A-Za-z].{1,}"  placeholder="City" title=" Example: Atlnata" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site State</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psStateTxt" name="proposedsitestate" pattern ="[A-Z]{2}" title="Invalid format ex: GA" type="text">
+        <input class="form-control" rows="3" id="psStateTxt" name="proposedsitestate" pattern="[A-Z]{2}"  placeholder="State" title="Invalid format ex: GA" title="Invalid format ex: GA" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site Zip Code</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psZipCodeTxt" name="proposedsitezipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text">
+        <input class="form-control" rows="3" id="psZipCodeTxt" name="proposedsitezipcode" placeholder="Zip Code" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Site Phone Number</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psPhoneNumber">
+        <input class="form-control" rows="3" id="psPhoneNumber"  placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx">
       </div>
     </div>
     
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Internship Manager</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psManagerTxt" name="proposedsitemanagername" type="text">
+        <input class="form-control" rows="3" id="psManagerTxt" name="proposedsitemanagername"  pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" type="text">
       </div>
     </div>
     
     <div class="form-group">
       <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
       <div class="col-lg-5">
-        <input type="text" class="form-control" id="psManagerEmail" placeholder="Email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+        <input type="text" class="form-control" id="psManagerEmail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Title of Site Manager</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psManagerTitleTxt" name="proposedsitemanagertitle" type="text">
+        <input class="form-control" rows="3" id="psManagerTitleTxt" placeholder="Title" name="proposedsitemanagertitle" type="text">
       </div>
     </div>
     <br>
@@ -311,21 +310,21 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Name of Proposed Preceptor</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="preceptorNameTxt" name="preceptorname"  type="text">
+        <input class="form-control" rows="3" id="preceptorNameTxt" name="preceptorname" placeholder="Name" type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Preceptor Phone Number</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="preceptorPhoneTxt" name="preceptorphone"  type="text">
+        <input class="form-control" rows="3" id="preceptorPhoneTxt" name="preceptorphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"   type="text">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">Preceptor Email Address</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="preceptorEmailTxt" name="preceptoremail"  type="text">
+        <input class="form-control" rows="3" id="preceptorEmailTxt" name="preceptoremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"  type="text">
       </div>
     </div>
 
@@ -392,7 +391,7 @@
     <div class="form-group">
       <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
       <div class="col-lg-5">
-        <input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" type="text">
+        <input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" placeholder="Hours" pattern="^(0|[1-9][0-9]*)$" type="text">
       </div>
     </div>
     
