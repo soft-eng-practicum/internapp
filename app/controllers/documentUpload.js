@@ -8,6 +8,8 @@ var fileUpload = require('express-fileupload');
 var nodemailer = require('nodemailer');
 var key = process.env.KEY; // password for ggcinternapp@gmail.com
 
+var User = require('../models/user');
+
 // Setting local env in powershell
 // $env:key="password"
 
@@ -20,22 +22,69 @@ var key = process.env.KEY; // password for ggcinternapp@gmail.com
 var itecCoordinatorEmail = "rbryan3@ggc.edu";
 var bioCoordinatorEmail = "rbryan3@ggc.edu";
 
-var noFilesUploadedError = " You must choose a file to upload. "
+var noFilesUploadedError = " You must choose a file to upload. ";
 
 
 module.exports.getDocumentUpload = function(req, res) {
+    var documentList = [];
+    if (req.user.role === 'admin' || req.user.role === 'instructor') {
+        User.find(function(err, users) {
+            if (err) return console.error(err);
+            users.forEach(function(user) {
+                if (user.local.documents.length > 0) {
+                    documentList += {
+                        "studentEmail" : user.local.email,
+                        "studentName"  : user.local.fname + ' ' + user.local.lname,
+                        "date"         : user.local.documents.prettyUploadDate,
+                        "section"      : user.local.documents.fileSection,
+                        "documentName" : user.local.documents.fileName,
+                        "documentType" : user.local.documents.fileType,
+                        "documentStatus": user.local.documents.documentStatus
+                    };
+                }
+            });
+        });
+    } else {  // if user is a student
+        console.log(req.user.email, ' gi');
+        User.findOne({
+            'local.email' : req.user.email
+        },
+            function(err, user) {
+                if (user.length > 1) return console.error('Error more than one user found for email: ' + req.user.email);
+                if (err) return console.error(err);
+                console.log(user.local.documents.length);
+                if (user.local.documents.length > 0) {
+                    // loop through documents
+                    var document = {
+                        "studentEmail" : user.local.email,
+                        "studentName"  : user.local.fname + ' ' + user.local.lname,
+                        "date"         : user.local.documents.prettyUploadDate,
+                        "section"      : user.local.documents.fileSection,
+                        "documentName" : user.local.documents.fileName,
+                        "documentType" : user.local.documents.fileType,
+                        "documentStatus": user.local.documents.documentStatus
+                    }
+                    
+                    documentList.push(document);
+                    console.log(document);
+                }
+            });
+        }
+       
     res.render('documentUpload', {
         user : req.session.passport.user,
-        message : req.flash('info')
+        documentList: documentList,
+        uploadError: req.flash('uploadError'),
+        successfulUpload: req.flash('successfulUpload')
     });
 }
 
 
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
-    var typeOfFile = 'resume';
+    var typeOfFile = 'Resume';
     if (!req.files.resume) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.resume, typeOfFile, req, res);
@@ -44,9 +93,9 @@ module.exports.uploadItecResume = function(req, res) {
 
 // Upload bio essay
 module.exports.uploadBioEssay = function(req, res) {
-    var typeOfFile = 'essay';
+    var typeOfFile = 'Essay';
     if (!req.files.essay) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.essay, typeOfFile, req, res);
@@ -55,9 +104,9 @@ module.exports.uploadBioEssay = function(req, res) {
 
 //Upload bio transcript
 module.exports.uploadBioTranscript = function(req, res) {
-    var typeOfFile = 'transcript';
+    var typeOfFile = 'Transcript';
     if (!req.files.transcript) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.transcript, typeOfFile, req, res);
@@ -66,9 +115,9 @@ module.exports.uploadBioTranscript = function(req, res) {
 
 // Upload itec ferpa
 module.exports.uploadItecFerpa = function(req, res) {
-    var typeOfFile = 'ferpa';
+    var typeOfFile = 'Ferpa';
     if (!req.files.ferpa) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.ferpa, typeOfFile, req, res);
@@ -86,14 +135,64 @@ module.exports.downloadFerpa = function(req, res) {
             }
             console.error(err);
         }
-    })
+    });
+};
+
+// Add a document to the user's 
+function addDocumentToUser(fileType, fileName, userEmail) {
+     // Student Name
+     var recordFileType;
+     var recordSection;
+
+     console.log('fileType = ' + fileType + ' fileName = ' + fileName);
+
+     switch (fileType.toLowerCase()) {
+         case "ferpa":
+             recordFileType = "FERPA";
+             recordSection = "ITEC";
+             break;
+        case "resume":
+             recordFileType = "Resume";
+             recordSection = "ITEC";
+             break;
+        case "transcript":
+             recordFileType = "Transcript";
+             recordSection = "Biology";
+             break;   
+        case "essay":
+             recordFileType = "Essay";
+             recordSection = "Biology";
+             break;                     
+        default:
+             console.error('fileType not recognized - upload record creation failed');
+             return false;
+     }
+     
+     console.log('userEmail = ', userEmail);
+     // Update user's document array
+     User.findOneAndUpdate({
+         'local.email' : userEmail
+    }, {
+        $push: {
+            'local.documents' : {
+                'fileType' : recordFileType,
+                'fileSection' : recordSection,
+                'fileName' : fileName,
+                'documentStatus' : 'submitted'
+            }
+        }
+    }, function(err, user) {
+        if (err) console.error(err);
+        console.log(recordFileType + ' document added to ' + userEmail);
+        return true;
+    });
 }
 
 function sendEmail(file, typeOfFile, req, res) {
     var coordinatorEmail;
     var emailSubject;
     var emailText;
-    switch (typeOfFile) {
+    switch (typeOfFile.toLowerCase()) {
         case 'transcript':
             coordinatorEmail = bioCoordinatorEmail;
             emailSubject = "Placeholder transcript subject";
@@ -133,12 +232,14 @@ function sendEmail(file, typeOfFile, req, res) {
                         encoding: 'binary'
                     }
                 ]
-            }
+            };
             transporter.sendMail(mailOptions, function(err) {
                 if (err) {
                     console.log(err);
                 }
                 console.log(typeOfFile + ' sent!');
+                addDocumentToUser(typeOfFile, file.name, req.user.email);
+                req.flash('successfulUpload', typeOfFile + ' uploaded!');
                 res.redirect('/documentUpload');
-            })
+            });
 }
