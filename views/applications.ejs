@@ -11,8 +11,29 @@
   <h2>Application Details</h2>
      <h1>Welcome! <%= user.fname %></h1>
 
+
      <% if (user.role=='user') { %>
-           <h3>You can apply for an internship <a href="/<%= user.discipline %>" button type="submit" class="btn btn-success btn-lg">HERE</button></a></h3>
+     <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Select a Major to Apply For</label>
+      
+     <div class="col-lg-5" class>
+        <select class="form-control" id="sectionList">
+		  <option vaule="Select">Select</option>
+          <option value="ITEC">ITEC</option>
+          <option value="Bio">Biology</option>
+        </select>
+        </div>
+      </div>
+      
+      <div class="ITEC">
+      <h3>You can apply for an ITEC internship <a href="/itec" button type="submit" class="btn btn-success btn-lg">HERE</button></a></h3>
+      </div>
+      
+      <div class="Bio">
+      <h3>You can apply for a Biology internship <a href="/bio" button type="submit" class="btn btn-success btn-lg">HERE</button></a></h3>
+      </div>
+           
      <% }  %>
      <% if (user.role=='admin') { %>
        <h6>Filter applications based on proposed internship semester year and discipline</h6>
@@ -83,3 +104,24 @@
         </script>
 </body>
 </html>
+
+<script>
+$(function(){
+		$('.Bio').hide();
+    $('.ITEC').hide();
+    $('#sectionList').change(function(){
+       var opt = $(this).val();
+        if(opt == 'ITEC'){
+            $('.Bio').hide();
+            $('.ITEC').show();
+        }else if(opt == 'Bio'){
+            $('.Bio').show();
+            $('.ITEC').hide();
+        }
+        else{
+        		$('.Bio').hide();
+            $('.ITEC').hide();
+        }
+    });
+});
+</script>
