@@ -22,12 +22,58 @@ var User = require('../models/user');
 var itecCoordinatorEmail = "rbryan3@ggc.edu";
 var bioCoordinatorEmail = "rbryan3@ggc.edu";
 
-var noFilesUploadedError = " You must choose a file to upload. "
+var noFilesUploadedError = " You must choose a file to upload. ";
 
 
 module.exports.getDocumentUpload = function(req, res) {
+    var documentList = [];
+    if (req.user.role === 'admin' || req.user.role === 'instructor') {
+        User.find(function(err, users) {
+            if (err) return console.error(err);
+            users.forEach(function(user) {
+                if (user.local.documents.length > 0) {
+                    documentList += {
+                        "studentEmail" : user.local.email,
+                        "studentName"  : user.local.fname + ' ' + user.local.lname,
+                        "date"         : user.local.documents.prettyUploadDate,
+                        "section"      : user.local.documents.fileSection,
+                        "documentName" : user.local.documents.fileName,
+                        "documentType" : user.local.documents.fileType,
+                        "documentStatus": user.local.documents.documentStatus
+                    };
+                }
+            });
+        });
+    } else {  // if user is a student
+        console.log(req.user.email, ' gi');
+        User.findOne({
+            'local.email' : req.user.email
+        },
+            function(err, user) {
+                if (user.length > 1) return console.error('Error more than one user found for email: ' + req.user.email);
+                if (err) return console.error(err);
+                console.log(user.local.documents.length);
+                if (user.local.documents.length > 0) {
+                    // loop through documents
+                    var document = {
+                        "studentEmail" : user.local.email,
+                        "studentName"  : user.local.fname + ' ' + user.local.lname,
+                        "date"         : user.local.documents.prettyUploadDate,
+                        "section"      : user.local.documents.fileSection,
+                        "documentName" : user.local.documents.fileName,
+                        "documentType" : user.local.documents.fileType,
+                        "documentStatus": user.local.documents.documentStatus
+                    }
+                    
+                    documentList.push(document);
+                    console.log(document);
+                }
+            });
+        }
+       
     res.render('documentUpload', {
         user : req.session.passport.user,
+        documentList: documentList,
         uploadError: req.flash('uploadError'),
         successfulUpload: req.flash('successfulUpload')
     });
@@ -89,16 +135,18 @@ module.exports.downloadFerpa = function(req, res) {
             }
             console.error(err);
         }
-    })
+    });
 };
 
 // Add a document to the user's 
-function addDocumentToUser(fileType, userEmail) {
+function addDocumentToUser(fileType, fileName, userEmail) {
      // Student Name
      var recordFileType;
      var recordSection;
 
-     switch (fileType) {
+     console.log('fileType = ' + fileType + ' fileName = ' + fileName);
+
+     switch (fileType.toLowerCase()) {
          case "ferpa":
              recordFileType = "FERPA";
              recordSection = "ITEC";
@@ -118,7 +166,6 @@ function addDocumentToUser(fileType, userEmail) {
         default:
              console.error('fileType not recognized - upload record creation failed');
              return false;
-             break;
      }
      
      console.log('userEmail = ', userEmail);
@@ -129,7 +176,9 @@ function addDocumentToUser(fileType, userEmail) {
         $push: {
             'local.documents' : {
                 'fileType' : recordFileType,
-                'fileSection' : recordSection
+                'fileSection' : recordSection,
+                'fileName' : fileName,
+                'documentStatus' : 'submitted'
             }
         }
     }, function(err, user) {
@@ -183,14 +232,14 @@ function sendEmail(file, typeOfFile, req, res) {
                         encoding: 'binary'
                     }
                 ]
-            }
+            };
             transporter.sendMail(mailOptions, function(err) {
                 if (err) {
                     console.log(err);
                 }
                 console.log(typeOfFile + ' sent!');
-                addDocumentToUser(typeOfFile, req.user.email);
-                req.flash('successfulUpload', typeOfFile + ' uploaded!')
+                addDocumentToUser(typeOfFile, file.name, req.user.email);
+                req.flash('successfulUpload', typeOfFile + ' uploaded!');
                 res.redirect('/documentUpload');
-            })
-};
+            });
+}

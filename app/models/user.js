@@ -64,9 +64,10 @@ var userSchema = mongoose.Schema({
         documents: [
           {
             prettyUploadDate: {type: String, default: formatDate(new Date())},
-            uploadDate: {type: String, default: Date.now},
+            uploadDate: {type: Date, default: Date.now},
             fileType: {type: String, required: true},
-            fileSection: {type: String, required: true}
+            fileSection: {type: String, required: true},
+            documentName: {type: String, required: true}
           }
         ],
     }

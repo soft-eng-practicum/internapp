@@ -35,7 +35,7 @@ module.exports.getBioApplication = function(req, res) {
     URL: '/applications'
 */
 module.exports.getApplications = function(req, res) {
-    if (req.user.role === 'admin' || req.user.role === 'faculty'  ) {
+    if (req.user.role === 'admin' || req.user.role === 'instructor'  ) {
                 Bio.find(function(err, bioApplications) {
                     if (err) return console.error(err);     
                     Itec.find(function(err, itecApplications) {
