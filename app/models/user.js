@@ -67,7 +67,8 @@ var userSchema = mongoose.Schema({
             uploadDate: {type: Date, default: Date.now},
             fileType: {type: String, required: true},
             fileSection: {type: String, required: true},
-            documentName: {type: String, required: true}
+            documentName: {type: String, required: true},
+            documentStatus: {type: String, required: true}
           }
         ],
     }
