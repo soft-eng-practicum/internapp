@@ -28,24 +28,33 @@ var noFilesUploadedError = " You must choose a file to upload. ";
 module.exports.getDocumentUpload = function(req, res) {
     var documentList = [];
     if (req.user.role === 'admin' || req.user.role === 'instructor') {
-        User.find(function(err, users) {
+        User.find(function(err, users) { // get all users
             if (err) return console.error(err);
-            users.forEach(function(user) {
-                if (user.local.documents.length > 0) {
-                    documentList += {
-                        "studentEmail" : user.local.email,
-                        "studentName"  : user.local.fname + ' ' + user.local.lname,
-                        "date"         : user.local.documents.prettyUploadDate,
-                        "section"      : user.local.documents.fileSection,
-                        "documentName" : user.local.documents.fileName,
-                        "documentType" : user.local.documents.fileType,
-                        "documentStatus": user.local.documents.documentStatus
-                    };
+            users.forEach(function(user) { // for each user - grab their documents array
+                if (user.local.documents.length > 0) { // if they have a document uploaded
+                    var userDocuments = user.local.documents;
+                    userDocuments.forEach(function(document) { 
+                        var document = {
+                            "studentEmail" : user.local.email,
+                            "studentName"  : user.local.fname + ' ' + user.local.lname,
+                            "date"         : document.prettyUploadDate,
+                            "section"      : document.fileSection,
+                            "documentName" : document.documentName,
+                            "documentType" : document.fileType,
+                            "documentStatus": document.documentStatus
+                        }
+                        documentList.push(document); // add it to a list to provide to the documentUpload.ejs
+                    });
                 }
             });
+                    res.render('documentUpload', {
+                    user : req.session.passport.user,
+                    documentList: documentList,
+                    uploadError: req.flash('uploadError'),
+                    successfulUpload: req.flash('successfulUpload')
+                    });
         });
-    } else {  // if user is a student
-        console.log(req.user.email, ' gi');
+    } else {  // if user is a student just display their own uploads
         User.findOne({
             'local.email' : req.user.email
         },
@@ -54,29 +63,30 @@ module.exports.getDocumentUpload = function(req, res) {
                 if (err) return console.error(err);
                 console.log(user.local.documents.length);
                 if (user.local.documents.length > 0) {
-                    // loop through documents
-                    var document = {
-                        "studentEmail" : user.local.email,
-                        "studentName"  : user.local.fname + ' ' + user.local.lname,
-                        "date"         : user.local.documents.prettyUploadDate,
-                        "section"      : user.local.documents.fileSection,
-                        "documentName" : user.local.documents.fileName,
-                        "documentType" : user.local.documents.fileType,
-                        "documentStatus": user.local.documents.documentStatus
-                    }
-                    
-                    documentList.push(document);
-                    console.log(document);
+                    var userDocuments = user.local.documents;
+                    userDocuments.forEach(function(document) { 
+                        var document = {
+                            "studentEmail" : user.local.email,
+                            "studentName"  : user.local.fname + ' ' + user.local.lname,
+                            "date"         : document.prettyUploadDate,
+                            "section"      : document.fileSection,
+                            "documentName" : document.documentName,
+                            "documentType" : document.fileType,
+                            "documentStatus": document.documentStatus
+                        }
+                        console.log('document = ',document);
+                        documentList.push(document);
+                    });
                 }
-            });
+                    console.log('docList = ',documentList)
+                    res.render('documentUpload', {
+                    user : req.session.passport.user,
+                    documentList: documentList,
+                    uploadError: req.flash('uploadError'),
+                    successfulUpload: req.flash('successfulUpload')
+                    })
+            })
         }
-       
-    res.render('documentUpload', {
-        user : req.session.passport.user,
-        documentList: documentList,
-        uploadError: req.flash('uploadError'),
-        successfulUpload: req.flash('successfulUpload')
-    });
 }
 
 
@@ -177,9 +187,18 @@ function addDocumentToUser(fileType, fileName, userEmail) {
             'local.documents' : {
                 'fileType' : recordFileType,
                 'fileSection' : recordSection,
-                'fileName' : fileName,
+                'documentName' : fileName,
                 'documentStatus' : 'submitted'
             }
+            /*
+
+            prettyUploadDate: {type: String, default: formatDate(new Date())},
+            uploadDate: {type: Date, default: Date.now},
+            fileType: {type: String, required: true},
+            fileSection: {type: String, required: true},
+            documentName: {type: String, required: true}
+
+            */
         }
     }, function(err, user) {
         if (err) console.error(err);
