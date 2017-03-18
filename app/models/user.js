@@ -47,10 +47,6 @@ var userSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        discipline: {
-            type: String,
-            required: true
-        },
         resetPasswordToken: {
             type: String
         },
