@@ -79,7 +79,13 @@
                 </tr>
             </thead>
             <tbody>
-
+            <% document.notes.forEach(function(note) { %>
+            <tr>
+              <td><%= note.note %></td>
+              <td><%= note.user %></td>
+              <td><%= note.prettyNoteDate %></td>
+            </tr>
+            <% }); %>
             </tbody>
         </table>
         <form name="documentadminnotes" action="/document/notes/<%= documentUser._id %>/<%= document._id %>" method="post">

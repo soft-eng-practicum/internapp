@@ -44,8 +44,10 @@ module.exports.getDocumentUpload = function(req, res) {
                             "section"      : document.fileSection,
                             "documentName" : document.documentName,
                             "documentType" : document.fileType,
-                            "documentStatus": document.documentStatus
+                            "documentStatus": document.documentStatus,
+                            "notes" : document.notes
                         }
+                        console.log(document.notes);
                         documentList.push(document); // add it to a list to provide to the documentUpload.ejs
                     });
                 }
@@ -78,7 +80,8 @@ module.exports.getDocumentUpload = function(req, res) {
                             "section"      : document.fileSection,
                             "documentName" : document.documentName,
                             "documentType" : document.fileType,
-                            "documentStatus": document.documentStatus
+                            "documentStatus": document.documentStatus,
+                            "notes" : document.notes
                         }
                         console.log('document = ',document);
                         documentList.push(document);
@@ -140,11 +143,6 @@ module.exports.updateSpecificDocumentStatus = function(req, res) {
 }
 
 module.exports.addSpecificDocumentNotes = function(req, res) {
-    /*
- user: {type: String, required: true}, 
-note: {type: String, required: true}, 
-                   
-    */
     User.findById({
         "_id" : req.params.userId
     }, function(err, user) {
@@ -155,13 +153,15 @@ note: {type: String, required: true},
                 }, function(err, user) {
                     var document = user.local.documents.id(req.params.documentId);
                     document.notes.push({
-                        "user" : req.session.passport.user,
+                        "user" : req.user.email,
                         "note" : req.body.note
                     })
                     user.save();
                 });
             }
         });
+        req.flash('specificDocumentSuccess', 'Document note has been added!')
+        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
     });
 }
 
