@@ -39,7 +39,6 @@
         <th>Application Status</th>
         <th>Discipline</th>
         <th>Proposed Semester Year</th>
-        <th>Feedback</th>
         <th>More</th>
       </tr>
     </thead>
@@ -53,7 +52,6 @@
     	<td><%= application.applicationstatus %></td>
       <td><%= application.userdiscipline %></td>
       <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
-      <td></td>
       <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
