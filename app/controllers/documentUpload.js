@@ -165,6 +165,29 @@ module.exports.addSpecificDocumentNotes = function(req, res) {
     });
 }
 
+module.exports.addSpecificDocumentFeedback = function(req, res) {
+    User.findById({
+        "_id" : req.params.userId
+    }, function(err, user) {
+         user.local.documents.forEach(function(document) {
+            if (document._id == req.params.documentId) {
+                User.findOne({
+                    "local.documents._id" : req.params.documentId
+                }, function(err, user) {
+                    var document = user.local.documents.id(req.params.documentId);
+                    document.feedback.push({
+                        "user" : req.user.email,
+                        "feedback" : req.body.feedback
+                    })
+                    user.save();
+                });
+            }
+        });
+        req.flash('specificDocumentSuccess', 'Document feedback has been added!')
+        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
+    }); 
+}
+
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
     var typeOfFile = 'Resume';

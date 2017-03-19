@@ -134,6 +134,7 @@ module.exports = function(app, passport) {
     app.get('/document/:userId/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
     app.post('/document/status/:userId/:documentId', isLoggedIn, ctrlUpload.updateSpecificDocumentStatus);
     app.post('/document/notes/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentNotes);
+    app.post('/document/feedback/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentFeedback);
         // Upload routes 
         app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
         app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);

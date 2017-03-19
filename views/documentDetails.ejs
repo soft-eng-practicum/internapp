@@ -68,7 +68,33 @@
            </div>
            <button type="submit" class="btn btn-success btn-lg">Change Status</button>
         </form>
-
+        <h3>Feedback</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Note</th>
+                    <th>Entered By</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% document.feedback.forEach(function(feedback) { %>
+            <tr>
+              <td><%= feedback.feedback %></td>
+              <td><%= feedback.user %></td>
+              <td><%= feedback.prettyNoteDate %></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+        <form name="documentadminnotes" action="/document/feedback/<%= documentUser._id %>/<%= document._id %>" method="post">
+            <div class="form-group">
+                <br>
+                <textarea rows="4" cols="50" name="feedback">
+                </textarea>
+            </div>
+                <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
+        </form>
         <h3>Admin and Instructor Notes</h3>
         <table class="table table-bordered">
             <thead>
