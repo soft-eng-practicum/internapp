@@ -139,6 +139,32 @@ module.exports.updateSpecificDocumentStatus = function(req, res) {
     })
 }
 
+module.exports.addSpecificDocumentNotes = function(req, res) {
+    /*
+ user: {type: String, required: true}, 
+note: {type: String, required: true}, 
+                   
+    */
+    User.findById({
+        "_id" : req.params.userId
+    }, function(err, user) {
+         user.local.documents.forEach(function(document) {
+            if (document._id == req.params.documentId) {
+                User.findOne({
+                    "local.documents._id" : req.params.documentId
+                }, function(err, user) {
+                    var document = user.local.documents.id(req.params.documentId);
+                    document.notes.push({
+                        "user" : req.session.passport.user,
+                        "note" : req.body.note
+                    })
+                    user.save();
+                });
+            }
+        });
+    });
+}
+
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
     var typeOfFile = 'Resume';

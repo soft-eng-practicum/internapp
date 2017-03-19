@@ -133,7 +133,7 @@ module.exports = function(app, passport) {
     app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
     app.get('/document/:userId/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
     app.post('/document/status/:userId/:documentId', isLoggedIn, ctrlUpload.updateSpecificDocumentStatus);
-
+    app.post('/document/notes/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentNotes);
         // Upload routes 
         app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
         app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);

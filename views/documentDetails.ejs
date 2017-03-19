@@ -68,6 +68,28 @@
            </div>
            <button type="submit" class="btn btn-success btn-lg">Change Status</button>
         </form>
+
+        <h3>Admin and Instructor Notes</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Note</th>
+                    <th>Entered By</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <form name="documentadminnotes" action="/document/notes/<%= documentUser._id %>/<%= document._id %>" method="post">
+            <div class="form-group">
+                <br>
+                <textarea rows="4" cols="50" name="note">
+                </textarea>
+            </div>
+                <button type="submit" class="btn btn-success btn-lg">Add Note</button>
+        </form>
     </div>
 </div>
       <% include partials/footerimports %>

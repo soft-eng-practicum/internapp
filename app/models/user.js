@@ -68,9 +68,17 @@ var userSchema = mongoose.Schema({
             fileType: {type: String, required: true},
             fileSection: {type: String, required: true},
             documentName: {type: String, required: true},
-            documentStatus: {type: String, required: true}
+            documentStatus: {type: String, required: true},
+            notes: [
+                { 
+                    user: {type: String, required: true}, 
+                    note: {type: String, required: true}, 
+                    prettyNoteDate: {type: String, default: formatDate(new Date())},
+                    date: { type: Date, default: Date.now }
+                }
+            ]
           }
-        ],
+        ]
     }
 });
 
