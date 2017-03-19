@@ -34,7 +34,10 @@ module.exports.getDocumentUpload = function(req, res) {
                 if (user.local.documents.length > 0) { // if they have a document uploaded
                     var userDocuments = user.local.documents;
                     userDocuments.forEach(function(document) { 
+                                               // console.log(document);
                         var document = {
+                            "docId" : document._id,
+                            "userId": user._id,
                             "studentEmail" : user.local.email,
                             "studentName"  : user.local.fname + ' ' + user.local.lname,
                             "date"         : document.prettyUploadDate,
@@ -65,6 +68,7 @@ module.exports.getDocumentUpload = function(req, res) {
                 if (user.local.documents.length > 0) {
                     var userDocuments = user.local.documents;
                     userDocuments.forEach(function(document) { 
+
                         var document = {
                             "studentEmail" : user.local.email,
                             "studentName"  : user.local.fname + ' ' + user.local.lname,
@@ -89,6 +93,49 @@ module.exports.getDocumentUpload = function(req, res) {
         }
 }
 
+// Renders the 'View Details' page for a specific document
+module.exports.getSpecificDocument = function(req, res) {
+    console.log('doc id',req.params.documentId);
+    console.log('user id', req.params.userId);
+    User.findById({
+        "_id" : req.params.userId
+    }, function(err, user) {
+        user.local.documents.forEach(function(document) {
+            if (document._id == req.params.documentId) {
+                res.render('documentDetails', {
+                    user : req.session.passport.user,
+                    document: document,
+                    documentUser: user,
+                    successMessage: req.flash('specificDocumentSuccess'),
+                    failureMessage: req.flash('specificDocumentFailure')
+                });
+            } 
+        }); 
+    });
+}
+
+module.exports.updateSpecificDocumentStatus = function(req, res) {
+        console.log('doc status doc id',req.params.documentId);
+    console.log('doc status user id', req.params.userId);
+    User.findById({
+        "_id": req.params.userId
+    }, function(err, user) {
+
+        user.local.documents.forEach(function(document) {
+            if (document._id == req.params.documentId) {
+                User.findOne({
+                    "local.documents._id" : req.params.documentId
+                }, function(err, user) {
+                    var document = user.local.documents.id(req.params.documentId);
+                    document.documentStatus = req.body.documentstatus;
+                    user.save();
+                });
+            }
+        });
+        req.flash('specificDocumentSuccess', 'Document status has been changed!')
+        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
+    })
+}
 
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {

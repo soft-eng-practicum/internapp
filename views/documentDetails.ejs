@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title>Application details</title>
+<% include partials/headerimports %>
+</head>
+    <body>
+<% include partials/nav.ejs %>
+<div class="container">
+
+    <div class="col-sm-6 col-sm-offset-3">
+        <h2>Document Information</h2>
+        <% if (successMessage.length > 0) { %>
+             <div class="alert alert-success"><%= successMessage %></div>
+        <% } %>
+        <table class="table table-bordered">
+        <% console.log(documentUser) %>
+        <% console.log(document) %>
+            <tr>
+                <td> Student Name </td>
+                <td>
+                    <%= documentUser.local.fname + ' ' + documentUser.local.lname %>
+                </td>
+            </tr>
+            <tr>
+                <td> Email </td>
+                <td>
+                    <%= documentUser.local.email %>
+                </td>
+            </tr>
+            <tr>
+                <td> Date </td>
+                <td>
+                    <%= document.prettyUploadDate %>
+                </td>
+            </tr>
+            <tr>
+                <td> Section </td>
+                <td>
+                    <%= document.fileSection %>
+                </td>
+            </tr>
+            <tr>
+                <td> Document Name </td>
+                <td>
+                    <%= document.documentName %>
+                </td>
+            </tr>
+            <tr>
+                <td> Status </td>
+                <td>
+                    <%= document.documentStatus %>
+                </td>
+            </tr>
+        </table>
+        <h3>Change Document Status</h3>
+        <form name="applicationstatus" action="/document/status/<%= documentUser._id %>/<%= document._id %>" method="post">
+            <div class="form-group">
+                <label>Document Status</label>
+                <select class="form-control" name="documentstatus">
+                    <option value="" >Select a status</option>
+                    <option value="approved" >Approved</option>
+                    <option value="denied">Denied</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="further review">Further Review</option>
+                    <option value="applicant rescinded" >Applicant Rescinded</option>                        <option value="applicant postponed">Applicant Postponed</option>
+                    <option value="site declined">Site Declined</option>
+                </select>
+           </div>
+           <button type="submit" class="btn btn-success btn-lg">Change Status</button>
+        </form>
+    </div>
+</div>
+      <% include partials/footerimports %>
+    </body>
+
+
+</html>

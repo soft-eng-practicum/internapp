@@ -131,13 +131,18 @@ module.exports = function(app, passport) {
     /* Document Upload page */
     app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
     app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
+    app.get('/document/:userId/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
+    app.post('/document/status/:userId/:documentId', isLoggedIn, ctrlUpload.updateSpecificDocumentStatus);
 
-    // Upload resume
-    app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
-    app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
-    app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
-    app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
-  
+        // Upload routes 
+        app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
+        app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
+        app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
+        app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
+    
+
+
+   
     // Mongo To Csv
     app.get('/exportItec', makeCSVDirectory, ctrlMongoToCsv.exportItec);
     // TO DO app.get('/exportBio', ctrlMongoToCsv);

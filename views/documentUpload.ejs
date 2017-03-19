@@ -95,6 +95,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         <% documentList.forEach(function(document) { %>
                     <tr>
                         <td><%= document.studentName %></td>
@@ -104,7 +105,7 @@
                         <td><%= document.documentName %></td>
                         <td><%= document.documentType %></td>
                         <td><%= document.documentStatus %></td>
-                        <td>View Details</td>
+                        <td><a href=<%="/document/" + document.userId + "/" + document.docId%>>View Details</a></td>
                     </tr>
                         <% }); %>
                     </tbody>
