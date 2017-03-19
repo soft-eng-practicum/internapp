@@ -70,6 +70,8 @@ module.exports.getDocumentUpload = function(req, res) {
                     userDocuments.forEach(function(document) { 
 
                         var document = {
+                            "docId" : document._id,
+                            "userId": user._id,
                             "studentEmail" : user.local.email,
                             "studentName"  : user.local.fname + ' ' + user.local.lname,
                             "date"         : document.prettyUploadDate,
