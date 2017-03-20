@@ -93,16 +93,18 @@ module.exports = function(app, passport) {
      app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
-    app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);
+    // app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);
     app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
     app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
-    app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);
+    app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes); 
+    app.post('/application/itec/feedback/:applicationid', isLoggedIn, ctrlApplications.addItecFeedback);   
          // BIO
     app.get('/bio', ctrlApplications.getBioApplication);
     app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
     app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificBioApplication);
-    app.post('/application/bio/documents/:applicationid', isLoggedIn, ctrlApplications.addDocument);
+    //app.post('/application/bio/documents/:applicationid', isLoggedIn, ctrlApplications.addDocument);
     app.post('/application/bio/notes/:applicationid', isLoggedIn, ctrlApplications.addBioNotes);
+    app.post('/application/bio/feedback/:applicationid', isLoggedIn, ctrlApplications.addBioFeedback);
         // BIO & ITEC
     app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
 
