@@ -217,7 +217,7 @@ module.exports.postItecApplication = function(req, res) {
     itecapp.usercity = req.user.city;
     itecapp.userstate = req.user.state;
     itecapp.userzipcode = req.user.zipcode;
-    itecapp.userdiscipline = 'Itec';
+    itecapp.userdiscipline = 'IT';
     itecapp.applicationstatus = 'submitted';
     itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
     itecapp.save(function(err) {
@@ -243,7 +243,7 @@ module.exports.postBioApplication = function(req, res) {
     bioapp.usercity = req.user.city;
     bioapp.userstate = req.user.state;
     bioapp.userzipcode = req.user.zipcode;
-    bioapp.userdiscipline = 'Bio';
+    bioapp.userdiscipline = 'Biology';
     bioapp.applicationstatus = 'submitted';
     bioapp.save(function(err) {
         if (err) {
