@@ -51,6 +51,12 @@ public class PageBase
 		}
 	}
 	
+	public WebElement Wait(WebElement element)
+	{
+		element = new WebDriverWait(driver, 5000).until(ExpectedConditions.elementToBeClickable(element));
+		return element;
+	}
+	
 	public String getTitle()
 	{
 		return driver.getTitle();
@@ -65,5 +71,17 @@ public class PageBase
 		catch (InterruptedException e)
 		{
 		}
+	}
+	
+	public void Click(WebElement element)
+	{
+		element = Wait(element);
+		element.click();
+	}
+	
+	public void SendKeys(WebElement element, String input)
+	{
+		element = Wait(element);
+		element.sendKeys(input);
 	}
 }

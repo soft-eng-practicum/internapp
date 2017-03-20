@@ -22,7 +22,7 @@ public class PromotePage extends PageBase
 	public PromotePage open()
 	{
 		String url = driver.getCurrentUrl();
-		promotePage.click();
+		Click(promotePage);
 		WaitForUrlChange(url);
 		try 
 		{

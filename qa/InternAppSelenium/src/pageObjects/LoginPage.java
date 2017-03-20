@@ -31,19 +31,19 @@ public class LoginPage extends PageBase
 	
 	public LoginPage enterEmail(String email)
 	{
-		emailTxt.sendKeys(email);
+		SendKeys(emailTxt, email);
 		return this;
 	}
 	
 	public LoginPage enterPassword(String password)
 	{
-		passwordTxt.sendKeys(password);
+		SendKeys(passwordTxt, password);
 		return this;
 	}
 	
 	public void clickLogin()
 	{
-		loginBtn.click();
+		Click(loginBtn);
 	}
 	
 	public void loginApplication(String email, String password)
