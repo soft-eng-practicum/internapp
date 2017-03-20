@@ -81,7 +81,7 @@ var userSchema = mongoose.Schema({
                 {
                         user: {type: String, required: true}, 
                         feedback: {type: String, required: true}, 
-                        prettyNoteDate: {type: String, default: formatDate(new Date())},
+                        prettyFeedbackDate: {type: String, default: formatDate(new Date())},
                         date: { type: Date, default: Date.now }
                 }
             ]

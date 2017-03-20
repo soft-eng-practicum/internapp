@@ -210,9 +210,37 @@ var itecSchema = mongoose.Schema({
                 type: Date,
                 default: Date.now
         },
-        documents     : [{ item: {type: String, required: true}, status: {type: String, required: true}}],
-        notes     : [{ user: {type: String, required: true}, note: {type: String, required: true}, date: { type: Date, default: Date.now }}]
+        feedback  : [
+            { 
+              user: {type: String, required: true}, 
+              note: {type: String, required: true}, 
+              date: { type: Date, default: Date.now },
+              prettyFeedbackDate: { type: String, default: formatDate(new Date()) }
+            }
+        ],
+        notes     : [
+            { user: {type: String, required: true}, 
+              note: {type: String, required: true}, 
+              date: { type: Date, default: Date.now },
+              prettyNotesDate: { type: String, default: formatDate(new Date()) }
+            }
+        ]
 });
+
+// Function to "prettify" the date added to the document 
+function formatDate(date) {
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var year = date.getFullYear();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = month + '/' + day + '/' + year + " " + hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+}
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('Itec', itecSchema);

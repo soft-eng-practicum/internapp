@@ -324,7 +324,13 @@
                 </tr>
             </thead>
             <tbody>
-
+            <% application.feedback.forEach(function(feedback) { %>
+                <tr>
+                    <td><%= feedback.feedback %></td>
+                    <td><%= feedback.user %></td>
+                    <td><%= feedback.prettyFeedbackDate %></td>
+                </tr>
+            <% }); %>
             </tbody>
         </table>
     <form name="bioappadminnotes" action="/application/bio/feedback/<%= application._id %>" method="post">
