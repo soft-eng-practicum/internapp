@@ -22,7 +22,7 @@ public class ApplicationsPage extends PageBase
 	public ApplicationsPage open()
 	{
 		String url = driver.getCurrentUrl();
-		applicationsPage.click();
+		Click(applicationsPage);
 		WaitForUrlChange(url);
 		try 
 		{
