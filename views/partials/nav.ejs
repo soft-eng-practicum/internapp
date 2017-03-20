@@ -13,23 +13,26 @@
       <a href="/applications"><img src="images/logo.png"></a>
        <a class="navbar-brand" href="/applications">&nbspGGC Internship App</a>
     </div>
-    
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if (user.role=='admin') { %>
         <li><a href="/applications">Applications</a></li>
-        <li><a href="/documentations">Documentations</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sites&nbsp&nbsp&nbsp&nbsp<span class="caret"></span></a>
+        <li><a href="/documentUpload">Document Uploads</a></li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Companies&nbsp&nbsp&nbsp&nbsp<span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a href="/sitenotes">Site Notes</a></li>
             <li><a href="/sites">View Sites</a></li>
             <li><a href="/addsite">Add Sites</a></li>
           </ul>
         </li>
         <li><a href="/promote">Promote</a></li>
+        <li><a href="/export">Export</a></li>
         <% } else if (user.role=='user' || user.role=='instructor') { %>
             <li><a href="/applications">Applications</a></li>
+            <li><a href="/documentUpload">Document Uploads</a></li>
         <% } %>
       </ul>
       <ul class="nav navbar-nav navbar-right">

@@ -15,7 +15,8 @@ var Itec = require('../models/itec');
 module.exports.getPromote = function(req, res) {
     if (req.session.passport.user.role == 'admin') {
         res.render('promote.ejs', {
-            user : req.user // get the user out of the session and pass to template
+            user : req.user, // get the user out of the session and pass to template
+            message : req.flash('success')
         });
     } else {
         res.redirect('/dashboard'); // if the user is not an admin, redirect
@@ -31,8 +32,8 @@ module.exports.promoteUser = function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            req.flash('info', req.body.email + ' has been promoted to ' + req.body.role);
-            res.redirect('/dashboard');
+            req.flash('success', req.body.email + ' has been promoted to ' + req.body.role);
+            res.redirect('/promote');
         }
     })
 };

@@ -1,7 +1,7 @@
 # Internapp - dasquad
 **Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 
-**Process Tool and URL:**  [Version One]( https://www9.v1host.com/GeorgiaGwinnettCollege/ )
+**Process Tool and URL:**  [Jira]( http://itec-gunay.duckdns.org:8080/ )
 
 **Communication Tool:**  [#dasquad Slack](https://ggc-dev.slack.com/messages/intern_app/)
 
@@ -22,7 +22,7 @@
 1. *Blake Norman*  [[@bnorman37]] (https://github.com/blakenorman37) ***Project Manager*** & ***Testing Lead***<br>
 2. *Michael Cawthon*  [[@mcawthon]] (https://github.com/mcawthon) ***Data Modeler*** & ***Programmer***<br>
 3. *Robert Bryan* [[@rbryan21]] (https://github.com/rbryan21): ***Lead Programmer*** & ***Documentation Lead***<br>
-4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design***<br>
+4. *Khaled Asad* [[@khaledasad]] (https://github.com/khaledasad):  ***UI/UX Design*** & ***Testing***<br>
 
 ## Fall 2016 Team Members
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
