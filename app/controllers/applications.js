@@ -37,7 +37,7 @@ module.exports.getBioApplication = function(req, res) {
 module.exports.getApplications = function(req, res) {
     if (req.user.role === 'admin' || req.user.role === 'instructor'  ) {
                 Bio.find(function(err, bioApplications) {
-                    if (err) return console.error(err);     
+                    if (err) return console.error(err);
                     Itec.find(function(err, itecApplications) {
                         if (err) return console.error(err);
                         res.render('applications.ejs', {
@@ -50,28 +50,20 @@ module.exports.getApplications = function(req, res) {
                 });
         }
         else {
-            if (req.user.discipline == 'bio') {
-                Bio.find({
-                    useremail: req.user.email
-                }, function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
-                    });
-                });
-            }
-            else {
-                Itec.find({
-                    useremail: req.user.email
-                }, function(err, applications) {
-                    if (err) return console.error(err);
-                    res.render('applications.ejs', {
-                        applicationList: applications,
-                        user: req.user
-                    });
-                });
-            }
+          Bio.find({
+            useremail: req.user.email
+          }, function(err, bioApplications) {
+              if (err) return console.error(err);
+              Itec.find({
+                useremail: req.user.email
+              }, function(err, itecApplications) {
+                  if (err) return console.error(err);
+                  res.render('applications.ejs', {
+                      applicationList: bioApplications.concat(itecApplications),
+                      user: req.user
+                  });
+              });
+          });
         }
 };
 
@@ -92,7 +84,7 @@ module.exports.getSpecificBioApplication = function(req, res) {
                 applicationFailure : req.flash('applicationfailure')               
                 });
             }
-        }); 
+        });
 };
 
 
@@ -265,7 +257,7 @@ module.exports.postItecApplication = function(req, res) {
     itecapp.usercity = req.user.city;
     itecapp.userstate = req.user.state;
     itecapp.userzipcode = req.user.zipcode;
-    itecapp.userdiscipline = req.user.discipline;
+    itecapp.userdiscipline = 'IT';
     itecapp.applicationstatus = 'submitted';
     itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
     itecapp.save(function(err) {
@@ -291,7 +283,7 @@ module.exports.postBioApplication = function(req, res) {
     bioapp.usercity = req.user.city;
     bioapp.userstate = req.user.state;
     bioapp.userzipcode = req.user.zipcode;
-    bioapp.userdiscipline = req.user.discipline;
+    bioapp.userdiscipline = 'Biology';
     bioapp.applicationstatus = 'submitted';
     bioapp.save(function(err) {
         if (err) {

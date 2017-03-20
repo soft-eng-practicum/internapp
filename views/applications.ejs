@@ -35,7 +35,6 @@
       <div class="Bio" align="left">
       <h3>You can apply for a Biology internship <a href="/bio" button type="submit" class="btn btn-success">HERE</button></a></h3>
       </div>
-           
      <% }  %>
      <% if (user.role=='admin') { %>
        <h6>Filter applications based on proposed internship semester year and discipline</h6>
@@ -48,8 +47,8 @@
 
         <select id="discipline">
           <option value=''>Select Discipline</option>
-          <option value="Itec">Itec</option>
-          <option value="Bio">Biology</option>
+          <option value="IT">IT</option>
+          <option value="Biology">Biology</option>
         </select><br><br>
      <% }  %>
   <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
