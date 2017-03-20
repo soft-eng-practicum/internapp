@@ -93,16 +93,18 @@ module.exports = function(app, passport) {
      app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
-    app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);
+    // app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);
     app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
     app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
-    app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);
+    app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes); 
+    app.post('/application/itec/feedback/:applicationid', isLoggedIn, ctrlApplications.addItecFeedback);   
          // BIO
     app.get('/bio', ctrlApplications.getBioApplication);
     app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
     app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificBioApplication);
-    app.post('/application/bio/documents/:applicationid', isLoggedIn, ctrlApplications.addDocument);
+    //app.post('/application/bio/documents/:applicationid', isLoggedIn, ctrlApplications.addDocument);
     app.post('/application/bio/notes/:applicationid', isLoggedIn, ctrlApplications.addBioNotes);
+    app.post('/application/bio/feedback/:applicationid', isLoggedIn, ctrlApplications.addBioFeedback);
         // BIO & ITEC
     app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
 
@@ -131,7 +133,16 @@ module.exports = function(app, passport) {
     /* Document Upload page */
     app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
     app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
-
+    app.get('/document/:userId/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
+    app.post('/document/status/:userId/:documentId', isLoggedIn, ctrlUpload.updateSpecificDocumentStatus);
+    app.post('/document/notes/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentNotes);
+    app.post('/document/feedback/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentFeedback);
+        // Upload routes 
+        app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
+        app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
+        app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
+        app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
+    
     // Upload resume
     app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
     app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
@@ -148,5 +159,6 @@ module.exports = function(app, passport) {
     app.get('/exportSite', makeCSVDirectory, ctrlMongoToCsv.exportSite);
 
     /* Site Notes page */
+    app.get('/sitenotes', isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 }

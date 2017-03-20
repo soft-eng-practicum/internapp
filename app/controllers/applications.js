@@ -35,13 +35,15 @@ module.exports.getBioApplication = function(req, res) {
     URL: '/applications'
 */
 module.exports.getApplications = function(req, res) {
-    if (req.user.role === 'admin' || req.user.role === 'faculty'  ) {
+    if (req.user.role === 'admin' || req.user.role === 'instructor'  ) {
                 Bio.find(function(err, bioApplications) {
                     if (err) return console.error(err);
                     Itec.find(function(err, itecApplications) {
                         if (err) return console.error(err);
                         res.render('applications.ejs', {
                             applicationList: bioApplications.concat(itecApplications),
+                            applicationSuccess: req.flash('applicationsuccess'),
+                            applicationFailure: req.flash('applicationfailure'),
                             user: req.user
                         });
                     });
@@ -78,7 +80,8 @@ module.exports.getSpecificBioApplication = function(req, res) {
                 res.render('applicationdetails.ejs', {
                 application : appdetail,
                 user : req.user,
-                message : req.flash('info')
+                applicationSuccess : req.flash('applicationsuccess'),
+                applicationFailure : req.flash('applicationfailure')               
                 });
             }
         });
@@ -98,7 +101,8 @@ module.exports.getSpecificItecApplication = function(req, res) {
                 res.render('applicationdetails.ejs', {
                 application : appdetail,
                 user : req.user,
-                message : req.flash('info')
+                applicationSuccess : req.flash('applicationsuccess'),
+                applicationFailure : req.flash('applicationfailure')  
                 });
             }
         });
@@ -122,12 +126,12 @@ module.exports.updateApplicationStatus = function(req, res) {
             );
         Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
             if (err){
-                req.flash('info',err);
+                req.flash('applicationfailure', 'An error has occured, the application status has not been changed!')
                 res.redirect('/application/itec/'+req.params.applicationid);
             }
             else{
+                req.flash('applicationsuccess', 'The application status has been successfully changed!')
                 redirect = '/application/itec/'+req.params.applicationid;
-                //res.redirect(redirect);
                 sendEmail(req, res, typeOfEmail, studentEmail, redirect);
             }
         });
@@ -141,12 +145,12 @@ module.exports.updateApplicationStatus = function(req, res) {
             );
         Bio.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
             if (err){
-                req.flash('info',err);
+                req.flash('applicationfailure', 'An error has occured, the application status has not been changed!')
                 res.redirect('/application/bio/'+req.params.applicationid);
             }
             else{
+                req.flash('applicationsuccess', 'The application status has been successfully changed!')                
                 redirect = '/application/bio/'+req.params.applicationid;
-                // res.redirect(redirect);
                 sendEmail(req, res, typeOfEmail, studentEmail, redirect);
             }
         });
@@ -163,14 +167,32 @@ module.exports.updateApplicationStatus = function(req, res) {
 module.exports.addItecNotes = function(req, res) {
  Itec.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
         if (err) {
-            req.flash('info',err);
+            req.flash('applicationfailure', 'An error has occured, the note can not be added at this time.')
             res.redirect('/application/itec/'+req.params.applicationid);
         }
         else {
+            req.flash('applicationsuccess', 'The note has been successfully added!')                
             res.redirect('/application/itec/'+req.params.applicationid);
         }
     });
 };
+
+/*
+    HTTP Req: POST
+    URL: /application/itec/feedback/:applicationid
+*/
+module.exports.addItecFeedback = function(req, res) {
+    Itec.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
+        if (err) {
+            req.flash('applicationerror',err);
+            res.redirect('/application/itec/'+req.params.applicationid);
+        }
+        else {
+            req.flash('applicationsuccess', 'The feedback has been successfully added!')
+            res.redirect('/application/itec/'+req.params.applicationid);
+        }
+    });
+}
 
 /*
     HTTP Req: POST
@@ -183,10 +205,28 @@ module.exports.addBioNotes = function(req, res) {
             res.redirect('/application/bio/'+req.params.applicationid);
         }
         else {
+            req.flash('applicationsuccess', 'The note has been successfully added!') 
             res.redirect('/application/bio/'+req.params.applicationid);
         }
     });
 };
+
+/*
+    HTTP Req: POST
+    URL: /application/bio/feedback/:applicationid
+*/
+module.exports.addBioFeedback = function(req, res) {
+    Bio.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
+        if (err) {
+            req.flash('applicationerror', 'An error has occured, the feedback cannot be added at this time.');
+            res.redirect('/application/bio/'+req.params.applicationid);
+        }
+        else {
+            req.flash('applicationsuccess', 'The feedback has been successfully added!')
+            res.redirect('/application/bio/'+req.params.applicationid);
+        }
+    });
+}
 
 /*
     HTTP Req: POST

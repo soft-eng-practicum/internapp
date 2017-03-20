@@ -8,6 +8,8 @@ var fileUpload = require('express-fileupload');
 var nodemailer = require('nodemailer');
 var key = process.env.KEY; // password for ggcinternapp@gmail.com
 
+var User = require('../models/user');
+
 // Setting local env in powershell
 // $env:key="password"
 
@@ -20,22 +22,177 @@ var key = process.env.KEY; // password for ggcinternapp@gmail.com
 var itecCoordinatorEmail = "rbryan3@ggc.edu";
 var bioCoordinatorEmail = "rbryan3@ggc.edu";
 
-var noFilesUploadedError = " You must choose a file to upload. "
+var noFilesUploadedError = " You must choose a file to upload. ";
 
 
 module.exports.getDocumentUpload = function(req, res) {
-    res.render('documentUpload', {
-        user : req.session.passport.user,
-        message : req.flash('info')
+    var documentList = [];
+    if (req.user.role === 'admin' || req.user.role === 'instructor') {
+        User.find(function(err, users) { // get all users
+            if (err) return console.error(err);
+            users.forEach(function(user) { // for each user - grab their documents array
+                if (user.local.documents.length > 0) { // if they have a document uploaded
+                    var userDocuments = user.local.documents;
+                    userDocuments.forEach(function(document) { 
+                                               // console.log(document);
+                        var document = {
+                            "docId" : document._id,
+                            "userId": user._id,
+                            "studentEmail" : user.local.email,
+                            "studentName"  : user.local.fname + ' ' + user.local.lname,
+                            "date"         : document.prettyUploadDate,
+                            "section"      : document.fileSection,
+                            "documentName" : document.documentName,
+                            "documentType" : document.fileType,
+                            "documentStatus": document.documentStatus,
+                            "notes" : document.notes
+                        }
+                        console.log(document.notes);
+                        documentList.push(document); // add it to a list to provide to the documentUpload.ejs
+                    });
+                }
+            });
+                    res.render('documentUpload', {
+                    user : req.session.passport.user,
+                    documentList: documentList,
+                    uploadError: req.flash('uploadError'),
+                    successfulUpload: req.flash('successfulUpload')
+                    });
+        });
+    } else {  // if user is a student just display their own uploads
+        User.findOne({
+            'local.email' : req.user.email
+        },
+            function(err, user) {
+                if (user.length > 1) return console.error('Error more than one user found for email: ' + req.user.email);
+                if (err) return console.error(err);
+                console.log(user.local.documents.length);
+                if (user.local.documents.length > 0) {
+                    var userDocuments = user.local.documents;
+                    userDocuments.forEach(function(document) { 
+
+                        var document = {
+                            "docId" : document._id,
+                            "userId": user._id,
+                            "studentEmail" : user.local.email,
+                            "studentName"  : user.local.fname + ' ' + user.local.lname,
+                            "date"         : document.prettyUploadDate,
+                            "section"      : document.fileSection,
+                            "documentName" : document.documentName,
+                            "documentType" : document.fileType,
+                            "documentStatus": document.documentStatus,
+                            "notes" : document.notes
+                        }
+                        console.log('document = ',document);
+                        documentList.push(document);
+                    });
+                }
+                    console.log('docList = ',documentList)
+                    res.render('documentUpload', {
+                    user : req.session.passport.user,
+                    documentList: documentList,
+                    uploadError: req.flash('uploadError'),
+                    successfulUpload: req.flash('successfulUpload')
+                    })
+            })
+        }
+}
+
+// Renders the 'View Details' page for a specific document
+module.exports.getSpecificDocument = function(req, res) {
+    console.log('doc id',req.params.documentId);
+    console.log('user id', req.params.userId);
+    User.findById({
+        "_id" : req.params.userId
+    }, function(err, user) {
+        user.local.documents.forEach(function(document) {
+            if (document._id == req.params.documentId) {
+                res.render('documentDetails', {
+                    user : req.session.passport.user,
+                    document: document,
+                    documentUser: user,
+                    successMessage: req.flash('specificDocumentSuccess'),
+                    failureMessage: req.flash('specificDocumentFailure')
+                });
+            } 
+        }); 
     });
 }
 
+module.exports.updateSpecificDocumentStatus = function(req, res) {
+        console.log('doc status doc id',req.params.documentId);
+    console.log('doc status user id', req.params.userId);
+    User.findById({
+        "_id": req.params.userId
+    }, function(err, user) {
+
+        user.local.documents.forEach(function(document) {
+            if (document._id == req.params.documentId) {
+                User.findOne({
+                    "local.documents._id" : req.params.documentId
+                }, function(err, user) {
+                    var document = user.local.documents.id(req.params.documentId);
+                    document.documentStatus = req.body.documentstatus;
+                    user.save();
+                });
+            }
+        });
+        req.flash('specificDocumentSuccess', 'Document status has been changed!')
+        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
+    })
+}
+
+module.exports.addSpecificDocumentNotes = function(req, res) {
+    User.findById({
+        "_id" : req.params.userId
+    }, function(err, user) {
+         user.local.documents.forEach(function(document) {
+            if (document._id == req.params.documentId) {
+                User.findOne({
+                    "local.documents._id" : req.params.documentId
+                }, function(err, user) {
+                    var document = user.local.documents.id(req.params.documentId);
+                    document.notes.push({
+                        "user" : req.user.email,
+                        "note" : req.body.note
+                    })
+                    user.save();
+                });
+            }
+        });
+        req.flash('specificDocumentSuccess', 'Document note has been added!')
+        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
+    });
+}
+
+module.exports.addSpecificDocumentFeedback = function(req, res) {
+    User.findById({
+        "_id" : req.params.userId
+    }, function(err, user) {
+         user.local.documents.forEach(function(document) {
+            if (document._id == req.params.documentId) {
+                User.findOne({
+                    "local.documents._id" : req.params.documentId
+                }, function(err, user) {
+                    var document = user.local.documents.id(req.params.documentId);
+                    document.feedback.push({
+                        "user" : req.user.email,
+                        "feedback" : req.body.feedback
+                    })
+                    user.save();
+                });
+            }
+        });
+        req.flash('specificDocumentSuccess', 'Document feedback has been added!')
+        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
+    }); 
+}
 
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
-    var typeOfFile = 'resume';
+    var typeOfFile = 'Resume';
     if (!req.files.resume) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.resume, typeOfFile, req, res);
@@ -44,9 +201,9 @@ module.exports.uploadItecResume = function(req, res) {
 
 // Upload bio essay
 module.exports.uploadBioEssay = function(req, res) {
-    var typeOfFile = 'essay';
+    var typeOfFile = 'Essay';
     if (!req.files.essay) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.essay, typeOfFile, req, res);
@@ -55,9 +212,9 @@ module.exports.uploadBioEssay = function(req, res) {
 
 //Upload bio transcript
 module.exports.uploadBioTranscript = function(req, res) {
-    var typeOfFile = 'transcript';
+    var typeOfFile = 'Transcript';
     if (!req.files.transcript) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.transcript, typeOfFile, req, res);
@@ -66,9 +223,9 @@ module.exports.uploadBioTranscript = function(req, res) {
 
 // Upload itec ferpa
 module.exports.uploadItecFerpa = function(req, res) {
-    var typeOfFile = 'ferpa';
+    var typeOfFile = 'Ferpa';
     if (!req.files.ferpa) {
-        req.flash('info', noFilesUploadedError);
+        req.flash('uploadError', noFilesUploadedError);
         res.redirect('/documentUpload');
     } else {
         sendEmail(req.files.ferpa, typeOfFile, req, res);
@@ -86,14 +243,73 @@ module.exports.downloadFerpa = function(req, res) {
             }
             console.error(err);
         }
-    })
+    });
+};
+
+// Add a document to the user's 
+function addDocumentToUser(fileType, fileName, userEmail) {
+     // Student Name
+     var recordFileType;
+     var recordSection;
+
+     console.log('fileType = ' + fileType + ' fileName = ' + fileName);
+
+     switch (fileType.toLowerCase()) {
+         case "ferpa":
+             recordFileType = "FERPA";
+             recordSection = "ITEC";
+             break;
+        case "resume":
+             recordFileType = "Resume";
+             recordSection = "ITEC";
+             break;
+        case "transcript":
+             recordFileType = "Transcript";
+             recordSection = "Biology";
+             break;   
+        case "essay":
+             recordFileType = "Essay";
+             recordSection = "Biology";
+             break;                     
+        default:
+             console.error('fileType not recognized - upload record creation failed');
+             return false;
+     }
+     
+     console.log('userEmail = ', userEmail);
+     // Update user's document array
+     User.findOneAndUpdate({
+         'local.email' : userEmail
+    }, {
+        $push: {
+            'local.documents' : {
+                'fileType' : recordFileType,
+                'fileSection' : recordSection,
+                'documentName' : fileName,
+                'documentStatus' : 'submitted'
+            }
+            /*
+
+            prettyUploadDate: {type: String, default: formatDate(new Date())},
+            uploadDate: {type: Date, default: Date.now},
+            fileType: {type: String, required: true},
+            fileSection: {type: String, required: true},
+            documentName: {type: String, required: true}
+
+            */
+        }
+    }, function(err, user) {
+        if (err) console.error(err);
+        console.log(recordFileType + ' document added to ' + userEmail);
+        return true;
+    });
 }
 
 function sendEmail(file, typeOfFile, req, res) {
     var coordinatorEmail;
     var emailSubject;
     var emailText;
-    switch (typeOfFile) {
+    switch (typeOfFile.toLowerCase()) {
         case 'transcript':
             coordinatorEmail = bioCoordinatorEmail;
             emailSubject = "Placeholder transcript subject";
@@ -133,12 +349,14 @@ function sendEmail(file, typeOfFile, req, res) {
                         encoding: 'binary'
                     }
                 ]
-            }
+            };
             transporter.sendMail(mailOptions, function(err) {
                 if (err) {
                     console.log(err);
                 }
                 console.log(typeOfFile + ' sent!');
+                addDocumentToUser(typeOfFile, file.name, req.user.email);
+                req.flash('successfulUpload', typeOfFile + ' uploaded!');
                 res.redirect('/documentUpload');
-            })
+            });
 }
