@@ -159,5 +159,6 @@ module.exports = function(app, passport) {
     app.get('/exportSite', makeCSVDirectory, ctrlMongoToCsv.exportSite);
 
     /* Site Notes page */
+    app.get('/sitenotes', isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 }
