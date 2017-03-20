@@ -67,9 +67,26 @@ var userSchema = mongoose.Schema({
             uploadDate: {type: Date, default: Date.now},
             fileType: {type: String, required: true},
             fileSection: {type: String, required: true},
-            documentName: {type: String, required: true}
+            documentName: {type: String, required: true},
+            documentStatus: {type: String, required: true},
+            notes: [
+                { 
+                    user: {type: String, required: true}, 
+                    note: {type: String, required: true}, 
+                    prettyNoteDate: {type: String, default: formatDate(new Date())},
+                    date: { type: Date, default: Date.now }
+                }
+            ],
+            feedback: [
+                {
+                        user: {type: String, required: true}, 
+                        feedback: {type: String, required: true}, 
+                        prettyFeedbackDate: {type: String, default: formatDate(new Date())},
+                        date: { type: Date, default: Date.now }
+                }
+            ]
           }
-        ],
+        ]
     }
 });
 
