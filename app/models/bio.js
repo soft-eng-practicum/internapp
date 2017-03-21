@@ -268,7 +268,6 @@ module.exports.doesUserHaveBioApp = function(email, callback) {
     Bio.find({
         'useremail' : email
     }, function(err, bioApp) {
-        console.log(bioApp.length);
         if (bioApp.length > 0) {
             return callback(true);
         } else {

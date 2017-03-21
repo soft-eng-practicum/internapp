@@ -253,7 +253,6 @@ module.exports.doesUserHaveItecApp = function(email, callback) {
     Itec.find({
         'useremail' : email
     }, function(err, itecApp) {
-        console.log(itecApp.length);
         if (itecApp.length > 0) {
             return callback(true);
         } else {

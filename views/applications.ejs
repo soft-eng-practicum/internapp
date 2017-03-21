@@ -9,20 +9,42 @@
 
     <div class="container">
   <h2>Application Details</h2>
+      Does user have itec? <%= haveItecApp %> <br>
+      Does user have bio? <%= haveBioApp %>
      <h1>Welcome! <%= user.fname %></h1>
      <br/>
 
      <% if (user.role=='user') { %>
       <div align="left">
-      <h3 for="select" class="col-lg-5 control-label">Select a Major to Apply For</h3>
-      
-     <div class="col-lg-3" class>
-        <select class="form-control" id="sectionList">
-		  <option vaule="Select">Select</option>
-          <option value="ITEC">ITEC</option>
-          <option value="Bio">Biology</option>
-        </select>
-        </div>
+
+      <% if (haveItecApp || haveBioApp) { %>
+          <h3 for="select" class="col-lg-5 control-label">Select an application to edit</h3>
+          <div class="col-lg-3" class>
+            <select class="form-control" id="sectionList">
+            <option vaule="Select">Select</option>
+              <% if (haveItecApp) { %>
+                <option value="ItecEdit">ITEC</option>
+              <% } %>
+              <% if (haveBioApp) { %>
+                <option value="BioEdit">Bio</option>
+              <% } %>
+            </select>
+            </div>
+      <% } %>
+      <% if (!haveItecApp || !haveBioApp) { %>
+            <h3 for="select" class="col-lg-5 control-label">Select a Major to Apply For</h3>
+            <div class="col-lg-3" class>
+              <select class="form-control" id="sectionList">
+              <option vaule="Select">Select</option>
+                <% if (!haveItecApp) { %>
+                  <option value="ITEC">ITEC</option>
+                <% } %>
+                <% if (!haveBioApp) { %>
+                  <option value="Bio">Bio</option>
+                <% } %>
+              </select>
+            </div>
+      <% } %>
       </div>
 	
 	<br/>
