@@ -20,8 +20,8 @@ var siteSchema = mongoose.Schema({
         notes: [{
                  author: {type: String, required: true}, 
                  noteText: {type: String, required: true},
-                 noteDate: {type: Date, default: formatDate(new Date())},
-		 visitDate: {type: Date, required: true},
+                 noteDate: {type: String, default: formatDate(new Date())},
+		 visitDate: {type: String, required: true},
 		 typesOfInterns: {type: String},
 		 visitLocation: {type: String}
                 }]
