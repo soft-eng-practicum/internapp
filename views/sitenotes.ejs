@@ -12,9 +12,11 @@
     <table class="table table-bordered"  >
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Author</th>
-            <th>More</th>
+            <th>Site Name</th>
+			<th>Visit Date</th>
+            <th>Note Created By</th>
+			<th>Entered On Date</th>
+            <th>Additional Information</th>
         </tr>
     </thread>
     <tbody>
@@ -31,8 +33,9 @@
         <% site.notes.forEach(function(note) { %>
         <tr>
             <td><%= site.name %></td> 
+			<td><%= note.visitDate %></td>
             <td><%= note.author %></td> 
-            <td><%= note.noteText %></td>
+            <td><%= note.noteDate %></td>
         </tr>
        
         <%  }) }}); %>
@@ -42,7 +45,7 @@
 </div>
 
 <div class="container">
-    <form name="addsitenotes" method="post">
+    <!--<form name="addsitenotes" method="post">
             <div class="form-group">
                 <label>Enter Company Name </label>
                 <input type="text" class="form-control" name="siteName" required>
@@ -51,11 +54,73 @@
             <div class="form-group">
                 <label>Description</label>
                 <input type="text" class="form-control" name="noteText" >
-            </div>
-        
-            <button type="submit" class="btn btn-warning btn-lg">Add Note</button>
-    </form>
+            </div>-->
+        <div align="center">
+            <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add Note</button>
+		</div>
+    <!--</form>-->
 </div>
+
+
+
+
+<div class="container">
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Site Note</h4>
+        </div>
+        <div class="modal-body">
+			<form name="addsitenotes" method="post" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Site Name</label>
+					<input type="text" class="col-lg-5" class="form-control" name="siteName" required>
+				</div>
+           
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Discussed Topics</label>
+					<textarea class="col-lg-5 control-label" class="form-control" name="coveredTopics" rows="4" id="interns"></textarea>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Desired Types of Interns</label>
+					<textarea class="col-lg-5 control-label" class="form-control" name="coveredTopics" rows="4" id="interns"></textarea>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Visit Made By</label>
+					<input type="text" class="col-lg-5" class="form-control" name="noteText" >
+				</div>
+				
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Visit Location</label>
+					<input type="text" class="col-lg-5" class="form-control" name="noteText" >
+				</div>
+				
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Visit Date</label>
+					<input type="text" class="col-lg-5" class="form-control" name="noteText" >
+				</div>
+			</form>
+        </div>
+        <div class="modal-footer">
+			<button type="submit" class="btn btn-success">Save</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
 
 
 <% include partials/footerimports %>

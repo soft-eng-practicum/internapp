@@ -20,7 +20,11 @@ var siteSchema = mongoose.Schema({
         notes: [{
                  author: {type: String, required: true}, 
                  noteText: {type: String, required: true},
-                 noteDate: {type: Date, default: Date.now}
+                 noteDate: {type: Date, default: Date.now},
+				 visitDate: {type: Date, required: true},
+				 typesOfInterns: {type: String},
+				 visitMadeBy: {type: String},
+				 visitLocation: {type: String}
                 }]
 });
 
