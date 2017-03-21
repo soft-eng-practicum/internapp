@@ -246,6 +246,8 @@ var bioSchema = mongoose.Schema({
         ]
 });
 
+
+
 // Function to "prettify" the date added to the document 
 function formatDate(date) {
     var month = date.getMonth() + 1;
@@ -262,4 +264,16 @@ function formatDate(date) {
 }
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('Bio', bioSchema);
+var Bio = module.exports = mongoose.model('Bio', bioSchema);
+
+module.exports.doesUserHaveBioApp = function(email) {
+    Bio.find({
+        'useremail' : email
+    }, function(err, bioApp) {
+        if (bioApp.length > 0) {
+            return true;
+        } else {
+            false;
+        }
+    });
+};
