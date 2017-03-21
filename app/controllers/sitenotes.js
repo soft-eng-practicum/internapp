@@ -15,7 +15,9 @@ module.exports.getSiteNotesPage = function(req, res) {
             if (err) return console.error(err);
             res.render('sitenotes.ejs', {
                 siteList : sites,
-                user : req.user
+                user : req.user,
+                successfulMessage : req.flash('successfulSiteNotesMessage'),
+                failureMessage: req.flash('failureSiteNotesMessage')
             });
         });
 
@@ -27,21 +29,30 @@ module.exports.getSiteNotesPage = function(req, res) {
     URL: '/name/:siteName'
 */
 module.exports.addSiteNote = function(req, res) {
-Site.update({ name: req.body.siteName },{$push: {"notes": 
-    {
-    siteName: req.body.siteName,
-    noteText: req.body.noteText,
-    author  : req.session.passport.user.email
-   }}
-    },
-function (err) {
-    if (err) {
-        req.flash('info',err);
-        res.redirect('/sitenotes/');
-    }
-    else {
-        res.redirect('/sitenotes/');
-    }
-    });
+    Site.update({ 
+            name: req.body.siteName 
+        }, {
+            $push: { 
+                "notes": {
+                    author: req.body.author,
+                    noteText: req.body.coveredTopics,
+                    author  : req.user.email,
+                    visitDate : req.body.visitDate,
+                    typesOfInterns : req.body.typesOfInterns,
+                    visitLocation : req.body.visitLocation
+                }
+            }
+        },
+        function (err) {
+            if (err) {
+                console.error(err);
+                req.flash('failureSiteNotesMessage', 'Site note could not be added at this time.');
+                res.redirect('/sitenotes/');
+            }
+            else {
+                req.flash('successfulSiteNotesMessage', 'Site note successfully added!');
+                res.redirect('/sitenotes/');
+            }
+        });
 };
 
