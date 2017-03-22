@@ -27,7 +27,7 @@
 ## Fall 2016 Team Members
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
 2. *Taylor Brust :* ***Client Liason*** <br>
-3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***   
+3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***<br>   
 4. *Jonathan Nguyen :* ***UI/UX Design*** & ***Documentation lead***<br>
 
 ## Running the application on your local machine
@@ -35,8 +35,8 @@
 <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line
 <br/>
-2. __[Clone this github repository to your local machine](https://github.com/soft-eng-practicum/internapp)__
-3. __Navigate to the internapp folder in your terminal/command line__  
-4. __Run the command 'npm install'__
-5. __Run the command 'npm start'__
-6. __Navigate to localhost:8000/ within your browser__
+2. __[Clone this github repository to your local machine](https://github.com/soft-eng-practicum/internapp)__<br>
+3. __Navigate to the internapp folder in your terminal/command line__<br>
+4. __Run the command 'npm install'__<br>
+5. __Run the command 'npm start'__<br>
+6. __Navigate to localhost:8000/ within your browser__<br>

@@ -138,10 +138,10 @@ module.exports = function(app, passport) {
     app.post('/document/notes/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentNotes);
     app.post('/document/feedback/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentFeedback);
         // Upload routes 
-        app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
-        app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
-        app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
-        app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
+    app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
+    app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
+    app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
+    app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
     
     // Upload resume
     app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
