@@ -32,8 +32,7 @@
 
 ## Running the application on your local machine
 1. __[Install Node.js (either version is fine)](https://nodejs.org/en/)__<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line
-<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line<br/>
 2. __[Clone this github repository to your local machine](https://github.com/soft-eng-practicum/internapp)__<br>
 3. __Navigate to the internapp folder in your terminal/command line__<br>
 4. __Run the command 'npm install'__<br>
