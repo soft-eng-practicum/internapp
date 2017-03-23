@@ -10,9 +10,31 @@
     <div class="container">
   <h2>Application Details</h2>
      <h1>Welcome! <%= user.fname %></h1>
+     <br/>
 
      <% if (user.role=='user') { %>
-           <h3>You can apply for an internship <a href="/<%= user.discipline %>" button type="submit" class="btn btn-success btn-lg">HERE</button></a></h3>
+      <div align="left">
+      <h3 for="select" class="col-lg-5 control-label">Select a Major to Apply For</h3>
+      
+     <div class="col-lg-3" class>
+        <select class="form-control" id="sectionList">
+		  <option vaule="Select">Select</option>
+          <option value="ITEC">ITEC</option>
+          <option value="Bio">Biology</option>
+        </select>
+        </div>
+      </div>
+	
+	<br/>
+      <br/>
+      <br/>
+      <div class="ITEC" align="left">
+      <h3>You can apply for an ITEC internship <a href="/itec" button type="submit" class="btn btn-success">HERE</button></a></h3>
+      </div>
+      
+      <div class="Bio" align="left">
+      <h3>You can apply for a Biology internship <a href="/bio" button type="submit" class="btn btn-success">HERE</button></a></h3>
+      </div>
      <% }  %>
      <% if (user.role=='admin') { %>
        <h6>Filter applications based on proposed internship semester year and discipline</h6>
@@ -25,8 +47,8 @@
 
         <select id="discipline">
           <option value=''>Select Discipline</option>
-          <option value="Itec">Itec</option>
-          <option value="Bio">Biology</option>
+          <option value="IT">IT</option>
+          <option value="Biology">Biology</option>
         </select><br><br>
      <% }  %>
   <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
@@ -39,7 +61,6 @@
         <th>Application Status</th>
         <th>Discipline</th>
         <th>Proposed Semester Year</th>
-        <th>Feedback</th>
         <th>More</th>
       </tr>
     </thead>
@@ -53,7 +74,6 @@
     	<td><%= application.applicationstatus %></td>
       <td><%= application.userdiscipline %></td>
       <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
-      <td></td>
       <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
@@ -83,3 +103,24 @@
         </script>
 </body>
 </html>
+
+<script>
+$(function(){
+		$('.Bio').hide();
+    $('.ITEC').hide();
+    $('#sectionList').change(function(){
+       var opt = $(this).val();
+        if(opt == 'ITEC'){
+            $('.Bio').hide();
+            $('.ITEC').show();
+        }else if(opt == 'Bio'){
+            $('.Bio').show();
+            $('.ITEC').hide();
+        }
+        else{
+        		$('.Bio').hide();
+            $('.ITEC').hide();
+        }
+    });
+});
+</script>

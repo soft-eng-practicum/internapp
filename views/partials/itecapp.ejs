@@ -52,18 +52,14 @@
     <tr>
         <td>Expected Graduation Date</td>
         <td>
-            <%= application.expectedGraduationDate%>
+            <%= application.expectedGraduationSemester + ' ' + application.expectedGraduationYear %>
         </td>
     </tr>
     <tr>
-        <td>Proposed Internship Semester</td>
+        <td>Proposed Internship Date</td>
         <td>
-            <%= application.proposedinternsemester %>
+            <%= application.proposedinternsemester  + ' ' + application.proposedinternyear %>
         </td>
-    </tr>
-    <tr>
-        <td>Promosed Internship Year</td>
-        <td><%=application.proposedinternyear %></td>
     </tr>
     <tr>
         <td>Major</td>
@@ -294,43 +290,29 @@
         </td>
     </tr>
 </table>
-</div>
+<h3>Feedback</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Note</th>
+                    <th>Entered By</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
 
+            </tbody>
+        </table>
+    <form name="bioappadminnotes" action="/application/bio/feedback/<%= application._id %>" method="post">
+            <div class="form-group">
+                <br>
+                <textarea rows="4" cols="50" name="feedback">
+                </textarea>
+            </div>
+                <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
+    </form>
+</div>
     <% if (user.role=='admin' || user.role=='instructor') { %>
-    <div class="col-sm-6 col-sm-offset-3">
-   <h3>Application Documents</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Recieved</th>
-        <th>Change Recieved</th>
-</tr>
-    </thead>
-
-    <tbody>
-    
-            <% application.documents.forEach(function(document) { %>
-           <tr>
-        <td>
-            <%= document.item %>
-        </td>
-                <td>
-            <%= document.status %>
-        </td>
-                        <td>
-            <% if (document.status=='no') { %>                
-            <a href='/application/itec/documents/<%= application._id %>/<%= document._id %>/yes'>Change Recieved</a>
-            <% } else { %>    
-            <a href='/application/itec/documents/<%= application._id %>/<%= document._id %>/no'>Change Recieved</a>
-            <% } %>    
-        </td>
-    </tr>
-          <% }); %>
-          </tbody>
-</table>
-</div>
-
       <div class="col-sm-6 col-sm-offset-3">
       <h3>Change Application Status</h3>
     <form name="applicationstatus" method="post">

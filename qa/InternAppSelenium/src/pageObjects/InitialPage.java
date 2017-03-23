@@ -22,6 +22,6 @@ public class InitialPage extends PageBase
 	
 	public void clickLogin()
 	{
-		loginBtn.click();
+		Click(loginBtn);
 	}
 }
