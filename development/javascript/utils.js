@@ -5,8 +5,12 @@
 
 */
 
+//var Site = require('../../app/models/site');
+
 populateSelectYears('pastAndFutureYearSelect', 2000, new Date().getFullYear());
 populateSelectYears('yearSelect', new Date().getFullYear());
+
+populateSites('siteSelect');
 
 function populateSelectYears(target, min, max) {
       if (!target){
@@ -29,6 +33,36 @@ function populateSelectYears(target, min, max) {
 
       }
   }
+
+  
+function getSites(target)
+{
+	if (!target)
+		return false;
+	else
+	{
+		Site.find(function (err, sites)
+		{
+			if (err)
+				console.error(err);
+			
+			var listOfSiteNames = [];
+			
+			sites.foreach(function(site)
+			{
+				listOfSiteNames.push(site.sitename);
+			});
+			
+			for (var i = 0; i < listOfSiteNames.length; i++)
+			{
+				var opt = document.createElement('option');
+				opt.value = listOfSiteNames[i];
+				opt.innerHTML = listOfSiteNames[i];
+				target.appendChild(opt);
+			}
+		});
+	}
+}
 
  
 
