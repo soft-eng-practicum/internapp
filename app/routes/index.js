@@ -157,6 +157,7 @@ module.exports = function(app, passport) {
     // TO DO app.get('/exportBio', ctrlMongoToCsv);
     // TO DO (maybe) app.get('/exportUser', ctrlMongoToCsv);
     app.get('/exportSite', makeCSVDirectory, ctrlMongoToCsv.exportSite);
+    app.get('/exportSiteInfo', makeCSVDirectory, ctrlMongoToCsv.exportSiteInfo);
 
     /* Site Notes page */
     app.get('/sitenotes', isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
