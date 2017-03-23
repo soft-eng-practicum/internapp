@@ -3,16 +3,92 @@
 <head>
     <title>Applications</title>
 <% include partials/headerimports %>
+
+<style>
+	#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #00B200;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+	}
+
+	#snackbar.show {
+		visibility: visible;
+		-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+		animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	}
+
+	@-webkit-keyframes fadein {
+		from {bottom: 0; opacity: 0;} 
+		to {bottom: 30px; opacity: 1;}
+	}
+
+	@keyframes fadein {
+		from {bottom: 0; opacity: 0;}
+		to {bottom: 30px; opacity: 1;}
+	}
+
+	@-webkit-keyframes fadeout {
+		from {bottom: 30px; opacity: 1;} 
+		to {bottom: 0; opacity: 0;}
+	}
+
+	@keyframes fadeout {
+		from {bottom: 30px; opacity: 1;}
+		to {bottom: 0; opacity: 0;}
+	}
+</style>
 </head>
 <body>
 <% include partials/nav.ejs %>
 
+<div id="snackbar">Application Successfully Submitted</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+
     <div class="container">
   <h2>Application Details</h2>
      <h1>Welcome! <%= user.fname %></h1>
+     <br/>
 
      <% if (user.role=='user') { %>
-           <h3>You can apply for an internship <a href="/<%= user.discipline %>" button type="submit" class="btn btn-success btn-lg">HERE</button></a></h3>
+      <div align="left">
+      <h3 for="select" class="col-lg-5 control-label">Select a Major to Apply For</h3>
+      
+     <div class="col-lg-3" class>
+        <select class="form-control" id="sectionList">
+		  <option vaule="Select">Select</option>
+          <option value="ITEC">ITEC</option>
+          <option value="Bio">Biology</option>
+        </select>
+        </div>
+      </div>
+	
+	<br/>
+      <br/>
+      <br/>
+      <div class="ITEC" align="left">
+      <h3>You can apply for an ITEC internship <a href="/itec" button type="submit" class="btn btn-success">HERE</button></a></h3>
+      </div>
+      
+      <div class="Bio" align="left">
+      <h3>You can apply for a Biology internship <a href="/bio" button type="submit" class="btn btn-success">HERE</button></a></h3>
+      </div>
      <% }  %>
      <% if (user.role=='admin') { %>
        <h6>Filter applications based on proposed internship semester year and discipline</h6>
@@ -25,8 +101,8 @@
 
         <select id="discipline">
           <option value=''>Select Discipline</option>
-          <option value="Itec">Itec</option>
-          <option value="Bio">Biology</option>
+          <option value="IT">IT</option>
+          <option value="Biology">Biology</option>
         </select><br><br>
      <% }  %>
   <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
@@ -39,7 +115,6 @@
         <th>Application Status</th>
         <th>Discipline</th>
         <th>Proposed Semester Year</th>
-        <th>Feedback</th>
         <th>More</th>
       </tr>
     </thead>
@@ -53,7 +128,6 @@
     	<td><%= application.applicationstatus %></td>
       <td><%= application.userdiscipline %></td>
       <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
-      <td></td>
       <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
   </tr>
           <% }); %>
@@ -83,3 +157,24 @@
         </script>
 </body>
 </html>
+
+<script>
+$(function(){
+		$('.Bio').hide();
+    $('.ITEC').hide();
+    $('#sectionList').change(function(){
+       var opt = $(this).val();
+        if(opt == 'ITEC'){
+            $('.Bio').hide();
+            $('.ITEC').show();
+        }else if(opt == 'Bio'){
+            $('.Bio').show();
+            $('.ITEC').hide();
+        }
+        else{
+        		$('.Bio').hide();
+            $('.ITEC').hide();
+        }
+    });
+});
+</script>

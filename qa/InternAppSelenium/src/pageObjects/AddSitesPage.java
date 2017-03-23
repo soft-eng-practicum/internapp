@@ -9,7 +9,7 @@ public class AddSitesPage extends PageBase
 {
 	private WebDriver driver;
 	
-	@FindBy(linkText = "Sites")
+	@FindBy(linkText = "Companies")
 	private WebElement sites;
 	
 	@FindBy(linkText = "Add Sites")
@@ -24,8 +24,8 @@ public class AddSitesPage extends PageBase
 	
 	public AddSitesPage open()
 	{
-		sites.click();
-		addSites.click();
+		Click(sites);
+		Click(addSites);
 		sleep(4000);
 		return this;
 	}

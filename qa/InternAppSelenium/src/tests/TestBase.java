@@ -7,13 +7,13 @@ import org.junit.Test;
 import org.junit.runner.Result;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import junit.framework.Assert;
 import junit.framework.TestResult;
 import pageObjects.AddSitesPage;
 import pageObjects.ApplicationsPage;
-import pageObjects.DocumentationsPage;
 import pageObjects.EditProfilePage;
 import pageObjects.FAQPage;
 import pageObjects.InitialPage;

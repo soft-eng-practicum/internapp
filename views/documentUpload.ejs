@@ -3,6 +3,7 @@
 <head>
     <title>Document Uploads</title>
 <% include partials/headerimports %>
+<link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
 </head>
 <body>
 <% include partials/nav.ejs %>
@@ -80,13 +81,11 @@
                 <a href="/downloadFerpa">Click here to download the FERPA document</a> 
         </form>
     </div>
-    <form name="documentRecords" method="post" align="left" id="documentRecordsForm">
-    <div align="right">
-            <form method="post">
-                <table class="table table-bordered" id="applications">
+    <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Student Name</th>
+                            <th>Email</th>
                             <th>Date</th>
                             <th>Section</th>
                             <th>Document Name</th>
@@ -96,14 +95,23 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
+                        <% documentList.forEach(function(document) { %>
+                    <tr>
+                        <td><%= document.studentName %></td>
+                        <td><%= document.studentEmail %></td>
+                        <td><%= document.date %></td>
+                        <td><%= document.section %></td>
+                        <td><%= document.documentName %></td>
+                        <td><%= document.documentType %></td>
+                        <td><%= document.documentStatus %></td>
+                        <td><a href=<%="/document/" + document.userId + "/" + document.docId%>>View Details</a></td>
+                    </tr>
+                        <% }); %>
                     </tbody>
-                </table>
-         </form>
-    </div>
-    </form>
+    </table>
 </div>
 <% include partials/footerimports %>
-<link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
 <script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
 <script type="text/javascript">
 
