@@ -13,8 +13,6 @@
              <div class="alert alert-success"><%= successMessage %></div>
         <% } %>
         <table class="table table-bordered">
-        <% console.log(documentUser) %>
-        <% console.log(document) %>
             <tr>
                 <td> Student Name </td>
                 <td>
@@ -52,6 +50,7 @@
                 </td>
             </tr>
         </table>
+        <% if (user.role=='admin' ) { %>
         <h3>Change Document Status</h3>
         <form name="applicationstatus" action="/document/status/<%= documentUser._id %>/<%= document._id %>" method="post">
             <div class="form-group">
@@ -68,6 +67,7 @@
            </div>
            <button type="submit" class="btn btn-success btn-lg">Change Status</button>
         </form>
+        <% } %>
         <h3>Feedback</h3>
         <table class="table table-bordered">
             <thead>
@@ -87,6 +87,7 @@
             <% }); %>
             </tbody>
         </table>
+        <% if (user.role=='admin') { %>
         <form name="documentadminnotes" action="/document/feedback/<%= documentUser._id %>/<%= document._id %>" method="post">
             <div class="form-group">
                 <br>
@@ -95,6 +96,8 @@
             </div>
                 <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
         </form>
+        <% } %>
+        <% if (user.role=='admin' || user.role=='instructor' ) { %>
         <h3>Admin and Instructor Notes</h3>
         <table class="table table-bordered">
             <thead>
@@ -122,6 +125,7 @@
             </div>
                 <button type="submit" class="btn btn-success btn-lg">Add Note</button>
         </form>
+        <% } %>
     </div>
 </div>
       <% include partials/footerimports %>

@@ -47,7 +47,6 @@ module.exports.getDocumentUpload = function(req, res) {
                             "documentStatus": document.documentStatus,
                             "notes" : document.notes
                         }
-                        console.log(document.notes);
                         documentList.push(document); // add it to a list to provide to the documentUpload.ejs
                     });
                 }
@@ -66,7 +65,6 @@ module.exports.getDocumentUpload = function(req, res) {
             function(err, user) {
                 if (user.length > 1) return console.error('Error more than one user found for email: ' + req.user.email);
                 if (err) return console.error(err);
-                console.log(user.local.documents.length);
                 if (user.local.documents.length > 0) {
                     var userDocuments = user.local.documents;
                     userDocuments.forEach(function(document) { 
@@ -83,11 +81,9 @@ module.exports.getDocumentUpload = function(req, res) {
                             "documentStatus": document.documentStatus,
                             "notes" : document.notes
                         }
-                        console.log('document = ',document);
                         documentList.push(document);
                     });
                 }
-                    console.log('docList = ',documentList)
                     res.render('documentUpload', {
                     user : req.session.passport.user,
                     documentList: documentList,
@@ -100,8 +96,6 @@ module.exports.getDocumentUpload = function(req, res) {
 
 // Renders the 'View Details' page for a specific document
 module.exports.getSpecificDocument = function(req, res) {
-    console.log('doc id',req.params.documentId);
-    console.log('user id', req.params.userId);
     User.findById({
         "_id" : req.params.userId
     }, function(err, user) {
@@ -120,8 +114,6 @@ module.exports.getSpecificDocument = function(req, res) {
 }
 
 module.exports.updateSpecificDocumentStatus = function(req, res) {
-        console.log('doc status doc id',req.params.documentId);
-    console.log('doc status user id', req.params.userId);
     User.findById({
         "_id": req.params.userId
     }, function(err, user) {
@@ -252,8 +244,6 @@ function addDocumentToUser(fileType, fileName, userEmail) {
      var recordFileType;
      var recordSection;
 
-     console.log('fileType = ' + fileType + ' fileName = ' + fileName);
-
      switch (fileType.toLowerCase()) {
          case "ferpa":
              recordFileType = "FERPA";
@@ -276,7 +266,6 @@ function addDocumentToUser(fileType, fileName, userEmail) {
              return false;
      }
      
-     console.log('userEmail = ', userEmail);
      // Update user's document array
      User.findOneAndUpdate({
          'local.email' : userEmail
