@@ -3,50 +3,83 @@
     <title>Add Site</title>
 <% include partials/headerimports %>
 </head>
+
 <body>
-
 <% include partials/nav.ejs %>
+
 <div class="container">
-<div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-10 col-sm-offset-1">
 
-<h1>Add Site</h1>
-
+	<div align="center">
+		<h1>Add Site</h1>
+	</div>
+	
     <!-- show any messages that come back with authentication -->
     <% if (messages.length > 0) { %>
         <div class="alert alert-danger"><%= messages %></div>
     <% } %>
     <!-- LOGIN FORM -->
-    <form name="signup" action="/addsite" onsubmit="return validateForm()" method="post">
-        <div class="form-group">
-            <label>Site Name</label>
-            <input type="text" id="siteNameTxt" class="form-control" name="name" required>
-        </div>
-        <div class="form-group">
-            <label>Address</label>
-            <input type="text" id="addressTxt" class="form-control" name="address" required>
-        </div>
-        <div class="form-group">
-            <label>City</label>
-            <input type="text" id="cityTxt" class="form-control" name="city" pattern ="[A-Za-z._]*" title="Must not contain numbers" required>
-        </div>
-        <div class="form-group">
-            <label>State</label>
-            <input type="text" id="stateTxt" class="form-control" name="state" pattern ="[A-Z]{2}" title="Invalid format ex: GA" required>
-        </div>
-        <div class="form-group">
-            <label>ZipCode</label>
-            <input type="text" id="zipCodeTxt" class="form-control" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required>
-        </div>
-        <div class="form-group">
-            <label>MOU on file?</label>
-            <input type="text" id="mouTxt" class="form-control" name="mou" required>
-        </div>
-        <div class="form-group">
-            <label>If yes when does it expire?</label>
-            <input type="text" id="expireTxt" class="form-control" name="mouexpiration">
-        </div>
+    <form name="signup" action="/addsite" class="form-horizontal" onsubmit="return validateForm()" method="post">		
+		<div class="form-group">
+			<label for="input" class="col-lg-5 control-label">Site Name</label>
+			<div class="col-lg-5">
+				<input type="text" class="form-control" name="name" required>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="input" class="col-lg-5 control-label">Address</label>
+			<div class="col-lg-5">
+				<input type="text" class="form-control" name="address" required>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="input" class="col-lg-5 control-label">City</label>
+			<div class="col-lg-5">
+				<input type="text" class="form-control" name="city" pattern ="[A-Za-z._]*" title="Must not contain numbers" required>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="input" class="col-lg-5 control-label">State</label>
+			<div class="col-lg-5">
+				<input type="text" class="form-control" name="state" pattern ="[A-Z]{2}" title="Invalid format ex: GA" required>
+			</div>
+		</div>
 
-        <button type="submit" id="addSiteBtn" class="btn btn-success btn-lg">Add Site</button>
+		<div class="form-group">
+			<label for="input" class="col-lg-5 control-label">Zip Code</label>
+			<div class="col-lg-5">
+				<input type="text" class="form-control" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="form-inline">
+				<label for="select" class="col-lg-5 control-label">MOU on file?</label>
+				<div class="col-lg-5" class>
+					<select class="form-control" name="mou" id="mouexpirationlist" required>
+						<option value="No">Select</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		
+		<div class="expiration">
+			<div class="form-group">
+				<label for="input" class="col-lg-5 control-label">MOU Expiration Date</label>
+				<div class="col-lg-5">
+					<input type="text" class="form-control" name="mouexpiration">
+				</div>
+			</div>
+		</div>
+
+		<div align="center">
+			<button type="submit" class="btn btn-success">Add Site</button>
+		</div>
     </form>
 </div>
 
@@ -55,3 +88,17 @@
 <% include partials/footerimports %>
 </body>
 </html>
+
+<script>
+$('.expiration').hide();
+$(function(){
+    $('#mouexpirationlist').change(function(){
+       var opt = $(this).val();
+        if(opt == 'Yes'){
+            $('.expiration').show();
+        }else{
+        	$('.expiration').hide();
+        }
+    });
+});
+</script>

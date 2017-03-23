@@ -38,6 +38,7 @@ module.exports.addSiteNote = function(req, res) {
                     noteText: req.body.coveredTopics,
                     author  : req.user.email,
                     visitDate : req.body.visitDate,
+                    typesOfInterns : req.body.typesOfInterns,
                     visitLocation : req.body.visitLocation
                 }
             }

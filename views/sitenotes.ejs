@@ -12,11 +12,13 @@
     <table class="table table-bordered"  >
     <thead>
         <tr>
-            <th>Site Name</th>
-			<th>Visit Date</th>
-            <th>Note Created By</th>
-			<th>Entered On Date</th>
-            <th>Additional Information</th>
+            <th> Name </th> 
+			<th> Visit Date</th>
+            <th> Author </th> 
+            <th> Topics Discussed </th>
+            <th> Types of Interns </th>
+            <th> Visit Location </th>
+            <th> Date Entered </th>
         </tr>
     </thread>
     <tbody>
@@ -35,9 +37,12 @@
             <td><%= site.name %></td> 
 			<td><%= note.visitDate %></td>
             <td><%= note.author %></td> 
+            <td><%= note.noteText %></td>
+            <td><%= note.typesOfInterns %></td>
+            <td><%= note.visitLocation %></td>
             <td><%= note.noteDate %></td>
-        </tr>
-       
+            
+        </tr>    
         <%  }) }}); %>
         
     </tbody>
@@ -105,12 +110,13 @@
 					<input type="text" class="col-lg-5" class="form-control" name="visitDate" >
 				</div>
 
+                <div class="modal-footer">
+			        <button type="submit" class="btn btn-success">Save</button>
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
 			</form>
         </div>
-        <div class="modal-footer">
-			<button type="submit" class="btn btn-success">Save</button>
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+        
       </div>
       
     </div>
