@@ -33,6 +33,7 @@ function populateSelectYears(target, min, max) {
 
       }
   }
+
   
 function getSites(target)
 {
