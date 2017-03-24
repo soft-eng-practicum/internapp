@@ -8,7 +8,7 @@
     URL: '/dashboard'
 */
 module.exports.loadDashboard = function(req, res) {
-    // If the user's role is admin, redirect them to /applications
+    // If the user's role is admin, redirect them to /dashboard
   
     res.render('dashboard.ejs', {
       //  message : req.flash('info'),
