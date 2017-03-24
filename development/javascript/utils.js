@@ -34,6 +34,21 @@ function populateSelectYears(target, min, max) {
       }
   }
 
+function makeOptionSelected(target, name) {
+	var select = document.getElementById(target);
+	console.log(select);
+	var options = select.getElementsByTagName('option');
+	console.log(options);
+	for (var index = 0; index < options.length; index++) {
+		if (options[index].value == name) {
+			console.log(name, ' selected!');
+			options[index].selected = true;
+		}
+	}
+
+}
+
+
   
 function getSites(target)
 {

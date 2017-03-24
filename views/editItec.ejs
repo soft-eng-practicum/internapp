@@ -1,0 +1,51 @@
+
+<!-- views/itec.ejs -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GGC ITEC Internship Application</title>
+    <% include partials/headerimports %>
+</head>
+
+<body>
+<% include partials/nav.ejs %>
+
+<div class="container">
+    <div class="col-sm-10 col-sm-offset-1">
+    <br>
+
+        <h1 align="center">ITEC Internship application</h1>
+        <h4 align="center">Upon Receipt of the application, Dr. Pollacia will contact you to schedule 
+        an appointment.<br><br>
+        Information will be used to determine if you will be accepted to participate in 
+        the internship program. Completion of this application does not guarantee your 
+        acceptance into the internship program and/or enrollment in ITEC 4900.</h4>
+        <br>
+<form name="itec" action="/itec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
+  <fieldset>
+  <h2 align = "center">Student Academic Information</h2>
+
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="semesterList" name="proposedinternsemester">
+		  <option value="Select">Select</option>
+            <option value="Fall">Fall</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+        </select>
+        <select class="form-control yearSelect" id="yearList" name="proposedinternyear" required type="number">
+        </select>
+        </div>
+      </div>
+    </div>
+</form>
+  <% include partials/footerimports %>
+  <script>
+    makeOptionSelected('yearList', <%= application.proposedinternyear %>)
+  </script>
+</body>
+</html>
