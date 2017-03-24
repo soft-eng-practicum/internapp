@@ -31,21 +31,309 @@
       <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
       
       <div class="col-lg-5" class>
-        <select class="form-control" id="semesterList" name="proposedinternsemester">
+        <select class="form-control" id="proposedInternSemesterList" name="proposedInternSemester">
 		  <option value="Select">Select</option>
             <option value="Fall">Fall</option>
             <option value="Spring">Spring</option>
             <option value="Summer">Summer</option>
         </select>
-        <select class="form-control yearSelect" id="yearList" name="proposedinternyear" required type="number">
+        <select class="form-control yearSelect" id="proposedInternYearList" name="proposedinternyear" required type="number">
         </select>
         </div>
       </div>
     </div>
+
+    <div class="form-group">
+      <div class="form-inline">
+        <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
+        <div class="col-lg-5" class>
+            <select class="form-control" id="expectedGraduationSemesterList" name="expectedGraduationSemester">
+            <option value="Select">Select</option>
+            <option value="Fall">Fall</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+            </select>
+            <select class="form-control yearSelect" id="expectedGraduationYearList" name="expectedGraduationYear">
+            </select>
+        </div>
+     </div>
+   </div>
+
+   <div class="form-group">
+      <div class="form-inline">
+        <label for="select" class="col-lg-5 control-label">ITEC Concentration</label>
+        <div class="col-lg-5" class>
+            <select class="form-control" id="majorList" name="major">
+			    <option value="Select">Select</option>
+                <option value="Enterprise Systems">Enterprise Systems</option>
+                <option value="Software Development">Software Development</option>
+                <option value="Systems and Security">Systems and Security</option>
+                <option value="Digital Media">Digital Media</option>
+            </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-inline">
+        <label for="select" class="col-lg-5 control-label">Student Classification</label>
+        <div class="col-lg-5" class>
+            <select class="form-control" id="classificiationList" name="classification">
+                <option value="Select">Select</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+            </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Overall GPA</label>
+      <div class="col-lg-5">
+        <input class="form-control validateGPA" rows="3" id="gpaTxt" name="gpa" type="number" min=1 max=4 placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"   required value=<%= application.gpa %>>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">ITEC Major GPA</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="itecGPATxt" name="itecgpa"  type="number"  min=1 max=4  placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"    required value=<%= application.itecgpa %>>
+      </div>
+    </div>
+    <br>
+
+    
+    <h3 align="center">
+    Please list the semester you have completed these pre-requisite courses
+    </h3>
+
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">ITEC 2150: Intermediate Programming</label>
+      <div class="col-lg-5" class>
+        <select class="form-control" id="2150Sem" name="itec2150">
+		  <option value="Select">Select</option>
+          <option value="Fall">Fall</option>
+          <option value="Spring">Spring</option>
+          <option value="Summer">Summer</option>
+        </select>
+        <select class="form-control pastAndFutureYearSelect" name="itec2150Year" id="2150Year">
+        </select>
+        </div>
+      </div>
+    </div>
+
+  <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">ITEC 3100: Introduction to Networks</label>
+      <div class="col-lg-5" class>
+        <select class="form-control" id="3100Sem" name="itec3100">
+		  <option value="Select">Select</option>
+          <option value="Fall">Fall</option>
+          <option value="Spring">Spring</option>
+          <option value="Summer">Summer</option>
+        </select>
+        <select class="form-control pastAndFutureYearSelect" name="itec3100Year" id="3100Year">
+        </select>
+      </div>
+     </div>
+   </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">ITEC 3200: Introduction to Databases</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control select" id="3200Sem" name="itec3200">
+			<option value="Select">Select</option>
+          <option value="Fall">Fall</option>
+          <option value="Spring">Spring</option>
+          <option value="Summer">Summer</option>
+        </select>
+        <select class="form-control pastAndFutureYearSelect" id="3200Year">
+        </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">ITEC 3900: Professional Practice and Ethics</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" id="3900Sem" name="itec3900">
+			<option value="Select">Select</option>
+          <option value="Fall">Fall</option>
+          <option value="Spring">Spring</option>
+          <option value="Summer">Summer</option>
+        </select>
+        <select class="form-control pastAndFutureYearSelect" id="3900Year">
+        </select>
+        </div>
+      </div>
+    </div>
+    <br>
+    <!-- -->
+    <h3 align="center">
+    Emergency Contact Information
+    </h3>
+     
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Name of Emergency Contact</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname" placeholder="Name" 
+        pattern="[A-Za-z].{2,}" required value=<%= application.emergencycontactname %> type="text">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mailing address</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress"  
+        placeholder="Address" title=" Example: 1227 Rosecliff"  type="text" 
+        required value=<%= application.emergencycontactaddress %>>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact City</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City" 
+            pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text" 
+            required value=<%= application.emergencycontactcity %>>
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact State</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="ecState"name="emergencycontactstate" placeholder="State" 
+            pattern ="[A-Z]{2}" title=" Example: GA" type="text" 
+            required value=<%= application.emergencycontactstate %>>
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode"  placeholder="Zip Code"
+            pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text" 
+            required value=<%= application.emergencycontactzipcode %>>
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="ecPhoneTxt" pattern="\d{3}[\-]\d{3}[\-]\d{4}" 
+            title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"  
+            required type="text" required value=<%= application.emergencycontactphone %>>
+      </div>
+    </div> 
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Contact Email Address</label>
+      <div class="col-lg-5">
+        <input type="email" 
+            class="form-control" id="ecEmailTxt" name="emergencycontactemail" 
+            placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"  
+            style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off" 
+            required value=<%= application.emergencycontactemail %>>
+      </div>
+    </div>
+    <br>
+    <!-- -->
+    <h3 align="center">
+        Mentor Information
+    </h3>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Name</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" 
+        pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  
+        required value=<%= application.mentorname %> type="text">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="mentorPhoneTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX" 
+        pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" 
+        required value=<%= application.mentorcellphone %> type="text">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
+      <div class="col-lg-5">
+        <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder="Ex: H-3241" 
+        title="Example: H-3241" 
+        required value=<%= application.mentoroffice %> type="text">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
+      <div class="col-lg-5">
+        <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail" placeholder="Email" 
+        pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" 
+        style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
+        required value=<%= application.mentoremail %>>
+      </div>
+    </div>
+    <br>
+    
+    <h3 align="center">
+    Student internships interests and goals
+    </h3>
+    
+    <div class="form-group">
+      <label for="textArea" class="col-lg-5 control-label">Decribe your major interests and strengths</label>
+      <div class="col-lg-5">
+        <textarea class="form-control" rows="5" id="textArea" required value=<%= application.emergencycontactemail %>>
+        </textarea>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="textArea" class="col-lg-5 control-label">What type of internship are you looking for, such as software development, security, SAP, databse, etc</label>
+      <div class="col-lg-5">
+        <textarea class="form-control" rows="5" id="interestTxt" name="interestsandstrengths" required value=<%= application.emergencycontactemail %>></textarea>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="form-inline">
+      <label for="select" class="col-lg-5 control-label">Are you interested in an internship focused mainly on Programming and Software Development?</label>
+      
+      <div class="col-lg-5" class>
+        <select class="form-control" name="focusonsoftdev" id="softwareDevList">
+			<option value="Select">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    <br>
+
 </form>
   <% include partials/footerimports %>
   <script>
-    makeOptionSelected('yearList', <%= application.proposedinternyear %>)
+    makeOptionSelected('proposedInternYearList', <%= application.proposedinternyear %>)
+    makeOptionSelected('proposedInternSemesterList', '<%= application.proposedinternsemester %>')
+    makeOptionSelected('expectedGraduationYearList', <%= application.expectedGraduationYear %>)
+    makeOptionSelected('expectedGraduationSemesterList', '<%= application.expectedGraduationSemester %>')
+    makeOptionSelected('majorList', '<%= application.major %>')
+    makeOptionSelected('2150Sem', '<%= application.itec2150 %>')
+    // TODO - add year
+    makeOptionSelected('3100Sem', '<%= application.itec3100 %>')
+     // TODO - add year
+    makeOptionSelected('3200Sem', '<%= application.itec3200 %>')
+     // TODO - add year
+    makeOptionSelected('3900Sem', '<%= application.itec3900 %>')
   </script>
 </body>
 </html>
