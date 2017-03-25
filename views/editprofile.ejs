@@ -1,83 +1,71 @@
-<!-- views/signup.ejs -->
-<!doctype html>
+<!-- views/editprofile.ejs -->
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Edit Profile</title>
-<% include partials/headerimports %>
-</head>
-<body>
-    <% include partials/nav.ejs %>
-<div class="container">
-
-<div>
-
-    <h1 align="center"><span class="fa fa-sign-in"></span> Edit Profile</h1>
-
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-
-    <!-- LOGIN FORM -->
-    <form name="editprofile" method="post" class="form-horizontal">
-		
-		<div class="form-group">
-			<label for="input" class="col-lg-4 control-label">Student ID</label>
-			<div class="col-lg-5">
-				<input type="text" class="form-control" id="studentIdTxt" name="studentid" minlength="6" pattern="900[0-9]{6}" title="Numbers only" required value=<%= profiledetails.local.studentid %>>
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="input" class="col-lg-4 control-label">First Name</label>
-			<div class="col-lg-5">
-				<input type="text" class="form-control" id="fnameTxt" name="fname" required value=<%= profiledetails.local.fname %>>
-			</div>
-		</div>
-        
-		<div class="form-group">
-			<label for="input" class="col-lg-4 control-label">Last Name</label>
-			<div class="col-lg-5">
-				<input type="text" class="form-control" id="lnameTxt" name="lname" required value=<%= profiledetails.local.lname %>>
-			</div>
-		</div>
-        
-		<div class="form-group">
-			<label for="input" class="col-lg-4 control-label">Address</label>
-			<div class="col-lg-5">
-				<input type="text" class="form-control" id="addressTxt" name="address" required value=<%= profiledetails.local.address %>>
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="input" class="col-lg-4 control-label">City</label>
-			<div class="col-lg-5">
-				<input type="text" class="form-control" id="cityTxt" name="city" pattern ="[A-Za-z._]*" title="Must not contain numbers" required value=<%= profiledetails.local.city %>>
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="input" class="col-lg-4 control-label">State</label>
-			<div class="col-lg-5">
-				<input type="text" class="form-control" id="stateTxt" name="state" pattern ="[A-Z]{2}" title="Invalid format ex: GA" required value=<%= profiledetails.local.state %>>
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="input" class="col-lg-4 control-label">Zip Code</label>
-			<div class="col-lg-5">
-				<input type="text" class="form-control" id="zipcodeTxt" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required value=<%= profiledetails.local.zipcode %>>
-			</div>
-		</div>
-		
-        <div>
-		<div align="center">
-			<button type="submit" id="submitBtn" class="btn btn-success">Update</button>
-		</div>
-	</form>
-</div>
-
-</div>
-<% include partials/footerimports %>
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <title>Edit Profile</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+      <div>
+         <h1 align="center"><span class="fa fa-sign-in"></span> Edit Profile</h1>
+         <!-- show any messages that come back with authentication -->
+         <% if (message.length > 0) { %>
+         <div class="alert alert-danger"><%= message %></div>
+         <% } %>
+         <!-- LOGIN FORM -->
+         <form name="editprofile" method="post" class="form-horizontal">
+            <div class="form-group">
+               <label for="input" class="col-lg-4 control-label">Student ID</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="studentIdTxt" name="studentid" minlength="6" pattern="900[0-9]{6}" title="Numbers only" required value=<%= profiledetails.local.studentid %>>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-4 control-label">First Name</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="fnameTxt" name="fname" required value=<%= profiledetails.local.fname %>>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-4 control-label">Last Name</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="lnameTxt" name="lname" required value=<%= profiledetails.local.lname %>>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-4 control-label">Address</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="addressTxt" name="address" required value=<%= profiledetails.local.address %>>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-4 control-label">City</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="cityTxt" name="city" pattern ="[A-Za-z._]*" title="Must not contain numbers" required value=<%= profiledetails.local.city %>>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-4 control-label">State</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="stateTxt" name="state" pattern ="[A-Z]{2}" title="Invalid format ex: GA" required value=<%= profiledetails.local.state %>>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-4 control-label">Zip Code</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="zipcodeTxt" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required value=<%= profiledetails.local.zipcode %>>
+               </div>
+            </div>
+            <div>
+               <div align="center">
+                  <button type="submit" id="submitBtn" class="btn btn-success">Update</button>
+               </div>
+         </form>
+         </div>
+      </div>
+      <% include partials/footerimports %>
+   </body>
 </html>

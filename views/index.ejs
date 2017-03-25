@@ -1,26 +1,24 @@
 <!-- views/index.ejs -->
 <!doctype html>
 <html>
-<head>
-    <title>GGC Internship Application</title>
-<% include partials/headerimports %>
-</head>
-<body>
-    <% include partials/nav.ejs %>
-<div class="container">
-
-    <div class="jumbotron text-center">
-      <img src="/images/SST_crest_small.png" alt="SST Crest" style="width:200px;height:200px;">
-        <h1> GGC Internship Application</h1>
-        <% if (urlError.length > 0) { %>
+   <head>
+      <title>GGC Internship Application</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+         <div class="jumbotron text-center">
+            <img src="/images/SST_crest_small.png" alt="SST Crest" style="width:200px;height:200px;">
+            <h1> GGC Internship Application</h1>
+            <% if (urlError.length > 0) { %>
             <div class="alert alert-danger"><%= urlError %></div>
-        <% } %>
-        <p>Login or Signup</p>
-
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
-    </div>
-</div>
-<% include partials/footerimports %>
-</body>
+            <% } %>
+            <p>Login or Signup</p>
+            <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
+            <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+         </div>
+      </div>
+      <% include partials/footerimports %>
+   </body>
 </html>

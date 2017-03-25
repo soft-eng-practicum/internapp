@@ -153,6 +153,10 @@ var itecSchema = mongoose.Schema({
                 type: String,
                 required: false
         },
+        proposedorgmanageremail: {
+                type: String,
+                required: false
+        },
         isemployedatsite: {
                 type: String,
                 required: false

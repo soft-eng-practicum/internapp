@@ -40,8 +40,7 @@ function makeOptionSelected(target, name) {
 	var options = select.getElementsByTagName('option');
 	console.log(options);
 	for (var index = 0; index < options.length; index++) {
-		if (options[index].value == name) {
-			console.log(name, ' selected!');
+		if (options[index].value.toLowerCase() == name.toLowerCase()) {
 			options[index].selected = true;
 		}
 	}

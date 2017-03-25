@@ -1,33 +1,30 @@
- <!-- views/signup.ejs -->
-<!doctype html>
+<!-- views/forgot.ejs -->
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Forgot Password</title>
-<% include partials/headerimports %>
-</head>
-<body>
-    <% include partials/nav.ejs %>
-<div class="container">
-
-<div class="col-sm-6 col-sm-offset-3">
-
- <h1><span class="fa fa-sign-in"></span> Forgot Password</h1>
-
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-
-    <!-- LOGIN FORM -->
-    <form name="signup" id="signupBtn" action="/forgot" onsubmit="return validateForm()" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="emailTxt" class="form-control" name="email" pattern="[A-Za-z0-9._]*@ggc.edu" title="Must be a @ggc.edu email address" required>
-        </div>
-        <button type="submit" id="resetBtn" class="btn btn-success btn-lg">Reset Password</button>
-    </form>
-</div>
-</div>
-<% include partials/footerimports %>
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <title>Forgot Password</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+         <div class="col-sm-6 col-sm-offset-3">
+            <h1><span class="fa fa-sign-in"></span> Forgot Password</h1>
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+            <!-- LOGIN FORM -->
+            <form name="signup" id="signupBtn" action="/forgot" onsubmit="return validateForm()" method="post">
+               <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="emailTxt" class="form-control" name="email" pattern="[A-Za-z0-9._]*@ggc.edu" title="Must be a @ggc.edu email address" required>
+               </div>
+               <button type="submit" id="resetBtn" class="btn btn-success btn-lg">Reset Password</button>
+            </form>
+         </div>
+      </div>
+      <% include partials/footerimports %>
+   </body>
 </html>

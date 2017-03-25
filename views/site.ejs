@@ -1,50 +1,51 @@
-    <!doctype html>
+<!-- views/site.ejs -->
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Site List</title>
-<% include partials/headerimports %>
-</head>
-<body>
-<% include partials/nav.ejs %>
-
-    <div class="container">
-  <h2>Site Details</h2>
-  <table class="table table-bordered" id="sites">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>Valid MOU</th>
-        <th>MOU Expiration</th>
-        <th>Edit</th>
-        <th>View Details</th>
-      </tr>
-    </thead>
-    <tbody>
-        <% siteList.forEach(function(site) { %>
-      <tr>
-        <td><%= site.name %></td>
-        <td><%= site.address %></td>
-        <td><%= site.city %></td>
-        <% if (site.mou=='yes') { %>
-        <td><%= site.mou %></td>
-        <% } else { %>
-        <td>No</td>
-        <% } %>
-        <td><%= site.mouexpiration %></td>
-        <td><a href=<%="/site/edit/"+site._id %>>Edit</a></td>
-        <td><a href=<%="/site/"+site._id %>>View Details</a></td>
-      </tr>
-          <% }); %>
-    </tbody>
-  </table>
-</div>
-<% include partials/footerimports %>
-        <script type="text/javascript">
-          $(document).ready(function(){
-           $('#sites').DataTable();
-          });
-        </script>
-    </body>
-    </html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Site List</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+         <h2>Site Details</h2>
+         <table class="table table-bordered" id="sites">
+            <thead>
+               <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>Valid MOU</th>
+                  <th>MOU Expiration</th>
+                  <th>Edit</th>
+                  <th>View Details</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% siteList.forEach(function(site) { %>
+               <tr>
+                  <td><%= site.name %></td>
+                  <td><%= site.address %></td>
+                  <td><%= site.city %></td>
+                  <% if (site.mou=='yes') { %>
+                  <td><%= site.mou %></td>
+                  <% } else { %>
+                  <td>No</td>
+                  <% } %>
+                  <td><%= site.mouexpiration %></td>
+                  <td><a href=<%="/site/edit/"+site._id %>>Edit</a></td>
+                  <td><a href=<%="/site/"+site._id %>>View Details</a></td>
+               </tr>
+               <% }); %>
+            </tbody>
+         </table>
+      </div>
+      <% include partials/footerimports %>
+      <script type="text/javascript">
+         $(document).ready(function(){
+          $('#sites').DataTable();
+         });
+      </script>
+   </body>
+</html>
