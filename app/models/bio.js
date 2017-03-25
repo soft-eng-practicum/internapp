@@ -21,6 +21,10 @@ var bioSchema = mongoose.Schema({
         type: String,
         required: false
     },
+    emergencycontactstate: {
+                type: String,
+                required: false
+    },
     emergencycontactzipcode: {
         type: String,
         required: false
