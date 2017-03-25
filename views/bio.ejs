@@ -122,7 +122,7 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label" >Contact State</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecStateTxt" placeholder="State" pattern ="[A-Z]{2}" title=" Example: GA" required>
+                  <input class="form-control" rows="3" id="ecStateTxt" name="emergencycontactstate" placeholder="State" pattern ="[A-Z]{2}" title=" Example: GA" required>
                </div>
             </div>
             <div class="form-group">
@@ -251,7 +251,7 @@
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Site Phone Number</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="psPhoneNumber"  placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx">
+                     <input class="form-control" rows="3" id="psPhoneNumber" name="proposedsitephone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx">
                   </div>
                </div>
                <div class="form-group">
@@ -263,7 +263,7 @@
                <div class="form-group">
                   <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
                   <div class="col-lg-5">
-                     <input type="text" class="form-control" id="psManagerEmail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+                     <input type="text" class="form-control" id="psManagerEmail" name="proposedsitemanageremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
                   </div>
                </div>
                <div class="form-group">
@@ -274,6 +274,7 @@
                </div>
             </div>
             <br>
+            <!-- -->
             <h3 align="center">
                Proposed Preceptor Information
             </h3>

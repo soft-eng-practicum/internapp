@@ -165,14 +165,27 @@ module.exports = function(app, passport) {
 
 
 
-    var Itec = require('../models/itec.js');
+    
 
-    /* TEST ROUTES */
+    /* TEMPORARY TEST ROUTES */
+    var Itec = require('../models/itec.js');
+    var Bio = require('../models/bio.js');
     app.get('/edititec', function(req, res, next) {
         // id = 58c9dfde4dfd6d0011a8475e
         Itec.findById({"_id" : "58c9dfde4dfd6d0011a8475e"},
         function(err, itec) {
             res.render('editItec.ejs', {
+                application: itec
+            })
+        });
+
+    });
+
+    app.get('/editbio', function(req, res, next) {
+        // id = 58c9dfde4dfd6d0011a8475e
+        Bio.findById({"_id" : "58d6cdcbc2245e0011444b7b"},
+        function(err, itec) {
+            res.render('editBio.ejs', {
                 application: itec
             })
         });

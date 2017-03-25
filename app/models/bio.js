@@ -109,6 +109,10 @@ var bioSchema = mongoose.Schema({
         type: String,
         required: false
     },
+    proposedsitephone: {
+        type: String,
+        required: false
+    },
     proposedsitemanagername: {
         type: String,
         required: false
