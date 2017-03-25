@@ -172,6 +172,60 @@ module.exports.exportBio = function(req, res) {
     });
 };
 
+/*
+Creates a csv file utilizing the following fields from the Site Information Collection:
+    - contactname
+    - title
+    - email
+    - office
+    - cell
+ csv file saved @: projectroot/csv/siteInfo.csv
+*/
+module.exports.exportSiteInfo = function(req, res, next) {
+    var collectionType = 'siteInfo';
+    var siteInfoArray = [];
+    Site.find({
+    }, function(err, sites) {
+
+        sites.forEach(function(site) {
+
+         site.findById(req.parms.siteId)
+             .exec(
+                 function(err,site){
+              for( var i = 0; i < siteInfoArray.find.length; i++)
+              {  
+                var siteInfoJson = {
+                    Contact : siteInfoEntries.name,
+                    Title : siteInfoEntries.title,
+                    Email : siteInfoEntries.email,
+                    Office : siteInfoEntries.office,
+                    Cell : siteInfoEntries.cell
+                    
+               }};
+            siteInfoArray.push(siteInfoJson);
+        });
+            // Field names for csv files
+        var fields = ['Contact', 'Title', 'Email', 'Notes', 'Office',
+        'Cell'];
+
+        var csv = json2csv({ data: siteInfoArray, fields: fields });
+
+        fs.writeFile('csv/siteInfo.csv', csv, function(err) {
+            if (err) {
+                console.log(err);
+            }
+            console.log('file successfully saved');
+            download(res, collectionType);
+        });
+    });
+});
+
+
+
+
+
+
+
 // Downloads the csv associated with the collection type being passed in
 function download(res, collectionType) {
     var csvPath;
@@ -182,6 +236,9 @@ function download(res, collectionType) {
         case 'site':
             csvPath = path.resolve(__dirname + '/../../csv/internshipSites.csv');
             break;
+        case 'siteInfo':
+            csvPath = path.resolve(__dirname + '/../../csv/SiteInformation.csv');
+            break;
         default:
             console.log("unknown collectionType");
             res.redirect('/');
@@ -191,4 +248,4 @@ function download(res, collectionType) {
         if (err) console.error('Error downloading csv: ', err);
         else console.log(collectionType, "successfully downloaded!")
     });
-}
+}}

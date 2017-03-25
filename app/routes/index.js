@@ -62,7 +62,7 @@ module.exports = function(app, passport) {
     app.get('/login', ctrlLogin.getLogin);
     app.post('/login',
             passport.authenticate('local-login', {
-            successRedirect : '/applications',
+            successRedirect : '/dashboard',
             failureRedirect : '/login',
             failureFlash : true
         }));
@@ -73,7 +73,7 @@ module.exports = function(app, passport) {
      /* Sign up page */
     app.get('/signup', ctrlSignUp.loadSignUp);
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/applications',
+            successRedirect : '/dashboard',
             failureRedirect : '/signup',
             failureFlash : true
         }));
@@ -157,6 +157,7 @@ module.exports = function(app, passport) {
     // TO DO app.get('/exportBio', ctrlMongoToCsv);
     // TO DO (maybe) app.get('/exportUser', ctrlMongoToCsv);
     app.get('/exportSite', makeCSVDirectory, ctrlMongoToCsv.exportSite);
+    app.get('/exportSiteInfo', makeCSVDirectory, ctrlMongoToCsv.exportSiteInfo);
 
     /* Site Notes page */
     app.get('/sitenotes', isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
