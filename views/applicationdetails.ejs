@@ -1,30 +1,30 @@
+<!-- views/applicationdetails.ejs -->
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Application details</title>
-<% include partials/headerimports %>
-</head>
-    <body>
-<% include partials/nav.ejs %>
-<div class="container">
-  <div class="col-sm-6 col-sm-offset-3">
-    <h2>Application Information</h2>
-        <!-- show any messages that come back with authentication -->
-    <% if (applicationFailure.length > 0) { %>
-        <div class="alert alert-danger"><%= applicationFailure %></div>
-    <% } %>
-    <% if (applicationSuccess.length > 0) { %>
-        <div class="alert alert-success"><%= applicationSuccess %></div>
-    <% } %>
-  </div>
-      <% if (application.userdiscipline == 'itec') { %>
-      <% include partials/itecapp.ejs %>
-      <% } else { %>
-      <% include partials/bioapp.ejs %>
-      <% } %>
-
-</div>
+   <head>
+      <meta charset="UTF-8">
+      <title>Application Details</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+         <div class="col-sm-6 col-sm-offset-3">
+            <h2>Application Information</h2>
+            <!-- show any messages that come back with authentication -->
+            <% if (applicationFailure.length > 0) { %>
+            <div class="alert alert-danger"><%= applicationFailure %></div>
+            <% } %>
+            <% if (applicationSuccess.length > 0) { %>
+            <div class="alert alert-success"><%= applicationSuccess %></div>
+            <% } %>
+         </div>
+         <% if (application.userdiscipline == 'itec') { %>
+         <% include partials/itecapp.ejs %>
+         <% } else { %>
+         <% include partials/bioapp.ejs %>
+         <% } %>
+      </div>
       <% include partials/footerimports %>
-    </body>
-
-
+   </body>
 </html>

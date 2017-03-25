@@ -162,4 +162,21 @@ module.exports = function(app, passport) {
     /* Site Notes page */
     app.get('/sitenotes', isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
+
+
+
+
+    var Itec = require('../models/itec.js');
+
+    /* TEST ROUTES */
+    app.get('/edititec', function(req, res, next) {
+        // id = 58c9dfde4dfd6d0011a8475e
+        Itec.findById({"_id" : "58c9dfde4dfd6d0011a8475e"},
+        function(err, itec) {
+            res.render('editItec.ejs', {
+                application: itec
+            })
+        });
+
+    });
 }

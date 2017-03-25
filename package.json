@@ -31,14 +31,22 @@
     "serve-favicon": "^2.3.2"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.2",
     "jasmine": "^2.5.3",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1",
     "karma": "^1.5.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.1.0",
     "karma-script-launcher": "^1.0.0",
     "karma-webpack": "^2.0.2",
+    "request": "^2.79.0",
     "requirejs": "^2.3.3",
-     "request": "^2.79.0",
     "webpack": "^2.2.1"
   }
 }
