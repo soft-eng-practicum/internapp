@@ -1,135 +1,136 @@
+<!-- views/documentDetails.ejs -->
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Application details</title>
-<% include partials/headerimports %>
-</head>
-    <body>
-<% include partials/nav.ejs %>
-<div class="container">
-
-    <div class="col-sm-6 col-sm-offset-3">
-        <h2>Document Information</h2>
-        <% if (successMessage.length > 0) { %>
-             <div class="alert alert-success"><%= successMessage %></div>
-        <% } %>
-        <table class="table table-bordered">
-            <tr>
-                <td> Student Name </td>
-                <td>
-                    <%= documentUser.local.fname + ' ' + documentUser.local.lname %>
-                </td>
-            </tr>
-            <tr>
-                <td> Email </td>
-                <td>
-                    <%= documentUser.local.email %>
-                </td>
-            </tr>
-            <tr>
-                <td> Date </td>
-                <td>
-                    <%= document.prettyUploadDate %>
-                </td>
-            </tr>
-            <tr>
-                <td> Section </td>
-                <td>
-                    <%= document.fileSection %>
-                </td>
-            </tr>
-            <tr>
-                <td> Document Name </td>
-                <td>
-                    <%= document.documentName %>
-                </td>
-            </tr>
-            <tr>
-                <td> Status </td>
-                <td>
-                    <%= document.documentStatus %>
-                </td>
-            </tr>
-        </table>
-        <% if (user.role=='admin' ) { %>
-        <h3>Change Document Status</h3>
-        <form name="applicationstatus" action="/document/status/<%= documentUser._id %>/<%= document._id %>" method="post">
-            <div class="form-group">
-                <label>Document Status</label>
-                <select class="form-control" name="documentstatus">
-                    <option value="" >Select a status</option>
-                    <option value="approved" >Approved</option>
-                    <option value="denied">Denied</option>
-                    <option value="incomplete">Incomplete</option>
-                    <option value="further review">Further Review</option>
-                    <option value="applicant rescinded" >Applicant Rescinded</option>                        <option value="applicant postponed">Applicant Postponed</option>
-                    <option value="site declined">Site Declined</option>
-                </select>
-           </div>
-           <button type="submit" class="btn btn-success btn-lg">Change Status</button>
-        </form>
-        <% } %>
-        <h3>Feedback</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Note</th>
-                    <th>Entered By</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-            <% document.feedback.forEach(function(feedback) { %>
-            <tr>
-              <td><%= feedback.feedback %></td>
-              <td><%= feedback.user %></td>
-              <td><%= feedback.prettyNoteDate %></td>
-            </tr>
-            <% }); %>
-            </tbody>
-        </table>
-        <% if (user.role=='admin') { %>
-        <form name="documentadminnotes" action="/document/feedback/<%= documentUser._id %>/<%= document._id %>" method="post">
-            <div class="form-group">
-                <br>
-                <textarea rows="4" cols="50" name="feedback">
-                </textarea>
-            </div>
-                <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
-        </form>
-        <% } %>
-        <% if (user.role=='admin' || user.role=='instructor' ) { %>
-        <h3>Admin and Instructor Notes</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Note</th>
-                    <th>Entered By</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-            <% document.notes.forEach(function(note) { %>
-            <tr>
-              <td><%= note.note %></td>
-              <td><%= note.user %></td>
-              <td><%= note.prettyNoteDate %></td>
-            </tr>
-            <% }); %>
-            </tbody>
-        </table>
-        <form name="documentadminnotes" action="/document/notes/<%= documentUser._id %>/<%= document._id %>" method="post">
-            <div class="form-group">
-                <br>
-                <textarea rows="4" cols="50" name="note">
-                </textarea>
-            </div>
-                <button type="submit" class="btn btn-success btn-lg">Add Note</button>
-        </form>
-        <% } %>
-    </div>
-</div>
+   <head>
+      <meta charset='utf-8'>
+      <title>Document details</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+         <div class="col-sm-6 col-sm-offset-3">
+            <h2>Document Information</h2>
+            <% if (successMessage.length > 0) { %>
+            <div class="alert alert-success"><%= successMessage %></div>
+            <% } %>
+            <table class="table table-bordered">
+               <tr>
+                  <td> Student Name </td>
+                  <td>
+                     <%= documentUser.local.fname + ' ' + documentUser.local.lname %>
+                  </td>
+               </tr>
+               <tr>
+                  <td> Email </td>
+                  <td>
+                     <%= documentUser.local.email %>
+                  </td>
+               </tr>
+               <tr>
+                  <td> Date </td>
+                  <td>
+                     <%= document.prettyUploadDate %>
+                  </td>
+               </tr>
+               <tr>
+                  <td> Section </td>
+                  <td>
+                     <%= document.fileSection %>
+                  </td>
+               </tr>
+               <tr>
+                  <td> Document Name </td>
+                  <td>
+                     <%= document.documentName %>
+                  </td>
+               </tr>
+               <tr>
+                  <td> Status </td>
+                  <td>
+                     <%= document.documentStatus %>
+                  </td>
+               </tr>
+            </table>
+            <% if (user.role=='admin' ) { %>
+            <h3>Change Document Status</h3>
+            <form name="applicationstatus" action="/document/status/<%= documentUser._id %>/<%= document._id %>" method="post">
+               <div class="form-group">
+                  <label>Document Status</label>
+                  <select class="form-control" name="documentstatus">
+                     <option value="" >Select a status</option>
+                     <option value="approved" >Approved</option>
+                     <option value="denied">Denied</option>
+                     <option value="incomplete">Incomplete</option>
+                     <option value="further review">Further Review</option>
+                     <option value="applicant rescinded" >Applicant Rescinded</option>
+                     <option value="applicant postponed">Applicant Postponed</option>
+                     <option value="site declined">Site Declined</option>
+                  </select>
+               </div>
+               <button type="submit" class="btn btn-success btn-lg">Change Status</button>
+            </form>
+            <% } %>
+            <h3>Feedback</h3>
+            <table class="table table-bordered">
+               <thead>
+                  <tr>
+                     <th>Note</th>
+                     <th>Entered By</th>
+                     <th>Date</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <% document.feedback.forEach(function(feedback) { %>
+                  <tr>
+                     <td><%= feedback.feedback %></td>
+                     <td><%= feedback.user %></td>
+                     <td><%= feedback.prettyNoteDate %></td>
+                  </tr>
+                  <% }); %>
+               </tbody>
+            </table>
+            <% if (user.role=='admin') { %>
+            <form name="documentadminnotes" action="/document/feedback/<%= documentUser._id %>/<%= document._id %>" method="post">
+               <div class="form-group">
+                  <br>
+                  <textarea rows="4" cols="50" name="feedback">
+                  </textarea>
+               </div>
+               <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
+            </form>
+            <% } %>
+            <% if (user.role=='admin' || user.role=='instructor' ) { %>
+            <h3>Admin and Instructor Notes</h3>
+            <table class="table table-bordered">
+               <thead>
+                  <tr>
+                     <th>Note</th>
+                     <th>Entered By</th>
+                     <th>Date</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <% document.notes.forEach(function(note) { %>
+                  <tr>
+                     <td><%= note.note %></td>
+                     <td><%= note.user %></td>
+                     <td><%= note.prettyNoteDate %></td>
+                  </tr>
+                  <% }); %>
+               </tbody>
+            </table>
+            <form name="documentadminnotes" action="/document/notes/<%= documentUser._id %>/<%= document._id %>" method="post">
+               <div class="form-group">
+                  <br>
+                  <textarea rows="4" cols="50" name="note">
+                  </textarea>
+               </div>
+               <button type="submit" class="btn btn-success btn-lg">Add Note</button>
+            </form>
+            <% } %>
+         </div>
+      </div>
       <% include partials/footerimports %>
-    </body>
-
-
+   </body>
 </html>

@@ -1,136 +1,140 @@
-    <!doctype html>
+<!-- views/documentUpload.ejs -->
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Document Uploads</title>
-<% include partials/headerimports %>
-<link rel="stylesheet" type="text/css" href="/stylesheet/datatables.css">
-</head>
-<body>
-<% include partials/nav.ejs %>
-<div class="container">
-        <h2>Document Uploads</h2>
-        <% if (successfulUpload.length > 0) { %>
-            <div class="alert alert-success"><%= successfulUpload %></div>
-        <% } %>
-        <% if (uploadError.length > 0) { %>
-            <div class="alert alert-danger"><%= uploadError %></div>
-        <% } %>
-        <div class="form-group">
+   <head>
+      <meta charset='utf-8'>
+      <title>Document Uploads</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+         <h2>Document Uploads</h2>
+         <% if (successfulUpload.length > 0) { %>
+         <div class="alert alert-success"><%= successfulUpload %></div>
+         <% } %>
+         <% if (uploadError.length > 0) { %>
+         <div class="alert alert-danger"><%= uploadError %></div>
+         <% } %>
+         <div class="form-group">
             <h4>Choose Documents to Upload</h4>
             <select id="major">
-                <option>Choose Major</option>
-                <option value="bio">Bio</option>
-                <option value="itec">Itec</option>
+               <option>Choose Major</option>
+               <option value="bio">Bio</option>
+               <option value="itec">Itec</option>
             </select>
-        </div>
-    <div class="uploadBox" id="bioBox">
-        <form ref='uploadForm'
-                id='uploadForm'
-                action='/uploadBioEssay'
-                method='post'
-                encType="multipart/form-data"
-                class="form-inline">
-            <div class="form-group">
-            <input type="file"  name="essay" />
-            </div>
-            <div class="form-group">
-                <input type='submit' class="btn btn-success btn-sm" value='Upload Essay' />
-            </div>
-        </form>
-        <form ref='uploadForm'
-                id='uploadForm'
-                action='/uploadBioTranscript'
-                method='post'
-                encType="multipart/form-data"
-                class="form-inline">
-                <div class="form-group">
-                    <input type="file" name="transcript" />
-                </div>
-                <div class ="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript' />
-                </div>
-        </form>
-    </div>
-    <div class="uploadBox" id="itecBox">
-        <form ref='uploadForm'
-                id='uploadForm'
-                action='/uploadItecResume'
-                method='post'
-                encType="multipart/form-data"
-                class="form-inline">
-                <div class ="form-group">
-                    <input type="file" name="resume"/>
-                </div>
-                <div class="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Resume' />
-                </div>
-        </form>
-        <form ref='uploadForm'
-                id='uploadForm'
-                action='/uploadItecFerpa'
-                method='post'
-                encType="multipart/form-data"
-                class="form-inline">
-                <div class ="form-group">
-                    <input type="file" name="ferpa"/>
-                </div>
-                <div class="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Ferpa' />
-                </div>
-                </br>
-                <a href="/downloadFerpa">Click here to download the FERPA document</a> 
-        </form>
-    </div>
-    <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Student Name</th>
-                            <th>Email</th>
-                            <th>Date</th>
-                            <th>Section</th>
-                            <th>Document Name</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                            <th>Feedback</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <% documentList.forEach(function(document) { %>
-                    <tr>
-                        <td><%= document.studentName %></td>
-                        <td><%= document.studentEmail %></td>
-                        <td><%= document.date %></td>
-                        <td><%= document.section %></td>
-                        <td><%= document.documentName %></td>
-                        <td><%= document.documentType %></td>
-                        <td><%= document.documentStatus %></td>
-                        <td><a href=<%="/document/" + document.userId + "/" + document.docId%>>View Details</a></td>
-                    </tr>
-                        <% }); %>
-                    </tbody>
-    </table>
-</div>
-<% include partials/footerimports %>
-<script type="text/javascript" charset="utf8" src="/javascript/datatables.js"></script>
-<script type="text/javascript">
-
-    $(document).ready(function() {
-
-        $('#applications').DataTable();
-
-        $("#major").change(function() {
-            $(this).find("option:selected").each(function() {
-                var optionValue = $(this).attr("value");
-                if(optionValue) { // if bio or itec is selected
-                    $(".uploadBox").not("#" + (optionValue + 'Box')).hide();
-                    $("#" + (optionValue + 'Box')).show();
-                } else { // if not then hide both itec and bio upload boxes
-                    $(".uploadBox").hide();
-                }
-            });
-            }).change();
-});
-</script>
-</body>
+         </div>
+         <div class="uploadBox" id="bioBox">
+            <form ref='uploadForm'
+               id='uploadForm'
+               action='/uploadBioEssay'
+               method='post'
+               encType="multipart/form-data"
+               class="form-inline">
+               <div class="form-group">
+                  <input type="file"  name="essay" />
+               </div>
+               <div class="form-group">
+                  <input type='submit' class="btn btn-success btn-sm" value='Upload Essay' />
+               </div>
+            </form>
+            <form ref='uploadForm'
+               id='uploadForm'
+               action='/uploadBioTranscript'
+               method='post'
+               encType="multipart/form-data"
+               class="form-inline">
+               <div class="form-group">
+                  <input type="file" name="transcript" />
+               </div>
+               <div class ="form-group">
+                  <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript' />
+               </div>
+            </form>
+         </div>
+         <div class="uploadBox" id="itecBox">
+            <form ref='uploadForm'
+               id='uploadForm'
+               action='/uploadItecResume'
+               method='post'
+               encType="multipart/form-data"
+               class="form-inline">
+               <div class ="form-group">
+                  <input type="file" name="resume"/>
+               </div>
+               <div class="form-group">
+                  <input type='submit' class="btn btn-success btn-sm" value='Upload Resume' />
+               </div>
+            </form>
+            <form ref='uploadForm'
+               id='uploadForm'
+               action='/uploadItecFerpa'
+               method='post'
+               encType="multipart/form-data"
+               class="form-inline">
+               <div class ="form-group">
+                  <input type="file" name="ferpa"/>
+               </div>
+               <div class="form-group">
+                  <input type='submit' class="btn btn-success btn-sm" value='Upload Ferpa' />
+               </div>
+               </br>
+               <a href="/downloadFerpa">Click here to download the FERPA document</a> 
+            </form>
+         </div>
+         <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
+            <thead>
+               <tr>
+                  <th>Student Name</th>
+                  <th>Email</th>
+                  <th>Date</th>
+                  <th>Section</th>
+                  <th>Document Name</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Feedback</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% documentList.forEach(function(document) { %>
+               <tr>
+                  <td><%= document.studentName %></td>
+                  <td><%= document.studentEmail %></td>
+                  <td><%= document.date %></td>
+                  <td><%= document.section %></td>
+                  <td><%= document.documentName %></td>
+                  <td><%= document.documentType %></td>
+                  <td><%= document.documentStatus %></td>
+                  <td><a href=<%="/document/" + document.userId + "/" + document.docId%>>View Details</a></td>
+               </tr>
+               <% }); %>
+            </tbody>
+         </table>
+      </div>
+      <% include partials/footerimports %>
+      <script type="text/javascript">
+         $(document).ready(function() {
+         
+                 function sayHi() {
+             console.log('hi');
+                 }
+         
+             console.log(<% documentList %>);
+         
+             $('#applications').DataTable();
+         
+             $("#major").change(function() {
+                 $(this).find("option:selected").each(function() {
+                     var optionValue = $(this).attr("value");
+                     if(optionValue) { // if bio or itec is selected
+                         $(".uploadBox").not("#" + (optionValue + 'Box')).hide();
+                         $("#" + (optionValue + 'Box')).show();
+                     } else { // if not then hide both itec and bio upload boxes
+                         $(".uploadBox").hide();
+                     }
+                 });
+                 }).change();
+         });
+      </script>
+   </body>
 </html>

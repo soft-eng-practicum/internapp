@@ -1,561 +1,489 @@
-<!-- views/itec.ejs -->
+<!-- views/bio.ejs -->
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>GGC Biology Internship Application</title>
-    <% include partials/headerimports %>
-</head>
-
-<body>
-<% include partials/nav.ejs %>
-
-<div class="container">
-    <div class="col-sm-10 col-sm-offset-1">
-    <br>
-
-    <h1 align="center">Biology Intership application</h1>
-        <h4 align="center">Submit a typed, completed and signed form with an 
-        attached, printed copy of your unofficial academic transcript 
-        (obtained from Banner) to the SST Office in the Allied Health 
-        and Sciences (H2) Building, Room 3209.<br><br>
-
-        <strong>IMPORTANT:</strong> Please attach all required supplemental materials 
-        to complete the application packet. Information will be used to determine 
-        if you will be accepted to participate in program. Incomplete application packets
-        <br>
-
-        Information will be used to determine if you will be accepted to 
-        participate in the internship program. Completion of this application 
-        does not guarantee your acceptance into the internship program and/or 
-        enrollment in bio 4900.</h4>
-        <br>
-
-<form name="bio" action="/bio" method="post" class="form-horizontal" _lpchecked="1">
-    <fieldset>
-    <h2 align = "center">Student Academic Information</h2>
-
-    <div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" id="semesterList" name="proposedinternsemester">
-		  <option vaule="Select">Select</option>
-          <option value="Fall">Fall</option>
-          <option value="Spring">Spring</option>
-          <option value="Summer">Summer</option>
-        </select>
-        <select class="form-control yearSelect" id="yearTxt" name="proposedinternyear">
-        </select>
-        </div>
-      </div>
-    </div>
-	
-	<div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Concentration</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" id="majorTxt" name="major">
-			<option vaule="Select">Select</option>
-          <option value="Biochemistry">Biochemistry</option>
-          <option value="Cell Biology and Biotechnology">Cell Biology and Biotechnology</option>
-          <option value="General Biology">General Biology</option>
-		  <option value="Biology Teacher Certification">Biology Teacher Certification</option>
-        </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" id="graduationSemester" name="expectedGraduationSemester">
-			<option vaule="Select">Select</option>
-          <option value="Fall">Fall</option>
-          <option value="Spring">Spring</option>
-          <option value="Summer">Summer</option>
-        </select>
-        <select class="form-control yearSelect" id="graduationYear" name="expectedGraduationYear">
-        </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Overall GPA</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="gpaTxt" name="gpa"  type="number" min=1 max=4 placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"   required>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Program GPA</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="programGPATxt" name="programgpa" type="number"  min=1 max=4  placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"    required>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Number of Hours completed within Biology</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" placeholder="Hours" pattern"^(0|[1-9][0-9]*)$"  required type="text">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">What is your intended profession/career?</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="professionTxt" name="career" placeholder="Profession/Career" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
-      </div>
-    </div>
-    <br>
-
-    <h3 align="center">
-    Emergency Contact Information
-    </h3>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname"placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Mailing address</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress" placeholder="Address" required type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Contact City</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City" pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text" required>
-      </div>
-    </div> 
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label" >Contact State</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecStateTxt" placeholder="State" pattern ="[A-Z]{2}" title=" Example: GA" required>
-      </div>
-    </div> 
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode" placeholder="Zip Code" required pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text">
-      </div>
-    </div> 
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="ecPhone" name="emergencycontactphone" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"  required type="text">
-      </div>
-    </div> 
-    
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-5 control-label">Preferred Email Address</label>
-      <div class="col-lg-5">
-        <input type="text" class="form-control" id="ecEmailTxt" name="emergencycontactemail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
-      </div>
-    </div>
-    <br>
-
-    <h3 align="center">
-    Mentor Information
-    </h3>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Mentor Name</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  required type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="mentorCellTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" required type="text">
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder=" Ex: H-3241" title="Example: H-3241"required type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
-      <div class="col-lg-5">
-        <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail"  placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
-      </div>
-    </div>
-    <br>
-
-    <h3 align="center">
-    Internship Information
-    </h3>
-    
-<div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" name="isPreviouslyApprovedSite" id="previouslyApplied">
-          <option value="No">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-        </div>
-      </div>
-    </div>
-    
-    <div class="exisiting">
-    <div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Approved Internship Committee Sites</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" id="additionalInfoList" name="internsite">
-          <option value="Select">Select</option>
-          <option value="Other" >Other</option>
-          <option value="Greening Youth Foundation">Greening Youth Foundation</option>
-          <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
-          <option value="Yerkes Regional Primate Research Center">Yerkes Regional Primate Research Center</option>
-          <option value="US Department of Agriculture, Food Safety Inspection Services" >US Department of Agriculture, Food Safety Inspection Services</option>
-          <option value="Consultorio Medico Hispano">Consultorio Medico Hispano</option>
-        </select>
-        </div>
-      </div>
-    </div>
-
-    <h3 align="center">If your internship site is not listed above, then please select "Other" and provide the proposed information for review.<br>
-       <br>
-        <strong>Note:</strong>  It is conflict of interest if you have a close personal or family relationship with a proposed preceptor 
-        and/or site manager/supervisor. Providing false information about connections between you and site staff would constitute a violation
-         of the GGC Honor Code (see policy on academic honesty).</h3>
-         </div>
-         <div class="other">
+   <head>
+      <meta charset='utf-8'>
+      <title>BIO Application</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+      <div class="col-sm-10 col-sm-offset-1">
+      <br>
+      <h1 align="center">Biology Intership application</h1>
+      <h4 align="center">Submit a typed, completed and signed form with an 
+         attached, printed copy of your unofficial academic transcript 
+         (obtained from Banner) to the SST Office in the Allied Health 
+         and Sciences (H2) Building, Room 3209.<br><br>
+         <strong>IMPORTANT:</strong> Please attach all required supplemental materials 
+         to complete the application packet. Information will be used to determine 
+         if you will be accepted to participate in program. Incomplete application packets
          <br>
-
-         <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Name of Site</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="siteNameTxt" name="proposedsitename" placeholder="Site Name" type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc):</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" placeholder="Specialty" pattern="[A-Za-z].{2,}" title="Example: Pharmacy"  type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Site Street Address</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psAddressTxt" name="proposedsiteaddress" placeholder="Address" type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Site City</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psCityTxt" name="proposedsitecity" pattern="[A-Za-z].{1,}"  placeholder="City" title=" Example: Atlnata" type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Site State</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psStateTxt" name="proposedsitestate" pattern="[A-Z]{2}"  placeholder="State" title="Invalid format ex: GA" title="Invalid format ex: GA" type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Site Zip Code</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psZipCodeTxt" name="proposedsitezipcode" placeholder="Zip Code" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Site Phone Number</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psPhoneNumber"  placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Internship Manager</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psManagerTxt" name="proposedsitemanagername"  pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
-      <div class="col-lg-5">
-        <input type="text" class="form-control" id="psManagerEmail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Title of Site Manager</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="psManagerTitleTxt" placeholder="Title" name="proposedsitemanagertitle" type="text">
-      </div>
-    </div>
-    </div>
-    <br>
-
-    <h3 align="center">
-    Proposed Preceptor Information
-    </h3>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Name of Proposed Preceptor</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="preceptorNameTxt" name="preceptorname" placeholder="Name" type="text">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Preceptor Phone Number</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="preceptorPhoneTxt" name="preceptorphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"   type="text">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Preceptor Email Address</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="preceptorEmailTxt" name="preceptoremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"  type="text">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Is this person a Manager?</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" id="prceptorManagerList" name="ispreceptormanager">
-			<option vaule="Select">Select</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Position of Proposed Preceptor</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="preceptorPositionTxt" name="preceptorpostition" type="text">
-      </div>
-    </div>
-    <br>
-
-    <h3 align="center">
-    Potential Student Employment Conflicts
-    </h3>
-    
-    <div class="form-group">
-      <div class="form-inline">
-      <label for="select" class="col-lg-5 control-label">Are you currently employed at this site?</label>
-      
-      <div class="col-lg-5" class>
-        <select class="form-control" id="isStudentEmployedList" name="isstudentemployedatsite">
-          <option value="No">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-        </div>
-      </div>
-    </div>
-	<br/>
-
-	<div class="employed">
-		<div class="form-group">
-			<label for="input" class="col-lg-5 control-label">What is your current position?</label>
-			<div class="col-lg-5">
-				<input class="form-control" rows="3" id="currentPosititionTxt" name="studentcurrentposition" type="text">
-			</div>
-		</div>
-    
-		<div class="form-group">
-			<div class="form-inline">
-				<label for="select" class="col-lg-5 control-label">Is this a paid position?</label>
-      
-				<div class="col-lg-5" class>
-					<select class="form-control" id="isPaidList" name="ispaidinternship">
-						<option vaule="Select">Select</option>
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
-					</select>
-				</div>
-			</div>
-		</div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" placeholder="Hours" pattern="^(0|[1-9][0-9]*)$" type="text">
-      </div>
-    </div>
-    
-		<div class="form-group">
-			<div class="form-inline">
-				<label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
-      
-				<div class="col-lg-5" class>
-					<select class="form-control" id="internquestion" name="isokseperatehours">
-						<option vaule="Select">Select</option>
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
-					</select>
-				</div>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="form-inline">
-				<label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
-      
-				<div class="col-lg-5" class>
-					<select class="form-control"  id="studentRelationshipList" name="doestudenthavefamilyatsite">
-						<option vaule="Select">Select</option>
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
-					</select>
-				</div>
-			</div>
-		</div>
-	</div>
-    
-    <h4 align="center">
-        If you plan on applying for more than one ?Build Your Own? site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. 
-        For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).
-    </h4>
-    <br>
-
-    <h3 align="center">
-        Education Component
-    </h3>
-
-    <h4 align="center">
-        List 3 major educational objectives that you wish to achieve at the hosting facility. Educational objectives pertain to what you want to learn on-site.
-    </h4>
-
-    <h5 align="center">
-        For example: 
-        <div align ="left">
-        <ul>
-            <li>Effectively use problem solving techniques within the hospital environment and specific training area</li>
-            <li>Be able to analyze data and interpret results including, but not limited to blood tests, EKGs, X-rays, scans, and patient charts.</li>
-        </ul>
-        </div>
-    </h5>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">First</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="firstTxt" name="educomp1" required type="text">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Second</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="secondTxt" name="educomp2" required type="text">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Third</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="thirdTxt" name="educomp3" required type="text">
-      </div>
-    </div>
-    <br>
-
-    <h3 align="center">
-    Signature and Review
-    </h3>
-    <h4 align="center">
-    I certify that the information contained in this application is true, correct, and complete. 
-    I understand that, if employed, false statements reported on this application may be considered 
-    sufficient cause for denial of a Biology Internship Experience and enrollment in the BIOL4800 Biology 
-    Internship course.
-    </h4>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Signature of applicant</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="signatureTxt" name="signature" required type="text">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
-      <div class="col-lg-5">
-        <input class="form-control" rows="3" id="printedNameTxt" name="printedname" required type="text">
-      </div>
-    </div>
-  </fieldset>
-  <div align="center">
-		<button class="btn btn-success" type="submit" id="submitBtn">Submit</button>
-	</div>
-</form>
-    <% include partials/footerimports %>
-</body>
+         Information will be used to determine if you will be accepted to 
+         participate in the internship program. Completion of this application 
+         does not guarantee your acceptance into the internship program and/or 
+         enrollment in bio 4900.
+      </h4>
+      <br>
+      <form name="bio" action="/bio" method="post" class="form-horizontal" _lpchecked="1">
+         <fieldset>
+            <h2 align = "center">Student Academic Information</h2>
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control" id="semesterList" name="proposedinternsemester">
+                        <option vaule="Select">Select</option>
+                        <option value="Fall">Fall</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                     </select>
+                     <select class="form-control yearSelect" id="yearTxt" name="proposedinternyear">
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Concentration</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control" id="majorTxt" name="major">
+                        <option vaule="Select">Select</option>
+                        <option value="Biochemistry">Biochemistry</option>
+                        <option value="Cell Biology and Biotechnology">Cell Biology and Biotechnology</option>
+                        <option value="General Biology">General Biology</option>
+                        <option value="Biology Teacher Certification">Biology Teacher Certification</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control" id="graduationSemester" name="expectedGraduationSemester">
+                        <option vaule="Select">Select</option>
+                        <option value="Fall">Fall</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                     </select>
+                     <select class="form-control yearSelect" id="graduationYear" name="expectedGraduationYear">
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Overall GPA</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="gpaTxt" name="gpa"  type="number" min=1 max=4 placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"   required>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Program GPA</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="programGPATxt" name="programgpa" type="number"  min=1 max=4  placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"    required>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Number of Hours completed within Biology</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" placeholder="Hours" pattern"^(0|[1-9][0-9]*)$"  required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">What is your intended profession/career?</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="professionTxt" name="career" placeholder="Profession/Career" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
+               </div>
+            </div>
+            <br>
+            <h3 align="center">
+               Emergency Contact Information
+            </h3>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname"placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Mailing address</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress" placeholder="Address" required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Contact City</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City" pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text" required>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label" >Contact State</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="ecStateTxt" placeholder="State" pattern ="[A-Z]{2}" title=" Example: GA" required>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode" placeholder="Zip Code" required pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="ecPhone" name="emergencycontactphone" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"  required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="inputEmail" class="col-lg-5 control-label">Preferred Email Address</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="ecEmailTxt" name="emergencycontactemail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+               </div>
+            </div>
+            <br>
+            <h3 align="center">
+               Mentor Information
+            </h3>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Mentor Name</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+            <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
+            <div class="col-lg-5">
+               <input class="form-control" rows="3" id="mentorCellTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" required type="text">
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder=" Ex: H-3241" title="Example: H-3241"required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
+               <div class="col-lg-5">
+                  <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail"  placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+               </div>
+            </div>
+            <br>
+            <h3 align="center">
+               Internship Information
+            </h3>
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control" name="isPreviouslyApprovedSite" id="previouslyApplied">
+                        <option value="No">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <div class="exisiting">
+               <div class="form-group">
+                  <div class="form-inline">
+                     <label for="select" class="col-lg-5 control-label">Approved Internship Committee Sites</label>
+                     <div class="col-lg-5" class>
+                        <select class="form-control" id="additionalInfoList" name="internsite">
+                           <option value="Select">Select</option>
+                           <option value="Other" >Other</option>
+                           <option value="Greening Youth Foundation">Greening Youth Foundation</option>
+                           <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
+                           <option value="Yerkes Regional Primate Research Center">Yerkes Regional Primate Research Center</option>
+                           <option value="US Department of Agriculture, Food Safety Inspection Services" >US Department of Agriculture, Food Safety Inspection Services</option>
+                           <option value="Consultorio Medico Hispano">Consultorio Medico Hispano</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <h3 align="center">If your internship site is not listed above, then please select "Other" and provide the proposed information for review.<br>
+                  <br>
+                  <strong>Note:</strong>  It is conflict of interest if you have a close personal or family relationship with a proposed preceptor 
+                  and/or site manager/supervisor. Providing false information about connections between you and site staff would constitute a violation
+                  of the GGC Honor Code (see policy on academic honesty).
+               </h3>
+            </div>
+            <div class="other">
+               <br>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Name of Site</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="siteNameTxt" name="proposedsitename" placeholder="Site Name" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc):</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" placeholder="Specialty" pattern="[A-Za-z].{2,}" title="Example: Pharmacy"  type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Site Street Address</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="psAddressTxt" name="proposedsiteaddress" placeholder="Address" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Site City</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="psCityTxt" name="proposedsitecity" pattern="[A-Za-z].{1,}"  placeholder="City" title=" Example: Atlnata" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Site State</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="psStateTxt" name="proposedsitestate" pattern="[A-Z]{2}"  placeholder="State" title="Invalid format ex: GA" title="Invalid format ex: GA" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Site Zip Code</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="psZipCodeTxt" name="proposedsitezipcode" placeholder="Zip Code" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Site Phone Number</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="psPhoneNumber"  placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Internship Manager</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="psManagerTxt" name="proposedsitemanagername"  pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
+                  <div class="col-lg-5">
+                     <input type="text" class="form-control" id="psManagerEmail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Title of Site Manager</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="psManagerTitleTxt" placeholder="Title" name="proposedsitemanagertitle" type="text">
+                  </div>
+               </div>
+            </div>
+            <br>
+            <h3 align="center">
+               Proposed Preceptor Information
+            </h3>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Name of Proposed Preceptor</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="preceptorNameTxt" name="preceptorname" placeholder="Name" type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Preceptor Phone Number</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="preceptorPhoneTxt" name="preceptorphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"   type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Preceptor Email Address</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="preceptorEmailTxt" name="preceptoremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"  type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Is this person a Manager?</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control" id="prceptorManagerList" name="ispreceptormanager">
+                        <option vaule="Select">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Position of Proposed Preceptor</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="preceptorPositionTxt" name="preceptorpostition" type="text">
+               </div>
+            </div>
+            <br>
+            <h3 align="center">
+               Potential Student Employment Conflicts
+            </h3>
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Are you currently employed at this site?</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control" id="isStudentEmployedList" name="isstudentemployedatsite">
+                        <option value="No">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <br/>
+            <div class="employed">
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">What is your current position?</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="currentPosititionTxt" name="studentcurrentposition" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="form-inline">
+                     <label for="select" class="col-lg-5 control-label">Is this a paid position?</label>
+                     <div class="col-lg-5" class>
+                        <select class="form-control" id="isPaidList" name="ispaidinternship">
+                           <option vaule="Select">Select</option>
+                           <option value="yes">Yes</option>
+                           <option value="no">No</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" placeholder="Hours" pattern="^(0|[1-9][0-9]*)$" type="text">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="form-inline">
+                     <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
+                     <div class="col-lg-5" class>
+                        <select class="form-control" id="internquestion" name="isokseperatehours">
+                           <option vaule="Select">Select</option>
+                           <option value="yes">Yes</option>
+                           <option value="no">No</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="form-inline">
+                     <label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
+                     <div class="col-lg-5" class>
+                        <select class="form-control"  id="studentRelationshipList" name="doestudenthavefamilyatsite">
+                           <option vaule="Select">Select</option>
+                           <option value="yes">Yes</option>
+                           <option value="no">No</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <h4 align="center">
+               If you plan on applying for more than one ?Build Your Own? site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. 
+               For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).
+            </h4>
+            <br>
+            <h3 align="center">
+               Education Component
+            </h3>
+            <h4 align="center">
+               List 3 major educational objectives that you wish to achieve at the hosting facility. Educational objectives pertain to what you want to learn on-site.
+            </h4>
+            <h5 align="center">
+               For example: 
+               <div align ="left">
+                  <ul>
+                     <li>Effectively use problem solving techniques within the hospital environment and specific training area</li>
+                     <li>Be able to analyze data and interpret results including, but not limited to blood tests, EKGs, X-rays, scans, and patient charts.</li>
+                  </ul>
+               </div>
+            </h5>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">First</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="firstTxt" name="educomp1" required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Second</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="secondTxt" name="educomp2" required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Third</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="thirdTxt" name="educomp3" required type="text">
+               </div>
+            </div>
+            <br>
+            <h3 align="center">
+               Signature and Review
+            </h3>
+            <h4 align="center">
+               I certify that the information contained in this application is true, correct, and complete. 
+               I understand that, if employed, false statements reported on this application may be considered 
+               sufficient cause for denial of a Biology Internship Experience and enrollment in the BIOL4800 Biology 
+               Internship course.
+            </h4>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Signature of applicant</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="signatureTxt" name="signature" required type="text">
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
+               <div class="col-lg-5">
+                  <input class="form-control" rows="3" id="printedNameTxt" name="printedname" required type="text">
+               </div>
+            </div>
+         </fieldset>
+         <div align="center">
+            <button class="btn btn-success" type="submit" id="submitBtn">Submit</button>
+         </div>
+      </form>
+      <% include partials/footerimports %>
+   </body>
 </html>
-
 <script>
-$('.employed').hide();
-$(function(){
-    $('#isStudentEmployedList').change(function(){
-       var opt = $(this).val();
-        if(opt == 'Yes'){
-            $('.employed').show();
-        }else{
-        	$('.employed').hide();
-        }
-    });
-});
-
-$('.exisiting').hide();
-$(function(){
-    $('#previouslyApplied').change(function(){
-       var opt = $(this).val();
-        if(opt == 'Yes'){
-            $('.exisiting').show();
-        }else{
-        	$('.exisiting').hide();
-          $('.other').hide();
-          document.getElementById('additionalInfoList').value="Select";
-        }
-    });
-});
-
-$('.other').hide();
-$(function(){
-    $('#additionalInfoList').change(function(){
-       var opt = $(this).val();
-        if(opt == 'Other'){
-            $('.other').show();
-        }else{
-        	$('.other').hide();
-        }
-    });
-});
+   $('.employed').hide();
+   $(function(){
+       $('#isStudentEmployedList').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Yes'){
+               $('.employed').show();
+           }else{
+           	$('.employed').hide();
+           }
+       });
+   });
+   
+   $('.exisiting').hide();
+   $(function(){
+       $('#previouslyApplied').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Yes'){
+               $('.exisiting').show();
+           }else{
+           	$('.exisiting').hide();
+             $('.other').hide();
+             document.getElementById('additionalInfoList').value="Select";
+           }
+       });
+   });
+   
+   $('.other').hide();
+   $(function(){
+       $('#additionalInfoList').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Other'){
+               $('.other').show();
+           }else{
+           	$('.other').hide();
+           }
+       });
+   });
 </script>
