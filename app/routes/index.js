@@ -62,7 +62,7 @@ module.exports = function(app, passport) {
     app.get('/login', ctrlLogin.getLogin);
     app.post('/login',
             passport.authenticate('local-login', {
-            successRedirect : '/applications',
+            successRedirect : '/dashboard',
             failureRedirect : '/login',
             failureFlash : true
         }));
@@ -73,7 +73,7 @@ module.exports = function(app, passport) {
      /* Sign up page */
     app.get('/signup', ctrlSignUp.loadSignUp);
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/applications',
+            successRedirect : '/dashboard',
             failureRedirect : '/signup',
             failureFlash : true
         }));
@@ -138,10 +138,10 @@ module.exports = function(app, passport) {
     app.post('/document/notes/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentNotes);
     app.post('/document/feedback/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentFeedback);
         // Upload routes 
-        app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
-        app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
-        app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
-        app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
+    app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
+    app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
+    app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
+    app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
     
     // Upload resume
     app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
@@ -157,8 +157,26 @@ module.exports = function(app, passport) {
     // TO DO app.get('/exportBio', ctrlMongoToCsv);
     // TO DO (maybe) app.get('/exportUser', ctrlMongoToCsv);
     app.get('/exportSite', makeCSVDirectory, ctrlMongoToCsv.exportSite);
+    app.get('/exportSiteInfo', makeCSVDirectory, ctrlMongoToCsv.exportSiteInfo);
 
     /* Site Notes page */
     app.get('/sitenotes', isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
+
+
+
+
+    var Itec = require('../models/itec.js');
+
+    /* TEST ROUTES */
+    app.get('/edititec', function(req, res, next) {
+        // id = 58c9dfde4dfd6d0011a8475e
+        Itec.findById({"_id" : "58c9dfde4dfd6d0011a8475e"},
+        function(err, itec) {
+            res.render('editItec.ejs', {
+                application: itec
+            })
+        });
+
+    });
 }

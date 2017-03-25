@@ -1,0 +1,73 @@
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>GGC Internship Signup</title>
+<% include partials/headerimports %>
+</head>
+<body>
+    <% include partials/nav.ejs %>
+  <div class="container">
+  <h2>Dashboard</h2>
+     <h1>Welcome! <%= user.fname %></h1>
+     <br/>
+     <div class="container">
+
+  <h2>Progress</h2>
+<div align ="left">
+     <h3>Application</h3>
+        <ul>
+            <i><li>To Apply For Internship Please Click on Green Button <a href="/applications" class="btn btn-success btn-sm">Applications</a></li></i>
+           <ul> 
+            <i><li>Please choose the major first to be able to apply</li></i>
+            <i><li>To Apply For Intenship Click And Majoring in Information Technology Please Click <b><a href="/itec">ITEC</b></a></li></i>
+            <i><li>To Apply For Intenship Click And Majoring in Biology Please Click <b><a href="/bio">BIO</b></a></li></i>
+           </ul>
+        </ul>
+
+    <h3>Documentation</h3>
+        <ul>
+          <i><li>To Upload a Document Please Click On The Green Button <a href="/documentUpload" class="btn btn-success btn-sm">Documentation</a></li></i>
+          <i><li>Please choose the major first to be able to upload desired document</li></i>
+          <ul> <i><li>ITEC Major Please Upload Resume</li></i>
+               <i><li>BIO Major Please Upload Transcript or Essay</li></i>
+         </ul>
+        </ul>
+
+ <h3>Family Educational Rights and Privacy Act</h3>
+        <ul>
+            <i><li>To Dowload FERPA Please Click On The Green Button <a href="/applications" class="btn btn-success btn-sm">FERPA</a></li></i>
+            <i><li>After Signing FERPA Please Upload Your Document</li></i>
+               <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadItecFerpa'
+                method='post'
+                encType="multipart/form-data"
+                class="form-inline">
+                <div class ="form-group">
+                    <input type="file" name="ferpa"/>
+                </div>
+                <div class="form-group">
+                    <input type='submit' class="btn btn-success btn-sm" value='Upload Ferpa' />
+                </div>
+        </form>
+        </ul>
+    <h3>Addtional</h3>
+        <ul>
+          <i><li>To Check FAQ Page Please Click On The Top Right Corner</li></i>
+          <i><li>To Edit Your Profile Please Click On The Top Right Corner</li></i>
+        </ul>
+        
+       </div>  
+
+
+     <br/>
+
+
+
+</div>
+
+</div>
+<% include partials/footerimports %>
+</body>
+</html>

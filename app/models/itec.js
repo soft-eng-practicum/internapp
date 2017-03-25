@@ -45,6 +45,22 @@ var itecSchema = mongoose.Schema({
                 type: String,
                 required: false
         },
+        itec2150Year: {
+                type: String,
+                required: false
+        },
+        itec3100Year: {
+                type: String,
+                required: false
+        },
+        itec3200Year: {
+                type: String,
+                required: false
+        },
+        itec3900Year: {
+                type: String,
+                required: false
+        },
         emergencycontactname: {
                 type: String,
                 required: false
@@ -58,6 +74,10 @@ var itecSchema = mongoose.Schema({
                 required: false
         },
         emergencycontactcity: {
+                type: String,
+                required: false
+        },
+        emergencycontactstate: {
                 type: String,
                 required: false
         },
@@ -130,6 +150,10 @@ var itecSchema = mongoose.Schema({
                 required: false
         },
         proposedorgmanager: {
+                type: String,
+                required: false
+        },
+        proposedorgmanageremail: {
                 type: String,
                 required: false
         },

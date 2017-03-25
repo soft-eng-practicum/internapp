@@ -279,7 +279,7 @@ module.exports.postItecApplication = function(req, res) {
             console.log(err);
         }
     });
-    res.redirect('/applications');
+	res.redirect('/applications');
 };
 
 /*
