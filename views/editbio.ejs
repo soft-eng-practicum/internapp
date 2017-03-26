@@ -1,9 +1,8 @@
-<!-- views/bio.ejs -->
+<!-- views/edititec.ejs -->
 <!DOCTYPE html>
 <html>
    <head>
-      <meta charset='utf-8'>
-      <title>BIO Application</title>
+      <title>Edit BIO Application</title>
       <% include partials/headerimports %>
    </head>
    <body>
@@ -26,20 +25,20 @@
          enrollment in bio 4900.
       </h4>
       <br>
-      <form name="bio" action="/bio" method="post" class="form-horizontal" _lpchecked="1">
+      <form name="itec" action="/itec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
          <fieldset>
             <h2 align = "center">Student Academic Information</h2>
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="semesterList" name="proposedinternsemester">
-                        <option vaule="Select">Select</option>
+                     <select class="form-control" id="proposedInternSemesterList" name="proposedInternSemester">
+                        <option value="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
                      </select>
-                     <select class="form-control yearSelect" id="yearTxt" name="proposedinternyear">
+                     <select class="form-control yearSelect" id="proposedInternYearList" name="proposedinternyear" required type="number">
                      </select>
                   </div>
                </div>
@@ -48,7 +47,7 @@
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Concentration</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="majorTxt" name="major">
+                     <select class="form-control" id="concentrationList" name="major">
                         <option vaule="Select">Select</option>
                         <option value="Biochemistry">Biochemistry</option>
                         <option value="Cell Biology and Biotechnology">Cell Biology and Biotechnology</option>
@@ -62,13 +61,13 @@
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="graduationSemester" name="expectedGraduationSemester">
+                     <select class="form-control" id="graduationSemesterList" name="expectedGraduationSemester">
                         <option vaule="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
                      </select>
-                     <select class="form-control yearSelect" id="graduationYear" name="expectedGraduationYear">
+                     <select class="form-control yearSelect" id="graduationYearList" name="expectedGraduationYear">
                      </select>
                   </div>
                </div>
@@ -76,25 +75,33 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Overall GPA</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="gpaTxt" name="gpa"  type="number" min=1 max=4 placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"   required>
+                  <input class="form-control" rows="3" id="gpaTxt" name="gpa"  type="number" 
+                     min=1 max=4 placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"   
+                     required value=<%= application.gpa %>>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Program GPA</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="programGPATxt" name="programgpa" type="number"  min=1 max=4  placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"    required>
+                  <input class="form-control" rows="3" id="programGPATxt" name="programgpa" type="number"  
+                     min=1 max=4  placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"    
+                     required value=<%= application.programgpa %>>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Number of Hours completed within Biology</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" placeholder="Hours" pattern"^(0|[1-9][0-9]*)$"  required type="text">
+                  <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" placeholder="Hours" 
+                  pattern"^(0|[1-9][0-9]*)$"  
+                  required value='<%= application.hourscompleted %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">What is your intended profession/career?</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="professionTxt" name="career" placeholder="Profession/Career" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
+                  <input class="form-control" rows="3" id="professionTxt" name="career" 
+                     placeholder="Profession/Career" pattern="[A-Za-z].{2,}" required title=" Example: Biology" 
+                     required value='<%= application.career %>' type="text">
                </div>
             </div>
             <br>
@@ -104,43 +111,60 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname"placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Biology" required type="text">
+                  <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname"
+                     placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Biology" 
+                     required value='<%= application.emergencycontactname %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mailing address</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress" placeholder="Address" required type="text">
+                  <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress" 
+                     placeholder="Address" 
+                     required value='<%= application.emergencycontactaddress %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Contact City</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City" pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text" required>
+                  <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" 
+                     placeholder="City" pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" 
+                     type="text" required value='<%= application.emergencycontactcity %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label" >Contact State</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecStateTxt" name="emergencycontactstate" placeholder="State" pattern ="[A-Z]{2}" title=" Example: GA" required>
+                  <input class="form-control" rows="3" id="ecStateTxt" placeholder="State" pattern ="[A-Z]{2}" 
+                     name="emergencycontactstate" title=" Example: GA" 
+                     required value='<%= application.emergencycontactstate %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode" placeholder="Zip Code" required pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required type="text">
+                  <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode" 
+                     placeholder="Zip Code" required pattern ="\d{5}([ \-]\d{4})?" 
+                     title="Not a valid zipcode" 
+                     required value='<%= application.emergencycontactzipcode %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecPhone" name="emergencycontactphone" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"  required type="text">
+                  <input class="form-control" rows="3" id="ecPhone"
+                     pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" 
+                     name="emergencycontactphone" placeholder="XXX-XXX-XXXX"  
+                     required value='<%= application.emergencycontactphone %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="inputEmail" class="col-lg-5 control-label">Preferred Email Address</label>
                <div class="col-lg-5">
-                  <input type="text" class="form-control" id="ecEmailTxt" name="emergencycontactemail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+                  <input type="text" class="form-control" id="ecEmailTxt" name="emergencycontactemail"
+                     placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
+                     style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
+                     required value='<%= application.emergencycontactemail %>'>
                </div>
             </div>
             <br>
@@ -150,24 +174,34 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Name</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  required type="text">
+                  <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" 
+                     pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  
+                     required value='<%= application.mentorname %>' type="text">
                </div>
             </div>
             <div class="form-group">
             <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
             <div class="col-lg-5">
-               <input class="form-control" rows="3" id="mentorCellTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" required type="text">
+               <input class="form-control" rows="3" id="mentorCellTxt" name="mentorcellphone" 
+                  placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" 
+                  title="Please follow the format: xxx-xxx-xxxx" 
+                  required value='<%= application.mentorcellphone %>' type="text">
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder=" Ex: H-3241" title="Example: H-3241"required type="text">
+                  <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" 
+                     placeholder=" Ex: H-3241" title="Example: H-3241"
+                     required value='<%= application.mentoroffice %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
                <div class="col-lg-5">
-                  <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail"  placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+                  <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail"  
+                     placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" 
+                     style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
+                     required value='<%= application.mentoremail %>'>
                </div>
             </div>
             <br>
@@ -179,14 +213,14 @@
                   <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" name="isPreviouslyApprovedSite" id="previouslyApplied">
-                        <option value="No">Select</option>
+                        <option value="Select">Select</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                      </select>
                   </div>
                </div>
             </div>
-            <div class="exisiting">
+            <div class="existing">
                <div class="form-group">
                   <div class="form-inline">
                      <label for="select" class="col-lg-5 control-label">Approved Internship Committee Sites</label>
@@ -215,61 +249,82 @@
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Name of Site</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="siteNameTxt" name="proposedsitename" placeholder="Site Name" type="text">
+                     <input class="form-control" rows="3" id="siteNameTxt" name="proposedsitename" 
+                        placeholder="Site Name" type="text"
+                        required value='<%= application.proposedsitename %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc):</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" placeholder="Specialty" pattern="[A-Za-z].{2,}" title="Example: Pharmacy"  type="text">
+                     <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" 
+                        placeholder="Specialty" pattern="[A-Za-z].{2,}" title="Example: Pharmacy"  type="text"
+                        required value='<%= application.proposedsitespecialty %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Site Street Address</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="psAddressTxt" name="proposedsiteaddress" placeholder="Address" type="text">
+                     <input class="form-control" rows="3" id="psAddressTxt" name="proposedsiteaddress" 
+                        placeholder="Address" type="text"
+                        required value='<%= application.proposedsiteaddress %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Site City</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="psCityTxt" name="proposedsitecity" pattern="[A-Za-z].{1,}"  placeholder="City" title=" Example: Atlnata" type="text">
+                     <input class="form-control" rows="3" id="psCityTxt" name="proposedsitecity" 
+                        pattern="[A-Za-z].{1,}"  placeholder="City" title=" Example: Atlnata" type="text"
+                        required value='<%= application.proposedsitecity %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Site State</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="psStateTxt" name="proposedsitestate" pattern="[A-Z]{2}"  placeholder="State" title="Invalid format ex: GA" title="Invalid format ex: GA" type="text">
+                     <input class="form-control" rows="3" id="psStateTxt" name="proposedsitestate" 
+                        pattern="[A-Z]{2}"  placeholder="State" title="Invalid format ex: GA" 
+                        title="Invalid format ex: GA" type="text"
+                        required value='<%= application.proposedsitestate %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Site Zip Code</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="psZipCodeTxt" name="proposedsitezipcode" placeholder="Zip Code" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text">
+                     <input class="form-control" rows="3" id="psZipCodeTxt" name="proposedsitezipcode" 
+                        placeholder="Zip Code" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text"
+                        required value='<%= application.proposedsitezipcode %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Site Phone Number</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="psPhoneNumber" name="proposedsitephone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx">
+                     <input class="form-control" rows="3" id="psPhoneNumber"  name="proposedsitephone" placeholder="XXX-XXX-XXXX" 
+                        pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"
+                        required value='<%= application.proposedsitephone %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Internship Manager</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="psManagerTxt" name="proposedsitemanagername" type="text">
+                     <input class="form-control" rows="3" id="psManagerTxt" name="proposedsitemanagername" type="text"
+                        required value='<%= application.proposedsitemanagername %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
                   <div class="col-lg-5">
-                     <input type="text" class="form-control" id="psManagerEmail" name="proposedsitemanageremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
+                     <input type="text" class="form-control" id="psManagerEmail" placeholder="Email" 
+                        pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" name="proposedsitemanageremail"
+                        style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
+                        required value='<%= application.proposedsitemanageremail %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Title of Site Manager</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="psManagerTitleTxt" placeholder="Title" name="proposedsitemanagertitle" type="text">
+                     <input class="form-control" rows="3" id="psManagerTitleTxt" placeholder="Title" 
+                        name="proposedsitemanagertitle" type="text"
+                        required value='<%= application.proposedsitemanagertitle %>'>
                   </div>
                </div>
             </div>
@@ -280,26 +335,32 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Name of Proposed Preceptor</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="preceptorNameTxt" name="preceptorname" placeholder="Name" type="text">
+                  <input class="form-control" rows="3" id="preceptorNameTxt" name="preceptorname" 
+                     placeholder="Name" type="text"
+                     required value='<%= application.preceptorname %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Preceptor Phone Number</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="preceptorPhoneTxt" name="preceptorphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"   type="text">
+                  <input class="form-control" rows="3" id="preceptorPhoneTxt" name="preceptorphone" 
+                     placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"   type="text"
+                     required value='<%= application.preceptorphone %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Preceptor Email Address</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="preceptorEmailTxt" name="preceptoremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"  type="text">
+                  <input class="form-control" rows="3" id="preceptorEmailTxt" name="preceptoremail" 
+                     placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" type="text"
+                     required value='<%= application.preceptoremail %>'>
                </div>
             </div>
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Is this person a Manager?</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="prceptorManagerList" name="ispreceptormanager">
+                     <select class="form-control" id="preceptorManagerList" name="ispreceptormanager">
                         <option vaule="Select">Select</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
@@ -310,7 +371,8 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Position of Proposed Preceptor</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="preceptorPositionTxt" name="preceptorpostition" type="text">
+                  <input class="form-control" rows="3" id="preceptorPositionTxt" name="preceptorpostition" type="text"
+                     required value='<%= application.preceptorpostition %>'>
                </div>
             </div>
             <br>
@@ -335,7 +397,8 @@
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">What is your current position?</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="currentPosititionTxt" name="studentcurrentposition" type="text">
+                     <input class="form-control" rows="3" id="currentPosititionTxt" name="studentcurrentposition" type="text"
+                        required value='<%= application.studentcurrentposition %>'>
                   </div>
                </div>
                <div class="form-group">
@@ -353,7 +416,8 @@
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" placeholder="Hours" pattern="^(0|[1-9][0-9]*)$" type="text">
+                     <input class="form-control" rows="3" id="averageHoursTxt" name="studenthoursworked" placeholder="Hours" pattern="^(0|[1-9][0-9]*)$" type="text"
+                        required value='<%= application.studenthoursworked %>'>
                   </div>
                </div>
                <div class="form-group">
@@ -404,19 +468,22 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">First</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="firstTxt" name="educomp1" required type="text">
+                  <input class="form-control" rows="3" id="firstTxt" name="educomp1" type="text"
+                     required value='<%= application.educomp1 %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Second</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="secondTxt" name="educomp2" required type="text">
+                  <input class="form-control" rows="3" id="secondTxt" name="educomp2" type="text"
+                     required value='<%= application.educomp2 %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Third</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="thirdTxt" name="educomp3" required type="text">
+                  <input class="form-control" rows="3" id="thirdTxt" name="educomp3" type="text"
+                     required value='<%= application.educomp3 %>'>
                </div>
             </div>
             <br>
@@ -432,59 +499,74 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Signature of applicant</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="signatureTxt" name="signature" required type="text">
+                  <input class="form-control" rows="3" id="signatureTxt" name="signature" type="text"
+                     required value='<%= application.signature %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="printedNameTxt" name="printedname" required type="text">
+                  <input class="form-control" rows="3" id="printedNameTxt" name="printedname" type="text"
+                     required value='<%= application.printedname %>'>
                </div>
             </div>
          </fieldset>
          <div align="center">
-            <button class="btn btn-success" type="submit" id="submitBtn">Submit</button>
+            <button class="btn btn-success" type="submit" id="updateBtn">Update</button>
          </div>
       </form>
       <% include partials/footerimports %>
+      <script>
+         makeOptionSelected('proposedInternSemesterList', '<%= application.proposedinternsemester %>');
+         makeOptionSelected('proposedInternYearList', '<%= application.proposedinternyear %>');
+         makeOptionSelected('concentrationList', '<%= application.major %>');
+         makeOptionSelected('graduationSemesterList', '<%= application.expectedGraduationSemester %>');
+         makeOptionSelected('graduationYearList', '<%= application.expectedGraduationYear %>');
+         makeOptionSelected('previouslyApplied', '<%= application.isPreviouslyApprovedSite %>');
+         makeOptionSelected('additionalInfoList', '<%= application.internsite %>');
+         makeOptionSelected('preceptorManagerList', '<%= application.ispreceptormanager %>');
+         makeOptionSelected('isStudentEmployedList', '<%= application.isstudentemployedatsite %>');
+         makeOptionSelected('isPaidList', '<%= application.ispaidinternship %>');
+         makeOptionSelected('internquestion', '<%= application.isokseperatehours %>');
+         makeOptionSelected('studentRelationshipList', '<%= application.doestudenthavefamilyatsite %>');
+         
+            $('.employed').hide();
+         $(function(){
+         $('#isStudentEmployedList').change(function(){
+           var opt = $(this).val();
+            if(opt == 'Yes'){
+                $('.employed').show();
+            }else{
+            	$('.employed').hide();
+            }
+         });
+         });
+         
+         $('.exisiting').hide();
+         $(function(){
+         $('#previouslyApplied').change(function(){
+           var opt = $(this).val();
+            if(opt == 'Yes'){
+                $('.exisiting').show();
+            }else{
+            	$('.exisiting').hide();
+              $('.other').hide();
+              document.getElementById('additionalInfoList').value="Select";
+            }
+         });
+         });
+         
+         $('.other').hide();
+         $(function(){
+         $('#additionalInfoList').change(function(){
+           var opt = $(this).val();
+            if(opt == 'Other'){
+                $('.other').show();
+            }else{
+            	$('.other').hide();
+            }
+         });
+         });
+      </script>
    </body>
 </html>
-<script>
-   $('.employed').hide();
-   $(function(){
-       $('#isStudentEmployedList').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.employed').show();
-           }else{
-           	$('.employed').hide();
-           }
-       });
-   });
-   
-   $('.exisiting').hide();
-   $(function(){
-       $('#previouslyApplied').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.exisiting').show();
-           }else{
-           	$('.exisiting').hide();
-             $('.other').hide();
-             document.getElementById('additionalInfoList').value="Select";
-           }
-       });
-   });
-   
-   $('.other').hide();
-   $(function(){
-       $('#additionalInfoList').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Other'){
-               $('.other').show();
-           }else{
-           	$('.other').hide();
-           }
-       });
-   });
-</script>
