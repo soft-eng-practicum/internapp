@@ -15,6 +15,7 @@ var key = process.env.KEY;
     URL: '/itec'
 */
 module.exports.getItecApplication = function(req, res) {
+
     res.render('itec.ejs', {
         user: req.user
     });
@@ -35,6 +36,17 @@ module.exports.getBioApplication = function(req, res) {
     URL: '/applications'
 */
 module.exports.getApplications = function(req, res) {
+    var haveBioApp;
+    var haveItecApp;
+
+    Bio.doesUserHaveBioApp(req.user.email, function(response) {
+        haveBioApp = response;
+    });
+
+    Itec.doesUserHaveItecApp(req.user.email, function(response) {
+        haveItecApp = response;
+    });
+ 
     if (req.user.role === 'admin' || req.user.role === 'instructor'  ) {
                 Bio.find(function(err, bioApplications) {
                     if (err) return console.error(err);
@@ -60,7 +72,9 @@ module.exports.getApplications = function(req, res) {
                   if (err) return console.error(err);
                   res.render('applications.ejs', {
                       applicationList: bioApplications.concat(itecApplications),
-                      user: req.user
+                      user: req.user,
+                      haveBioApp: haveBioApp,
+                      haveItecApp: haveItecApp
                   });
               });
           });

@@ -262,4 +262,16 @@ function formatDate(date) {
 }
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('Bio', bioSchema);
+var Bio = module.exports = mongoose.model('Bio', bioSchema);
+
+module.exports.doesUserHaveBioApp = function(email, callback) {
+    Bio.find({
+        'useremail' : email
+    }, function(err, bioApp) {
+        if (bioApp.length > 0) {
+            return callback(true);
+        } else {
+            return callback(false);
+        }
+    });
+};

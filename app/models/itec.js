@@ -271,4 +271,16 @@ function formatDate(date) {
 }
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('Itec', itecSchema);
+var Itec = module.exports = mongoose.model('Itec', itecSchema);
+
+module.exports.doesUserHaveItecApp = function(email, callback) {
+    Itec.find({
+        'useremail' : email
+    }, function(err, itecApp) {
+        if (itecApp.length > 0) {
+            return callback(true);
+        } else {
+            return callback(false);
+        }
+    });
+};
