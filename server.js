@@ -27,6 +27,14 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 app.use(express.static(path.join(__dirname, 'public')))
 
+mongoose.connection.on('connected', () => {
+    console.log('Connected to database: ' + configDB.url);
+});
+
+mongoose.connection.on('error', (err) => {
+    console.log('Database error: ' + err);
+});
+
 // Set favicon to the SST crest
 app.use(favicon(__dirname + '/public/images/SST_crest_small.png'));
 
