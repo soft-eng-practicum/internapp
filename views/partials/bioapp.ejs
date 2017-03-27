@@ -1,0 +1,397 @@
+<div class="col-sm-6 col-sm-offset-3">
+<table class="table table-bordered">
+    <tr>
+        <td>Application Status:</td>
+        <td>
+            <%= application.applicationstatus %>
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant Name</td>
+        <td>
+            <%= application.userfname %>
+                <%= application.userlname %>
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant Email</td>
+        <td>
+            <%= application.useremail %>
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant Student ID</td>
+        <td>
+            <%= application.useraddress %>
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant City</td>
+        <td>
+            <%= application.usercity %>
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant State</td>
+        <td>
+            <%= application.userstate %>
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant Zipcode</td>
+        <td>
+            <%= application.userzipcode%>
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant Discipline</td>
+        <td>
+            <%= application.userdiscipline %>
+        </td>
+    </tr>
+        <tr>
+        <td>Expected Graduation Date</td>
+        <td>
+            <%= application.expectedGraduationSemester + ' ' + application.expectedGraduationYear %>
+        </td>
+    </tr>
+    <tr>
+        <td>Proposed Internship Date</td>
+        <td>
+            <%= application.proposedinternsemester + ' ' + application.proposedinternyear %>
+        </td>
+    </tr>
+    <tr>
+        <td>Emergency Contact Name</td>
+        <td>
+            <%= application.emergencycontactname %>
+        </td>
+    </tr>
+    <tr>
+        <td>Emergency Contact Address</td>
+        <td>
+            <%= application.emergencycontactaddress %>
+        </td>
+    </tr>
+    <tr>
+        <td>Emergency Contact Email</td>
+        <td>
+            <%= application.emergencycontactemail %>
+        </td>
+    </tr>
+    <tr>
+        <td>Emergency Contact City</td>
+        <td>
+            <%= application.emergencycontactcity %>
+        </td>
+    </tr>
+    <tr>
+        <td>Emergency Contact Zipcode</td>
+        <td>
+            <%= application.emergencycontactzipcode %>
+        </td>
+    </tr>
+    <tr>
+        <td>Emergency Contact Phone</td>
+        <td>
+            <%= application.emergencycontactphone %>
+        </td>
+    </tr>
+    <tr>
+        <td>Mentor Name</td>
+        <td>
+            <%= application.mentorname %>
+        </td>
+    </tr>
+    <tr>
+        <td>Mentor Cell Phone</td>
+        <td>
+            <%= application.mentorcellphone %>
+        </td>
+    </tr>
+    <tr>
+        <td>Mentor Email</td>
+        <td>
+            <%= application.mentoremail %>
+        </td>
+    </tr>
+    <tr>
+        <td>Mentor Office</td>
+        <td>
+            <%= application.mentoroffice %>
+        </td>
+    </tr>
+    <tr>
+        <td>Hours completed</td>
+        <td>
+            <%= application.hourscompleted %>
+        </td>
+    </tr>
+    <tr>
+        <td>Major</td>
+        <td>
+            <%= application.major %>
+        </td>
+    </tr>
+    <tr>
+        <td>GPA</td>
+        <td>
+            <%= application.gpa %>
+        </td>
+    </tr>
+    <tr>
+        <td>Program GPA</td>
+        <td>
+            <%= application.programgpa %>
+        </td>
+    </tr>
+    <tr>
+        <td>What career?</td>
+        <td>
+            <%= application.career %>
+        </td>
+    </tr>
+    <tr>
+        <td>Proposed Site Name</td>
+        <td>
+            <%= application.proposedsitename %>
+        </td>
+    </tr>
+        <tr>
+        <td>Proposed Site Speciality</td>
+        <td>
+            <%= application.proposedsitespecialty %>
+        </td>
+    </tr>
+    <tr>
+        <td>Proposed Site Address</td>
+        <td>
+            <%= application.proposedsiteaddress %>
+        </td>
+    </tr>
+    <tr>
+        <td>Proposed Organization City</td>
+        <td>
+            <%= application.proposedsitecity %>
+        </td>
+    </tr>
+    <tr>
+        <td>Proposed Organization State</td>
+        <td>
+            <%= application.proposedsitestate %>
+        </td>
+    </tr>
+    <tr>
+        <td>Proposed Organization Zipcode</td>
+        <td>
+            <%= application.proposedsitezipcode %>
+        </td>
+    </tr>
+    <tr>
+        <td>Proposed Site Manager Name</td>
+        <td>
+            <%= application.proposedsitemanagername %>
+        </td>
+    </tr>
+    <tr>
+        <td>Proposed Site Manager Email</td>
+        <td>
+            <%= application.proposedsitemanageremail %>
+        </td>
+    </tr>
+        <tr>
+        <td>Proposed Site Manager Title</td>
+        <td>
+            <%= application.proposedsitemanagertitle %>
+        </td>
+    </tr>
+            <tr>
+        <td>Preceptor Name</td>
+        <td>
+            <%= application.preceptorname %>
+        </td>
+    </tr>
+            <tr>
+        <td>Preceptor Phone</td>
+        <td>
+            <%= application.preceptorname %>
+        </td>
+    </tr>
+            <tr>
+        <td>Preceptor Phone</td>
+        <td>
+            <%= application.preceptorphone %>
+        </td>
+    </tr>
+            <tr>
+        <td>Preceptor Email</td>
+        <td>
+            <%= application.preceptoremail %>
+        </td>
+    </tr>
+                <tr>
+        <td>Preceptor Manager?</td>
+        <td>
+            <%= application.ispreceptormanager %>
+        </td>
+    </tr>
+                    <tr>
+        <td>Preceptor Position</td>
+        <td>
+            <%= application.preceptorpostition %>
+        </td>
+    </tr>
+    <tr>
+        <td>Is applicant family employed at the site?</td>
+        <td>
+            <%= application.doestudenthavefamilyatsite %>
+        </td>
+    </tr>
+    <tr>
+        <td>Is applicant employed at the site?</td>
+        <td>
+            <%= application.isstudentemployedatsite %>
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant Current Position</td>
+        <td>
+            <%= application.studentcurrentposition %>
+        </td>
+    </tr>
+    <tr>
+        <td>Is Internship Paid?</td>
+        <td>
+            <%= application.ispaidinternship %>
+        </td>
+    </tr>
+    <tr>
+        <td>Number of hours worked?</td>
+        <td>
+            <%= application.studenthoursworked %>
+        </td>
+    </tr>
+    <tr>
+        <td>Can the project have separate hours?</td>
+        <td>
+            <%= application.isokseperatehours %>
+        </td>
+    </tr>
+     <tr>
+        <td>Education Comp 1</td>
+        <td>
+            <%= application.educomp1 %>
+        </td>
+    </tr>
+     <tr>
+        <td>Education Comp 2</td>
+        <td>
+            <%= application.educomp2 %>
+        </td>
+    </tr>
+     <tr>
+        <td>Education Comp 3</td>
+        <td>
+            <%= application.educomp3 %>
+        </td>
+    </tr>
+    <tr>
+        <td>Signature of Applicant</td>
+        <td>
+            <%= application.signature %>
+        </td>
+    </tr>
+    <tr>
+        <td>Printed Name of Applicant</td>
+        <td>
+            <%= application.printedname %>
+        </td>
+    </tr>
+</table>
+    <h3>Feedback</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Note</th>
+                    <th>Entered By</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% application.feedback.forEach(function(feedback) { %>
+                <tr>
+                    <td><%= feedback.feedback %></td>
+                    <td><%= feedback.user %></td>
+                    <td><%= feedback.prettyFeedbackDate %></td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    <form name="bioappadminnotes" action="/application/bio/feedback/<%= application._id %>" method="post">
+            <div class="form-group">
+                <br>
+                <textarea rows="4" cols="50" name="feedback">
+                </textarea>
+            </div>
+                <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
+    </form>
+</div>
+    <% if (user.role=='admin' || user.role=='instructor') { %>
+    <div class="col-sm-6 col-sm-offset-3">
+</div>
+      <div class="col-sm-6 col-sm-offset-3">
+      <h3>Change Application Status</h3>
+    <form name="applicationstatus" method="post">
+        <div class="form-group">
+          <label>Application Status</label>
+          <select class="form-control" name="applicationstatus">
+          <option value="" >Select a status</option>
+          <option value="approved" >Approved</option>
+          <option value="denied">Denied</option>
+          <option value="incomplete">Incomplete</option>
+          <option value="further review">Further Review</option>
+          <option value="applicant rescinded" >Applicant Rescinded</option>
+          <option value="applicant postponed">Applicant Postponed</option>
+          <option value="site declined">Site Declined</option>
+      </select>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Change Status</button>
+    </form>
+    </div>
+          <div class="col-sm-6 col-sm-offset-3">
+      <h3>Notes</h3>
+        <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Note</th>
+        <th>Entered By</th>
+        <th>Date</th>
+</tr>
+    </thead>
+
+    <tbody>
+          <% application.notes.forEach(function(note) { %>
+          <tr>
+              <td><%= note.note %></td>
+              <td><%= note.user %></td>
+              <td><%= note.date %></td>
+          </tr>
+<% }); %>
+      </tbody>
+      </table>
+      <hr>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3">
+    <form name="applicationstatus" action="/application/bio/notes/<%= application._id %>" method="post">
+        <div class="form-group">
+          <h3>Add Note</h3>
+          <br>
+      <textarea rows="4" cols="50" name="note">
+      </textarea>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Add Note</button>
+    </form>
+    </div>
+    
+    <% } %>
+    </div>

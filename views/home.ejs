@@ -1,0 +1,22 @@
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>GGC Internship Signup</title>
+<% include partials/headerimports %>
+</head>
+<body>
+    <% include partials/nav.ejs %>
+  <div class="container">
+  <h2>home</h2>
+     <h1>Welcome! <%= user.fname %></h1>
+     <% if (bioApp)  { %>
+        <a href="/editbio/<%= bioApp._id %>" > <button type="submit" class="btn btn-success"> Edit BIO Application</button></a>
+     <% } %>
+     <% if (itecApp)  { %>
+        <a href="/edititec/<%= itecApp._id %>" class="btn btn-success" role="button">Edit ITEC Application</a>
+     <% } %>
+</div>
+<% include partials/footerimports %>
+</body>
+</html>

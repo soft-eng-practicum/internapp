@@ -106,7 +106,7 @@
          acceptance into the internship program and/or enrollment in ITEC 4900.
       </h4>
       <br>
-      <form name="itec" action="/itec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
+      <form name="itecEdit" action="/edititec/<%= application._id %>" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
          <fieldset>
             <h2 align = "center">Student Academic Information</h2>
             <div class="form-group">
@@ -128,13 +128,13 @@
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="expectedGraduationSemesterList" name="expectedGraduationSemester">
+                     <select class="form-control" id="expectedGraduationSemesterList" name="expectedGraduationSemester" novalidate>
                         <option value="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
                      </select>
-                     <select class="form-control yearSelect" id="expectedGraduationYearList" name="expectedGraduationYear">
+                     <select class="form-control yearSelect" id="expectedGraduationYearList" name="expectedGraduationYear" novalidate>
                      </select>
                   </div>
                </div>
@@ -157,7 +157,7 @@
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Student Classification</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="classificiationList" name="classification">
+                     <select class="form-control" id="classificiationList" name="classification" novalidate>
                         <option value="Select">Select</option>
                         <option value="Junior">Junior</option>
                         <option value="Senior">Senior</option>
@@ -362,7 +362,7 @@
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Are you interested in an internship focused mainly on Programming and Software Development?</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" name="focusonsoftdev" id="softwareDevList">
+                     <select class="form-control" name="focusonsoftdev" id="softwareDevList" novalidate>
                         <option value="Select">Select</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
@@ -378,7 +378,7 @@
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Do you have a proposed internship with a company or organization?</label>
                   <div class="col-lg-5">
-                     <select class="form-control" name="haveproposedintern" id="proposedList">
+                     <select class="form-control" name="haveproposedintern" id="proposedList" novalidate>
                         <option value="Select">Select</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -387,26 +387,26 @@
                </div>
             </div>
             <br>
-            <div class="exisiting">
+            <div class="existing">
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Name of Organization</label>
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="orgNameTxt" name="proposedorgname" type="text"
-                        required value='<%= application.proposedorgname %>'>
+                        value='<%= application.proposedorgname %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Focus (software development, security, networking, etc)</label>
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="focusTxt" name="itecfocus" type="text"
-                        required value='<%= application.itecfocus %>'>
+                        value='<%= application.itecfocus %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Organization Street Address</label>
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="orgAddressTxt" name="proposedorgaddress" type="text"
-                        required value='<%= application.proposedorgaddress %>'>
+                        value='<%= application.proposedorgaddress %>'>
                   </div>
                </div>
                <div class="form-group">
@@ -414,7 +414,7 @@
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="orgCityTxt" pattern="[A-Za-z].{1,}"
                         title=" Example: Atlnata" name="proposedorgcity" type="text"
-                        required value='<%= application.proposedorgcity %>'>
+                        value='<%= application.proposedorgcity %>'>
                   </div>
                </div>
                <div class="form-group">
@@ -422,7 +422,7 @@
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="orgStateTxt" name="proposedorgstate" pattern="[A-Z]{2}"
                         title="Invalid format ex: GA" type="text"
-                        required value='<%= application.proposedorgstate %>'>
+                        value='<%= application.proposedorgstate %>'>
                   </div>
                </div>
                <div class="form-group">
@@ -430,7 +430,7 @@
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="orgZipTxt" name="proposedorgzipcode" pattern="\d{5}([ \-]\d{4})?"
                         title="Not a valid zipcode" type="text"
-                        required value='<%= application.proposedorgzipcode %>'>
+                        value='<%= application.proposedorgzipcode %>'>
                   </div>
                </div>
                <div class="form-group">
@@ -438,14 +438,14 @@
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="orgPhoneTxt" name="proposedorgphone" pattern="\d{3}[\-]\d{3}[\-]\d{4}"
                         title="Please follow the format: xxx-xxx-xxxx" type="text"
-                        required value='<%= application.proposedorgphone %>'>
+                        value='<%= application.proposedorgphone %>'>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Internship Manager</label>
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="orgManagerTxt" name="proposedorgmanager" type="text"
-                        required value='<%= application.proposedorgmanager %>'>
+                        value='<%= application.proposedorgmanager %>'>
                   </div>
                </div>
                <div class="form-group">
@@ -453,7 +453,7 @@
                   <div class="col-lg-5">
                      <input type="text" class="form-control" id="managerEmail" name="proposedorgmanageremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
                         style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
-                        required value='<%= application.proposedorgmanageremail %>'>
+                        value='<%= application.proposedorgmanageremail %>'>
                   </div>
                </div>
                <h3 align="center">
@@ -463,7 +463,7 @@
                   <div class="form-inline">
                      <label for="select" class="col-lg-5 control-label">Are you currently employed at this potential internship site?</label>
                      <div class="col-lg-5" class>
-                        <select class="form-control" name="isemployedatsite" id="isEmployedList">
+                        <select class="form-control" name="isemployedatsite" id="isEmployedList" novalidate>
                            <option value="Select">Select</option>
                            <option value="Yes">Yes</option>
                            <option value="No">No</option>
@@ -476,7 +476,7 @@
                      <label for="input" class="col-lg-5 control-label">What is your current position?</label>
                      <div class="col-lg-5">
                         <input class="form-control" rows="3" id="currentPositionTxt" name="employedcurrentposition" type="text"
-                           required value='<%= application.employedcurrentposition %>'>
+                        value='<%= application.employedcurrentposition %>'>
                      </div>
                   </div>
                   <div class="form-group">
@@ -495,7 +495,7 @@
                      <label for="input" class="col-lg-5 control-label">What is your current average work hours in a week?</label>
                      <div class="col-lg-5">
                         <input class="form-control" rows="3" id="workHoursTxt" name="numberofhoursworked" type="text"
-                           required value='<%= application.numberofhoursworked %>'>
+                            value='<%= application.numberofhoursworked %>'>
                      </div>
                   </div>
                   <div class="form-group">
@@ -549,59 +549,62 @@
             </div>
          </fieldset>
          <div align="center">
-            <button class="btn btn-success" type="submit" id="updateBtn">Update</button>
+             <button class="btn btn-success" type="submit" id="updateBtn">Update</button>
          </div>
       </form>
       <% include partials/footerimports %>
-   </body>
-</html>
-</form>
-<% include partials/footerimports %>
-<script>
-   makeOptionSelected('proposedInternYearList', '<%= application.proposedinternyear %>')
-   makeOptionSelected('proposedInternSemesterList', '<%= application.proposedinternsemester %>')
-   makeOptionSelected('expectedGraduationYearList', '<%= application.expectedGraduationYear %>')
-   makeOptionSelected('expectedGraduationSemesterList', '<%= application.expectedGraduationSemester %>')
-   makeOptionSelected('majorList', '<%= application.major %>')
-   makeOptionSelected('2150Sem', '<%= application.itec2150 %>')
-   // TODO - add year
-   makeOptionSelected('3100Sem', '<%= application.itec3100 %>')
-    // TODO - add year
-   makeOptionSelected('3200Sem', '<%= application.itec3200 %>')
-    // TODO - add year
-   makeOptionSelected('3900Sem', '<%= application.itec3900 %>')
-   makeOptionSelected('softwareDevList', '<%= application.focusonsoftdev %>')
-   makeOptionSelected('proposedList', '<%= application.haveproposedintern %>')
-   makeOptionSelected('isEmployedList', '<%= application.isemployedatsite %>')
-   makeOptionSelected('separateProjectList', '<%= application.isseparateproject %>')
-   makeOptionSelected('separateHoursList', '<%= application.isseparatehours %>')
-</script>
-<script>
-   $('.exisiting').hide();
-   $(function(){
-       $('#proposedList').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.exisiting').show();
-           }else{
-           	$('.exisiting').hide();
-             $('.employed').hide();
-             document.getElementById('isEmployedList').value="Select";
-           }
-       });
-   });
+      <script>
+      makeOptionSelected('proposedInternYearList', '<%= application.proposedinternyear %>')
+      makeOptionSelected('proposedInternSemesterList', '<%= application.proposedinternsemester %>')
+      makeOptionSelected('expectedGraduationYearList', '<%= application.expectedGraduationYear %>')
+      makeOptionSelected('classificiationList', '<%= application.classification %>')
+      makeOptionSelected('expectedGraduationSemesterList', '<%= application.expectedGraduationSemester %>')
+      makeOptionSelected('majorList', '<%= application.major %>')
 
-   $('.employed').hide();
-   $(function(){
-       $('#isEmployedList').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.employed').show();
-           }else{
-           	$('.employed').hide();
-           }
-       });
-   });
-</script>
+      makeOptionSelected('2150Sem', '<%= application.itec2150 %>')
+      makeOptionSelected('2150Year', '<%= application.itec2150Year %>')
+
+      makeOptionSelected('3100Sem', '<%= application.itec3100 %>')
+      makeOptionSelected('3100Year', '<%= application.itec3100Year %>')
+
+      makeOptionSelected('3200Sem', '<%= application.itec3200 %>')
+      makeOptionSelected('3200Year', '<%= application.itec3200Year %>')
+
+      makeOptionSelected('3900Sem', '<%= application.itec3900 %>')
+      makeOptionSelected('3900Year', '<%= application.itec3900Year %>')
+      
+      makeOptionSelected('softwareDevList', '<%= application.focusonsoftdev %>')
+      makeOptionSelected('proposedList', '<%= application.haveproposedintern %>')
+      makeOptionSelected('isEmployedList', '<%= application.isemployedatsite %>')
+      makeOptionSelected('separateProjectList', '<%= application.isseparateproject %>')
+      makeOptionSelected('separateHoursList', '<%= application.isseparatehours %>')
+      </script>
+      <script>
+ 
+      $(function(){
+            $('#proposedList').change(function(){
+            var opt = $(this).val();
+            if(opt == 'Yes'){
+                  $('.existing').show();
+            }else{
+                  $('.existing').hide();
+                  $('.employed').hide();
+                  document.getElementById('isEmployedList').value="Select";
+            }
+            });
+      });
+      
+      $('.employed').hide();
+      $(function(){
+            $('#isEmployedList').change(function(){
+            var opt = $(this).val();
+            if(opt == 'Yes'){
+                  $('.employed').show();
+            }else{
+                  $('.employed').hide();
+            }
+            });
+      });
+      </script>
 </body>
 </html>

@@ -6,11 +6,11 @@
 */
 
     // Variables to reference the controller functions within each controller file
-    var ctrlHome = require('../controllers/home');
+    var ctrlIndex = require('../controllers/index');
     var ctrlLogin = require('../controllers/login');
     var ctrlSignUp = require('../controllers/signup');
     var ctrlForgot = require('../controllers/forgot');
-    var ctrlDashboard = require('../controllers/dashboard');
+    var ctrlHome = require('../controllers/home');
     var ctrlApplications = require('../controllers/applications');
     var ctrlSites = require('../controllers/sites');
     var ctrlPromote = require('../controllers/promote');
@@ -21,6 +21,7 @@
     var ctrlMongoToCsv = require('../controllers/mongoToCsv');
     var ctrlUpload = require('../controllers/documentUpload');
     var ctrlSiteNotes = require('../controllers/sitenotes');
+    var ctrlEditApps = require('../controllers/editApplications');
 
     // For document uploads
     var fileUpload = require('express-fileupload');
@@ -56,13 +57,13 @@ module.exports = function(app, passport) {
     app.use(fileUpload()); // default options for file upload
 
     /* Home pages */
-    app.get('/', ctrlHome.loadHome);
+    app.get('/', ctrlIndex.loadIndex);
 
     /* Login page */
     app.get('/login', ctrlLogin.getLogin);
     app.post('/login',
             passport.authenticate('local-login', {
-            successRedirect : '/dashboard',
+            successRedirect : '/home',
             failureRedirect : '/login',
             failureFlash : true
         }));
@@ -73,7 +74,7 @@ module.exports = function(app, passport) {
      /* Sign up page */
     app.get('/signup', ctrlSignUp.loadSignUp);
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/dashboard',
+            successRedirect : '/home',
             failureRedirect : '/signup',
             failureFlash : true
         }));
@@ -86,8 +87,8 @@ module.exports = function(app, passport) {
      app.get('/reset/:token', ctrlReset.getReset);
      app.post('/reset/:token', ctrlReset.postReset);
 
-     /* Dashboard page */
-     app.get('/dashboard', isLoggedIn, ctrlDashboard.loadDashboard);
+     /* home page */
+     app.get('/home', isLoggedIn, ctrlHome.loadUserHome);
 
      /* Applications pages - Could probably add some regex to reduce the routes */
      app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
@@ -164,32 +165,12 @@ module.exports = function(app, passport) {
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 
 
-
-
+    app.get('/edititec/:userId', isLoggedIn, ctrlEditApps.getEditItec);
+    app.get('/editbio/:userId', isLoggedIn, ctrlEditApps.getEditBio);
+    app.post('/edititec/:userId', isLoggedIn, ctrlEditApps.updateItecApp);
+    app.post('/editbio/:userId', isLoggedIn, ctrlEditApps.updateBioApp);
     
 
-    /* TEMPORARY TEST ROUTES */
-    var Itec = require('../models/itec.js');
-    var Bio = require('../models/bio.js');
-    app.get('/edititec', function(req, res, next) {
-        // id = 58c9dfde4dfd6d0011a8475e
-        Itec.findById({"_id" : "58c9dfde4dfd6d0011a8475e"},
-        function(err, itec) {
-            res.render('editItec.ejs', {
-                application: itec
-            })
-        });
 
-    });
-
-    app.get('/editbio', function(req, res, next) {
-        // id = 58c9dfde4dfd6d0011a8475e
-        Bio.findById({"_id" : "58d6cdcbc2245e0011444b7b"},
-        function(err, itec) {
-            res.render('editBio.ejs', {
-                application: itec
-            })
-        });
-
-    });
+   
 }

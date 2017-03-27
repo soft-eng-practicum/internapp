@@ -114,6 +114,7 @@ module.exports.getSpecificItecApplication = function(req, res) {
                 console.log(err);
             }
             else {
+                console.log('appdetail = ', appdetail);
                 res.render('applicationdetails.ejs', {
                 application : appdetail,
                 user : req.user,
@@ -273,7 +274,7 @@ module.exports.postItecApplication = function(req, res) {
     itecapp.usercity = req.user.city;
     itecapp.userstate = req.user.state;
     itecapp.userzipcode = req.user.zipcode;
-    itecapp.userdiscipline = 'IT';
+    itecapp.userdiscipline = 'ITEC';
     itecapp.applicationstatus = 'submitted';
     itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
     itecapp.save(function(err) {

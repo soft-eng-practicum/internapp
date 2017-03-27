@@ -5,6 +5,10 @@ var mongoose = require('mongoose');
 // define the schema for our itec model
 var itecSchema = mongoose.Schema({
 
+        lastupdated: {
+                type: Date,
+                default: Date.now
+        },
         proposedinternsemester: {
                 type: String,
                 required: false
@@ -277,10 +281,24 @@ module.exports.doesUserHaveItecApp = function(email, callback) {
     Itec.find({
         'useremail' : email
     }, function(err, itecApp) {
-        if (itecApp.length > 0) {
-            return callback(true);
-        } else {
+        if (!itecApp) {
             return callback(false);
+        } else {
+            return callback(true);
         }
     });
-};
+}
+
+module.exports.getUsersItecApp = function(email, callback) {
+        Itec.findOne({
+            'useremail': email
+        }, function(err, itecApp) {
+                console.log('hiii ', itecApp);
+            if (err) throw err;
+            if (!itecApp) {
+                return callback(false);
+            } else {
+                return callback(itecApp);
+            }
+        });
+}

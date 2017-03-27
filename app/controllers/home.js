@@ -3,26 +3,31 @@
     Authors : Joseph Cox, Robert Bryan
 */
 
-var isInvalidURL = false;
+var Bio = require('../models/bio');
+var Itec = require('../models/itec');
 
 /*
     HTTP Req: GET
-    URL: '/'
+    URL: '/home'
 */
-module.exports.loadHome = function(req, res) {   
-     if (isInvalidURL) {
-        req.logout();
-        req.flash('homepage', 'The URL you entered was not recognized.')
-     }
-     isInvalidURL = false;
-     res.render('index', {
-         user: req.session.passport.user,
-         urlError: req.flash('homepage')
-     });
-  }; 
-  
- // Set invalid url from the index.js routes file
- module.exports.setInvalidURL = function(boo) {
-     isInvalidURL = boo;
- }
+module.exports.loadUserHome = function(req, res) {
 
+    var haveBioApp;
+    var haveItecApp;
+    var bioApp;
+    var itecApp;
+
+    Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
+        bioApp = incomingBioApp;
+        Itec.getUsersItecApp(req.user.email, function (incomingItecApp) {
+            itecApp = incomingItecApp;    
+                res.render('home.ejs', {
+                    successMessage : req.flash('success'),
+                    failureMessage: req.flash('failure'),
+                    user : req.session.passport.user,
+                    bioApp : bioApp,
+                    itecApp : itecApp
+                }); 
+            });
+        });
+    }; 

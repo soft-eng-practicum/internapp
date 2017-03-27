@@ -5,6 +5,10 @@ var mongoose = require('mongoose');
 // define the schema for our itec model
 var bioSchema = mongoose.Schema({
 
+    lastupdated: {
+        type: Date,
+        default: Date.now
+    },
     emergencycontactname: {
         type: String,
         required: false
@@ -282,4 +286,16 @@ module.exports.doesUserHaveBioApp = function(email, callback) {
             return callback(false);
         }
     });
-};
+}
+
+module.exports.getUsersBioApp = function(email, callback) {
+        Bio.findOne({
+            'useremail': email
+        }, function(err, bioApp) {
+            if (err) throw err;
+            if (bioApp.length === 0 ) {
+                return callback(false);
+            }
+            return callback(bioApp);
+        });
+}
