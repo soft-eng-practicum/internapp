@@ -36,8 +36,8 @@ module.exports.getBioApplication = function(req, res) {
     URL: '/applications'
 */
 module.exports.getApplications = function(req, res) {
-    var haveBioApp;
-    var haveItecApp;
+    var haveBioApp = false;
+    var haveItecApp = false;
 
     Bio.doesUserHaveBioApp(req.user.email, function(response) {
         haveBioApp = response;
@@ -56,6 +56,8 @@ module.exports.getApplications = function(req, res) {
                             applicationList: bioApplications.concat(itecApplications),
                             applicationSuccess: req.flash('applicationsuccess'),
                             applicationFailure: req.flash('applicationfailure'),
+                            haveBioApp: haveBioApp,
+                            haveItecApp: haveItecApp,
                             user: req.user
                         });
                     });
