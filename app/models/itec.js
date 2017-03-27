@@ -281,10 +281,10 @@ module.exports.doesUserHaveItecApp = function(email, callback) {
     Itec.find({
         'useremail' : email
     }, function(err, itecApp) {
-        if (itecApp.length > 0) {
-            return callback(true);
-        } else {
+        if (!itecApp) {
             return callback(false);
+        } else {
+            return callback(true);
         }
     });
 }
@@ -295,7 +295,7 @@ module.exports.getUsersItecApp = function(email, callback) {
         }, function(err, itecApp) {
                 console.log('hiii ', itecApp);
             if (err) throw err;
-            if (itecApp.length === 0) {
+            if (!itecApp) {
                 return callback(false);
             } else {
                 return callback(itecApp);
