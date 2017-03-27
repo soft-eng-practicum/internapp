@@ -280,10 +280,10 @@ module.exports.doesUserHaveBioApp = function(email, callback) {
     Bio.find({
         'useremail' : email
     }, function(err, bioApp) {
-        if (bioApp.length > 0) {
-            return callback(true);
-        } else {
+        if (!bioApp) {
             return callback(false);
+        } else {
+            return callback(true);
         }
     });
 }
@@ -293,7 +293,7 @@ module.exports.getUsersBioApp = function(email, callback) {
             'useremail': email
         }, function(err, bioApp) {
             if (err) throw err;
-            if (bioApp.length === 0 ) {
+            if (!bioApp) {
                 return callback(false);
             }
             return callback(bioApp);
