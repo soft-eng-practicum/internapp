@@ -22,7 +22,7 @@
          acceptance into the internship program and/or enrollment in ITEC 4900.
       </h4>
       <br>
-      <form name="itec" action="/itec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
+      <form name="itecEdit" action="/edititec/<%= application._id %>" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
          <fieldset>
             <h2 align = "center">Student Academic Information</h2>
             <div class="form-group">
@@ -462,59 +462,55 @@
             </div>
          </fieldset>
          <div align="center">
-            <button class="btn btn-success" type="submit" id="updateBtn">Update</button>
+             <button class="btn btn-success" type="submit" id="updateBtn">Update</button>
          </div>
       </form>
       <% include partials/footerimports %>
-   </body>
-</html>
-</form>
-<% include partials/footerimports %>
-<script>
-   makeOptionSelected('proposedInternYearList', '<%= application.proposedinternyear %>')
-   makeOptionSelected('proposedInternSemesterList', '<%= application.proposedinternsemester %>')
-   makeOptionSelected('expectedGraduationYearList', '<%= application.expectedGraduationYear %>')
-   makeOptionSelected('expectedGraduationSemesterList', '<%= application.expectedGraduationSemester %>')
-   makeOptionSelected('majorList', '<%= application.major %>')
-   makeOptionSelected('2150Sem', '<%= application.itec2150 %>')
-   // TODO - add year
-   makeOptionSelected('3100Sem', '<%= application.itec3100 %>')
-    // TODO - add year
-   makeOptionSelected('3200Sem', '<%= application.itec3200 %>')
-    // TODO - add year
-   makeOptionSelected('3900Sem', '<%= application.itec3900 %>')
-   makeOptionSelected('softwareDevList', '<%= application.focusonsoftdev %>')
-   makeOptionSelected('proposedList', '<%= application.haveproposedintern %>')
-   makeOptionSelected('isEmployedList', '<%= application.isemployedatsite %>')
-   makeOptionSelected('separateProjectList', '<%= application.isseparateproject %>')
-   makeOptionSelected('separateHoursList', '<%= application.isseparatehours %>')
-</script>
-<script>
-   $('.exisiting').hide();
-   $(function(){
-       $('#proposedList').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.exisiting').show();
-           }else{
-           	$('.exisiting').hide();
-             $('.employed').hide();
-             document.getElementById('isEmployedList').value="Select";
-           }
-       });
-   });
-   
-   $('.employed').hide();
-   $(function(){
-       $('#isEmployedList').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.employed').show();
-           }else{
-           	$('.employed').hide();
-           }
-       });
-   });
-</script>
+      <script>
+      makeOptionSelected('proposedInternYearList', '<%= application.proposedinternyear %>')
+      makeOptionSelected('proposedInternSemesterList', '<%= application.proposedinternsemester %>')
+      makeOptionSelected('expectedGraduationYearList', '<%= application.expectedGraduationYear %>')
+      makeOptionSelected('expectedGraduationSemesterList', '<%= application.expectedGraduationSemester %>')
+      makeOptionSelected('majorList', '<%= application.major %>')
+      makeOptionSelected('2150Sem', '<%= application.itec2150 %>')
+      // TODO - add year
+      makeOptionSelected('3100Sem', '<%= application.itec3100 %>')
+      // TODO - add year
+      makeOptionSelected('3200Sem', '<%= application.itec3200 %>')
+      // TODO - add year
+      makeOptionSelected('3900Sem', '<%= application.itec3900 %>')
+      makeOptionSelected('softwareDevList', '<%= application.focusonsoftdev %>')
+      makeOptionSelected('proposedList', '<%= application.haveproposedintern %>')
+      makeOptionSelected('isEmployedList', '<%= application.isemployedatsite %>')
+      makeOptionSelected('separateProjectList', '<%= application.isseparateproject %>')
+      makeOptionSelected('separateHoursList', '<%= application.isseparatehours %>')
+      </script>
+      <script>
+      $('.exisiting').hide();
+      $(function(){
+            $('#proposedList').change(function(){
+            var opt = $(this).val();
+            if(opt == 'Yes'){
+                  $('.exisiting').show();
+            }else{
+                  $('.exisiting').hide();
+                  $('.employed').hide();
+                  document.getElementById('isEmployedList').value="Select";
+            }
+            });
+      });
+      
+      $('.employed').hide();
+      $(function(){
+            $('#isEmployedList').change(function(){
+            var opt = $(this).val();
+            if(opt == 'Yes'){
+                  $('.employed').show();
+            }else{
+                  $('.employed').hide();
+            }
+            });
+      });
+      </script>
 </body>
 </html>

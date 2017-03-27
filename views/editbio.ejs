@@ -25,7 +25,7 @@
          enrollment in bio 4900.
       </h4>
       <br>
-      <form name="itec" action="/itec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
+      <form name="itecEdit" action="/edititec/<%= application._id %>" method="post" class="form-horizontal" _lpchecked="1">
          <fieldset>
             <h2 align = "center">Student Academic Information</h2>
             <div class="form-group">
@@ -512,7 +512,7 @@
             </div>
          </fieldset>
          <div align="center">
-            <button class="btn btn-success" type="submit" id="updateBtn">Update</button>
+          <button class="btn btn-success" type="submit" id="submitBtn">Update</button>
          </div>
       </form>
       <% include partials/footerimports %>
