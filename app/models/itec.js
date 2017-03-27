@@ -5,6 +5,10 @@ var mongoose = require('mongoose');
 // define the schema for our itec model
 var itecSchema = mongoose.Schema({
 
+        lastupdated: {
+                type: Date,
+                default: Date.now
+        },
         proposedinternsemester: {
                 type: String,
                 required: false

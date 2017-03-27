@@ -21,6 +21,7 @@
     var ctrlMongoToCsv = require('../controllers/mongoToCsv');
     var ctrlUpload = require('../controllers/documentUpload');
     var ctrlSiteNotes = require('../controllers/sitenotes');
+    var ctrlEditApps = require('../controllers/editApplications');
 
     // For document uploads
     var fileUpload = require('express-fileupload');
@@ -164,32 +165,12 @@ module.exports = function(app, passport) {
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 
 
-
-
+    app.get('/edititec/:userId', isLoggedIn, ctrlEditApps.getEditItec);
+    app.get('/editbio/:userId', isLoggedIn, ctrlEditApps.getEditBio);
+    app.post('/edititec/:userId', isLoggedIn, ctrlEditApps.updateItecApp);
+    app.post('/editbio/:userId', isLoggedIn, ctrlEditApps.updateBioApp);
     
 
-    /* TEMPORARY TEST ROUTES */
-    var Itec = require('../models/itec.js');
-    var Bio = require('../models/bio.js');
-    app.get('/edititec', function(req, res, next) {
-        // id = 58c9dfde4dfd6d0011a8475e
-        Itec.findById({"_id" : "58c9dfde4dfd6d0011a8475e"},
-        function(err, itec) {
-            res.render('editItec.ejs', {
-                application: itec
-            })
-        });
 
-    });
-
-    app.get('/editbio', function(req, res, next) {
-        // id = 58c9dfde4dfd6d0011a8475e
-        Bio.findById({"_id" : "58d6cdcbc2245e0011444b7b"},
-        function(err, itec) {
-            res.render('editBio.ejs', {
-                application: itec
-            })
-        });
-
-    });
+   
 }

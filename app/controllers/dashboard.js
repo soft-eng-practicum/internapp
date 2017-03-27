@@ -7,11 +7,35 @@
     HTTP Req: GET
     URL: '/dashboard'
 */
+var Bio = require('../models/bio');
+var Itec = require('../models/itec');
+
 module.exports.loadDashboard = function(req, res) {
-    // If the user's role is admin, redirect them to /dashboard
-  
-    res.render('dashboard.ejs', {
-      //  message : req.flash('info'),
-        user : req.session.passport.user // get the user out of session and pass to template
-    }); 
+
+    var haveBioApp;
+    var haveItecApp;
+
+/*
+    NEED TO PASS IN THE APPLICATION ID FOR EACH OF THE USER'S APPLICATIONS
+    
+*/
+
+    Bio.doesUserHaveBioApp(req.user.email, function (haveBio) {
+        haveBioApp = haveBio;
+        Itec.doesUserHaveItecApp(req.user.email, function(haveItec) {
+            haveItecApp = haveItec;
+            res.render('dashboard.ejs', {
+                successMessage : req.flash('success'),
+                failureMessage: req.flash('failure'),
+                user : req.session.passport.user,
+                haveBioApp: haveBioApp,
+                haveItecApp: haveItecApp
+            }); 
+        });
+
+    });
+
+ 
+   
+
 }; 

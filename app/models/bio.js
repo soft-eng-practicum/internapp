@@ -5,6 +5,10 @@ var mongoose = require('mongoose');
 // define the schema for our itec model
 var bioSchema = mongoose.Schema({
 
+    lastupdated: {
+        type: Date,
+        default: Date.now
+    },
     emergencycontactname: {
         type: String,
         required: false
