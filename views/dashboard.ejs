@@ -11,16 +11,11 @@
   <h2>Dashboard</h2>
      <h1>Welcome! <%= user.fname %></h1>
      <% if (bioApp)  { %>
-        <a href="/editbio/<%= bioApp._id %>" button type="submit" class="btn btn-success">Edit BIO Application</button></a>
+        <a href="/editbio/<%= bioApp._id %>" > <button type="submit" class="btn btn-success"> Edit BIO Application</button></a>
      <% } %>
      <% if (itecApp)  { %>
-        <a href="/edititec/<%= itecApp._id %>" button type="submit" class="btn btn-success">Edit ITEC Application</button></a>
+                <a href="/edititec/<%= itecApp._id %>" class="btn btn-info" role="button">Link Button</a>
      <% } %>
-
-
-
-</div>
-
 </div>
 <% include partials/footerimports %>
 </body>

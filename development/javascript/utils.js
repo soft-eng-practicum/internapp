@@ -12,20 +12,6 @@ populateSelectYears('yearSelect', new Date().getFullYear());
 
 populateSites('siteSelect');
 
-  makeOptionSelected('proposedInternSemesterList', '<%= application.proposedinternsemester %>');
-         makeOptionSelected('proposedInternYearList', '<%= application.proposedinternyear %>');
-         makeOptionSelected('concentrationList', '<%= application.major %>');
-         makeOptionSelected('graduationSemesterList', '<%= application.expectedGraduationSemester %>');
-         makeOptionSelected('graduationYearList', '<%= application.expectedGraduationYear %>');
-         makeOptionSelected('previouslyApplied', '<%= application.isPreviouslyApprovedSite %>');
-         makeOptionSelected('additionalInfoList', '<%= application.internsite %>');
-         makeOptionSelected('preceptorManagerList', '<%= application.ispreceptormanager %>');
-         makeOptionSelected('isStudentEmployedList', '<%= application.isstudentemployedatsite %>');
-         makeOptionSelected('isPaidList', '<%= application.ispaidinternship %>');
-         makeOptionSelected('internquestion', '<%= application.isokseperatehours %>');
-         makeOptionSelected('studentRelationshipList', '<%= application.doestudenthavefamilyatsite %>');
-   
-
 function populateSelectYears(target, min, max) {
       if (!target){
           return false;
