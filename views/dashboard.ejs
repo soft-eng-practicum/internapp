@@ -10,11 +10,11 @@
   <div class="container">
   <h2>Dashboard</h2>
      <h1>Welcome! <%= user.fname %></h1>
-     <% if (haveBioApp)  { %>
+     <% if (bioApp)  { %>
         <a href="/editbio/<%= bioApp._id %>" button type="submit" class="btn btn-success">Edit BIO Application</button></a>
      <% } %>
-     <% if (haveItecApp)  { %>
-        <a href="/edititec/<%= user._id %>" button type="submit" class="btn btn-success">Edit ITEC Application</button></a>
+     <% if (itecApp)  { %>
+        <a href="/edititec/<%= itecApp._id %>" button type="submit" class="btn btn-success">Edit ITEC Application</button></a>
      <% } %>
 
 

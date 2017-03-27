@@ -20,28 +20,19 @@ module.exports.loadDashboard = function(req, res) {
 /*
     NEED TO PASS IN THE APPLICATION ID FOR EACH OF THE USER'S APPLICATIONS
 */
-
-    Bio.doesUserHaveBioApp(req.user.email, function (haveBio) {
-            haveBioApp = haveBio;
             Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
                 bioApp = incomingBioApp;
-                console.log('bioooApp ', bioApp);
-                Itec.doesUserHaveItecApp(req.user.email, function(haveItec) {
-                    haveItecApp = haveItec;
-                    if (haveItecApp) {
-                    // to do   
-                    }
-                    res.render('dashboard.ejs', {
-                        successMessage : req.flash('success'),
-                        failureMessage: req.flash('failure'),
-                        user : req.session.passport.user,
-                        bioApp : bioApp,
-                        haveBioApp: haveBioApp,
-                        haveItecApp: haveItecApp
-                    }); 
-                });
+                Itec.getUsersItecApp(req.user.email, function (incomingItecApp) {
+                    itecApp = incomingItecApp;    
+                        res.render('dashboard.ejs', {
+                            successMessage : req.flash('success'),
+                            failureMessage: req.flash('failure'),
+                            user : req.session.passport.user,
+                            bioApp : bioApp,
+                            itecApp : itecApp
+                        }); 
+                    });
             });
-    });
 
 
    
