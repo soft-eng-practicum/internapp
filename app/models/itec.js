@@ -293,7 +293,6 @@ module.exports.getUsersItecApp = function(email, callback) {
         Itec.findOne({
             'useremail': email
         }, function(err, itecApp) {
-                console.log('hiii ', itecApp);
             if (err) throw err;
             if (!itecApp) {
                 return callback(false);
