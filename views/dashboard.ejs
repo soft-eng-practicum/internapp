@@ -11,7 +11,7 @@
   <h2>Dashboard</h2>
      <h1>Welcome! <%= user.fname %></h1>
      <% if (haveBioApp)  { %>
-        <a href="/editbio/<%= user._id %>" button type="submit" class="btn btn-success">Edit BIO Application</button></a>
+        <a href="/editbio/<%= bioApp._id %>" button type="submit" class="btn btn-success">Edit BIO Application</button></a>
      <% } %>
      <% if (haveItecApp)  { %>
         <a href="/edititec/<%= user._id %>" button type="submit" class="btn btn-success">Edit ITEC Application</button></a>

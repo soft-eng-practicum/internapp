@@ -286,4 +286,13 @@ module.exports.doesUserHaveBioApp = function(email, callback) {
             return callback(false);
         }
     });
-};
+}
+
+module.exports.getUsersBioApp = function(email, callback) {
+        Bio.findOne({
+            'useremail': email
+        }, function(err, bioApp) {
+            if (err) throw err;
+            return callback(bioApp);
+        });
+}
