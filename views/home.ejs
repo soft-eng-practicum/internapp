@@ -8,13 +8,13 @@
 <body>
     <% include partials/nav.ejs %>
   <div class="container">
-  <h2>Dashboard</h2>
+  <h2>home</h2>
      <h1>Welcome! <%= user.fname %></h1>
      <% if (bioApp)  { %>
         <a href="/editbio/<%= bioApp._id %>" > <button type="submit" class="btn btn-success"> Edit BIO Application</button></a>
      <% } %>
      <% if (itecApp)  { %>
-                <a href="/edititec/<%= itecApp._id %>" class="btn btn-info" role="button">Link Button</a>
+        <a href="/edititec/<%= itecApp._id %>" class="btn btn-success" role="button">Edit ITEC Application</a>
      <% } %>
 </div>
 <% include partials/footerimports %>

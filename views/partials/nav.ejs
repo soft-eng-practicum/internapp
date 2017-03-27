@@ -17,6 +17,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
          <ul class="nav navbar-nav">
             <% if (user.role=='admin') { %>
+            <li><a href="/home">Student Home</a></li>
             <li><a href="/applications">Applications</a></li>
             <li><a href="/documentUpload">Document Uploads</a></li>
             <li class="dropdown">
@@ -30,8 +31,7 @@
             <li><a href="/promote">Promote</a></li>
             <li><a href="/export">Export</a></li>
             <% } else if (user.role=='user' || user.role=='instructor') { %>
-            <li><a href="/applications">Applications</a></li>
-            <li><a href="/documentUpload">Document Uploads</a></li>
+            <li><a href="/home">Home</a></li>
             <% } %>
          </ul>
          <ul class="nav navbar-nav navbar-right">

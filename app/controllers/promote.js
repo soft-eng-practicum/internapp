@@ -19,7 +19,7 @@ module.exports.getPromote = function(req, res) {
             message : req.flash('success')
         });
     } else {
-        res.redirect('/dashboard'); // if the user is not an admin, redirect
+        res.redirect('/home'); // if the user is not an admin, redirect
     }
 };
 

@@ -53,7 +53,7 @@ module.exports.updateBioApp = function(req, res) {
         bioapp.save(function(err) {
             if (err) throw err;
             console.log('bio app saved');
-            res.redirect('/dashboard');
+            res.redirect('/home');
         });
     });
 }
@@ -79,7 +79,7 @@ module.exports.updateItecApp = function(req, res) {
         itecapp.save(function(err) {
             if (err) throw err;
             console.log('itec app saved');
-            res.redirect('/dashboard');
+            res.redirect('/home');
         });
     });
 }
