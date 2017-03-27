@@ -5,6 +5,90 @@
       <meta charset='utf-8'>
       <title>Edit ITEC Application</title>
       <% include partials/headerimports %>
+      <style>
+      .help-tip{
+          position: absolute;
+          bottom: 1880px;
+          right: 100px;
+          text-align: center;
+          background-color: #4286f4;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          font-size: 14px;
+          line-height: 26px;
+          cursor: default;
+        }
+
+        .help-tip:before{
+          content:'?';
+          font-weight: bold;
+          color:#fff;
+        }
+
+        .help-tip:hover p{
+          display:block;
+          transform-origin: 100% 0%;
+
+          -webkit-animation: fadeIn 0.3s ease-in-out;
+          animation: fadeIn 0.3s ease-in-out;
+
+        }
+
+        .help-tip p{	/* The tooltip */
+          display: none;
+          text-align: left;
+          background-color: #1E2021;
+          padding: 20px;
+          width: 300px;
+          position: absolute;
+          border-radius: 3px;
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+          right: -4px;
+          color: #FFF;
+          font-size: 13px;
+          line-height: 1.4;
+        }
+
+        .help-tip p:before{ /* The pointer of the tooltip */
+          position: absolute;
+          content: '';
+          width:0;
+          height: 0;
+          border:6px solid transparent;
+          border-bottom-color:#1E2021;
+          right:10px;
+          top:-12px;
+        }
+
+        .help-tip p:after{ /* Prevents the tooltip from being hidden */
+          width:100%;
+          height:40px;
+          content:'';
+          position: absolute;
+          top:-40px;
+          left:0;
+        }
+
+        /* CSS animation */
+
+        @-webkit-keyframes fadeIn {
+          0% {
+            opacity:0;
+            transform: scale(0.6);
+          }
+
+          100% {
+            opacity:100%;
+            transform: scale(1);
+          }
+        }
+
+      @keyframes fadeIn {
+        0% { opacity:0; }
+        100% { opacity:100%; }
+      }
+        </style>
    </head>
    <body>
       <% include partials/nav.ejs %>
@@ -15,10 +99,10 @@
         ITEC Internship application
       </h1>
       <h4 align="center">
-         Upon Receipt of the application, Dr. Pollacia will contact you to schedule 
+         Upon Receipt of the application, Dr. Pollacia will contact you to schedule
          an appointment.<br><br>
-         Information will be used to determine if you will be accepted to participate in 
-         the internship program. Completion of this application does not guarantee your 
+         Information will be used to determine if you will be accepted to participate in
+         the internship program. Completion of this application does not guarantee your
          acceptance into the internship program and/or enrollment in ITEC 4900.
       </h4>
       <br>
@@ -88,6 +172,9 @@
                </div>
             </div>
             <div class="form-group">
+              <div class="help-tip">
+                 <p>You can find your ITEC Major GPA by navigating to your Degree Works and locating your GPA under "Major in Info Tech" section.</p>
+               </div>
                <label for="input" class="col-lg-5 control-label">ITEC Major GPA</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="itecGPATxt" name="itecgpa"  type="number"  min=1 max=4  placeholder="Decimal" pattern="/^[0-4][.][0-9][0-9]$/" step="0.01"    required value='<%= application.itecgpa %>'>
@@ -164,31 +251,31 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Name of Emergency Contact</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname" placeholder="Name" 
+                  <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname" placeholder="Name"
                      pattern="[A-Za-z].{2,}" required value='<%= application.emergencycontactname %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mailing address</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress"  
-                     placeholder="Address" title=" Example: 1227 Rosecliff"  type="text" 
+                  <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress"
+                     placeholder="Address" title=" Example: 1227 Rosecliff"  type="text"
                      required value='<%= application.emergencycontactaddress %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Contact City</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City" 
-                     pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text" 
+                  <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City"
+                     pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text"
                      required value='<%= application.emergencycontactcity %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Contact State</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecState"name="emergencycontactstate" placeholder="State" 
-                     pattern ="[A-Z]{2}" title=" Example: GA" type="text" 
+                  <input class="form-control" rows="3" id="ecState"name="emergencycontactstate" placeholder="State"
+                     pattern ="[A-Z]{2}" title=" Example: GA" type="text"
                      required value='<%= application.emergencycontactstate %>'>
                </div>
             </div>
@@ -196,25 +283,25 @@
                <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode"  placeholder="Zip Code"
-                     pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text" 
+                     pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text"
                      required value='<%= application.emergencycontactzipcode %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecPhoneTxt" pattern="\d{3}[\-]\d{3}[\-]\d{4}" 
-                     title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"  
+                  <input class="form-control" rows="3" id="ecPhoneTxt" pattern="\d{3}[\-]\d{3}[\-]\d{4}"
+                     title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"
                      required type="text" required value='<%= application.emergencycontactphone %>'>
                </div>
             </div>
             <div class="form-group">
                <label for="inputEmail" class="col-lg-5 control-label">Contact Email Address</label>
                <div class="col-lg-5">
-                  <input type="email" 
-                     class="form-control" id="ecEmailTxt" name="emergencycontactemail" 
-                     placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"  
-                     style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off" 
+                  <input type="email"
+                     class="form-control" id="ecEmailTxt" name="emergencycontactemail"
+                     placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
+                     style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
                      required value='<%= application.emergencycontactemail %>'>
                </div>
             </div>
@@ -225,32 +312,32 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Name</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" 
-                     pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  
+                  <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name"
+                     pattern="[A-Za-z].{2,}" required title=" Example: Brannock"
                      required value='<%= application.mentorname %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorPhoneTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX" 
-                     pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" 
+                  <input class="form-control" rows="3" id="mentorPhoneTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX"
+                     pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"
                      required value='<%= application.mentorcellphone %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder="Ex: H-3241" 
-                     title="Example: H-3241" 
+                  <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder="Ex: H-3241"
+                     title="Example: H-3241"
                      required value='<%= application.mentoroffice %>' type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
                <div class="col-lg-5">
-                  <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail" placeholder="Email" 
-                     pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" 
+                  <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail" placeholder="Email"
+                     pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
                      style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
                      required value='<%= application.mentoremail %>'>
                </div>
@@ -300,7 +387,7 @@
                </div>
             </div>
             <br>
-            <div class="exisiting">
+            <div class="existing">
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Name of Organization</label>
                   <div class="col-lg-5">
@@ -325,7 +412,7 @@
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Organization City</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="orgCityTxt" pattern="[A-Za-z].{1,}"  
+                     <input class="form-control" rows="3" id="orgCityTxt" pattern="[A-Za-z].{1,}"
                         title=" Example: Atlnata" name="proposedorgcity" type="text"
                         value='<%= application.proposedorgcity %>'>
                   </div>
@@ -333,7 +420,7 @@
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Organization State</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="orgStateTxt" name="proposedorgstate" pattern="[A-Z]{2}" 
+                     <input class="form-control" rows="3" id="orgStateTxt" name="proposedorgstate" pattern="[A-Z]{2}"
                         title="Invalid format ex: GA" type="text"
                         value='<%= application.proposedorgstate %>'>
                   </div>
@@ -341,7 +428,7 @@
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Organization Zip Code</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="orgZipTxt" name="proposedorgzipcode" pattern="\d{5}([ \-]\d{4})?" 
+                     <input class="form-control" rows="3" id="orgZipTxt" name="proposedorgzipcode" pattern="\d{5}([ \-]\d{4})?"
                         title="Not a valid zipcode" type="text"
                         value='<%= application.proposedorgzipcode %>'>
                   </div>
@@ -349,7 +436,7 @@
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Organization Phone Number</label>
                   <div class="col-lg-5">
-                     <input class="form-control" rows="3" id="orgPhoneTxt" name="proposedorgphone" pattern="\d{3}[\-]\d{3}[\-]\d{4}" 
+                     <input class="form-control" rows="3" id="orgPhoneTxt" name="proposedorgphone" pattern="\d{3}[\-]\d{3}[\-]\d{4}"
                         title="Please follow the format: xxx-xxx-xxxx" type="text"
                         value='<%= application.proposedorgphone %>'>
                   </div>
@@ -364,7 +451,7 @@
                <div class="form-group">
                   <label for="inputEmail" class="col-lg-5 control-label">Manager Email</label>
                   <div class="col-lg-5">
-                     <input type="text" class="form-control" id="managerEmail" name="proposedorgmanageremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" 
+                     <input type="text" class="form-control" id="managerEmail" name="proposedorgmanageremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
                         style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
                         value='<%= application.proposedorgmanageremail %>'>
                   </div>
@@ -447,15 +534,15 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Signature of applicant</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="signatureTxt" name="signature" 
-                     required value='<%= application.signature %>' 
+                  <input class="form-control" rows="3" id="signatureTxt" name="signature"
+                     required value='<%= application.signature %>'
                      type="text">
                </div>
             </div>
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="printedTxt" name="printedname" 
+                  <input class="form-control" rows="3" id="printedTxt" name="printedname"
                      required value='<%= application.printedname %>'
                      type="text">
                </div>
@@ -498,9 +585,9 @@
             $('#proposedList').change(function(){
             var opt = $(this).val();
             if(opt == 'Yes'){
-                  $('.exisiting').show();
+                  $('.existing').show();
             }else{
-                  $('.exisiting').hide();
+                  $('.existing').hide();
                   $('.employed').hide();
                   document.getElementById('isEmployedList').value="Select";
             }
