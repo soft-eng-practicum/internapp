@@ -178,7 +178,7 @@
      <% } %>
 
      <!-- If the user has documents uploaded, display the document upload table -->
-     <% if (documents) { %>
+     <% if (documents.length > 0) { %>
         <div class="homePageSection" id="documentTableOnHomePage">
         <h3>Document Uploads table</h3>
         <table class="table table-hover">
@@ -249,8 +249,8 @@
         </div>
         <% } %>
 
-        <!-- If the user has not submitted applications for both ITEC and BIO -->
-        <% if ( !itecApp || !bioApp ) { %>
+        <!-- If the user has submitted applications for either ITEC or BIO -->
+        <% if ( itecApp || bioApp ) { %>
             <div class="homePageSection" id="secondApplySection">
                 <div class="dropdown show"> 
                     <div class="dropdown">
