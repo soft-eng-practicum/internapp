@@ -113,4 +113,31 @@ function formatDate(date) {
 }
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('User', userSchema);
+var User = module.exports = mongoose.model('User', userSchema);
+
+module.exports.getUsersDocuments = function(email, callback) {
+    User.findOne({
+        "local.email" : email
+    }, function(err, user) {
+        if (err) throw err;
+        if (user) {
+            callback(user.local.documents);
+        } else {
+            callback(false);
+        }
+
+    })
+}
+
+module.exports.getUserIdFromEmail = function(email, callback) {
+    User.findOne({
+        "local.email" : email
+    }, function(err, user) {
+        if (err) throw err;
+        if (user) {
+            callback(user._id);
+        } else {
+            callback(false);
+        }
+    });
+}

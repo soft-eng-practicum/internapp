@@ -25,14 +25,14 @@
          enrollment in bio 4900.
       </h4>
       <br>
-      <form name="itecEdit" action="/edititec/<%= application._id %>" method="post" class="form-horizontal" _lpchecked="1">
+      <form name="bioEdit" action="/editbio" method="post" class="form-horizontal" _lpchecked="1">
          <fieldset>
             <h2 align = "center">Student Academic Information</h2>
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="proposedInternSemesterList" name="proposedInternSemester">
+                     <select class="form-control" id="proposedInternSemesterList" name="proposedinternsemester">
                         <option value="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
@@ -100,7 +100,7 @@
                <label for="input" class="col-lg-5 control-label">What is your intended profession/career?</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="professionTxt" name="career" 
-                     placeholder="Profession/Career" pattern="[A-Za-z].{2,}" required title=" Example: Biology" 
+                     placeholder="Profession/Career" pattern="[A-Za-z].{2,}" title=" Example: Biology" 
                      required value='<%= application.career %>' type="text">
                </div>
             </div>
@@ -112,7 +112,7 @@
                <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname"
-                     placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Biology" 
+                     placeholder="Name" pattern="[A-Za-z].{2,}" title=" Example: Biology" 
                      required value='<%= application.emergencycontactname %>' type="text">
                </div>
             </div>
@@ -144,7 +144,7 @@
                <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode" 
-                     placeholder="Zip Code" required pattern ="\d{5}([ \-]\d{4})?" 
+                     placeholder="Zip Code" pattern ="\d{5}([ \-]\d{4})?" 
                      title="Not a valid zipcode" 
                      required value='<%= application.emergencycontactzipcode %>' type="text">
                </div>
@@ -175,7 +175,7 @@
                <label for="input" class="col-lg-5 control-label">Mentor Name</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" 
-                     pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  
+                     pattern="[A-Za-z].{2,}"  
                      required value='<%= application.mentorname %>' type="text">
                </div>
             </div>
@@ -208,22 +208,9 @@
             <h3 align="center">
                Internship Information
             </h3>
-            <div class="form-group">
-               <div class="form-inline">
-                  <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?</label>
-                  <div class="col-lg-5" class>
-                     <select class="form-control" name="isPreviouslyApprovedSite" id="previouslyApplied">
-                        <option value="Select">Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                     </select>
-                  </div>
-               </div>
-            </div>
-            <div class="existing">
                <div class="form-group">
                   <div class="form-inline">
-                     <label for="select" class="col-lg-5 control-label">Approved Internship Committee Sites</label>
+                     <label for="select" class="col-lg-5 control-label">Please select the site you wish to apply to</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="additionalInfoList" name="internsite">
                            <option value="Select">Select</option>
@@ -243,7 +230,6 @@
                   and/or site manager/supervisor. Providing false information about connections between you and site staff would constitute a violation
                   of the GGC Honor Code (see policy on academic honesty).
                </h3>
-            </div>
             <div class="other">
                <br>
                <div class="form-group">
@@ -544,7 +530,6 @@
          });
          });
          
-         $('.existing').hide();
          $(function(){
          $('#previouslyApplied').change(function(){
            var opt = $(this).val();

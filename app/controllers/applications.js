@@ -133,7 +133,7 @@ module.exports.updateApplicationStatus = function(req, res) {
     var typeOfEmail = 'applicationStatusUpdate';
     var studentEmail;
     console.log(req.params);
-    if (req.params.type == 'itec') {
+    if (req.params.type == 'ITEC') {
         Itec
         .findById(req.params.applicationid)
         .exec(
@@ -300,7 +300,7 @@ module.exports.postBioApplication = function(req, res) {
     bioapp.usercity = req.user.city;
     bioapp.userstate = req.user.state;
     bioapp.userzipcode = req.user.zipcode;
-    bioapp.userdiscipline = 'Biology';
+    bioapp.userdiscipline = 'BIO';
     bioapp.applicationstatus = 'submitted';
     bioapp.save(function(err) {
         if (err) {

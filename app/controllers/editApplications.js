@@ -9,10 +9,7 @@ var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
 module.exports.getEditBio = function(req, res) {
-    var incomingUserId = req.params.userId;
-    Bio.findOne({
-        "_id" : incomingUserId
-    }, function(err, foundBioApp) {
+    Bio.getUsersBioApp(req.user.email, function(foundBioApp) {
         res.render('editbio', {
             application: foundBioApp
         });
@@ -20,66 +17,66 @@ module.exports.getEditBio = function(req, res) {
 }
 
 module.exports.getEditItec = function(req, res) {
-    var incomingUserId = req.params.userId;
-    console.log('user id ', req.params.userId);
-    Itec.findOne({
-        "_id" : incomingUserId
-    }, function(err, foundItecApp) {
-        console.log('foundItecapp = ', foundItecApp);
-        res.render('edititec', {
+    Itec.getUsersItecApp(req.user.email, function(foundItecApp) {
+        res.render('editItec', {
             application: foundItecApp
         });
     });
 }
 
 module.exports.updateBioApp = function(req, res) {
-    var incomingUserId = req.params.userId;
-    var bioapp = new Itec(req.body);
-    bioapp.useremail = req.user.email;
-    bioapp.userstudentid = req.user.studentid;
-    bioapp.userfname = req.user.fname;
-    bioapp.userlname = req.user.lname;
-    bioapp.useraddress = req.user.address;
-    bioapp.usercity = req.user.city;
-    bioapp.userstate = req.user.state;
-    bioapp.userzipcode = req.user.zipcode;
-    bioapp.userdiscipline = 'BIO';
+
+    var newBioapp = new Bio(req.body);
+    newBioapp.useremail = req.user.email;
+    newBioapp.userstudentid = req.user.studentid;
+    newBioapp.userfname = req.user.fname;
+    newBioapp.userlname = req.user.lname;
+    newBioapp.useraddress = req.user.address;
+    newBioapp.usercity = req.user.city;
+    newBioapp.userstate = req.user.state;
+    newBioapp.userzipcode = req.user.zipcode;
+    newBioapp.userdiscipline = 'BIO';
 
     Bio.findOneAndRemove({
-        "_id" : incomingUserId
-    }, function(err, bioapp) {
+        "useremail" : req.user.email
+    }, function(err, oldBioApp) {
         if (err) throw err;
         console.log('bio app removed');
-        bioapp.save(function(err) {
+        newBioapp.applicationstatus = oldBioApp.applicationstatus;
+        newBioapp.submissionDate = oldBioApp.submissionDate;
+        newBioapp.save(function(err) {
             if (err) throw err;
             console.log('bio app saved');
             res.redirect('/home');
+            req.flash('success', 'BIO Application updated!');
         });
     });
 }
 
 module.exports.updateItecApp = function(req, res) {
-    var incomingUserId = req.params.userId;
-    var itecapp = new Itec(req.body);
-    itecapp.useremail = req.user.email;
-    itecapp.userstudentid = req.user.studentid;
-    itecapp.userfname = req.user.fname;
-    itecapp.userlname = req.user.lname;
-    itecapp.useraddress = req.user.address;
-    itecapp.usercity = req.user.city;
-    itecapp.userstate = req.user.state;
-    itecapp.userzipcode = req.user.zipcode;
-    itecapp.userdiscipline = 'ITEC';
+    var newItecapp = new Itec(req.body);
+    newItecapp.useremail = req.user.email;
+    newItecapp.userstudentid = req.user.studentid;
+    newItecapp.userfname = req.user.fname;
+    newItecapp.userlname = req.user.lname;
+    newItecapp.useraddress = req.user.address;
+    newItecapp.usercity = req.user.city;
+    newItecapp.userstate = req.user.state;
+    newItecapp.userzipcode = req.user.zipcode;
+    newItecapp.userdiscipline = 'ITEC';
 
     Itec.findOneAndRemove({
-        "_id" : incomingUserId
-    }, function(err, itecApp) {
+        "useremail" : req.user.email
+    }, function(err, oldItecApp) {
         if (err) throw err;
         console.log('itec app removed');
-        itecapp.save(function(err) {
+        newItecapp.applicationstatus = oldItecApp.applicationstatus;
+        newItecapp.submissionDate = oldItecApp.submissionDate;
+        newItecapp.save(function(err) {
             if (err) throw err;
             console.log('itec app saved');
             res.redirect('/home');
+            req.flash('success', 'ITEC Application updated!');
         });
     });
 }

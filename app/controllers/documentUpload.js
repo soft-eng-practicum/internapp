@@ -129,8 +129,8 @@ module.exports.updateSpecificDocumentStatus = function(req, res) {
                 });
             }
         });
-        req.flash('specificDocumentSuccess', 'Document status has been changed!')
         res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
+        req.flash('specificDocumentSuccess', 'Document status has been changed!')
     })
 }
 
@@ -152,8 +152,8 @@ module.exports.addSpecificDocumentNotes = function(req, res) {
                 });
             }
         });
-        req.flash('specificDocumentSuccess', 'Document note has been added!')
         res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
+        req.flash('specificDocumentSuccess', 'Document note has been added!')
     });
 }
 
@@ -175,8 +175,8 @@ module.exports.addSpecificDocumentFeedback = function(req, res) {
                 });
             }
         });
-        req.flash('specificDocumentSuccess', 'Document feedback has been added!')
         res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
+        req.flash('specificDocumentSuccess', 'Document feedback has been added!')
     }); 
 }
 
@@ -184,8 +184,8 @@ module.exports.addSpecificDocumentFeedback = function(req, res) {
 module.exports.uploadItecResume = function(req, res) {
     var typeOfFile = 'Resume';
     if (!req.files.resume) {
-        req.flash('uploadError', noFilesUploadedError);
-        res.redirect('/documentUpload');
+        res.redirect('/home');
+        req.flash('failure', noFilesUploadedError);
     } else {
         sendEmail(req.files.resume, typeOfFile, req, res);
     }
@@ -195,8 +195,8 @@ module.exports.uploadItecResume = function(req, res) {
 module.exports.uploadBioEssay = function(req, res) {
     var typeOfFile = 'Essay';
     if (!req.files.essay) {
-        req.flash('uploadError', noFilesUploadedError);
-        res.redirect('/documentUpload');
+        res.redirect('/home');
+        req.flash('failure', noFilesUploadedError);
     } else {
         sendEmail(req.files.essay, typeOfFile, req, res);
     } 
@@ -206,8 +206,8 @@ module.exports.uploadBioEssay = function(req, res) {
 module.exports.uploadBioTranscript = function(req, res) {
     var typeOfFile = 'Transcript';
     if (!req.files.transcript) {
-        req.flash('uploadError', noFilesUploadedError);
-        res.redirect('/documentUpload');
+        res.redirect('/home');
+        req.flash('failure', noFilesUploadedError);
     } else {
         sendEmail(req.files.transcript, typeOfFile, req, res);
     }
@@ -217,8 +217,8 @@ module.exports.uploadBioTranscript = function(req, res) {
 module.exports.uploadItecFerpa = function(req, res) {
     var typeOfFile = 'Ferpa';
     if (!req.files.ferpa) {
-        req.flash('uploadError', noFilesUploadedError);
-        res.redirect('/documentUpload');
+        res.redirect('/home');
+        req.flash('failure', noFilesUploadedError);
     } else {
         sendEmail(req.files.ferpa, typeOfFile, req, res);
     }
@@ -230,8 +230,8 @@ module.exports.downloadFerpa = function(req, res) {
         if (err) {
             if (res.headersSent()) {
                res.removeHeader("Content-Encoding");
-               req.flash('info', 'An error has occured with the file download');
-               res.redirect('/documentUpload');
+               res.redirect('/home');
+               req.flash('failure', 'An error has occured with the file download');
             }
             console.error(err);
         }
@@ -263,7 +263,8 @@ function addDocumentToUser(fileType, fileName, userEmail) {
              break;                     
         default:
              console.error('fileType not recognized - upload record creation failed');
-             return false;
+             res.redirect('/home');
+             req.flash('failure', 'File type not recognized');
      }
      
      // Update user's document array
@@ -295,6 +296,7 @@ function addDocumentToUser(fileType, fileName, userEmail) {
 }
 
 function sendEmail(file, typeOfFile, req, res) {
+    console.log('key =', key);
     var coordinatorEmail;
     var emailSubject;
     var emailText;
@@ -321,7 +323,8 @@ function sendEmail(file, typeOfFile, req, res) {
             break;
         default:
             console.log('unknown type of file found');
-            res.redirect('/documentUpload');
+            req.flash('failure', 'Your file type is not recognized');
+            res.redirect('/home');
             break;
     }
 
@@ -341,11 +344,16 @@ function sendEmail(file, typeOfFile, req, res) {
             };
             transporter.sendMail(mailOptions, function(err) {
                 if (err) {
-                    console.log(err);
+                    console.log('Error while sending ' + typeOfFile + ':\n' + err);
+                    res.redirect('/home');
+                    req.flash('failure', 'Your file cannot be uploaded at this time.');
+
+                } else {
+                    console.log(typeOfFile + ' sent!');
+                    addDocumentToUser(typeOfFile, file.name, req.user.email);
+                    res.redirect('/home');
+                    req.flash('success', typeOfFile + ' uploaded!');
                 }
-                console.log(typeOfFile + ' sent!');
-                addDocumentToUser(typeOfFile, file.name, req.user.email);
-                req.flash('successfulUpload', typeOfFile + ' uploaded!');
-                res.redirect('/documentUpload');
+
             });
 }

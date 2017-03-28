@@ -106,14 +106,14 @@
          acceptance into the internship program and/or enrollment in ITEC 4900.
       </h4>
       <br>
-      <form name="itecEdit" action="/edititec/<%= application._id %>" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
+      <form name="itecEdit" action="/edititec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
          <fieldset>
             <h2 align = "center">Student Academic Information</h2>
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="proposedInternSemesterList" name="proposedInternSemester">
+                     <select class="form-control" id="proposedInternSemesterList" name="proposedinternsemester">
                         <option value="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
@@ -579,32 +579,32 @@
       makeOptionSelected('separateProjectList', '<%= application.isseparateproject %>')
       makeOptionSelected('separateHoursList', '<%= application.isseparatehours %>')
       </script>
-      <script>
- 
-      $(function(){
-            $('#proposedList').change(function(){
-            var opt = $(this).val();
-            if(opt == 'Yes'){
-                  $('.existing').show();
-            }else{
-                  $('.existing').hide();
-                  $('.employed').hide();
-                  document.getElementById('isEmployedList').value="Select";
-            }
-            });
-      });
-      
-      $('.employed').hide();
-      $(function(){
-            $('#isEmployedList').change(function(){
-            var opt = $(this).val();
-            if(opt == 'Yes'){
-                  $('.employed').show();
-            }else{
-                  $('.employed').hide();
-            }
-            });
-      });
-      </script>
+<script>
+   $('.existing').hide();
+   $(function(){
+       $('#proposedList').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Yes'){
+               $('.existing').show();
+           }else{
+           	$('.existing').hide();
+             $('.employed').hide();
+             document.getElementById('isEmployedList').value="Select";
+           }
+       });
+   });
+
+   $('.employed').hide();
+   $(function(){
+       $('#isEmployedList').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Yes'){
+               $('.employed').show();
+           }else{
+           	$('.employed').hide();
+           }
+       });
+   });
+</script>
 </body>
 </html>

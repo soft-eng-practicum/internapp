@@ -165,10 +165,10 @@ module.exports = function(app, passport) {
     app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
 
 
-    app.get('/edititec/:userId', isLoggedIn, ctrlEditApps.getEditItec);
-    app.get('/editbio/:userId', isLoggedIn, ctrlEditApps.getEditBio);
-    app.post('/edititec/:userId', isLoggedIn, ctrlEditApps.updateItecApp);
-    app.post('/editbio/:userId', isLoggedIn, ctrlEditApps.updateBioApp);
+    app.get('/edititec', isLoggedIn, ctrlEditApps.getEditItec);
+    app.get('/editbio', isLoggedIn, ctrlEditApps.getEditBio);
+    app.post('/edititec', isLoggedIn, ctrlEditApps.updateItecApp);
+    app.post('/editbio', isLoggedIn, ctrlEditApps.updateBioApp);
     
 
 
