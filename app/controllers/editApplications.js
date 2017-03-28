@@ -48,6 +48,7 @@ module.exports.updateBioApp = function(req, res) {
             if (err) throw err;
             console.log('bio app saved');
             res.redirect('/home');
+            req.flash('success', 'BIO Application updated!');
         });
     });
 }
@@ -75,6 +76,7 @@ module.exports.updateItecApp = function(req, res) {
             if (err) throw err;
             console.log('itec app saved');
             res.redirect('/home');
+            req.flash('success', 'ITEC Application updated!');
         });
     });
 }

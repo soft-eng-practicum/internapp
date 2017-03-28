@@ -208,22 +208,9 @@
             <h3 align="center">
                Internship Information
             </h3>
-            <div class="form-group">
-               <div class="form-inline">
-                  <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?</label>
-                  <div class="col-lg-5" class>
-                     <select class="form-control" name="isPreviouslyApprovedSite" id="previouslyApplied">
-                        <option value="Select">Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                     </select>
-                  </div>
-               </div>
-            </div>
-            <div class="existing">
                <div class="form-group">
                   <div class="form-inline">
-                     <label for="select" class="col-lg-5 control-label">Approved Internship Committee Sites</label>
+                     <label for="select" class="col-lg-5 control-label">Please select the site you wish to apply to</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="additionalInfoList" name="internsite">
                            <option value="Select">Select</option>
@@ -243,7 +230,6 @@
                   and/or site manager/supervisor. Providing false information about connections between you and site staff would constitute a violation
                   of the GGC Honor Code (see policy on academic honesty).
                </h3>
-            </div>
             <div class="other">
                <br>
                <div class="form-group">
@@ -544,7 +530,6 @@
          });
          });
          
-         $('.existing').hide();
          $(function(){
          $('#previouslyApplied').change(function(){
            var opt = $(this).val();

@@ -579,32 +579,32 @@
       makeOptionSelected('separateProjectList', '<%= application.isseparateproject %>')
       makeOptionSelected('separateHoursList', '<%= application.isseparatehours %>')
       </script>
-      <script>
- 
-      $(function(){
-            $('#proposedList').change(function(){
-            var opt = $(this).val();
-            if(opt == 'Yes'){
-                  $('.existing').show();
-            }else{
-                  $('.existing').hide();
-                  $('.employed').hide();
-                  document.getElementById('isEmployedList').value="Select";
-            }
-            });
-      });
-      
-      $('.employed').hide();
-      $(function(){
-            $('#isEmployedList').change(function(){
-            var opt = $(this).val();
-            if(opt == 'Yes'){
-                  $('.employed').show();
-            }else{
-                  $('.employed').hide();
-            }
-            });
-      });
-      </script>
+<script>
+   $('.existing').hide();
+   $(function(){
+       $('#proposedList').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Yes'){
+               $('.existing').show();
+           }else{
+           	$('.existing').hide();
+             $('.employed').hide();
+             document.getElementById('isEmployedList').value="Select";
+           }
+       });
+   });
+
+   $('.employed').hide();
+   $(function(){
+       $('#isEmployedList').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Yes'){
+               $('.employed').show();
+           }else{
+           	$('.employed').hide();
+           }
+       });
+   });
+</script>
 </body>
 </html>

@@ -10,6 +10,13 @@
     <div class="container">
      <h1>Welcome <%= user.fname %></h1>
 
+     <% if (successMessage.length > 0) { %>
+            <div class="alert alert-success"><%= successMessage %></div>
+     <% } %>
+     <% if (failureMessage.length > 0) { %>
+            <div class="alert alert-danger"><%= failureMessage %></div>
+     <% } %>
+
      <!-- First time applying (they can see both sections ) -->
      <% if (!bioApp && !itecApp) { %>
         <div class="homePageSection" id="initialApplySection">
@@ -55,7 +62,8 @@
                <% }); %>
             </tbody>
         </table>
-
+        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#appFeedbackModal">View Application Feedback</button>
+        
             <div class="modal fade" id="appFeedbackModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -67,19 +75,30 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                <th>Section</th>
                                 <th>Note</th>
                                 <th>Entered By</th>
                                 <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                        
+                            <% applications.forEach(function(application) { %>
+                                <% application.feedback.forEach(function(feedbackEntry) { %>
+                                <tr>
+                                    <td><%=application.userdiscipline %></td>
+                                    <td><%=feedbackEntry.feedback %></td>  
+                                    <td><%=feedbackEntry.user %></td>
+                                    <td><%=feedbackEntry.prettyFeedbackDate %></td>
+                                </tr>
+                                <% }); %>
+                            <% }); %>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             </div>
+
      </div>
      <% } %>
 
@@ -183,35 +202,50 @@
                   <td><%= document.fileType %></td>
                   <td><%= document.prettyUploadDate %></td>
                   <td><a href=<%="/document/" + user._id + "/" + document._id%>>View Details</a></td>
-                  <td><a href="#docFeedbackModal" data-toggle="modal">View Feedback</a></td>
+                  <td>View Feedback</td>
                </tr>
             <% }); %>
             </tbody>
         </table>
-            <div class="modal fade" id="docFeedbackModal" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Document Feedback</h4>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                    <th>Note</th>
-                                    <th>Entered By</th>
-                                    <th>Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                            
-                                </tbody>
-                            </table>
-                        </div>
+        <button class="btn btn-success" type="button" href="#docFeedbackModal" data-toggle="modal" type="display">View Feedback</button>
+
+        <div class="modal fade" id="docFeedbackModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Document Feedback</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th>Document</th>
+                                <th>Note</th>
+                                <th>Entered By</th>
+                                <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <% documents.forEach(function(document) { %>
+                                <% document.feedback.forEach(function(feedbackEntry) { %>
+                                <tr>
+                                    <td><%=document.documentName %></td>
+                                    <td><%=feedbackEntry.feedback %></td>
+                                    <td><%=feedbackEntry.user %></td>
+                                    <td><%=feedbackEntry.prettyNoteDate %></td>
+                                </tr>
+                                <% }); %>
+                            <% }); %>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                </div>
+            </div>
+            </div>
+
+
+
         </div>
         <% } %>
 
