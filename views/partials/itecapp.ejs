@@ -302,7 +302,8 @@
       <tbody>
       </tbody>
    </table>
-   <form name="bioappadminnotes" action="/application/bio/feedback/<%= application._id %>" method="post">
+   <% if (user.role=='admin' || user.role=='instructor') { %>
+   <form name="itecappadminnotes" action="/application/itec/feedback/<%= application._id %>" method="post">
       <div class="form-group">
          <br>
          <textarea rows="4" cols="50" name="feedback">
@@ -311,7 +312,6 @@
       <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
    </form>
 </div>
-<% if (user.role=='admin' || user.role=='instructor') { %>
 <div class="col-sm-6 col-sm-offset-3">
    <h3>Change Application Status</h3>
    <form name="applicationstatus" method="post">
