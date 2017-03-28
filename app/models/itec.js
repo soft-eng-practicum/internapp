@@ -6,8 +6,8 @@ var mongoose = require('mongoose');
 var itecSchema = mongoose.Schema({
 
         lastupdated: {
-                type: Date,
-                default: Date.now
+                type: String,
+                default: formatDate(new Date())
         },
         proposedinternsemester: {
                 type: String,

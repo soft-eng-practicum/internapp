@@ -141,13 +141,26 @@
             <thead>
                 <tr>
                 <th>Document Status</th>
+                <th>Name</th>
                 <th>Section</th>
+                <th>File Type</th>
                 <th>Date Submitted</th>
+                <th>View Document Details</th>
                 <th>View Feedback</th>
                 </tr>
             </thead>
             <tbody>
-                
+            <% documents.forEach(function(document) { %>
+               <tr>
+                  <td><%= document.documentStatus %></td>
+                  <td><%= document.documentName %></td>
+                  <td><%= document.fileSection %></td>  
+                  <td><%= document.fileType %></td>
+                  <td><%= document.prettyUploadDate %></td>
+                  <td><a href=<%="/document/" + user._id + "/" + document._id%>>View Details</a></td>
+                  <td>View Feedback</td>
+               </tr>
+            <% }); %>
             </tbody>
         </table>
         </div>

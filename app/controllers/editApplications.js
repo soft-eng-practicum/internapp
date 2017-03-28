@@ -70,7 +70,7 @@ module.exports.updateItecApp = function(req, res) {
         if (err) throw err;
         console.log('itec app removed');
         newItecapp.applicationstatus = oldItecApp.applicationstatus;
-        newBioapp.submissionDate = oldBioApp.submissionDate;
+        newItecapp.submissionDate = oldItecApp.submissionDate;
         newItecapp.save(function(err) {
             if (err) throw err;
             console.log('itec app saved');
