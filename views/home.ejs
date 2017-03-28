@@ -7,16 +7,164 @@
 </head>
 <body>
     <% include partials/nav.ejs %>
-  <div class="container">
-  <h2>home</h2>
-     <h1>Welcome! <%= user.fname %></h1>
-     <% if (bioApp)  { %>
-        <a href="/editbio/<%= bioApp._id %>" > <button type="submit" class="btn btn-success"> Edit BIO Application</button></a>
+    <div class="container">
+     <h1>Welcome <%= user.fname %></h1>
+
+     <!-- First time applying (they can see both sections ) -->
+     <% if (!bioApp && !itecApp) { %>
+        <div class="homePageSection" id="initialApplySection">
+                <div class="dropdown show"> 
+                    <div class="dropdown">
+                    <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select the program you wish to apply to
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/bio">Biology Internship (BIO 4800)</a></li>
+                        <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+
      <% } %>
-     <% if (itecApp)  { %>
-        <a href="/edititec/<%= itecApp._id %>" class="btn btn-success" role="button">Edit ITEC Application</a>
+
+     <!-- If they have a bio or itec application submitted -->
+     <% if (bioApp || itecApp) { %>
+        <div class="homePageSection" id="applicationTableOnHomePage">
+        <h3>Application table</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>Application Status</th>
+                <th>Section</th>
+                <th>Date Submitted</th>
+                <th>View Feedback</th>
+                <th>View Application Details</th>
+                <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Populate here -->
+            </tbody>
+        </table>
+        </div>
      <% } %>
-</div>
+
+     <!-- Show the uploads for ITEC if they have an ITEC application submitted -->     
+     <% if (itecApp) { %>
+        <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
+            <h3>ITEC Uploads</h3>
+            <div class="form-group">
+            </div>
+            <div class="uploadBox" id="itecBox">
+                <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadItecResume'
+                method='post'
+                encType="multipart/form-data"
+                class="form-inline">
+                <div class="form-group">
+                    <input type="file"  name="resume" />
+                </div>
+                <div class="form-group">
+                    <input type='submit' class="btn btn-success btn-sm" value='Upload Resume!' />
+                </div>
+                </form>
+                <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadItecFerpa'
+                method='post'
+                encType="multipart/form-data"
+                class="form-inline">
+                <div class="form-group">
+                    <input type="file" name="ferpa" />
+                </div>
+                <div class ="form-group">
+                    <input type='submit' class="btn btn-success btn-sm" value='Upload FERPA!' />   
+                </div>
+                <br>
+                <a href="/downloadFerpa">Click here to download the FERPA document</a> 
+                </form>
+            </div>
+        </div>
+     <% } %>
+     
+     <!-- Show the uploads for BIO if they have an BIO application submitted --> 
+     <% if (bioApp) { %> 
+        <div class="homePageSection" id="bioDocumentUploadSectionOnHomePage">
+            <h3>BIO Uploads</h3>
+            <div class="form-group">
+            </div>
+            <div class="uploadBox" id="bioBox">
+                <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadBioEssay'
+                method='post'
+                encType="multipart/form-data"
+                class="form-inline">
+                <div class="form-group">
+                    <input type="file"  name="essay" />
+                </div>
+                <div class="form-group">
+                    <input type='submit' class="btn btn-success btn-sm" value='Upload Essay!' />
+                </div>
+                </form>
+                <form ref='uploadForm'
+                id='uploadForm'
+                action='/uploadBioTranscript'
+                method='post'
+                encType="multipart/form-data"
+                class="form-inline">
+                <div class="form-group">
+                    <input type="file" name="transcript" />
+                </div>
+                <div class ="form-group">
+                    <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript!' />   
+                </div>
+            </div>
+        </div>
+     <% } %>
+
+     <!-- If the user has documents uploaded, display the document upload table -->
+     <% if (documents) { %>
+        <div class="homePageSection" id="documentTableOnHomePage">
+        <h3>Document Uploads table</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>Document Status</th>
+                <th>Section</th>
+                <th>Date Submitted</th>
+                <th>View Feedback</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        </div>
+        <% } %>
+
+        <!-- If the user has not submitted applications for both ITEC and BIO -->
+        <% if ( !itecApp || !bioApp ) { %>
+            <div class="homePageSection" id="secondApplySection">
+                <div class="dropdown show"> 
+                    <div class="dropdown">
+                    <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select another program to apply to
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <% if (!bioApp) { %>
+                            <li><a href="/bio">Biology Internship (BIO 4800)</a></li>
+                        <% } %>
+                        <% if (!itecApp) { %>
+                            <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
+                        <% } %>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        <% } %> 
+    </div>
+
 <% include partials/footerimports %>
 </body>
 </html>
