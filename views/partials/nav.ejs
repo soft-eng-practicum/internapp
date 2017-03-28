@@ -10,8 +10,13 @@
          <span class="icon-bar"></span>
          </button>
          <!-- Logo and slogan -->
+         <% if (user.role=='admin' || user.role=='instructor') { %>
          <a href="/applications"><img src="images/logo.png"></a>
          <a class="navbar-brand" href="/applications">&nbspGGC Internship App</a>
+         <% } else { %>
+         <a href="/home"><img src="images/logo.png"></a>
+         <a class="navbar-brand" href="/home">&nbspGGC Internship App</a>
+         <% } %> 
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
