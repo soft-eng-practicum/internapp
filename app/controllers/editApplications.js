@@ -9,10 +9,8 @@ var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
 module.exports.getEditBio = function(req, res) {
-    var incomingUserId = req.params.userId;
-    Bio.findOne({
-        "_id" : incomingUserId
-    }, function(err, foundBioApp) {
+    Bio.getUsersBioApp(req.user.email, function(foundBioApp) {
+        console.log('found bio app ', foundBioApp);
         res.render('editbio', {
             application: foundBioApp
         });
@@ -20,20 +18,15 @@ module.exports.getEditBio = function(req, res) {
 }
 
 module.exports.getEditItec = function(req, res) {
-    var incomingUserId = req.params.userId;
-    console.log('user id ', req.params.userId);
-    Itec.findOne({
-        "_id" : incomingUserId
-    }, function(err, foundItecApp) {
-        console.log('foundItecapp = ', foundItecApp);
-        res.render('edititec', {
+    Itec.getUsersItecApp(req.user.email, function(foundItecApp) {
+        console.log('found itec app ', foundItecApp);
+        res.render('editItec', {
             application: foundItecApp
         });
     });
 }
 
 module.exports.updateBioApp = function(req, res) {
-    var incomingUserId = req.params.userId;
     var bioapp = new Itec(req.body);
     bioapp.useremail = req.user.email;
     bioapp.userstudentid = req.user.studentid;
@@ -46,7 +39,7 @@ module.exports.updateBioApp = function(req, res) {
     bioapp.userdiscipline = 'BIO';
 
     Bio.findOneAndRemove({
-        "_id" : incomingUserId
+        "useremail" : req.user.email
     }, function(err, bioapp) {
         if (err) throw err;
         console.log('bio app removed');
@@ -59,7 +52,6 @@ module.exports.updateBioApp = function(req, res) {
 }
 
 module.exports.updateItecApp = function(req, res) {
-    var incomingUserId = req.params.userId;
     var itecapp = new Itec(req.body);
     itecapp.useremail = req.user.email;
     itecapp.userstudentid = req.user.studentid;
@@ -72,7 +64,7 @@ module.exports.updateItecApp = function(req, res) {
     itecapp.userdiscipline = 'ITEC';
 
     Itec.findOneAndRemove({
-        "_id" : incomingUserId
+        "useremail" : req.user.email
     }, function(err, itecApp) {
         if (err) throw err;
         console.log('itec app removed');

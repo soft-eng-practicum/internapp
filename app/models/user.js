@@ -128,3 +128,16 @@ module.exports.getUsersDocuments = function(email, callback) {
 
     })
 }
+
+module.exports.getUserIdFromEmail = function(email, callback) {
+    User.findOne({
+        "local.email" : email
+    }, function(err, user) {
+        if (err) throw err;
+        if (user) {
+            callback(user._id);
+        } else {
+            callback(false);
+        }
+    });
+}

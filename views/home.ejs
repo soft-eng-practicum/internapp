@@ -43,7 +43,16 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Populate here -->
+                <% applications.forEach(function(application) { %>
+               <tr>
+                  <td><%= application.applicationstatus %></td>
+                  <td><%= application.userdiscipline %></td>  
+                  <td><%= application.submissionDate %></td>
+                  <td>View Feedback</td>
+                  <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
+                  <td><a href=<%="/edit"+application.userdiscipline%>>Edit</a></td>
+               </tr>
+               <% }); %>
             </tbody>
         </table>
         </div>

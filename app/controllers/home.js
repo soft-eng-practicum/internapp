@@ -18,20 +18,26 @@ module.exports.loadUserHome = function(req, res) {
     var bioApp;
     var itecApp;
     var documentList;
+    var applicationList = [];
 
+    console.log('user ', req.session.passport.user);
+    
     User.getUsersDocuments(req.user.email, function(incomingDocumentList) {
         documentList = incomingDocumentList;
         console.log(documentList);
         Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
             bioApp = incomingBioApp;
+            applicationList.push(bioApp);
             Itec.getUsersItecApp(req.user.email, function (incomingItecApp) {
-                itecApp = incomingItecApp;    
+                itecApp = incomingItecApp;   
+                applicationList.push(itecApp); 
                 res.render('home.ejs', {
                     successMessage : req.flash('success'),
                     failureMessage: req.flash('failure'),
                     user : req.session.passport.user,
                     bioApp : bioApp,
                     itecApp : itecApp,
+                    applications : applicationList,
                     documents : documentList
                 }); 
             });
