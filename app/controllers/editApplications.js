@@ -10,7 +10,6 @@ var Itec = require('../models/itec');
 
 module.exports.getEditBio = function(req, res) {
     Bio.getUsersBioApp(req.user.email, function(foundBioApp) {
-        console.log('found bio app ', foundBioApp);
         res.render('editbio', {
             application: foundBioApp
         });
@@ -19,7 +18,6 @@ module.exports.getEditBio = function(req, res) {
 
 module.exports.getEditItec = function(req, res) {
     Itec.getUsersItecApp(req.user.email, function(foundItecApp) {
-        console.log('found itec app ', foundItecApp);
         res.render('editItec', {
             application: foundItecApp
         });
@@ -27,23 +25,26 @@ module.exports.getEditItec = function(req, res) {
 }
 
 module.exports.updateBioApp = function(req, res) {
-    var bioapp = new Itec(req.body);
-    bioapp.useremail = req.user.email;
-    bioapp.userstudentid = req.user.studentid;
-    bioapp.userfname = req.user.fname;
-    bioapp.userlname = req.user.lname;
-    bioapp.useraddress = req.user.address;
-    bioapp.usercity = req.user.city;
-    bioapp.userstate = req.user.state;
-    bioapp.userzipcode = req.user.zipcode;
-    bioapp.userdiscipline = 'BIO';
+
+    var newBioapp = new Bio(req.body);
+    newBioapp.useremail = req.user.email;
+    newBioapp.userstudentid = req.user.studentid;
+    newBioapp.userfname = req.user.fname;
+    newBioapp.userlname = req.user.lname;
+    newBioapp.useraddress = req.user.address;
+    newBioapp.usercity = req.user.city;
+    newBioapp.userstate = req.user.state;
+    newBioapp.userzipcode = req.user.zipcode;
+    newBioapp.userdiscipline = 'BIO';
 
     Bio.findOneAndRemove({
         "useremail" : req.user.email
-    }, function(err, bioapp) {
+    }, function(err, oldBioApp) {
         if (err) throw err;
         console.log('bio app removed');
-        bioapp.save(function(err) {
+        newBioapp.applicationstatus = oldBioApp.applicationstatus;
+        newBioapp.submissionDate = oldBioApp.submissionDate;
+        newBioapp.save(function(err) {
             if (err) throw err;
             console.log('bio app saved');
             res.redirect('/home');
@@ -52,23 +53,25 @@ module.exports.updateBioApp = function(req, res) {
 }
 
 module.exports.updateItecApp = function(req, res) {
-    var itecapp = new Itec(req.body);
-    itecapp.useremail = req.user.email;
-    itecapp.userstudentid = req.user.studentid;
-    itecapp.userfname = req.user.fname;
-    itecapp.userlname = req.user.lname;
-    itecapp.useraddress = req.user.address;
-    itecapp.usercity = req.user.city;
-    itecapp.userstate = req.user.state;
-    itecapp.userzipcode = req.user.zipcode;
-    itecapp.userdiscipline = 'ITEC';
+    var newItecapp = new Itec(req.body);
+    newItecapp.useremail = req.user.email;
+    newItecapp.userstudentid = req.user.studentid;
+    newItecapp.userfname = req.user.fname;
+    newItecapp.userlname = req.user.lname;
+    newItecapp.useraddress = req.user.address;
+    newItecapp.usercity = req.user.city;
+    newItecapp.userstate = req.user.state;
+    newItecapp.userzipcode = req.user.zipcode;
+    newItecapp.userdiscipline = 'ITEC';
 
     Itec.findOneAndRemove({
         "useremail" : req.user.email
-    }, function(err, itecApp) {
+    }, function(err, oldItecApp) {
         if (err) throw err;
         console.log('itec app removed');
-        itecapp.save(function(err) {
+        newItecapp.applicationstatus = oldItecApp.applicationstatus;
+        newBioapp.submissionDate = oldBioApp.submissionDate;
+        newItecapp.save(function(err) {
             if (err) throw err;
             console.log('itec app saved');
             res.redirect('/home');

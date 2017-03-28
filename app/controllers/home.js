@@ -27,10 +27,14 @@ module.exports.loadUserHome = function(req, res) {
         console.log(documentList);
         Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
             bioApp = incomingBioApp;
-            applicationList.push(bioApp);
+            if (bioApp) {
+                applicationList.push(bioApp);
+            }
             Itec.getUsersItecApp(req.user.email, function (incomingItecApp) {
                 itecApp = incomingItecApp;   
-                applicationList.push(itecApp); 
+                if (itecApp) {
+                    applicationList.push(itecApp);
+                }
                 res.render('home.ejs', {
                     successMessage : req.flash('success'),
                     failureMessage: req.flash('failure'),

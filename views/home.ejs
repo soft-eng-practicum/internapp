@@ -36,7 +36,7 @@
                 <tr>
                 <th>Application Status</th>
                 <th>Section</th>
-                <th>Date Submitted</th>
+                <th>Last Updated</th>
                 <th>View Feedback</th>
                 <th>View Application Details</th>
                 <th>Edit</th>
@@ -47,7 +47,7 @@
                <tr>
                   <td><%= application.applicationstatus %></td>
                   <td><%= application.userdiscipline %></td>  
-                  <td><%= application.submissionDate %></td>
+                  <td><%= application.lastupdated %></td>
                   <td>View Feedback</td>
                   <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
                   <td><a href=<%="/edit"+application.userdiscipline%>>Edit</a></td>
