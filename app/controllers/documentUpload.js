@@ -34,7 +34,7 @@ module.exports.getDocumentUpload = function(req, res) {
                 if (user.local.documents.length > 0) { // if they have a document uploaded
                     var userDocuments = user.local.documents;
                     userDocuments.forEach(function(document) { 
-                                               // console.log(document);
+
                         var document = {
                             "docId" : document._id,
                             "userId": user._id,

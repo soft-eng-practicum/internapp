@@ -199,8 +199,6 @@ module.exports.addItecNotes = function(req, res) {
     URL: /application/itec/feedback/:applicationid
 */
 module.exports.addItecFeedback = function(req, res) {
-    console.log('hi from itec feedback');
-    console.log('feedback = ',req.body.feedback);
     Itec.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
         if (err) {
             req.flash('applicationerror',err);
