@@ -332,7 +332,7 @@ function sendEmail(file, typeOfFile, req, res) {
                 service: 'yahoo',
                 auth: {
                     user: 'ggcinternapp@yahoo.com',
-                    pass: 'securePassword1!'
+                    pass: key
                 }
             });
 
