@@ -245,7 +245,7 @@ var itecSchema = mongoose.Schema({
         feedback  : [
             { 
               user: {type: String, required: true}, 
-              note: {type: String, required: true}, 
+              feedback: {type: String, required: true}, 
               date: { type: Date, default: Date.now },
               prettyFeedbackDate: { type: String, default: formatDate(new Date()) }
             }

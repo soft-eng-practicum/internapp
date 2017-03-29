@@ -19,8 +19,6 @@ module.exports.loadUserHome = function(req, res) {
     var itecApp;
     var documentList;
     var applicationList = [];
-
-    console.log('user ', req.session.passport.user);
     
     User.getUsersDocuments(req.user.email, function(incomingDocumentList) {
         documentList = incomingDocumentList;

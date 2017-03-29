@@ -133,7 +133,7 @@ module.exports.updateApplicationStatus = function(req, res) {
     var typeOfEmail = 'applicationStatusUpdate';
     var studentEmail;
     console.log(req.params);
-    if (req.params.type == 'ITEC') {
+    if (req.params.type == 'itec') {
         Itec
         .findById(req.params.applicationid)
         .exec(
