@@ -290,24 +290,30 @@
          </td>
       </tr>
    </table>
-   <h3>Feedback</h3>
+   <h3>Student Feedback</h3>
    <table class="table table-bordered">
       <thead>
          <tr>
-            <th>Note</th>
+            <th>Feedback</th>
             <th>Entered By</th>
             <th>Date</th>
          </tr>
       </thead>
       <tbody>
+      <% application.feedback.forEach(function(feedback) { %>
+         <tr>
+            <td><%= feedback.feedback %></td>
+            <td><%= feedback.user %></td>
+            <td><%= feedback.prettyFeedbackDate %></td>
+         </tr>
+      <% }) %>
       </tbody>
    </table>
    <% if (user.role=='admin' || user.role=='instructor') { %>
    <form name="itecappadminnotes" action="/application/itec/feedback/<%= application._id %>" method="post">
       <div class="form-group">
          <br>
-         <textarea rows="4" cols="50" name="feedback">
-         </textarea>
+         <textarea rows="4" cols="50" name="feedback"></textarea>
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
    </form>
@@ -331,7 +337,7 @@
    </form>
 </div>
 <div class="col-sm-6 col-sm-offset-3">
-   <h3>Notes</h3>
+   <h3>Admin and Instructor Notes</h3>
    <table class="table table-bordered">
       <thead>
          <tr>
@@ -345,7 +351,7 @@
          <tr>
             <td><%= note.note %></td>
             <td><%= note.user %></td>
-            <td><%= note.date %></td>
+            <td><%= note.prettyNotesDate %></td>
          </tr>
          <% }); %>
       </tbody>
@@ -357,8 +363,7 @@
       <div class="form-group">
          <h3>Add Note</h3>
          <br>
-         <textarea rows="4" cols="50" name="note">
-      </textarea>
+         <textarea rows="4" cols="50" name="note"></textarea>
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Note</button>
    </form>
