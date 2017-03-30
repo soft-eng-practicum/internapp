@@ -11,6 +11,7 @@ var siteSchema = mongoose.Schema({
         state        : {type: String, required: true},
         zipcode      : {type: String, required: true},
         contacts     : [{ name: {type: String, required: true}, title: {type: String}, email: {type: String}, office: {type: String},cell: {type: String}}],
+        section      : {type: String, required: true},
         mou          : {type: String, required: false},
         mouexpiration          : {type: String, required: false},
                 dateAdded:{

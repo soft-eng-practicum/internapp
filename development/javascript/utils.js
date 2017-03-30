@@ -78,5 +78,15 @@ function getSites(target)
 	}
 }
 
- 
+function successSnack() {
+	var x = document.getElementById("snackbarSuccess")
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+}
+
+function failSnack() {
+	var x = document.getElementById("snackbarFailure")	
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+}
 
