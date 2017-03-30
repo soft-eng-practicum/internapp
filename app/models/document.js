@@ -80,14 +80,14 @@ function formatDate(date) {
 var Document = module.exports = mongoose.model('Document', documentSchema);
 
 module.exports.getDocumentsForUser = function(email, callback) {
-    Document.findOne({
-        "user_email" : email
+    Document.find({
+        "user.user_email" : email
     }, function(err, document) {
         if (err) throw err;
         if (document) {
             callback(document);
         } else {
-            callback(false);
+            callback([]);
         }
     })
 }
