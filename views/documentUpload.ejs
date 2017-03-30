@@ -94,7 +94,7 @@
                   <th>Document Name</th>
                   <th>Type</th>
                   <th>Status</th>
-                  <th>Feedback</th>
+                  <th>View Details</th>
                </tr>
             </thead>
             <tbody>
@@ -107,7 +107,7 @@
                   <td><%= document.documentName %></td>
                   <td><%= document.documentType %></td>
                   <td><%= document.documentStatus %></td>
-                  <td><a href=<%="/document/" + document.userId + "/" + document.docId%>>View Details</a></td>
+                  <td><a href="/document/<%= document.userId %>/<%= document.docId %>" ><span class='glyphicon glyphicon-search'></span></a></td>
                </tr>
                <% }); %>
             </tbody>

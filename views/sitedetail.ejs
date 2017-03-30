@@ -58,7 +58,7 @@
                <td><%= contact.email %></td>
                <td><%= contact.office %></td>
                <td><%= contact.cell %></td>
-               <td><a href='/site/contacts/<%= site._id %>/<%= contact._id %>'>Delete</a></td>
+               <td><a href='/site/contacts/<%= site._id %>/<%= contact._id %>'><span class='glyphicon glyphicon-trash'></span></a></td>
             </tr>
             <% }); %>
          </tbody>
@@ -116,9 +116,21 @@
                <th> Types of Interns </th>
                <th> Visit Location </th>
                <th> Date Entered </th>
+               <th> Delete </th>
             </tr>
          </thead>
          <tbody>
+               <% site.notes.forEach(function(note) { %>
+               <tr>
+                  <td><%= note.visitDate %></td>
+                  <td><%= note.author %></td>
+                  <td><%= note.noteText %></td>
+                  <td><%= note.typesOfInterns %></td>
+                  <td><%= note.visitLocation %></td>
+                  <td><%= note.noteDate %></td>
+                  <td> <a href='/site/<%= site._id %>/note/delete/<%= note._id %>'><span class='glyphicon glyphicon-trash'></span></a> </td>
+               </tr>
+               <%  }); %>
          </tbody>
       </table>
       <div align="center">
@@ -134,7 +146,7 @@
                   <h4 class="modal-title">Add Site Note</h4>
                </div>
                <div class="modal-body">
-                  <form name="addsitenotes" method="post" class="form-horizontal">
+                  <form name="addsitenotes" method="post" action="/site/note/<%=site._id %>" class="form-horizontal">
                      <div class="form-group">
                         <label class="col-lg-5 control-label">Site Name</label>
                         <!-- add site name in an uneditable text field -->

@@ -35,8 +35,8 @@
                   <td>No</td>
                   <% } %>
                   <td><%= site.mouexpiration %></td>
-                  <td><a href=<%="/site/edit/"+site._id %> >Edit</a></td>
-                  <td><a href=<%="/site/"+site._id %> >View Details</a></td>
+                  <td><a href="/site/edit/<% site._id %>" ><span class='glyphicon glyphicon-pencil'></span></a></td>
+                  <td><a href="/site/<%= site._id %>" ><span class='glyphicon glyphicon-search'></span></a></td>
                   <th>Add/View Notes</th>
                </tr>
                <% }); %>

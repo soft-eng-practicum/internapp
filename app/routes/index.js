@@ -162,8 +162,8 @@ module.exports = function(app, passport) {
 
     /* Site Notes page */
     app.get('/sitenotes', isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
-    app.post('/sitenotes',isLoggedIn, ctrlSiteNotes.addSiteNote);
-
+    app.post('/site/note/:siteId',isLoggedIn, ctrlSiteNotes.addSiteNote);
+    app.get('/site/:siteId/note/delete/:noteId', isLoggedIn, ctrlSiteNotes.deleteSiteNote);
 
     app.get('/edititec', isLoggedIn, ctrlEditApps.getEditItec);
     app.get('/editbio', isLoggedIn, ctrlEditApps.getEditBio);
