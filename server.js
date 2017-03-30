@@ -36,7 +36,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 // Set favicon to the SST crest
-app.use(favicon(__dirname + '/public/images/SST_crest_small.png'));
+app.use(favicon(__dirname + '/public/images/logo.png'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
