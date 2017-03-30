@@ -347,9 +347,16 @@ function sendEmail(file, typeOfFile, req, res) {
             break;
     }
 
-    transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
+            transporter = nodemailer.createTransport({
+                service: 'yahoo',
+                auth: {
+                    user: 'ggcinternapp@yahoo.com',
+                    pass: key
+                }
+            });
+
             mailOptions = {
-                from: '"GGC Interapp Admin" <admin@ggcinternapp>',
+                from: 'ggcinternapp@yahoo.com',
                 to: [coordinatorEmail], // comment out for now - req.session.passport.user.email],
                 subject: emailSubject,
                 text: emailText,
