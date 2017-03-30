@@ -1,3 +1,5 @@
+![](https://github.com/soft-eng-practicum/internapp/blob/master/public/images/logos.png)
+
 # Internapp - dasquad
 **Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 
