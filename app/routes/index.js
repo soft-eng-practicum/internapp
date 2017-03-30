@@ -135,9 +135,11 @@ module.exports = function(app, passport) {
     app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
     app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
     app.get('/document/:userId/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
+    app.get('/user/:userId/document/:documentId/note/delete/:noteId', isLoggedIn, ctrlUpload.deleteDocumentNote);
     app.post('/document/status/:userId/:documentId', isLoggedIn, ctrlUpload.updateSpecificDocumentStatus);
     app.post('/document/notes/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentNotes);
     app.post('/document/feedback/:userId/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentFeedback);
+
         // Upload routes 
     app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
     app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);

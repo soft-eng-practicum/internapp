@@ -180,6 +180,10 @@ module.exports.addSpecificDocumentFeedback = function(req, res) {
     }); 
 }
 
+module.exports.deleteDocumentNote = function(req, res) {
+
+}
+
 // Upload itec resume 
 module.exports.uploadItecResume = function(req, res) {
     var typeOfFile = 'Resume';
@@ -189,7 +193,7 @@ module.exports.uploadItecResume = function(req, res) {
     } else {
         sendEmail(req.files.resume, typeOfFile, req, res);
     }
-};
+}
 
 // Upload bio essay
 module.exports.uploadBioEssay = function(req, res) {
@@ -267,31 +271,46 @@ function addDocumentToUser(fileType, fileName, userEmail) {
              req.flash('failure', 'File type not recognized');
      }
      
-     // Update user's document array
-     User.findOneAndUpdate({
-         'local.email' : userEmail
-    }, {
-        $push: {
-            'local.documents' : {
-                'fileType' : recordFileType,
-                'fileSection' : recordSection,
-                'documentName' : fileName,
-                'documentStatus' : 'submitted'
-            }
-            /*
+    //  // Update user's document array
+    //  User.findOneAndUpdate({
+    //      'local.email' : userEmail
+    // }, {
+    //     $push: {
+    //         'local.documents' : {
+    //             'fileType' : recordFileType,
+    //             'fileSection' : recordSection,
+    //             'documentName' : fileName,
+    //             'documentStatus' : 'submitted'
+    //         }
+    //         /*
 
-            prettyUploadDate: {type: String, default: formatDate(new Date())},
-            uploadDate: {type: Date, default: Date.now},
-            fileType: {type: String, required: true},
-            fileSection: {type: String, required: true},
-            documentName: {type: String, required: true}
+    //         prettyUploadDate: {type: String, default: formatDate(new Date())},
+    //         uploadDate: {type: Date, default: Date.now},
+    //         fileType: {type: String, required: true},
+    //         fileSection: {type: String, required: true},
+    //         documentName: {type: String, required: true}
 
-            */
+    //         */
+    //     }
+    // }, function(err, user) {
+    //     if (err) console.error(err);
+    //     console.log(recordFileType + ' document added to ' + userEmail);
+    //     return true;
+    // });
+
+    var document = new Document({
+        'fileType' : recordFileType,
+        'fileSection' : recordSection,
+        'documentName' : fileName,
+        'documentStatus' : 'submitted'
+    });
+
+    document.save(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log(recordFileType + ' document added to ' + userEmail);
         }
-    }, function(err, user) {
-        if (err) console.error(err);
-        console.log(recordFileType + ' document added to ' + userEmail);
-        return true;
     });
 }
 
