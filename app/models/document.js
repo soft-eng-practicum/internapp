@@ -1,13 +1,48 @@
 var mongoose = require('mongoose');
 
 var documentSchema = mongoose.Schema({
-    user_email: {type: String, required: true},
-    prettyUploadDate: {type: String, default: formatDate(new Date())},
-    uploadDate: {type: Date, default: Date.now},
-    fileType: {type: String, required: true},
-    fileSection: {type: String, required: true},
-    documentName: {type: String, required: true},
-    documentStatus: {type: String, required: true},
+    user: {
+        user_id : {
+            type: String,
+            required: true
+        },
+        fname: {
+            type: String,
+            required: true
+        },
+        lname: {
+            type: String,
+            required: true
+        },
+        user_email : {
+            type: String,
+            required: true
+        }
+    },
+    prettyUploadDate: {
+        type: String, 
+        default: formatDate(new Date())
+    },
+    uploadDate: {
+        type: Date, 
+        default: Date.now
+    },
+    fileType: {
+        type: String, 
+        required: true
+    },
+    fileSection: {
+        type: String, 
+        required: true
+    },
+    documentName: {
+        type: String, 
+        required: true
+    },
+    documentStatus: {
+        type: String, 
+        required: true
+    },
     notes: [
                 { 
                     user: {type: String, required: true}, 

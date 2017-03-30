@@ -10,10 +10,10 @@
       <% include partials/nav.ejs %>
       <div class="container">
          <h2>Document Uploads</h2>
-         <% if (successfulUpload.length > 0) { %>
+         <% if (successMessage.length > 0) { %>
          <div class="alert alert-success"><%= successfulUpload %></div>
          <% } %>
-         <% if (uploadError.length > 0) { %>
+         <% if (failureMessage.length > 0) { %>
          <div class="alert alert-danger"><%= uploadError %></div>
          <% } %>
          <div class="form-group">
@@ -107,7 +107,7 @@
                   <td><%= document.documentName %></td>
                   <td><%= document.documentType %></td>
                   <td><%= document.documentStatus %></td>
-                  <td><a href="/document/<%= document.userId %>/<%= document.docId %>" ><span class='glyphicon glyphicon-search'></span></a></td>
+                  <td><a href="/document/<%= document.docId %>" ><span class='glyphicon glyphicon-search'></span></a></td>
                </tr>
                <% }); %>
             </tbody>

@@ -9,6 +9,7 @@ var nodemailer = require('nodemailer');
 var key = process.env.KEY; // password for ggcinternapp@gmail.com
 
 var User = require('../models/user');
+var Document = require('../models/document');
 
 // Setting local env in powershell
 // $env:key="password"
@@ -28,160 +29,154 @@ var noFilesUploadedError = " You must choose a file to upload. ";
 module.exports.getDocumentUpload = function(req, res) {
     var documentList = [];
     if (req.user.role === 'admin' || req.user.role === 'instructor') {
-        User.find(function(err, users) { // get all users
-            if (err) return console.error(err);
-            users.forEach(function(user) { // for each user - grab their documents array
-                if (user.local.documents.length > 0) { // if they have a document uploaded
-                    var userDocuments = user.local.documents;
-                    userDocuments.forEach(function(document) { 
-
-                        var document = {
-                            "docId" : document._id,
-                            "userId": user._id,
-                            "studentEmail" : user.local.email,
-                            "studentName"  : user.local.fname + ' ' + user.local.lname,
-                            "date"         : document.prettyUploadDate,
-                            "section"      : document.fileSection,
-                            "documentName" : document.documentName,
-                            "documentType" : document.fileType,
-                            "documentStatus": document.documentStatus,
-                            "notes" : document.notes
-                        }
-                        documentList.push(document); // add it to a list to provide to the documentUpload.ejs
-                    });
-                }
+        Document.find(function(err, documents) {
+            documents.forEach(function(document) {
+                    var newDocument = {
+                        "docId" : document._id,
+                        "userId": document.user.user_id,
+                        "studentEmail" : document.user.user_email,
+                        "studentName"  : document.user.fname + ' ' + document.user.lname,
+                        "date"         : document.prettyUploadDate,
+                        "section"      : document.fileSection,
+                        "documentName" : document.documentName,
+                        "documentType" : document.fileType,
+                        "documentStatus": document.documentStatus,
+                        "notes" : document.notes,
+                        "feedback" : document.feedback
+                    }
+                   documentList.push(newDocument);
+                    console.log('hi');
             });
                     res.render('documentUpload', {
                     user : req.session.passport.user,
                     documentList: documentList,
-                    uploadError: req.flash('uploadError'),
-                    successfulUpload: req.flash('successfulUpload')
+                    failureMessage: req.flash('failure'),
+                    successMessage: req.flash('success')
                     });
         });
-    } else {  // if user is a student just display their own uploads
-        User.findOne({
-            'local.email' : req.user.email
-        },
-            function(err, user) {
-                if (user.length > 1) return console.error('Error more than one user found for email: ' + req.user.email);
-                if (err) return console.error(err);
-                if (user.local.documents.length > 0) {
-                    var userDocuments = user.local.documents;
-                    userDocuments.forEach(function(document) { 
-
-                        var document = {
-                            "docId" : document._id,
-                            "userId": user._id,
-                            "studentEmail" : user.local.email,
-                            "studentName"  : user.local.fname + ' ' + user.local.lname,
-                            "date"         : document.prettyUploadDate,
-                            "section"      : document.fileSection,
-                            "documentName" : document.documentName,
-                            "documentType" : document.fileType,
-                            "documentStatus": document.documentStatus,
-                            "notes" : document.notes
-                        }
-                        documentList.push(document);
-                    });
-                }
-                    res.render('documentUpload', {
-                    user : req.session.passport.user,
-                    documentList: documentList,
-                    uploadError: req.flash('uploadError'),
-                    successfulUpload: req.flash('successfulUpload')
-                    })
-            })
-        }
+    } else {
+        res.redirect('/home');
+    }  
+        
 }
 
 // Renders the 'View Details' page for a specific document
 module.exports.getSpecificDocument = function(req, res) {
-    User.findById({
-        "_id" : req.params.userId
-    }, function(err, user) {
-        user.local.documents.forEach(function(document) {
-            if (document._id == req.params.documentId) {
-                res.render('documentDetails', {
-                    user : req.session.passport.user,
-                    document: document,
-                    documentUser: user,
-                    successMessage: req.flash('specificDocumentSuccess'),
-                    failureMessage: req.flash('specificDocumentFailure')
-                });
-            } 
-        }); 
+
+    Document.findById({
+        "_id" : req.params.documentId
+    }, function(err, document) {
+        res.render('documentDetails', {
+            user: req.session.passport.user,
+            document: document,
+            successMessage: req.flash('success'),
+            failureMessage: req.flash('failure')
+        });
     });
+
 }
 
 module.exports.updateSpecificDocumentStatus = function(req, res) {
-    User.findById({
-        "_id": req.params.userId
-    }, function(err, user) {
 
-        user.local.documents.forEach(function(document) {
-            if (document._id == req.params.documentId) {
-                User.findOne({
-                    "local.documents._id" : req.params.documentId
-                }, function(err, user) {
-                    var document = user.local.documents.id(req.params.documentId);
-                    document.documentStatus = req.body.documentstatus;
-                    user.save();
-                });
-            }
-        });
-        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
-        req.flash('specificDocumentSuccess', 'Document status has been changed!')
-    })
-}
-
-module.exports.addSpecificDocumentNotes = function(req, res) {
-    User.findById({
-        "_id" : req.params.userId
-    }, function(err, user) {
-         user.local.documents.forEach(function(document) {
-            if (document._id == req.params.documentId) {
-                User.findOne({
-                    "local.documents._id" : req.params.documentId
-                }, function(err, user) {
-                    var document = user.local.documents.id(req.params.documentId);
-                    document.notes.push({
-                        "user" : req.user.email,
-                        "note" : req.body.note
-                    })
-                    user.save();
-                });
-            }
-        });
-        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
-        req.flash('specificDocumentSuccess', 'Document note has been added!')
+    Document.findByIdAndUpdate({
+        "_id" : req.params.documentId
+    },{ 
+        $set : {
+            "documentStatus" : req.body.documentstatus
+        }
+    }, function(err) {
+        if (err) {
+            throw err;
+        }
+        res.redirect('/document/' + req.params.documentId);
+        req.flash('success', 'Document status has been changed!')
     });
 }
 
 module.exports.addSpecificDocumentFeedback = function(req, res) {
-    User.findById({
-        "_id" : req.params.userId
-    }, function(err, user) {
-         user.local.documents.forEach(function(document) {
-            if (document._id == req.params.documentId) {
-                User.findOne({
-                    "local.documents._id" : req.params.documentId
-                }, function(err, user) {
-                    var document = user.local.documents.id(req.params.documentId);
-                    document.feedback.push({
-                        "user" : req.user.email,
-                        "feedback" : req.body.feedback
-                    })
-                    user.save();
-                });
+     Document.update({ 
+         _id: req.params.documentId
+     },{ 
+        $push: {
+            "feedback": {
+                feedback: req.body.feedback, 
+                user: req.user.email
             }
-        });
-        res.redirect('/document/' + req.params.userId + '/' + req.params.documentId);
-        req.flash('specificDocumentSuccess', 'Document feedback has been added!')
-    }); 
+        }
+    }, function (err) {
+        if (err) {
+            req.flash('failure', 'An error has occured, the feedback can not be added at this time.')
+            res.redirect('/document/'+req.params.documentId);
+        }
+        else {
+            req.flash('success', 'The feedback has been successfully added!')                
+            res.redirect('/document/'+req.params.documentId);
+        }
+    });
+}
+
+module.exports.deleteDocumentFeedback = function(req, res) {
+     Document.update({ 
+         _id: req.params.documentId
+     },{ 
+        $pull: {
+            "feedback": {
+                "_id" : req.params.feedbackId
+            }
+        }
+    }, function (err) {
+        if (err) {
+            req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
+            res.redirect('/document/'+req.params.documentId);
+        }
+        else {
+            req.flash('success', 'The feedback has been successfully deleted!')                
+            res.redirect('/document/'+req.params.documentId);
+        }
+    });
+}
+
+module.exports.addSpecificDocumentNotes = function(req, res) {
+     Document.update({ 
+         _id: req.params.documentId
+     },{ 
+        $push: {
+            "notes": {
+                note: req.body.note, 
+                user: req.user.email
+            }
+        }
+    }, function (err) {
+        if (err) {
+            req.flash('failure', 'An error has occured, the note can not be added at this time.')
+            res.redirect('/document/'+req.params.documentId);
+        }
+        else {
+            req.flash('success', 'The note has been successfully added!')                
+            res.redirect('/document/'+req.params.documentId);
+        }
+    });
 }
 
 module.exports.deleteDocumentNote = function(req, res) {
-
+    Document.update({ 
+            _id: req.params.documentId
+        },{ 
+            $pull: {
+                "notes": {
+                    "_id" : req.params.noteId
+                }
+            }
+        }, function (err) {
+            if (err) {
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/document/'+req.params.documentId);
+            }
+            else {
+                req.flash('success', 'The note has been successfully deleted!')                
+                res.redirect('/document/'+req.params.documentId);
+            }
+        });
 }
 
 // Upload itec resume 
@@ -243,7 +238,7 @@ module.exports.downloadFerpa = function(req, res) {
 };
 
 // Add a document to the user's 
-function addDocumentToUser(fileType, fileName, userEmail) {
+function addDocumentToUser(fileType, fileName, user) {
      // Student Name
      var recordFileType;
      var recordSection;
@@ -270,35 +265,14 @@ function addDocumentToUser(fileType, fileName, userEmail) {
              res.redirect('/home');
              req.flash('failure', 'File type not recognized');
      }
-     
-    //  // Update user's document array
-    //  User.findOneAndUpdate({
-    //      'local.email' : userEmail
-    // }, {
-    //     $push: {
-    //         'local.documents' : {
-    //             'fileType' : recordFileType,
-    //             'fileSection' : recordSection,
-    //             'documentName' : fileName,
-    //             'documentStatus' : 'submitted'
-    //         }
-    //         /*
-
-    //         prettyUploadDate: {type: String, default: formatDate(new Date())},
-    //         uploadDate: {type: Date, default: Date.now},
-    //         fileType: {type: String, required: true},
-    //         fileSection: {type: String, required: true},
-    //         documentName: {type: String, required: true}
-
-    //         */
-    //     }
-    // }, function(err, user) {
-    //     if (err) console.error(err);
-    //     console.log(recordFileType + ' document added to ' + userEmail);
-    //     return true;
-    // });
 
     var document = new Document({
+        'user' : {
+            'user_id' : user._id,
+            'fname': user.fname,
+            'lname': user.lname,
+            'user_email': user.email
+        },
         'fileType' : recordFileType,
         'fileSection' : recordSection,
         'documentName' : fileName,
@@ -309,7 +283,7 @@ function addDocumentToUser(fileType, fileName, userEmail) {
         if (err) {
             throw err;
         } else {
-            console.log(recordFileType + ' document added to ' + userEmail);
+            console.log(recordFileType + ' document added to ' + user.email);
         }
     });
 }
@@ -376,7 +350,7 @@ function sendEmail(file, typeOfFile, req, res) {
 
                 } else {
                     console.log(typeOfFile + ' sent!');
-                    addDocumentToUser(typeOfFile, file.name, req.user.email);
+                    addDocumentToUser(typeOfFile, file.name, req.user);
                     res.redirect('/home');
                     req.flash('success', typeOfFile + ' uploaded!');
                 }
