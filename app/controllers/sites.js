@@ -102,7 +102,7 @@ module.exports.getSiteDocument = function(req, res) {
     URL: '/addSite'
 */
 module.exports.postAddSite = function(req, res) {
-    var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode,
+    var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: req.body.section,
     mou: req.body.mou, mouexpiration: req.body.mouexpiration });
     site.save(function (err) {
         if (err) {
@@ -140,7 +140,7 @@ function (err) {
     URL: '/site/edit/:siteid'
 */
 module.exports.updateSite = function(req, res) {
-    Site.update({ _id: req.params.siteid },{name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode,
+    Site.update({ _id: req.params.siteid },{name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode,  section: req.body.section,
         mou: req.body.mou, mouexpiration: req.body.mouexpiration},
         function (err) {
             if (err){
