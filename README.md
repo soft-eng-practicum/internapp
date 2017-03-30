@@ -1,5 +1,5 @@
 
-<div style="text-align:center"><img src ="![](https://github.com/soft-eng-practicum/internapp/blob/master/public/images/logos.png)" /></div>
+<div style="text-align:center"><img src ="/soft-eng-practicum/internapp/blob/master/public/images/logos.png" /></div>
 
 # Internapp - dasquad
 **Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
