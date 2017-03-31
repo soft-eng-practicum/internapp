@@ -203,7 +203,6 @@ module.exports.addItecNotes = function(req, res) {
 */
 module.exports.deleteItecNote = function(req, res) {
         var itecId = req.params.applicationId;
-        console.log('app id = ', req.params.applicationId, "\n", 'note id = ', req.params.noteId);
         Itec.update({ _id: req.params.applicationId },{$pull: {"notes": {_id: req.params.noteId}}}, 
         function (err) {
             if (err) {
@@ -280,35 +279,18 @@ module.exports.addBioNotes = function(req, res) {
 
 */
 module.exports.deleteBioNote = function(req, res) {
-    console.log('app id = ', req.params.applicationId, "\n", 'note id = ', req.params.noteId);
-    Bio.find({ _id: req.params.applicationId },{$pull: {"notes": {_id: req.params.noteId}}}, 
-    function (err) {
-        if (err) {
-            req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
-            res.redirect('/application/BIO/'+req.params.applicationid);
-        } else {
-            req.flash('success', 'The note has been successfully deleted!')  
-            res.redirect('/application/BIO/'+req.params.applicationid);
-        }
-    });
-        // Bio.update(req.params.applicationId
-        //     ,{ 
-        //         $pull: {
-        //             "notes": {
-        //                 "_id" : req.params.noteId
-        //             }
-        //         }
-        //     }, function (err) {
-        //         if (err) {
-        //             console.log(err);
-        //             req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
-        //             res.redirect('/application/bio/'+req.params.applicationid);
-        //         }
-        //         else {
-        //             req.flash('success', 'The note has been successfully deleted!')  
-        //             res.redirect('/application/bio/'+req.params.applicationid);
-        //         }
-        //     });
+        var bioId = req.params.applicationId;
+        Bio.update({ _id: req.params.applicationId },{$pull: {"notes": {_id: req.params.noteId}}}, 
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/application/bio/'+bioId);
+            } else {
+                req.flash('success', 'The note has been successfully deleted!')  
+                res.redirect('/application/bio/'+bioId);
+            }
+        });
 }
 
 /*
@@ -335,26 +317,18 @@ module.exports.addBioFeedback = function(req, res) {
 
 */
 module.exports.deleteBioFeedback = function(req, res) {
-    console.log('app id = ', req.params.applicationId);
-        Bio.update({ 
-                "_id" : req.params.applicationId
-            },{ 
-                $pull: {
-                    "feedback": {
-                        "_id" : req.params.feedbackId
-                    }
-                }
-            }, function (err) {
-                if (err) {
-                    console.log(err);
-                    req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
-                    res.redirect('/application/bio/'+req.params.applicationid);
-                }
-                else {
-                    req.flash('success', 'The note has been successfully deleted!')  
-                    res.redirect('/application/bio/'+req.params.applicationid);
-                }
-            });
+        var bioId = req.params.applicationId;
+        Bio.update({ _id: req.params.applicationId },{$pull: {"feedback": {_id: req.params.feedbackId}}}, 
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
+                res.redirect('/application/bio/'+bioId);
+            } else {
+                req.flash('success', 'The feedback has been successfully deleted!')  
+                res.redirect('/application/bio/'+bioId);
+            }
+        });
 }
 
 /*
