@@ -16,7 +16,7 @@ module.exports.getSiteNotesPage = function(req, res) {
             res.render('sitenotes.ejs', {
                 siteList : sites,
                 user : req.user,
-                successfulMessage : req.flash('successfulSiteNotesMessage'),
+                successMessage : req.flash('successfulSiteNotesMessage'),
                 failureMessage: req.flash('failureSiteNotesMessage')
             });
         });
@@ -46,17 +46,28 @@ module.exports.addSiteNote = function(req, res) {
         function (err) {
             if (err) {
                 console.error(err);
-                req.flash('failureSiteNotesMessage', 'Site note could not be added at this time.');
+                req.flash('failure', 'Site note could not be added at this time.');
                 res.redirect('/site/' + req.params.siteId);
             }
             else {
-                req.flash('successfulSiteNotesMessage', 'Site note successfully added!');
+                req.flash('success', 'Site note successfully added!');
                 res.redirect('/site/' + req.params.siteId);
             }
         });
 };
 
 module.exports.deleteSiteNote = function(req, res) {
-    console.log('note id =', req.params.noteId);
+var siteId = req.params.siteId;
+            Site.update({ _id: req.params.siteId },{$pull: {"notes": {_id: req.params.noteId}}}, 
+            function (err) {
+                if (err) {
+                    console.log(err);
+                    req.flash('failure', 'An error has occured, the site note can not be deleted at this time.')
+                    res.redirect('/site/'+siteId);
+                } else {
+                    req.flash('success', 'The site note has been successfully deleted!')  
+                    res.redirect('/site/'+siteId);
+                }
+            });
 }
 
