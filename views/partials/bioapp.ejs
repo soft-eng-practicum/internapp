@@ -359,6 +359,7 @@
             <th>Note</th>
             <th>Entered By</th>
             <th>Date</th>
+            <th>Delete</th>
          </tr>
       </thead>
       <tbody>
@@ -367,6 +368,7 @@
             <td><%= feedback.feedback %></td>
             <td><%= feedback.user %></td>
             <td><%= feedback.prettyFeedbackDate %></td>
+            <td><a href="/application/bio/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
          </tr>
          <% }) %>
       </tbody>
@@ -410,6 +412,7 @@
             <th>Note</th>
             <th>Entered By</th>
             <th>Date</th>
+            <td>Delete</th>
          </tr>
       </thead>
       <tbody>
@@ -417,7 +420,8 @@
          <tr>
             <td><%= note.note %></td>
             <td><%= note.user %></td>
-            <td><%= note.date %></td>
+            <td><%= note.prettyNotesDate %></td>
+            <td><a href="/application/bio/<%= application._id %>/notes/delete/<%= note._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
          </tr>
          <% }) %>
       </tbody>
