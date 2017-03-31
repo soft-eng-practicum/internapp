@@ -26,11 +26,11 @@ module.exports.getSiteNotesPage = function(req, res) {
 
 /*
     HTTP Req: POST
-    URL: '/name/:siteName'
+    URL: '/name/:siteId'
 */
 module.exports.addSiteNote = function(req, res) {
     Site.update({ 
-            name: req.body.siteName 
+            "_id" : req.params.siteId 
         }, {
             $push: { 
                 "notes": {
@@ -47,12 +47,16 @@ module.exports.addSiteNote = function(req, res) {
             if (err) {
                 console.error(err);
                 req.flash('failureSiteNotesMessage', 'Site note could not be added at this time.');
-                res.redirect('/sitenotes/');
+                res.redirect('/site/' + req.params.siteId);
             }
             else {
                 req.flash('successfulSiteNotesMessage', 'Site note successfully added!');
-                res.redirect('/sitenotes/');
+                res.redirect('/site/' + req.params.siteId);
             }
         });
 };
+
+module.exports.deleteSiteNote = function(req, res) {
+    console.log('note id =', req.params.noteId);
+}
 

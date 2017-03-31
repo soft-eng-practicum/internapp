@@ -78,7 +78,7 @@
                   <th>Application Status</th>
                   <th>Discipline</th>
                   <th>Proposed Semester Year</th>
-                  <th>More</th>
+                  <th>View Details</th>
                </tr>
             </thead>
             <tbody>
@@ -91,7 +91,7 @@
                   <td><%= application.applicationstatus %></td>
                   <td><%= application.userdiscipline %></td>
                   <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
-                  <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
+                  <td><a href="/application/<%= application.userdiscipline %>/<%= application._id %>" ><span class='glyphicon glyphicon-search'></span></a></td>
                </tr>
                <% }); %>
             </tbody>

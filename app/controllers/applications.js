@@ -54,8 +54,8 @@ module.exports.getApplications = function(req, res) {
                         if (err) return console.error(err);
                         res.render('applications.ejs', {
                             applicationList: bioApplications.concat(itecApplications),
-                            applicationSuccess: req.flash('applicationsuccess'),
-                            applicationFailure: req.flash('applicationfailure'),
+                            successMessage: req.flash('success'),
+                            failureMessage: req.flash('failure'),
                             haveBioApp: haveBioApp,
                             haveItecApp: haveItecApp,
                             user: req.user
@@ -96,8 +96,8 @@ module.exports.getSpecificBioApplication = function(req, res) {
                 res.render('applicationdetails.ejs', {
                 application : appdetail,
                 user : req.user,
-                applicationSuccess : req.flash('applicationsuccess'),
-                applicationFailure : req.flash('applicationfailure')               
+                successMessage : req.flash('success'),
+                failureMessage : req.flash('failure')               
                 });
             }
         });
@@ -109,6 +109,7 @@ module.exports.getSpecificBioApplication = function(req, res) {
     URL: '/application/itec/:id'
 */
 module.exports.getSpecificItecApplication = function(req, res) {
+    console.log('specific id = ', req.params.applicationid);
     Itec.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
             if (err) {
                 console.log(err);
@@ -118,8 +119,8 @@ module.exports.getSpecificItecApplication = function(req, res) {
                 res.render('applicationdetails.ejs', {
                 application : appdetail,
                 user : req.user,
-                applicationSuccess : req.flash('applicationsuccess'),
-                applicationFailure : req.flash('applicationfailure')  
+                successMessage : req.flash('success'),
+                failureMessage : req.flash('failure')  
                 });
             }
         });
@@ -143,11 +144,11 @@ module.exports.updateApplicationStatus = function(req, res) {
             );
         Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
             if (err){
-                req.flash('applicationfailure', 'An error has occured, the application status has not been changed!')
+                req.flash('failure', 'An error has occured, the application status has not been changed!')
                 res.redirect('/application/itec/'+req.params.applicationid);
             }
             else{
-                req.flash('applicationsuccess', 'The application status has been successfully changed!')
+                req.flash('success', 'The application status has been successfully changed!')
                 redirect = '/application/itec/'+req.params.applicationid;
                 sendEmail(req, res, typeOfEmail, studentEmail, redirect);
             }
@@ -162,11 +163,11 @@ module.exports.updateApplicationStatus = function(req, res) {
             );
         Bio.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
             if (err){
-                req.flash('applicationfailure', 'An error has occured, the application status has not been changed!')
+                req.flash('failure', 'An error has occured, the application status has not been changed!')
                 res.redirect('/application/bio/'+req.params.applicationid);
             }
             else{
-                req.flash('applicationsuccess', 'The application status has been successfully changed!')                
+                req.flash('success', 'The application status has been successfully changed!')                
                 redirect = '/application/bio/'+req.params.applicationid;
                 sendEmail(req, res, typeOfEmail, studentEmail, redirect);
             }
@@ -184,15 +185,36 @@ module.exports.updateApplicationStatus = function(req, res) {
 module.exports.addItecNotes = function(req, res) {
  Itec.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
         if (err) {
-            req.flash('applicationfailure', 'An error has occured, the note can not be added at this time.')
+            req.flash('failure', 'An error has occured, the note can not be added at this time.')
             res.redirect('/application/itec/'+req.params.applicationid);
         }
         else {
-            req.flash('applicationsuccess', 'The note has been successfully added!')                
+            req.flash('success', 'The note has been successfully added!')                
             res.redirect('/application/itec/'+req.params.applicationid);
         }
     });
-};
+}
+
+/*
+
+    HTTP Req: GET
+    URL: /application/itec/:applicationId/notes/delete/:noteId
+
+*/
+module.exports.deleteItecNote = function(req, res) {
+        var itecId = req.params.applicationId;
+        Itec.update({ _id: req.params.applicationId },{$pull: {"notes": {_id: req.params.noteId}}}, 
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/application/itec/'+itecId);
+            } else {
+                req.flash('success', 'The note has been successfully deleted!')  
+                res.redirect('/application/itec/'+itecId);
+            }
+        });
+}
 
 /*
     HTTP Req: POST
@@ -201,14 +223,43 @@ module.exports.addItecNotes = function(req, res) {
 module.exports.addItecFeedback = function(req, res) {
     Itec.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
         if (err) {
-            req.flash('applicationerror',err);
+            req.flash('failure',err);
             res.redirect('/application/itec/'+req.params.applicationid);
         }
         else {
-            req.flash('applicationsuccess', 'The feedback has been successfully added!')
+            req.flash('success', 'The feedback has been successfully added!')
             res.redirect('/application/itec/'+req.params.applicationid);
         }
     });
+}
+
+/*
+
+    HTTP Req: GET
+    URL: /application/itec/:applicationId/feedback/delete/:feebackId
+
+*/
+module.exports.deleteItecFeedback = function(req, res) {
+var itecId = req.params.applicationId;
+        if (!(req.user.role == 'admin')) {
+            req.flash('failure', "Don't delete your own feedback silly!")
+            res.redirect('/application/itec/'+itecId);
+        } else {
+
+            Itec.update({ _id: req.params.applicationId },{$pull: {"feedback": {_id: req.params.feedbackId}}}, 
+            function (err) {
+                if (err) {
+                    console.log(err);
+                    req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
+                    res.redirect('/application/itec/'+itecId);
+                } else {
+                    
+                    res.redirect('/application/itec/'+itecId);
+                    req.flash('success', 'The feedback has been successfully deleted!')  
+                }
+            });
+        }
+
 }
 
 /*
@@ -218,15 +269,36 @@ module.exports.addItecFeedback = function(req, res) {
 module.exports.addBioNotes = function(req, res) {
     Bio.update({ _id: req.params.applicationid },{$push: {"notes": {note: req.body.note, user: req.user.email}}},function (err) {
         if (err) {
-            req.flash('info',err);
+            req.flash('failure', 'The note cannot be added at this time.');
             res.redirect('/application/bio/'+req.params.applicationid);
         }
         else {
-            req.flash('applicationsuccess', 'The note has been successfully added!') 
+            req.flash('success', 'The note has been successfully added!') 
             res.redirect('/application/bio/'+req.params.applicationid);
         }
     });
-};
+}
+
+/*
+
+    HTTP Req: GET
+    URL: /application/bio/:applicationId/notes/delete/:noteId
+
+*/
+module.exports.deleteBioNote = function(req, res) {
+        var bioId = req.params.applicationId;
+        Bio.update({ _id: req.params.applicationId },{$pull: {"notes": {_id: req.params.noteId}}}, 
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/application/bio/'+bioId);
+            } else {
+                req.flash('success', 'The note has been successfully deleted!')  
+                res.redirect('/application/bio/'+bioId);
+            }
+        });
+}
 
 /*
     HTTP Req: POST
@@ -235,14 +307,40 @@ module.exports.addBioNotes = function(req, res) {
 module.exports.addBioFeedback = function(req, res) {
     Bio.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
         if (err) {
-            req.flash('applicationerror', 'An error has occured, the feedback cannot be added at this time.');
+            req.flash('failure', 'An error has occured, the feedback cannot be added at this time.');
             res.redirect('/application/bio/'+req.params.applicationid);
         }
         else {
-            req.flash('applicationsuccess', 'The feedback has been successfully added!')
+            req.flash('success', 'The feedback has been successfully added!')
             res.redirect('/application/bio/'+req.params.applicationid);
         }
     });
+}
+
+/*
+
+    HTTP Req: GET
+    URL: /application/bio/:applicationId/feedback/delete/:feedbackId
+
+*/
+module.exports.deleteBioFeedback = function(req, res) {
+var bioId = req.params.applicationId;
+        if (!(req.user.role == 'admin')) {
+            req.flash('failure', "Don't delete your own feedback silly!")
+            res.redirect('/application/bio/'+bioId);
+        } else {
+            Bio.update({ _id: req.params.applicationId },{$pull: {"feedback": {_id: req.params.feedbackId}}}, 
+            function (err) {
+                if (err) {
+                    console.log(err);
+                    req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
+                    res.redirect('/application/bio/'+bioId);
+                } else {
+                    req.flash('success', 'The feedback has been successfully deleted!')  
+                    res.redirect('/application/bio/'+bioId);
+                }
+            });
+        }
 }
 
 /*
@@ -308,22 +406,6 @@ module.exports.postBioApplication = function(req, res) {
          }
     });
     res.redirect('/applications');
-};
-
-/*
-    HTTP Req: POST
-    URL: '/application/bio/documents/:applicationid'
-*/
-module.exports.addDocument = function(req, res) {
-    Bio.update({ _id: req.params.applicationid },{$push: {"documents": {item: req.body.item, status: req.body.status}}},function (err) {
-        if (err) {
-            req.flash('info',err);
-            res.redirect('/application/bio/'+req.params.applicationid);
-        }
-        else {
-            res.redirect('/application/bio/'+req.params.applicationid);
-        }
-    });
 };
 
 function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {

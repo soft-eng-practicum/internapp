@@ -95,7 +95,6 @@
                 <th>Application Status</th>
                 <th>Section</th>
                 <th>Last Updated</th>
-                <th>View Feedback</th>
                 <th>View Application Details</th>
                 <th>Edit</th>
                 </tr>
@@ -106,9 +105,8 @@
                   <td><%= application.applicationstatus %></td>
                   <td><%= application.userdiscipline %></td>  
                   <td><%= application.lastupdated %></td>
-                  <td><a href="#appFeedbackModal" data-toggle="modal">View Feedback</a></td>
-                  <td><a href=<%="/application/"+application.userdiscipline+"/"+application._id%>>View Details</a></td>
-                  <td><a href=<%="/edit"+application.userdiscipline%>>Edit</a></td>
+                  <td><a href="/application/<%= application.userdiscipline %>/<%= application._id %>"><span class='glyphicon glyphicon-search'></span></a></td>
+                  <td><a href="/edit<%= application.userdiscipline %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
                </tr>
                <% }); %>
             </tbody>
@@ -240,7 +238,6 @@
                 <th>File Type</th>
                 <th>Date Submitted</th>
                 <th>View Document Details</th>
-                <th>View Feedback</th>
                 </tr>
             </thead>
             <tbody>
@@ -251,8 +248,7 @@
                   <td><%= document.fileSection %></td>  
                   <td><%= document.fileType %></td>
                   <td><%= document.prettyUploadDate %></td>
-                  <td><a href=<%="/document/" + user._id + "/" + document._id%>>View Details</a></td>
-                  <td>View Feedback</td>
+                  <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
                </tr>
             <% }); %>
             </tbody>

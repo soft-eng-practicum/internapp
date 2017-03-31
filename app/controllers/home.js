@@ -6,6 +6,7 @@
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 var User = require('../models/user');
+var Document = require('../models/document');
 
 /*
     HTTP Req: GET
@@ -20,8 +21,9 @@ module.exports.loadUserHome = function(req, res) {
     var documentList;
     var applicationList = [];
     
-    User.getUsersDocuments(req.user.email, function(incomingDocumentList) {
+    Document.getDocumentsForUser(req.user.email, function(incomingDocumentList) {
         documentList = incomingDocumentList;
+        console.log(documentList);
         Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
             bioApp = incomingBioApp;
             if (bioApp) {
