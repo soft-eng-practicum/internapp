@@ -240,19 +240,26 @@ module.exports.addItecFeedback = function(req, res) {
 
 */
 module.exports.deleteItecFeedback = function(req, res) {
-        var itecId = req.params.applicationId;
-        Itec.update({ _id: req.params.applicationId },{$pull: {"feedback": {_id: req.params.feedbackId}}}, 
-        function (err) {
-            if (err) {
-                console.log(err);
-                req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
-                res.redirect('/application/itec/'+itecId);
-            } else {
-                
-                res.redirect('/application/itec/'+itecId);
-                req.flash('success', 'The feedback has been successfully deleted!')  
-            }
-        });
+var itecId = req.params.applicationId;
+        if (!(req.user.role == 'admin')) {
+            req.flash('failure', "Don't delete your own feedback silly!")
+            res.redirect('/application/itec/'+itecId);
+        } else {
+
+            Itec.update({ _id: req.params.applicationId },{$pull: {"feedback": {_id: req.params.feedbackId}}}, 
+            function (err) {
+                if (err) {
+                    console.log(err);
+                    req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
+                    res.redirect('/application/itec/'+itecId);
+                } else {
+                    
+                    res.redirect('/application/itec/'+itecId);
+                    req.flash('success', 'The feedback has been successfully deleted!')  
+                }
+            });
+        }
+
 }
 
 /*
@@ -317,18 +324,23 @@ module.exports.addBioFeedback = function(req, res) {
 
 */
 module.exports.deleteBioFeedback = function(req, res) {
-        var bioId = req.params.applicationId;
-        Bio.update({ _id: req.params.applicationId },{$pull: {"feedback": {_id: req.params.feedbackId}}}, 
-        function (err) {
-            if (err) {
-                console.log(err);
-                req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
-                res.redirect('/application/bio/'+bioId);
-            } else {
-                req.flash('success', 'The feedback has been successfully deleted!')  
-                res.redirect('/application/bio/'+bioId);
-            }
-        });
+var bioId = req.params.applicationId;
+        if (!(req.user.role == 'admin')) {
+            req.flash('failure', "Don't delete your own feedback silly!")
+            res.redirect('/application/bio/'+bioId);
+        } else {
+            Bio.update({ _id: req.params.applicationId },{$pull: {"feedback": {_id: req.params.feedbackId}}}, 
+            function (err) {
+                if (err) {
+                    console.log(err);
+                    req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
+                    res.redirect('/application/bio/'+bioId);
+                } else {
+                    req.flash('success', 'The feedback has been successfully deleted!')  
+                    res.redirect('/application/bio/'+bioId);
+                }
+            });
+        }
 }
 
 /*
