@@ -10,6 +10,12 @@
    <body>
       <div class="container">
       <div class="col-sm-6 col-sm-offset-3">
+            <% if (successMessage.length > 0) { %>
+                  <div class="alert alert-success"><%= successMessage %></div>
+            <% } %>
+            <% if (failureMessage.length > 0) { %>
+                  <div class="alert alert-danger"><%= failureMessage %></div>
+            <% } %>
          <h3>Site Information:</h3>
          <table class="table table-bordered">
             <thead>
@@ -151,7 +157,7 @@
                   <form name="addsitenotes" method="post" action="/site/note/<%=site._id %>" class="form-horizontal">
                      <div class="form-group">
                         <label class="col-lg-5 control-label">Site Name</label>
-                        <!-- add site name in an uneditable text field -->
+                        <input type="text" class="col-lg-5" class="form-control" name="visitLocation" value="<%= site.name %>" readonly>
                      </div>
                      <div class="form-group">
                         <label class="col-lg-5 control-label">Discussed Topics</label>

@@ -21,7 +21,6 @@
                   <th>MOU Expiration</th>
                   <th>Edit</th>
                   <th>View Details</th>
-                  <th>View Notes</th>
                </tr>
             </thead>
             <tbody>
@@ -37,9 +36,8 @@
                   <td>No</td>
                   <% } %>
                   <td><%= site.mouexpiration %></td>
-                  <td><a href="/site/edit/<% site._id %>" ><span class='glyphicon glyphicon-pencil'></span></a></td>
+                  <td><a href="/site/edit/<%= site._id %>" ><span class='glyphicon glyphicon-pencil'></span></a></td>
                   <td><a href="/site/<%= site._id %>" ><span class='glyphicon glyphicon-search'></span></a></td>
-                  <th>Add/View Notes</th>
                </tr>
                <% }); %>
             </tbody>

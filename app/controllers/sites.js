@@ -40,7 +40,8 @@ module.exports.getSiteToEdit = function(req, res) {
             res.render('editsite.ejs', {
                 site : sitedetail,
                 user : req.user,
-                message : req.flash('info')
+                successMessage : req.flash('success'),
+                failureMessage : req.flash('failure')
             });
         }
     });
@@ -56,10 +57,11 @@ module.exports.getSiteDetails = function(req, res) {
             console.log(err);
         }
         else {
-            res.render('sitedetail.ejs', {
+            res.render('sitedetail', {
                 site : sitedetail,
                 user : req.user,
-                message : req.flash('info')
+                successMessage : req.flash('success'),
+                failureMessage: req.flash('failure')
             });
         }
     });
@@ -88,10 +90,11 @@ module.exports.getSiteDocument = function(req, res) {
     Site.update({ _id: req.params.siteid },{$pull: {"contacts": {_id: req.params.documentid}}}, 
     function (err) {
         if (err) {
-            req.flash('info',err);
+            req.flash('failure', 'The Site Contact can not be deleted at this time.')
             res.redirect('/site/'+req.params.siteid);
         }
         else {
+            req.flash('success', 'The Site Contact has successfully been deleted!');
             res.redirect('/site/'+req.params.siteid);
         }
     });
@@ -126,10 +129,11 @@ module.exports.addSiteContact = function(req, res) {
 Site.update({ _id: req.params.siteid },{$push: {"contacts": {name: req.body.name, title: req.body.title, email: req.body.email, office: req.body.office, cell: req.body.cell}}},
 function (err) {
     if (err) {
-        req.flash('info',err);
+        req.flash('failure', 'The Site Contact can not be added at this time.')
         res.redirect('/site/'+req.params.siteid);
     }
     else {
+        req.flash('success', 'The Site Contact has been added!')
         res.redirect('/site/'+req.params.siteid);
     }
     });
@@ -140,15 +144,17 @@ function (err) {
     URL: '/site/edit/:siteid'
 */
 module.exports.updateSite = function(req, res) {
+    var siteId = req.params.siteid;
     Site.update({ _id: req.params.siteid },{name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode,  section: req.body.section,
         mou: req.body.mou, mouexpiration: req.body.mouexpiration},
         function (err) {
             if (err){
-                req.flash('info',err);
-                res.redirect('/site/edit/'+req.params.siteid);
+                req.flash('failure', 'The Site updated cannot be completed at this time.');
+                res.redirect('/site/edit/'+siteId);
             }
             else {
-                res.redirect('/site/'+req.params.siteid);
+                req.flash('success', 'The Site has been updated!');
+                res.redirect('/site/edit/'+siteId);
             }
     });
 };
