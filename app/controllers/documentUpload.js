@@ -254,11 +254,11 @@ function addDocumentToUser(fileType, fileName, user) {
              break;
         case "transcript":
              recordFileType = "Transcript";
-             recordSection = "Biology";
+             recordSection = "BIO";
              break;   
         case "essay":
              recordFileType = "Essay";
-             recordSection = "Biology";
+             recordSection = "BIO";
              break;                     
         default:
              console.error('fileType not recognized - upload record creation failed');

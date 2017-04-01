@@ -319,8 +319,6 @@
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
    </form>
-</div>
-<div class="col-sm-6 col-sm-offset-3">
    <h3>Change Application Status</h3>
    <form name="applicationstatus" method="post">
       <div class="form-group">
@@ -337,8 +335,6 @@
       </div>
       <button type="submit" class="btn btn-success btn-lg">Change Status</button>
    </form>
-</div>
-<div class="col-sm-6 col-sm-offset-3">
    <h3>Admin and Instructor Notes</h3>
    <table class="table table-bordered">
       <thead>
@@ -361,8 +357,6 @@
       </tbody>
    </table>
    <hr>
-</div>
-<div class="col-sm-6 col-sm-offset-3">
    <form name="applicationstatus" action="/application/itec/notes/<%= application._id %>" method="post">
       <div class="form-group">
          <h3>Add Note</h3>
@@ -375,32 +369,34 @@
    <h3>Document Uploads table</h3>
    <hr>
 </div>
-        <div class="col-6 col-md-auto">
-        
-        
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                <th>Document Status</th>
-                <th>Name</th>
-                <th>Section</th>
-                <th>File Type</th>
-                <th>Date Submitted</th>
-                <th>View Document Details</th>
-                </tr>
-            </thead>
-            <tbody>
-            <% documents.forEach(function(document) { %>
-               <tr>
-                  <td><%= document.documentStatus %></td>
-                  <td><%= document.documentName %></td>
-                  <td><%= document.fileSection %></td>  
-                  <td><%= document.fileType %></td>
-                  <td><%= document.prettyUploadDate %></td>
-                  <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
-               </tr>
-            <% }); %>
-            </tbody>
-        </table>
-        </div>
+<% } else { %>
+   <h3>Document Uploads table</h3>
+   <hr>
+</div>
 <% } %>
+        <div class="col-6 col-md-auto">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th>Document Status</th>
+                    <th>Name</th>
+                    <th>Section</th>
+                    <th>File Type</th>
+                    <th>Date Submitted</th>
+                    <th>View Document Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% documents.forEach(function(document) { %>
+                <tr>
+                    <td><%= document.documentStatus %></td>
+                    <td><%= document.documentName %></td>
+                    <td><%= document.fileSection %></td>  
+                    <td><%= document.fileType %></td>
+                    <td><%= document.prettyUploadDate %></td>
+                    <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
+                </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>

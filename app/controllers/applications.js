@@ -89,19 +89,23 @@ module.exports.getApplications = function(req, res) {
     URL: '/application/bio/:id'
 */
 module.exports.getSpecificBioApplication = function(req, res) {
-        Bio.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
-            if (err) {
-                 console.log(err);
-            }
-            else {
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
+    var documents = [];
+    Bio.findOne({
+        _id : req.params.applicationid
+    }, function(err, bioApp) {
+        if (err) throw err;
+        Document.getBioDocumentsForUser(bioApp.useremail, function(incomingDocuments) {
+            documents = incomingDocuments;
+            console.log('documents found for user ' + bioApp.useremail + '\n' + documents);
+            res.render('applicationdetails.ejs', {
+                application : bioApp,
+                documents: documents,
                 user : req.user,
                 successMessage : req.flash('success'),
-                failureMessage : req.flash('failure')               
-                });
-            }
-        });
+                failureMessage : req.flash('failure')  
+            });
+        }); 
+    });
 };
 
 
@@ -110,14 +114,7 @@ module.exports.getSpecificBioApplication = function(req, res) {
     URL: '/application/itec/:id'
 */
 module.exports.getSpecificItecApplication = function(req, res) {
-    console.log('specific id = ', req.params.applicationid);
-
-    // itec application id
-    // use itec app id to get user's email
-    // use user's email to get documents
-
     var documents = [];
-
     Itec.findOne({
         _id : req.params.applicationid
     }, function(err, itecApp) {
@@ -133,18 +130,6 @@ module.exports.getSpecificItecApplication = function(req, res) {
             });
         }); 
     });
-
-
-    // Itec.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
-    //     Document.getItecDocumentsForUser()
-    //         if (err) {
-    //             console.log(err);
-    //         }
-    //         else {
-    //             console.log('appdetail = ', appdetail);
-                
-    //         }
-    //     });
 }
 
 /*

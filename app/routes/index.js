@@ -156,7 +156,7 @@ module.exports = function(app, passport) {
     app.get('/faq', ctrlFAQ.getFAQ);
 
     /* Document Upload page */
-    app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
+    // app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
     app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
     app.get('/document/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
     app.get('/document/:documentId/note/delete/:noteId', isLoggedIn, ctrlUpload.deleteDocumentNote);
