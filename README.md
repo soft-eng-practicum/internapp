@@ -33,6 +33,9 @@
 3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***<br>   
 4. *Jonathan Nguyen :* ***UI/UX Design*** & ***Documentation lead***<br>
 
+## Application Process
+[linkname](https://www.youtube.com/embed/OuM5mHHMCfk)
+
 ## Running the application on your local machine
 1. __[Install Node.js (either version is fine)](https://nodejs.org/en/)__<br>
     &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line<br/>
