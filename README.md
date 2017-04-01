@@ -35,11 +35,11 @@
 
 ## Application Process
 *Biology Internship Application* <br>
-<div style="text-align:center">
+<div>
 [![Biology Internship Aplication](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/Bio.png)](https://www.youtube.com/watch?v=jZI5rq5hRgY)
 <hr/>
 </div>
-<div style="text-align:center">
+<div>
 <br>
 *Information Technology Internship Application* <br>
 [![Information Technology Internship Application](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/ITEC.png)](https://www.youtube.com/watch?v=OuM5mHHMCfk&t=59s)
