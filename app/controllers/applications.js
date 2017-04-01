@@ -7,6 +7,7 @@ var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
+var Document = require('../models/document');
 var nodemailer = require('nodemailer');
 var key = process.env.KEY;
 
@@ -110,20 +111,40 @@ module.exports.getSpecificBioApplication = function(req, res) {
 */
 module.exports.getSpecificItecApplication = function(req, res) {
     console.log('specific id = ', req.params.applicationid);
-    Itec.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                console.log('appdetail = ', appdetail);
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
+
+    // itec application id
+    // use itec app id to get user's email
+    // use user's email to get documents
+
+    var documents = [];
+
+    Itec.findOne({
+        _id : req.params.applicationid
+    }, function(err, itecApp) {
+        if (err) throw err;
+        Document.getItecDocumentsForUser(itecApp.useremail, function(incomingDocuments) {
+            documents = incomingDocuments;
+            res.render('applicationdetails.ejs', {
+                application : itecApp,
+                documents: documents,
                 user : req.user,
                 successMessage : req.flash('success'),
                 failureMessage : req.flash('failure')  
-                });
-            }
-        });
+            });
+        }); 
+    });
+
+
+    // Itec.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
+    //     Document.getItecDocumentsForUser()
+    //         if (err) {
+    //             console.log(err);
+    //         }
+    //         else {
+    //             console.log('appdetail = ', appdetail);
+                
+    //         }
+    //     });
 }
 
 /*
