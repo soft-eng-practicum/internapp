@@ -35,11 +35,7 @@
 
 ## Application Process
 *Information Technology Internship Application* 
-[![Information Technology Internship Application](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/ITEC.png)](https://www.youtube.com/watch?v=OuM5mHHMCfk&t=59s"ITEC")<br>
-<hr/>
-*Biology* 
-[![Information Biology Application](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/Bio.png)]
-(https://www.youtube.com/watch?v=jZI5rq5hRgY&t=202s"BIO")
+[![Information Technology Internship Application](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/ITEC.png)](https://www.youtube.com/watch?v=OuM5mHHMCfk&t=59s"ITEC)
 
 ## Running the application on your local machine
 1. __[Install Node.js (either version is fine)](https://nodejs.org/en/)__<br>
