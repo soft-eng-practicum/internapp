@@ -34,7 +34,7 @@
 4. *Jonathan Nguyen :* ***UI/UX Design*** & ***Documentation lead***<br>
 
 ## Application Process
-[![Information Technology Internship Application](https://www.youtube.com/embed/OuM5mHHMCfkt=35 "Everything Is AWESOME")
+[![Information Technology Internship Application](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/embed/OuM5mHHMCfk "ITEC")
 
 ## Running the application on your local machine
 1. __[Install Node.js (either version is fine)](https://nodejs.org/en/)__<br>
