@@ -22,6 +22,7 @@
     var ctrlUpload = require('../controllers/documentUpload');
     var ctrlSiteNotes = require('../controllers/sitenotes');
     var ctrlEditApps = require('../controllers/editApplications');
+    var ctrlHelp = require('../controllers/help');
 
     // For document uploads
     var fileUpload = require('express-fileupload');
@@ -133,6 +134,9 @@ module.exports = function(app, passport) {
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
+   
+   /* Help page */
+    app.get('/help', ctrlHelp.getHelp);
 
     /* Document Upload page */
     app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);

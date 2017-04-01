@@ -497,8 +497,8 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="printedTxt" name="printedname" required="" type="text">
-               </div>
+                  <input class="form-control" rows="3" id="printedTxt" name="printedname" onkeyup="checkPass(); return false;" required="" type="text">
+               </div>              
             </div>
          </fieldset>
          <div align="center">
@@ -508,7 +508,7 @@
       <% include partials/footerimports %>
    </body>
 </html>
-<script>
+   <script>
    $('.existing').hide();
    $(function(){
        $('#proposedList').change(function(){
