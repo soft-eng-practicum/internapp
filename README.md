@@ -34,9 +34,6 @@
 4. *Jonathan Nguyen :* ***UI/UX Design*** & ***Documentation lead***<br>
 
 ## Application Process
-*Information Technology Internship Application* <br>
-[![Information Technology Internship Application](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/ITEC.png)](https://www.youtube.com/watch?v=OuM5mHHMCfk&t=59s)
-<hr/>
 *Biology Internship Application* <br>
 [![Biology Internship Aplication](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/Bio.png)](https://www.youtube.com/watch?v=jZI5rq5hRgY)
 
