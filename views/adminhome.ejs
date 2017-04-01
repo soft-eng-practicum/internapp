@@ -1,0 +1,52 @@
+<!-- views/adminhome.ejs -->
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset='utf-8'>
+      <title>Admin Home</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+            <h1>Welcome Admin</h1>
+
+      <form name="adminsettings" action="/adminhome" method="post" class="form-horizontal">
+         <fieldset>
+            <h2 align = "center">Admin Settings</h2>
+
+            <div class="form-group">
+                <div class="form-inline">
+                    <label for="select" class="col-lg-5 control-label">Select your program:</label>
+                        <div class="col-lg-5" class>
+                           <select class="form-control" id="separateProjectList" name="isseparateproject">
+                           <option value="BIO">Biology Internship (BIO 4800)</option>
+                           <option value="ITEC">Information Technology Internship (ITEC 4800)</option>
+                           </select>
+                        </div>
+                     </div>
+            </div>
+
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Select the semester and year you're interested in</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control" id="adminSemesterList" name="adminsemester">
+                        <option value="Fall">Fall</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                     </select>
+                     <select class="form-control adminYearSelect" id="adminYearList" name="adminyear" required type="number">
+                     </select>
+                  </div>
+               </div>
+            </div>
+
+
+
+        <fieldset>
+      </form>
+      </div>
+      <% include partials/footerimports %>
+   </body>
+</html>

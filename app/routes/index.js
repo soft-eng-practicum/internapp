@@ -176,7 +176,10 @@ module.exports = function(app, passport) {
     app.post('/edititec', isLoggedIn, ctrlEditApps.updateItecApp);
     app.post('/editbio', isLoggedIn, ctrlEditApps.updateBioApp);
     
-
-
+    /* TEST ROUTES */
+    app.get('/adminhome', function(req, res) {
+        console.log('hi from admin home route');
+        res.render('adminhome');
+    });
    
 }
