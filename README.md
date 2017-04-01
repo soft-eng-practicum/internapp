@@ -38,7 +38,7 @@
 [![Information Technology Internship Application](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/ITEC.png)](https://www.youtube.com/watch?v=OuM5mHHMCfk&t=59s)
 <hr/>
 *Biology Internship Application* <br>
-[![Biology Internship Aplication](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/Bio.png)](https://www.youtube.com/embed/jZI5rq5hRgY)
+[![Biology Internship Aplication](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/Bio.png)](https://www.youtube.com/watch?v=jZI5rq5hRgY)
 
 ## Running the application on your local machine
 1. __[Install Node.js (either version is fine)](https://nodejs.org/en/)__<br>
