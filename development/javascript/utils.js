@@ -10,9 +10,11 @@
 populateSelectYears('pastAndFutureYearSelect', 2000, new Date().getFullYear());
 populateSelectYears('yearSelect', new Date().getFullYear());
 
+populateSelectYears('adminYearSelect', 2010);
+
 populateSites('siteSelect');
 
-function populateSelectYears(target, min, max) {
+function populateSelectYears(target, firstSelectValue, min, max) {
       if (!target){
           return false;
       }
@@ -22,7 +24,13 @@ function populateSelectYears(target, min, max) {
 
           select = document.getElementsByClassName(target);
 
+
+
           for (var k = 0; k < select.length; k++) {
+		  	    // var opt2 = document.createElement('option');
+		  		// opt2.value = firstSelectValue;
+		  		// opt2.innerHTML = firstSelectValue;
+		  		// select[k].appendChild(opt2);
             for (var i = min; i<=max; i++){
                 var opt = document.createElement('option');
                 opt.value = i;
@@ -89,4 +97,3 @@ function failSnack() {
 	x.className = "show";
 	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
 }
-

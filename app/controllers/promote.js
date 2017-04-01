@@ -28,7 +28,8 @@ module.exports.getPromote = function(req, res) {
     URL: '/promote'
 */
 module.exports.promoteUser = function(req, res) {
-    User.update({'local.email' : req.body.email}, {'local.role' : req.body.role}, function(err, status) {
+    var role = String(req.body.role).toLowerCase();
+    User.update({'local.email' : req.body.email}, {'local.role' : role}, function(err, status) {
         if (err) {
             console.log(err);
         } else {

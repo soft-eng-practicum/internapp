@@ -1,0 +1,63 @@
+<!-- views/adminhome.ejs -->
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset='utf-8'>
+      <title>Admin Home</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <div class="container">
+            <h1>Welcome <%= user.fname %>!</h1>
+      <% if (successMessage.length > 0) { %>
+        <div class="alert alert-success"><%= successMessage %></div>
+      <% } %>
+      <% if (failureMessage.length > 0) { %>
+        <div class="alert alert-danger"><%= failureMessage %></div>
+      <% } %>
+      <form name="adminsettings" action="/adminhome" method="post" class="form-horizontal">
+         <fieldset>
+            <h2 align = "center">Admin Settings</h2>
+
+            <div class="form-group">
+                <div class="form-inline">
+                    <label for="select" class="col-lg-5 control-label">Select your program:</label>
+                        <div class="col-lg-5" class>
+                           <select class="form-control" id="selectAdminProgram" name="adminprogram">
+                           <option value="Biology Internship (BIO 4800)">Biology Internship (BIO 4800)</option>
+                           <option value="Information Technology Internship (ITEC 4800)">Information Technology Internship (ITEC 4800)</option>
+                           </select>
+                        </div>
+                     </div>
+            </div>
+
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Select the semester and year you're interested in</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control" id="selectAdminSemester" name="adminsemester">
+                        <option value="Fall">Fall</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                     </select>
+                     <select class="form-control adminYearSelect" id="selectAdminYear" name="adminyear" required type="number">
+                     </select>
+                  </div>
+               </div>
+            </div>
+
+
+
+        <fieldset>
+        <button type="submit" class="btn btn-success btn-lg">Submit</button>
+      </form>
+      </div>
+      <% include partials/footerimports %>
+      <script>
+         makeOptionSelected('selectAdminProgram', '<%= admin.adminprogram %>')
+         makeOptionSelected('selectAdminYear', '<%= admin.adminyear %>')
+         makeOptionSelected('selectAdminSemester', '<%= admin.adminsemester %>')
+      </script>
+   </body>
+</html>

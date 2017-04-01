@@ -38,7 +38,24 @@
             return next();
 
         // if they aren't redirect them to the home page
+        console.log('user not logged in');
         res.redirect('/');
+    }
+
+    function isAdmin(req, res, next) {
+        if (req.user.role == 'admin') {
+            return next();
+        } else {
+            res.redirect('/home');
+        }
+    }
+
+    function isAdminOrInstructor(req, res, next) {
+        if (req.user.role == 'admin' || req.user.role == 'instructor') {
+            return next();
+        } else {
+            res.redirect('/home');
+        }
     }
 
     // Creates a csv directory for the csv files - if not already created
@@ -87,8 +104,12 @@ module.exports = function(app, passport) {
      app.get('/reset/:token', ctrlReset.getReset);
      app.post('/reset/:token', ctrlReset.postReset);
 
-     /* home page */
+     /* user home page */
      app.get('/home', isLoggedIn, ctrlHome.loadUserHome);
+
+     /* admin home page */
+     app.get('/adminhome', isLoggedIn, isAdmin, ctrlHome.loadAdminHome);
+     app.post('/adminhome', isLoggedIn, isAdmin, ctrlHome.postAdminHome);
 
      /* Applications pages - Could probably add some regex to reduce the routes */
      app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
@@ -135,7 +156,7 @@ module.exports = function(app, passport) {
     app.get('/faq', ctrlFAQ.getFAQ);
 
     /* Document Upload page */
-    app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
+    // app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
     app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
     app.get('/document/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
     app.get('/document/:documentId/note/delete/:noteId', isLoggedIn, ctrlUpload.deleteDocumentNote);
@@ -176,7 +197,10 @@ module.exports = function(app, passport) {
     app.post('/edititec', isLoggedIn, ctrlEditApps.updateItecApp);
     app.post('/editbio', isLoggedIn, ctrlEditApps.updateBioApp);
     
-
-
+    /* TEST ROUTES */
+    app.get('/adminhome', isAdmin, function(req, res) {
+        console.log('hi from admin home route');
+        res.render('adminhome');
+    });
    
 }

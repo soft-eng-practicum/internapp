@@ -91,3 +91,31 @@ module.exports.getDocumentsForUser = function(email, callback) {
         }
     })
 }
+
+module.exports.getItecDocumentsForUser = function(email, callback) {
+    Document.find({
+        "user.user_email" : email,
+        "fileSection"     : "ITEC"
+    }, function(err, document) {
+        if (err) throw err;
+        if (document) {
+            callback(document);
+        } else {
+            callback([]);
+        }
+    })
+}
+
+module.exports.getBioDocumentsForUser = function(email, callback) {
+    Document.find({
+        "user.user_email" : email,
+        "fileSection"     : "BIO"
+    }, function(err, document) {
+        if (err) throw err;
+        if (document) {
+            callback(document);
+        } else {
+            callback([]);
+        }
+    })
+}

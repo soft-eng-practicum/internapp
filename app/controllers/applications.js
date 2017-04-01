@@ -7,6 +7,7 @@ var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
+var Document = require('../models/document');
 var nodemailer = require('nodemailer');
 var key = process.env.KEY;
 
@@ -88,19 +89,23 @@ module.exports.getApplications = function(req, res) {
     URL: '/application/bio/:id'
 */
 module.exports.getSpecificBioApplication = function(req, res) {
-        Bio.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
-            if (err) {
-                 console.log(err);
-            }
-            else {
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
+    var documents = [];
+    Bio.findOne({
+        _id : req.params.applicationid
+    }, function(err, bioApp) {
+        if (err) throw err;
+        Document.getBioDocumentsForUser(bioApp.useremail, function(incomingDocuments) {
+            documents = incomingDocuments;
+            console.log('documents found for user ' + bioApp.useremail + '\n' + documents);
+            res.render('applicationdetails.ejs', {
+                application : bioApp,
+                documents: documents,
                 user : req.user,
                 successMessage : req.flash('success'),
-                failureMessage : req.flash('failure')               
-                });
-            }
-        });
+                failureMessage : req.flash('failure')  
+            });
+        }); 
+    });
 };
 
 
@@ -109,21 +114,22 @@ module.exports.getSpecificBioApplication = function(req, res) {
     URL: '/application/itec/:id'
 */
 module.exports.getSpecificItecApplication = function(req, res) {
-    console.log('specific id = ', req.params.applicationid);
-    Itec.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                console.log('appdetail = ', appdetail);
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
+    var documents = [];
+    Itec.findOne({
+        _id : req.params.applicationid
+    }, function(err, itecApp) {
+        if (err) throw err;
+        Document.getItecDocumentsForUser(itecApp.useremail, function(incomingDocuments) {
+            documents = incomingDocuments;
+            res.render('applicationdetails.ejs', {
+                application : itecApp,
+                documents: documents,
                 user : req.user,
                 successMessage : req.flash('success'),
                 failureMessage : req.flash('failure')  
-                });
-            }
-        });
+            });
+        }); 
+    });
 }
 
 /*

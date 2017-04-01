@@ -9,65 +9,47 @@
       <% include partials/nav.ejs %>
       <div class="container">
          <h2>Application Details</h2>
-         <h1>Welcome! <%= user.fname %></h1>
          <br/>
-         <% if (user.role=='user') { %>
-         <div align="left">
-            <% if (haveItecApp || haveBioApp) { %>
-            <h3 for="select" class="col-lg-5 control-label">Select an application to edit</h3>
-            <div class="col-lg-3" class>
-               <select class="form-control" id="sectionList">
-                  <option vaule="Select">Select</option>
-                  <% if (haveItecApp) { %>
-                  <option value="ItecEdit">ITEC</option>
-                  <% } %>
-                  <% if (haveBioApp) { %>
-                  <option value="BioEdit">Bio</option>
-                  <% } %>
-               </select>
+
+<form name="applicationexports" action="/applications" method="post" class="form-horizontal">
+         <fieldset>
+            <h4 align="center">Select your table/export filters</h4>
+
+            <div class="form-group">
+               <div class="form-inline">
+                  <label for="select" class="col-lg-5 control-label">Select the semester and year you wish to filter by or export</label>
+                  <div class="col-lg-5" class>
+                     <select class="form-control adminSemester " id="applicationSemester" name="semester">
+                        <option value="Fall">Fall</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                     </select>
+                     <select class="form-control adminYearSelect" id="applicationYear" name="applicationexportsyear" required type="number">
+                     </select>
+                  </div>
+               </div>
             </div>
-            <% } %>
-         <% if (!haveItecApp || !haveBioApp) { %>
-            <h3 for="select" class="col-lg-5 control-label">Select a Major to Apply For</h3>
-            <div class="col-lg-3" class>
-               <select class="form-control" id="sectionList">
-                  <option vaule="Select">Select</option>
-                  <% if (!haveItecApp) { %>
-                  <option value="ITEC">ITEC</option>
-                  <% } %>
-                  <% if (!haveBioApp) { %>
-                  <option value="Bio">Bio</option>
-                  <% } %>
-               </select>
+
+            <div class="form-group">
+                <div class="form-inline">
+                    <label for="select" class="col-lg-5 control-label">Select your program:</label>
+                        <div class="col-lg-5" class>
+                           <select class="form-control adminProgram" id="applicationProgram" name="program">
+                           <option value="Biology Internship (BIO 4800)">Biology Internship (BIO 4800)</option>
+                           <option value="Information Technology Internship (ITEC 4800)">Information Technology Internship (ITEC 4800)</option>
+                           </select>
+                        </div>
+                     </div>
             </div>
-            <% } %>
-         </div>
-         <br/>
-         <br/>
-         <br/>
-         <div class="ITEC" align="left">
-            <h3>You can apply for an ITEC internship <a href="/itec" button type="submit" class="btn btn-success">HERE</button></a></h3>
-         </div>
-         <div class="Bio" align="left">
-            <h3>You can apply for a Biology internship <a href="/bio" button type="submit" class="btn btn-success">HERE</button></a></h3>
-         </div>
-         <% }  %>
-         <% if (user.role=='admin') { %>
-         <h6>Filter applications based on proposed internship semester year and discipline</h6>
-         <select id="semesteryear">
-            <option value=''>Select Semester Year</option>
-            <option value="Fall 2017">Fall 2017</option>
-            <option value="Spring 2018">Spring 2018</option>
-            <option value="Fall 2018">Fall 2018</option>
-         </select>
+
+
+        <fieldset>
+        <div align="center">
+          <button type="submit" class="btn btn-success btn-lg">Export</button>
+        </div>
+      </form>
          <br><br>
-         <select id="discipline">
-            <option value=''>Select Discipline</option>
-            <option value="IT">IT</option>
-            <option value="Biology">Biology</option>
-         </select>
-         <br><br>
-         <% }  %>
+
          <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
             <thead>
                <tr>
