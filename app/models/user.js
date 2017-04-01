@@ -7,6 +7,18 @@ var bcrypt = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
 
     local: {
+        adminsemester : {
+            type: String,
+            default: ""
+        },
+        adminyear : {
+            type: String,
+            default: ""
+        },
+        adminprogram : {
+            type: String,
+            default: ""
+        },
         email: {
             type: String,
             required: true,
@@ -139,5 +151,25 @@ module.exports.getUserIdFromEmail = function(email, callback) {
         } else {
             callback(false);
         }
+    });
+}
+
+module.exports.getAdminValuesForHome = function(id, callback) {
+    var adminValues = {
+        "adminsemester" : "",
+        "adminyear" : "",
+        "adminprogram" : ""
+    };
+
+    console.log('asdasdasdasd');
+
+    User.findById({ 
+        "_id" : id
+    }, function(err, user) {
+        if (err) return callback(adminValues);
+        adminValues.adminsemester = user.local.adminsemester;
+        adminValues.adminyear = user.local.adminyear;
+        adminValues.adminprogram = user.local.adminprogram;
+        return callback(adminValues);
     });
 }

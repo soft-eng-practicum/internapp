@@ -10,7 +10,12 @@
       <% include partials/nav.ejs %>
       <div class="container">
             <h1>Welcome Admin</h1>
-
+      <% if (successMessage.length > 0) { %>
+        <div class="alert alert-success"><%= successMessage %></div>
+      <% } %>
+      <% if (failureMessage.length > 0) { %>
+        <div class="alert alert-danger"><%= failureMessage %></div>
+      <% } %>
       <form name="adminsettings" action="/adminhome" method="post" class="form-horizontal">
          <fieldset>
             <h2 align = "center">Admin Settings</h2>
@@ -19,7 +24,7 @@
                 <div class="form-inline">
                     <label for="select" class="col-lg-5 control-label">Select your program:</label>
                         <div class="col-lg-5" class>
-                           <select class="form-control" id="separateProjectList" name="isseparateproject">
+                           <select class="form-control" id="selectAdminProgram" name="adminprogram">
                            <option value="BIO">Biology Internship (BIO 4800)</option>
                            <option value="ITEC">Information Technology Internship (ITEC 4800)</option>
                            </select>
@@ -45,6 +50,7 @@
 
 
         <fieldset>
+        <button type="submit" class="btn btn-success btn-lg">Submit</button>
       </form>
       </div>
       <% include partials/footerimports %>

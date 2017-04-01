@@ -7,10 +7,10 @@
 
 //var Site = require('../../app/models/site');
 
-populateSelectYears('pastAndFutureYearSelect', 'Year', 2000, new Date().getFullYear());
-populateSelectYears('yearSelect', 'Year', new Date().getFullYear());
+populateSelectYears('pastAndFutureYearSelect', 2000, new Date().getFullYear());
+populateSelectYears('yearSelect', new Date().getFullYear());
 
-populateSelectYears('adminYearSelect', 'Year', 2010);
+populateSelectYears('adminYearSelect', 2010);
 
 populateSites('siteSelect');
 
@@ -27,10 +27,10 @@ function populateSelectYears(target, firstSelectValue, min, max) {
 
 
           for (var k = 0; k < select.length; k++) {
-		  	    var opt2 = document.createElement('option');
-		  		opt2.value = firstSelectValue;
-		  		opt2.innerHTML = firstSelectValue;
-		  		select[k].appendChild(opt2);
+		  	    // var opt2 = document.createElement('option');
+		  		// opt2.value = firstSelectValue;
+		  		// opt2.innerHTML = firstSelectValue;
+		  		// select[k].appendChild(opt2);
             for (var i = min; i<=max; i++){
                 var opt = document.createElement('option');
                 opt.value = i;

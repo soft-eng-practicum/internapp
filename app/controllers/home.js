@@ -10,6 +10,54 @@ var Document = require('../models/document');
 
 /*
     HTTP Req: GET
+    URL: '/adminhome'
+*/
+module.exports.loadAdminHome = function(req, res) {
+    if (req.user.role != 'admin') {
+        res.redirect('/home');
+    } else {
+        User.getAdminValuesForHome(req.user._id, function(user) {
+            console.log(user);
+            res.render('adminhome', {
+                admin : user,
+                successMessage : req.flash('success'),
+                failureMessage : req.flash('failure')
+            });
+        });
+    }
+}
+
+/*
+    HTTP Req: POST
+    URL: '/adminhome'
+*/
+module.exports.postAdminHome = function(req, res) {
+/*
+    adminsemester
+    adminyear
+    adminprogram
+*/
+    console.log('elllo');
+
+    User.update({
+        'local.email' : req.user.email
+    }, {
+        "local.adminsemester" : req.body.adminsemester,  
+        "local.adminyear"     : req.body.adminyear,
+        "local.adminprogram"        : req.body.adminprogram  
+    }, function(err) {
+        if (err) {
+            req.flash('failure', 'The admin values cannot be updated at this time.')
+            res.redirect('/adminhome');
+        } else {
+            req.flash('success', 'Admin values successfully updated!');
+            res.redirect('/adminhome');
+        }
+    });
+}
+
+/*
+    HTTP Req: GET
     URL: '/home'
 */
 module.exports.loadUserHome = function(req, res) {

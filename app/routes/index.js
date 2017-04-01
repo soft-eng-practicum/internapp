@@ -41,6 +41,22 @@
         res.redirect('/');
     }
 
+    function isAdmin(req, res, next) {
+        if (req.user.role == 'admin') {
+            return next();
+        } else {
+            res.redirect('/home');
+        }
+    }
+
+    function isAdminOrInstructor(req, res, next) {
+        if (req.user.role == 'admin' || req.user.role == 'instructor') {
+            return next();
+        } else {
+            res.redirect('/home');
+        }
+    }
+
     // Creates a csv directory for the csv files - if not already created
     function makeCSVDirectory(req, res, next) {
         mkdirp('./csv', function(err) {
@@ -87,8 +103,12 @@ module.exports = function(app, passport) {
      app.get('/reset/:token', ctrlReset.getReset);
      app.post('/reset/:token', ctrlReset.postReset);
 
-     /* home page */
+     /* user home page */
      app.get('/home', isLoggedIn, ctrlHome.loadUserHome);
+
+     /* admin home page */
+     app.get('/adminhome', isLoggedIn, isAdmin, ctrlHome.loadAdminHome);
+     app.post('/adminhome', isLoggedIn, isAdmin, ctrlHome.postAdminHome);
 
      /* Applications pages - Could probably add some regex to reduce the routes */
      app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
@@ -177,7 +197,7 @@ module.exports = function(app, passport) {
     app.post('/editbio', isLoggedIn, ctrlEditApps.updateBioApp);
     
     /* TEST ROUTES */
-    app.get('/adminhome', function(req, res) {
+    app.get('/adminhome', isAdmin, function(req, res) {
         console.log('hi from admin home route');
         res.render('adminhome');
     });
