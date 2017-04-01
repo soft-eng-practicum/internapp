@@ -38,6 +38,7 @@
             return next();
 
         // if they aren't redirect them to the home page
+        console.log('user not logged in');
         res.redirect('/');
     }
 

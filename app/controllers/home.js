@@ -20,6 +20,7 @@ module.exports.loadAdminHome = function(req, res) {
             console.log(user);
             res.render('adminhome', {
                 admin : user,
+                user: req.user,
                 successMessage : req.flash('success'),
                 failureMessage : req.flash('failure')
             });

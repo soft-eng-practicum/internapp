@@ -9,7 +9,7 @@
    <body>
       <% include partials/nav.ejs %>
       <div class="container">
-            <h1>Welcome Admin</h1>
+            <h1>Welcome <%= user.fname %>!</h1>
       <% if (successMessage.length > 0) { %>
         <div class="alert alert-success"><%= successMessage %></div>
       <% } %>
