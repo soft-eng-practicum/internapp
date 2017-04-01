@@ -25,8 +25,8 @@
                     <label for="select" class="col-lg-5 control-label">Select your program:</label>
                         <div class="col-lg-5" class>
                            <select class="form-control" id="selectAdminProgram" name="adminprogram">
-                           <option value="BIO">Biology Internship (BIO 4800)</option>
-                           <option value="ITEC">Information Technology Internship (ITEC 4800)</option>
+                           <option value="Biology Internship (BIO 4800)">Biology Internship (BIO 4800)</option>
+                           <option value="Information Technology Internship (ITEC 4800)">Information Technology Internship (ITEC 4800)</option>
                            </select>
                         </div>
                      </div>
@@ -36,12 +36,12 @@
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Select the semester and year you're interested in</label>
                   <div class="col-lg-5" class>
-                     <select class="form-control" id="adminSemesterList" name="adminsemester">
+                     <select class="form-control" id="selectAdminSemester" name="adminsemester">
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
                      </select>
-                     <select class="form-control adminYearSelect" id="adminYearList" name="adminyear" required type="number">
+                     <select class="form-control adminYearSelect" id="selectAdminYear" name="adminyear" required type="number">
                      </select>
                   </div>
                </div>
@@ -54,5 +54,10 @@
       </form>
       </div>
       <% include partials/footerimports %>
+      <script>
+         makeOptionSelected('selectAdminProgram', '<%= admin.adminprogram %>')
+         makeOptionSelected('selectAdminYear', '<%= admin.adminyear %>')
+         makeOptionSelected('selectAdminSemester', '<%= admin.adminsemester %>')
+      </script>
    </body>
 </html>

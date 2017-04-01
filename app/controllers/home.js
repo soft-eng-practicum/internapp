@@ -44,7 +44,7 @@ module.exports.postAdminHome = function(req, res) {
     }, {
         "local.adminsemester" : req.body.adminsemester,  
         "local.adminyear"     : req.body.adminyear,
-        "local.adminprogram"        : req.body.adminprogram  
+        "local.adminprogram"  : req.body.adminprogram  
     }, function(err) {
         if (err) {
             req.flash('failure', 'The admin values cannot be updated at this time.')
