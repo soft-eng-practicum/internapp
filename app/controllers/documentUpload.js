@@ -332,7 +332,7 @@ function sendEmail(file, typeOfFile, req, res, user) {
                 text: emailText,
                 attachments: [
                     {
-                        filename: String(user.lname).toUpperCase + '_' + typeOfFile + '_' + file.name,
+                        filename: String(user.lname).toUpperCase() + '_' + typeOfFile + '_' + file.name,
                         content: file.data,
                         encoding: 'binary'
                     }
