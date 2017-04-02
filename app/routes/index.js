@@ -113,6 +113,7 @@ module.exports = function(app, passport) {
 
      /* Applications pages - Could probably add some regex to reduce the routes */
      app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
+     app.post('/applications', makeCSVDirectory, isLoggedIn, ctrlApplications.exportApplications);
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
     // app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);

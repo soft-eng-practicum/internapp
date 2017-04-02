@@ -9,6 +9,12 @@
       <% include partials/nav.ejs %>
       <div class="container">
          <h2>Application Details</h2>
+            <% if (successMessage.length > 0) { %>
+            <div class="alert alert-success"><%= successMessage %></div>
+            <% } %>
+            <% if (failureMessage.length > 0) { %>
+            <div class="alert alert-danger"><%= failureMessage %></div>
+            <% } %>
          <br/>
 
 <form name="applicationexports" action="/applications" method="post" class="form-horizontal">
@@ -24,7 +30,7 @@
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
                      </select>
-                     <select class="form-control adminYearSelect" id="applicationYear" name="applicationexportsyear" required type="number">
+                     <select class="form-control adminYearSelect" id="applicationYear" name="year" required type="number">
                      </select>
                   </div>
                </div>
