@@ -21,7 +21,8 @@ module.exports.getReset = function(req, res) {
         }
         res.render('reset.ejs', {
             user: req.user,
-            message: req.flash('info')
+            successMessage: req.flash('success'),
+            failureMessage: req.flash('failure')
         });
   });
 };
@@ -38,7 +39,7 @@ module.exports.postReset = function(req, res) {
                     console.log(err);
                 }
                 if (!user) {
-                    req.flash('info', 'Password reset token is invalid or has expired.');
+                    req.flash('failure', 'Password reset token is invalid or has expired.');
                     res.redirect('/forgot');
                 }
                 user.local.password = user.generateHash(req.body.password);
@@ -54,9 +55,17 @@ module.exports.postReset = function(req, res) {
             });
         },
         function(user, done) {
-            var transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
+
+           transporter = nodemailer.createTransport({
+                service: 'yahoo',
+                auth: {
+                    user: 'ggcinternapp@yahoo.com',
+                    pass: key
+                }
+            });
+
             var mailOptions = {
-                from: '"GGC Interapp Admin" <admin@ggcinternapp>', // sender address 
+                from: 'ggcinternapp@yahoo.com', // sender address 
                             to: user.local.email,
                 subject: 'Your password has been changed',
                 text: 'Hello,\n\n' +
@@ -64,13 +73,14 @@ module.exports.postReset = function(req, res) {
                 'Click http://'+req.headers.host+ '/login to go to the login page.'
             };
             transporter.sendMail(mailOptions, function(err) {
-                req.flash('info', 'Success! Your password has been changed.');
+                req.flash('success', 'Success! Your password has been changed.');
                 done(err);
             });
         }
     ], 
     function(err) {
-        req.flash('loginMessage', 'Success! Your password has been changed. Please Login!');
-        res.redirect('/login');
+        if (err) {
+        req.flash('failure', 'Apologies, your request cannot be completed at this time.');
+        }
     });
 };
