@@ -186,7 +186,7 @@ module.exports.uploadItecResume = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendEmail(req.files.resume, typeOfFile, req, res);
+        sendEmail(req.files.resume, typeOfFile, req, res, req.user);
     }
 }
 
@@ -197,7 +197,7 @@ module.exports.uploadBioEssay = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendEmail(req.files.essay, typeOfFile, req, res);
+        sendEmail(req.files.essay, typeOfFile, req, res, req.user);
     } 
 };
 
@@ -208,7 +208,7 @@ module.exports.uploadBioTranscript = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendEmail(req.files.transcript, typeOfFile, req, res);
+        sendEmail(req.files.transcript, typeOfFile, req, res, req.user);
     }
 };
 
@@ -219,7 +219,7 @@ module.exports.uploadItecFerpa = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendEmail(req.files.ferpa, typeOfFile, req, res);
+        sendEmail(req.files.ferpa, typeOfFile, req, res, req.user);
     }
 };
 
@@ -227,11 +227,7 @@ module.exports.uploadItecFerpa = function(req, res) {
 module.exports.downloadFerpa = function(req, res) {
     res.download('./ferpa.pdf', 'ferpa.pdf', function(err) {
         if (err) {
-            if (res.headersSent()) {
-               res.removeHeader("Content-Encoding");
-               res.redirect('/home');
-               req.flash('failure', 'An error has occured with the file download');
-            }
+            req.flash('failure', 'Error downloading FERPA');
             console.error(err);
         }
     });
@@ -254,11 +250,11 @@ function addDocumentToUser(fileType, fileName, user) {
              break;
         case "transcript":
              recordFileType = "Transcript";
-             recordSection = "Biology";
+             recordSection = "BIO";
              break;   
         case "essay":
              recordFileType = "Essay";
-             recordSection = "Biology";
+             recordSection = "BIO";
              break;                     
         default:
              console.error('fileType not recognized - upload record creation failed');
@@ -288,7 +284,7 @@ function addDocumentToUser(fileType, fileName, user) {
     });
 }
 
-function sendEmail(file, typeOfFile, req, res) {
+function sendEmail(file, typeOfFile, req, res, user) {
     console.log('key =', key);
     var coordinatorEmail;
     var emailSubject;
@@ -296,23 +292,23 @@ function sendEmail(file, typeOfFile, req, res) {
     switch (typeOfFile.toLowerCase()) {
         case 'transcript':
             coordinatorEmail = bioCoordinatorEmail;
-            emailSubject = "Placeholder transcript subject";
-            emailText = "Placeholder transcript text";
+            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' Transcript';
+            emailText = "Attached is " + user.fname + ' ' + user.lname + "'s Transcript";
             break;
         case 'essay':
             coordinatorEmail = bioCoordinatorEmail;
-            emailSubject = "Placeholder essay subject";
-            emailText = "Placeholder essay text";
+            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' Essay';
+            emailText = "Attached is " + user.fname + ' ' + user.lname + "'s Essay";
             break;
         case 'resume':
             coordinatorEmail = itecCoordinatorEmail;
-            emailSubject = "Placeholder resume subject";
-            emailText = "Placeholder resume text";
+            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' Resume';
+            emailText = "Attached is " + user.fname + ' ' + user.lname + "'s Resume";
             break;
         case 'ferpa':
             coordinatorEmail = itecCoordinatorEmail;
-            emailSubject = "Placeholder ferpa subject";
-            emailText = "Placeholder ferpa text";
+            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' FERPA';
+            emailText = "Attached is " + user.fname + ' ' + user.lname + "'s FERPA";
             break;
         default:
             console.log('unknown type of file found');
@@ -336,7 +332,7 @@ function sendEmail(file, typeOfFile, req, res) {
                 text: emailText,
                 attachments: [
                     {
-                        filename: file.name,
+                        filename: String(user.lname).toUpperCase() + '_' + typeOfFile + '_' + file.name,
                         content: file.data,
                         encoding: 'binary'
                     }

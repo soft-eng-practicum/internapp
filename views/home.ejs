@@ -4,40 +4,17 @@
 <head>
     <title>GGC Internship Signup</title>
 <% include partials/headerimports %>
+<% include partials/footerimports %>
 </head>
 <body>
     <% include partials/nav.ejs %>
+    <% include partials/snackbar.ejs %>
     <div class="container">
      <h1>Welcome <%= user.fname %>!</h1>
-
-     <% if (successMessage.length > 0) { %>
-            <div id="snackbarSuccess"><%= successMessage %></div>
-            <script type="text/javascript">
-                                function failSnack() {
-                    var x = document.getElementById("snackbarSuccess")
-                    x.className = "show";
-                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
-                }
-
-                failSnack();
-            </script>
-     <% } %>
-     <% if (failureMessage.length > 0) { %>
-            <div id="snackbarFailure"><%= failureMessage %></div>
-            <script type="text/javascript">
-                                function successSnack() {
-                    var x = document.getElementById("snackbarFailure")
-                    x.className = "show";
-                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
-                }
-
-                successSnack();
-            </script>
-     <% } %>
+     <h3>Thank you for visiting the GGC Intern Application!</h3>
 
      <!-- First time applying (they can see both sections ) -->
      <% if (!bioApp && !itecApp) { %>
-        <h3>Thank you for visiting the GGC Intern Application!</h3>
         <h3>Please Select an Internship to Apply For:</h3>
         <div class="homePageSection" id="initialApplySection">
                 <div class="dropdown show"> 
@@ -73,20 +50,35 @@
                         <br/>
                         <a class="btn btn-success" href="/itec">Apply Now</a>
                     </div>
-                    <!--<button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select the program you wish to apply to
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/bio">Biology Internship (BIO 4800)</a></li>
-                        <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
-                    </ul>-->
                 </div>
             </div>
-
+            <br/>
+     <br/>
      <% } %>
-     <br/>
-     <br/>
      <!-- If they have a bio or itec application submitted -->
      <% if (bioApp || itecApp) { %>
+        <% if (bioApp) { %>
+        <div class="bioApplied">
+            <h3>Steps to Complete the Application Process for Bio:</h3>
+            <ul>
+                <li><h4>Complete Application</h4></li>
+                <li><h4>Complete and Upload Essay</h4></li>
+                <li><h4>Upload Transcript</h4></li>
+            </ul>
+            <br/>
+        </div>
+        <% } %>
+        <% if (itecApp) { %>
+        <div class="itecApplied">
+            <h3>Steps to Complete the Application Process for Itec:</h3>
+            <ul>
+                <li><h4>Complete Application</h4></li>
+                <li><h4>Upload Resume</h4></li>
+                <li><h4>Fill out and Upload FERPA Form</h4></li>
+            </ul>
+            <br/>
+        </div>
+        <% } %>
         <div class="homePageSection" id="applicationTableOnHomePage">
         <h3>Application table</h3>
         <table class="table table-hover">
@@ -148,6 +140,7 @@
             </div>
             </div>
      </div>
+
      <% } %>
 
      <!-- Show the uploads for ITEC if they have an ITEC application submitted -->     
@@ -298,8 +291,47 @@
         <!-- If the user has submitted applications for either ITEC or BIO -->
         <% if ( itecApp || bioApp ) { %>
             <div class="homePageSection" id="secondApplySection">
+                <br>
+                <h3>Select a Program to Apply For:</h3>
                 <div class="dropdown show"> 
-                    <div class="dropdown">
+                    <div class="dropdown col-lg-5">
+                    <select class="form-control" id="application" name="application">
+                           <option vaule="Select">Select</option>
+                           <% if (!bioApp) { %>
+                                <option value="Bio">Biology Internship (BIO 4800)</option>
+                            <% } %>
+                            <% if (!itecApp) { %>
+                                <option value="Itec">Information Technology Internship (ITEC 4800)</option>
+                            <% } %>
+                    </select>
+                    </div>
+
+                    <div class="bio">
+                        <br/>
+                        <br/>
+                        <h3>Steps to Complete Bio App:</h3>
+                        <ul>
+                            <li><h4>Complete Application</h4></li>
+                            <li><h4>Complete and Upload Essay</h4></li>
+                            <li><h4>Upload Transcript</h4></li>
+                        </ul>
+                        <br/>
+                        <a class="btn btn-success" href="/bio">Apply Now</a>
+                    </div>
+                    <div class="itec">
+                        <br/>
+                        <br/>
+                        <h3>Steps to Apply for Itec:</h3>
+                        <ul>
+                            <li><h4>Complete Application</h4></li>
+                            <li><h4>Upload Resume</h4></li>
+                            <li><h4>Fill out and Upload FERPA Form</h4></li>
+                        </ul>
+                        <br/>
+                        <a class="btn btn-success" href="/itec">Apply Now</a>
+                    </div>
+                </div>
+                    <!--<div class="dropdown">
                     <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select another program to apply to
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu">
@@ -310,13 +342,11 @@
                             <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
                         <% } %>
                     </ul>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         <% } %> 
     </div>
-
-<% include partials/footerimports %>
 </body>
 </html>
 

@@ -7,8 +7,14 @@ var User = require('../models/user');
 var Site = require('../models/site');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
+var Document = require('../models/document');
 var nodemailer = require('nodemailer');
 var key = process.env.KEY;
+var json2csv = require('json2csv');
+var fs = require('fs');
+var homeDir = require('home-dir');
+var path = require('path');
+
 
 /*
     HTTP Req: GET
@@ -84,23 +90,167 @@ module.exports.getApplications = function(req, res) {
 };
 
 /*
+    HTTP Req: POST
+    URL: /applications
+*/
+module.exports.exportApplications = function(req, res) {
+    var discipline;
+    var semester = req.body.semester;
+    var year = req.body.year;
+    var appArray = [];
+    var fields = [];
+
+    switch (req.body.program) {
+        case 'Biology Internship (BIO 4800)':
+            discipline = 'BIO';
+            break;
+        case 'Information Technology Internship (ITEC 4800)':
+            discipline = 'ITEC';
+        default:
+            break;
+    }
+
+    if (discipline == 'BIO') {
+        Bio.find({
+          "proposedinternsemester" : semester,
+          "proposedinternyear" : year  
+        }, function(err, bioApps) {
+            if (bioApps.length == 0) { // if no bio apps were found
+                res.redirect('/applications');
+                req.flash('failure', 'No biology applicants for ' + semester + ' ' + year + ' were found');
+            } else {
+                bioApps.forEach(function(bioApp) {
+                    var bioJson = {
+                        ID : bioApp.userstudentid,
+                        FirstName : bioApp.userfname,
+                        LastName : bioApp.userlname,
+                        'BIO GPA' : bioApp.programgpa,
+                        Concentration : bioApp.major,
+                        'Expected Graduation' : bioApp.expectedGraduationSemester + ' ' + bioApp.expectedGraduationYear,
+                        Semester : semester,
+                        Year : year
+                    };
+                    appArray.push(bioJson);
+                });
+
+                fields = ['ID', 'FirstName', 'LastName', 'BIO GPA', 'Concentration',
+                'Expected Graduation', 'Semester', 'Year'];
+
+                var csv = json2csv({data: appArray, fields: fields });
+                var fileName = 'csv/' + String(discipline).toLowerCase() + '_applications' + '_' + semester + '_' + year + '.csv';
+                write(fileName, csv, req, res);
+            }
+        });
+    } else if (discipline = 'ITEC') {
+        Itec.find({
+                "proposedinternsemester" : semester,
+                "proposedinternyear" : year  
+                }, function(err, itecApps) {
+                    if (itecApps.length == 0) { // if no bio apps were found
+                        res.redirect('/applications');
+                        req.flash('failure', 'No information technology applicants for ' + semester + ' ' + year + ' were found');
+                    } else {
+                        itecApps.forEach(function(itecApp) {
+                            if (itecApp.notes.length == 0) {
+                                var itecJson = {
+                                    ID : itecApp.userstudentid,
+                                    FirstName : itecApp.userfname,
+                                    LastName : itecApp.userlname,
+                                    'ITEC GPA' : itecApp.itecgpa,
+                                    Concentration : itecApp.major,
+                                    'Expected Graduation' : itecApp.expectedGraduationSemester + ' ' + itecApp.expectedGraduationYear,
+                                    Notes : '',
+                                    Programming : itecApp.focusonsoftdev,
+                                    Semester : semester,
+                                    Year : year
+                                };                                
+                            } else {
+                                var itecJson = {
+                                    ID : itecApp.userstudentid,
+                                    FirstName : itecApp.userfname,
+                                    LastName : itecApp.userlname,
+                                    'ITEC GPA' : itecApp.itecgpa,
+                                    Concentration : itecApp.major,
+                                    'Expected Graduation' : itecApp.expectedGraduationSemester + ' ' + itecApp.expectedGraduationYear,
+                                    Notes : itecApp.notes[0].note,
+                                    Programming : itecApp.focusonsoftdev,
+                                    Semester : semester,
+                                    Year : year
+                                };
+                            }
+                            appArray.push(itecJson);
+                        });
+
+                        fields = ['ID', 'FirstName', 'LastName', 'ITEC GPA', 'Concentration',
+                        'Expected Graduation', 'Notes', 'Programming', 'Semester', 'Year'];
+
+                        var csv = json2csv({data: appArray, fields: fields });
+                        var fileName = 'csv/' + String(discipline).toLowerCase() + '_applications' + '_' + semester + '_' + year + '.csv';
+                        write(fileName, csv, req, res);
+                    }
+                });
+    } else {
+
+    }
+}
+
+function write(fileName, csv, req, res) {
+        fs.writeFile(fileName, csv, function(err) {
+        if (err) {
+            req.flash('failure', 'There was an error with the writing of the CSV file');
+        } else {
+            console.log('file successfully saved');
+            csvPath = path.resolve(__dirname + '/../../' + fileName);
+            download(csvPath, req, res);
+        }
+    });
+}
+
+function download(csvPath, req, res) {
+    res.download(csvPath, function(err) {
+        if (err) { 
+            console.log('Error downloading csv: ', err);    
+            req.flash('failure', 'There was an error downloading the csv file');
+        } else {
+            console.log('file successfully written!');
+            deleteFile(csvPath);
+        }
+    });
+}
+
+function deleteFile(fileName) {
+    console.log('hello');
+    fs.unlink(fileName, function(err) {
+        if (err) {
+            console.log('Error deleting the filing after download');
+        } else {
+            console.log(fileName + ' deleted!');
+        }
+    });
+}
+
+/*
     HTTP Req: GET
     URL: '/application/bio/:id'
 */
 module.exports.getSpecificBioApplication = function(req, res) {
-        Bio.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
-            if (err) {
-                 console.log(err);
-            }
-            else {
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
+    var documents = [];
+    Bio.findOne({
+        _id : req.params.applicationid
+    }, function(err, bioApp) {
+        if (err) throw err;
+        Document.getBioDocumentsForUser(bioApp.useremail, function(incomingDocuments) {
+            documents = incomingDocuments;
+            console.log('documents found for user ' + bioApp.useremail + '\n' + documents);
+            res.render('applicationdetails.ejs', {
+                application : bioApp,
+                documents: documents,
                 user : req.user,
                 successMessage : req.flash('success'),
-                failureMessage : req.flash('failure')               
-                });
-            }
-        });
+                failureMessage : req.flash('failure')  
+            });
+        }); 
+    });
 };
 
 
@@ -109,21 +259,22 @@ module.exports.getSpecificBioApplication = function(req, res) {
     URL: '/application/itec/:id'
 */
 module.exports.getSpecificItecApplication = function(req, res) {
-    console.log('specific id = ', req.params.applicationid);
-    Itec.findOne({ _id: req.params.applicationid }, function (err, appdetail) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                console.log('appdetail = ', appdetail);
-                res.render('applicationdetails.ejs', {
-                application : appdetail,
+    var documents = [];
+    Itec.findOne({
+        _id : req.params.applicationid
+    }, function(err, itecApp) {
+        if (err) throw err;
+        Document.getItecDocumentsForUser(itecApp.useremail, function(incomingDocuments) {
+            documents = incomingDocuments;
+            res.render('applicationdetails.ejs', {
+                application : itecApp,
+                documents: documents,
                 user : req.user,
                 successMessage : req.flash('success'),
                 failureMessage : req.flash('failure')  
-                });
-            }
-        });
+            });
+        }); 
+    });
 }
 
 /*
@@ -133,7 +284,6 @@ module.exports.getSpecificItecApplication = function(req, res) {
 module.exports.updateApplicationStatus = function(req, res) {
     var typeOfEmail = 'applicationStatusUpdate';
     var studentEmail;
-    console.log(req.params);
     if (req.params.type == 'itec') {
         Itec
         .findById(req.params.applicationid)
@@ -388,7 +538,6 @@ module.exports.postItecApplication = function(req, res) {
     URL: '/bio'
 */
 module.exports.postBioApplication = function(req, res) {
-    console.log(req.body);
     var bioapp = new Bio(req.body);
     bioapp.useremail = req.user.email;
     bioapp.userstudentid = req.user.studentid;
@@ -434,8 +583,10 @@ function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
     transporter.sendMail(mailOptions, function(err) {
         if (err) {
             console.log(err);
+            res.redirect(redirect);
+        } else {
+            console.log(typeOfEmail, ' completed!');
+            res.redirect(redirect);
         }
-        console.log(typeOfEmail, ' completed!');
-        res.redirect(redirect);
     });
 }
