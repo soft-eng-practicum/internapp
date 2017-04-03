@@ -12,8 +12,11 @@
          <div class="col-sm-6 col-sm-offset-3">
             <h1><span class="fa fa-sign-in"></span> Forgot Password</h1>
             <!-- show any messages that come back with authentication -->
-            <% if (message.length > 0) { %>
-            <div class="alert alert-danger"><%= message %></div>
+            <% if (successMessage.length > 0) { %>
+            <div class="alert alert-success"><%= successMessage %></div>
+            <% } %>
+            <% if (failureMessage.length > 0) { %>
+            <div class="alert alert-danger"><%= failureMessage %></div>
             <% } %>
             <!-- LOGIN FORM -->
             <form name="signup" id="signupBtn" action="/forgot" onsubmit="return validateForm()" method="post">

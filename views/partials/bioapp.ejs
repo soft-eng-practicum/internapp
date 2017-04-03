@@ -308,50 +308,7 @@
          </td>
       </tr>
    </table>
-   <div class="form-group">
-      <h4>Upload your documents</h4>
-   </div>
-   <div class="uploadBox" id="bioBox">
-      <form ref='uploadForm'
-         id='uploadForm'
-         action='/uploadBioEssay'
-         method='post'
-         encType="multipart/form-data"
-         class="form-inline">
-         <div class="form-group">
-            <input type="file"  name="essay" />
-         </div>
-         <div class="form-group">
-            <input type='submit' class="btn btn-success btn-sm" value='Upload Essay' />
-         </div>
-      </form>
-      <form ref='uploadForm'
-         id='uploadForm'
-         action='/uploadBioTranscript'
-         method='post'
-         encType="multipart/form-data"
-         class="form-inline">
-         <div class="form-group">
-            <input type="file" name="transcript" />
-         </div>
-         <div class ="form-group">
-            <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript' />
-         </div>
-      </form>
-      <form ref='uploadForm'
-         id='uploadForm'
-         action='/uploadBioOther'
-         method='post'
-         encType="multipart/form-data"
-         class="form-inline">
-         <div class="form-group">
-            Enter the name of the file: <input type="text" name"otherText" /><input type="file" name="other" />
-         </div>
-         <div class ="form-group">
-            <input type='submit' class="btn btn-success btn-sm" value='Upload Other' />
-         </div>
-      </form>
-   </div>
+
    <h3>Feedback</h3>
    <table class="table table-bordered">
       <thead>
@@ -359,6 +316,7 @@
             <th>Note</th>
             <th>Entered By</th>
             <th>Date</th>
+            <th>Delete</th>
          </tr>
       </thead>
       <tbody>
@@ -367,6 +325,7 @@
             <td><%= feedback.feedback %></td>
             <td><%= feedback.user %></td>
             <td><%= feedback.prettyFeedbackDate %></td>
+            <td><a href="/application/bio/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
          </tr>
          <% }) %>
       </tbody>
@@ -410,6 +369,7 @@
             <th>Note</th>
             <th>Entered By</th>
             <th>Date</th>
+            <td>Delete</th>
          </tr>
       </thead>
       <tbody>
@@ -417,7 +377,8 @@
          <tr>
             <td><%= note.note %></td>
             <td><%= note.user %></td>
-            <td><%= note.date %></td>
+            <td><%= note.prettyNotesDate %></td>
+            <td><a href="/application/bio/<%= application._id %>/notes/delete/<%= note._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
          </tr>
          <% }) %>
       </tbody>
@@ -434,6 +395,39 @@
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Note</button>
    </form>
+   <h3>Document Uploads table</h3>
+   <hr>
+</div>
+<% } else { %>
+<div class="col-sm-6 col-sm-offset-3">
+   <h3>Document Uploads table</h3>
+   <hr>
 </div>
 <% } %>
+        <div class="col-6 col-md-auto">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th>Document Status</th>
+                    <th>Name</th>
+                    <th>Section</th>
+                    <th>File Type</th>
+                    <th>Date Submitted</th>
+                    <th>View Document Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% documents.forEach(function(document) { %>
+                <tr>
+                    <td><%= document.documentStatus %></td>
+                    <td><%= document.documentName %></td>
+                    <td><%= document.fileSection %></td>  
+                    <td><%= document.fileType %></td>
+                    <td><%= document.prettyUploadDate %></td>
+                    <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
+                </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>
 </div>

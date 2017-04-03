@@ -10,6 +10,12 @@
    <body>
       <div class="container">
       <div class="col-sm-6 col-sm-offset-3">
+            <% if (successMessage.length > 0) { %>
+                  <div class="alert alert-success"><%= successMessage %></div>
+            <% } %>
+            <% if (failureMessage.length > 0) { %>
+                  <div class="alert alert-danger"><%= failureMessage %></div>
+            <% } %>
          <h3>Site Information:</h3>
          <table class="table table-bordered">
             <thead>
@@ -39,63 +45,144 @@
          </table>
       </div>
       <div class="col-sm-6 col-sm-offset-3">
-         <br>
-         <h3>Contacts:</h3>
-         <table class="table table-bordered">
-            <thead>
-               <tr>
-                  <th>Name</th>
-                  <th>Title</th>
-                  <th>Email</th>
-                  <th>Office Number</th>
-                  <th>Cell Number</th>
-                  <th>Delete</th>
-               </tr>
-            </thead>
-            <tbody>
-               <% site.contacts.forEach(function(contact) { %>
-               <tr>
-                  <td><%= contact.name %></td>
-                  <td><%= contact.title %></td>
-                  <td><%= contact.email %></td>
-                  <td><%= contact.office %></td>
-                  <td><%= contact.cell %></td>
-                  <td><a href='/site/contacts/<%= site._id %>/<%= contact._id %>'>Delete</a></td>
-               </tr>
-               <% }); %>
-            </tbody>
-         </table>
+      <br>
+      <h3>Contacts:</h3>
+      <table class="table table-bordered">
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Title</th>
+               <th>Email</th>
+               <th>Office Number</th>
+               <th>Cell Number</th>
+               <th>Delete</th>
+            </tr>
+         </thead>
+         <tbody>
+            <% site.contacts.forEach(function(contact) { %>
+            <tr>
+               <td><%= contact.name %></td>
+               <td><%= contact.title %></td>
+               <td><%= contact.email %></td>
+               <td><%= contact.office %></td>
+               <td><%= contact.cell %></td>
+               <td><a href='/site/contacts/<%= site._id %>/<%= contact._id %>'><span class='glyphicon glyphicon-trash'></span></a></td>
+            </tr>
+            <% }); %>
+         </tbody>
+      </table>
+      <div align="center">
+         <button type="submit" class="btn btn-success btn-lg" data-toggle="modal" data-target="#siteContactModal">Add Contact</button>
       </div>
-      <div class="col-sm-6 col-sm-offset-3">
-         <!-- show any messages that come back with authentication -->
-         <% if (message.length > 0) { %>
-         <div class="alert alert-danger"><%= message %></div>
-         <% } %>
-         <hr>
-         <h3>Add Contact</h3>
-         <form name="addsitecontacts" method="post">
-            <div class="form-group">
-               <label>Contact Name</label>
-               <input type="text" class="form-control" name="name" required>
+      <!-- Modal -->
+      <div class="modal fade" id="siteContactModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Add Site Contact</h4>
+               </div>
+               <div class="modal-body">
+                  <form name="addsitecontacts" method="post" class="form-horizontal">
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Name</label>
+                        <input type="text" class="col-lg-5" class="form-control" name="name" >
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Title</label>
+                        <input type="text" class="col-lg-5" class="form-control" name="title" >
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Email</label>
+                        <input type="text" class="col-lg-5" class="form-control" name="email" >
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Office</label>
+                        <input type="text" class="col-lg-5" class="form-control" name="office" >
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Cell</label>
+                        <input type="text" class="col-lg-5" class="form-control" name="cell" >
+                     </div>
+                     <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </form>
+               </div>
             </div>
-            <div class="form-group">
-               <label>Title</label>
-               <input type="text" class="form-control" name="title" >
+         </div>
+      </div>
+      <h3>Notes</h3>
+      <table class="table table-bordered">
+         <thead>
+            <tr>
+               <th> Visit Date</th>
+               <th> Author </th>
+               <th> Topics Discussed </th>
+               <th> Types of Interns </th>
+               <th> Visit Location </th>
+               <th> Date Entered </th>
+               <th> Delete </th>
+            </tr>
+         </thead>
+         <tbody>
+               <% site.notes.forEach(function(note) { %>
+               <tr>
+                  <td><%= note.visitDate %></td>
+                  <td><%= note.author %></td>
+                  <td><%= note.noteText %></td>
+                  <td><%= note.typesOfInterns %></td>
+                  <td><%= note.visitLocation %></td>
+                  <td><%= note.noteDate %></td>
+                  <td> <a href='/site/<%= site._id %>/note/delete/<%= note._id %>'><span class='glyphicon glyphicon-trash'></span></a> </td>
+               </tr>
+               <%  }); %>
+         </tbody>
+      </table>
+      <div align="center">
+         <button type="submit" class="btn btn-success btn-lg" data-toggle="modal" data-target="#siteNoteModal">Add Note</button>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="siteNoteModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Add Site Note</h4>
+               </div>
+               <div class="modal-body">
+                  <form name="addsitenotes" method="post" action="/site/note/<%=site._id %>" class="form-horizontal">
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Site Name</label>
+                        <input type="text" class="col-lg-5" class="form-control" name="visitLocation" value="<%= site.name %>" readonly>
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Discussed Topics</label>
+                        <textarea class="col-lg-5 control-label" class="form-control" name="coveredTopics" rows="4" id="interns"></textarea>
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Desired Types of Interns</label>
+                        <textarea class="col-lg-5 control-label" class="form-control" name="typesOfInterns" rows="4" id="interns"></textarea>
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Visit Location</label>
+                        <input type="text" class="col-lg-5" class="form-control" name="visitLocation" >
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-5 control-label">Visit Date</label>
+                        <input type="text" class="col-lg-5" class="form-control" name="visitDate" >
+                     </div>
+                     <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
+                  </form>
+               </div>
             </div>
-            <div class="form-group">
-               <label>Email</label>
-               <input type="text" class="form-control" name="email" >
-            </div>
-            <div class="form-group">
-               <label>Office</label>
-               <input type="text" class="form-control" name="office" >
-            </div>
-            <div class="form-group">
-               <label>Cell</label>
-               <input type="text" class="form-control" name="cell" >
-            </div>
-            <button type="submit" class="btn btn-success btn-lg">Add Contact</button>
-         </form>
+         </div>
       </div>
       <% include partials/footerimports %>
    </body>
