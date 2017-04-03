@@ -219,7 +219,6 @@ function download(csvPath, req, res) {
 }
 
 function deleteFile(fileName) {
-    console.log('hello');
     fs.unlink(fileName, function(err) {
         if (err) {
             console.log('Error deleting the filing after download');

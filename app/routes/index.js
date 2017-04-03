@@ -144,6 +144,7 @@ module.exports = function(app, passport) {
     app.post('/site/:siteid', isLoggedIn, ctrlSites.addSiteContact);
     app.post('/site/edit/:siteid', isLoggedIn, ctrlSites.updateSite);
     app.post('/site/delete/:siteid', isLoggedIn, ctrlSites.deleteSite);
+    app.get('/site/:siteId/export/contacts', makeCSVDirectory, isLoggedIn, ctrlSites.exportContacts);
 
     /* Promote page */
     app.get('/promote', isLoggedIn, ctrlPromote.getPromote);
