@@ -26,7 +26,7 @@ module.exports.postForgot = function(req, res) {
                 'local.email': req.body.email
             }, function(err, user) {
                 if (!user) {
-                    req.flash('info', 'No account with that email address exists.');
+                    req.flash('failure', 'No account with that email address exists.');
                     return res.redirect('/forgot');
                 }
                 user.local.resetPasswordToken = token;
@@ -37,9 +37,15 @@ module.exports.postForgot = function(req, res) {
             });
         },
         function(token, user, done) {
-            var transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
+            transporter = nodemailer.createTransport({
+                service: 'yahoo',
+                auth: {
+                    user: 'ggcinternapp@yahoo.com',
+                    pass: key
+                }
+            });
             var mailOptions = {
-                from: '"GGC Interapp Admin" <admin@ggcinternapp>', // sender address 
+                from: 'ggcinternapp@yahoo.com', // sender address 
                 to: req.body.email,
                 subject: 'Password reset code', // Subject line 
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -48,13 +54,17 @@ module.exports.postForgot = function(req, res) {
                 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             transporter.sendMail(mailOptions, function(err) {
-                req.flash('info', 'An e-mail has been sent to ' + user.local.email + ' with further instructions.');
+                console.log('password reset email sent!');
+                req.flash('success', 'An e-mail has been sent to ' + user.local.email + ' with further instructions. You will receive it in a few minutes.');
                 done(err, 'done');
             });
         }
     ], 
     function(err) {
-        if (err) return next(err);
+        if (err)  {
+            req.flash('failure', 'An error has occured. Your password cannot be reset at this time.');
+            console.log(err);
+        }
             res.redirect('/forgot');
     });
 };
@@ -65,6 +75,7 @@ module.exports.postForgot = function(req, res) {
 */
 module.exports.getForgot = function(req, res) {
   res.render('forgot.ejs', {
-            message: req.flash('info')
+            successMessage: req.flash('success'),
+            failureMessage: req.flash('failure')
         });
 };
