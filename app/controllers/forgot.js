@@ -55,7 +55,7 @@ module.exports.postForgot = function(req, res) {
             };
             transporter.sendMail(mailOptions, function(err) {
                 console.log('password reset email sent!');
-                req.flash('success', 'An e-mail has been sent to ' + user.local.email + ' with further instructions. You will receive it in a few minutes.');
+                req.flash('success', 'An e-mail has been sent to ' + user.local.email + ' with further instructions. You will receive an email from ggcinternapp@yahoo.com in a few minutes.');
                 done(err, 'done');
             });
         }
