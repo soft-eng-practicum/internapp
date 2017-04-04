@@ -171,9 +171,13 @@
                </div>
             </div>
             <br>
+            <div class = "bioInput">
             <h3 align="center">
                Internship Information
             </h3>
+            <div align="right">
+            <button class="btn btn-success" id="tester" allign="right">Add</button>
+            </div>
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?</label>
@@ -420,6 +424,9 @@
                </div>
             </div>
             <br>
+            <div class = "addOn">
+            </div>
+        </div>
             <h3 align="center">
                Signature and Review
             </h3>
@@ -487,4 +494,12 @@
            }
        });
    });
+
+///Adding more to Bio
+$(document).ready(function(){
+    $("#tester").click(function(){
+        $(".bioInput").clone().appendTo(".addOn");
+    });
+});
+
 </script>
