@@ -417,10 +417,12 @@
                <label for="input" class="col-lg-5 control-label">Third</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="thirdTxt" name="educomp3" required type="text">
-               </div>
-               <div class="input_fields_wrap" align="center">
-                 <button class="add_field_button">Add</button>
-                    <div><input type="text" name="mytext[]"></div>
+               </div>               
+            <div class="form-group">
+               <label for="input" class="col-lg-5 control-label"></label>
+                <button  class ="btn btn-success" id="add_field_button">Add</button>
+             <div class="col-lg-5" id="input_fields_wrap">
+             <br/>
                 </div>
             </div>
             <br>
@@ -496,15 +498,15 @@
 //Adding Field to Bio 
 $(document).ready(function() {
     var max_fields      = 10; 
-    var wrapper         = $(".input_fields_wrap"); 
-    var add_button      = $(".add_field_button"); 
+    var wrapper         = $("#input_fields_wrap"); 
+    var add_button      = $("#add_field_button"); 
     
     var x = 1; 
     $(add_button).click(function(e){ 
         e.preventDefault();
         if(x < max_fields){ 
             x++; 
-            $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>');
+            $(wrapper).append('<div><input class="form-control" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>');
         }
     });
     
