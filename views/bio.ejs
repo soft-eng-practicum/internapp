@@ -515,6 +515,22 @@ $(document).ready(function() {
     })
 });
 
+//Verfy input signature vs name
+$(function () {
+        $("#submitBtn").click(function () {
+            var signature = $("#signatureTxt").val();
+            var name = $("#printedNameTxt").val();
+            if (signature != name) {
+                alert("Please Make Sure Your Name and Signature Match");
+                return false;
+            }
+            return true;
+        });
+    });
+
+
+
+
 
 </script>
 
