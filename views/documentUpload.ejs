@@ -10,12 +10,6 @@
       <% include partials/nav.ejs %>
       <div class="container">
          <h2>Document Uploads</h2>
-         <% if (successfulUpload.length > 0) { %>
-         <div class="alert alert-success"><%= successfulUpload %></div>
-         <% } %>
-         <% if (uploadError.length > 0) { %>
-         <div class="alert alert-danger"><%= uploadError %></div>
-         <% } %>
          <div class="form-group">
             <h4>Choose Documents to Upload</h4>
             <select id="major">

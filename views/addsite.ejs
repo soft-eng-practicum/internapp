@@ -14,9 +14,6 @@
                <h1>Add Site</h1>
             </div>
             <!-- show any messages that come back with authentication -->
-            <% if (messages.length > 0) { %>
-            <div class="alert alert-danger"><%= messages %></div>
-            <% } %>
             <!-- LOGIN FORM -->
             <form name="signup" action="/addsite" class="form-horizontal" onsubmit="return validateForm()" method="post">
                <div class="form-group">

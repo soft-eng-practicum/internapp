@@ -8,16 +8,10 @@
    </head>
    <body>
       <% include partials/nav.ejs %>
+          <% include partials/snackBar.ejs %>
       <div class="container">
          <div class="col-sm-6 col-sm-offset-3">
             <h2>Application Information</h2>
-            <!-- show any messages that come back with authentication -->
-            <% if (applicationFailure.length > 0) { %>
-            <div class="alert alert-danger"><%= applicationFailure %></div>
-            <% } %>
-            <% if (applicationSuccess.length > 0) { %>
-            <div class="alert alert-success"><%= applicationSuccess %></div>
-            <% } %>
          </div>
          <% if (application.userdiscipline == 'ITEC') { %>
          <% include partials/itecapp.ejs %>

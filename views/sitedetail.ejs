@@ -7,6 +7,7 @@
       <% include partials/headerimports %>
    </head>
    <% include partials/nav.ejs %>
+         <% include partials/snackBar.ejs %>
    <body>
       <div class="container">
       <div class="col-sm-6 col-sm-offset-3">
@@ -67,11 +68,6 @@
          </table>
       </div>
       <div class="col-sm-6 col-sm-offset-3">
-         <!-- show any messages that come back with authentication -->
-         <% if (message.length > 0) { %>
-         <div class="alert alert-danger"><%= message %></div>
-         <% } %>
-         <hr>
          <h3>Add Contact</h3>
          <form name="addsitecontacts" method="post">
             <div class="form-group">
