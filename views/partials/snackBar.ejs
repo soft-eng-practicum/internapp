@@ -1,0 +1,12 @@
+<% if (successMessage.length > 0) { %>
+            <div id="snackbarSuccess"><%= successMessage %></div>
+            <script>
+                successSnack();
+            </script>
+     <% } %>
+<% if (failureMessage.length > 0) { %>
+    <div id="snackbarFailure"><%= failureMessage %></div>
+    <script>
+        failSnack();
+    </script>
+<% } %>  
