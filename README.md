@@ -1,3 +1,6 @@
+
+<div style="text-align:center"><img src ="public/images/logos.png" /></div>
+
 # Internapp - dasquad
 **Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
 
@@ -38,3 +41,5 @@
 4. __Run the command 'npm install'__<br>
 5. __Run the command 'npm start'__<br>
 6. __Navigate to localhost:8000/ within your browser__<br>
+
+## License

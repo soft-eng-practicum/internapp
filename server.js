@@ -5,7 +5,7 @@
 var express  = require('express');
 var app      = express();
 var path     = require('path');
-var port     = process.env.PORT || 3000;
+var port     = process.env.PORT || 8000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -36,7 +36,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 // Set favicon to the SST crest
-app.use(favicon(__dirname + '/public/images/SST_crest_small.png'));
+app.use(favicon(__dirname + '/public/images/logo.png'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 

@@ -297,6 +297,7 @@
             <th>Feedback</th>
             <th>Entered By</th>
             <th>Date</th>
+            <th>Delete</th>
          </tr>
       </thead>
       <tbody>
@@ -305,6 +306,7 @@
             <td><%= feedback.feedback %></td>
             <td><%= feedback.user %></td>
             <td><%= feedback.prettyFeedbackDate %></td>
+            <td><a href="/application/itec/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
          </tr>
       <% }) %>
       </tbody>
@@ -317,8 +319,6 @@
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
    </form>
-</div>
-<div class="col-sm-6 col-sm-offset-3">
    <h3>Change Application Status</h3>
    <form name="applicationstatus" method="post">
       <div class="form-group">
@@ -335,8 +335,6 @@
       </div>
       <button type="submit" class="btn btn-success btn-lg">Change Status</button>
    </form>
-</div>
-<div class="col-sm-6 col-sm-offset-3">
    <h3>Admin and Instructor Notes</h3>
    <table class="table table-bordered">
       <thead>
@@ -344,6 +342,7 @@
             <th>Note</th>
             <th>Entered By</th>
             <th>Date</th>
+            <th>Delete</th>
          </tr>
       </thead>
       <tbody>
@@ -352,13 +351,12 @@
             <td><%= note.note %></td>
             <td><%= note.user %></td>
             <td><%= note.prettyNotesDate %></td>
+            <td><a href="/application/itec/<%= application._id %>/notes/delete/<%= note._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
          </tr>
          <% }); %>
       </tbody>
    </table>
    <hr>
-</div>
-<div class="col-sm-6 col-sm-offset-3">
    <form name="applicationstatus" action="/application/itec/notes/<%= application._id %>" method="post">
       <div class="form-group">
          <h3>Add Note</h3>
@@ -367,5 +365,38 @@
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Note</button>
    </form>
+   <br>
+   <h3>Document Uploads table</h3>
+   <hr>
+</div>
+<% } else { %>
+   <h3>Document Uploads table</h3>
+   <hr>
 </div>
 <% } %>
+        <div class="col-6 col-md-auto">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th>Document Status</th>
+                    <th>Name</th>
+                    <th>Section</th>
+                    <th>File Type</th>
+                    <th>Date Submitted</th>
+                    <th>View Document Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% documents.forEach(function(document) { %>
+                <tr>
+                    <td><%= document.documentStatus %></td>
+                    <td><%= document.documentName %></td>
+                    <td><%= document.fileSection %></td>  
+                    <td><%= document.fileType %></td>
+                    <td><%= document.prettyUploadDate %></td>
+                    <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
+                </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>
