@@ -8,16 +8,10 @@
    </head>
    <body>
       <% include partials/nav.ejs %>
+            <% include partials/snackBar.ejs %>
       <div class="container">
          <div class="col-sm-6 col-sm-offset-3">
             <h1><span class="fa fa-sign-in"></span> Reset Password</h1>
-            <!-- show any messages that come back with authentication -->
-            <% if (successMessage.length > 0) { %>
-            <div class="alert alert-success"><%= successMessage %></div>
-            <% } %>
-            <% if (failureMessage.length > 0) { %>
-            <div class="alert alert-danger"><%= failureMessage %></div>
-            <% } %>
             <!-- LOGIN FORM -->
             <form name="signup" method="post">
                <div class="form-group">

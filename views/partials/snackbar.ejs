@@ -4,9 +4,9 @@
                 successSnack();
             </script>
      <% } %>
-     <% if (failureMessage.length > 0) { %>
-            <div id="snackbarFailure"><%= failureMessage %></div>
-            <script>
-                failSnack();
-            </script>
-     <% } %>
+<% if (failureMessage.length > 0) { %>
+    <div id="snackbarFailure"><%= failureMessage %></div>
+    <script>
+        failSnack();
+    </script>
+<% } %>
