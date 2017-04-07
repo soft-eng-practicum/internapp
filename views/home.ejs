@@ -4,7 +4,6 @@
 <head>
     <title>GGC Internship Signup</title>
 <% include partials/headerimports %>
-<% include partials/footerimports %>
 </head>
 <body>
     <% include partials/nav.ejs %>
@@ -143,7 +142,7 @@
 
      <% } %>
 
-     <!-- Show the uploads for ITEC if they have an ITEC application submitted -->     
+     <!-- Show the uploads for ITEC if they have an ITEC application submitted --> 
      <% if (itecApp) { %>
         <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
             <h3>ITEC Uploads</h3>
@@ -161,6 +160,8 @@
                 </div>
                 <div class="form-group">
                     <input type='submit' class="btn btn-success btn-sm" value='Upload Resume!' />
+                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume">
+                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
                 </form>
                 <form ref='uploadForm'
@@ -174,6 +175,8 @@
                 </div>
                 <div class ="form-group">
                     <input type='submit' class="btn btn-success btn-sm" value='Upload FERPA!' />   
+                      <a target="_blank" title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File">
+                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
                 <br>
                 <a href="/downloadFerpa">Click here to download the FERPA document</a> 
@@ -200,6 +203,8 @@
                 </div>
                 <div class="form-group">
                     <input type='submit' class="btn btn-success btn-sm" value='Upload Essay!' />
+                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay">
+                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
                 </form>
                 <form ref='uploadForm'
@@ -212,7 +217,9 @@
                     <input type="file" name="transcript" />
                 </div>
                 <div class ="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript!' />   
+                    <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript!' />  
+                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'">
+                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a> 
                 </div>
             </div>
         </div>
@@ -347,6 +354,7 @@
             </div>
         <% } %> 
     </div>
+    <% include partials/footerimports %>
 </body>
 </html>
 
