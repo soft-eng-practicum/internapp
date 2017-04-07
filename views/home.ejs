@@ -150,7 +150,7 @@
             </div>
             <div class="uploadBox" id="itecBox">
                 <form ref='uploadForm'
-                id='uploadForm'
+                id='uploadForm1'
                 action='/uploadItecResume'
                 method='post'
                 encType="multipart/form-data"
@@ -159,13 +159,14 @@
                     <input type="file"  name="resume" />
                 </div>
                 <div class="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Resume!' />
+                    <input type='submit' id="uploadResume" class="btn btn-success btn-sm" value='Upload Resume!' disabled
+                     title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume"/>
                     <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume">
                     <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
                 </form>
                 <form ref='uploadForm'
-                id='uploadForm'
+                id='uploadForm2'
                 action='/uploadItecFerpa'
                 method='post'
                 encType="multipart/form-data"
@@ -174,7 +175,8 @@
                     <input type="file" name="ferpa" />
                 </div>
                 <div class ="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload FERPA!' />   
+                    <input type='submit' id="uploadFERPA" class="btn btn-success btn-sm" value='Upload FERPA!' disabled
+                      title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File"/>   
                       <a target="_blank" title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File">
                     <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
@@ -193,7 +195,7 @@
             </div>
             <div class="uploadBox" id="bioBox">
                 <form ref='uploadForm'
-                id='uploadForm'
+                id='uploadForm3'
                 action='/uploadBioEssay'
                 method='post'
                 encType="multipart/form-data"
@@ -202,13 +204,14 @@
                     <input type="file"  name="essay" />
                 </div>
                 <div class="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Essay!' />
+                    <input type='submit' id="uploadEssay" class="btn btn-success btn-sm" value='Upload Essay!' disabled 
+                     title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay"/>
                     <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay">
                     <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
                 </form>
                 <form ref='uploadForm'
-                id='uploadForm'
+                id='uploadForm4'
                 action='/uploadBioTranscript'
                 method='post'
                 encType="multipart/form-data"
@@ -217,7 +220,8 @@
                     <input type="file" name="transcript" />
                 </div>
                 <div class ="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript!' />  
+                    <input type='submit' id="uploadTranscript" class="btn btn-success btn-sm" value='Upload Transcript!' disabled 
+                        title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'"/>  
                     <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'">
                     <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a> 
                 </div>
@@ -376,4 +380,45 @@ $('.itec').hide();
            }
        });
    });
+</script>
+
+//greyed out button ITEC & BIO
+<script>
+$(function() {
+  var button = $("#uploadForm1"),
+  submitButt = $("#uploadResume");
+
+  button.on("click",function(e) {
+     submitButt.prop("disabled",false); 
+  });
+});
+
+$(function() {
+  var button = $("#uploadForm2"),
+  submitButt = $("#uploadFERPA");
+
+  button.on("click",function(e) {
+     submitButt.prop("disabled",false); 
+  });
+});
+
+$(function() {
+  var button = $("#uploadForm3"),
+  submitButt = $("#uploadEssay");
+
+  button.on("click",function(e) {
+     submitButt.prop("disabled",false);
+  });
+});
+
+$(function() {
+  var button = $("#uploadForm4"),
+  submitButt = $("#uploadTranscript");
+
+  button.on("click",function(e) {
+     submitButt.prop("disabled",false); 
+  });
+});
+
+
 </script>
