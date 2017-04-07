@@ -136,6 +136,7 @@ module.exports = function(app, passport) {
 
     /* Sites pages & Add Site page */
     app.get('/sites', isLoggedIn, ctrlSites.getSites);
+    app.post('/sites', isLoggedIn, makeCSVDirectory, ctrlSites.exportSites);
     app.get('/addsite', isLoggedIn, ctrlSites.getAddSite);
     app.get('/site/contacts/:siteid/:documentid', isLoggedIn, ctrlSites.getSiteDocument);
     app.get('/site/edit/:siteid', isLoggedIn, ctrlSites.getSiteToEdit);
