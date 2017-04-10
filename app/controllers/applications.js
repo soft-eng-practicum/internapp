@@ -23,7 +23,9 @@ var path = require('path');
 module.exports.getItecApplication = function(req, res) {
 
     res.render('itec.ejs', {
-        user: req.user
+        user: req.user,
+        successMessage: req.flash('success'),
+        failureMessage: req.flash('failure')
     });
 };
 
@@ -33,7 +35,9 @@ module.exports.getItecApplication = function(req, res) {
 */
 module.exports.getBioApplication = function(req, res) {
     res.render('bio.ejs', {
-        user: req.user // get the user out of session and pass to template
+        user: req.user, // get the user out of session and pass to template
+        successMessage: req.flash('success'),
+        failureMessage: req.flash('failure')
     });
 };
 
@@ -82,7 +86,9 @@ module.exports.getApplications = function(req, res) {
                       applicationList: bioApplications.concat(itecApplications),
                       user: req.user,
                       haveBioApp: haveBioApp,
-                      haveItecApp: haveItecApp
+                      haveItecApp: haveItecApp,
+                      successMessage: req.flash('success'),
+                      failureMessage: req.flash('failure')
                   });
               });
           });
