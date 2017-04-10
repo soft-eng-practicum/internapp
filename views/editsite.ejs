@@ -7,11 +7,11 @@
       <% include partials/headerimports %>
    </head>
    <body>
-      <% include partials/nav.ejs %>
-      <% include partials/snackBar.ejs %>      
+      <% include partials/nav.ejs %> 
       <div class="container">
          <div class="col-sm-8 col-sm-offset-1" align="center">
             <h1>Edit Site</h1>
+            <% include partials/flashMessages.ejs %>
             <!-- LOGIN FORM -->
             <form name="editsite" onsubmit="return validateForm()" class="form-horizontal" method="post">
             <div class="form-group">

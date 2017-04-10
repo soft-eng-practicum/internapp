@@ -54,19 +54,19 @@ module.exports.postForgot = function(req, res) {
                 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             transporter.sendMail(mailOptions, function(err) {
-                console.log('password reset email sent!');
-                req.flash('success', 'An e-mail has been sent to ' + user.local.email + ' with further instructions. You will receive an email from ggcinternapp@yahoo.com in a few minutes.');
-                done(err, 'done');
+                if (err) {
+                    console.log('error sending reset email, error: \n' + err);
+                    res.redirect('/forgot');
+                    req.flash('failure', 'An error has occured. Your password cannot be reset at this time.');
+                } else {
+                    console.log('password reset email sent!');
+                    res.redirect('/forgot')
+                    req.flash('success', 'An e-mail has been sent to ' + user.local.email + ' with further instructions. You will receive an email from ggcinternapp@yahoo.com in a few minutes.');
+                    done(err, 'done');
+                }
             });
         }
-    ], 
-    function(err) {
-        if (err)  {
-            req.flash('failure', 'An error has occured. Your password cannot be reset at this time.');
-            console.log(err);
-        }
-            res.redirect('/forgot');
-    });
+    ]);
 };
 
 /*

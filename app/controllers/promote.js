@@ -16,7 +16,8 @@ module.exports.getPromote = function(req, res) {
     if (req.session.passport.user.role == 'admin') {
         res.render('promote.ejs', {
             user : req.user, // get the user out of the session and pass to template
-            message : req.flash('success')
+            successMessage : req.flash('success'),
+            failureMessage : req.flash('failure')
         });
     } else {
         res.redirect('/home'); // if the user is not an admin, redirect

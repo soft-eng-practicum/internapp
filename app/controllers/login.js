@@ -9,7 +9,8 @@
 */
 module.exports.getLogin = function(req, res) {
     res.render('login.ejs', {
-        message : req.flash('loginMessage')
+        successMessage : req.flash('success'),
+        failureMessage : req.flash('failure')
     });
 };
 
