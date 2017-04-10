@@ -8,16 +8,10 @@
    </head>
    <body>
       <% include partials/nav.ejs %>
+      <% include partials/snackBar.ejs %>      
       <div class="container">
          <div class="col-sm-8 col-sm-offset-1" align="center">
             <h1>Edit Site</h1>
-            <!-- show any messages that come back with authentication -->
-            <% if (successMessage.length > 0) { %>
-            <div class="alert alert-success"><%= successMessage %></div>
-            <% } %>
-            <% if (failureMessage.length > 0) { %>
-            <div class="alert alert-danger"><%= failureMessage %></div>
-            <% } %>
             <!-- LOGIN FORM -->
             <form name="editsite" onsubmit="return validateForm()" class="form-horizontal" method="post">
             <div class="form-group">
@@ -78,7 +72,7 @@
                   <div class="form-group">
                      <label for="input" class="col-lg-5 control-label">MOU Expiration Date</label>
                      <div class="col-lg-5">
-                      <input type="text" class="form-control" id="expirationTxt" name="mouexpiration" value="<%= site.mouexpiration %>"required>
+                      <input type="text" class="form-control" id="expirationTxt" name="mouexpiration" value="<%= site.mouexpiration %>">
                      </div>
                   </div>
                </div>

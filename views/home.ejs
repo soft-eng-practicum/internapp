@@ -6,38 +6,14 @@
 <% include partials/headerimports %>
 </head>
 <body>
-    <% include partials/nav.ejs %>
+  <% include partials/nav.ejs %>
+    <% include partials/snackBar.ejs %>
     <div class="container">
      <h1>Welcome <%= user.fname %>!</h1>
-
-     <% if (successMessage.length > 0) { %>
-            <div id="snackbarSuccess"><%= successMessage %></div>
-            <script type="text/javascript">
-                                function failSnack() {
-                    var x = document.getElementById("snackbarSuccess")
-                    x.className = "show";
-                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
-                }
-
-                failSnack();
-            </script>
-     <% } %>
-     <% if (failureMessage.length > 0) { %>
-            <div id="snackbarFailure"><%= failureMessage %></div>
-            <script type="text/javascript">
-                                function successSnack() {
-                    var x = document.getElementById("snackbarFailure")
-                    x.className = "show";
-                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
-                }
-
-                successSnack();
-            </script>
-     <% } %>
+     <h3>Thank you for visiting the GGC Intern Application!</h3>
 
      <!-- First time applying (they can see both sections ) -->
      <% if (!bioApp && !itecApp) { %>
-        <h3>Thank you for visiting the GGC Intern Application!</h3>
         <h3>Please Select an Internship to Apply For:</h3>
         <div class="homePageSection" id="initialApplySection">
                 <div class="dropdown show"> 
@@ -73,20 +49,35 @@
                         <br/>
                         <a class="btn btn-success" href="/itec">Apply Now</a>
                     </div>
-                    <!--<button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select the program you wish to apply to
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/bio">Biology Internship (BIO 4800)</a></li>
-                        <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
-                    </ul>-->
                 </div>
             </div>
-
+            <br/>
+     <br/>
      <% } %>
-     <br/>
-     <br/>
      <!-- If they have a bio or itec application submitted -->
      <% if (bioApp || itecApp) { %>
+        <% if (bioApp) { %>
+        <div class="bioApplied">
+            <h3>Steps to Complete the Application Process for Bio:</h3>
+            <ul>
+                <li><h4>Complete Application</h4></li>
+                <li><h4>Complete and Upload Essay</h4></li>
+                <li><h4>Upload Transcript</h4></li>
+            </ul>
+            <br/>
+        </div>
+        <% } %>
+        <% if (itecApp) { %>
+        <div class="itecApplied">
+            <h3>Steps to Complete the Application Process for Itec:</h3>
+            <ul>
+                <li><h4>Complete Application</h4></li>
+                <li><h4>Upload Resume</h4></li>
+                <li><h4>Fill out and Upload FERPA Form</h4></li>
+            </ul>
+            <br/>
+        </div>
+        <% } %>
         <div class="homePageSection" id="applicationTableOnHomePage">
         <h3>Application table</h3>
         <table class="table table-hover">
@@ -148,9 +139,10 @@
             </div>
             </div>
      </div>
+
      <% } %>
 
-     <!-- Show the uploads for ITEC if they have an ITEC application submitted -->     
+     <!-- Show the uploads for ITEC if they have an ITEC application submitted --> 
      <% if (itecApp) { %>
         <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
             <h3>ITEC Uploads</h3>
@@ -158,7 +150,7 @@
             </div>
             <div class="uploadBox" id="itecBox">
                 <form ref='uploadForm'
-                id='uploadForm'
+                id='uploadForm1'
                 action='/uploadItecResume'
                 method='post'
                 encType="multipart/form-data"
@@ -167,11 +159,14 @@
                     <input type="file"  name="resume" />
                 </div>
                 <div class="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Resume!' />
+                    <input type='submit' id="uploadResume" class="btn btn-success btn-sm" value='Upload Resume!' disabled
+                     title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume"/>
+                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume">
+                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
                 </form>
                 <form ref='uploadForm'
-                id='uploadForm'
+                id='uploadForm2'
                 action='/uploadItecFerpa'
                 method='post'
                 encType="multipart/form-data"
@@ -180,7 +175,10 @@
                     <input type="file" name="ferpa" />
                 </div>
                 <div class ="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload FERPA!' />   
+                    <input type='submit' id="uploadFERPA" class="btn btn-success btn-sm" value='Upload FERPA!' disabled
+                      title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File"/>   
+                      <a target="_blank" title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File">
+                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
                 <br>
                 <a href="/downloadFerpa">Click here to download the FERPA document</a> 
@@ -197,7 +195,7 @@
             </div>
             <div class="uploadBox" id="bioBox">
                 <form ref='uploadForm'
-                id='uploadForm'
+                id='uploadForm3'
                 action='/uploadBioEssay'
                 method='post'
                 encType="multipart/form-data"
@@ -206,11 +204,14 @@
                     <input type="file"  name="essay" />
                 </div>
                 <div class="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Essay!' />
+                    <input type='submit' id="uploadEssay" class="btn btn-success btn-sm" value='Upload Essay!' disabled 
+                     title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay"/>
+                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay">
+                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
                 </div>
                 </form>
                 <form ref='uploadForm'
-                id='uploadForm'
+                id='uploadForm4'
                 action='/uploadBioTranscript'
                 method='post'
                 encType="multipart/form-data"
@@ -219,7 +220,10 @@
                     <input type="file" name="transcript" />
                 </div>
                 <div class ="form-group">
-                    <input type='submit' class="btn btn-success btn-sm" value='Upload Transcript!' />   
+                    <input type='submit' id="uploadTranscript" class="btn btn-success btn-sm" value='Upload Transcript!' disabled 
+                        title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'"/>  
+                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'">
+                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a> 
                 </div>
             </div>
         </div>
@@ -298,8 +302,47 @@
         <!-- If the user has submitted applications for either ITEC or BIO -->
         <% if ( itecApp || bioApp ) { %>
             <div class="homePageSection" id="secondApplySection">
+                <br>
+                <h3>Select a Program to Apply For:</h3>
                 <div class="dropdown show"> 
-                    <div class="dropdown">
+                    <div class="dropdown col-lg-5">
+                    <select class="form-control" id="application" name="application">
+                           <option vaule="Select">Select</option>
+                           <% if (!bioApp) { %>
+                                <option value="Bio">Biology Internship (BIO 4800)</option>
+                            <% } %>
+                            <% if (!itecApp) { %>
+                                <option value="Itec">Information Technology Internship (ITEC 4800)</option>
+                            <% } %>
+                    </select>
+                    </div>
+
+                    <div class="bio">
+                        <br/>
+                        <br/>
+                        <h3>Steps to Complete Bio App:</h3>
+                        <ul>
+                            <li><h4>Complete Application</h4></li>
+                            <li><h4>Complete and Upload Essay</h4></li>
+                            <li><h4>Upload Transcript</h4></li>
+                        </ul>
+                        <br/>
+                        <a class="btn btn-success" href="/bio">Apply Now</a>
+                    </div>
+                    <div class="itec">
+                        <br/>
+                        <br/>
+                        <h3>Steps to Apply for Itec:</h3>
+                        <ul>
+                            <li><h4>Complete Application</h4></li>
+                            <li><h4>Upload Resume</h4></li>
+                            <li><h4>Fill out and Upload FERPA Form</h4></li>
+                        </ul>
+                        <br/>
+                        <a class="btn btn-success" href="/itec">Apply Now</a>
+                    </div>
+                </div>
+                    <!--<div class="dropdown">
                     <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select another program to apply to
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu">
@@ -310,13 +353,12 @@
                             <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
                         <% } %>
                     </ul>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         <% } %> 
     </div>
-
-<% include partials/footerimports %>
+    <% include partials/footerimports %>
 </body>
 </html>
 
@@ -339,4 +381,45 @@ $('.itec').hide();
            }
        });
    });
+</script>
+
+//greyed out button ITEC & BIO
+<script>
+$(function() {
+  var button = $("#uploadForm1"),
+  submitButt = $("#uploadResume");
+
+  button.on("click",function(e) {
+     submitButt.prop("disabled",false); 
+  });
+});
+
+$(function() {
+  var button = $("#uploadForm2"),
+  submitButt = $("#uploadFERPA");
+
+  button.on("click",function(e) {
+     submitButt.prop("disabled",false); 
+  });
+});
+
+$(function() {
+  var button = $("#uploadForm3"),
+  submitButt = $("#uploadEssay");
+
+  button.on("click",function(e) {
+     submitButt.prop("disabled",false);
+  });
+});
+
+$(function() {
+  var button = $("#uploadForm4"),
+  submitButt = $("#uploadTranscript");
+
+  button.on("click",function(e) {
+     submitButt.prop("disabled",false); 
+  });
+});
+
+
 </script>

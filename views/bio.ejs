@@ -8,6 +8,7 @@
    </head>
    <body>
       <% include partials/nav.ejs %>
+      <% include partials/snackBar.ejs %>
       <div class="container">
       <div class="col-sm-10 col-sm-offset-1">
       <br>
@@ -176,7 +177,7 @@
                Internship Information
             </h3>
             <div align="right">
-            <button class="btn btn-success" id="tester" allign="right">Add</button>
+               <button class="btn btn-success" id="tester" allign="right">Add</button>
             </div>
             <div class="form-group">
                <div class="form-inline">
@@ -223,7 +224,7 @@
                   </div>
                </div>
                <div class="form-group">
-                  <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc):</label>
+                  <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc)</label>
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" placeholder="Specialty" pattern="[A-Za-z].{2,}" title="Example: Pharmacy"  type="text">
                   </div>
@@ -422,11 +423,17 @@
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="thirdTxt" name="educomp3" required type="text">
                </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label"></label>
+                  <button  class ="btn btn-success" id="add_field_button">Add</button>
+                  <div class="col-lg-5" id="input_fields_wrap">
+                     <br/>
+                  </div>
+               </div>
+               <br>
+               <div class = "addOn">
+               </div>
             </div>
-            <br>
-            <div class = "addOn">
-            </div>
-        </div>
             <h3 align="center">
                Signature and Review
             </h3>
@@ -454,52 +461,77 @@
          </div>
       </form>
       <% include partials/footerimports %>
+      <script>
+         // JQuery/JavaScript Functions
+         $(document).ready(function() {
+         
+             $('.employed').hide();
+             $('.exisiting').hide();
+             $('.other').hide();
+         
+             var max_fields      = 10; 
+             var wrapper         = $("#input_fields_wrap"); 
+             var add_button      = $("#add_field_button"); 
+             
+             var x = 1; 
+             $(add_button).click(function(e) { 
+                 e.preventDefault();
+                 if(x < max_fields){ 
+                     x++; 
+                     $(wrapper).append('<div><input class="form-control" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>');
+                 }
+             });
+             
+             $(wrapper).on("click",".remove_field", function(e) { 
+                 e.preventDefault(); $(this).parent('div').remove(); x--;
+             });
+             
+             // Adding more to Bio
+             $("#tester").click(function() {
+                $(".bioInput").clone().appendTo(".addOn");
+             });
+               
+            //Verfy input signature vs name
+            $("#submitBtn").click(function() {
+               var signature = $("#signatureTxt").val();
+               var name = $("#printedNameTxt").val();
+               if (signature != name) {
+                   alert("Please Make Sure Your Name and Signature Match");
+                   return false;
+               }
+               return true;
+            });
+         
+            $('#isStudentEmployedList').change(function() {
+               var opt = $(this).val();
+                    if(opt == 'Yes'){
+                        $('.employed').show();
+                    }else{
+                    	$('.employed').hide();
+                    }
+            });
+            
+            $('#previouslyApplied').change(function() {
+                var opt = $(this).val();
+                   if(opt == 'Yes') {
+                      $('.exisiting').show();
+                   } else {
+                      $('.exisiting').hide();
+                      $('.other').hide();
+                      document.getElementById('additionalInfoList').value="Select";
+                   }
+            });
+           
+            $('#additionalInfoList').change(function() {
+               var opt = $(this).val();
+               if (opt == 'Other') {
+                  $('.other').show();
+               } else {
+                  $('.other').hide();
+               }
+            });
+            
+         });
+      </script>
    </body>
 </html>
-<script>
-   $('.employed').hide();
-   $(function(){
-       $('#isStudentEmployedList').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.employed').show();
-           }else{
-           	$('.employed').hide();
-           }
-       });
-   });
-   
-   $('.exisiting').hide();
-   $(function(){
-       $('#previouslyApplied').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.exisiting').show();
-           }else{
-           	$('.exisiting').hide();
-             $('.other').hide();
-             document.getElementById('additionalInfoList').value="Select";
-           }
-       });
-   });
-   
-   $('.other').hide();
-   $(function(){
-       $('#additionalInfoList').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Other'){
-               $('.other').show();
-           }else{
-           	$('.other').hide();
-           }
-       });
-   });
-
-///Adding more to Bio
-$(document).ready(function(){
-    $("#tester").click(function(){
-        $(".bioInput").clone().appendTo(".addOn");
-    });
-});
-
-</script>

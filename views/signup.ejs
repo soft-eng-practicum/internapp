@@ -11,10 +11,6 @@
       <div class="container">
          <div align="center">
             <h1><span class="fa fa-sign-in"></span> Signup</h1>
-            <!-- show any messages that come back with authentication -->
-            <% if (message.length > 0) { %>
-            <div class="alert alert-danger"><%= message %></div>
-            <% } %>
             <!-- LOGIN FORM -->
             <form name="signup" action="/signup" onsubmit="return validateForm()" method="post" class="form-horizontal">
                <div class="form-group">

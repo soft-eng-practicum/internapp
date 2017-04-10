@@ -22,6 +22,7 @@
     var ctrlUpload = require('../controllers/documentUpload');
     var ctrlSiteNotes = require('../controllers/sitenotes');
     var ctrlEditApps = require('../controllers/editApplications');
+    var ctrlHelp = require('../controllers/help');
 
     // For document uploads
     var fileUpload = require('express-fileupload');
@@ -113,6 +114,7 @@ module.exports = function(app, passport) {
 
      /* Applications pages - Could probably add some regex to reduce the routes */
      app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
+     app.post('/applications', makeCSVDirectory, isLoggedIn, ctrlApplications.exportApplications);
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
     // app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);
@@ -143,6 +145,7 @@ module.exports = function(app, passport) {
     app.post('/site/:siteid', isLoggedIn, ctrlSites.addSiteContact);
     app.post('/site/edit/:siteid', isLoggedIn, ctrlSites.updateSite);
     app.post('/site/delete/:siteid', isLoggedIn, ctrlSites.deleteSite);
+    app.get('/site/:siteId/export/contacts', makeCSVDirectory, isLoggedIn, ctrlSites.exportContacts);
 
     /* Promote page */
     app.get('/promote', isLoggedIn, ctrlPromote.getPromote);
@@ -154,6 +157,9 @@ module.exports = function(app, passport) {
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
+   
+   /* Help page */
+    app.get('/help', ctrlHelp.getHelp);
 
     /* Document Upload page */
     // app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);

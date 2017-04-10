@@ -16,7 +16,19 @@ body {
     resize: none; /* Remove this if you want the user to resize the textarea */
 }
 
-#uploadForm {
+#uploadForm1 {
+    padding: .5em;
+}
+
+#uploadForm2 {
+    padding: .5em;
+}
+
+#uploadForm3 {
+    padding: .5em;
+}
+
+#uploadForm4 {
     padding: .5em;
 }
 
@@ -42,8 +54,8 @@ body {
 
 #snackbarSuccess.show {
     visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
 }
 
 #snackbarFailure {
