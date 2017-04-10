@@ -29,7 +29,104 @@ module.exports.getSites = function(req, res) {
     else {
         res.redirect('/home');
     }
-};
+}
+
+/*
+    HTTP Req: POST
+    URL: '/site'
+*/
+module.exports.exportSites = function(req, res) {
+    var discipline = "";
+    var program = req.body.program;
+    var siteArray = [];
+    var fields = [];
+
+    switch (req.body.program) {
+        case 'Biology Internship (BIO 4800)':
+            discipline = 'Bio';
+            break;
+        case 'Information Technology Internship (ITEC 4800)':
+            discipline = 'Itec';
+            break;
+        default:
+            res.redirect('/sites');
+            req.flash('failure', 'Program not recognized');
+            break;
+    }
+
+            Site.find({
+            section : discipline
+        }, function(err, sites) {
+            sites.forEach(function(siteEntry) {
+               
+                var MOU = "";
+                if ( !siteEntry.mou || siteEntry.mou.toString().toLowerCase() == "no" || siteEntry.mou == "" || siteEntry.mou == "undefined") {
+                    MOU = "No";
+                } else {
+                    MOU = "Yes";
+                }
+
+                var siteJson = {
+                CompanyName : siteEntry.name,
+                Street : siteEntry.address,
+                City : siteEntry.city,
+                State : siteEntry.state,
+                Zip : siteEntry.zipcode,
+                MOU : MOU
+            }
+           siteArray.push(siteJson);
+
+        });
+        
+                // Field names for csv file
+        var fields = ['CompanyName', 'Street', 'City', 'State', 'Zip',
+        'MOU'];
+
+        var csv = json2csv({ data: siteArray, fields: fields });
+
+        var fileName = 'csv/' + String(discipline).toLowerCase() + '_sites' + '.csv';
+        write(fileName, csv, req, res);
+        });
+
+        console.log('Site array', siteArray);
+
+
+}
+
+function write(fileName, csv, req, res) {
+        fs.writeFile(fileName, csv, function(err) {
+        if (err) {
+            req.flash('failure', 'There was an error with the writing of the CSV file');
+        } else {
+            console.log('file successfully saved');
+            csvPath = path.resolve(__dirname + '/../../' + fileName);
+            download(csvPath, req, res);
+        }
+    });
+}
+
+function download(csvPath, req, res) {
+    res.download(csvPath, function(err) {
+        if (err) { 
+            console.log('Error downloading csv: ', err);    
+            req.flash('failure', 'There was an error downloading the csv file');
+        } else {
+            console.log('file successfully written!');
+            deleteFile(csvPath);
+        }
+    });
+}
+
+function deleteFile(fileName) {
+    console.log('hello');
+    fs.unlink(fileName, function(err) {
+        if (err) {
+            console.log('Error deleting the filing after download');
+        } else {
+            console.log(fileName + ' deleted!');
+        }
+    });
+}
 
 /*
     HTTP Req: GET
