@@ -8,7 +8,6 @@
    </head>
    <body>
       <% include partials/nav.ejs %>
-      <% include partials/snackBar.ejs %>
       <div class="container">
       <div class="col-sm-10 col-sm-offset-1">
       <br>
@@ -172,23 +171,9 @@
                </div>
             </div>
             <br>
-            <div class = "bioInput">
             <h3 align="center">
                Internship Information
             </h3>
-            <div class="form-group">
-               <div class="form-inline">
-                  <label for="select" class="col-lg-5 control-label">Are you applying to an Internship Site previously approved by Internship committee?</label>
-                  <div class="col-lg-5" class>
-                     <select class="form-control" name="isPreviouslyApprovedSite" id="previouslyApplied">
-                        <option value="No">Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                     </select>
-                  </div>
-               </div>
-            </div>
-            <div class="exisiting">
                <div class="form-group">
                   <div class="form-inline">
                      <label for="select" class="col-lg-5 control-label">Approved Internship Committee Sites</label>
@@ -211,7 +196,6 @@
                   and/or site manager/supervisor. Providing false information about connections between you and site staff would constitute a violation
                   of the GGC Honor Code (see policy on academic honesty).
                </h3>
-            </div>
             <div class="other">
                <br>
                <div class="form-group">
@@ -221,7 +205,7 @@
                   </div>
                </div>
                <div class="form-group">
-                  <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc)</label>
+                  <label for="input" class="col-lg-5 control-label">Specialty (pharmacy, medical practice, etc):</label>
                   <div class="col-lg-5">
                      <input class="form-control" rows="3" id="specialty" name="proposedsitespecialty" placeholder="Specialty" pattern="[A-Za-z].{2,}" title="Example: Pharmacy"  type="text">
                   </div>
@@ -383,12 +367,10 @@
                   </div>
                </div>
             </div>
-            <hr/>
-            <h4 align="center"  >
-             <b>Want to apply to another site?</b>&nbsp&nbsp&nbsp
-               <button class="btn btn-success" id="tester" allign="right">Add</button>
+            <h4 align="center">
+               If you plan on applying for more than one ?Build Your Own? site, feel free to copy and paste the Proposed Site Information Section above of this application and complete. 
+               For each site, you would need a proposed mentor to complete the Preceptor Application (also on myGGC SST Internship Pages).
             </h4>
-            <hr/>
             <br>
             <h3 align="center">
                Education Component
@@ -422,17 +404,8 @@
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="thirdTxt" name="educomp3" required type="text">
                </div>
-               <div class="form-group">
-                  <label for="input" class="col-lg-5 control-label"></label>
-                  <button  class ="btn btn-success" id="add_field_button">Add</button>
-                  <div class="col-lg-5" id="input_fields_wrap">
-                     <br/>
-                  </div>
-               </div>
-               <br>
-               <div class = "addOn">
-               </div>
             </div>
+            <br>
             <h3 align="center">
                Signature and Review
             </h3>
@@ -460,77 +433,30 @@
          </div>
       </form>
       <% include partials/footerimports %>
-      <script>
-         // JQuery/JavaScript Functions
-         $(document).ready(function() {
-         
-             $('.employed').hide();
-             $('.exisiting').hide();
-             $('.other').hide();
-         
-             var max_fields      = 10; 
-             var wrapper         = $("#input_fields_wrap"); 
-             var add_button      = $("#add_field_button"); 
-             
-             var x = 1; 
-             $(add_button).click(function(e) { 
-                 e.preventDefault();
-                 if(x < max_fields){ 
-                     x++; 
-                     $(wrapper).append('<div><input class="form-control" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>');
-                 }
-             });
-             
-             $(wrapper).on("click",".remove_field", function(e) { 
-                 e.preventDefault(); $(this).parent('div').remove(); x--;
-             });
-             
-             // Adding more to Bio
-             $("#tester").click(function() {
-                $(".bioInput").clone().appendTo(".addOn");
-             });
-               
-            //Verfy input signature vs name
-            $("#submitBtn").click(function() {
-               var signature = $("#signatureTxt").val();
-               var name = $("#printedNameTxt").val();
-               if (signature != name) {
-                   alert("Please Make Sure Your Name and Signature Match");
-                   return false;
-               }
-               return true;
-            });
-         
-            $('#isStudentEmployedList').change(function() {
-               var opt = $(this).val();
-                    if(opt == 'Yes'){
-                        $('.employed').show();
-                    }else{
-                    	$('.employed').hide();
-                    }
-            });
-            
-            $('#previouslyApplied').change(function() {
-                var opt = $(this).val();
-                   if(opt == 'Yes') {
-                      $('.exisiting').show();
-                   } else {
-                      $('.exisiting').hide();
-                      $('.other').hide();
-                      document.getElementById('additionalInfoList').value="Select";
-                   }
-            });
-           
-            $('#additionalInfoList').change(function() {
-               var opt = $(this).val();
-               if (opt == 'Other') {
-                  $('.other').show();
-               } else {
-                  $('.other').hide();
-               }
-            });
-            
-         });
-      </script>
    </body>
 </html>
+<script>
+   $('.employed').hide();
+   $(function(){
+       $('#isStudentEmployedList').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Yes'){
+               $('.employed').show();
+           }else{
+           	$('.employed').hide();
+           }
+       });
+   });
+   
+   $('.other').hide();
+   $(function(){
+       $('#additionalInfoList').change(function(){
+          var opt = $(this).val();
+           if(opt == 'Other'){
+               $('.other').show();
+           }else{
+           	$('.other').hide();
+           }
+       });
+   });
+</script>

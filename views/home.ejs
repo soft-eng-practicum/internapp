@@ -1,425 +1,436 @@
 <!-- views/signup.ejs -->
 <!doctype html>
 <html>
-<head>
-    <title>GGC Internship Signup</title>
-<% include partials/headerimports %>
-</head>
-<body>
-  <% include partials/nav.ejs %>
-    <% include partials/snackBar.ejs %>
-    <div class="container">
-     <h1>Welcome <%= user.fname %>!</h1>
-     <h3>Thank you for visiting the GGC Intern Application!</h3>
-
-     <!-- First time applying (they can see both sections ) -->
-     <% if (!bioApp && !itecApp) { %>
-        <h3>Please Select an Internship to Apply For:</h3>
-        <div class="homePageSection" id="initialApplySection">
-                <div class="dropdown show"> 
-                    <div class="dropdown col-lg-5">
-                    <select class="form-control" id="application" name="application">
-                           <option vaule="Select">Select</option>
-                           <option value="Bio">Biology Internship (BIO 4800)</option>
-                           <option value="Itec">Information Technology Internship (ITEC 4800)</option>
-                    </select>
-                    </div>
-
-                    <div class="bio">
-                        <br/>
-                        <br/>
-                        <h3>Steps to Complete Bio App:</h3>
-                        <ul>
-                            <li><h4>Complete Application</h4></li>
-                            <li><h4>Complete and Upload Essay</h4></li>
-                            <li><h4>Upload Transcript</h4></li>
-                        </ul>
-                        <br/>
-                        <a class="btn btn-success" href="/bio">Apply Now</a>
-                    </div>
-                    <div class="itec">
-                        <br/>
-                        <br/>
-                        <h3>Steps to Apply for Itec:</h3>
-                        <ul>
-                            <li><h4>Complete Application</h4></li>
-                            <li><h4>Upload Resume</h4></li>
-                            <li><h4>Fill out and Upload FERPA Form</h4></li>
-                        </ul>
-                        <br/>
-                        <a class="btn btn-success" href="/itec">Apply Now</a>
-                    </div>
-                </div>
+   <head>
+      <title>GGC Internship Signup</title>
+      <% include partials/headerimports %>
+   </head>
+   <body>
+      <% include partials/nav.ejs %>
+      <% include partials/snackBar.ejs %>
+      <div class="container">
+         <h1>Welcome <%= user.fname %>!</h1>
+         <h3>Thank you for visiting the GGC Intern Application!</h3>
+         <!-- First time applying (they can see both sections ) -->
+         <% if (!bioApp && !itecApp) { %>
+         <h3>Please Select an Internship to Apply For:</h3>
+         <div class="homePageSection" id="initialApplySection">
+            <div class="dropdown show">
+               <div class="dropdown col-lg-5">
+                  <select class="form-control" id="application" name="application">
+                     <option vaule="Select">Select</option>
+                     <option value="Bio">Biology Internship (BIO 4800)</option>
+                     <option value="Itec">Information Technology Internship (ITEC 4800)</option>
+                  </select>
+               </div>
+               <div class="bio">
+                  <br/>
+                  <br/>
+                  <h3>Steps to Complete Bio App:</h3>
+                  <ul>
+                     <li>
+                        <h4>Complete Application</h4>
+                     </li>
+                     <li>
+                        <h4>Complete and Upload Essay</h4>
+                     </li>
+                     <li>
+                        <h4>Upload Transcript</h4>
+                     </li>
+                  </ul>
+                  <br/>
+                  <a class="btn btn-success" href="/bio">Apply Now</a>
+               </div>
+               <div class="itec">
+                  <br/>
+                  <br/>
+                  <h3>Steps to Apply for Itec:</h3>
+                  <ul>
+                     <li>
+                        <h4>Complete Application</h4>
+                     </li>
+                     <li>
+                        <h4>Upload Resume</h4>
+                     </li>
+                     <li>
+                        <h4>Fill out and Upload FERPA Form</h4>
+                     </li>
+                  </ul>
+                  <br/>
+                  <a class="btn btn-success" href="/itec">Apply Now</a>
+               </div>
             </div>
-            <br/>
-     <br/>
-     <% } %>
-     <!-- If they have a bio or itec application submitted -->
-     <% if (bioApp || itecApp) { %>
-        <% if (bioApp) { %>
-        <div class="bioApplied">
+         </div>
+         <br/>
+         <br/>
+         <% } %>
+         <!-- If they have a bio or itec application submitted -->
+         <% if (bioApp || itecApp) { %>
+         <% if (bioApp) { %>
+         <div class="bioApplied">
             <h3>Steps to Complete the Application Process for Bio:</h3>
             <ul>
-                <li><h4>Complete Application</h4></li>
-                <li><h4>Complete and Upload Essay</h4></li>
-                <li><h4>Upload Transcript</h4></li>
+               <li>
+                  <h4>Complete Application</h4>
+               </li>
+               <li>
+                  <h4>Complete and Upload Essay</h4>
+               </li>
+               <li>
+                  <h4>Upload Transcript</h4>
+               </li>
             </ul>
             <br/>
-        </div>
-        <% } %>
-        <% if (itecApp) { %>
-        <div class="itecApplied">
+         </div>
+         <% } %>
+         <% if (itecApp) { %>
+         <div class="itecApplied">
             <h3>Steps to Complete the Application Process for Itec:</h3>
             <ul>
-                <li><h4>Complete Application</h4></li>
-                <li><h4>Upload Resume</h4></li>
-                <li><h4>Fill out and Upload FERPA Form</h4></li>
+               <li>
+                  <h4>Complete Application</h4>
+               </li>
+               <li>
+                  <h4>Upload Resume</h4>
+               </li>
+               <li>
+                  <h4>Fill out and Upload FERPA Form</h4>
+               </li>
             </ul>
             <br/>
-        </div>
-        <% } %>
-        <div class="homePageSection" id="applicationTableOnHomePage">
-        <h3>Application table</h3>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                <th>Application Status</th>
-                <th>Section</th>
-                <th>Last Updated</th>
-                <th>View Application Details</th>
-                <th>Edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% applications.forEach(function(application) { %>
-               <tr>
-                  <td><%= application.applicationstatus %></td>
-                  <td><%= application.userdiscipline %></td>  
-                  <td><%= application.lastupdated %></td>
-                  <td><a href="/application/<%= application.userdiscipline %>/<%= application._id %>"><span class='glyphicon glyphicon-search'></span></a></td>
-                  <td><a href="/edit<%= application.userdiscipline %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
-               </tr>
-               <% }); %>
-            </tbody>
-        </table>
-        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#appFeedbackModal">View Application Feedback</button>
-        
+         </div>
+         <% } %>
+         <div class="homePageSection" id="applicationTableOnHomePage">
+            <h3>Application table</h3>
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th>Application Status</th>
+                     <th>Section</th>
+                     <th>Last Updated</th>
+                     <th>View Application Details</th>
+                     <th>Edit</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <% applications.forEach(function(application) { %>
+                  <tr>
+                     <td><%= application.applicationstatus %></td>
+                     <td><%= application.userdiscipline %></td>
+                     <td><%= application.lastupdated %></td>
+                     <td><a href="/application/<%= application.userdiscipline %>/<%= application._id %>"><span class='glyphicon glyphicon-search'></span></a></td>
+                     <td><a href="/edit<%= application.userdiscipline %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
+                  </tr>
+                  <% }); %>
+               </tbody>
+            </table>
+            <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#appFeedbackModal">View Application Feedback</button>
             <div class="modal fade" id="appFeedbackModal" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Application Feedback</h4>
-                    </div>
-                    <div class="modal-body">
+                     </div>
+                     <div class="modal-body">
                         <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                <th>Section</th>
-                                <th>Note</th>
-                                <th>Entered By</th>
-                                <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <% applications.forEach(function(application) { %>
-                                <% application.feedback.forEach(function(feedbackEntry) { %>
-                                <tr>
-                                    <td><%=application.userdiscipline %></td>
-                                    <td><%=feedbackEntry.feedback %></td>  
-                                    <td><%=feedbackEntry.user %></td>
-                                    <td><%=feedbackEntry.prettyFeedbackDate %></td>
-                                </tr>
-                                <% }); %>
-                            <% }); %>
-                            </tbody>
+                           <thead>
+                              <tr>
+                                 <th>Section</th>
+                                 <th>Note</th>
+                                 <th>Entered By</th>
+                                 <th>Date</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <% applications.forEach(function(application) { %>
+                              <% application.feedback.forEach(function(feedbackEntry) { %>
+                              <tr>
+                                 <td><%=application.userdiscipline %></td>
+                                 <td><%=feedbackEntry.feedback %></td>
+                                 <td><%=feedbackEntry.user %></td>
+                                 <td><%=feedbackEntry.prettyFeedbackDate %></td>
+                              </tr>
+                              <% }); %>
+                              <% }); %>
+                           </tbody>
                         </table>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            </div>
-     </div>
-
-     <% } %>
-
-     <!-- Show the uploads for ITEC if they have an ITEC application submitted --> 
-     <% if (itecApp) { %>
-        <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
+         </div>
+         <% } %>
+         <!-- Show the uploads for ITEC if they have an ITEC application submitted --> 
+         <% if (itecApp) { %>
+         <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
             <h3>ITEC Uploads</h3>
             <div class="form-group">
             </div>
             <div class="uploadBox" id="itecBox">
-                <form ref='uploadForm'
-                id='uploadForm1'
-                action='/uploadItecResume'
-                method='post'
-                encType="multipart/form-data"
-                class="form-inline">
-                <div class="form-group">
-                    <input type="file"  name="resume" />
-                </div>
-                <div class="form-group">
-                    <input type='submit' id="uploadResume" class="btn btn-success btn-sm" value='Upload Resume!' disabled
-                     title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume"/>
-                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume">
-                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
-                </div>
-                </form>
-                <form ref='uploadForm'
-                id='uploadForm2'
-                action='/uploadItecFerpa'
-                method='post'
-                encType="multipart/form-data"
-                class="form-inline">
-                <div class="form-group">
-                    <input type="file" name="ferpa" />
-                </div>
-                <div class ="form-group">
-                    <input type='submit' id="uploadFERPA" class="btn btn-success btn-sm" value='Upload FERPA!' disabled
-                      title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File"/>   
-                      <a target="_blank" title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File">
-                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
-                </div>
-                <br>
-                <a href="/downloadFerpa">Click here to download the FERPA document</a> 
-                </form>
+               <form ref='uploadForm'
+                  id='uploadForm1'
+                  action='/uploadItecResume'
+                  method='post'
+                  encType="multipart/form-data"
+                  class="form-inline">
+                  <div class="form-group">
+                     <input type="file"  name="resume" />
+                  </div>
+                  <div class="form-group">
+                     <input type='submit' id="uploadResume" class="btn btn-success btn-sm" value='Upload Resume!' disabled
+                        title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume"/>
+                     <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume">
+                     <i class="glyphicon glyphicon-question-sign" title="Please upload the resume you wish Dr. Pollacia to distribute. Please ensure that your resume has been critiqued by the career development and advising center at GGC, and that it is a PDF or .DOCX format." data-toggle="tooltip"></i></a>
+                  </div>
+               </form>
+               <form ref='uploadForm'
+                  id='uploadForm2'
+                  action='/uploadItecFerpa'
+                  method='post'
+                  encType="multipart/form-data"
+                  class="form-inline">
+                  <div class="form-group">
+                     <input type="file" name="ferpa" />
+                  </div>
+                  <div class ="form-group">
+                     <input type='submit' id="uploadFERPA" class="btn btn-success btn-sm" value='Upload FERPA!' disabled
+                        title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File"/>   
+                     <a target="_blank" title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File">
+                     <i class="glyphicon glyphicon-question-sign" title="Click the below link to download the FERPA document. After filling out the FERPA document, select it via the 'Choose File' button, and then select 'Upload FERPA!'. After uploading the document your upload will be recorded in your document uploads table below." data-toggle="tooltip"></i></a>
+                  </div>
+                  <br>
+                  <a href="/downloadFerpa">Click here to download the FERPA document</a> 
+               </form>
             </div>
-        </div>
-     <% } %>
-     
-     <!-- Show the uploads for BIO if they have an BIO application submitted --> 
-     <% if (bioApp) { %> 
-        <div class="homePageSection" id="bioDocumentUploadSectionOnHomePage">
+         </div>
+         <% } %>
+         <!-- Show the uploads for BIO if they have an BIO application submitted --> 
+         <% if (bioApp) { %> 
+         <div class="homePageSection" id="bioDocumentUploadSectionOnHomePage">
             <h3>BIO Uploads</h3>
             <div class="form-group">
             </div>
             <div class="uploadBox" id="bioBox">
-                <form ref='uploadForm'
-                id='uploadForm3'
-                action='/uploadBioEssay'
-                method='post'
-                encType="multipart/form-data"
-                class="form-inline">
-                <div class="form-group">
-                    <input type="file"  name="essay" />
-                </div>
-                <div class="form-group">
-                    <input type='submit' id="uploadEssay" class="btn btn-success btn-sm" value='Upload Essay!' disabled 
-                     title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay"/>
-                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay">
-                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a>
-                </div>
-                </form>
-                <form ref='uploadForm'
-                id='uploadForm4'
-                action='/uploadBioTranscript'
-                method='post'
-                encType="multipart/form-data"
-                class="form-inline">
-                <div class="form-group">
-                    <input type="file" name="transcript" />
-                </div>
-                <div class ="form-group">
-                    <input type='submit' id="uploadTranscript" class="btn btn-success btn-sm" value='Upload Transcript!' disabled 
-                        title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'"/>  
-                    <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'">
-                    <img src="https://shots.jotform.com/kade/Screenshots/blue_question_mark.png" height="17px"/></a> 
-                </div>
+               <form ref='uploadForm'
+                  id='uploadForm3'
+                  action='/uploadBioEssay'
+                  method='post'
+                  encType="multipart/form-data"
+                  class="form-inline">
+                  <div class="form-group">
+                     <input type="file"  name="essay" />
+                  </div>
+                  <div class="form-group">
+                     <input type='submit' id="uploadEssay" class="btn btn-success btn-sm" value='Upload Essay!' disabled 
+                        title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay"/>
+                     <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay">
+                     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"></i></a>
+                  </div>
+               </form>
+               <form ref='uploadForm'
+                  id='uploadForm4'
+                  action='/uploadBioTranscript'
+                  method='post'
+                  encType="multipart/form-data"
+                  class="form-inline">
+               <div class="form-group">
+                  <input type="file" name="transcript" />
+               </div>
+               <div class ="form-group">
+                  <input type='submit' id="uploadTranscript" class="btn btn-success btn-sm" value='Upload Transcript!' disabled 
+                     title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'"/>  
+                  <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Transcript! To Upload Transcript'">
+                  <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip"></i></a>
+               </div>
             </div>
-        </div>
-     <% } %>
-
-     <!-- If the user has documents uploaded, display the document upload table -->
-     <% if (documents.length > 0) { %>
-        <div class="homePageSection" id="documentTableOnHomePage">
-        <h3>Document Uploads table</h3>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                <th>Document Status</th>
-                <th>Name</th>
-                <th>Section</th>
-                <th>File Type</th>
-                <th>Date Submitted</th>
-                <th>View Document Details</th>
-                </tr>
-            </thead>
-            <tbody>
-            <% documents.forEach(function(document) { %>
-               <tr>
-                  <td><%= document.documentStatus %></td>
-                  <td><%= document.documentName %></td>
-                  <td><%= document.fileSection %></td>  
-                  <td><%= document.fileType %></td>
-                  <td><%= document.prettyUploadDate %></td>
-                  <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
-               </tr>
-            <% }); %>
-            </tbody>
-        </table>
-        <button class="btn btn-success" type="button" href="#docFeedbackModal" data-toggle="modal" type="display">View Feedback</button>
-
-        <div class="modal fade" id="docFeedbackModal" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+         </div>
+         <% } %>
+         <!-- If the user has documents uploaded, display the document upload table -->
+         <% if (documents.length > 0) { %>
+         <div class="homePageSection" id="documentTableOnHomePage">
+            <h3>Document Uploads table</h3>
+            <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th>Document Status</th>
+                     <th>Name</th>
+                     <th>Section</th>
+                     <th>File Type</th>
+                     <th>Date Submitted</th>
+                     <th>View Document Details</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <% documents.forEach(function(document) { %>
+                  <tr>
+                     <td><%= document.documentStatus %></td>
+                     <td><%= document.documentName %></td>
+                     <td><%= document.fileSection %></td>
+                     <td><%= document.fileType %></td>
+                     <td><%= document.prettyUploadDate %></td>
+                     <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
+                  </tr>
+                  <% }); %>
+               </tbody>
+            </table>
+            <button class="btn btn-success" type="button" href="#docFeedbackModal" data-toggle="modal" type="display">View Feedback</button>
+            <div class="modal fade" id="docFeedbackModal" role="dialog">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Document Feedback</h4>
-                    </div>
-                    <div class="modal-body">
+                     </div>
+                     <div class="modal-body">
                         <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                <th>Document</th>
-                                <th>Note</th>
-                                <th>Entered By</th>
-                                <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <% documents.forEach(function(document) { %>
-                                <% document.feedback.forEach(function(feedbackEntry) { %>
-                                <tr>
-                                    <td><%=document.documentName %></td>
-                                    <td><%=feedbackEntry.feedback %></td>
-                                    <td><%=feedbackEntry.user %></td>
-                                    <td><%=feedbackEntry.prettyFeedbackDate %></td>
-                                </tr>
-                                <% }); %>
-                            <% }); %>
-                            </tbody>
+                           <thead>
+                              <tr>
+                                 <th>Document</th>
+                                 <th>Note</th>
+                                 <th>Entered By</th>
+                                 <th>Date</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <% documents.forEach(function(document) { %>
+                              <% document.feedback.forEach(function(feedbackEntry) { %>
+                              <tr>
+                                 <td><%=document.documentName %></td>
+                                 <td><%=feedbackEntry.feedback %></td>
+                                 <td><%=feedbackEntry.user %></td>
+                                 <td><%=feedbackEntry.prettyFeedbackDate %></td>
+                              </tr>
+                              <% }); %>
+                              <% }); %>
+                           </tbody>
                         </table>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
+         </div>
+         <% } %>
+         <!-- If the user has submitted applications for either ITEC or BIO -->
+         <% if ( itecApp || bioApp ) { %>
+         <div class="homePageSection" id="secondApplySection">
+            <br>
+            <h3>Select a Program to Apply For:</h3>
+            <div class="dropdown show">
+               <div class="dropdown col-lg-5">
+                  <select class="form-control" id="application" name="application">
+                     <option vaule="Select">Select</option>
+                     <% if (!bioApp) { %>
+                     <option value="Bio">Biology Internship (BIO 4800)</option>
+                     <% } %>
+                     <% if (!itecApp) { %>
+                     <option value="Itec">Information Technology Internship (ITEC 4800)</option>
+                     <% } %>
+                  </select>
+               </div>
+               <div class="bio">
+                  <br/>
+                  <br/>
+                  <h3>Steps to Complete Bio App:</h3>
+                  <ul>
+                     <li>
+                        <h4>Complete Application</h4>
+                     </li>
+                     <li>
+                        <h4>Complete and Upload Essay</h4>
+                     </li>
+                     <li>
+                        <h4>Upload Transcript</h4>
+                     </li>
+                  </ul>
+                  <br/>
+                  <a class="btn btn-success" href="/bio">Apply Now</a>
+               </div>
+               <div class="itec">
+                  <br/>
+                  <br/>
+                  <h3>Steps to Apply for Itec:</h3>
+                  <ul>
+                     <li>
+                        <h4>Complete Application</h4>
+                     </li>
+                     <li>
+                        <h4>Upload Resume</h4>
+                     </li>
+                     <li>
+                        <h4>Fill out and Upload FERPA Form</h4>
+                     </li>
+                  </ul>
+                  <br/>
+                  <a class="btn btn-success" href="/itec">Apply Now</a>
+               </div>
             </div>
+            <!--<div class="dropdown">
+               <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select another program to apply to
+               <span class="caret"></span></button>
+               <ul class="dropdown-menu">
+                   <% if (!bioApp) { %>
+                       <li><a href="/bio">Biology Internship (BIO 4800)</a></li>
+                   <% } %>
+                   <% if (!itecApp) { %>
+                       <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
+                   <% } %>
+               </ul>
+               </div>-->
+         </div>
+      </div>
+      <% } %> 
+      </div>
+      <% include partials/footerimports %>
+      <script>
+         $(document).ready(function() {
 
+            $('[data-toggle="tooltip"]').tooltip(); 
 
-
-        </div>
-        <% } %>
-
-        <!-- If the user has submitted applications for either ITEC or BIO -->
-        <% if ( itecApp || bioApp ) { %>
-            <div class="homePageSection" id="secondApplySection">
-                <br>
-                <h3>Select a Program to Apply For:</h3>
-                <div class="dropdown show"> 
-                    <div class="dropdown col-lg-5">
-                    <select class="form-control" id="application" name="application">
-                           <option vaule="Select">Select</option>
-                           <% if (!bioApp) { %>
-                                <option value="Bio">Biology Internship (BIO 4800)</option>
-                            <% } %>
-                            <% if (!itecApp) { %>
-                                <option value="Itec">Information Technology Internship (ITEC 4800)</option>
-                            <% } %>
-                    </select>
-                    </div>
-
-                    <div class="bio">
-                        <br/>
-                        <br/>
-                        <h3>Steps to Complete Bio App:</h3>
-                        <ul>
-                            <li><h4>Complete Application</h4></li>
-                            <li><h4>Complete and Upload Essay</h4></li>
-                            <li><h4>Upload Transcript</h4></li>
-                        </ul>
-                        <br/>
-                        <a class="btn btn-success" href="/bio">Apply Now</a>
-                    </div>
-                    <div class="itec">
-                        <br/>
-                        <br/>
-                        <h3>Steps to Apply for Itec:</h3>
-                        <ul>
-                            <li><h4>Complete Application</h4></li>
-                            <li><h4>Upload Resume</h4></li>
-                            <li><h4>Fill out and Upload FERPA Form</h4></li>
-                        </ul>
-                        <br/>
-                        <a class="btn btn-success" href="/itec">Apply Now</a>
-                    </div>
-                </div>
-                    <!--<div class="dropdown">
-                    <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select another program to apply to
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <% if (!bioApp) { %>
-                            <li><a href="/bio">Biology Internship (BIO 4800)</a></li>
-                        <% } %>
-                        <% if (!itecApp) { %>
-                            <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
-                        <% } %>
-                    </ul>
-                    </div>-->
-                </div>
-            </div>
-        <% } %> 
-    </div>
-    <% include partials/footerimports %>
-</body>
-</html>
-
-<script>
-
-$('.bio').hide();
-$('.itec').hide();
-   $(function(){
-       $('#application').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Bio'){
-               $('.bio').show();
-               $('.itec').hide();
-           }else if(opt=='Itec'){
-               $('.bio').hide();
-               $('.itec').show();
-           }else{
-           	$('.itec').hide();
             $('.bio').hide();
-           }
-       });
-   });
-</script>
-
-//greyed out button ITEC & BIO
-<script>
-$(function() {
-  var button = $("#uploadForm1"),
-  submitButt = $("#uploadResume");
-
-  button.on("click",function(e) {
-     submitButt.prop("disabled",false); 
-  });
-});
-
-$(function() {
-  var button = $("#uploadForm2"),
-  submitButt = $("#uploadFERPA");
-
-  button.on("click",function(e) {
-     submitButt.prop("disabled",false); 
-  });
-});
-
-$(function() {
-  var button = $("#uploadForm3"),
-  submitButt = $("#uploadEssay");
-
-  button.on("click",function(e) {
-     submitButt.prop("disabled",false);
-  });
-});
-
-$(function() {
-  var button = $("#uploadForm4"),
-  submitButt = $("#uploadTranscript");
-
-  button.on("click",function(e) {
-     submitButt.prop("disabled",false); 
-  });
-});
-
-
-</script>
+            $('.itec').hide();
+                    $('#application').change(function(){
+                    var opt = $(this).val();
+                        if(opt == 'Bio'){
+                            $('.bio').show();
+                            $('.itec').hide();
+                        }else if(opt=='Itec'){
+                            $('.bio').hide();
+                            $('.itec').show();
+                        }else{
+                            $('.itec').hide();
+                        $('.bio').hide();
+                        }
+                });
+            
+            var button1 = $("#uploadForm1"),
+            submitButt1 = $("#uploadResume");
+            
+            button1.on("click",function(e) {
+                submitButt1.prop("disabled",false); 
+            });
+            
+                var button2 = $("#uploadForm2"),
+            submitButt2 = $("#uploadFERPA");
+            
+            button2.on("click",function(e) {
+                submitButt2.prop("disabled",false); 
+            });
+            
+                var button3 = $("#uploadForm3"),
+            submitButt3 = $("#uploadEssay");
+            
+            button3.on("click",function(e) {
+                submitButt3.prop("disabled",false);
+            });
+            
+                var button4 = $("#uploadForm4"),
+            submitButt4 = $("#uploadTranscript");
+            
+            button4.on("click",function(e) {
+                submitButt4.prop("disabled",false); 
+            });
+         });
+      </script>
+   </body>
+</html>
