@@ -28,7 +28,7 @@ var User = require('../app/models/user');
             state: user.local.state,
             zipcode: user.local.zipcode,
             role: user.local.role,
-            discipline: user.local.discipline,
+            discipline: user.local.discipline
         };
         done(null, sessionUser);
     });

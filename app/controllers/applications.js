@@ -49,29 +49,24 @@ module.exports.getApplications = function(req, res) {
     var haveBioApp = false;
     var haveItecApp = false;
 
-    Bio.doesUserHaveBioApp(req.user.email, function(response) {
-        haveBioApp = response;
-    });
 
-    Itec.doesUserHaveItecApp(req.user.email, function(response) {
-        haveItecApp = response;
-    });
- 
+
     if (req.user.role === 'admin' || req.user.role === 'instructor'  ) {
+            User.getAdminValuesForHome(req.user._id, function(adminValues) {
                 Bio.find(function(err, bioApplications) {
                     if (err) return console.error(err);
                     Itec.find(function(err, itecApplications) {
                         if (err) return console.error(err);
                         res.render('applications.ejs', {
                             applicationList: bioApplications.concat(itecApplications),
+                            admin: adminValues,
                             successMessage: req.flash('success'),
                             failureMessage: req.flash('failure'),
-                            haveBioApp: haveBioApp,
-                            haveItecApp: haveItecApp,
                             user: req.user
                         });
                     });
                 });
+            });
         }
         else {
           Bio.find({

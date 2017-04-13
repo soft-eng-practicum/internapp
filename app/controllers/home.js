@@ -17,7 +17,6 @@ module.exports.loadAdminHome = function(req, res) {
         res.redirect('/home');
     } else {
         User.getAdminValuesForHome(req.user._id, function(user) {
-            console.log(user);
             res.render('adminhome', {
                 admin : user,
                 user: req.user,
@@ -38,7 +37,6 @@ module.exports.postAdminHome = function(req, res) {
     adminyear
     adminprogram
 */
-    console.log('elllo');
 
     User.update({
         'local.email' : req.user.email

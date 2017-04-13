@@ -87,21 +87,40 @@
       </div>
       <% include partials/footerimports %>
       <script type="text/javascript">
+
+      $(document).ready(function() {
+
+         makeOptionSelected('applicationSemester', '<%= admin.adminsemester %>');
+         makeOptionSelected('applicationYear', '<%= admin.adminyear %>');
+         makeOptionSelected('applicationProgram', '<%= admin.adminprogram %>');
+
          var table;
-         var semesterYear = "";
-         var discipline = "";
-         $(document).ready(function(){
+         var semester = "";
+         var program = "";
+         var year = "";
+
+        //  table.search(<%= admin.adminsemester %> + ' ' + <%= admin.adminyear %>);
+         
+         
            table = $('#applications').DataTable({
              "bFilter": true
            });
-           $('#semesteryear').on('change', function() {
-             semesterYear = $(this).find(":selected").val()
-             table.search(semesterYear + " " + discipline).draw();
+
+            table.search('<%= admin.adminsemester %>' + ' ' + <%= admin.adminyear %>).draw();
+           $('#applicationSemester').on('change', function() {
+             semester = $(this).find(":selected").val()
+             table.search(semester).draw();
            });
-           $('#discipline').on('change', function() {
-             discipline = $(this).find(":selected").val()
-             table.search(discipline + " " + semesterYear).draw();
+           $('#applicationYear').on('change', function() {
+             year = $(this).find(":selected").val()
+             table.search(year).draw();
            });
+           $('#applicationProgram').on('change', function() {
+             program = $(this).find(":selected").val()
+             table.search(program).draw();
+           });
+
+           
          });
       </script>
    </body>
