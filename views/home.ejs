@@ -7,9 +7,9 @@
 </head>
 <body>
   <% include partials/nav.ejs %>
-    <% include partials/snackBar.ejs %>
     <div class="container">
      <h1>Welcome <%= user.fname %>!</h1>
+     <% include partials/flashMessages.ejs %>
      <h3>Thank you for visiting the GGC Intern Application!</h3>
 
      <!-- First time applying (they can see both sections ) -->

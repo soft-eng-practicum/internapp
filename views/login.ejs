@@ -7,11 +7,11 @@
       <% include partials/headerimports %>
    </head>
    <body>
-   <% include partials/footerimports %>
       <% include partials/nav.ejs %>
       <div class="container">
          <div>
             <h1 align="center"><span class="fa fa-sign-in"></span> Login</h1>
+            <% include partials/flashMessages.ejs %>
             <!-- LOGIN FORM -->
             <form action="/login" method="post" class="form-horizontal">
                <div class="form-group">
@@ -38,5 +38,6 @@
             </div>
          </div>
       </div>
+   <% include partials/footerimports %>
    </body>
 </html>

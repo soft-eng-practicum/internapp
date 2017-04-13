@@ -32,55 +32,66 @@ module.exports.getReset = function(req, res) {
     URL: '/reset'
 */
 module.exports.postReset = function(req, res) {
-    async.waterfall([
-        function(done) {
-            User.findOne({ 'local.resetPasswordToken': req.params.token, 'local.resetPasswordExpires': { $gt: Date.now() } }, function(err, user) {
-                if(err){
-                    console.log(err);
-                }
-                if (!user) {
-                    req.flash('failure', 'Password reset token is invalid or has expired.');
-                    res.redirect('/forgot');
-                }
-                user.local.password = user.generateHash(req.body.password);
-                user.local.resetPasswordToken = undefined;
-                user.local.resetPasswordExpires = undefined;
+    if (req.body.password !== req.body.confirmpassword) {
+        res.redirect('/reset/' + req.params.token);
+        req.flash('failure', 'Your passwords must match');
+    } else {
+        async.waterfall([
+                function(done) {
+                    User.findOne({ 'local.resetPasswordToken': req.params.token, 'local.resetPasswordExpires': { $gt: Date.now() } }, function(err, user) {
+                        if(err){
+                            console.log(err);
+                        }
+                        if (!user) {
+                            req.flash('failure', 'Password reset token is invalid or has expired.');
+                            res.redirect('/forgot');
+                        }
+                        user.local.password = user.generateHash(req.body.password);
+                        user.local.resetPasswordToken = undefined;
+                        user.local.resetPasswordExpires = undefined;
 
-                user.save(function(err) {
-                    if(err){
-                        console.log(err);
-                    }
-                    done(err, user);
-                });
-            });
-        },
-        function(user, done) {
+                        user.save(function(err) {
+                            if(err){
+                                console.log(err);
+                            }
+                            done(err, user);
+                        });
+                    });
+                },
+                function(user, done) {
 
-           transporter = nodemailer.createTransport({
-                service: 'yahoo',
-                auth: {
-                    user: 'ggcinternapp@yahoo.com',
-                    pass: key
+                transporter = nodemailer.createTransport({
+                        service: 'yahoo',
+                        auth: {
+                            user: 'ggcinternapp@yahoo.com',
+                            pass: key
+                        }
+                    });
+
+                    var mailOptions = {
+                        from: 'ggcinternapp@yahoo.com', // sender address 
+                                    to: user.local.email,
+                        subject: 'Your password has been changed',
+                        text: 'Hello,\n\n' +
+                        'This is a confirmation that the password for your account ' + user.local.email + ' has just been changed.\n'+
+                        'Click http://'+req.headers.host+ '/login to go to the login page.'
+                    };
+                    transporter.sendMail(mailOptions, function(err) {
+                        if (err) {
+                            res.redirect('/reset/' + req.params.token);
+                            req.flash('success', 'Success! Your password has been changed.');
+                        } else {
+                            res.redirect('/reset/' + req.params.token);
+                            req.flash('success', 'Success! Your password has been changed.');
+                        }
+
+                    });
+                }
+            ], 
+            function(err) {
+                if (err) {
+                req.flash('failure', 'Apologies, your request cannot be completed at this time.');
                 }
             });
-
-            var mailOptions = {
-                from: 'ggcinternapp@yahoo.com', // sender address 
-                            to: user.local.email,
-                subject: 'Your password has been changed',
-                text: 'Hello,\n\n' +
-                'This is a confirmation that the password for your account ' + user.local.email + ' has just been changed.\n'+
-                'Click http://'+req.headers.host+ '/login to go to the login page.'
-            };
-            transporter.sendMail(mailOptions, function(err) {
-                req.flash('success', 'Success! Your password has been changed.');
-                done(err);
-            });
-        }
-    ], 
-    function(err) {
-        if (err) {
-        req.flash('failure', 'Apologies, your request cannot be completed at this time.');
-        }
-    });
+    }
 };
