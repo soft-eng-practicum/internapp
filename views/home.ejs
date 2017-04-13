@@ -1,64 +1,55 @@
 <!-- views/signup.ejs -->
 <!doctype html>
 <html>
-   <head>
-      <title>GGC Internship Signup</title>
-      <% include partials/headerimports %>
-   </head>
-   <body>
-      <% include partials/nav.ejs %>
-      <% include partials/snackBar.ejs %>
-      <div class="container">
-         <h1>Welcome <%= user.fname %>!</h1>
-         <h3>Thank you for visiting the GGC Intern Application!</h3>
-         <!-- First time applying (they can see both sections ) -->
-         <% if (!bioApp && !itecApp) { %>
-         <h3>Please Select an Internship to Apply For:</h3>
-         <div class="homePageSection" id="initialApplySection">
-            <div class="dropdown show">
-               <div class="dropdown col-lg-5">
-                  <select class="form-control" id="application" name="application">
-                     <option vaule="Select">Select</option>
-                     <option value="Bio">Biology Internship (BIO 4800)</option>
-                     <option value="Itec">Information Technology Internship (ITEC 4800)</option>
-                  </select>
-               </div>
-               <div class="bio">
-                  <br/>
-                  <br/>
-                  <h3>Steps to Complete Bio App:</h3>
-                  <ul>
-                     <li>
-                        <h4>Complete Application</h4>
-                     </li>
-                     <li>
-                        <h4>Complete and Upload Essay</h4>
-                     </li>
-                     <li>
-                        <h4>Upload Transcript</h4>
-                     </li>
-                  </ul>
-                  <br/>
-                  <a class="btn btn-success" href="/bio">Apply Now</a>
-               </div>
-               <div class="itec">
-                  <br/>
-                  <br/>
-                  <h3>Steps to Apply for Itec:</h3>
-                  <ul>
-                     <li>
-                        <h4>Complete Application</h4>
-                     </li>
-                     <li>
-                        <h4>Upload Resume</h4>
-                     </li>
-                     <li>
-                        <h4>Fill out and Upload FERPA Form</h4>
-                     </li>
-                  </ul>
-                  <br/>
-                  <a class="btn btn-success" href="/itec">Apply Now</a>
-               </div>
+<head>
+    <title>GGC Internship Signup</title>
+<% include partials/headerimports %>
+</head>
+<body>
+  <% include partials/nav.ejs %>
+    <div class="container">
+     <h1>Welcome <%= user.fname %>!</h1>
+     <% include partials/flashMessages.ejs %>
+     <h3>Thank you for visiting the GGC Intern Application!</h3>
+
+     <!-- First time applying (they can see both sections ) -->
+     <% if (!bioApp && !itecApp) { %>
+        <h3>Please Select an Internship to Apply For:</h3>
+        <div class="homePageSection" id="initialApplySection">
+                <div class="dropdown show"> 
+                    <div class="dropdown col-lg-5">
+                    <select class="form-control" id="application" name="application">
+                           <option vaule="Select">Select</option>
+                           <option value="Bio">Biology Internship (BIO 4800)</option>
+                           <option value="Itec">Information Technology Internship (ITEC 4800)</option>
+                    </select>
+                    </div>
+
+                    <div class="bio">
+                        <br/>
+                        <br/>
+                        <h3>Steps to Complete Bio App:</h3>
+                        <ul>
+                            <li><h4>Complete Application</h4></li>
+                            <li><h4>Complete and Upload Essay</h4></li>
+                            <li><h4>Upload Transcript</h4></li>
+                        </ul>
+                        <br/>
+                        <a class="btn btn-success" href="/bio">Apply Now</a>
+                    </div>
+                    <div class="itec">
+                        <br/>
+                        <br/>
+                        <h3>Steps to Apply for Itec:</h3>
+                        <ul>
+                            <li><h4>Complete Application</h4></li>
+                            <li><h4>Upload Resume</h4></li>
+                            <li><h4>Fill out and Upload FERPA Form</h4></li>
+                        </ul>
+                        <br/>
+                        <a class="btn btn-success" href="/itec">Apply Now</a>
+                    </div>
+                </div>
             </div>
          </div>
          <br/>
