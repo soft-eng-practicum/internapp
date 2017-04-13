@@ -55,33 +55,17 @@ function makeOptionSelected(target, name) {
 
 }
 
-
-  
-function getSites(target)
-{
-	if (!target)
-		return false;
-	else
-	{
-		Site.find(function (err, sites)
-		{
-			if (err)
-				console.error(err);
-			
-			var listOfSiteNames = [];
-			
-			sites.foreach(function(site)
-			{
-				listOfSiteNames.push(site.sitename);
-			});
-			
-			for (var i = 0; i < listOfSiteNames.length; i++)
-			{
-				var opt = document.createElement('option');
-				opt.value = listOfSiteNames[i];
-				opt.innerHTML = listOfSiteNames[i];
-				target.appendChild(opt);
-			}
-		});
+function prettySection(section) {
+	var prettySection = "";
+	switch (section) {
+		case 'Information Technology Internship (ITEC 4800)':
+			prettySection = "ITEC";
+			break;
+		case 'Biology Internship (BIO 4800)':
+			prettySection = "BIO";
+			break;
+		default:
+			break;
 	}
+	return prettySection;
 }

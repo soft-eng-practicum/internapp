@@ -17,18 +17,17 @@ var path = require('path');
     URL: '/sites'
 */
 module.exports.getSites = function(req, res) {
-    if(true) {
+    User.getAdminValuesForHome(req.user._id, function(adminValues) {
         Site.find(function (err, sites) {
             if (err) return console.error(err);
             res.render('site.ejs', {
                 siteList : sites,
-                user : req.user
+                user : req.user,
+                admin : adminValues
             });
         });
-    }
-    else {
-        res.redirect('/home');
-    }
+    });
+
 }
 
 /*

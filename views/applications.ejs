@@ -19,8 +19,7 @@
 
 <form name="applicationexports" action="/applications" method="post" class="form-horizontal">
          <fieldset>
-            <h4 align="center">Select your table/export filters</h4>
-
+            <h4 align="center">Select your exports</h4>
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Select the semester and year you wish to filter by or export</label>
@@ -95,32 +94,15 @@
          makeOptionSelected('applicationProgram', '<%= admin.adminprogram %>');
 
          var table;
-         var semester = "";
-         var program = "";
-         var year = "";
-
-        //  table.search(<%= admin.adminsemester %> + ' ' + <%= admin.adminyear %>);
-         
+         var semester = '<%= admin.adminsemester %>';
+         var program = prettySection('<%= admin.adminprogram %>');
+         var year = '<%= admin.adminyear %>';
          
            table = $('#applications').DataTable({
              "bFilter": true
            });
 
-            table.search('<%= admin.adminsemester %>' + ' ' + <%= admin.adminyear %>).draw();
-           $('#applicationSemester').on('change', function() {
-             semester = $(this).find(":selected").val()
-             table.search(semester).draw();
-           });
-           $('#applicationYear').on('change', function() {
-             year = $(this).find(":selected").val()
-             table.search(year).draw();
-           });
-           $('#applicationProgram').on('change', function() {
-             program = $(this).find(":selected").val()
-             table.search(program).draw();
-           });
-
-           
+           table.search(semester + ' ' + year + ' ' + program).draw();         
          });
       </script>
    </body>

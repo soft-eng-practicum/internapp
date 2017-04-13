@@ -71,8 +71,19 @@
       <% include partials/footerimports %>
       <script type="text/javascript">
          $(document).ready(function(){
-          $('#sites').DataTable();
-         });
+
+          makeOptionSelected('programSelect', '<%= admin.adminprogram %>');
+         var program = prettySection('<%= admin.adminprogram %>');
+
+         
+           table = $('#sites').DataTable({
+             "bFilter": true
+           });
+
+           table.search(program).draw();         
+        
+     
+       });
       </script>
    </body>
 </html>
