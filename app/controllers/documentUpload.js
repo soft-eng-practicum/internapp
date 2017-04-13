@@ -45,7 +45,6 @@ module.exports.getDocumentUpload = function(req, res) {
                         "feedback" : document.feedback
                     }
                    documentList.push(newDocument);
-                    console.log('hi');
             });
                     res.render('documentUpload', {
                     user : req.session.passport.user,
@@ -199,7 +198,7 @@ module.exports.uploadBioEssay = function(req, res) {
     } else {
         sendEmail(req.files.essay, typeOfFile, req, res, req.user);
     } 
-};
+}
 
 //Upload bio transcript
 module.exports.uploadBioTranscript = function(req, res) {
@@ -210,7 +209,7 @@ module.exports.uploadBioTranscript = function(req, res) {
     } else {
         sendEmail(req.files.transcript, typeOfFile, req, res, req.user);
     }
-};
+}
 
 // Upload itec ferpa
 module.exports.uploadItecFerpa = function(req, res) {
@@ -221,7 +220,37 @@ module.exports.uploadItecFerpa = function(req, res) {
     } else {
         sendEmail(req.files.ferpa, typeOfFile, req, res, req.user);
     }
-};
+}
+
+/*
+    HTTP Req: POST
+    URL: '/uploadBioOther'
+*/
+module.exports.uploadBioOther = function(req, res) {
+    var whatIsFile = req.body.bioOther;
+    var typeOfFile = 'bioOther';
+    if (!req.files.other) {
+        res.redirect('/home');
+        req.flash('failure', noFilesUploadedError);
+    } else {
+       sendEmail(req.files.other, typeOfFile, req, res, req.user, whatIsFile);
+    }
+}
+
+/*
+    HTTP Req: POST
+    URL: '/uploadItecOther'
+*/
+module.exports.uploadItecOther = function(req, res) {
+    var whatIsFile = req.body.itecOther;
+    var typeOfFile = 'itecOther';
+    if (!req.files.other) {
+        res.redirect('/home');
+        req.flash('failure', noFilesUploadedError);
+    } else {
+       sendEmail(req.files.other, typeOfFile, req, res, req.user, whatIsFile);
+    }
+}
 
 // Download FERPA 
 module.exports.downloadFerpa = function(req, res) {
@@ -234,7 +263,7 @@ module.exports.downloadFerpa = function(req, res) {
 };
 
 // Add a document to the user's 
-function addDocumentToUser(fileType, fileName, user) {
+function addDocumentToUser(fileType, fileName, user, whatIsFile) {
      // Student Name
      var recordFileType;
      var recordSection;
@@ -255,7 +284,15 @@ function addDocumentToUser(fileType, fileName, user) {
         case "essay":
              recordFileType = "Essay";
              recordSection = "BIO";
-             break;                     
+             break;
+        case "bioother":
+            recordFileType = whatIsFile;
+            recordSection = "BIO";
+            break;
+        case "itecother":
+            recordFileType = whatIsFile;
+            recordSection = "ITEC";
+            break;                   
         default:
              console.error('fileType not recognized - upload record creation failed');
              res.redirect('/home');
@@ -284,31 +321,46 @@ function addDocumentToUser(fileType, fileName, user) {
     });
 }
 
-function sendEmail(file, typeOfFile, req, res, user) {
+function sendEmail(file, typeOfFile, req, res, user, whatIsFile) {
     console.log('key =', key);
     var coordinatorEmail;
     var emailSubject;
     var emailText;
+    var attachmentFileName;
     switch (typeOfFile.toLowerCase()) {
         case 'transcript':
             coordinatorEmail = bioCoordinatorEmail;
             emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' Transcript';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s Transcript";
+            attachmentFileName = typeOfFile;
             break;
         case 'essay':
             coordinatorEmail = bioCoordinatorEmail;
             emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' Essay';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s Essay";
+            attachmentFileName = typeOfFile;
             break;
         case 'resume':
             coordinatorEmail = itecCoordinatorEmail;
             emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' Resume';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s Resume";
+            attachmentFileName = typeOfFile;
             break;
         case 'ferpa':
             coordinatorEmail = itecCoordinatorEmail;
             emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' FERPA';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s FERPA";
+            attachmentFileName = typeOfFile;
+            break;
+        case 'bioother':
+            coordinatorEmail = bioCoordinatorEmail;
+            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' ' + whatIsFile;
+            attachmentFileName = whatIsFile;
+            break;
+        case 'itecother':
+            coordinatorEmail = itecCoordinatorEmail;
+            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' ' + whatIsFile;
+            attachmentFileName = whatIsFile;
             break;
         default:
             console.log('unknown type of file found');
@@ -332,7 +384,7 @@ function sendEmail(file, typeOfFile, req, res, user) {
                 text: emailText,
                 attachments: [
                     {
-                        filename: String(user.lname).toUpperCase() + '_' + typeOfFile + '_' + file.name,
+                        filename: String(user.lname).toUpperCase() + '_' + attachmentFileName + '_' + file.name,
                         content: file.data,
                         encoding: 'binary'
                     }
@@ -346,7 +398,7 @@ function sendEmail(file, typeOfFile, req, res, user) {
 
                 } else {
                     console.log(typeOfFile + ' sent!');
-                    addDocumentToUser(typeOfFile, file.name, req.user);
+                    addDocumentToUser(typeOfFile, file.name, req.user, whatIsFile);
                     res.redirect('/home');
                     req.flash('success', typeOfFile + ' uploaded!');
                 }

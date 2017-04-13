@@ -177,12 +177,8 @@ module.exports = function(app, passport) {
     app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
     app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
     app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
-    
-    // Upload resume
-    app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
-    app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
-    app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
-    app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
+    app.post('/uploadBioOther', isLoggedIn, ctrlUpload.uploadBioOther);
+    app.post('/uploadItecOther', isLoggedIn, ctrlUpload.uploadItecOther);
 
     /*Export Page*/
     app.get('/export', isLoggedIn, ctrlMongoToCsv.getExport);

@@ -543,23 +543,24 @@ module.exports.postItecApplication = function(req, res) {
     URL: '/bio'
 */
 module.exports.postBioApplication = function(req, res) {
-    var bioapp = new Bio(req.body);
-    bioapp.useremail = req.user.email;
-    bioapp.userstudentid = req.user.studentid;
-    bioapp.userfname = req.user.fname;
-    bioapp.userlname = req.user.lname;
-    bioapp.useraddress = req.user.address;
-    bioapp.usercity = req.user.city;
-    bioapp.userstate = req.user.state;
-    bioapp.userzipcode = req.user.zipcode;
-    bioapp.userdiscipline = 'BIO';
-    bioapp.applicationstatus = 'submitted';
-    bioapp.save(function(err) {
-        if (err) {
-            console.log(err);
-         }
-    });
-    res.redirect('/applications');
+    console.log(req.body);
+    // var bioapp = new Bio(req.body);
+    // bioapp.useremail = req.user.email;
+    // bioapp.userstudentid = req.user.studentid;
+    // bioapp.userfname = req.user.fname;
+    // bioapp.userlname = req.user.lname;
+    // bioapp.useraddress = req.user.address;
+    // bioapp.usercity = req.user.city;
+    // bioapp.userstate = req.user.state;
+    // bioapp.userzipcode = req.user.zipcode;
+    // bioapp.userdiscipline = 'BIO';
+    // bioapp.applicationstatus = 'submitted';
+    // bioapp.save(function(err) {
+    //     if (err) {
+    //         console.log(err);
+    //      }
+    // });
+    // res.redirect('/applications');
 };
 
 function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
