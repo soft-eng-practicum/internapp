@@ -86,10 +86,6 @@ module.exports.exportSites = function(req, res) {
         var fileName = 'csv/' + String(discipline).toLowerCase() + '_sites' + '.csv';
         write(fileName, csv, req, res);
         });
-
-        console.log('Site array', siteArray);
-
-
 }
 
 function write(fileName, csv, req, res) {
@@ -117,7 +113,6 @@ function download(csvPath, req, res) {
 }
 
 function deleteFile(fileName) {
-    console.log('hello');
     fs.unlink(fileName, function(err) {
         if (err) {
             console.log('Error deleting the filing after download');
@@ -313,7 +308,6 @@ module.exports.exportContacts = function(req, res) {
 
 
 function write(fileName, csv, req, res) {
-    console.log('ello');
         fs.writeFile(fileName, csv, function(err) {
         if (err) {
             req.flash('failure', 'There was an error with the writing of the CSV file');

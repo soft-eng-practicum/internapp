@@ -109,12 +109,12 @@ module.exports = function(app, passport) {
      app.get('/home', isLoggedIn, ctrlHome.loadUserHome);
 
      /* admin home page */
-     app.get('/adminhome', isLoggedIn, isAdmin, ctrlHome.loadAdminHome);
-     app.post('/adminhome', isLoggedIn, isAdmin, ctrlHome.postAdminHome);
+     app.get('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.loadAdminHome);
+     app.post('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.postAdminHome);
 
      /* Applications pages - Could probably add some regex to reduce the routes */
-     app.get('/applications', isLoggedIn, ctrlApplications.getApplications);
-     app.post('/applications', makeCSVDirectory, isLoggedIn, ctrlApplications.exportApplications);
+     app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
+     app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.exportApplications);
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
     // app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);
@@ -125,32 +125,32 @@ module.exports = function(app, passport) {
     app.post('/application/itec/feedback/:applicationid', isLoggedIn, ctrlApplications.addItecFeedback);
     app.get('/application/itec/:applicationId/feedback/delete/:feedbackId', isLoggedIn, ctrlApplications.deleteItecFeedback);    
          // BIO
-    app.get('/bio', ctrlApplications.getBioApplication);
+    app.get('/bio', isLoggedIn, ctrlApplications.getBioApplication);
     app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
     app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificBioApplication);
     app.post('/application/bio/notes/:applicationid', isLoggedIn, ctrlApplications.addBioNotes);
-    app.get('/application/bio/:applicationId/notes/delete/:noteId', isLoggedIn, ctrlApplications.deleteBioNote); 
-    app.post('/application/bio/feedback/:applicationid', isLoggedIn, ctrlApplications.addBioFeedback);
-    app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, ctrlApplications.deleteBioFeedback); 
+    app.get('/application/bio/:applicationId/notes/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlApplications.deleteBioNote); 
+    app.post('/application/bio/feedback/:applicationid', isLoggedIn, isAdmin, ctrlApplications.addBioFeedback);
+    app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, isAdmin, ctrlApplications.deleteBioFeedback); 
         // BIO & ITEC
     app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
 
     /* Sites pages & Add Site page */
-    app.get('/sites', isLoggedIn, ctrlSites.getSites);
-    app.post('/sites', isLoggedIn, makeCSVDirectory, ctrlSites.exportSites);
-    app.get('/addsite', isLoggedIn, ctrlSites.getAddSite);
-    app.get('/site/contacts/:siteid/:documentid', isLoggedIn, ctrlSites.getSiteDocument);
-    app.get('/site/edit/:siteid', isLoggedIn, ctrlSites.getSiteToEdit);
-    app.get('/site/:siteid', isLoggedIn, ctrlSites.getSiteDetails);
-    app.post('/addSite', isLoggedIn, ctrlSites.postAddSite);
-    app.post('/site/:siteid', isLoggedIn, ctrlSites.addSiteContact);
-    app.post('/site/edit/:siteid', isLoggedIn, ctrlSites.updateSite);
-    app.post('/site/delete/:siteid', isLoggedIn, ctrlSites.deleteSite);
-    app.get('/site/:siteId/export/contacts', makeCSVDirectory, isLoggedIn, ctrlSites.exportContacts);
+    app.get('/sites', isLoggedIn, isAdminOrInstructor, ctrlSites.getSites);
+    app.post('/sites', isLoggedIn, isAdminOrInstructor, makeCSVDirectory, ctrlSites.exportSites);
+    app.get('/addsite', isLoggedIn, isAdminOrInstructor, ctrlSites.getAddSite);
+    app.get('/site/contacts/:siteid/:documentid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteDocument);
+    app.get('/site/edit/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteToEdit);
+    app.get('/site/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteDetails);
+    app.post('/addSite', isLoggedIn, isAdmin, ctrlSites.postAddSite);
+    app.post('/site/:siteid', isLoggedIn, isAdmin, ctrlSites.addSiteContact);
+    app.post('/site/edit/:siteid', isLoggedIn, isAdmin, ctrlSites.updateSite);
+    app.post('/site/delete/:siteid', isLoggedIn, isAdmin, ctrlSites.deleteSite);
+    app.get('/site/:siteId/export/contacts', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlSites.exportContacts);
 
     /* Promote page */
-    app.get('/promote', isLoggedIn, ctrlPromote.getPromote);
-    app.post('/promote', isLoggedIn, ctrlPromote.promoteUser);
+    app.get('/promote', isLoggedIn, isAdmin, ctrlPromote.getPromote);
+    app.post('/promote', isLoggedIn, isAdmin, ctrlPromote.promoteUser);
 
     /* Edit Profile page */
     app.get('/editprofile', isLoggedIn, ctrlEditProfile.getEditProfile);
@@ -168,9 +168,9 @@ module.exports = function(app, passport) {
     app.get('/document/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
     app.get('/document/:documentId/note/delete/:noteId', isLoggedIn, ctrlUpload.deleteDocumentNote);
     app.get('/document/:documentId/feedback/delete/:feedbackId', isLoggedIn, ctrlUpload.deleteDocumentFeedback);
-    app.post('/document/status/:documentId', isLoggedIn, ctrlUpload.updateSpecificDocumentStatus);
-    app.post('/document/notes/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentNotes);
-    app.post('/document/feedback/:documentId', isLoggedIn, ctrlUpload.addSpecificDocumentFeedback);
+    app.post('/document/status/:documentId', isLoggedIn, isAdminOrInstructor, ctrlUpload.updateSpecificDocumentStatus);
+    app.post('/document/notes/:documentId', isLoggedIn, isAdminOrInstructor, ctrlUpload.addSpecificDocumentNotes);
+    app.post('/document/feedback/:documentId', isLoggedIn, isAdmin, ctrlUpload.addSpecificDocumentFeedback);
 
         // Upload routes 
     app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
@@ -180,30 +180,13 @@ module.exports = function(app, passport) {
     app.post('/uploadBioOther', isLoggedIn, ctrlUpload.uploadBioOther);
     app.post('/uploadItecOther', isLoggedIn, ctrlUpload.uploadItecOther);
 
-    /*Export Page*/
-    app.get('/export', isLoggedIn, ctrlMongoToCsv.getExport);
-
-    // Mongo To Csv
-    app.get('/exportItec', makeCSVDirectory, ctrlMongoToCsv.exportItec);
-    // TO DO app.get('/exportBio', ctrlMongoToCsv);
-    // TO DO (maybe) app.get('/exportUser', ctrlMongoToCsv);
-    app.get('/exportSite', makeCSVDirectory, ctrlMongoToCsv.exportSite);
-    app.get('/exportSiteInfo', makeCSVDirectory, ctrlMongoToCsv.exportSiteInfo);
-
     /* Site Notes page */
-    app.get('/sitenotes', isLoggedIn, ctrlSiteNotes.getSiteNotesPage);
-    app.post('/site/note/:siteId',isLoggedIn, ctrlSiteNotes.addSiteNote);
-    app.get('/site/:siteId/note/delete/:noteId', isLoggedIn, ctrlSiteNotes.deleteSiteNote);
+    app.get('/sitenotes', isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.getSiteNotesPage);
+    app.post('/site/note/:siteId',isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.addSiteNote);
+    app.get('/site/:siteId/note/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.deleteSiteNote);
 
     app.get('/edititec', isLoggedIn, ctrlEditApps.getEditItec);
     app.get('/editbio', isLoggedIn, ctrlEditApps.getEditBio);
     app.post('/edititec', isLoggedIn, ctrlEditApps.updateItecApp);
     app.post('/editbio', isLoggedIn, ctrlEditApps.updateBioApp);
-    
-    /* TEST ROUTES */
-    app.get('/adminhome', isAdmin, function(req, res) {
-        console.log('hi from admin home route');
-        res.render('adminhome');
-    });
-   
 }

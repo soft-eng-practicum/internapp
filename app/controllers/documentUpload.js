@@ -322,7 +322,6 @@ function addDocumentToUser(fileType, fileName, user, whatIsFile) {
 }
 
 function sendEmail(file, typeOfFile, req, res, user, whatIsFile) {
-    console.log('key =', key);
     var coordinatorEmail;
     var emailSubject;
     var emailText;

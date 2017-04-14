@@ -21,7 +21,6 @@ var path = require('path');
     URL: '/itec'
 */
 module.exports.getItecApplication = function(req, res) {
-
     res.render('itec.ejs', {
         user: req.user,
         successMessage: req.flash('success'),
@@ -513,24 +512,31 @@ module.exports.updateApplicationDocument = function(req, res) {
     URL: '/itec'
 */
 module.exports.postItecApplication = function(req, res) {
-    var itecapp = new Itec(req.body);
-    itecapp.useremail = req.user.email;
-    itecapp.userstudentid = req.user.studentid;
-    itecapp.userfname = req.user.fname;
-    itecapp.userlname = req.user.lname;
-    itecapp.useraddress = req.user.address;
-    itecapp.usercity = req.user.city;
-    itecapp.userstate = req.user.state;
-    itecapp.userzipcode = req.user.zipcode;
-    itecapp.userdiscipline = 'ITEC';
-    itecapp.applicationstatus = 'submitted';
-    itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
-    itecapp.save(function(err) {
-        if (err){
-            console.log(err);
+    Itec.getUsersItecApp(req.user.email, function (incomingItecApp) {
+        if (incomingItecApp) {
+            res.redirect('/home');
+            req.flash('failure', 'You cannot create another ITEC application');
+        } else {
+            var itecapp = new Itec(req.body);
+            itecapp.useremail = req.user.email;
+            itecapp.userstudentid = req.user.studentid;
+            itecapp.userfname = req.user.fname;
+            itecapp.userlname = req.user.lname;
+            itecapp.useraddress = req.user.address;
+            itecapp.usercity = req.user.city;
+            itecapp.userstate = req.user.state;
+            itecapp.userzipcode = req.user.zipcode;
+            itecapp.userdiscipline = 'ITEC';
+            itecapp.applicationstatus = 'submitted';
+            itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
+            itecapp.save(function(err) {
+                if (err){
+                    console.log(err);
+                }
+            });
+            res.redirect('/applications');
         }
     });
-	res.redirect('/applications');
 };
 
 /*
@@ -538,25 +544,31 @@ module.exports.postItecApplication = function(req, res) {
     URL: '/bio'
 */
 module.exports.postBioApplication = function(req, res) {
-    console.log(req.body);
-    // var bioapp = new Bio(req.body);
-    // bioapp.useremail = req.user.email;
-    // bioapp.userstudentid = req.user.studentid;
-    // bioapp.userfname = req.user.fname;
-    // bioapp.userlname = req.user.lname;
-    // bioapp.useraddress = req.user.address;
-    // bioapp.usercity = req.user.city;
-    // bioapp.userstate = req.user.state;
-    // bioapp.userzipcode = req.user.zipcode;
-    // bioapp.userdiscipline = 'BIO';
-    // bioapp.applicationstatus = 'submitted';
-    // bioapp.save(function(err) {
-    //     if (err) {
-    //         console.log(err);
-    //      }
-    // });
-    // res.redirect('/applications');
-};
+    Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
+        if (incomingBioApp) {
+            res.redirect('/home');
+            req.flash('failure', 'You cannot create another BIO application');
+        } else {
+            var bioapp = new Bio(req.body);
+            bioapp.useremail = req.user.email;
+            bioapp.userstudentid = req.user.studentid;
+            bioapp.userfname = req.user.fname;
+            bioapp.userlname = req.user.lname;
+            bioapp.useraddress = req.user.address;
+            bioapp.usercity = req.user.city;
+            bioapp.userstate = req.user.state;
+            bioapp.userzipcode = req.user.zipcode;
+            bioapp.userdiscipline = 'BIO';
+            bioapp.applicationstatus = 'submitted';
+            bioapp.save(function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            res.redirect('/applications');
+        }
+    });
+}
 
 function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
 

@@ -44,9 +44,7 @@ function populateSelectYears(target, firstSelectValue, min, max) {
 
 function makeOptionSelected(target, name) {
 	var select = document.getElementById(target);
-	console.log(select);
 	var options = select.getElementsByTagName('option');
-	console.log(options);
 	for (var index = 0; index < options.length; index++) {
 		if (options[index].value.toLowerCase() == name.toLowerCase()) {
 			options[index].selected = true;

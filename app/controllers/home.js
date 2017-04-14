@@ -70,7 +70,6 @@ module.exports.loadUserHome = function(req, res) {
     
     Document.getDocumentsForUser(req.user.email, function(incomingDocumentList) {
         documentList = incomingDocumentList;
-        console.log(documentList);
         Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
             bioApp = incomingBioApp;
             if (bioApp) {
