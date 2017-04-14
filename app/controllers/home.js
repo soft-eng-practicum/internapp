@@ -13,15 +13,14 @@ var Document = require('../models/document');
     URL: '/adminhome'
 */
 module.exports.loadAdminHome = function(req, res) {
-    if (req.user.role != 'admin') {
-        res.redirect('/home');
-    } else {
-
-
-
-
-
-    }
+        User.getAdminValuesForHome(req.user._id, function(user) {
+            res.render('adminhome', {
+                admin : user,
+                user: req.user,
+                successMessage : req.flash('success'),
+                failureMessage : req.flash('failure')
+            });
+        });
 }
 
 /*

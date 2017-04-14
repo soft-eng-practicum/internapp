@@ -61,7 +61,6 @@ module.exports.getDocumentUpload = function(req, res) {
 
 // Renders the 'View Details' page for a specific document
 module.exports.getSpecificDocument = function(req, res) {
-
     Document.findById({
         "_id" : req.params.documentId
     }, function(err, document) {
@@ -72,11 +71,10 @@ module.exports.getSpecificDocument = function(req, res) {
             failureMessage: req.flash('failure')
         });
     });
-
 }
 
 module.exports.updateSpecificDocumentStatus = function(req, res) {
-
+    typeOfEmail = "documentStatusUpdate";
     Document.findByIdAndUpdate({
         "_id" : req.params.documentId
     },{ 
@@ -86,13 +84,26 @@ module.exports.updateSpecificDocumentStatus = function(req, res) {
     }, function(err) {
         if (err) {
             throw err;
+        } else {
+            req.flash('success', 'Document status has been changed!')
+            Document.findById({
+                "_id" : req.params.documentId
+            }, function(err, document) {
+                if (err) {
+                    throw err;
+                } else {
+                    var redirect = '/document/' + req.params.documentId;
+                    var studentEmail = document.user.user_email;
+                    sendEmail(req, res, typeOfEmail, studentEmail, redirect)
+                }
+            })
         }
-        res.redirect('/document/' + req.params.documentId);
-        req.flash('success', 'Document status has been changed!')
+
     });
 }
 
 module.exports.addSpecificDocumentFeedback = function(req, res) {
+    var typeOfEmail = "documentFeedback";
      Document.update({ 
          _id: req.params.documentId
      },{ 
@@ -108,8 +119,13 @@ module.exports.addSpecificDocumentFeedback = function(req, res) {
             res.redirect('/document/'+req.params.documentId);
         }
         else {
-            req.flash('success', 'The feedback has been successfully added!')                
-            res.redirect('/document/'+req.params.documentId);
+            Document.findById({
+                "_id" : req.params.documentId
+            }, function(err, document) {
+                req.flash('success', 'The feedback has been successfully added!')                
+                var redirect = '/document/'+req.params.documentId;
+                sendEmail(req, res, typeOfEmail, document.user.user_email, redirect);    
+            });
         }
     });
 }
@@ -185,7 +201,7 @@ module.exports.uploadItecResume = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendEmail(req.files.resume, typeOfFile, req, res, req.user);
+        sendDocument(req.files.resume, typeOfFile, req, res, req.user);
     }
 }
 
@@ -196,7 +212,7 @@ module.exports.uploadBioEssay = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendEmail(req.files.essay, typeOfFile, req, res, req.user);
+        sendDocument(req.files.essay, typeOfFile, req, res, req.user);
     } 
 }
 
@@ -207,7 +223,7 @@ module.exports.uploadBioTranscript = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendEmail(req.files.transcript, typeOfFile, req, res, req.user);
+        sendDocument(req.files.transcript, typeOfFile, req, res, req.user);
     }
 }
 
@@ -218,7 +234,7 @@ module.exports.uploadItecFerpa = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendEmail(req.files.ferpa, typeOfFile, req, res, req.user);
+        sendDocument(req.files.ferpa, typeOfFile, req, res, req.user);
     }
 }
 
@@ -233,7 +249,7 @@ module.exports.uploadBioOther = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-       sendEmail(req.files.other, typeOfFile, req, res, req.user, whatIsFile);
+       sendDocument(req.files.other, typeOfFile, req, res, req.user, whatIsFile);
     }
 }
 
@@ -248,7 +264,7 @@ module.exports.uploadItecOther = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-       sendEmail(req.files.other, typeOfFile, req, res, req.user, whatIsFile);
+       sendDocument(req.files.other, typeOfFile, req, res, req.user, whatIsFile);
     }
 }
 
@@ -321,7 +337,7 @@ function addDocumentToUser(fileType, fileName, user, whatIsFile) {
     });
 }
 
-function sendEmail(file, typeOfFile, req, res, user, whatIsFile) {
+function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
     var coordinatorEmail;
     var emailSubject;
     var emailText;
@@ -403,4 +419,49 @@ function sendEmail(file, typeOfFile, req, res, user, whatIsFile) {
                 }
 
             });
+}
+
+function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
+
+    var emailSubject;
+    var emailText;
+    var transporter;
+    switch (typeOfEmail) {
+        case 'documentStatusUpdate':
+            emailSubject = '[GGC Internship Application] Document Upload Status Changed';
+            emailText = 'The status has changed for one of your document uploads. Please login to view the status change: https://ggc-internapp.herokuapp.com/login';
+            break;
+        case 'documentFeedback':
+            emailSubject = '[GGC Internship Application] Application Feedback Received';
+            emailText = 'One of your document uploads has received new feedback. Please login to view the feedback: https://ggc-internapp.herokuapp.com/login';
+            break;
+        default:
+            console.log('email type not recognized')
+            res.redirect('/applications');
+            break;
+    }
+
+    transporter = nodemailer.createTransport({
+                service: 'yahoo',
+                auth: {
+                    user: 'ggcinternapp@yahoo.com',
+                    pass: key
+                }
+    });
+
+    mailOptions = {
+        from: 'ggcinternapp@yahoo.com',
+        to: studentEmail,
+        subject: emailSubject,
+        text: emailText
+    }
+    transporter.sendMail(mailOptions, function(err) {
+        if (err) {
+            console.log(err);
+            res.redirect(redirect);
+        } else {
+            console.log(typeOfEmail, ' completed!');
+            res.redirect(redirect);
+        }
+    });
 }
