@@ -17,18 +17,17 @@ var path = require('path');
     URL: '/sites'
 */
 module.exports.getSites = function(req, res) {
-    if(true) {
+    User.getAdminValuesForHome(req.user._id, function(adminValues) {
         Site.find(function (err, sites) {
             if (err) return console.error(err);
             res.render('site.ejs', {
                 siteList : sites,
-                user : req.user
+                user : req.user,
+                admin : adminValues
             });
         });
-    }
-    else {
-        res.redirect('/home');
-    }
+    });
+
 }
 
 /*
@@ -87,10 +86,6 @@ module.exports.exportSites = function(req, res) {
         var fileName = 'csv/' + String(discipline).toLowerCase() + '_sites' + '.csv';
         write(fileName, csv, req, res);
         });
-
-        console.log('Site array', siteArray);
-
-
 }
 
 function write(fileName, csv, req, res) {
@@ -118,7 +113,6 @@ function download(csvPath, req, res) {
 }
 
 function deleteFile(fileName) {
-    console.log('hello');
     fs.unlink(fileName, function(err) {
         if (err) {
             console.log('Error deleting the filing after download');
@@ -314,7 +308,6 @@ module.exports.exportContacts = function(req, res) {
 
 
 function write(fileName, csv, req, res) {
-    console.log('ello');
         fs.writeFile(fileName, csv, function(err) {
         if (err) {
             req.flash('failure', 'There was an error with the writing of the CSV file');

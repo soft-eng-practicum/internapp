@@ -44,9 +44,7 @@ function populateSelectYears(target, firstSelectValue, min, max) {
 
 function makeOptionSelected(target, name) {
 	var select = document.getElementById(target);
-	console.log(select);
 	var options = select.getElementsByTagName('option');
-	console.log(options);
 	for (var index = 0; index < options.length; index++) {
 		if (options[index].value.toLowerCase() == name.toLowerCase()) {
 			options[index].selected = true;
@@ -55,33 +53,17 @@ function makeOptionSelected(target, name) {
 
 }
 
-
-  
-function getSites(target)
-{
-	if (!target)
-		return false;
-	else
-	{
-		Site.find(function (err, sites)
-		{
-			if (err)
-				console.error(err);
-			
-			var listOfSiteNames = [];
-			
-			sites.foreach(function(site)
-			{
-				listOfSiteNames.push(site.sitename);
-			});
-			
-			for (var i = 0; i < listOfSiteNames.length; i++)
-			{
-				var opt = document.createElement('option');
-				opt.value = listOfSiteNames[i];
-				opt.innerHTML = listOfSiteNames[i];
-				target.appendChild(opt);
-			}
-		});
+function prettySection(section) {
+	var prettySection = "";
+	switch (section) {
+		case 'Information Technology Internship (ITEC 4800)':
+			prettySection = "ITEC";
+			break;
+		case 'Biology Internship (BIO 4800)':
+			prettySection = "BIO";
+			break;
+		default:
+			break;
 	}
+	return prettySection;
 }

@@ -13,11 +13,7 @@ var Document = require('../models/document');
     URL: '/adminhome'
 */
 module.exports.loadAdminHome = function(req, res) {
-    if (req.user.role != 'admin') {
-        res.redirect('/home');
-    } else {
         User.getAdminValuesForHome(req.user._id, function(user) {
-            console.log(user);
             res.render('adminhome', {
                 admin : user,
                 user: req.user,
@@ -25,7 +21,6 @@ module.exports.loadAdminHome = function(req, res) {
                 failureMessage : req.flash('failure')
             });
         });
-    }
 }
 
 /*
@@ -71,7 +66,6 @@ module.exports.loadUserHome = function(req, res) {
     
     Document.getDocumentsForUser(req.user.email, function(incomingDocumentList) {
         documentList = incomingDocumentList;
-        console.log(documentList);
         Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
             bioApp = incomingBioApp;
             if (bioApp) {

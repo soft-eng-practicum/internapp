@@ -161,8 +161,6 @@ module.exports.getAdminValuesForHome = function(id, callback) {
         "adminprogram" : ""
     };
 
-    console.log('asdasdasdasd');
-
     User.findById({ 
         "_id" : id
     }, function(err, user) {

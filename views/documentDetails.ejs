@@ -11,6 +11,12 @@
       <div class="container">
          <div class="col-sm-6 col-sm-offset-3">
             <h2>Document Information</h2>
+            <% if (successMessage.length > 0) { %>
+                  <div class="alert alert-success"><%= successMessage %></div>
+            <% } %>
+            <% if (failureMessage.length > 0) { %>
+                  <div class="alert alert-danger"><%= failureMessage %></div>
+            <% } %>
             <table class="table table-bordered">
                <tr>
                   <td> Student Name </td>

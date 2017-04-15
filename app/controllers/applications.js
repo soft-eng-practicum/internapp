@@ -21,7 +21,6 @@ var path = require('path');
     URL: '/itec'
 */
 module.exports.getItecApplication = function(req, res) {
-
     res.render('itec.ejs', {
         user: req.user,
         successMessage: req.flash('success'),
@@ -49,29 +48,24 @@ module.exports.getApplications = function(req, res) {
     var haveBioApp = false;
     var haveItecApp = false;
 
-    Bio.doesUserHaveBioApp(req.user.email, function(response) {
-        haveBioApp = response;
-    });
 
-    Itec.doesUserHaveItecApp(req.user.email, function(response) {
-        haveItecApp = response;
-    });
- 
+
     if (req.user.role === 'admin' || req.user.role === 'instructor'  ) {
+            User.getAdminValuesForHome(req.user._id, function(adminValues) {
                 Bio.find(function(err, bioApplications) {
                     if (err) return console.error(err);
                     Itec.find(function(err, itecApplications) {
                         if (err) return console.error(err);
                         res.render('applications.ejs', {
                             applicationList: bioApplications.concat(itecApplications),
+                            admin: adminValues,
                             successMessage: req.flash('success'),
                             failureMessage: req.flash('failure'),
-                            haveBioApp: haveBioApp,
-                            haveItecApp: haveItecApp,
                             user: req.user
                         });
                     });
                 });
+            });
         }
         else {
           Bio.find({
@@ -246,7 +240,6 @@ module.exports.getSpecificBioApplication = function(req, res) {
         if (err) throw err;
         Document.getBioDocumentsForUser(bioApp.useremail, function(incomingDocuments) {
             documents = incomingDocuments;
-            console.log('documents found for user ' + bioApp.useremail + '\n' + documents);
             res.render('applicationdetails.ejs', {
                 application : bioApp,
                 documents: documents,
@@ -376,16 +369,28 @@ module.exports.deleteItecNote = function(req, res) {
     URL: /application/itec/feedback/:applicationid
 */
 module.exports.addItecFeedback = function(req, res) {
-    Itec.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
-        if (err) {
-            req.flash('failure',err);
-            res.redirect('/application/itec/'+req.params.applicationid);
-        }
-        else {
-            req.flash('success', 'The feedback has been successfully added!')
-            res.redirect('/application/itec/'+req.params.applicationid);
-        }
-    });
+    var typeOfEmail = "applicationFeedback";
+    var studentEmail;
+    Itec
+        .findById(req.params.applicationid)
+        .exec(
+                function(err, appEntry) {
+                     studentEmail = appEntry.useremail;
+
+                     Itec.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
+                        if (err) {
+                            req.flash('failure', 'Unable to add feedback to ITEC application');
+                            res.redirect('/application/itec/'+req.params.applicationid);
+                        }
+                        else {
+                            req.flash('success', 'The feedback has been successfully added!')
+                            var redirect = '/application/itec/'+req.params.applicationid;
+                            sendEmail(req, res, typeOfEmail, studentEmail, redirect)
+                        }
+                    });
+                }
+    );
+
 }
 
 /*
@@ -460,16 +465,28 @@ module.exports.deleteBioNote = function(req, res) {
     URL: /application/bio/feedback/:applicationid
 */
 module.exports.addBioFeedback = function(req, res) {
-    Bio.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
-        if (err) {
-            req.flash('failure', 'An error has occured, the feedback cannot be added at this time.');
-            res.redirect('/application/bio/'+req.params.applicationid);
-        }
-        else {
-            req.flash('success', 'The feedback has been successfully added!')
-            res.redirect('/application/bio/'+req.params.applicationid);
-        }
-    });
+    var typeOfEmail = "applicationFeedback";
+    var studentEmail;
+    Bio
+        .findById(req.params.applicationid)
+        .exec(
+                function(err, appEntry) {
+                     studentEmail = appEntry.useremail;
+
+                     Bio.update({ _id: req.params.applicationid },{$push: {"feedback": {feedback: req.body.feedback, user: req.user.email}}},function (err) {
+                        if (err) {
+                            req.flash('failure', 'Unable to add feedback to BIO application');
+                            res.redirect('/application/bio/'+req.params.applicationid);
+                        }
+                        else {
+                            req.flash('success', 'The feedback has been successfully added!')
+                            var redirect = '/application/bio/'+req.params.applicationid;
+                            sendEmail(req, res, typeOfEmail, studentEmail, redirect)
+                        }
+                    });
+                }
+    );
+
 }
 
 /*
@@ -518,21 +535,29 @@ module.exports.updateApplicationDocument = function(req, res) {
     URL: '/itec'
 */
 module.exports.postItecApplication = function(req, res) {
-    var itecapp = new Itec(req.body);
-    itecapp.useremail = req.user.email;
-    itecapp.userstudentid = req.user.studentid;
-    itecapp.userfname = req.user.fname;
-    itecapp.userlname = req.user.lname;
-    itecapp.useraddress = req.user.address;
-    itecapp.usercity = req.user.city;
-    itecapp.userstate = req.user.state;
-    itecapp.userzipcode = req.user.zipcode;
-    itecapp.userdiscipline = 'ITEC';
-    itecapp.applicationstatus = 'submitted';
-    itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
-    itecapp.save(function(err) {
-        if (err){
-            console.log(err);
+    Itec.getUsersItecApp(req.user.email, function (incomingItecApp) {
+        if (incomingItecApp) {
+            res.redirect('/home');
+            req.flash('failure', 'You cannot create another ITEC application');
+        } else {
+            var itecapp = new Itec(req.body);
+            itecapp.useremail = req.user.email;
+            itecapp.userstudentid = req.user.studentid;
+            itecapp.userfname = req.user.fname;
+            itecapp.userlname = req.user.lname;
+            itecapp.useraddress = req.user.address;
+            itecapp.usercity = req.user.city;
+            itecapp.userstate = req.user.state;
+            itecapp.userzipcode = req.user.zipcode;
+            itecapp.userdiscipline = 'ITEC';
+            itecapp.applicationstatus = 'submitted';
+            itecapp.documents = [{ item: 'ferpa', status: 'no'},{ item: 'resume', status: 'no'}];
+            itecapp.save(function(err) {
+                if (err){
+                    console.log(err);
+                }
+            });
+            res.redirect('/applications');
         }
     });
 	res.redirect('/home');
@@ -543,25 +568,31 @@ module.exports.postItecApplication = function(req, res) {
     URL: '/bio'
 */
 module.exports.postBioApplication = function(req, res) {
-    console.log(req.body);
-    // var bioapp = new Bio(req.body);
-    // bioapp.useremail = req.user.email;
-    // bioapp.userstudentid = req.user.studentid;
-    // bioapp.userfname = req.user.fname;
-    // bioapp.userlname = req.user.lname;
-    // bioapp.useraddress = req.user.address;
-    // bioapp.usercity = req.user.city;
-    // bioapp.userstate = req.user.state;
-    // bioapp.userzipcode = req.user.zipcode;
-    // bioapp.userdiscipline = 'BIO';
-    // bioapp.applicationstatus = 'submitted';
-    // bioapp.save(function(err) {
-    //     if (err) {
-    //         console.log(err);
-    //      }
-    // });
-    // res.redirect('/applications');
-};
+    Bio.getUsersBioApp(req.user.email, function (incomingBioApp) {
+        if (incomingBioApp) {
+            res.redirect('/home');
+            req.flash('failure', 'You cannot create another BIO application');
+        } else {
+            var bioapp = new Bio(req.body);
+            bioapp.useremail = req.user.email;
+            bioapp.userstudentid = req.user.studentid;
+            bioapp.userfname = req.user.fname;
+            bioapp.userlname = req.user.lname;
+            bioapp.useraddress = req.user.address;
+            bioapp.usercity = req.user.city;
+            bioapp.userstate = req.user.state;
+            bioapp.userzipcode = req.user.zipcode;
+            bioapp.userdiscipline = 'BIO';
+            bioapp.applicationstatus = 'submitted';
+            bioapp.save(function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            res.redirect('/applications');
+        }
+    });
+}
 
 function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
 
@@ -571,17 +602,28 @@ function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
     switch (typeOfEmail) {
         case 'applicationStatusUpdate':
             emailSubject = '[GGC Internship Application] Application Status Changed';
-            emailText = 'Your GGC internship application status has changed to: ' + req.body.applicationstatus;
+            emailText = 'Your GGC internship application status has changed. Please login to view the status change: https://ggc-internapp.herokuapp.com/login';
+            break;
+        case 'applicationFeedback':
+            emailSubject = '[GGC Internship Application] Application Feedback Received';
+            emailText = 'Your GGC internship application has received new feedback. Please login to view the feedback: https://ggc-internapp.herokuapp.com/login';
             break;
         default:
             console.log('email type not recognized')
-            res.redirect('/');
+            res.redirect('/applications');
             break;
     }
 
-    transporter = nodemailer.createTransport('smtps://ggcinternapp%40gmail.com:' + key + '@smtp.gmail.com');
+    transporter = nodemailer.createTransport({
+                service: 'yahoo',
+                auth: {
+                    user: 'ggcinternapp@yahoo.com',
+                    pass: key
+                }
+    });
+
     mailOptions = {
-        from: '"GGC Internapp Admin" <admin@ggcinternapp>',
+        from: 'ggcinternapp@yahoo.com',
         to: studentEmail,
         subject: emailSubject,
         text: emailText

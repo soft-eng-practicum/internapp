@@ -12,6 +12,7 @@ module.exports.getEditBio = function(req, res) {
     Bio.getUsersBioApp(req.user.email, function(foundBioApp) {
         res.render('editbio', {
             application: foundBioApp,
+            user : req.user,
             successMessage: req.flash('success'),
             failureMessage: req.flash('failure')
         });
@@ -22,6 +23,7 @@ module.exports.getEditItec = function(req, res) {
     Itec.getUsersItecApp(req.user.email, function(foundItecApp) {
         res.render('editItec', {
             application: foundItecApp,
+            user : req.user,
             successMessage: req.flash('success'),
             failureMessage: req.flash('failure')
         });
