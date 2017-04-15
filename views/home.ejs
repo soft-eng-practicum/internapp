@@ -9,6 +9,9 @@
   <% include partials/nav.ejs %>
     <div class="container">
      <h1>Welcome <%= user.fname %>!</h1>
+     <% if (user.role == 'admin' || user.role == 'instructor') { %>
+        <a href="/adminhome" class="btn btn-success">Go to admin/instructor home!</a>
+     <% } %>
      <% include partials/flashMessages.ejs %>
      <h3>Thank you for visiting the GGC Intern Application!</h3>
 

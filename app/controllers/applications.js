@@ -560,6 +560,7 @@ module.exports.postItecApplication = function(req, res) {
             res.redirect('/applications');
         }
     });
+	res.redirect('/home');
 };
 
 /*
