@@ -122,7 +122,7 @@ module.exports.exportApplications = function(req, res) {
           "proposedinternyear" : year  
         }, function(err, bioApps) {
             if (bioApps.length == 0) { // if no bio apps were found
-                res.redirect('/home');
+                res.redirect('/applications');
                 req.flash('failure', 'No biology applicants for ' + semester + ' ' + year + ' were found');
             } else {
                 bioApps.forEach(function(bioApp) {
@@ -153,7 +153,7 @@ module.exports.exportApplications = function(req, res) {
                 "proposedinternyear" : year  
                 }, function(err, itecApps) {
                     if (itecApps.length == 0) { // if no bio apps were found
-                        res.redirect('/home');
+                        res.redirect('/applications');
                         req.flash('failure', 'No information technology applicants for ' + semester + ' ' + year + ' were found');
                     } else {
                         itecApps.forEach(function(itecApp) {
