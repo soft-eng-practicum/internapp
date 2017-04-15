@@ -55,3 +55,10 @@ body {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+td {
+    word-wrap: break-word;
+    min-width: 160px;
+    max-width: 160px;
+    white-space:normal;
+}
