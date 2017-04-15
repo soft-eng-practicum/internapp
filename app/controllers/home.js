@@ -38,7 +38,6 @@ module.exports.postAdminHome = function(req, res) {
     adminyear
     adminprogram
 */
-    console.log('elllo');
 
     User.update({
         'local.email' : req.user.email
