@@ -12,11 +12,17 @@
          <div align="center">
             <h1><span class="fa fa-sign-in"></span> Signup</h1>
             <!-- LOGIN FORM -->
-            <form name="signup" action="/signup" onsubmit="return validateForm()" method="post" class="form-horizontal">
+            <form name="signup" action="/signup" onsubmit="return validateForm()" id="signupForm" method="post" class="form-horizontal">
                <div class="form-group">
                   <label for="input" class="col-lg-4 control-label">Email</label>
                   <div class="col-lg-5">
                      <input type="email" class="form-control" id="emailTxt" name="email" pattern="[A-Za-z0-9._]*@ggc.edu" title="Must be a @ggc.edu email address" required>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-4 control-label">Confirm Email</label>
+                  <div class="col-lg-5">
+                     <input type="email" class="form-control" id="cfmEmailTxt" name="cfmEmail" pattern="[A-Za-z0-9._]*@ggc.edu" title="Must be a @ggc.edu email address" required>
                   </div>
                </div>
                <div class="form-group">
@@ -26,9 +32,15 @@
                   </div>
                </div>
                <div class="form-group">
-                  <label for="input" class="col-lg-4 control-label">Student ID</label>
+                  <label for="input" class="col-lg-4 control-label">Confirm Password</label>
                   <div class="col-lg-5">
-                     <input type="text" class="form-control" id="studentIdTxt" name="studentid" minlength="6" pattern="900[0-9]{6}" title="Numbers only" required />
+                     <input type="password" class="form-control" id="cfmPasswordTxt" name="cfmPassword"   required>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="input" class="col-lg-4 control-label">Student ID</label>
+                  <div class="col-lg-5">                                                                                  
+                     <input type="text" class="form-control" id="studentIdTxt" name="studentid" minlength="9" pattern="900[0-9]{6}" title="Must begin with 900 and be at least 9 digits" required />
                   </div>
                </div>
                <div class="form-group">
@@ -52,19 +64,19 @@
                <div class="form-group">
                   <label for="input" class="col-lg-4 control-label">City</label>
                   <div class="col-lg-5">
-                     <input type="text" class="form-control" id="cityTxt" name="city" pattern ="[A-Za-z._]*" title="Must not contain numbers" required>
+                     <input type="text" class="form-control" id="cityTxt" name="city" pattern="[A-Za-z._]*" title="Must not contain numbers" required>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-4 control-label">State</label>
                   <div class="col-lg-5">
-                     <input type="text" class="form-control" id="stateTxt" name="state" pattern ="[A-Z]{2}" title="Invalid format ex: GA" required>
+                     <input type="text" class="form-control" id="stateTxt" name="state" pattern="[A-Z]{2}" title="Invalid format ex: GA" required>
                   </div>
                </div>
                <div class="form-group">
                   <label for="input" class="col-lg-4 control-label">Zip Code</label>
                   <div class="col-lg-5">
-                     <input type="text" class="form-control" id="zipTxt" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required>
+                     <input type="text" class="form-control" id="zipTxt" name="zipcode" pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required>
                   </div>
                </div>
                <button type="submit" class="btn btn-success" id="signupBtn">Signup</button>
@@ -75,5 +87,31 @@
          </div>
       </div>
       <% include partials/footerimports %>
+      <script>
+      $(document).ready(function() {
+        $("#signupForm").validate({
+            rules: {
+                cfmPassword: {
+                    equalTo: "#passwordTxt"
+                },
+                cfmEmail: {
+                    equalTo: "#emailTxt"
+                }
+            },
+            messages: {
+                cfmPassword: {
+                    equalTo: "Your passwords must match."
+                },
+                cfmEmail: {
+                    equalTo: "Your emails must match."
+                }
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+      });
+
+      </script>
    </body>
 </html>
