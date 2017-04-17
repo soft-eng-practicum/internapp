@@ -14,7 +14,7 @@ populateSelectYears('adminYearSelect', 2010);
 
 populateSites('siteSelect');
 
-function populateSelectYears(target, firstSelectValue, min, max) {
+function populateSelectYears(target, min, max) {
       if (!target){
           return false;
       }
