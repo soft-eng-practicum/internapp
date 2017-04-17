@@ -26,8 +26,10 @@ gulp.task('lint', function() {
 
 gulp.task('minify-css', function() {
   return gulp.src(paths.css)
-    .pipe(cleanCSS({compatibility: '*'}))
-    .pipe(concat('styles.css'))
+    .pipe(sourcemaps.init())
+        .pipe(cleanCSS({compatibility: '*'}))
+        .pipe(concat('styles.css'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(dest.css));
 });
 
