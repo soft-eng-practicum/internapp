@@ -19,7 +19,8 @@ module.exports.getEditProfile = function(req, res) {
         res.render('editprofile.ejs', {
             profiledetails : profile,
             user : profile.local,
-            message : req.flash('info')
+            successMessage : req.flash('success'),
+            failureMessage : req.flash('failure')
         });
     });
 };
@@ -40,10 +41,10 @@ module.exports.updateProfile = function(req, res) {
         'local.discipline' : req.body.discipline
     }, function(err) {
         if (err) {
-            res.flash('info', err);
+            res.flash('failure', 'An error has occured, your profile could not be updated.');
             res.redirect('/editprofile');
         } else {
-            req.flash('info', 'success!');
+            req.flash('success', 'Profile successfully updated! Please logout/log back in to see the updated changes on your dashboard.');
             res.redirect('/editprofile');
         }
     });

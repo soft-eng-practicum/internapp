@@ -539,6 +539,7 @@ module.exports.postItecApplication = function(req, res) {
         if (incomingItecApp) {
             res.redirect('/home');
             req.flash('failure', 'You cannot create another ITEC application');
+            res.redirect('/home');
         } else {
             var itecapp = new Itec(req.body);
             itecapp.useremail = req.user.email;
@@ -557,10 +558,9 @@ module.exports.postItecApplication = function(req, res) {
                     console.log(err);
                 }
             });
-            res.redirect('/applications');
+            res.redirect('/home');
         }
     });
-	res.redirect('/home');
 };
 
 /*

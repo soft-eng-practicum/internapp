@@ -353,7 +353,7 @@
                </div>
             </div>
             <div class="form-group">
-               <label for="textArea" class="col-lg-5 control-label">What type of internship are you looking for, such as software development, security, SAP, databse, etc</label>
+               <label for="textArea" class="col-lg-5 control-label">What type of internship are you looking for, such as software development, security, SAP, database, etc</label>
                <div class="col-lg-5">
                   <textarea class="form-control" rows="5" id="typeofinternship" name="typeofinternship" required><%= application.typeofinternship %></textarea>
                </div>
@@ -540,7 +540,7 @@
                </div>
             </div>
             <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
+               <label for="input" class="col-lg-5 control-label">Re-enter signature</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="printedTxt" name="printedname"
                      required value='<%= application.printedname %>'
@@ -549,7 +549,7 @@
             </div>
          </fieldset>
          <div align="center">
-             <button class="btn btn-success" type="submit" id="updateBtn">Update</button>
+             <button class="btn btn-success" type="submit" id="updateBtn">Update</button>&nbsp;&nbsp;<a class="btn btn-success" href="/home" id="cancelBtn">Cancel</a>
          </div>
       </form>
       <% include partials/footerimports %>
@@ -605,6 +605,16 @@
            }
        });
    });
+
+           $("#updateBtn").click(function () {
+            var signature = $("#signatureTxt").val();
+            var name = $("#printedTxt").val();
+            if (signature != name) {
+                alert("Please Make Sure Your Name and Signature Match");
+                return false;
+            }
+            return true;
+        });
 </script>
 </body>
 </html>

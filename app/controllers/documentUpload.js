@@ -415,7 +415,12 @@ function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
                     console.log(typeOfFile + ' sent!');
                     addDocumentToUser(typeOfFile, file.name, req.user, whatIsFile);
                     res.redirect('/home');
-                    req.flash('success', typeOfFile + ' uploaded!');
+                    if (whatIsFile) {
+                        req.flash('success', whatIsFile + ' uploaded!');
+                    } else {
+                        req.flash('success', typeOfFile + ' uploaded!');
+                    }
+
                 }
 
             });

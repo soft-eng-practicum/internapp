@@ -10,12 +10,7 @@
    <body>
       <div class="container">
       <div class="col-sm-6 col-sm-offset-3">
-            <% if (successMessage.length > 0) { %>
-                  <div class="alert alert-success"><%= successMessage %></div>
-            <% } %>
-            <% if (failureMessage.length > 0) { %>
-                  <div class="alert alert-danger"><%= failureMessage %></div>
-            <% } %>
+      <% include partials/flashMessages.ejs %>
          <h3>Site Information:</h3>
          <table class="table table-bordered">
             <thead>
