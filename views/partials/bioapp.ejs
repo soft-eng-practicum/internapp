@@ -316,7 +316,9 @@
             <th>Note</th>
             <th>Entered By</th>
             <th>Date</th>
+            <% if (user.role=='admin') { %>
             <th>Delete</th>
+            <% } %>
          </tr>
       </thead>
       <tbody>
@@ -325,7 +327,9 @@
             <td><%= feedback.feedback %></td>
             <td><%= feedback.user %></td>
             <td><%= feedback.prettyFeedbackDate %></td>
+            <% if (user.role=='admin') { %>
             <td><a href="/application/bio/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
+            <% } %>
          </tr>
          <% }) %>
       </tbody>
@@ -361,6 +365,7 @@
    </form>
 </div>
 <% } %>
+<% if (user.role=='admin' || user.role=='instructor') { %>
 <div class="col-sm-6 col-sm-offset-3">
    <h3>Notes</h3>
    <table class="table table-bordered">
@@ -385,7 +390,6 @@
    </table>
    <hr>
 </div>
-<% if (user.role=='admin' || user.role=='instructor') { %>
 <div class="col-sm-6 col-sm-offset-3">
    <form name="bioappadminnotes" action="/application/bio/notes/<%= application._id %>" method="post">
       <div class="form-group">

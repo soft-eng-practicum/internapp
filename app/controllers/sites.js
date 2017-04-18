@@ -170,7 +170,8 @@ module.exports.getAddSite = function(req, res) {
     if(true) {
         res.render('addsite.ejs', {
             user : req.user,
-            messages: req.flash('info')
+            successMessage: req.flash('success'),
+            failureMessage: req.flash('failure')
         });
     } else {
         res.redirect('/home');
@@ -207,7 +208,8 @@ module.exports.postAddSite = function(req, res) {
             req.flash('info', err)
             res.render('addsite.ejs', {
                 user : req.user,
-                messages: req.flash('info')
+                successMessage: req.flash('success'),
+                failureMessage: req.flash('failure')
             });
         }
         else {
