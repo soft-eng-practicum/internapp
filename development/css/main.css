@@ -60,3 +60,12 @@ td {
     word-wrap: break-word;
     white-space:normal;
 }
+
+dt {
+    font-size: 1.5em;
+}
+
+dd {
+    padding-bottom: 1.5em;
+    font-size: 1.2em;
+}
