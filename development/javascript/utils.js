@@ -57,7 +57,7 @@ function prettySection(section) {
 		case 'Information Technology Internship (ITEC 4800)':
 			prettySection = "ITEC";
 			break;
-		case 'Biology Internship (BIO 4800)':
+		case 'Biology Internship (BIOL 4800)':
 			prettySection = "BIO";
 			break;
 		default:
