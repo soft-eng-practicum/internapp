@@ -58,7 +58,8 @@ body {
 
 td {
     word-wrap: break-word;
-    white-space:normal;
+    white-space: normal;
+    max-width: 160px;
 }
 
 dt {

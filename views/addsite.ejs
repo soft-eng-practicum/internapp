@@ -8,19 +8,29 @@
    </head>
    <body>
       <% include partials/nav.ejs %>
-      <% include partials/flashMessages.ejs %>
       <div class="container">
          <div class="col-sm-10 col-sm-offset-1">
             <div align="center">
                <h1>Add Site</h1>
             </div>
-            <!-- show any messages that come back with authentication -->
-            <!-- LOGIN FORM -->
-            <form name="signup" action="/addsite" class="form-horizontal" onsubmit="return validateForm()" method="post">
+            <% include partials/flashMessages.ejs %>
+            <form name="addSite" id="addSite" action="/addsite" class="form-horizontal" onsubmit="return validateForm()" method="post">
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Site Name</label>
                   <div class="col-lg-5">
                      <input type="text" class="form-control" name="name" required>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="form-inline">
+                     <label for="select" class="col-lg-5 control-label">Program</label>
+                     <div class="col-lg-5" class>
+                        <select class="form-control" name="siteProgram" id="siteProgram" required>
+                           <option value="Select Program">Select Program</option>
+                           <option value="Information Technology Internship (ITEC 4800)">Information Technology Internship (ITEC 4800)</option>
+                           <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
+                        </select>
+                     </div>
                   </div>
                </div>
                <div class="form-group">
