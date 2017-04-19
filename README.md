@@ -35,12 +35,12 @@
 
 ## Application Process
 *Biology Internship Application* <br>
-[![Biology Internship Aplication](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/Bio.png)](https://www.youtube.com/watch?v=jZI5rq5hRgY)<br>
+[![Biology Internship Aplication](https://github.com/soft-eng-practicum/internapp/blob/HelpVideos/public/images/Bio.png)](https://www.youtube.com/watch?v=jZI5rq5hRgY)<br>
 
 <hr/>
 
 *Information Technology Internship Application* <br>
-[![Information Technology Internship Application](https://github.com/soft-eng-practicum/internapp/blob/help/public/images/ITEC.png)](https://www.youtube.com/watch?v=OuM5mHHMCfk&t=59s)
+[![Information Technology Internship Application](https://github.com/soft-eng-practicum/internapp/blob/HelpVideos/public/images/ITEC.png)](https://www.youtube.com/watch?v=OuM5mHHMCfk&t=59s)
 
 <hr/>
 
