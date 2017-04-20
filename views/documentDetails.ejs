@@ -49,6 +49,12 @@
                   </td>
                </tr>
                <tr>
+                  <td> Document Type </td>
+                  <td>
+                     <%= document.fileType %>
+                  </td>
+               </tr>
+               <tr>
                   <td> Status </td>
                   <td>
                      <%= document.documentStatus %>
@@ -74,14 +80,16 @@
                <button type="submit" class="btn btn-success btn-lg">Change Status</button>
             </form>
             <% } %>
-            <h3>Feedback</h3>
+            <h3>Student Feedback</h3>
             <table class="table table-bordered">
                <thead>
                   <tr>
                      <th>Note</th>
                      <th>Entered By</th>
                      <th>Date</th>
+                     <% if (user.role=='admin') { %>
                      <th>Delete</th>
+                     <% } %>
                   </tr>
                </thead>
                <tbody>
@@ -90,7 +98,9 @@
                      <td><%= feedback.feedback %></td>
                      <td><%= feedback.user %></td>
                      <td><%= feedback.prettyFeedbackDate %></td>
+                     <% if (user.role=='admin') { %>
                      <td><a href="/document/<%= document._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
+                     <% } %>
                   </tr>
                   <% }); %>
                </tbody>

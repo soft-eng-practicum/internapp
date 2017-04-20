@@ -54,7 +54,7 @@ function makeOptionSelected(target, name) {
 function prettySection(section) {
 	var prettySection = "";
 	switch (section) {
-		case 'Information Technology Internship (ITEC 4800)':
+		case 'Information Technology Internship (ITEC 4900)':
 			prettySection = "ITEC";
 			break;
 		case 'Biology Internship (BIOL 4800)':
