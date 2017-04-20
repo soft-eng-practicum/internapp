@@ -45,7 +45,7 @@ module.exports.exportSites = function(req, res) {
         case 'Biology Internship (BIOL 4800)':
             discipline = 'Bio';
             break;
-        case 'Information Technology Internship (ITEC 4800)':
+        case 'Information Technology Internship (ITEC 4900)':
             discipline = 'Itec';
             break;
         default:
