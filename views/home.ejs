@@ -17,13 +17,13 @@
 
      <!-- First time applying (they can see both sections ) -->
      <% if (!bioApp && !itecApp) { %>
-        <h3>Please Select an Internship to Apply For:</h3>
+        <h3>Please Select a Program to Apply For:</h3>
         <div class="homePageSection" id="initialApplySection">
                 <div class="dropdown show"> 
                     <div class="dropdown col-lg-5">
                     <select class="form-control" id="application" name="application">
                            <option vaule="Select">Select</option>
-                           <option value="Bio">Biology Internship (BIO 4800)</option>
+                           <option value="Bio">Biology Internship (BIOL 4800)</option>
                            <option value="Itec">Information Technology Internship (ITEC 4800)</option>
                     </select>
                     </div>
@@ -349,7 +349,7 @@
                   <select class="form-control" id="application" name="application">
                      <option vaule="Select">Select</option>
                      <% if (!bioApp) { %>
-                     <option value="Bio">Biology Internship (BIO 4800)</option>
+                     <option value="Bio">Biology Internship (BIOL 4800)</option>
                      <% } %>
                      <% if (!itecApp) { %>
                      <option value="Itec">Information Technology Internship (ITEC 4800)</option>
@@ -398,7 +398,7 @@
                <span class="caret"></span></button>
                <ul class="dropdown-menu">
                    <% if (!bioApp) { %>
-                       <li><a href="/bio">Biology Internship (BIO 4800)</a></li>
+                       <li><a href="/bio">Biology Internship (BIOL 4800)</a></li>
                    <% } %>
                    <% if (!itecApp) { %>
                        <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
