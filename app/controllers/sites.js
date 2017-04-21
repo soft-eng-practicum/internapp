@@ -169,15 +169,11 @@ module.exports.getSiteDetails = function(req, res) {
     URL: '/addSite'
 */
 module.exports.getAddSite = function(req, res) {
-    if(true) {
         res.render('addsite.ejs', {
             user : req.user,
             successMessage: req.flash('success'),
             failureMessage: req.flash('failure')
         });
-    } else {
-        res.redirect('/home');
-    }
 };
 
 /*
@@ -203,21 +199,40 @@ module.exports.getSiteDocument = function(req, res) {
     URL: '/addSite'
 */
 module.exports.postAddSite = function(req, res) {
-    var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: req.body.section,
-    mou: req.body.mou, mouexpiration: req.body.mouexpiration });
-    site.save(function (err) {
-        if (err) {
-            req.flash('info', err)
-            res.render('addsite.ejs', {
-                user : req.user,
-                successMessage: req.flash('success'),
-                failureMessage: req.flash('failure')
-            });
-        }
-        else {
-            res.redirect('/sites');
-        }
-    });
+    var section;
+
+    switch (req.body.siteProgram) {
+        case "Information Technology Internship (ITEC 4900)":
+            section = "Itec";
+            break;
+        case "Biology Internship (BIOL 4800)":
+            section = "Bio";
+        default:
+            break;
+    };
+
+    if (section) {
+        var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: section,
+        mou: req.body.mou, mouexpiration: req.body.mouexpiration });
+
+        site.save(function (err) {
+            if (err) {
+                req.flash('failure', "An error has occured, the site cannot be added.");
+                console.log(err);
+                res.render('addsite.ejs', {
+                    user : req.user,
+                    successMessage: req.flash('success'),
+                    failureMessage: req.flash('failure')
+                });
+            }
+            else {
+                res.redirect('/sites');
+            }
+        });
+    } else {
+        res.redirect('/addsite');
+        req.flash('failure', 'You must select a site program.');
+    }
 };
 
 /*
