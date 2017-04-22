@@ -11,7 +11,7 @@
 <div class="container">
  <h2>Help</h2>
   </br>
-  </br>
+
   
   <hr/>
 
@@ -85,6 +85,8 @@
 
   <hr/>
 
+ <% if (user.role=='admin' || user.role=='instructor') { %>
+
     <div align="center">
   <h4>How To Sign Up For Administrator/Instructor</h4>
   <p class="text-sm-left">This Video Will Show You How To Appropiatly Sign Up For Administrator/Instructor</p>
@@ -120,6 +122,17 @@
 
   <hr/>
 
+     <div align="center">
+  <h4>How To Uitlize Site Feature</h4>
+  <p class="text-sm-left">This Video Will Show You How To Appropiatly Uitlize Site Feature</p>
+  <iframe width="800" height="400" src="https://www.youtube.com/embed/T2qMif48rtc" frameborder="0" allowfullscreen></iframe>
+  </iframe>
+  </div>
+
+  <hr/>
+
+ <% } %> 
+ 
   <h4>Please Check Out Frequenly Asked Questions By Clicking <a href="/faq">HERE</a> If The Video Was Not Helpful.</h4> 
   </br>
   </br>
@@ -129,5 +142,3 @@
 <% include partials/footerimports %>
 </body>
 </html>
-
-
