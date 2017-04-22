@@ -78,3 +78,17 @@ dd {
 .help p {
     font-size: 1.5em;
 }
+
+.help h2 {
+    font-size: 3em;
+}
+
+.pageTitle {
+    text-align: center;
+    font-size: 3em;
+}
+
+.pageDescription {
+    text-align: center;
+    font-size: 1.5em;
+}
