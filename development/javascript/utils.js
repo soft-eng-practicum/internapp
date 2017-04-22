@@ -12,8 +12,6 @@ populateSelectYears('yearSelect', new Date().getFullYear());
 
 populateSelectYears('adminYearSelect', 2010);
 
-populateSites('siteSelect');
-
 function populateSelectYears(target, min, max) {
       if (!target){
           return false;
@@ -56,10 +54,10 @@ function makeOptionSelected(target, name) {
 function prettySection(section) {
 	var prettySection = "";
 	switch (section) {
-		case 'Information Technology Internship (ITEC 4800)':
+		case 'Information Technology Internship (ITEC 4900)':
 			prettySection = "ITEC";
 			break;
-		case 'Biology Internship (BIO 4800)':
+		case 'Biology Internship (BIOL 4800)':
 			prettySection = "BIO";
 			break;
 		default:

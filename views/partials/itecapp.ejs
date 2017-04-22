@@ -297,7 +297,9 @@
             <th>Feedback</th>
             <th>Entered By</th>
             <th>Date</th>
+            <% if (user.role=='admin') { %>
             <th>Delete</th>
+            <% } %>
          </tr>
       </thead>
       <tbody>
@@ -306,35 +308,39 @@
             <td><%= feedback.feedback %></td>
             <td><%= feedback.user %></td>
             <td><%= feedback.prettyFeedbackDate %></td>
+            <% if (user.role=='admin') { %>
             <td><a href="/application/itec/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
+            <% } %>
          </tr>
       <% }) %>
       </tbody>
    </table>
    <% if (user.role=='admin' || user.role=='instructor') { %>
-   <form name="itecappadminnotes" action="/application/itec/feedback/<%= application._id %>" method="post">
-      <div class="form-group">
-         <br>
-         <textarea rows="4" cols="50" name="feedback"></textarea>
-      </div>
-      <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
-   </form>
-   <h3>Change Application Status</h3>
-   <form name="applicationstatus" method="post">
-      <div class="form-group">
-         <label>Application Status</label>
-         <select class="form-control" name="applicationstatus">
-            <option value="" >Select a status</option>
-            <option value="complete" >Complete</option>
-            <option value="incomplete">Incomplete</option>
-            <option value="further review">Further Review</option>
-            <option value="applicant rescinded" >Applicant Rescinded</option>
-            <option value="applicant postponed">Applicant Postponed</option>
-            <option value="site declined">Site Declined</option>
-         </select>
-      </div>
-      <button type="submit" class="btn btn-success btn-lg">Change Status</button>
-   </form>
+    <% if (user.role=='admin') { %>
+    <form name="itecappadminnotes" action="/application/itec/feedback/<%= application._id %>" method="post">
+        <div class="form-group">
+            <br>
+            <textarea rows="4" cols="50" name="feedback"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
+    </form>
+    <h3>Change Application Status</h3>
+    <form name="applicationstatus" method="post">
+        <div class="form-group">
+            <label>Application Status</label>
+            <select class="form-control" name="applicationstatus">
+                <option value="" >Select a status</option>
+                <option value="complete" >Complete</option>
+                <option value="incomplete">Incomplete</option>
+                <option value="further review">Further Review</option>
+                <option value="applicant rescinded" >Applicant Rescinded</option>
+                <option value="applicant postponed">Applicant Postponed</option>
+                <option value="site declined">Site Declined</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Change Status</button>
+    </form>
+    <% } %>
    <h3>Admin and Instructor Notes</h3>
    <table class="table table-bordered">
       <thead>

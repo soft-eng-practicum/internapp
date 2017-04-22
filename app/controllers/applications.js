@@ -101,10 +101,10 @@ module.exports.exportApplications = function(req, res) {
     var fields = [];
 
     switch (req.body.program) {
-        case 'Biology Internship (BIO 4800)':
+        case 'Biology Internship (BIOL 4800)':
             discipline = 'BIO';
             break;
-        case 'Information Technology Internship (ITEC 4800)':
+        case 'Information Technology Internship (ITEC 4900)':
             discipline = 'ITEC';
         default:
             break;
