@@ -38,13 +38,14 @@ module.exports.exportSites = function(req, res) {
     var discipline = "";
     var program = req.body.program;
     var siteArray = [];
+    var redirect = "/sites";
     var fields = [];
 
     switch (req.body.program) {
-        case 'Biology Internship (BIO 4800)':
+        case 'Biology Internship (BIOL 4800)':
             discipline = 'Bio';
             break;
-        case 'Information Technology Internship (ITEC 4800)':
+        case 'Information Technology Internship (ITEC 4900)':
             discipline = 'Itec';
             break;
         default:
@@ -84,40 +85,41 @@ module.exports.exportSites = function(req, res) {
         var csv = json2csv({ data: siteArray, fields: fields });
 
         var fileName = 'csv/' + String(discipline).toLowerCase() + '_sites' + '.csv';
-        write(fileName, csv, req, res);
+        write(fileName, csv, req, res, redirect);
         });
 }
 
-function write(fileName, csv, req, res) {
+function write(fileName, csv, req, res, redirect) {
         fs.writeFile(fileName, csv, function(err) {
         if (err) {
             req.flash('failure', 'There was an error with the writing of the CSV file');
         } else {
             console.log('file successfully saved');
             csvPath = path.resolve(__dirname + '/../../' + fileName);
-            download(csvPath, req, res);
+            download(csvPath, req, res, redirect);
         }
     });
 }
 
-function download(csvPath, req, res) {
+function download(csvPath, req, res, redirect) {
     res.download(csvPath, function(err) {
         if (err) { 
             console.log('Error downloading csv: ', err);    
             req.flash('failure', 'There was an error downloading the csv file');
         } else {
             console.log('file successfully written!');
-            deleteFile(csvPath);
+            deleteFile(csvPath, req, res, redirect);
         }
     });
 }
 
-function deleteFile(fileName) {
+function deleteFile(fileName, req, res, redirect) {
     fs.unlink(fileName, function(err) {
         if (err) {
             console.log('Error deleting the filing after download');
         } else {
             console.log(fileName + ' deleted!');
+            res.redirect(redirect);
         }
     });
 }
@@ -167,14 +169,11 @@ module.exports.getSiteDetails = function(req, res) {
     URL: '/addSite'
 */
 module.exports.getAddSite = function(req, res) {
-    if(true) {
         res.render('addsite.ejs', {
             user : req.user,
-            messages: req.flash('info')
+            successMessage: req.flash('success'),
+            failureMessage: req.flash('failure')
         });
-    } else {
-        res.redirect('/home');
-    }
 };
 
 /*
@@ -200,20 +199,40 @@ module.exports.getSiteDocument = function(req, res) {
     URL: '/addSite'
 */
 module.exports.postAddSite = function(req, res) {
-    var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: req.body.section,
-    mou: req.body.mou, mouexpiration: req.body.mouexpiration });
-    site.save(function (err) {
-        if (err) {
-            req.flash('info', err)
-            res.render('addsite.ejs', {
-                user : req.user,
-                messages: req.flash('info')
-            });
-        }
-        else {
-            res.redirect('/sites');
-        }
-    });
+    var section;
+
+    switch (req.body.siteProgram) {
+        case "Information Technology Internship (ITEC 4900)":
+            section = "Itec";
+            break;
+        case "Biology Internship (BIOL 4800)":
+            section = "Bio";
+        default:
+            break;
+    };
+
+    if (section) {
+        var site = new Site({ name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: section,
+        mou: req.body.mou, mouexpiration: req.body.mouexpiration });
+
+        site.save(function (err) {
+            if (err) {
+                req.flash('failure', "An error has occured, the site cannot be added.");
+                console.log(err);
+                res.render('addsite.ejs', {
+                    user : req.user,
+                    successMessage: req.flash('success'),
+                    failureMessage: req.flash('failure')
+                });
+            }
+            else {
+                res.redirect('/sites');
+            }
+        });
+    } else {
+        res.redirect('/addsite');
+        req.flash('failure', 'You must select a site program.');
+    }
 };
 
 /*

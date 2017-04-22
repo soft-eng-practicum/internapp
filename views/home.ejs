@@ -17,14 +17,14 @@
 
      <!-- First time applying (they can see both sections ) -->
      <% if (!bioApp && !itecApp) { %>
-        <h3>Please Select an Internship to Apply For:</h3>
+        <h3>Please Select a Program to Apply For:</h3>
         <div class="homePageSection" id="initialApplySection">
                 <div class="dropdown show"> 
                     <div class="dropdown col-lg-5">
                     <select class="form-control" id="application" name="application">
                            <option vaule="Select">Select</option>
-                           <option value="Bio">Biology Internship (BIO 4800)</option>
-                           <option value="Itec">Information Technology Internship (ITEC 4800)</option>
+                           <option value="Bio">Biology Internship (BIOL 4800)</option>
+                           <option value="Itec">Information Technology Internship (ITEC 4900)</option>
                     </select>
                     </div>
 
@@ -302,7 +302,7 @@
                   <% }); %>
                </tbody>
             </table>
-            <button class="btn btn-success" type="button" href="#docFeedbackModal" data-toggle="modal" type="display">View Feedback</button>
+            <button class="btn btn-success" type="button" href="#docFeedbackModal" data-toggle="modal" type="display">View Document Feedback</button>
             <div class="modal fade" id="docFeedbackModal" role="dialog">
                <div class="modal-dialog">
                   <div class="modal-content">
@@ -314,7 +314,8 @@
                         <table class="table table-hover">
                            <thead>
                               <tr>
-                                 <th>Document</th>
+                                 <th>Name</th>
+                                 <th>Type</th>
                                  <th>Note</th>
                                  <th>Entered By</th>
                                  <th>Date</th>
@@ -325,6 +326,7 @@
                               <% document.feedback.forEach(function(feedbackEntry) { %>
                               <tr>
                                  <td><%=document.documentName %></td>
+                                 <td><%=document.fileType %></td>
                                  <td><%=feedbackEntry.feedback %></td>
                                  <td><%=feedbackEntry.user %></td>
                                  <td><%=feedbackEntry.prettyFeedbackDate %></td>
@@ -349,10 +351,10 @@
                   <select class="form-control" id="application" name="application">
                      <option vaule="Select">Select</option>
                      <% if (!bioApp) { %>
-                     <option value="Bio">Biology Internship (BIO 4800)</option>
+                     <option value="Bio">Biology Internship (BIOL 4800)</option>
                      <% } %>
                      <% if (!itecApp) { %>
-                     <option value="Itec">Information Technology Internship (ITEC 4800)</option>
+                     <option value="Itec">Information Technology Internship (ITEC 4900)</option>
                      <% } %>
                   </select>
                </div>
@@ -398,10 +400,10 @@
                <span class="caret"></span></button>
                <ul class="dropdown-menu">
                    <% if (!bioApp) { %>
-                       <li><a href="/bio">Biology Internship (BIO 4800)</a></li>
+                       <li><a href="/bio">Biology Internship (BIOL 4800)</a></li>
                    <% } %>
                    <% if (!itecApp) { %>
-                       <li><a href="/itec">Information Technology Internship (ITEC 4800)</a></li>
+                       <li><a href="/itec">Information Technology Internship (ITEC 4900)</a></li>
                    <% } %>
                </ul>
                </div>-->
