@@ -50,6 +50,8 @@ module.exports.updateBioApp = function(req, res) {
         console.log('bio app removed');
         newBioapp.applicationstatus = oldBioApp.applicationstatus;
         newBioapp.submissionDate = oldBioApp.submissionDate;
+        newBioapp.feedback = oldBioApp.feedback;
+        newBioapp.notes = oldBioApp.notes;
         newBioapp.save(function(err) {
             if (err) throw err;
             console.log('bio app saved');
@@ -78,6 +80,8 @@ module.exports.updateItecApp = function(req, res) {
         console.log('itec app removed');
         newItecapp.applicationstatus = oldItecApp.applicationstatus;
         newItecapp.submissionDate = oldItecApp.submissionDate;
+        newItecapp.feedback = oldItecApp.feedback;
+        newItecapp.notes = oldItecApp.notes;
         newItecapp.save(function(err) {
             if (err) throw err;
             console.log('itec app saved');
