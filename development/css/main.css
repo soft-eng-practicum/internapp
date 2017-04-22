@@ -69,3 +69,11 @@ dd {
     padding-bottom: 1.5em;
     font-size: 1.2em;
 }
+
+.help h4 {
+    font-size: 2.5em;
+}
+
+.help p {
+    font-size: 1.5em;
+}

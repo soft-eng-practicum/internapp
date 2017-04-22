@@ -161,6 +161,7 @@ module.exports = function(app, passport) {
    
    /* Help page */
     app.get('/help', ctrlHelp.getHelp);
+    app.get('/admininstructorhelp', ctrlHelp.getAdminInstructorHelp);
 
     /* Document Upload page */
     // app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);

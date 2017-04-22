@@ -1,34 +1,34 @@
-<!-- views/faq.ejs -->
+<!-- views/help.ejs -->
 <!doctype html>
 <html>
 <head>
-    <title>Help</title>
+    <title>Student Video Guides</title>
 
 <% include partials/headerimports %>
 </head>
 <body>
     <% include partials/nav.ejs %>
-<div class="container">
- <h2>Help</h2>
+<div class="container help">
+ <h2>Student Video Guides</h2>
   </br>
 
   
   <hr/>
 
   <!-- Sign Up Process -->
-   <div align="center">
-  <h4>How Fo Sign Up</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly Sign Up</p>
-  <iframe width="800" height="400" src="https://www.youtube.com/embed/kUIsPtdKB_A" frameborder="0" allowfullscreen></iframe>
-  </iframe>
-  </div>
+         <div align="center">
+            <h4>How do I signup?</h4>
+            <p class="text-sm-left">Learn how to signup for the application by watching this video!</p>
+            <iframe width="800" height="400" src="https://www.youtube.com/embed/kUIsPtdKB_A" frameborder="0" allowfullscreen></iframe>
+            </iframe>
+         </div>
 
   <hr/>
 
   <!-- Applicaton Process Video For Informaton Technology -->
   <div align="center">
-  <h4>How To Apply For Information Technology Internship</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly Apply For Information Technology Internship</p>
+  <h4>How do I apply for the Information Technology Internship (ITEC 4900) program?</h4>
+  <p class="text-sm-left">Learn how to apply to the Information Technology Internship (ITEC 4900) program by watching this video!</p>
   <iframe width="800" height="400" src="https://www.youtube.com/embed/veq6K9y6wSM" frameborder="0" allowfullscreen></iframe>
   </iframe>
   </div>
@@ -37,8 +37,8 @@
 
   <!-- Applicaton Process Video For Biology  -->
    <div align="center">
-  <h4>How To Apply For Biology Internship</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly Apply For Biology Internship</p>
+  <h4>How do I apply for the Biology Internship (BIO 4800) program?</h4>
+  <p class="text-sm-left">Learn how to apply to the Biology Internship (BIO 4800) program by watching this video!</p>
   <iframe width="800" height="400" src="https://www.youtube.com/embed/N5wZID5tE-Q" frameborder="0" allowfullscreen></iframe>
   </iframe>
   </div>
@@ -47,8 +47,8 @@
 
   <!-- Feature Edit Profile  -->
    <div align="center">
-  <h4>How To Edit My Profile</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly Edit Your Profile</p>
+  <h4>How do I edit my profile?</h4>
+  <p class="text-sm-left">Learn how to edit your profile by watching this video!</p>
   <iframe width="800" height="400" src="https://www.youtube.com/embed/fRfMWpGKJMw" frameborder="0" allowfullscreen></iframe>
   </iframe>
   </div>
@@ -57,8 +57,8 @@
 
   <!-- Biology Upload Process -->
    <div align="center">
-  <h4>How To Upload Files Needed For Biology</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly To Upload All Files Necessary For Application</p>
+  <h4>How do I upload the required files for the Biology Internship (BIO 4800) program?</h4>
+  <p class="text-sm-left">Learn how to upload the required files for the Biology Internship (BIO 4800) program by watching this video!</p>
   <iframe width="800" height="400" src="https://www.youtube.com/embed/Gxl2JjnjMC8" frameborder="0" allowfullscreen></iframe>
   </iframe>
   </div>
@@ -67,8 +67,8 @@
 
   <!-- ITEC Upload Process -->
    <div align="center">
-  <h4>How To Upload Files Needed For Information Technology</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly To Upload All Files Necessary For Application</p>
+  <h4>How do I upload the required files for the Information Technology Internship (ITEC 4900) program?</h4>
+  <p class="text-sm-left">Learn how to upload the required files for the Information Technology Internship (ITEC 4900) program by watching this video!</p>
   <iframe width="800" height="400" src="https://www.youtube.com/embed/veq6K9y6wSM" frameborder="0" allowfullscreen></iframe>
   </iframe>
   </div>
@@ -77,54 +77,15 @@
 
  <!-- Edit Application -->
    <div align="center">
-  <h4>How To Edit My Application</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly To Edit My Application</p>
+  <h4>How do I edit my submitted applications?</h4>
+  <p class="text-sm-left">Learn how to edit your submitted applications by watching this video!</p>
   <iframe width="800" height="400" src="https://www.youtube.com/embed/9ZMPleT8vIg" frameborder="0" allowfullscreen></iframe>
   </iframe>
   </div>
 
   <hr/>
 
- <% if (user.role=='admin' || user.role=='instructor') { %>
-
-    <div align="center">
-  <h4>How To Sign Up For Administrator/Instructor</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly Sign Up For Administrator/Instructor</p>
-  <iframe width="800" height="400" src="https://www.youtube.com/embed/nVODllJJ0H8" frameborder="0" allowfullscreen></iframe>
-  </iframe>
-  </div>
-
-
-  <div align="center">
-  <h4>How To Utilize Home Page</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly Uitlize Home Page</p>
-  <iframe width="800" height="400" src="https://www.youtube.com/embed/mBAx97yGvZQ" frameborder="0" allowfullscreen></iframe>
-  </iframe>
-  </div>
-
-  <hr/>
-
-  <div align="center">
-  <h4>How To Uitlize Application Details</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly Uitlize Aplications And Interact With Users</p>
-  <iframe width="800" height="400" src="https://www.youtube.com/embed/CeOeVvvp56E" frameborder="0" allowfullscreen></iframe>
-  </iframe>
-  </div>
-
-  <hr/>
-
-   <div align="center">
-  <h4>How To Uitlize Export Feature</h4>
-  <p class="text-sm-left">This Video Will Show You How To Appropiatly Uitlize Export Page And Features</p>
-  <iframe width="800" height="400" src="https://www.youtube.com/embed/8INXmtexlkU" frameborder="0" allowfullscreen></iframe>
-  </iframe>
-  </div>
-
-  <hr/>
-
- <% } %> 
- 
-  <h4>Please Check Out Frequenly Asked Questions By Clicking <a href="/faq">HERE</a> If The Video Was Not Helpful.</h4> 
+  <h4>See the <a href="/faq">FAQ page</a> for additional help</h4>
   </br>
   </br>
 
