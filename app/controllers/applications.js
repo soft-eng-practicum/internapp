@@ -9,7 +9,7 @@ var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 var Document = require('../models/document');
 var nodemailer = require('nodemailer');
-var key = process.env.KEY;
+var key = process.env.YAHOO_PASSWORD;
 var json2csv = require('json2csv');
 var fs = require('fs');
 var homeDir = require('home-dir');
@@ -282,7 +282,7 @@ module.exports.getSpecificItecApplication = function(req, res) {
 module.exports.updateApplicationStatus = function(req, res) {
     var typeOfEmail = 'applicationStatusUpdate';
     var studentEmail;
-    if (req.params.type == 'itec') {
+    if (req.params.type.toLowerCase() == 'itec') {
         Itec
         .findById(req.params.applicationid)
         .exec(
