@@ -6,7 +6,7 @@
 
 var fileUpload = require('express-fileupload');
 var nodemailer = require('nodemailer');
-var key = process.env.KEY; // password for ggcinternapp@gmail.com
+var key = process.env.YAHOO_PASSWORD; // password for ggcinternapp@gmail.com
 
 var User = require('../models/user');
 var Document = require('../models/document');
@@ -17,14 +17,10 @@ var Document = require('../models/document');
 // Setting local env in terminal
 // export KEY='password'
 
-
-
 // placeholder values
-var itecCoordinatorEmail = "rbryan3@ggc.edu";
-var bioCoordinatorEmail = "rbryan3@ggc.edu";
-
+var itecCoordinatorEmail = process.env.ITEC_COORDINATOR_EMAIL;
+var bioCoordinatorEmail = process.env.BIO_COORDINATOR_EMAIL;
 var noFilesUploadedError = " You must choose a file to upload. ";
-
 
 module.exports.getDocumentUpload = function(req, res) {
     var documentList = [];
@@ -394,7 +390,7 @@ function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
 
             mailOptions = {
                 from: 'ggcinternapp@yahoo.com',
-                to: [coordinatorEmail], // comment out for now - req.session.passport.user.email],
+                to: [coordinatorEmail, req.user.email],
                 subject: emailSubject,
                 text: emailText,
                 attachments: [
@@ -412,7 +408,7 @@ function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
                     req.flash('failure', 'Your file cannot be uploaded at this time.');
 
                 } else {
-                    console.log(typeOfFile + ' sent!');
+                    console.log(typeOfFile + ' sent to ' + coordinatorEmail + '!');
                     addDocumentToUser(typeOfFile, file.name, req.user, whatIsFile);
                     res.redirect('/home');
                     if (whatIsFile) {
