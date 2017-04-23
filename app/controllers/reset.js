@@ -6,7 +6,7 @@
 var nodemailer = require('nodemailer');
 var User = require('../models/user');
 var crypto = require('crypto');
-var key = process.env.KEY;
+var key = process.env.YAHOO_PASSWORD;
 var async = require('async');
 
 /*

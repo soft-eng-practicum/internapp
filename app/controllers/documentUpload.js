@@ -6,8 +6,7 @@
 
 var fileUpload = require('express-fileupload');
 var nodemailer = require('nodemailer');
-var key = process.env.YAHOO_PASSWORD; // password for ggcinternapp@gmail.com
-
+var key = process.env.YAHOO_PASSWORD; // password for ggcinternapp@yahoo.com
 var User = require('../models/user');
 var Document = require('../models/document');
 

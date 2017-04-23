@@ -488,7 +488,7 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="printedNameTxt" name="printedname" type="text"
+                  <input class="form-control" rows="3" id="printedTxt" name="printedname" type="text"
                      required value='<%= application.printedname %>'>
                </div>
             </div>
@@ -552,6 +552,18 @@
             }
          });
          });
+
+        $(function () {
+        $("#submitBtn").click(function () {
+            var signature = $("#signatureTxt").val();
+            var name = $("#printedTxt").val();
+            if (signature != name) {
+                alert("Please Make Sure Your Name and Signature Match");
+                return false;
+            }
+            return true;
+        });
+    });
       </script>
    </body>
 </html>

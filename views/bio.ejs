@@ -420,7 +420,7 @@
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Print name of applicant</label>
                <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="printedNameTxt" name="printedname" required type="text">
+                  <input class="form-control" rows="3" id="printedTxt" name="printedname" required type="text">
                </div>
             </div>
          </fieldset>
@@ -455,4 +455,17 @@
            }
        });
    });
+
+   $(function () {
+        $("#submitBtn").click(function () {
+            var signature = $("#signatureTxt").val();
+            var name = $("#printedTxt").val();
+            if (signature != name) {
+                alert("Please Make Sure Your Name and Signature Match");
+                return false;
+            }
+            return true;
+        });
+    });
+
 </script>
