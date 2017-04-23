@@ -281,45 +281,45 @@ module.exports.getSpecificItecApplication = function(req, res) {
 */
 module.exports.updateApplicationStatus = function(req, res) {
     var typeOfEmail = 'applicationStatusUpdate';
-    var studentEmail;
+    var studentEmail = "";
     if (req.params.type.toLowerCase() == 'itec') {
         Itec
         .findById(req.params.applicationid)
         .exec(
                 function(err, appEntry) {
-                     studentEmail = appEntry.useremail;
+                    studentEmail = appEntry.useremail;
+                    Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+                        if (err) {
+                            req.flash('failure', 'An error has occured, the application status has not been changed!')
+                            res.redirect('/application/itec/'+req.params.applicationid);
+                        }
+                        else {
+                            req.flash('success', 'The application status has been successfully changed!')
+                            redirect = '/application/itec/'+req.params.applicationid;
+                            sendEmail(req, res, typeOfEmail, studentEmail, redirect);
+                        }
+                    });
                 }
             );
-        Itec.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
-            if (err){
-                req.flash('failure', 'An error has occured, the application status has not been changed!')
-                res.redirect('/application/itec/'+req.params.applicationid);
-            }
-            else{
-                req.flash('success', 'The application status has been successfully changed!')
-                redirect = '/application/itec/'+req.params.applicationid;
-                sendEmail(req, res, typeOfEmail, studentEmail, redirect);
-            }
-        });
     } else {
         Bio
         .findById(req.params.applicationid)
         .exec(
                 function(err, appEntry) {
                     studentEmail = appEntry.useremail;
+                    Bio.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
+                        if (err){
+                            req.flash('failure', 'An error has occured, the application status has not been changed!')
+                            res.redirect('/application/bio/'+req.params.applicationid);
+                        }
+                        else {
+                            req.flash('success', 'The application status has been successfully changed!')                
+                            redirect = '/application/bio/'+req.params.applicationid;
+                            sendEmail(req, res, typeOfEmail, studentEmail, redirect);
+                        }
+                    });
                 }
             );
-        Bio.update({ _id: req.params.applicationid },{applicationstatus:req.body.applicationstatus},function (err) {
-            if (err){
-                req.flash('failure', 'An error has occured, the application status has not been changed!')
-                res.redirect('/application/bio/'+req.params.applicationid);
-            }
-            else{
-                req.flash('success', 'The application status has been successfully changed!')                
-                redirect = '/application/bio/'+req.params.applicationid;
-                sendEmail(req, res, typeOfEmail, studentEmail, redirect);
-            }
-        });
     }
 };
 
