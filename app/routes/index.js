@@ -43,6 +43,7 @@
         res.redirect('/');
     }
 
+    // If not admin redirect home
     function isAdmin(req, res, next) {
         if (req.user.role == 'admin') {
             return next();
@@ -51,6 +52,7 @@
         }
     }
 
+    // If not admin or instructor redirect home
     function isAdminOrInstructor(req, res, next) {
         if (req.user.role == 'admin' || req.user.role == 'instructor') {
             return next();
@@ -112,12 +114,11 @@ module.exports = function(app, passport) {
      app.get('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.loadAdminHome);
      app.post('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.postAdminHome);
 
-     /* Applications pages - Could probably add some regex to reduce the routes */
+     /* Applications pages */
      app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
      app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.exportApplications);
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
-    // app.get('/application/itec/documents/:applicationid/:documentid/:answer', isLoggedIn, ctrlApplications.updateApplicationDocument);
     app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
     app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
     app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);
@@ -139,11 +140,11 @@ module.exports = function(app, passport) {
     app.get('/sites', isLoggedIn, isAdminOrInstructor, ctrlSites.getSites);
     app.post('/sites', isLoggedIn, isAdminOrInstructor, makeCSVDirectory, ctrlSites.exportSites);
     app.get('/addsite', isLoggedIn, isAdminOrInstructor, ctrlSites.getAddSite);
-    app.get('/site/contacts/:siteid/:documentid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteDocument);
+    app.get('/site/contacts/:siteid/:documentid', isLoggedIn, isAdminOrInstructor, ctrlSites.deleteSiteContact);
     app.get('/site/edit/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteToEdit);
     app.get('/site/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteDetails);
     app.post('/addSite', isLoggedIn, isAdmin, ctrlSites.postAddSite);
-    app.post('/site/:siteid', isLoggedIn, isAdmin, ctrlSites.addSiteContact);
+    app.post('/site/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.addSiteContact);
     app.post('/site/edit/:siteid', isLoggedIn, isAdmin, ctrlSites.updateSite);
     app.post('/site/delete/:siteid', isLoggedIn, isAdmin, ctrlSites.deleteSite);
     app.get('/site/:siteId/export/contacts', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlSites.exportContacts);
@@ -164,7 +165,6 @@ module.exports = function(app, passport) {
     app.get('/admininstructorhelp', ctrlHelp.getAdminInstructorHelp);
 
     /* Document Upload page */
-    // app.get('/documentUpload', isLoggedIn, ctrlUpload.getDocumentUpload);
     app.get('/downloadFerpa', isLoggedIn, ctrlUpload.downloadFerpa);
     app.get('/document/:documentId', isLoggedIn, ctrlUpload.getSpecificDocument);
     app.get('/document/:documentId/note/delete/:noteId', isLoggedIn, ctrlUpload.deleteDocumentNote);
@@ -173,7 +173,7 @@ module.exports = function(app, passport) {
     app.post('/document/notes/:documentId', isLoggedIn, isAdminOrInstructor, ctrlUpload.addSpecificDocumentNotes);
     app.post('/document/feedback/:documentId', isLoggedIn, isAdmin, ctrlUpload.addSpecificDocumentFeedback);
 
-        // Upload routes 
+    /* Upload routes */
     app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
     app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
     app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
@@ -186,6 +186,7 @@ module.exports = function(app, passport) {
     app.post('/site/note/:siteId',isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.addSiteNote);
     app.get('/site/:siteId/note/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.deleteSiteNote);
 
+    /* Edit application pages */
     app.get('/edititec', isLoggedIn, ctrlEditApps.getEditItec);
     app.get('/editbio', isLoggedIn, ctrlEditApps.getEditBio);
     app.post('/edititec', isLoggedIn, ctrlEditApps.updateItecApp);
