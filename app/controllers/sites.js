@@ -180,7 +180,7 @@ module.exports.getAddSite = function(req, res) {
     HTTP Req: GET
     URL: '/site/contacts/:siteid/:documentid'
 */
-module.exports.getSiteDocument = function(req, res) {
+module.exports.deleteSiteContact = function(req, res) {
     Site.update({ _id: req.params.siteid },{$pull: {"contacts": {_id: req.params.documentid}}}, 
     function (err) {
         if (err) {
