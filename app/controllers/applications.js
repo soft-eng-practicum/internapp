@@ -151,7 +151,6 @@ module.exports.exportApplications = function(req, res) {
                         req.flash('failure', 'No information technology applicants for ' + semester + ' ' + year + ' were found');
                     } else {
                         itecApps.forEach(function(itecApp) {
-                            if (itecApp.notes.length == 0) {
                                 var itecJson = {
                                     ID : itecApp.userstudentid,
                                     FirstName : itecApp.userfname,
@@ -159,30 +158,15 @@ module.exports.exportApplications = function(req, res) {
                                     'ITEC GPA' : itecApp.itecgpa,
                                     Concentration : itecApp.major,
                                     'Expected Graduation' : itecApp.expectedGraduationSemester + ' ' + itecApp.expectedGraduationYear,
-                                    Notes : '',
-                                    Programming : itecApp.focusonsoftdev,
-                                    Semester : semester,
-                                    Year : year
-                                };                                
-                            } else {
-                                var itecJson = {
-                                    ID : itecApp.userstudentid,
-                                    FirstName : itecApp.userfname,
-                                    LastName : itecApp.userlname,
-                                    'ITEC GPA' : itecApp.itecgpa,
-                                    Concentration : itecApp.major,
-                                    'Expected Graduation' : itecApp.expectedGraduationSemester + ' ' + itecApp.expectedGraduationYear,
-                                    Notes : itecApp.notes[0].note,
                                     Programming : itecApp.focusonsoftdev,
                                     Semester : semester,
                                     Year : year
                                 };
-                            }
                             appArray.push(itecJson);
                         });
 
                         fields = ['ID', 'FirstName', 'LastName', 'ITEC GPA', 'Concentration',
-                        'Expected Graduation', 'Notes', 'Programming', 'Semester', 'Year'];
+                        'Expected Graduation', 'Programming', 'Semester', 'Year'];
 
                         var csv = json2csv({data: appArray, fields: fields });
                         var fileName = 'csv/' + String(discipline).toLowerCase() + '_applications' + '_' + semester + '_' + year + '.csv';
