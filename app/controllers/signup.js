@@ -9,17 +9,7 @@
 */
 module.exports.loadSignUp = function(req, res) {
     res.render('signup.ejs', {
-    message: req.flash('signupMessage') 
+        failureMessage: req.flash('failure'),
+        successMessage: req.flash('success')
     });
 }; 
-
-/*
-    HTTP Req: POST
-    URL: '/signup'
-*/
-module.exports.signup = () => {
-    return {
-        successRedirect : '/appliactions',
-        failureRedirect : '/signup'
-    };
-};

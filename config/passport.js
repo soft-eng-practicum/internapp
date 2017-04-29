@@ -67,7 +67,7 @@ var User = require('../app/models/user');
 
                     // check to see if theres already a user with that email
                     if (user) {
-                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                        return done(null, false, req.flash('failure', 'Sorry an account has already been created with that email.'));
                     }
                     else {
 
@@ -131,7 +131,7 @@ var User = require('../app/models/user');
 
                 // if no user is found, return the message
                 if (!user)
-                    return done(null, false, req.flash('failure', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                    return done(null, false, req.flash('failure', 'No user found has been found with that email.')); // req.flash is the way to set flashdata using connect-flash
 
                 // if the user is found but the password is wrong
                 if (!user.validPassword(password))
