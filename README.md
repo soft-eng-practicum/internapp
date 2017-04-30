@@ -10,9 +10,23 @@
 
 **Live Application Link:**  [InternApp](http://ggc-internapp.herokuapp.com/)
 
+## License
+**Attribution-ShareAlike 4.0 International (CC BY-SA 4.0):** [Legal implications](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
+
 ##  Overview
 *Internapp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs for both student and coordinator. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored.*
-<br/>
+
+## CREATE Spring 2017
+**Survey:** [Surveymonkey Link](https://www.surveymonkey.com/r/2662D2R)
+
+**Survey Results:** [Google docs link](https://docs.google.com/document/d/1h-h_ZkWQhOdM-44sm0LgBSfCrq_GXKseW43G15fz27k/edit?usp=sharing)
+
+## Application Videos
+**Final demo video:** [Youtube video](https://youtu.be/TNs-tkoyQG8)
+**Admin / Instructor help videos:** [Youtube playlist](https://www.youtube.com/playlist?list=PLThPmlrHvWI8SLtKOI3_wHmo2rfOx_nzs)
+**User (Student) help videos:** [Youtube playlist](https://www.youtube.com/playlist?list=PLThPmlrHvWI9hkGpcCkS32fVYyWcozOPN)
+
+
 ## Clientele
 - Information Technology Internship Program Coordinator - [Dr. Lissa Pollacia](http://www.ggc.edu/about-ggc/directory/lissa-pollacia)
 - Biology Internship Program Coordinator - [Dr. Latanya P. Hammonds-Odie](http://www.ggc.edu/about-ggc/directory/latanya-hammonds-odie)
@@ -33,18 +47,6 @@
 3. *Joseph Cox :*   ***Lead programmer*** & ***Data modeler***<br>   
 4. *Jonathan Nguyen :* ***UI/UX Design*** & ***Documentation lead***<br>
 
-## Application Process
-*Biology Internship Application* <br>
-[![Biology Internship Aplication](https://github.com/soft-eng-practicum/internapp/blob/HelpVideos/public/images/Bio.png)](https://www.youtube.com/watch?v=jZI5rq5hRgY)<br>
-
-<hr/>
-
-*Information Technology Internship Application* <br>
-[![Information Technology Internship Application](https://github.com/soft-eng-practicum/internapp/blob/HelpVideos/public/images/ITEC.png)](https://www.youtube.com/watch?v=OuM5mHHMCfk&t=59s)
-
-<hr/>
-
-
 ## Running the application on your local machine
 1. __[Install Node.js (either version is fine)](https://nodejs.org/en/)__<br>
     &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line<br/>
@@ -53,6 +55,3 @@
 4. __Run the command 'npm install'__<br>
 5. __Run the command 'npm start'__<br>
 6. __Navigate to localhost:8000/ within your browser__<br>
-
-## License
-Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
