@@ -16,6 +16,9 @@
 ##  Overview
 *Internapp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs for both student and coordinator. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored.*
 
+## Spring 2017 Final Report
+**Final Report:** [Google docs link](https://docs.google.com/document/d/14bPVeReTpH6RkloFUZmiIxMZo8cSe6K3K5anvwolyLU/edit?usp=sharing)
+
 ## CREATE Spring 2017
 **Survey:** [Surveymonkey Link](https://www.surveymonkey.com/r/2662D2R)
 
@@ -23,7 +26,9 @@
 
 ## Application Videos
 **Final demo video:** [Youtube video](https://youtu.be/TNs-tkoyQG8)
+
 **Admin / Instructor help videos:** [Youtube playlist](https://www.youtube.com/playlist?list=PLThPmlrHvWI8SLtKOI3_wHmo2rfOx_nzs)
+
 **User (Student) help videos:** [Youtube playlist](https://www.youtube.com/playlist?list=PLThPmlrHvWI9hkGpcCkS32fVYyWcozOPN)
 
 
