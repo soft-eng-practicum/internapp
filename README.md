@@ -23,7 +23,9 @@
 
 ## Application Videos
 **Final demo video:** [Youtube video](https://youtu.be/TNs-tkoyQG8)
+
 **Admin / Instructor help videos:** [Youtube playlist](https://www.youtube.com/playlist?list=PLThPmlrHvWI8SLtKOI3_wHmo2rfOx_nzs)
+
 **User (Student) help videos:** [Youtube playlist](https://www.youtube.com/playlist?list=PLThPmlrHvWI9hkGpcCkS32fVYyWcozOPN)
 
 
