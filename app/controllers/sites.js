@@ -22,6 +22,8 @@ module.exports.getSites = function(req, res) {
             if (err) return console.error(err);
             res.render('site.ejs', {
                 siteList : sites,
+                successMessage: req.flash('success'),
+                failureMessage: req.flash('failure'),
                 user : req.user,
                 admin : adminValues
             });
@@ -227,6 +229,7 @@ module.exports.postAddSite = function(req, res) {
             }
             else {
                 res.redirect('/sites');
+                req.flash('success', 'Site successfully added!')
             }
         });
     } else {
@@ -280,11 +283,12 @@ module.exports.updateSite = function(req, res) {
 module.exports.deleteSite = function(req, res) {
     Site.remove({ _id: req.params.siteid },function (err) {
         if (err) {
-            req.flash('info',err);
+            req.flash('failure', 'Site cannot be removed.');
             res.redirect('/site/edit/'+req.params.siteid);
         }
         else {
             res.redirect('/sites');
+            req.flash('success', 'Site successfully removed!');
         }
     });
 };
