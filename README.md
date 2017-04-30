@@ -44,7 +44,7 @@
 4. *Khaled Asad* - [@khaledasad](https://github.com/khaledasad):  ***UI/UX Design*** & ***Testing***<br>
 
 ## Spring 2017 Final Report
-**Final Report** [Google docs link](https://docs.google.com/document/d/14bPVeReTpH6RkloFUZmiIxMZo8cSe6K3K5anvwolyLU/edit?usp=sharing)
+**Final Report:** [Google docs link](https://docs.google.com/document/d/14bPVeReTpH6RkloFUZmiIxMZo8cSe6K3K5anvwolyLU/edit?usp=sharing)
 
 ## Fall 2016 Team Members
 1. *Vimal Darji :*  ***QA*** & ***Team Lead*** <br>
