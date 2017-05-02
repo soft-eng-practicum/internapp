@@ -12,6 +12,7 @@
 
 ## License
 **Attribution-ShareAlike 4.0 International (CC BY-SA 4.0):** [Legal implications](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
+
 **Signed Spring 2017 License Agreement:** [Google drive link](https://drive.google.com/file/d/0B7qocu_f8Ouqa2NQdnVpZWtSVlE/view?usp=sharing)
 
 ##  Overview
