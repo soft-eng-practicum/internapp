@@ -50,9 +50,9 @@ _Internapp is a web application designed to centralize the application process f
 
 ## Fall 2018 Team Members
 
-1.  _Kidus Dawit :_ **_QA_** & **_Team Lead_** <br>
-2.
-3.  _Billy Pridgen_ - [@WilliamPridgen](https://github.com/WilliamPridgen): **_Data Modeler_** & **_Client Liaison_** <br>
+1. _Kidus Dawit - [@kidus13](https://github.com/kidus13):_ **_QA_** & **_Team Lead_** <br>
+2. _Anastasia Arnold_ - [@aarnold7](https://github.com/aarnold7): **_Code Architecture/Lead Programmer_** & **_UI/UX Design_**<br>
+3. _Billy Pridgen_ - [@WilliamPridgen](https://github.com/WilliamPridgen): **_Data Modeler_** & **_Client Liaison_** <br>
 4.
 
 ## Spring 2017 Team Members
