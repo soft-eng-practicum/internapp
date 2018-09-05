@@ -42,6 +42,12 @@
 - [Information Technology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#itec4900)
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
 
+## Fall 2018 Team Members
+1. *Kidus Dawit :*  ***QA*** & ***Team Lead*** <br>
+2.
+3.
+4.
+        
 ## Spring 2017 Team Members
 1. *Blake Norman* - [@bnorman37](https://github.com/blakenorman37): ***Project Manager*** & ***Testing Lead***<br>
 2. *Michael Cawthon* - [@mcawthon](https://github.com/mcawthon): ***Data Modeler*** & ***Programmer***<br>
