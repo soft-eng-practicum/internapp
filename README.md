@@ -43,7 +43,7 @@
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
 
 ## Fall 2018 Team Members
-1. *Kidus Dawit :*  ***QA*** & ***Team Lead*** <br>
+1. *Kidus Dawit - [@kidus13](https://github.com/kidus13):*  ***QA*** & ***Team Lead*** <br>
 2.
 3.
 4.
