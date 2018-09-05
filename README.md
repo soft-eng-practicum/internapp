@@ -43,8 +43,9 @@
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
 
 ## Fall 2018 Team Members
+
 1. *Kidus Dawit - [@kidus13](https://github.com/kidus13):*  ***QA*** & ***Team Lead*** <br>
-2.
+2. *Anastasia Arnold* - [@aarnold7](https://github.com/aarnold7): ***Code Architecture/Lead Programmer*** & ***UI/UX Design***<br>
 3.
 4.
         
