@@ -44,7 +44,7 @@
 
 ## Fall 2018 Team Members
 1. *Kidus Dawit :*  ***QA*** & ***Team Lead*** <br>
-2.
+2. *Anastasia Arnold* - [@aarnold7](https://github.com/aarnold7): ***Code Architecture/Lead Programmer*** & ***UI/UX Design***<br>
 3.
 4.
         
