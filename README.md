@@ -1,12 +1,12 @@
 
 <div style="text-align:center"><img src ="public/images/logos.png" /></div>
 
-# Internapp - dasquad
-**Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp )
+# InternApp - Tech Titans
+**Repository Location URL:**  [Github Repository InternshipApp]( https://github.com/soft-eng-practicum/internapp/tree/fall2018 )
 
 **Process Tool and URL:**  [Jira]( http://itec-gunay.duckdns.org:8080/ )
 
-**Communication Tool:**  [#dasquad Slack](https://ggc-dev.slack.com/messages/intern_app/)
+**Communication Tool:**  [#TechTitans Discord](https://discordapp.com/channels/349336806208045068/484669720797118479)
 
 **Live Application Link:**  [InternApp](http://ggc-internapp.herokuapp.com/)
 
