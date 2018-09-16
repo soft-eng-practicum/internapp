@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bin",
+    "\\config",
+    "\\documentation",
+    "\\lib",
+    "\\lib\\jasmine_examples",
+    "\\management",
+    "\\qa",
+    "\\qa\\InternAppSelenium",
+    "\\qa\\InternAppSelenium\\src",
+    "\\qa\\InternAppSelenium\\src\\tests"
+  ],
+  "SelectedNode": "\\lib\\jasmine_examples\\Player.js",
+  "PreviewInSolutionExplorer": false
+}
