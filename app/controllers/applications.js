@@ -601,13 +601,13 @@ function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
     transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
-                    user: 'ggcinternapp@yahoo.com',
+                    user: 'testinternapp@yahoo.com',
                     pass: key
                 }
     });
 
     mailOptions = {
-        from: 'ggcinternapp@yahoo.com',
+        from: 'testinternapp@yahoo.com',
         to: studentEmail,
         subject: emailSubject,
         text: emailText
