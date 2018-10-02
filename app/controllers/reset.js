@@ -63,13 +63,13 @@ module.exports.postReset = function(req, res) {
                 transporter = nodemailer.createTransport({
                         service: 'yahoo',
                         auth: {
-                            user: 'ggcinternapp@yahoo.com',
+                            user: 'testinternapp@yahoo.com',
                             pass: key
                         }
                     });
 
                     var mailOptions = {
-                        from: 'ggcinternapp@yahoo.com', // sender address 
+                        from: 'testinternapp@yahoo.com', // sender address 
                                     to: user.local.email,
                         subject: 'Your password has been changed',
                         text: 'Hello,\n\n' +

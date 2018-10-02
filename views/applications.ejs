@@ -51,7 +51,7 @@
 
         <fieldset>
         <div align="center">
-          <button type="submit" class="btn btn-success btn-lg">Export</button>
+          <button type="submit" class="btn btn-success btn-lg">Search</button>
         </div>
       </form>
          <br><br>
@@ -66,7 +66,8 @@
                   <th>Application Status</th>
                   <th>Program</th>
                   <th>Proposed Semester Year</th>
-                  <th>View Details</th>
+                 <th>Expected Graduation</th>
+                 <th>View Details</th>
                </tr>
             </thead>
             <tbody>
@@ -79,7 +80,9 @@
                   <td><%= application.applicationstatus %></td>
                   <td><%= application.userdiscipline %></td>
                   <td><%= application.proposedinternsemester + " " + application.proposedinternyear %></td>
-                  <td><a href="/application/<%= application.userdiscipline %>/<%= application._id %>" ><span class='glyphicon glyphicon-search'></span></a></td>
+                 <td><%= application.expectedGraduationSemester + ' ' + application.expectedGraduationYear %></td>
+                <td><a href="/application/<%= application.userdiscipline %>/<%= application._id %>" ><span class='glyphicon glyphicon-search'></span></a></td>
+
                </tr>
                <% }); %>
             </tbody>

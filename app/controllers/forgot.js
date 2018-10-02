@@ -40,12 +40,12 @@ module.exports.postForgot = function(req, res) {
             transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
-                    user: 'ggcinternapp@yahoo.com',
+                    user: 'testinternapp@yahoo.com',
                     pass: key
                 }
             });
             var mailOptions = {
-                from: 'ggcinternapp@yahoo.com', // sender address 
+                from: 'testinternapp@yahoo.com', // sender address 
                 to: req.body.email,
                 subject: 'Password reset code', // Subject line 
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +

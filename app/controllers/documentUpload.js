@@ -6,7 +6,7 @@
 
 var fileUpload = require('express-fileupload');
 var nodemailer = require('nodemailer');
-var key = process.env.YAHOO_PASSWORD; // password for ggcinternapp@yahoo.com
+var key = process.env.YAHOO_PASSWORD; // password for testinternapp@yahoo.com
 var User = require('../models/user');
 var Document = require('../models/document');
 
@@ -382,13 +382,13 @@ function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
-                    user: 'ggcinternapp@yahoo.com',
+                    user: 'testinternapp@yahoo.com',
                     pass: key
                 }
             });
 
             mailOptions = {
-                from: 'ggcinternapp@yahoo.com',
+                from: 'testinternapp@yahoo.com',
                 to: [coordinatorEmail, req.user.email],
                 subject: emailSubject,
                 text: emailText,
@@ -444,13 +444,13 @@ function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
     transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
-                    user: 'ggcinternapp@yahoo.com',
+                    user: 'testinternapp@yahoo.com',
                     pass: key
                 }
     });
 
     mailOptions = {
-        from: 'ggcinternapp@yahoo.com',
+        from: 'testinternapp@yahoo.com',
         to: studentEmail,
         subject: emailSubject,
         text: emailText
