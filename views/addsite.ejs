@@ -1,102 +1,113 @@
 <!-- views/addsite.ejs -->
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="UTF-8">
-      <title>Add Site</title>
-      <% include partials/headerimports %>
-   </head>
-   <body>
-      <% include partials/nav.ejs %>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Site</title>
+    <% include partials/headerimports %>
+</head>
+<body>
+    <% include partials/nav.ejs %>
       <div class="container">
-         <div class="col-sm-10 col-sm-offset-1">
-            <div align="center">
-               <h1 class="pageTitle">Add Site</h1>
-            </div>
-            <% include partials/flashMessages.ejs %>
+          <div class="col-sm-10 col-sm-offset-1">
+              <div align="center">
+                  <h1 class="pageTitle">Add Site</h1>
+              </div>
+              <% include partials/flashMessages.ejs %>
             <form name="addSite" id="addSite" action="/addsite" class="form-horizontal" onsubmit="return validateForm()" method="post">
-               <div class="form-group">
-                  <label for="input" class="col-lg-5 control-label">Site Name</label>
-                  <div class="col-lg-5">
-                     <input type="text" class="form-control" name="name" required>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <div class="form-inline">
-                     <label for="select" class="col-lg-5 control-label">Program</label>
-                     <div class="col-lg-5" class>
-                        <select class="form-control" name="siteProgram" id="siteProgram" required>
-                           <option value="Select Program">Select Program</option>
-                           <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
-                           <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
-                        </select>
-                     </div>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label for="input" class="col-lg-5 control-label">Address</label>
-                  <div class="col-lg-5">
-                     <input type="text" class="form-control" name="address" required>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label for="input" class="col-lg-5 control-label">City</label>
-                  <div class="col-lg-5">
-                     <input type="text" class="form-control" name="city" pattern ="[A-Za-z._]*" title="Must not contain numbers" required>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label for="input" class="col-lg-5 control-label">State</label>
-                  <div class="col-lg-5">
-                     <input type="text" class="form-control" name="state" pattern ="[A-Z]{2}" title="Invalid format ex: GA" required>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label for="input" class="col-lg-5 control-label">Zip Code</label>
-                  <div class="col-lg-5">
-                     <input type="text" class="form-control" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <div class="form-inline">
-                     <label for="select" class="col-lg-5 control-label">MOU on file?</label>
-                     <div class="col-lg-5" class>
-                        <select class="form-control" name="mou" id="mouexpirationlist" required>
-                           <option value="No">Select</option>
-                           <option value="Yes">Yes</option>
-                           <option value="No">No</option>
-                        </select>
-                     </div>
-                  </div>
-               </div>
-               <div class="expiration">
+                <div class="form-group">
+                    <label for="input" class="col-lg-5 control-label">Site Name</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label for="select" class="col-lg-5 control-label">Program</label>
+                        <div class="col-lg-5" class>
+                            <select class="form-control" name="siteProgram" id="siteProgram" required>
+                                <option value="Select Program">Select Program</option>
+                                <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
+                                <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input" class="col-lg-5 control-label">Address</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" name="address" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input" class="col-lg-5 control-label">City</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" name="city" pattern="[A-Za-z._]*" title="Must not contain numbers" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input" class="col-lg-5 control-label">State</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" name="state" pattern="[A-Z]{2}" title="Invalid format ex: GA" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input" class="col-lg-5 control-label">Zip Code</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control" name="zipcode" pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-inline">
+                        <label for="select" class="col-lg-5 control-label">MOU on file?</label>
+                        <div class="col-lg-5" class>
+                            <select class="form-control" name="mou" id="mouexpirationlist" required>
+                                <option value="">Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="expiration">
+                    <div class="form-group">
+                        <label for="input" class="col-lg-5 control-label">MOU Expiration Date</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="mouexpiration">
+                        </div>
+                    </div>
+                </div>
                   <div class="form-group">
-                     <label for="input" class="col-lg-5 control-label">MOU Expiration Date</label>
-                     <div class="col-lg-5">
-                        <input type="text" class="form-control" name="mouexpiration">
-                     </div>
-                  </div>
-               </div>
-               <div align="center">
-                  <button type="submit" class="btn btn-success">Add Site</button>
-               </div>
+                    <div class="form-inline">
+                        <label for="select" class="col-lg-5 control-label">Site Status</label>
+                        <div class="col-lg-5" class>
+                            <select class="form-control" name="sitestatus" id="addsitestatus" required>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div align="center">
+                    <button type="submit" class="btn btn-success">Add Site</button>
+                </div>
             </form>
-         </div>
+          </div>
       </div>
-      </div>
+    </div>
       <% include partials/footerimports %>
-   </body>
+</body>
 </html>
 <script>
-   $('.expiration').hide();
-   $(function(){
-       $('#mouexpirationlist').change(function(){
-          var opt = $(this).val();
-           if(opt == 'Yes'){
-               $('.expiration').show();
-           }else{
-           	$('.expiration').hide();
-           }
-       });
-   });
+    $('.expiration').hide();
+    $(function () {
+        $('#mouexpirationlist').change(function () {
+            var opt = $(this).val();
+            if (opt == 'Yes') {
+                $('.expiration').show();
+            } else {
+                $('.expiration').hide();
+            }
+        });
+    });
 </script>

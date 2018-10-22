@@ -51,7 +51,7 @@
 
         <fieldset>
         <div align="center">
-          <button type="submit" class="btn btn-success btn-lg">Search</button>
+          <button type="submit" class="btn btn-success btn-lg">Export</button>
         </div>
       </form>
          <br><br>
@@ -106,7 +106,8 @@
              "bFilter": true
            });
 
-           table.search(semester + ' ' + year + ' ' + program).draw();         
+           table.search(program).draw();         
+           //table.search(semester + ' ' + year + ' ' + program).draw();         
          });
       </script>
    </body>

@@ -1,102 +1,115 @@
 <!-- views/editsite.ejs -->
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset='utf-8'>
-      <title>Add Site</title>
-      <% include partials/headerimports %>
-   </head>
-   <body>
-      <% include partials/nav.ejs %> 
+<head>
+    <meta charset='utf-8'>
+    <title>Edit Site</title>
+    <% include partials/headerimports %>
+</head>
+<body>
+    <% include partials/nav.ejs %> 
       <div class="container">
-         <div class="col-sm-8 col-sm-offset-1" align="center">
-            <h1>Edit Site</h1>
-            <% include partials/flashMessages.ejs %>
+          <div class="col-sm-8 col-sm-offset-1" align="center">
+              <h1>Edit Site</h1>
+              <% include partials/flashMessages.ejs %>
             <!-- LOGIN FORM -->
-            <form name="editsite" onsubmit="return validateForm()" class="form-horizontal" method="post">
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Site Note</label>
-               <div class="col-lg-5">
-                  <input type="text" class="form-control" id="nameTxt" name="name" value="<%= site.name %>" required>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Address</label>
-               <div class="col-lg-5">
-                  <input type="text" class="form-control" id="addressTxt" name="address" value="<%= site.address %>" required>                  
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">City</label>
-               <div class="col-lg-5">
-                  <input type="text" class="form-control" id="cityTxt" name="city" pattern ="[A-Za-z._]*" title="Must not contain numbers" value="<%= site.city %>"required>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">State</label>
-               <div class="col-lg-5">
-                  <input type="text" class="form-control" id="stateTxt" name="state" pattern ="[A-Z]{2}" title="Invalid format ex: GA" value="<%= site.state %>"required>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Zip Code</label>
-               <div class="col-lg-5">
-                  <input type="text" class="form-control" id="zipCodeTxt" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" value="<%= site.zipcode %>"required>
-               </div>
-            </div>
-            <div class="form-group">
-                <div class="form-inline">
-                    <label for="select" class="col-lg-5 control-label">Program</label>
-                    <div class="col-lg-1" class>
-                        <select class="form-control" id="section" name="section"  value="<%= site.section %>" required>
-                            <option vaule="">Select</option>
-                            <option value="Bio">Bio</option>
-                            <option value="Itec">Itec</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-inline">
-                    <label for="select" class="col-lg-5 control-label">MOU on file?</label>
-                    <div class="col-lg-1" class>
-                        <select class="form-control" id="mouTxt" name="mou" value="<%= site.mou %>" required>
-                            <option vaule="">Select</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="expiration">
+              <form name="editsite" onsubmit="return validateForm()" class="form-horizontal" method="post">
                   <div class="form-group">
-                     <label for="input" class="col-lg-5 control-label">MOU Expiration Date</label>
-                     <div class="col-lg-5">
-                      <input type="text" class="form-control" id="expirationTxt" name="mouexpiration" value="<%= site.mouexpiration %>">
-                     </div>
+                      <label for="input" class="col-lg-5 control-label">Site Note</label>
+                      <div class="col-lg-5">
+                          <input type="text" class="form-control" id="nameTxt" name="name" value="<%= site.name %>" required>
+                      </div>
                   </div>
-               </div>
-               <button type="submit" class="btn btn-success btn-lg" id="saveBtn">Save</button>
-            </form>
-         </div>
-         <div class="col-sm-6 col-sm-offset-3">
-            <h1>Delete Site</h1>
-            <!-- LOGIN FORM -->
-            <form name="deletesite" action="/site/delete/<%= site._id %>" method="post">
-               <div class="form-group">
-                  <label>Type delete in the below box to delete</label>
-                  <input type="text" class="form-control" name="delete" id="deleteTxt" required>
-               </div>
-               <button type="submit" class="btn btn-success btn-lg" id="deleteBtn">Submit for Deletion</button>
-            </form>
-         </div>
+                  <div class="form-group">
+                      <label for="input" class="col-lg-5 control-label">Address</label>
+                      <div class="col-lg-5">
+                          <input type="text" class="form-control" id="addressTxt" name="address" value="<%= site.address %>" required>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="input" class="col-lg-5 control-label">City</label>
+                      <div class="col-lg-5">
+                          <input type="text" class="form-control" id="cityTxt" name="city" pattern="[A-Za-z._]*" title="Must not contain numbers" value="<%= site.city %>" required>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="input" class="col-lg-5 control-label">State</label>
+                      <div class="col-lg-5">
+                          <input type="text" class="form-control" id="stateTxt" name="state" pattern="[A-Z]{2}" title="Invalid format ex: GA" value="<%= site.state %>" required>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="input" class="col-lg-5 control-label">Zip Code</label>
+                      <div class="col-lg-5">
+                          <input type="text" class="form-control" id="zipCodeTxt" name="zipcode" pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" value="<%= site.zipcode %>" required>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-inline">
+                          <label for="select" class="col-lg-5 control-label">Program</label>
+                          <div class="col-lg-1" class>
+                              <select class="form-control" id="section" name="section" value="<%= site.section %>" required>
+                                  <option vaule="">Select</option>
+                                  <option value="Bio">Bio</option>
+                                  <option value="Itec">Itec</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-inline">
+                          <label for="select" class="col-lg-5 control-label">MOU on file?</label>
+                          <div class="col-lg-1" class>
+                              <select class="form-control" id="mouTxt" name="mou" value="<%= site.mou %>" required>
+                                  <option value="">Select</option>
+                                  <option value="Yes">Yes</option>
+                                  <option value="No">No</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="expiration">
+                      <div class="form-group">
+                          <label for="input" class="col-lg-5 control-label">MOU Expiration Date</label>
+                          <div class="col-lg-5">
+                              <input type="text" class="form-control" id="expirationTxt" name="mouexpiration"  value="<%= site.mouexpiration %>">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-inline">
+                          <label for="select" class="col-lg-5 control-label">Company Status</label>
+                          <div class="col-lg-1" class>
+                              <select class="form-control" id="siteStatusTxt" name="sitestatus" value="<%= site.sitestatus %>" required>
+                                  <option value="">Select</option>
+                                  <option value="Active">Active</option>
+                                  <option value="Inactive">Inactive</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <button type="submit" class="btn btn-success btn-lg" id="saveBtn">Save</button>
+              </form>
+          </div>
+          <div class="col-sm-6 col-sm-offset-3">
+              <h1>Delete Site</h1>
+              <!-- LOGIN FORM -->
+              <form name="deletesite" action="/site/delete/<%= site._id %>" method="post">
+                  <div class="form-group">
+                      <label>Type delete in the below box to delete</label>
+                      <input type="text" class="form-control" name="delete" id="deleteTxt" required>
+                  </div>
+                  <button type="submit" class="btn btn-success btn-lg" id="deleteBtn">Submit for Deletion</button>
+              </form>
+          </div>
       </div>
-      </div>
+    </div>
       <% include partials/footerimports %>
-   </body>
+</body>
 </html>
 
 <script>
-         makeOptionSelected('mouTxt', '<%= site.mou %>');
-         makeOptionSelected('section', '<%= site.section %>');   
+    makeOptionSelected('mouTxt', '<%= site.mou %>');
+    makeOptionSelected('section', '<%= site.section %>');
+    makeOptionSelected('siteStatusTxt', '<%= site.sitestatus %>');
 </script>
