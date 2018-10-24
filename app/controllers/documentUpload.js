@@ -9,6 +9,7 @@ var nodemailer = require('nodemailer');
 var key = process.env.YAHOO_PASSWORD; // password for testinternapp@yahoo.com
 var User = require('../models/user');
 var Document = require('../models/document');
+var Itec = require('./../models/itec');
 
 // Setting local env in powershell
 // $env:key="password"
@@ -196,7 +197,7 @@ module.exports.uploadItecResume = function(req, res) {
         res.redirect('/home');
         req.flash('failure', noFilesUploadedError);
     } else {
-        sendDocument(req.files.resume, typeOfFile, req, res, req.user);
+        sendDocument(req.files.resume, typeOfFile, req, res, req.user,req.Itec);
     }
 }
 
@@ -332,11 +333,12 @@ function addDocumentToUser(fileType, fileName, user, whatIsFile) {
     });
 }
 
-function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
+async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
     var coordinatorEmail;
     var emailSubject;
     var emailText;
     var attachmentFileName;
+
     switch (typeOfFile.toLowerCase()) {
         case 'transcript':
             coordinatorEmail = bioCoordinatorEmail;
@@ -351,14 +353,17 @@ function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             attachmentFileName = typeOfFile;
             break;
         case 'resume':
+            var itec = await Itec.getUsersItecAppPromise(user.email);
+            console.log(itec);
             coordinatorEmail = itecCoordinatorEmail;
-            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' Resume';
+            emailSubject = itec.major + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' Resume';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s Resume";
             attachmentFileName = typeOfFile;
             break;
         case 'ferpa':
+            var itec = await Itec.getUsersItecAppPromise(user.email);
             coordinatorEmail = itecCoordinatorEmail;
-            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' FERPA';
+            emailSubject = itec.major + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' FERPA';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s FERPA";
             attachmentFileName = typeOfFile;
             break;
@@ -368,8 +373,9 @@ function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             attachmentFileName = whatIsFile;
             break;
         case 'itecother':
+            var itec = await Itec.getUsersItecAppPromise(user.email);
             coordinatorEmail = itecCoordinatorEmail;
-            emailSubject = "GGC InternApp - " + user.fname + ' ' + user.lname + ' - ' + ' ' + whatIsFile;
+            emailSubject = itec.major + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' ' + whatIsFile;
             attachmentFileName = whatIsFile;
             break;
         default:

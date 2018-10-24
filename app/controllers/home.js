@@ -46,7 +46,7 @@ module.exports.postAdminHome = function(req, res) {
             res.redirect('/adminhome');
         } else {
             req.flash('success', 'Admin values successfully updated!');
-            res.redirect('/adminhome');
+            res.redirect('/applications');
         }
     });
 }

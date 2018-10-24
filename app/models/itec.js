@@ -289,6 +289,20 @@ module.exports.doesUserHaveItecApp = function(email, callback) {
     });
 }
 
+module.exports.getUsersItecAppPromise = function(email, callback) {
+        return new Promise((resolve, reject) => {
+                Itec.findOne({
+                        'useremail' : email
+                }, function(err, itecApp) {
+                        if (!itecApp) {
+                                return resolve({});
+                        } else {
+                                return resolve(itecApp);
+                        }
+                });
+       });
+    }
+
 module.exports.getUsersItecApp = function(email, callback) {
         Itec.findOne({
             'useremail': email
