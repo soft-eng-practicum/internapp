@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\views",
+    "\\views\\partials"
   ],
+  "SelectedNode": "\\views\\partials\\nav.ejs",
   "PreviewInSolutionExplorer": false
 }
