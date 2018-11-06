@@ -26,8 +26,55 @@
          enrollment in bio 4900.
       </h4>
       <br>
+      <div align="center">
+        <a href="#" button class="btn btn-success" id="uploadBtn">Upload Documents</a>
+      </div>
+      <br>
+      <div class="bg-modal">
+        <div class="modal-contents">
+            <div class="close">+</div>
+	        <div>
+            <h2>BIO Uploads</h2>
+                <form action="/uploadBioEssay" method="POST" enctype="multipart/form-data" id="uploadEssay">
+                    <div class="alert alert-danger" id="failUpload">
+                   <strong>Error!</strong> Please upload file.
+                    </div>
+                <h5>Essay <i class="glyphicon glyphicon-question-sign" title="Please use up to ONE page to describe how the internship experience at your proposed location will help you to achieve your career goals. Please list the name of the site you're applying to at the top of the page." data-toggle="tooltip"></i></h5>
+                    <input type="file" name="essay" class="inputfile" id="essayFile"/>
+                      <div class="alert alert-success" id="successEssay">
+                      <strong>Success!</strong> Your essay was succesfully uploaded!
+                      </div>
+                   <input class="btn btn-success" type="submit" value="Upload Essay!"  id="btnSubmitEssay" disabled 
+                        title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay"/>
+                    </form>
+                <br>
+                <form action="/uploadBioTranscript" method="POST" enctype="multipart/form-data" id="uploadTranscript">
+                <h5>Transcript <i class="glyphicon glyphicon-question-sign" title="Please upload a PDF of your unofficial academic transcript. To obtain a PDF of your unofficial academic transcript, open Google Chrome (can be done similarily in other browsers) -> log into banner -> select Student tab -> select View Student Record -> select Unofficial Academic Transcript -> select Submit -> Right click page and select print -> Change destination to Save as PDF (underneath Local Destinations) -> Select Print -> Save and upload the PDF file" data-toggle="tooltip"></i></h5>
+                    <input type="file" name="transcript" class="inputfile" id="transcriptFile"/>
+                       <div class="alert alert-success" id="successTranscript">
+                      <strong>Success!</strong> Your transcript was succesfully uploaded!
+                      </div>
+                    <input class="btn btn-success" type="submit" value="Upload Transcript!" id="btnSubmitTranscript" disabled 
+                        title="Please Click 'Choose File' First, Then Click 'Upload Transcript!' To Upload Transcript"/>
+                    </form>
+                <br>
+                    <form action="/uploadBioOther" method="POST" enctype="multipart/form-data" id="uploadOther">
+                    <h5>Other <i class="glyphicon glyphicon-question-sign" title="Use this upload box for any additional forms you may need to upload for your BIO application." data-toggle="tooltip"></i></h5>
+             <input type='text' name="bioOther" class="otherLabel" placeholder="What is the file you're uploading?" id="bioOtherName"/>
+                        <input type="file" name="other" class="inputfile" id="otherBioFile" required/>  
+                       <div class="alert alert-success" id="successOther">
+                      <strong>Success!</strong> Your document was succesfully uploaded!
+                      </div>
+                        <br>
+                <input class="btn btn-success" type="submit" value="Upload Document!" id="btnSubmitOther" disabled 
+                        title="Please Click 'Choose File' First, Then Click 'Upload Document!' To Upload Document"/>
+                </form>
+            </div>
+	     </div>
+      </div>
       <form name="bio" action="/bio" method="post" class="form-horizontal" _lpchecked="1">
          <fieldset>
+            <br>
             <h2 align = "center">Student Academic Information</h2>
             <div class="form-group">
                <div class="form-inline">
@@ -442,7 +489,7 @@
            	$('.employed').hide();
            }
        });
-   });
+    });
    
    $('.other').hide();
    $(function(){
@@ -468,4 +515,125 @@
         });
     });
 
+    $('#successEssay').hide();
+    $('#successTranscript').hide();
+    $('#successOther').hide();
+    $('#failUpload').hide();
+
+    document.getElementById('uploadBtn').addEventListener("click", function() {
+        document.querySelector('.bg-modal').style.display = "flex";
+    });
+
+    document.querySelector('.close').addEventListener("click", function () {
+        document.querySelector('.bg-modal').style.display = "none";
+    });
+
+    window.onclick = function(event) {
+    if (event.target == document.querySelector('.bg-modal')) {
+        document.querySelector('.bg-modal').style.display = "none";
+        }
+    } 
+        $('#essayFile').change(
+            function(){
+                if ($(this).val()) {
+                    $('#btnSubmitEssay').attr('disabled',false); 
+                } 
+            });
+        $('#transcriptFile').change(
+        function(){
+            if ($(this).val()) {
+                $('#btnSubmitTranscript').attr('disabled',false); 
+            } 
+        });
+
+    $('#bioOtherName, #otherBioFile').on('change', function() {
+        if ($.trim($('#bioOtherName').val()) != '' && $('#otherBioFile').val()) {
+            $('#btnSubmitOther').attr('disabled', false);
+    }
+    });
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip(); 
+
+        $("#btnSubmitEssay").click(function (event) {
+            
+            event.preventDefault();
+
+            var form = $('#uploadEssay')[0];
+            var data = new FormData(form);
+
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "/uploadBioEssay",
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    $('#btnSubmitEssay').hide();
+                    $('#successEssay').show();
+                },
+                error: function (e) {
+                    $('#failUpload').show();
+                }
+            });
+           });
+
+        $("#btnSubmitTranscript").click(function (event) {
+
+            event.preventDefault();
+
+            var form = $('#uploadTranscript')[0];
+            var data = new FormData(form);
+
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "/uploadBioTranscript",
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    $('#btnSubmitTranscript').hide();
+                    $('#successTranscript').show();
+                },
+                error: function (e) {
+                    $('#failUpload').show();
+                }
+            });
+
+        });
+
+        $("#btnSubmitOther").click(function (event) {
+            
+            event.preventDefault();
+
+            var form = $('#uploadOther')[0];
+            var data = new FormData(form);
+
+            $("#btnSubmitOther").prop("disabled", false);
+
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "/uploadBioOther",
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    $('#btnSubmitOther').hide();
+                    $('#successOther').show();
+                },
+                error: function (e) {
+                    $('#failUpload').show();
+                }
+            });
+
+        });
+    });
+
+    
 </script>
