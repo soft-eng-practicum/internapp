@@ -1,9 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\views",
+    "\\development\\css",
+    "\\development\\javascript",
+    "\\lib\\jasmine_examples",
+    "\\public\\images",
+    "\\public\\javascript",
+    "\\public\\stylesheet",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\views\\partials\\nav.ejs",
+  "SelectedNode": "\\views",
   "PreviewInSolutionExplorer": false
 }
