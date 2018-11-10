@@ -1,91 +1,103 @@
 <!-- views/site.ejs -->
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="UTF-8">
-      <title>Site List</title>
-      <% include partials/headerimports %>
-   </head>
-   <body>
-      <% include partials/nav.ejs %>
+<head>
+    <meta charset="UTF-8">
+    <title>Site List</title>
+    <% include partials/headerimports %>
+</head>
+<body>
+    <% include partials/nav.ejs %>
       <div class="container">
-         <h2>Site Details</h2>
-         <% include partials/flashMessages.ejs %>
+          <h2>Site Details</h2>
+          <% include partials/flashMessages.ejs %>
          <form name="siteexports" action="/sites" method="post" class="form-horizontal">
-         <fieldset>
-            <h4 align="center">Select your table/export filters</h4>
+             <fieldset>
+                 <h4 align="center">Select your table/export filters</h4>
 
-            <div class="form-group">
-                <div class="form-inline">
-                    <label for="select" class="col-lg-5 control-label">Select your program:</label>
-                        <div class="col-lg-5" class>
-                           <select class="form-control adminProgram" id="programSelect" name="program">
-                           <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
-                           <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
-                           </select>
-                        </div>
+                 <div class="form-group">
+                     <div class="form-inline">
+                         <label for="select" class="col-lg-5 control-label">Select your program:</label>
+                         <div class="col-lg-5" class>
+                             <select class="form-control adminProgram" id="programSelect" name="program">
+                                 <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
+                                 <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
+                             </select>
+                         </div>
                      </div>
-            </div>
+                 </div>
 
-        <fieldset>
-        <div align="center">
-          <button type="submit" class="btn btn-success btn-lg">Export</button>
-        </div>
-      </form>
-
-
-
-         <table class="table table-bordered" id="sites">
-            <thead>
+                 <fieldset>
+                     <div align="center">
+                         <button type="submit" class="btn btn-success btn-lg">Export</button>
+                     </div>
+         </form>
+          <br>
+          <br>
+          <div class="form-group">
+              <div class="form-inline">
+                  <label for="select" class="col-lg-7 control-label">Filter by Company Status:</label>
+                  <div class="col-lg-5" class>
+                      <select class="form-control adminProgram" id="sitestatusdd" name="sitestatusdd">
+                          <option value="active">Active</option>
+                          <option value="inactive">Inactive</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+          <br>
+          <table class="table table-bordered" id="sites">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Address</th>
+                      <th>City</th>
+                      <th>Program</th>
+                      <th>Valid MOU</th>
+                      <th>MOU Expiration</th>
+                      <th>Edit</th>
+                      <th>View Details</th>
+                      <th>Site Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% siteList.forEach(function(site) { %>
                <tr>
-                  <th>Name</th>
-                  <th>Address</th>
-                  <th>City</th>
-                  <th>Program</th>
-                  <th>Valid MOU</th>
-                  <th>MOU Expiration</th>
-                  <th>Edit</th>
-                  <th>View Details</th>
-                   <th>Site Status</th>
-               </tr>
-            </thead>
-            <tbody>
-               <% siteList.forEach(function(site) { %>
-               <tr>
-                  <td><%= site.name %></td>
-                  <td><%= site.address %></td>
-                  <td><%= site.city %></td>
-                  <td><%= site.section %></td>
-                  <% if (site.mou=='yes') { %>
+                   <td><%= site.name %></td>
+                   <td><%= site.address %></td>
+                   <td><%= site.city %></td>
+                   <td><%= site.section %></td>
+                   <% if (site.mou=='yes') { %>
                   <td><%= site.mou %></td>
-                  <% } else { %>
+                   <% } else { %>
                   <td>No</td>
-                  <% } %>
+                   <% } %>
                   <td><%= site.mouexpiration %></td>
-                  <td><a href="/site/edit/<%= site._id %>" ><span class='glyphicon glyphicon-pencil'></span></a></td>
-                  <td><a href="/site/<%= site._id %>" ><span class='glyphicon glyphicon-search'></span></a></td>
-                  <td><%= site.sitestatus %></td>
-               </tr>
-               <% }); %>
-            </tbody>
-         </table>
+                   <td><a href="/site/edit/<%= site._id %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
+                   <td><a href="/site/<%= site._id %>"><span class='glyphicon glyphicon-search'></span></a></td>
+                   <td><%= site.sitestatus %></td>
+               </tr>    
+                  <% }); %>
+              </tbody>
+          </table>
       </div>
-      <% include partials/footerimports %>
+    <% include partials/footerimports %>
       <script type="text/javascript">
-         $(document).ready(function(){
+          $(document).ready(function () {
 
-          makeOptionSelected('programSelect', '<%= admin.adminprogram %>');
-         var program = prettySection('<%= admin.adminprogram %>');
+              makeOptionSelected('programSelect', '<%= admin.adminprogram %>');
+              var program = prettySection('<%= admin.adminprogram %>');
 
-         
-           table = $('#sites').DataTable({
-             "bFilter": true
-           });
 
-           table.search(program).draw();         
-        
-     
-       });
+              table = $('#sites').DataTable({
+                  "bFilter": true
+              });
+
+              table.search(program).draw();
+
+
+          });
       </script>
-   </body>
+
+</body>
 </html>
