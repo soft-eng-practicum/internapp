@@ -472,7 +472,8 @@
             </div>
          </fieldset>
          <div align="center">
-            <button class="btn btn-success" type="submit" id="submitBtn">Submit</button>
+            <button class="btn btn-success" type="submit" id="submitBtn" disabled 
+                title="Please make sure you have uploaded required documents before submitting your application.">Submit</button>
          </div>
       </form>
       <% include partials/footerimports %>
@@ -556,6 +557,8 @@
         $('[data-toggle="tooltip"]').tooltip(); 
 
         $("#btnSubmitEssay").click(function (event) {
+
+            $('#btnSubmitEssay').attr('disabled', true);
             
             event.preventDefault();
 
@@ -582,6 +585,8 @@
 
         $("#btnSubmitTranscript").click(function (event) {
 
+            $('#btnSubmitTranscript').attr('disabled', true);
+
             event.preventDefault();
 
             var form = $('#uploadTranscript')[0];
@@ -607,6 +612,8 @@
         });
 
         $("#btnSubmitOther").click(function (event) {
+
+            $('#btnSubmitOther').attr('disabled', true);
             
             event.preventDefault();
 
