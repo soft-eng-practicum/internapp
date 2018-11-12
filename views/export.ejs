@@ -1,0 +1,125 @@
+<!-- views/export.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Export</title>
+    <% include partials/headerimports %>
+</head>
+
+<body>
+    <% include partials/nav.ejs %>
+
+    <div class="container">
+        <h2 class="pageTitle">Export</h2>
+        <h3 class="pageDescription">Export submitted applications</h2>
+        <% if (successMessage.length > 0) { %>
+            <div class="alert alert-success">
+                <%= successMessage %>
+            </div>
+            <% } %>
+            <% if (failureMessage.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= failureMessage %>
+            </div>
+            <% } %>
+         <br />
+
+            <form name="exportpage" action="/export" method="post" class="form-horizontal">
+                <fieldset>
+                    <h4 align="center">Select your exports</h4>
+                    <div class="form-group">
+                        <div class="form-inline">
+                            <label for="select" class="col-lg-5 control-label">Select the semester and year you wish to filter by or export</label>
+                            <div class="col-lg-5" class="">
+                                <select class="form-control adminSemester " id="applicationSemester" name="semester">
+                                    <option value="Fall">Fall</option>
+                                    <option value="Spring">Spring</option>
+                                    <option value="Summer">Summer</option>
+                                </select>
+                                <select class="form-control adminYearSelect" id="applicationYear" name="year" required="" type="number">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-inline">
+                            <label for="select" class="col-lg-5 control-label">Select your program:</label>
+                            <div class="col-lg-5" class="">
+                                <select class="form-control adminProgram" id="applicationProgram" name="program">
+                                    <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
+                                    <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <fieldset>
+                        <div align="center">
+                            <button type="submit" class="btn btn-success btn-lg">Export</button>
+                        </div>
+            </form>
+
+            <br>
+            <br>
+            </th>
+                  <th>Name</th>
+            <th>Email</th>
+            <th>Student ID</th>
+            <th>Major</th>
+            <th>Application Status</th>
+            <th>Program</th>
+            <th>Proposed Semester Year</th>
+            <th>Expected Graduation</th>
+            <th>View Details</th>
+            </tr>
+              </thead>
+              <tbody>
+                  <% include partials/footerimports %>
+
+                  <script type="text/javascript">
+
+                      $(document).ready(function () {
+
+                          makeOptionSelected('applicationSemester', '<%= admin.adminsemester %>');
+                          makeOptionSelected('applicationYear', '<%= admin.adminyear %>');
+                          makeOptionSelected('applicationProgram', '<%= admin.adminprogram %>');
+
+                          var table;
+                          var semester = '<%= admin.adminsemester %>';
+                          var program = prettySection('<%= admin.adminprogram %>');
+                          var year = '<%= admin.adminyear %>';
+
+                          table = $('#export').DataTable({
+                              "bFilter": true
+                          });
+
+                          table.search(semester + ' ' + year + ' ' + program).draw();
+                      });
+                  </script>
+</body>
+</html>
+<script>
+    $(function () {
+        $('.Bio').hide();
+        $('.ITEC').hide();
+        $('#sectionList').change(function () {
+            var opt = $(this).val();
+            if (opt == 'ITEC') {
+                $('.Bio').hide();
+                $('.ITEC').show();
+            } else if (opt == 'Bio') {
+                $('.Bio').show();
+                $('.ITEC').hide();
+            }
+            else {
+                $('.Bio').hide();
+                $('.ITEC').hide();
+            }
+        });
+    });
+
+
+</script>
