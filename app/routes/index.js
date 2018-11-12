@@ -25,55 +25,55 @@ var ctrlChangeSemester = require('../controllers/changesemester');
     var ctrlEditApps = require('../controllers/editApplications');
     var ctrlHelp = require('../controllers/help');
 
-    // For document uploads
-    var fileUpload = require('express-fileupload');
+// For document uploads
+var fileUpload = require('express-fileupload');
 
-    // For creating csv directory
-    var mkdirp = require('mkdirp');
+// For creating csv directory
+var mkdirp = require('mkdirp');
 
-    var ctrlSiteNotes = require('../controllers/sitenotes');
+var ctrlSiteNotes = require('../controllers/sitenotes');
 
-    // route middleware to make sure a user is logged in
-    function isLoggedIn(req, res, next) {
-        // if user is authenticated in the session, carry on
-        if (req.isAuthenticated())
-            return next();
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
 
-        // if they aren't redirect them to the home page
-        console.log('user not logged in');
-        res.redirect('/');
+    // if they aren't redirect them to the home page
+    console.log('user not logged in');
+    res.redirect('/');
+}
+
+// If not admin redirect home
+function isAdmin(req, res, next) {
+    if (req.user.role == 'admin') {
+        return next();
+    } else {
+        res.redirect('/home');
     }
+}
 
-    // If not admin redirect home
-    function isAdmin(req, res, next) {
-        if (req.user.role == 'admin') {
-            return next();
-        } else {
-            res.redirect('/home');
+// If not admin or instructor redirect home
+function isAdminOrInstructor(req, res, next) {
+    if (req.user.role == 'admin' || req.user.role == 'instructor') {
+        return next();
+    } else {
+        res.redirect('/home');
+    }
+}
+
+// Creates a csv directory for the csv files - if not already created
+function makeCSVDirectory(req, res, next) {
+    mkdirp('./csv', function (err) {
+        if (err) console.error(err)
+        else {
+            console.log('CSV directory created!');
+            next();
         }
-    }
+    });
+}
 
-    // If not admin or instructor redirect home
-    function isAdminOrInstructor(req, res, next) {
-        if (req.user.role == 'admin' || req.user.role == 'instructor') {
-            return next();
-        } else {
-            res.redirect('/home');
-        }
-    }
-
-    // Creates a csv directory for the csv files - if not already created
-    function makeCSVDirectory(req, res, next) {
-        mkdirp('./csv', function(err) {
-            if (err) console.error(err)
-            else {
-                console.log('CSV directory created!');
-                next();
-            }
-        });
-    }
-
-module.exports = function(app, passport) {
+module.exports = function (app, passport) {
 
     app.use(fileUpload()); // default options for file upload
 
@@ -83,37 +83,37 @@ module.exports = function(app, passport) {
     /* Login page */
     app.get('/login', ctrlLogin.getLogin);
     app.post('/login',
-            passport.authenticate('local-login', {
-            successRedirect : '/home',
-            failureRedirect : '/login',
-            failureFlash : true
+        passport.authenticate('local-login', {
+            successRedirect: '/home',
+            failureRedirect: '/login',
+            failureFlash: true
         }));
 
     /* Logout page */
     app.get('/logout', ctrlLogout.logout);
 
-     /* Sign up page */
+    /* Sign up page */
     app.get('/signup', ctrlSignUp.loadSignUp);
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/home',
-            failureRedirect : '/signup',
-            failureFlash : true
-        }));
+        successRedirect: '/home',
+        failureRedirect: '/signup',
+        failureFlash: true
+    }));
 
-     /* Forgot password page */
-     app.get('/forgot', ctrlForgot.getForgot);
-     app.post('/forgot', ctrlForgot.postForgot);
+    /* Forgot password page */
+    app.get('/forgot', ctrlForgot.getForgot);
+    app.post('/forgot', ctrlForgot.postForgot);
 
-     /* Reset password */
-     app.get('/reset/:token', ctrlReset.getReset);
-     app.post('/reset/:token', ctrlReset.postReset);
+    /* Reset password */
+    app.get('/reset/:token', ctrlReset.getReset);
+    app.post('/reset/:token', ctrlReset.postReset);
 
-     /* user home page */
-     app.get('/home', isLoggedIn, ctrlHome.loadUserHome);
+    /* user home page */
+    app.get('/home', isLoggedIn, ctrlHome.loadUserHome);
 
-     /* admin home page */
-     app.get('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.loadAdminHome);
-     app.post('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.postAdminHome);
+    /* admin home page */
+    app.get('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.loadAdminHome);
+    app.post('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.postAdminHome);
 
      /* Applications pages */
      app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
@@ -126,19 +126,43 @@ module.exports = function(app, passport) {
     app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
     app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
     app.post('/application/itec/notes/:applicationid', ctrlApplications.addItecNotes);
-    app.get('/application/itec/:applicationId/notes/delete/:noteId', isLoggedIn, ctrlApplications.deleteItecNote); 
+    app.get('/application/itec/:applicationId/notes/delete/:noteId', isLoggedIn, ctrlApplications.deleteItecNote);
     app.post('/application/itec/feedback/:applicationid', isLoggedIn, ctrlApplications.addItecFeedback);
-    app.get('/application/itec/:applicationId/feedback/delete/:feedbackId', isLoggedIn, ctrlApplications.deleteItecFeedback);    
-         // BIO
+    app.get('/application/itec/:applicationId/feedback/delete/:feedbackId', isLoggedIn, ctrlApplications.deleteItecFeedback);
+    // BIO
     app.get('/bio', isLoggedIn, ctrlApplications.getBioApplication);
     app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
     app.get('/application/bio/:applicationid', isLoggedIn, ctrlApplications.getSpecificBioApplication);
     app.post('/application/bio/notes/:applicationid', isLoggedIn, ctrlApplications.addBioNotes);
-    app.get('/application/bio/:applicationId/notes/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlApplications.deleteBioNote); 
+    app.get('/application/bio/:applicationId/notes/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlApplications.deleteBioNote);
     app.post('/application/bio/feedback/:applicationid', isLoggedIn, isAdmin, ctrlApplications.addBioFeedback);
-    app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, isAdmin, ctrlApplications.deleteBioFeedback); 
-        // BIO & ITEC
+    app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, isAdmin, ctrlApplications.deleteBioFeedback);
+    // BIO & ITEC
     app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
+
+    /*Export Page*/
+    /* Applications pages */
+    app.get('/export', isLoggedIn, isAdminOrInstructor, ctrlExport.getExport);
+    app.post('/export', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlExport.exportExport);
+    // ITEC
+    app.get('/itec', isLoggedIn, ctrlExport.getItecApplication);
+    app.get('/application/itec/:applicationid', isLoggedIn, ctrlExport.getSpecificItecApplication);
+    app.post('/itec', isLoggedIn, ctrlExport.postItecApplication);
+    app.post('/application/itec/notes/:applicationid', ctrlExport.addItecNotes);
+    app.get('/application/itec/:applicationId/notes/delete/:noteId', isLoggedIn, ctrlExport.deleteItecNote);
+    app.post('/application/itec/feedback/:applicationid', isLoggedIn, ctrlExport.addItecFeedback);
+    app.get('/application/itec/:applicationId/feedback/delete/:feedbackId', isLoggedIn, ctrlExport.deleteItecFeedback);
+    // BIO
+    app.get('/bio', isLoggedIn, ctrlExport.getBioApplication);
+    app.post('/bio', isLoggedIn, ctrlExport.postBioApplication);
+    app.get('/application/bio/:applicationid', isLoggedIn, ctrlExport.getSpecificBioApplication);
+    app.post('/application/bio/notes/:applicationid', isLoggedIn, ctrlExport.addBioNotes);
+    app.get('/application/bio/:applicationId/notes/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlExport.deleteBioNote);
+    app.post('/application/bio/feedback/:applicationid', isLoggedIn, isAdmin, ctrlExport.addBioFeedback);
+    app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, isAdmin, ctrlExport.deleteBioFeedback);
+    // BIO & ITEC
+    app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlExport.updateApplicationStatus);
+    /*End Export*/
 
     /* Sites pages & Add Site page */
     app.get('/sites', isLoggedIn, isAdminOrInstructor, ctrlSites.getSites);
@@ -163,8 +187,8 @@ module.exports = function(app, passport) {
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
-   
-   /* Help page */
+
+    /* Help page */
     app.get('/help', ctrlHelp.getHelp);
     app.get('/admininstructorhelp', ctrlHelp.getAdminInstructorHelp);
 
@@ -178,7 +202,7 @@ module.exports = function(app, passport) {
     app.post('/document/feedback/:documentId', isLoggedIn, isAdmin, ctrlUpload.addSpecificDocumentFeedback);
 
     /* Upload routes */
-    app.post('/uploadItecResume',isLoggedIn, ctrlUpload.uploadItecResume);
+    app.post('/uploadItecResume', isLoggedIn, ctrlUpload.uploadItecResume);
     app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
     app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
     app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
@@ -187,7 +211,7 @@ module.exports = function(app, passport) {
 
     /* Site Notes page */
     app.get('/sitenotes', isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.getSiteNotesPage);
-    app.post('/site/note/:siteId',isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.addSiteNote);
+    app.post('/site/note/:siteId', isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.addSiteNote);
     app.get('/site/:siteId/note/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.deleteSiteNote);
 
     /* Edit application pages */

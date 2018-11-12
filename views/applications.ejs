@@ -189,25 +189,3 @@
     </script>
   </body>
 </html>
-<script>
-  $(function(){
-  $('.Bio').hide();
-  $('.ITEC').hide();
-  $('#sectionList').change(function(){
-  var opt = $(this).val();
-  if(opt == 'ITEC'){
-  $('.Bio').hide();
-  $('.ITEC').show();
-  }else if(opt == 'Bio'){
-  $('.Bio').show();
-  $('.ITEC').hide();
-  }
-  else{
-  $('.Bio').hide();
-  $('.ITEC').hide();
-  }
-  });
-  });
-
-
-</script>
