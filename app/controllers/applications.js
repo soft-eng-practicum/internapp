@@ -14,6 +14,7 @@ var json2csv = require('json2csv');
 var fs = require('fs');
 var homeDir = require('home-dir');
 var path = require('path');
+var homeCtrl = require("./home")
 
 
 /*
@@ -44,17 +45,23 @@ module.exports.getBioApplication = function(req, res) {
     HTTP Req: GET
     URL: '/applications'
 */
+
 module.exports.getApplications = function(req, res) {
     var haveBioApp = false;
     var haveItecApp = false;
 
-
-
     if (req.user.role === 'admin' || req.user.role === 'instructor'  ) {
             User.getAdminValuesForHome(req.user._id, function(adminValues) {
-                Bio.find(function(err, bioApplications) {
+                var filters = {
+                    proposedinternsemester: adminValues.adminsemester,
+                    proposedinternyear: adminValues.adminyear
+                }
+
+                Bio.find(filters, {
+                    proposedinternsemester: adminValues.adminsemester
+                }, function(err, bioApplications) {
                     if (err) return console.error(err);
-                    Itec.find(function(err, itecApplications) {
+                    Itec.find(filters, function(err, itecApplications) {
                         if (err) return console.error(err);
                         res.render('applications.ejs', {
                             applicationList: bioApplications.concat(itecApplications),
@@ -89,11 +96,7 @@ module.exports.getApplications = function(req, res) {
         }
 };
 
-/*
-    HTTP Req: POST
-    URL: /applications
-*/
-module.exports.exportApplications = function(req, res) {
+function filterApplications (req, res, cb) {
     var discipline;
     var semester = req.body.semester;
     var year = req.body.year;
@@ -136,9 +139,13 @@ module.exports.exportApplications = function(req, res) {
                 fields = ['ID', 'FirstName', 'LastName', 'BIO GPA', 'Concentration',
                 'Expected Graduation', 'Semester', 'Year'];
 
-                var csv = json2csv({data: appArray, fields: fields });
-                var fileName = 'csv/' + String(discipline).toLowerCase() + '_applications' + '_' + semester + '_' + year + '.csv';
-                write(fileName, csv, req, res);
+                cb(null, {
+                    fields,
+                    appArray,
+                    discipline,
+                    year,
+                    semester
+                })
             }
         });
     } else if (discipline = 'ITEC') {
@@ -167,14 +174,44 @@ module.exports.exportApplications = function(req, res) {
 
                         fields = ['ID', 'FirstName', 'LastName', 'ITEC GPA', 'Concentration',
                         'Expected Graduation', 'Programming', 'Semester', 'Year'];
-
-                        var csv = json2csv({data: appArray, fields: fields });
-                        var fileName = 'csv/' + String(discipline).toLowerCase() + '_applications' + '_' + semester + '_' + year + '.csv';
-                        write(fileName, csv, req, res);
+                                
+                        cb(null, {
+                            fields,
+                            appArray,
+                            discipline,
+                            year,
+                            semester
+                        })
                     }
                 });
     } else {
 
+    }
+}
+
+/*
+    HTTP Req: POST
+    URL: /export-applications
+*/
+module.exports.filterApplications = function(req, res) {
+    if (req.body.function === "export") { 
+        filterApplications(req, res, (err, data) => {
+            var discipline = data.discipline;
+            var appArray = data.appArray;
+            var fields = data.fields;
+            var semester = data.semester;
+            var year = data.year;
+            var csv = json2csv({data: appArray, fields: fields });
+            var fileName = 'csv/' + String(discipline).toLowerCase() + '_applications' + '_' + semester + '_' + year + '.csv';
+            write(fileName, csv, req, res);
+        })
+    } else {
+        req.body.adminsemester = req.body.semester
+        req.body.adminyear = req.body.year
+        req.body.adminprogram = req.body.program
+
+        homeCtrl.postAdminHome(req, res)
+        //module.exports.getApplications(req, res);
     }
 }
 

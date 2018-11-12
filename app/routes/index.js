@@ -11,8 +11,8 @@
     var ctrlSignUp = require('../controllers/signup');
     var ctrlForgot = require('../controllers/forgot');
     var ctrlHome = require('../controllers/home');
-var ctrlApplications = require('../controllers/applications');
-var ctrlChangeSemester = require('../controllers/changesemester');
+    var ctrlApplications = require('../controllers/applications');
+    var ctrlChangeSemester = require('../controllers/changesemester');
     var ctrlSites = require('../controllers/sites');
     var ctrlPromote = require('../controllers/promote');
     var ctrlEditProfile = require('../controllers/editprofile');
@@ -117,7 +117,9 @@ module.exports = function(app, passport) {
 
      /* Applications pages */
      app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
-    app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.exportApplications);
+     app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.filterApplications);
+     //app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
+    //app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.exportApplications);
     app.get('/changesemester', isLoggedIn, isAdminOrInstructor, ctrlChangeSemester.getApplications);
     app.post('/changesemester', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlChangeSemester.exportApplications);
 
