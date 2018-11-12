@@ -1,14 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\development\\css",
-    "\\development\\javascript",
-    "\\lib\\jasmine_examples",
-    "\\public\\images",
-    "\\public\\javascript",
-    "\\public\\stylesheet",
+    "\\app",
+    "\\app\\controllers",
+    "\\app\\models",
+    "\\app\\routes",
+    "\\views",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\views",
+  "SelectedNode": "\\views\\bio.ejs",
   "PreviewInSolutionExplorer": false
 }

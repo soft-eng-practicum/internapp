@@ -11,7 +11,8 @@
     var ctrlSignUp = require('../controllers/signup');
     var ctrlForgot = require('../controllers/forgot');
     var ctrlHome = require('../controllers/home');
-    var ctrlApplications = require('../controllers/applications');
+var ctrlApplications = require('../controllers/applications');
+var ctrlChangeSemester = require('../controllers/changesemester');
     var ctrlSites = require('../controllers/sites');
     var ctrlPromote = require('../controllers/promote');
     var ctrlEditProfile = require('../controllers/editprofile');
@@ -116,7 +117,10 @@ module.exports = function(app, passport) {
 
      /* Applications pages */
      app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
-     app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.exportApplications);
+    app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.exportApplications);
+    app.get('/changesemester', isLoggedIn, isAdminOrInstructor, ctrlChangeSemester.getApplications);
+    app.post('/changesemester', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlChangeSemester.exportApplications);
+
          // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
     app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
