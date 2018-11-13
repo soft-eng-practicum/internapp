@@ -135,14 +135,14 @@
                   <td>
                     <%= application.expectedGraduationSemester + ' ' + application.expectedGraduationYear %>
                   </td>
-                  <td>
-                    <a href="/application/"
-                      <%= application.userdiscipline %>/<%= application._id %>" ><span class='glyphicon glyphicon-search'></span>
-                    </a>
-                  </td>
+                   <td>
+                    <a href="/application/<%= application.userdiscipline %>/<%= application._id %>" >
+                        <span class='glyphicon glyphicon-search'></span></a>
 
-                </tr>
-                <% }); %>
+                   </td>
+
+               </tr>
+               <% }); %>
               </tbody>
             </table>
             <a id="send1" onclick="displayResult()" href="mailto:" >Send email</a>

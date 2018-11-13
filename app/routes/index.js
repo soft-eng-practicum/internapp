@@ -119,8 +119,6 @@ module.exports = function (app, passport) {
     /* Applications pages */
     app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
     app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.filterApplications);
-    //app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
-    //app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.exportApplications);
     app.get('/changesemester', isLoggedIn, isAdminOrInstructor, ctrlChangeSemester.getApplications);
     app.post('/changesemester', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlChangeSemester.exportApplications);
 

@@ -375,3 +375,4 @@ function deleteFile(fileName) {
             console.log(fileName + ' deleted!');
         }
     });
+}
