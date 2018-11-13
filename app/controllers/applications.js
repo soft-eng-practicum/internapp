@@ -46,36 +46,36 @@ module.exports.getBioApplication = function (req, res) {
     URL: '/applications'
 */
 
-module.exports.getApplications = function(req, res) {
+module.exports.getApplications = function (req, res) {
     var haveBioApp = false;
     var haveItecApp = false;
 
-    if (req.user.role === 'admin' || req.user.role === 'instructor'  ) {
-            User.getAdminValuesForHome(req.user._id, function(adminValues) {
-                var filters = {
-                    proposedinternsemester: adminValues.adminsemester,
-                    proposedinternyear: adminValues.adminyear
-                }
+    if (req.user.role === 'admin' || req.user.role === 'instructor') {
+        User.getAdminValuesForHome(req.user._id, function (adminValues) {
+            var filters = {
+                proposedinternsemester: adminValues.adminsemester,
+                proposedinternyear: adminValues.adminyear
+            }
 
-                Bio.find(filters, {
-                    proposedinternsemester: adminValues.adminsemester
-                }, function(err, bioApplications) {
+            Bio.find(filters, {
+                proposedinternsemester: adminValues.adminsemester
+            }, function (err, bioApplications) {
+                if (err) return console.error(err);
+                Itec.find(filters, function (err, itecApplications) {
                     if (err) return console.error(err);
-                    Itec.find(filters, function(err, itecApplications) {
-                        if (err) return console.error(err);
-                        res.render('applications.ejs', {
-                            applicationList: bioApplications.concat(itecApplications),
-                            admin: adminValues,
-                            successMessage: req.flash('success'),
-                            failureMessage: req.flash('failure'),
-                            user: req.user
-                        });
+                    res.render('applications.ejs', {
+                        applicationList: bioApplications.concat(itecApplications),
+                        admin: adminValues,
+                        successMessage: req.flash('success'),
+                        failureMessage: req.flash('failure'),
+                        user: req.user
                     });
                 });
             });
-        }
-        else {
-          Bio.find({
+        });
+    }
+    else {
+        Bio.find({
             useremail: req.user.email
         }, function (err, bioApplications) {
             if (err) return console.error(err);
@@ -96,40 +96,48 @@ module.exports.getApplications = function(req, res) {
     }
 };
 
-function filterApplications (req, res, cb) {
+function filterApplications(req, res, cb) {
     var discipline;
     var semester = req.body.semester;
     var year = req.body.year;
     var appArray = [];
     var fields = [];
 
-    User.update({
-        'local.email': req.user.email
-    }, {
-            "local.semester": req.body.semester,
-            "local.year": req.body.year,
-            "local.program": req.body.program
-        }, function (err) {
-            if (err) {
-                req.flash('failure', 'The admin values cannot be updated at this time.')
+    switch (req.body.program) {
+        case 'Biology Internship (BIOL 4800)':
+            discipline = 'BIO';
+            break;
+        case 'Information Technology Internship (ITEC 4900)':
+            discipline = 'ITEC';
+        default:
+            break;
+    }
+
+    if (discipline == 'BIO') {
+        Bio.find({
+            "proposedinternsemester": semester,
+            "proposedinternyear": year
+        }, function (err, bioApps) {
+            if (bioApps.length == 0) { // if no bio apps were found
                 res.redirect('/applications');
+                req.flash('failure', 'No biology applicants for ' + semester + ' ' + year + ' were found');
             } else {
-                bioApps.forEach(function(bioApp) {
+                bioApps.forEach(function (bioApp) {
                     var bioJson = {
-                        ID : bioApp.userstudentid,
-                        FirstName : bioApp.userfname,
-                        LastName : bioApp.userlname,
-                        'BIO GPA' : bioApp.programgpa,
-                        Concentration : bioApp.major,
-                        'Expected Graduation' : bioApp.expectedGraduationSemester + ' ' + bioApp.expectedGraduationYear,
-                        Semester : semester,
-                        Year : year
+                        ID: bioApp.userstudentid,
+                        FirstName: bioApp.userfname,
+                        LastName: bioApp.userlname,
+                        'BIO GPA': bioApp.programgpa,
+                        Concentration: bioApp.major,
+                        'Expected Graduation': bioApp.expectedGraduationSemester + ' ' + bioApp.expectedGraduationYear,
+                        Semester: semester,
+                        Year: year
                     };
                     appArray.push(bioJson);
                 });
 
                 fields = ['ID', 'FirstName', 'LastName', 'BIO GPA', 'Concentration',
-                'Expected Graduation', 'Semester', 'Year'];
+                    'Expected Graduation', 'Semester', 'Year'];
 
                 cb(null, {
                     fields,
@@ -142,40 +150,40 @@ function filterApplications (req, res, cb) {
         });
     } else if (discipline = 'ITEC') {
         Itec.find({
-                "proposedinternsemester" : semester,
-                "proposedinternyear" : year  
-                }, function(err, itecApps) {
-                    if (itecApps.length == 0) { // if no bio apps were found
-                        res.redirect('/applications');
-                        req.flash('failure', 'No information technology applicants for ' + semester + ' ' + year + ' were found');
-                    } else {
-                        itecApps.forEach(function(itecApp) {
-                                var itecJson = {
-                                    ID : itecApp.userstudentid,
-                                    FirstName : itecApp.userfname,
-                                    LastName : itecApp.userlname,
-                                    'ITEC GPA' : itecApp.itecgpa,
-                                    Concentration : itecApp.major,
-                                    'Expected Graduation' : itecApp.expectedGraduationSemester + ' ' + itecApp.expectedGraduationYear,
-                                    Programming : itecApp.focusonsoftdev,
-                                    Semester : semester,
-                                    Year : year
-                                };
-                            appArray.push(itecJson);
-                        });
-
-                        fields = ['ID', 'FirstName', 'LastName', 'ITEC GPA', 'Concentration',
-                        'Expected Graduation', 'Programming', 'Semester', 'Year'];
-                                
-                        cb(null, {
-                            fields,
-                            appArray,
-                            discipline,
-                            year,
-                            semester
-                        })
-                    }
+            "proposedinternsemester": semester,
+            "proposedinternyear": year
+        }, function (err, itecApps) {
+            if (itecApps.length == 0) { // if no bio apps were found
+                res.redirect('/applications');
+                req.flash('failure', 'No information technology applicants for ' + semester + ' ' + year + ' were found');
+            } else {
+                itecApps.forEach(function (itecApp) {
+                    var itecJson = {
+                        ID: itecApp.userstudentid,
+                        FirstName: itecApp.userfname,
+                        LastName: itecApp.userlname,
+                        'ITEC GPA': itecApp.itecgpa,
+                        Concentration: itecApp.major,
+                        'Expected Graduation': itecApp.expectedGraduationSemester + ' ' + itecApp.expectedGraduationYear,
+                        Programming: itecApp.focusonsoftdev,
+                        Semester: semester,
+                        Year: year
+                    };
+                    appArray.push(itecJson);
                 });
+
+                fields = ['ID', 'FirstName', 'LastName', 'ITEC GPA', 'Concentration',
+                    'Expected Graduation', 'Programming', 'Semester', 'Year'];
+
+                cb(null, {
+                    fields,
+                    appArray,
+                    discipline,
+                    year,
+                    semester
+                })
+            }
+        });
     } else {
 
     }
@@ -185,15 +193,15 @@ function filterApplications (req, res, cb) {
     HTTP Req: POST
     URL: /export-applications
 */
-module.exports.filterApplications = function(req, res) {
-    if (req.body.function === "export") { 
+module.exports.filterApplications = function (req, res) {
+    if (req.body.function === "export") {
         filterApplications(req, res, (err, data) => {
             var discipline = data.discipline;
             var appArray = data.appArray;
             var fields = data.fields;
             var semester = data.semester;
             var year = data.year;
-            var csv = json2csv({data: appArray, fields: fields });
+            var csv = json2csv({ data: appArray, fields: fields });
             var fileName = 'csv/' + String(discipline).toLowerCase() + '_applications' + '_' + semester + '_' + year + '.csv';
             write(fileName, csv, req, res);
         })
@@ -208,7 +216,7 @@ module.exports.filterApplications = function(req, res) {
 }
 
 function write(fileName, csv, req, res) {
-        fs.writeFile(fileName, csv, function(err) {
+    fs.writeFile(fileName, csv, function (err) {
         if (err) {
             req.flash('failure', 'There was an error with the writing of the CSV file');
         } else {
@@ -220,9 +228,9 @@ function write(fileName, csv, req, res) {
 }
 
 function download(csvPath, req, res) {
-    res.download(csvPath, function(err) {
-        if (err) { 
-            console.log('Error downloading csv: ', err);    
+    res.download(csvPath, function (err) {
+        if (err) {
+            console.log('Error downloading csv: ', err);
             req.flash('failure', 'There was an error downloading the csv file');
         } else {
             console.log('file successfully written!');
@@ -232,7 +240,7 @@ function download(csvPath, req, res) {
 }
 
 function deleteFile(fileName) {
-    fs.unlink(fileName, function(err) {
+    fs.unlink(fileName, function (err) {
         if (err) {
             console.log('Error deleting the filing after download');
         } else {

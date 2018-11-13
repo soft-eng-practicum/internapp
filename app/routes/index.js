@@ -5,25 +5,26 @@
     - Utilizes the files within the controller folder
 */
 
-    // Variables to reference the controller functions within each controller file
-    var ctrlIndex = require('../controllers/index');
-    var ctrlLogin = require('../controllers/login');
-    var ctrlSignUp = require('../controllers/signup');
-    var ctrlForgot = require('../controllers/forgot');
-    var ctrlHome = require('../controllers/home');
-    var ctrlApplications = require('../controllers/applications');
-    var ctrlChangeSemester = require('../controllers/changesemester');
-    var ctrlSites = require('../controllers/sites');
-    var ctrlPromote = require('../controllers/promote');
-    var ctrlEditProfile = require('../controllers/editprofile');
-    var ctrlFAQ = require('../controllers/faq');
-    var ctrlLogout = require('../controllers/logout');
-    var ctrlReset = require('../controllers/reset');
-    var ctrlMongoToCsv = require('../controllers/mongoToCsv');
-    var ctrlUpload = require('../controllers/documentUpload');
-    var ctrlSiteNotes = require('../controllers/sitenotes');
-    var ctrlEditApps = require('../controllers/editApplications');
-    var ctrlHelp = require('../controllers/help');
+// Variables to reference the controller functions within each controller file
+var ctrlIndex = require('../controllers/index');
+var ctrlLogin = require('../controllers/login');
+var ctrlSignUp = require('../controllers/signup');
+var ctrlForgot = require('../controllers/forgot');
+var ctrlHome = require('../controllers/home');
+var ctrlApplications = require('../controllers/applications');
+var ctrlChangeSemester = require('../controllers/changesemester');
+var ctrlExport = require('../controllers/export');
+var ctrlSites = require('../controllers/sites');
+var ctrlPromote = require('../controllers/promote');
+var ctrlEditProfile = require('../controllers/editprofile');
+var ctrlFAQ = require('../controllers/faq');
+var ctrlLogout = require('../controllers/logout');
+var ctrlReset = require('../controllers/reset');
+var ctrlMongoToCsv = require('../controllers/mongoToCsv');
+var ctrlUpload = require('../controllers/documentUpload');
+var ctrlSiteNotes = require('../controllers/sitenotes');
+var ctrlEditApps = require('../controllers/editApplications');
+var ctrlHelp = require('../controllers/help');
 
 // For document uploads
 var fileUpload = require('express-fileupload');
@@ -115,15 +116,15 @@ module.exports = function (app, passport) {
     app.get('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.loadAdminHome);
     app.post('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.postAdminHome);
 
-     /* Applications pages */
-     app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
-     app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.filterApplications);
-     //app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
+    /* Applications pages */
+    app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
+    app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.filterApplications);
+    //app.get('/applications', isLoggedIn, isAdminOrInstructor, ctrlApplications.getApplications);
     //app.post('/applications', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlApplications.exportApplications);
     app.get('/changesemester', isLoggedIn, isAdminOrInstructor, ctrlChangeSemester.getApplications);
     app.post('/changesemester', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlChangeSemester.exportApplications);
 
-         // ITEC
+    // ITEC
     app.get('/itec', isLoggedIn, ctrlApplications.getItecApplication);
     app.get('/application/itec/:applicationid', isLoggedIn, ctrlApplications.getSpecificItecApplication);
     app.post('/itec', isLoggedIn, ctrlApplications.postItecApplication);
