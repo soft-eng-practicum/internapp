@@ -8,6 +8,6 @@
     "\\views",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\views\\bio.ejs",
+  "SelectedNode": "\\app\\routes\\index.js",
   "PreviewInSolutionExplorer": false
 }
