@@ -223,8 +223,8 @@ module.exports.postAddSite = function (req, res) {
 
     if (section) {
         var site = new Site({
-            name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: section,
-            mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: sitestatus
+            name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: req.body.section,
+            mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus
         });
 
         site.save(function (err) {
