@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+      <title>Forw</title>
+      <% include partials/headerimports %>
+  </head>
+
+  <body>
+    <% include partials/nav.ejs %>
+    <div class="container">
+      <h2 class="pageTitle">Applications</h2>
+      <h3 class="pageDescription">
+        View / Export submitted applications</h2>
+        <% if (successMessage.length > 0) { %>
+            <div class="alert alert-success">
+          <%= successMessage %>
+        </div>
+        <% } %>
+            <% if (failureMessage.length > 0) { %>
+            <div class="alert alert-danger">
+          <%= failureMessage %>
+        </div>
+        <% } %>
+         <br/>
+
+        <form name="applicationexports" action="/applications" method="post" class="form-horizontal">
+          <fieldset>
+            <h4 align="center">Select your exports</h4>
+            <div class="form-group">
+              <div class="form-inline">
+                <label for="select" class="col-lg-5 control-label">Select the semester and year you wish to filter by or export</label>
+                <div class="col-lg-5" class="">
+                  <select class="form-control adminSemester " id="applicationSemester" name="semester">
+                    <option value="Fall">Fall</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                  </select>
+                  <select class="form-control adminYearSelect" id="applicationYear" name="year" required="" type="number">
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-inline">
+                <label for="select" class="col-lg-5 control-label">Select your program:</label>
+                <div class="col-lg-5" class="">
+                  <select class="form-control adminProgram" id="applicationProgram" name="program">
+                    <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
+                    <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <fieldset>
+              <div align="center">
+                <button type="submit" class="btn btn-success btn-lg">Search</button>
+              </div>
+            </form>
+        <br>
+          <br>
+
+            <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>
+                    <center>Select All</center>
+                    <br/>
+                    <script>
+                      function checkAll()
+                      {
+                      var checkboxes = document.getElementsByTagName('input'), val = null;
+                      for (var i = 0; i < checkboxes.length; i++)
+     {
+         if (checkboxes[i].type == 'checkbox')
+         {
+             if (val === null) val = checkboxes[i].checked;
+             checkboxes[i].checked = val;
+         }
+     }
+ }</script>
+                    <center>
+                      <input id="selectall" type="checkbox" name="mail" value="1" onClick="checkAll()"/>
+
+                    </center>
+                  </th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Student ID</th>
+                  <th>Major</th>
+                  <th>Application Status</th>
+                  <th>Program</th>
+                  <th>Proposed Semester Year</th>
+                  <th>Expected Graduation</th>
+                  <th>View Details</th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+                <% applicationList.forEach(function(application) { %>
+
+                <tr>
+                  <td id="mySelect1">
+                    <center>
+                      <input id="emailCheckbox" type="checkbox"  value ='<%-application.useremail%>/>'
+                       
+                    </center>
+                  </td>
+                  <td>
+                    <%= application.userfname %> <%= application.userlname %>
+                  </td>
+                  <td>
+                    <%= application.useremail %>
+                  </td>
+                  <td>
+                    <%= application.userstudentid %>
+                  </td>
+                  <td>
+                    <%= application.major %>
+                  </td>
+                  <td>
+                    <%= application.applicationstatus %>
+                  </td>
+                  <td>
+                    <%= application.userdiscipline %>
+                  </td>
+                  <td>
+                    <%= application.proposedinternsemester + " " + application.proposedinternyear %>
+                  </td>
+                  <td>
+                    <%= application.expectedGraduationSemester + ' ' + application.expectedGraduationYear %>
+                  </td>
+                  <td>
+                    <a href="/application/"
+                      <%= application.userdiscipline %>/<%= application._id %>" ><span class='glyphicon glyphicon-search'></span>
+                    </a>
+                  </td>
+
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+            <a id="send1" onclick="displayResult()" href="mailto:" >Send email</a>
+          </div>
+
+    <% include partials/footerimports %>
+
+
+    <script>
+      function displayResult() {
+      var send = document.getElementById("send1"),
+      l = [];
+
+      $("input#emailCheckbox:checked").each(function (index) {
+
+      l.push(this.value);
+      send.href = "mailto:" + l.join(",");
+      console.log(this.value);
+      console.log(l);
+      } );
+      return;
+
+      }
+    </script>
+
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+
+      makeOptionSelected('applicationSemester', '<%= admin.adminsemester %>');
+      makeOptionSelected('applicationYear', '<%= admin.adminyear %>');
+      makeOptionSelected('applicationProgram', '<%= admin.adminprogram %>');
+
+      var table;
+      var semester = '<%= admin.adminsemester %>';
+      var program = prettySection('<%= admin.adminprogram %>');
+      var year = '<%= admin.adminyear %>';
+
+      table = $('#applications').DataTable({
+      "bFilter": true
+      });
+
+      table.search(semester + ' ' + year + ' ' + program).draw();
+      });
+    </script>
+  </body>
+</html>
+<script>
+  $(function(){
+  $('.Bio').hide();
+  $('.ITEC').hide();
+  $('#sectionList').change(function(){
+  var opt = $(this).val();
+  if(opt == 'ITEC'){
+  $('.Bio').hide();
+  $('.ITEC').show();
+  }else if(opt == 'Bio'){
+  $('.Bio').show();
+  $('.ITEC').hide();
+  }
+  else{
+  $('.Bio').hide();
+  $('.ITEC').hide();
+  }
+  });
+  });
+
+
+</script>

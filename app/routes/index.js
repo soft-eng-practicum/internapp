@@ -137,6 +137,9 @@ module.exports = function (app, passport) {
     app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, isAdmin, ctrlApplications.deleteBioFeedback);
     // BIO & ITEC
     app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
+	app.post('/application/:type(itec|bio)/changesemester/:applicationid', isLoggedIn, ctrlApplications.changeSemester);
+
+
 
     /*Export Page*/
     /* Applications pages */

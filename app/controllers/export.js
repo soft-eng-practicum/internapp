@@ -278,7 +278,7 @@ module.exports.updateApplicationStatus = function (req, res) {
                         res.redirect('/export/itec/' + req.params.applicationid);
                     }
                     else {
-                        req.flash('success', 'The application status has been successfully changed!')
+                        req.flash('success', 's application status has been successfully changed!')
                         redirect = '/export/itec/' + req.params.applicationid;
                         sendEmail(req, res, typeOfEmail, studentEmail, redirect);
                     }

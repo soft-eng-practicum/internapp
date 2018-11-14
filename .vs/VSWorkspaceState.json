@@ -3,11 +3,14 @@
     "",
     "\\app",
     "\\app\\controllers",
-    "\\app\\models",
-    "\\app\\routes",
+    "\\documentation",
+    "\\qa\\InternAppSelenium\\bin",
+    "\\qa\\InternAppSelenium\\bin\\pageObjects",
+    "\\qa\\InternAppSelenium\\src",
+    "\\qa\\InternAppSelenium\\src\\pageObjects",
+    "\\qa\\InternAppSelenium\\src\\tests",
     "\\views",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\app\\routes\\index.js",
   "PreviewInSolutionExplorer": false
 }

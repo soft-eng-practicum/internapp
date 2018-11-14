@@ -78,6 +78,10 @@ module.exports.updateItecApp = function(req, res) {
     }, function(err, oldItecApp) {
         if (err) throw err;
         console.log('itec app removed');
+        newItecapp.proposedinternsemester = oldItecApp.proposedinternsemester;
+		newItecapp.proposedinternyearr = oldItecApp.proposedinternyear;
+
+
         newItecapp.applicationstatus = oldItecApp.applicationstatus;
         newItecapp.submissionDate = oldItecApp.submissionDate;
         newItecapp.feedback = oldItecApp.feedback;

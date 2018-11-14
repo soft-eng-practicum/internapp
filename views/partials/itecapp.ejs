@@ -329,17 +329,44 @@
         <div class="form-group">
             <label>Application Status</label>
             <select class="form-control" name="applicationstatus">
-                <option value="" >Select a status</option>
+                eoption value="" >Select a status</option>
                 <option value="complete" >Complete</option>
                 <option value="incomplete">Incomplete</option>
                 <option value="further review">Further Review</option>
-                <option value="applicant rescinded" >Applicant Rescinded</option>
+                <option value="applicant rescinded">Applicant Rescinded</option>
                 <option value="applicant postponed">Applicant Postponed</option>
                 <option value="site declined">Site Declined</option>
             </select>
         </div>
         <button type="submit" class="btn btn-success btn-lg">Change Status</button>
     </form>
+
+      <h3>Change Proposed Intern Date</h3>
+      <form name="proposedinternsemester" action="/application/itec/changesemester/<%= application._id %>" method="post">
+        
+        <div class="form-group" >
+          <label>Internship Date</label>
+          <select class="form-control" name="proposedinternsemester">
+
+            <option value="" >Select semester</option>
+            <option value="Fall" >Fall</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+          </select>
+        </div>
+         <div class="form-group">
+          <label>Internship Date</label>
+          <select class="form-control" name="proposedinternyear">
+
+            <option value="" >Select Year</option>
+            <option value="2018" >2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+          </select>
+        </div>
+     
+        <button type="submit" class="btn btn-success btn-lg">Change Date</button>
+      </form>
     <% } %>
    <h3>Admin and Instructor Notes</h3>
    <table class="table table-bordered">
