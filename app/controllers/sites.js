@@ -17,8 +17,12 @@ var path = require('path');
     URL: '/sites'
 */
 module.exports.getSites = function (req, res) {
+    const query = {};
+    if (req.query.status) {
+        query['sitestatus'] = req.query.status
+    }
     User.getAdminValuesForHome(req.user._id, function (adminValues) {
-        Site.find(function (err, sites) {
+        Site.find(query, function (err, sites) {
             if (err) return console.error(err);
             res.render('site.ejs', {
                 siteList: sites,

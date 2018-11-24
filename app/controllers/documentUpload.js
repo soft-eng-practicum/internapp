@@ -353,17 +353,13 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             attachmentFileName = typeOfFile;
             break;
         case 'resume':
-            var itec = await Itec.getUsersItecAppPromise(user.email);
-            console.log(itec);
             coordinatorEmail = itecCoordinatorEmail;
-            emailSubject = itec.major + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' Resume';
+            emailSubject = "GGC InternApp - " + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' Resume';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s Resume";
             attachmentFileName = typeOfFile;
             break;
         case 'ferpa':
-            var itec = await Itec.getUsersItecAppPromise(user.email);
-            coordinatorEmail = itecCoordinatorEmail;
-            emailSubject = itec.major + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' FERPA';
+            emailSubject = "GGC InternApp - " + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' FERPA';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s FERPA";
             attachmentFileName = typeOfFile;
             break;
@@ -400,7 +396,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
                 text: emailText,
                 attachments: [
                     {
-                        filename: String(user.lname).toUpperCase() + '_' + attachmentFileName + '_' + file.name,
+                        filename: user.fname + '_' + user.lname+ '_' + attachmentFileName,
                         content: file.data,
                         encoding: 'binary'
                     }
