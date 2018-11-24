@@ -22,6 +22,13 @@ var itecCoordinatorEmail = process.env.ITEC_COORDINATOR_EMAIL;
 var bioCoordinatorEmail = process.env.BIO_COORDINATOR_EMAIL;
 var noFilesUploadedError = " You must choose a file to upload. ";
 
+var majorMap = {
+    "Software Development": 'SD',
+    'Digital Media': 'DM',
+    'Systems and Security': 'SS',
+    'Enterprise Systems': 'ES'
+}
+
 module.exports.getDocumentUpload = function(req, res) {
     var documentList = [];
     if (req.user.role === 'admin' || req.user.role === 'instructor') {
@@ -369,9 +376,8 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             attachmentFileName = whatIsFile;
             break;
         case 'itecother':
-            var itec = await Itec.getUsersItecAppPromise(user.email);
             coordinatorEmail = itecCoordinatorEmail;
-            emailSubject = itec.major + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' ' + whatIsFile;
+            emailSubject = "GGC InternApp - " +  user.lname + ', ' + user.fname + ' - ' + ' ' + whatIsFile;
             attachmentFileName = whatIsFile;
             break;
         default:
@@ -389,6 +395,9 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
                 }
             });
 
+            var itec = await Itec.getUsersItecAppPromise(user.email);
+            var fileName = itec.major ? majorMap[itec.major] + '_' : '';
+            fileName += user.fname + '_' + user.lname+ '_' + attachmentFileName;
             mailOptions = {
                 from: 'testinternapp@yahoo.com',
                 to: [coordinatorEmail, req.user.email],
@@ -396,7 +405,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
                 text: emailText,
                 attachments: [
                     {
-                        filename: user.fname + '_' + user.lname+ '_' + attachmentFileName,
+                        filename: fileName, 
                         content: file.data,
                         encoding: 'binary'
                     }
