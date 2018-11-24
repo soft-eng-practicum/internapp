@@ -11,11 +11,11 @@
       <div class="container">
           <h2>Site Details</h2>
           <% include partials/flashMessages.ejs %>
+          <form name="siteexports" action="/sites" method="post" class="form-horizontal">
          
         <div class="row col-sm-12">
             <h4 align="center">Select your table/export filters</h4>
             <div class="col-sm-5">                
-                <form name="siteexports" action="/sites" method="post" class="form-horizontal"></form>
                     <div class="form-group">
                         <div class="form-inline">
                             <label for="select" class="control-label">Select your program:</label>
@@ -32,7 +32,7 @@
                     </div>
                 </form>
             </div>
-        
+        </form>
             <div class="col-sm-5 pull-right">
                 <div class="form-group">
                     <div class="form-inline">
