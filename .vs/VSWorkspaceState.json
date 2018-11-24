@@ -1,16 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app",
-    "\\app\\controllers",
-    "\\documentation",
-    "\\qa\\InternAppSelenium\\bin",
-    "\\qa\\InternAppSelenium\\bin\\pageObjects",
-    "\\qa\\InternAppSelenium\\src",
-    "\\qa\\InternAppSelenium\\src\\pageObjects",
-    "\\qa\\InternAppSelenium\\src\\tests",
-    "\\views",
-    "\\views\\partials"
+    "\\views"
   ],
+  "SelectedNode": "\\views\\bio.ejs",
   "PreviewInSolutionExplorer": false
 }

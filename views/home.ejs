@@ -49,8 +49,20 @@
                             <li><h4>Upload Resume</h4></li>
                             <li><h4>Fill out and Upload FERPA Form</h4></li>
                         </ul>
+                        <div class="disclaimer">
+                        Disclaimer: This application site was developed by student Software Development teams. 
+                        It collects student information for the sole purpose of assisting students in finding ITEC internships and to enroll in ITEC 4900.   
+                        I understand that this site is not a part of the official GGC web site. 
+                        If you do not wish to apply using this site, you may fill out a paper application which can be found at <a href="http://www.ggc.edu/academics/schools/school-of-science-and-technology/docs/ITEC-internship-application.docx">Application for ITEC Internship (MS Word doc)</a> to download the form.
+                        You will then print, fill out and return to Dr. Pollacia in C-2239.
                         <br/>
-                        <a class="btn btn-success" href="/itec">Apply Now</a>
+                        <br/>
+                            <label for="itBox">By clicking here, I verify that I have read and understand this disclaimer:</label>
+                            <input type="checkbox" id="itBox">
+                        </div>   
+                        <br/>
+                        <a class="btn btn-success" id="itApply" href="/itec" disabled 
+                        title="Please verify that you have read and understood the disclaimer.">Apply Now</a>
                     </div>
                 </div>
             </div>
@@ -415,7 +427,16 @@
       <script>
          $(document).ready(function() {
          
-            $('[data-toggle="tooltip"]').tooltip(); 
+             $('[data-toggle="tooltip"]').tooltip(); 
+
+             $("#itBox").on('click', function(){
+                if ( $(this).is(':checked') ) {
+                     $('#itApply').attr('disabled', false);
+                } 
+                else {
+                    $('#itApply').attr('disabled', true);
+                }
+            });
          
             $('.bio').hide();
             $('.itec').hide();
