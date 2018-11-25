@@ -340,7 +340,7 @@ module.exports.updateApplicationStatus = function (req, res) {
                     }
                 });
             }
-            );
+        );
     }
 };
 /*
@@ -357,16 +357,6 @@ module.exports.changeSemester = function (req, res) {
             function (err, appEntry) {
                 studentEmail = appEntry.useremail;
                 Itec.update({ _id: req.params.applicationid }, { proposedinternsemester: req.body.proposedinternsemester }, function (err) {
-                    if (err) {
-                        req.flash('failure', 'An error has occured, the application status has not been changed!')
-                        res.redirect('/application/itec/' + req.params.applicationid);
-                    }
-                    else {
-                        req.flash('success', 'The application status has been successfully changed!')
-                        redirect = '/application/itec/' + req.params.applicationid;
-                        sendEmail(req, res, typeOfEmail, studentEmail, redirect);
-                    }
-                });
 				Itec.update({ _id: req.params.applicationid }, { proposedinternyear: req.body.proposedinternyear }, function (err) {
                     if (err) {
                         req.flash('failure', 'An error has occured, the application status has not been changed!')
@@ -374,47 +364,16 @@ module.exports.changeSemester = function (req, res) {
                     }
                     else {
                         req.flash('success', 'The application status has been successfully changed!')
-                        redirect = '/application/itec/' + req.params.applicationid;
-                        sendEmail(req, res, typeOfEmail, studentEmail, redirect);
+						res.redirect('/application/itec/' + req.params.applicationid);
                     }
                 });
+            });
+
 
             }
-            );
-    } else {
-        Bio
-            .findById(req.params.applicationid)
-            .exec(
-            function (err, appEntry) {
-                studentEmail = appEntry.useremail;
-                Bio.update({ _id: req.params.applicationid }, { proposedinternsemester: req.body.proposedinternsemester }, function (err) {
-                    if (err) {
-                        req.flash('failure', 'An error has occured, the application status has not been changed!')
-                        res.redirect('/application/bio/' + req.params.applicationid);
-                    }
-                    else {
-                        req.flash('success', 'The application status has been successfully changed!')
-                        redirect = '/application/bio/' + req.params.applicationid;
-                        sendEmail(req, res, typeOfEmail, studentEmail, redirect);
-                    }
-                });
-				Bio.update({ _id: req.params.applicationid }, { proposedinternsemester: req.body.proposedinternsemester }, function (err) {
-                    if (err) {
-                        req.flash('failure', 'An error has occured, the application status has not been changed!')
-                        res.redirect('/application/bio/' + req.params.applicationid);
-                    }
-                    else {
-                        req.flash('success', 'The application status has been successfully changed!')
-                        redirect = '/application/bio/' + req.params.applicationid;
-                        sendEmail(req, res, typeOfEmail, studentEmail, redirect);
-                    }
-                });
-
-            }
-            );
+        );
     }
-};
-
+	};
 /*
 
     A note has been added for this app

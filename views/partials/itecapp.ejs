@@ -341,8 +341,10 @@
         <button type="submit" class="btn btn-success btn-lg">Change Status</button>
     </form>
 
-      <h3>Change Proposed Intern Date</h3>
-      <form name="proposedinternsemester" action="/application/itec/changesemester/<%= application._id %>" method="post">
+    <% } %>
+      
+            <h3>Change Proposed Intern Date</h3>
+      <form name="proposedinternsemester" action="/application/itec/changeSemester/<%= application._id %>" method="post">
         
         <div class="form-group" >
           <label>Internship Date</label>
@@ -367,7 +369,7 @@
      
         <button type="submit" class="btn btn-success btn-lg">Change Date</button>
       </form>
-    <% } %>
+      
    <h3>Admin and Instructor Notes</h3>
    <table class="table table-bordered">
       <thead>
@@ -397,9 +399,7 @@
          <textarea rows="4" cols="50" name="note"></textarea>
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Note</button>
-   </f
-   
-   orm>
+   </form>
    <br>
    <h3>Document Uploads table</h3>
    <hr>
