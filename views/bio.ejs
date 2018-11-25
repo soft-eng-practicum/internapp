@@ -555,7 +555,7 @@
 
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
-       
+
         $("#btnSubmitEssay").click(function (event) {
 
             $('#btnSubmitEssay').attr('disabled', true);
@@ -574,8 +574,7 @@
                 contentType: false,
                 cache: false,
                 success: function (data) {
-                    $('#btnSubmitEssay').hide();
-                    $('#successEssay').show();
+                    $('#btnSubmitEssay').hide(), $('#successEssay').show(), $('#submitBtn').attr('disabled',false);
                 },
                 error: function (e) {
                     $('#failUpload').show();
@@ -601,8 +600,7 @@
                 contentType: false,
                 cache: false,
                 success: function (data) {
-                    $('#btnSubmitTranscript').hide();
-                    $('#successTranscript').show();
+                    $('#btnSubmitTranscript').hide(), $('#successTranscript').show(), $('#submitBtn').attr('disabled',false);
                 },
                 error: function (e) {
                     $('#failUpload').show();
@@ -631,8 +629,7 @@
                 contentType: false,
                 cache: false,
                 success: function (data) {
-                    $('#btnSubmitOther').hide();
-                    $('#successOther').show();
+                    $('#btnSubmitOther').hide(), $('#successOther').show();
                 },
                 error: function (e) {
                     $('#failUpload').show();
