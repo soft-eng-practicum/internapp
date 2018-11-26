@@ -4,6 +4,12 @@
     <meta charset='utf-8'>
       <title>Applications</title>
       <% include partials/headerimports %>
+      <style>
+a.three:link {color:#000000;}
+a.three:visited {color:#0000ff;}
+a.three:hover {background:#38b013;}
+a.three:hover {font-size:150%;}
+      </style>
   </head>
 
   <body>
@@ -61,6 +67,7 @@
                 <button name="function" value="filter" type="submit" class="btn btn-success btn-lg">Filter</button>
               </div>
             </form>
+          
         <br>
           <br>
 
@@ -145,8 +152,13 @@
                <% }); %>
               </tbody>
             </table>
-            <a id="send1" onclick="displayResult()" href="mailto:" >Send email</a>
+            <form onClick ="displayResult()">
+<i> <b><a  class="three" id="send1" onclick="displayResult()" href="mailto:" >Send email</a></b></i>
+
+
+
           </div>
+      
 
     <% include partials/footerimports %>
 
