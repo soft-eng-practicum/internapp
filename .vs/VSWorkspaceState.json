@@ -1,10 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app",
-    "\\app\\routes",
-    "\\views"
+    "\\node_modules",
+    "\\node_modules\\http-proxy",
+    "\\node_modules\\http-proxy\\lib",
+    "\\node_modules\\http-proxy\\lib\\http-proxy",
+    "\\node_modules\\http-proxy\\lib\\http-proxy\\passes",
+    "\\public",
+    "\\public\\images",
+    "\\views",
+    "\\views\\partials"
   ],
-  "SelectedNode": "\\views\\help.ejs",
   "PreviewInSolutionExplorer": false
 }
