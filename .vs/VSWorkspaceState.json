@@ -1,15 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\node_modules",
-    "\\node_modules\\http-proxy",
-    "\\node_modules\\http-proxy\\lib",
-    "\\node_modules\\http-proxy\\lib\\http-proxy",
-    "\\node_modules\\http-proxy\\lib\\http-proxy\\passes",
-    "\\public",
-    "\\public\\images",
-    "\\views",
-    "\\views\\partials"
+    "\\app",
+    "\\app\\controllers",
+    "\\app\\models",
+    "\\app\\routes",
+    "\\views"
   ],
+  "SelectedNode": "\\package-lock.json",
   "PreviewInSolutionExplorer": false
 }
