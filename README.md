@@ -14,29 +14,27 @@
 
 **Attribution-ShareAlike 4.0 International (CC BY-SA 4.0):** [Legal implications](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
 
-**Signed Spring 2017 License Agreement:** [Google drive link](https://drive.google.com/file/d/0B7qocu_f8Ouqa2NQdnVpZWtSVlE/view?usp=sharing)
+**Signed Fall 2018 License Agreement:** [Google drive link](https://drive.google.com/file/d/0B7qocu_f8Ouqa2NQdnVpZWtSVlE/view?usp=sharing)
 
 ## Overview
 
 _Internapp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs for both student and coordinator. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored._
 
-## Spring 2017 Final Report
+## Fall 2018 Final Report
 
 **Final Report:** [Google docs link](https://docs.google.com/document/d/14bPVeReTpH6RkloFUZmiIxMZo8cSe6K3K5anvwolyLU/edit?usp=sharing)
 
-## CREATE Spring 2017
+## CREATE Fall 2018
 
-**Survey:** [Surveymonkey Link](https://www.surveymonkey.com/r/2662D2R)
+**Survey:** [Surveymonkey Link](https://www.surveymonkey.com/r/PDBYFQT)
 
-**Survey Results:** [Google docs link](https://docs.google.com/document/d/1h-h_ZkWQhOdM-44sm0LgBSfCrq_GXKseW43G15fz27k/edit?usp=sharing)
+**Survey Results:** [Google docs link](https://drive.google.com/open?id=1g0W9waGUavpq-RcSLb5mhasSQGrxeIgh)
 
 ## Application Videos
 
 **Final demo video:** [Youtube video](https://youtu.be/TNs-tkoyQG8)
 
-**Admin / Instructor help videos:** [Youtube playlist](https://www.youtube.com/playlist?list=PLThPmlrHvWI8SLtKOI3_wHmo2rfOx_nzs)
-
-**User (Student) help videos:** [Youtube playlist](https://www.youtube.com/playlist?list=PLThPmlrHvWI9hkGpcCkS32fVYyWcozOPN)
+**Admin / Instructor & User (Student) help videos:** (https://drive.google.com/open?id=1IB2JIdergHAhXOHyTGHfu43Au55g1hqQ)
 
 ## Clientele
 
@@ -72,7 +70,9 @@ _Internapp is a web application designed to centralize the application process f
 ## Running the application on your local machine
 
 1. **[Install Node.js (either version is fine)](https://nodejs.org/en/)**<br>
+
    &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line<br/>
+
 2. **[Clone this github repository to your local machine](https://github.com/soft-eng-practicum/internapp)**<br>
 3. **Navigate to the internapp folder in your terminal/command line**<br>
 4. **Run the command 'npm install'**<br>

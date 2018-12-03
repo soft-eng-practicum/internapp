@@ -7,6 +7,6 @@
     "\\app\\routes",
     "\\views"
   ],
-  "SelectedNode": "\\package-lock.json",
+  "SelectedNode": "\\app\\controllers\\applications.js",
   "PreviewInSolutionExplorer": false
 }
