@@ -32,7 +32,8 @@ _Internapp is a web application designed to centralize the application process f
 
 ## Application Videos
 
-**Final demo video:** [Youtube video](https://youtu.be/TNs-tkoyQG8)
+**Final demo video:**
+(https://drive.google.com/open?id=1xodxNxzcsSZH2Ne7Zw9WUetn8DXt5THZ)
 
 **Admin / Instructor & User (Student) help videos:** (https://drive.google.com/open?id=1IB2JIdergHAhXOHyTGHfu43Au55g1hqQ)
 
