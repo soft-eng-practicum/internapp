@@ -37,8 +37,21 @@
                             <li><h4>Complete and Upload Essay <font color="red">*Required</font></h4></li>
                             <li><h4>Upload Transcript <font color="red">*Required</font></h4></li>
                         </ul>
+                                     <div class="disclaimer">
+                        Disclaimer: This application site was developed by student Software Development teams. 
+                        It collects student information for the sole purpose of assisting students in finding Biology internships and to enroll in BIOL 4800.   
+                        I understand that this site is not a part of the official GGC web site. 
+                        If you do not wish to apply using this site, you may fill out a paper application which can be found at 
+                        <a href="https://my.ggc.edu/group/guest/sst-internships">Application for Biology Experiential Learning</a>, and scroll down to Biology Experiential Learning to download the form.
+                        You will then print, fill out and submit complete application to the SST office in H-3209. If you have any difficulty, please contact Dr. Hammonds-Odie at <a href="mailto:lhammond@ggc.edu" target="_top">lhammond@ggc.edu</a>.
                         <br/>
-                        <a class="btn btn-success" href="/bio">Apply Now</a>
+                        <br/>
+                            <label for="bioBox">By clicking here, I verify that I have read and understand this disclaimer:</label>
+                            <input type="checkbox" id="bioBox">
+                        </div>  
+                        <br />
+                        <input class="btn btn-success" type="submit" value="Apply Now"  id="bioApply" onclick="window.location.href='/bio'" disabled 
+                        title="Please verify that you have read and understood the disclaimer."/>
                     </div>
                     <div class="itec">
                         <br/>
@@ -435,6 +448,15 @@
                 } 
                 else {
                     $('#itApply').attr('disabled', true);
+                }
+             });
+
+             $("#bioBox").on('click', function(){
+                if ( $(this).is(':checked') ) {
+                     $('#bioApply').attr('disabled', false);
+                } 
+                else {
+                    $('#bioApply').attr('disabled', true);
                 }
             });
          
