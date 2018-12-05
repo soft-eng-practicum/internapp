@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app\\controllers",
-    "\\app\\models",
-    "\\app\\routes",
     "\\views"
   ],
-  "SelectedNode": "\\views\\bio.ejs",
+  "SelectedNode": "\\views\\applications.ejs",
   "PreviewInSolutionExplorer": false
 }
