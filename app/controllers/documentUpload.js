@@ -391,7 +391,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
-                    user: 'testinternapp@yahoo.com',
+                    user: 'ggcinternapp@yahoo.com',
                     pass: key
                 }
             });
@@ -399,7 +399,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             var fileName = itec.major ? majorMap[itec.major] + '_' : '';
             fileName += user.fname + '_' + user.lname + '_' + attachmentFileName + '_' + file.name;
             mailOptions = {
-                from: 'testinternapp@yahoo.com',
+                from: 'ggcinternapp@yahoo.com',
                 to: [coordinatorEmail, req.user.email],
                 subject: emailSubject,
                 text: emailText,
@@ -455,13 +455,13 @@ function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
     transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
-                    user: 'testinternapp@yahoo.com',
+                    user: 'ggcinternapp@yahoo.com',
                     pass: key
                 }
     });
 
     mailOptions = {
-        from: 'testinternapp@yahoo.com',
+        from: 'ggcinternapp@yahoo.com',
         to: studentEmail,
         subject: emailSubject,
         text: emailText

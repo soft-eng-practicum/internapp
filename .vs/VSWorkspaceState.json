@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
+    "\\app",
+    "\\app\\controllers",
     "\\public\\javascript",
     "\\views"
   ],
+  "SelectedNode": "\\app\\controllers\\documentUpload.js",
   "PreviewInSolutionExplorer": false
 }
