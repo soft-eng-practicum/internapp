@@ -139,3 +139,17 @@ dd {
     text-align: center;
     font-size: 1.5em;
 }
+
+.filters {
+    width: 100% 
+}
+
+.filter1 {
+    float: left;
+    width: 40%
+}
+
+.filter2 {
+    float: right;
+    width: 40%
+}
