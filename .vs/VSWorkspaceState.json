@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
+    "\\public\\javascript",
     "\\views"
   ],
-  "SelectedNode": "\\views\\home.ejs",
   "PreviewInSolutionExplorer": false
 }
