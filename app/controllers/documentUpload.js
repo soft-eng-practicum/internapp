@@ -394,10 +394,9 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
                     pass: key
                 }
             });
-
             var itec = await Itec.getUsersItecAppPromise(user.email);
             var fileName = itec.major ? majorMap[itec.major] + '_' : '';
-            fileName += user.fname + '_' + user.lname+ '_' + attachmentFileName;
+            fileName += user.fname + '_' + user.lname + '_' + attachmentFileName + '_' + file.name;
             mailOptions = {
                 from: 'ggcinternapp@yahoo.com',
                 to: [coordinatorEmail, req.user.email],
@@ -405,7 +404,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
                 text: emailText,
                 attachments: [
                     {
-                        filename: fileName, 
+                        filename: fileName,
                         content: file.data,
                         encoding: 'binary'
                     }
