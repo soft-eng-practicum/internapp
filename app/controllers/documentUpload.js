@@ -366,6 +366,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             attachmentFileName = typeOfFile;
             break;
         case 'ferpa':
+            coordinatorEmail = itecCoordinatorEmail;
             emailSubject = "GGC InternApp - " + ' - ' +  user.lname + ', ' + user.fname + ' - ' + ' FERPA';
             emailText = "Attached is " + user.fname + ' ' + user.lname + "'s FERPA";
             attachmentFileName = typeOfFile;
@@ -390,7 +391,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
-                    user: 'ggcinternapp@yahoo.com',
+                    user: 'testinternapp@yahoo.com',
                     pass: key
                 }
             });
@@ -398,7 +399,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
             var fileName = itec.major ? majorMap[itec.major] + '_' : '';
             fileName += user.fname + '_' + user.lname + '_' + attachmentFileName + '_' + file.name;
             mailOptions = {
-                from: 'ggcinternapp@yahoo.com',
+                from: 'testinternapp@yahoo.com',
                 to: [coordinatorEmail, req.user.email],
                 subject: emailSubject,
                 text: emailText,
@@ -454,13 +455,13 @@ function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
     transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
-                    user: 'ggcinternapp@yahoo.com',
+                    user: 'testinternapp@yahoo.com',
                     pass: key
                 }
     });
 
     mailOptions = {
-        from: 'ggcinternapp@yahoo.com',
+        from: 'testinternapp@yahoo.com',
         to: studentEmail,
         subject: emailSubject,
         text: emailText
