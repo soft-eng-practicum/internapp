@@ -3,9 +3,8 @@
     "",
     "\\app",
     "\\app\\controllers",
-    "\\public\\javascript",
     "\\views"
   ],
-  "SelectedNode": "\\app\\controllers\\documentUpload.js",
+  "SelectedNode": "\\app\\controllers\\applications.js",
   "PreviewInSolutionExplorer": false
 }
