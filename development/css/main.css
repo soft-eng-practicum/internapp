@@ -16,6 +16,53 @@ body {
     resize: none; /* Remove this if you want the user to resize the textarea */
 }
 
+.otherLabel {
+	float: left; width: 260px;
+}
+.bg-modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px; 
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+.modal-contents {
+	height: 645px;
+	width: 600px;
+	background-color: #d3d3d3;
+	text-align: center;
+	padding: 20px;
+	position: absolute;
+	border-radius: 4px;
+} 
+input {
+	margin: 15px auto;
+	display: block;
+	padding: 8px;
+}
+.close {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	font-weight: bold;
+	color: #aaaaaa;
+	float: right;
+	transform: rotate(45deg);
+	cursor: pointer;
+}
+.close:hover,.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;}
+
 #uploadForm1 {
     padding: .5em;
 }
@@ -91,4 +138,18 @@ dd {
 .pageDescription {
     text-align: center;
     font-size: 1.5em;
+}
+
+.filters {
+    width: 100% 
+}
+
+.filter1 {
+    float: left;
+    width: 40%
+}
+
+.filter2 {
+    float: right;
+    width: 40%
 }

@@ -57,10 +57,8 @@ module.exports.getApplications = function (req, res) {
                 proposedinternyear: adminValues.adminyear
             }
 
-            Bio.find(filters, {
-                proposedinternsemester: adminValues.adminsemester
-            }, function (err, bioApplications) {
-                if (err) return console.error(err);
+                Bio.find(filters, function (err, bioApplications) {
+                    if (err) return console.error(err);
                 Itec.find(filters, function (err, itecApplications) {
                     if (err) return console.error(err);
                     res.render('applications.ejs', {
