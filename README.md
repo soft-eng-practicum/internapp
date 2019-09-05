@@ -50,6 +50,9 @@ _Internapp is a web application designed to centralize the application process f
 1. _Ethan Kim - [@ekim22](https://github.com/ekim22):_ **_Team lead_** &
 **_Client Liaison_** :smiley: <br>
 
+2. _Kyle Tate - [@kyletate](https://github.com/kyletate):_ **_UI/UX_** &
+**_Programming lead_** :tophat: <br>
+
 
 ## Fall 2018 Team Members
 
