@@ -47,6 +47,11 @@ _Internapp is a web application designed to centralize the application process f
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
 
 ## Fall 2018 Team Members
+1. _Ethan Kim - [@ekim22](https://github.com/ekim22):_ **_Team lead_** &
+**_Client Liaison_** :smiley: <br>
+
+
+## Fall 2018 Team Members
 
 1. _Kidus Dawit - [@kidus13](https://github.com/kidus13):_ **_QA_** & **_Team Lead_** <br>
 2. _Anastasia Arnold_ - [@aarnold7](https://github.com/aarnold7): **_Code Architecture/Lead Programmer_** & **_UI/UX Design_**<br>
