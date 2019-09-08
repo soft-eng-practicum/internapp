@@ -55,7 +55,7 @@ _Internapp is a web application designed to centralize the application process f
 
 3. _Jordan Vincent - [@jordatvincent](https://github.com/jordantvincent):_ **_UI/UX_** & **_Data Modeler_** :moneybag: <br>
 
-4. _Leon Le - [@weaponized](https://github.com/weaponized):_ **_Testing Lead_** & **Programmer_** :spider: <br>
+4. _Leon Le - [@weaponized](https://github.com/weaponized):_ **_Testing Lead_** & **_Programmer_** :spider: <br>
 
 ## Fall 2018 Team Members
 
