@@ -53,7 +53,7 @@ _Internapp is a web application designed to centralize the application process f
 2. _Kyle Tate - [@kyletate](https://github.com/kyletate):_ **_UI/UX_** &
 **_Programming lead_** :tophat: <br>
 
-3. _Jordan Vincent - [@jordatvincent](https://github.com/jordantvincent):_ **_UI/UX_** & **_Data Modeler_** :money: <br>
+3. _Jordan Vincent - [@jordatvincent](https://github.com/jordantvincent):_ **_UI/UX_** & **_Data Modeler_** :moneybag: <br>
 
 ## Fall 2018 Team Members
 
