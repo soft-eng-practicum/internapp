@@ -57,7 +57,7 @@ _Internapp is a web application designed to centralize the application process f
 
 4. _Leon Le - [@weaponized](https://github.com/weaponized):_ **_Testing Lead_** & **_Programmer_** :spider: <br>
 
-5. _Jose Cantillo - [@jcantillo](https://github.com/jcantillo94):_**_ (LEAD) Programming Lead_** & **_(LEAD) Documentation Lead_** :shipit: <br>
+5. _Jose Cantillo - [@jcantillo](https://github.com/jcantillo94):_**_(LEAD) Programming Lead_** & **_(LEAD) Documentation Lead_** :shipit: <br>
 
 ## Fall 2018 Team Members
 
