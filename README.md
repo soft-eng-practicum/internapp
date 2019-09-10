@@ -49,14 +49,10 @@ _Internapp is a web application designed to centralize the application process f
 ## Fall 2019 Team Members
 1. _Ethan Kim - [@ekim22](https://github.com/ekim22):_ **_Team lead_** &
 **_Client Liaison_** :smiley: <br>
-
 2. _Kyle Tate - [@kyletate](https://github.com/kyletate):_ **_UI/UX_** &
 **_Programming lead_** :tophat: <br>
-
 3. _Jordan Vincent - [@jordatvincent](https://github.com/jordantvincent):_ **_UI/UX_** & **_Data Modeler_** :moneybag: <br>
-
 4. _Leon Le - [@weaponized](https://github.com/weaponized):_ **_Testing Lead_** & **_Programmer_** :spider: <br>
-
 5. _Jose Cantillo - [@jcantillo](https://github.com/jcantillo94):_ **_(LEAD) Programming Lead_** & **_(LEAD) Documentation Lead_** :shipit: <br>
 
 ## Fall 2018 Team Members
