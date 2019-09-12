@@ -1,5 +1,13 @@
 <div style="text-align:center"><img src ="public/images/logos.png" /></div>
 
+# InternApp - Team Meraki
+
+**Repo Location URL:** [InternApp](https://github.com/soft-eng-practicum/internapp/tree/fall2019)
+
+**Progress Tracking Tool URL:** [TBA]()
+
+**Communication Tool:** [#TeamMeraki Discord](https://discord.gg/MdEbk7M)
+
 # InternApp - Tech Titans
 
 **Repository Location URL:** [Github Repository InternshipApp](https://github.com/soft-eng-practicum/internapp/tree/fall2018)
