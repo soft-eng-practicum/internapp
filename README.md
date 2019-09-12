@@ -6,7 +6,7 @@
 
 **Progress Tracking Tool URL:** [TBA]()
 
-**Communication Tool:** [#TeamMeraki Discord](https://discord.gg/MdEbk7M)
+**Communication Tool:** [Discord #meraki-sd2-cg]()
 
 # InternApp - Tech Titans
 
