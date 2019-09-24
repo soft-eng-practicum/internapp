@@ -1,5 +1,13 @@
 <div style="text-align:center"><img src ="public/images/logos.png" /></div>
 
+# InternApp - Team Meraki
+
+**Repo Location URL:** [Fall 2019 InternApp Repo](https://github.com/soft-eng-practicum/internapp/tree/fall2019)
+
+**Progress Tracking Tool URL:** TBA
+
+**Communication Tool:** Discord #meraki-sd2-cg
+
 # InternApp - Tech Titans
 
 **Repository Location URL:** [Github Repository InternshipApp](https://github.com/soft-eng-practicum/internapp/tree/fall2018)
@@ -45,6 +53,15 @@ _Internapp is a web application designed to centralize the application process f
 
 - [Information Technology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#itec4900)
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
+
+## Fall 2019 Team Members
+1. _Ethan Kim - [@ekim22](https://github.com/ekim22):_ **_Team lead_** &
+**_Client Liaison_** :smiley: <br>
+2. _Kyle Tate - [@kyletate](https://github.com/kyletate):_ **_UI/UX_** &
+**_Programmer_** :tophat: <br>
+3. _Jordan Vincent - [@jordatvincent](https://github.com/jordantvincent):_ **_UI/UX_** & **_Data Modeler_** :moneybag: <br>
+4. _Leon Le - [@weaponized](https://github.com/weaponized):_ **_Testing Lead_** & **_Programmer_** :spider: <br>
+5. _Jose Cantillo - [@jcantillo](https://github.com/jcantillo94):_ **_Programming Lead_** & **_Documentation Lead_** :shipit: <br>
 
 ## Fall 2018 Team Members
 
