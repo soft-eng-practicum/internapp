@@ -330,67 +330,6 @@
             </div>
             <br>
             <h3 align="center">
-               Emergency Contact Information
-            </h3>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Name of Emergency Contact</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname" placeholder="Name"
-                     pattern="[A-Za-z].{2,}" required value='<%= application.emergencycontactname %>' type="text">
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Mailing address</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress"
-                     placeholder="Address" title=" Example: 1227 Rosecliff"  type="text"
-                     required value='<%= application.emergencycontactaddress %>'>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Contact City</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City"
-                     pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text"
-                     required value='<%= application.emergencycontactcity %>'>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Contact State</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecState"name="emergencycontactstate" placeholder="State"
-                     pattern ="[A-Z]{2}" title=" Example: GA" type="text"
-                     required value='<%= application.emergencycontactstate %>'>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode"  placeholder="Zip Code"
-                     pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text"
-                     required value='<%= application.emergencycontactzipcode %>'>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="ecPhoneTxt" pattern="\d{3}[\-]\d{3}[\-]\d{4}"
-                     title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"
-                     required type="text" required value='<%= application.emergencycontactphone %>'>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="inputEmail" class="col-lg-5 control-label">Contact Email Address</label>
-               <div class="col-lg-5">
-                  <input type="email"
-                     class="form-control" id="ecEmailTxt" name="emergencycontactemail"
-                     placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
-                     style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
-                     required value='<%= application.emergencycontactemail %>'>
-               </div>
-            </div>
-            <br>
-            <h3 align="center">
                Mentor Information
             </h3>
             <div class="form-group">
