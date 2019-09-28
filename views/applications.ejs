@@ -9,15 +9,27 @@ a.three:link {color:#000000;}
 a.three:visited {color:#0000ff;}
 a.three:hover {background:#38b013;}
 a.three:hover {font-size:150%;}
+
+.backbtn{
+  float: left;
+}
+
+.pageTitle{
+  padding-right: 50px;
+}
+
       </style>
   </head>
 
   <body>
     <% include partials/nav.ejs %>
     <div class="container">
+      <form  action="/adminhome">
+        <input type="submit" value="Back" class="backbtn" />
+      </form>
       <h2 class="pageTitle">Applications</h2>
       <h3 class="pageDescription">
-        View / Export submitted applications</h2>
+        View / Export submitted applications</h3>
         <% if (successMessage.length > 0) { %>
             <div class="alert alert-success">
           <%= successMessage %>
@@ -67,7 +79,8 @@ a.three:hover {font-size:150%;}
                 <button name="function" value="filter" type="submit" class="btn btn-success btn-lg">Filter</button>
               </div>
             </form>
-          
+
+
         <br>
           <br>
 
@@ -189,12 +202,20 @@ a.three:hover {font-size:150%;}
       var program = prettySection('<%= admin.adminprogram %>');
       var year = '<%= admin.adminyear %>';
 
+
+
       table = $('#applications').DataTable({
       "bFilter": true
       });
 
-      table.search(semester + ' ' + year + ' ' + program).draw();
+      table.search(" ").draw();
       });
+
+
     </script>
+
+    <---search by student name--->
+
+
   </body>
 </html>
