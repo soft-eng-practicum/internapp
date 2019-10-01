@@ -190,7 +190,8 @@ a.three:hover {font-size:150%;}
       var year = '<%= admin.adminyear %>';
 
       table = $('#applications').DataTable({
-      "bFilter": true
+      "bFilter": true,
+      "pageLength": 50
       });
 
       table.search(semester + ' ' + year + ' ' + program).draw();
