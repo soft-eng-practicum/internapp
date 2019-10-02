@@ -95,7 +95,8 @@ a.three:hover {font-size:150%;}
 
                     </center>
                   </th>
-                  <th>Name</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
                   <th>Email</th>
                   <th>Student ID</th>
                   <th>Major</th>
@@ -119,7 +120,10 @@ a.three:hover {font-size:150%;}
                     </center>
                   </td>
                   <td>
-                    <%= application.userfname %> <%= application.userlname %>
+                    <%= application.userfname %>
+                  </td>
+                  <td>
+                    <%= application.userlname %>
                   </td>
                   <td>
                     <%= application.useremail %>
@@ -189,8 +193,10 @@ a.three:hover {font-size:150%;}
       var program = prettySection('<%= admin.adminprogram %>');
       var year = '<%= admin.adminyear %>';
 
+      //From datatables.net/reference
       table = $('#applications').DataTable({
-      "bFilter": true
+      "bFilter": true,
+      "pageLength": 50
       });
 
       table.search(semester + ' ' + year + ' ' + program).draw();
