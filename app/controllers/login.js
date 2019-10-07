@@ -13,8 +13,3 @@ module.exports.getLogin = function(req, res) {
         failureMessage : req.flash('failure')
     });
 };
-
-
-
-
-
