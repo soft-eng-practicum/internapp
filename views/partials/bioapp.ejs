@@ -118,6 +118,15 @@
             <%= application.career %>
          </td>
       </tr>
+      <% if (application.internsite != "Other") { %>
+      <tr>
+         <td>Chosen pre-approved site</td>
+         <td>
+            <%= application.internsite %>
+         </td>
+      </tr>
+      <% } %>
+      <% if (application.internsite === "Other") { %>
       <tr>
          <td>Proposed Site Name</td>
          <td>
@@ -172,14 +181,9 @@
             <%= application.proposedsitemanagertitle %>
          </td>
       </tr>
+      <% } %>
       <tr>
          <td>Preceptor Name</td>
-         <td>
-            <%= application.preceptorname %>
-         </td>
-      </tr>
-      <tr>
-         <td>Preceptor Phone</td>
          <td>
             <%= application.preceptorname %>
          </td>
