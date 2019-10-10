@@ -5,12 +5,23 @@
       <meta charset="UTF-8">
       <title class="pageTitle">Site Details</title>
       <% include partials/headerimports %>
+       <style>
+           .backbtn{
+               float: left;
+           }
 
+           .pageTitle{
+               padding-right: 50px;
+           }
+       </style>
 
    </head>
    <% include partials/nav.ejs %>
    <body>
       <div class="container">
+          <form  action="/sites">
+              <input type="submit" value="Back" class="backbtn" />
+          </form>
       <div class="col-sm-6 col-sm-offset-3">
       <% include partials/flashMessages.ejs %>
          <h3>Site Information:</h3>
