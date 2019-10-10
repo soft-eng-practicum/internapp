@@ -14,7 +14,7 @@ var json2csv = require('json2csv');
 var fs = require('fs');
 var homeDir = require('home-dir');
 var path = require('path');
-var homeCtrl = require("./home")
+var homeCtrl = require("./home");
 
 
 /*

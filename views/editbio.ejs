@@ -92,7 +92,7 @@
                <label for="input" class="col-lg-5 control-label">Number of Hours completed within Biology</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" placeholder="Hours" 
-                  pattern"^(0|[1-9][0-9]*)$"  
+                  pattern="^(0|[1-9][0-9]*)$"
                   required value='<%= application.hourscompleted %>' type="text">
                </div>
             </div>
@@ -250,7 +250,6 @@
                         value='<%= application.proposedsitemanagertitle %>'>
                   </div>
                </div>
-            </div>
             <br>
             <h3 align="center">
                Proposed Preceptor Information
@@ -299,7 +298,9 @@
                </div>
             </div>
             <br>
-            <!-- -->
+            </div>
+
+               <!-- -->
             <h3 align="center">
                Potential Student Employment Conflicts
             </h3>
