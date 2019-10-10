@@ -1,6 +1,5 @@
 <!-- views/edititec.ejs -->
 <!DOCTYPE html>
-<html> 
    <head>
       <title>Edit BIO Application</title>
       <% include partials/headerimports %>
@@ -48,7 +47,7 @@
                   <label for="select" class="col-lg-5 control-label">Concentration</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="concentrationList" name="major">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="Biochemistry">Biochemistry</option>
                         <option value="Cell Biology and Biotechnology">Cell Biology and Biotechnology</option>
                         <option value="General Biology">General Biology</option>
@@ -62,7 +61,7 @@
                   <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="graduationSemesterList" name="expectedGraduationSemester">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
@@ -346,7 +345,7 @@
                   <label for="select" class="col-lg-5 control-label">Is this person a Manager?</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="preceptorManagerList" name="ispreceptormanager">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                      </select>
@@ -393,7 +392,7 @@
                      <label for="select" class="col-lg-5 control-label">Is this a paid position?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="isPaidList" name="ispaidinternship">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>
@@ -412,7 +411,7 @@
                      <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="internquestion" name="isokseperatehours">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>
@@ -424,7 +423,7 @@
                      <label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control"  id="studentRelationshipList" name="doestudenthavefamilyatsite">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>
@@ -542,11 +541,11 @@
          });
          });
          
-         $('.other').hide();
+         $('.other');
          $(function(){
          $('#additionalInfoList').change(function(){
            var opt = $(this).val();
-            if(opt == 'Other'){
+            if(opt === 'Other'){
                 $('.other').show();
             }else{
             	$('.other').hide();
@@ -566,5 +565,7 @@
         });
     });
       </script>
+      </div>
+      </div>
    </body>
 </html>
