@@ -52,10 +52,19 @@ module.exports.getApplications = function (req, res) {
 
     if (req.user.role === 'admin' || req.user.role === 'instructor') {
         User.getAdminValuesForHome(req.user._id, function (adminValues) {
+            function getProgram () {
+                if (adminValues.adminprogram === 'Biology Internship (BIOL 4800)') {
+                    return 'BIO'
+                }
+                else if (adminValues.adminprogram === 'Information Technology Internship (ITEC 4900)') {
+                    return 'ITEC'
+                }
+            }
             var filters = {
                 proposedinternsemester: adminValues.adminsemester,
-                proposedinternyear: adminValues.adminyear
-            }
+                proposedinternyear: adminValues.adminyear,
+                userdiscipline: getProgram()
+            };
 
                 Bio.find(filters, function (err, bioApplications) {
                     if (err) return console.error(err);

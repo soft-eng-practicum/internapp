@@ -66,8 +66,10 @@ a.three:hover {font-size:150%;}
                 <!--<button name="function" value="export" type="submit" class="btn btn-success btn-lg">Export</button>-->
                 <button name="function" value="filter" type="submit" class="btn btn-success btn-lg">Filter</button>
               </div>
+            </fieldset>
+          </fieldset>
             </form>
-          
+
         <br>
           <br>
 
@@ -116,7 +118,7 @@ a.three:hover {font-size:150%;}
                   <td id="mySelect1">
                     <center>
                       <input id="emailCheckbox" type="checkbox"  value ='<%-application.useremail%>' />
-                       
+
                     </center>
                   </td>
                   <td>
@@ -158,8 +160,10 @@ a.three:hover {font-size:150%;}
             </table>
             <form onClick ="displayResult()">
 <i> <b><a  class="three" id="send1" onclick="displayResult()" href="mailto:" >Send email <br><br><br></a></b></i>
-
+            </form>
+      </h3>
           </div>
+  </body>
 
     <% include partials/footerimports %>
 
@@ -189,7 +193,7 @@ a.three:hover {font-size:150%;}
       makeOptionSelected('applicationProgram', '<%= admin.adminprogram %>');
 
       var table;
-      var semester = '<%= admin.adminsemester %>';
+      var semester = '<%= admin.adminsemester %>'
       var program = prettySection('<%= admin.adminprogram %>');
       var year = '<%= admin.adminyear %>';
 
@@ -199,7 +203,7 @@ a.three:hover {font-size:150%;}
       "pageLength": 50
       });
 
-      table.search(semester + ' ' + year + ' ' + program).draw();
+      // table.search(semester + ' ' + year + ' ' + program).draw();
       });
     </script>
   </body>
