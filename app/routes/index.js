@@ -164,7 +164,7 @@ module.exports = function (app, passport) {
     app.post('/application/bio/feedback/:applicationid', isLoggedIn, isAdmin, ctrlExport.addBioFeedback);
     app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, isAdmin, ctrlExport.deleteBioFeedback);
     // BIO & ITEC
-    app.post('/application/:type(itec|bio])/:applicationid', isLoggedIn, ctrlExport.updateApplicationStatus);
+    app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlExport.updateApplicationStatus);
     /*End Export*/
 
     /* Sites pages & Add Site page */
