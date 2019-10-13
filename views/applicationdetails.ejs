@@ -5,21 +5,13 @@
       <meta charset="UTF-8">
       <title>Application Details</title>
       <% include partials/headerimports %>
-      <style>
-         .backbtn{
-            float: left;
-         }
 
-         .pageTitle{
-            padding-right: 50px;
-         }
-      </style>
    </head>
    <body>
       <% include partials/nav.ejs %>
       <div class="container">
-         <form action="/applications">
-            <input type="submit" value="Back" class="backbtn"/>
+         <form  action="/applications">
+            <input type="submit" value="Back" class="btn btn-success btn-lg"/>
          </form>
          <div class="col-sm-6 col-sm-offset-3">
             <h2>Application Information</h2>

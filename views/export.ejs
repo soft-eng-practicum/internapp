@@ -5,22 +5,14 @@
     <meta charset='utf-8'>
     <title>Export</title>
     <% include partials/headerimports %>
-    <style>
-        .backbtn{
-          float: left;
-        }
 
-        .pageTitle{
-            padding-right: 50px;
-        }
-    </style>
 </head>
 
 <body>
     <% include partials/nav.ejs %>
     <div class="container">
-        <form  action="/applications">
-            <input type="submit" value="Back" class="backbtn" />
+        <form  action="/sites">
+            <input type="submit" value="Back" class="btn btn-success btn-lg" />
         </form>
         <h2 class="pageTitle">Export</h2>
         <h3 class="pageDescription">Export submitted applications</h3>
