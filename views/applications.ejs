@@ -72,8 +72,8 @@ a.three:hover {font-size:150%;}
 
         <br>
           <br>
-
-            <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" id="applications">
               <thead>
                 <tr>
                   <th>
@@ -158,7 +158,9 @@ a.three:hover {font-size:150%;}
                <% }); %>
               </tbody>
             </table>
-            <form onClick ="displayResult()">
+        </div>
+          <form onClick ="displayResult()">
+            </form>
 <i> <b><a  class="three" id="send1" onclick="displayResult()" href="mailto:" >Send email <br><br><br></a></b></i>
             </form>
       </h3>
