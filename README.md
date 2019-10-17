@@ -4,7 +4,7 @@
 
 **Repo Location URL:** [Fall 2019 InternApp Repo](https://github.com/soft-eng-practicum/internapp/tree/fall2019)
 
-**Progress Tracking Tool URL:** TBA
+**Progress Tracking Tool URL:** JIRA(https://jira.ggc.edu/secure/RapidBoard.jspa?rapidView=34&projectKey=MIC)
 
 **Communication Tool:** Discord #meraki-sd2-cg
 
@@ -52,7 +52,7 @@ _Internapp is a web application designed to centralize the application process f
 ## Internship Program Information
 
 - [Information Technology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#itec4900)
-- [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#chem4800)
+- [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#biol4800)
 
 ## Fall 2019 Team Members
 1. _Ethan Kim - [@ekim22](https://github.com/ekim22):_ **_Team lead_** &
