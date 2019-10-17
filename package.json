@@ -21,7 +21,7 @@
     "jasmine-node": "^1.14.5",
     "json2csv": "^3.7.3",
     "karma-script-launcher": "^1.0.0",
-    "method-override": "~1.0.0",
+    "method-override": "~2.3.10",
     "mkdirp": "^0.5.1",
     "mongoose": "4.7.2",
     "mongoose-schema-jsonschema": "^1.2.1",
