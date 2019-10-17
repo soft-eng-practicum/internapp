@@ -14,7 +14,7 @@ var json2csv = require('json2csv');
 var fs = require('fs');
 var homeDir = require('home-dir');
 var path = require('path');
-var homeCtrl = require("./home")
+var homeCtrl = require("./home");
 
 
 /*
@@ -52,10 +52,19 @@ module.exports.getApplications = function (req, res) {
 
     if (req.user.role === 'admin' || req.user.role === 'instructor') {
         User.getAdminValuesForHome(req.user._id, function (adminValues) {
+            function getProgram () {
+                if (adminValues.adminprogram === 'Biology Internship (BIOL 4800)') {
+                    return 'BIO'
+                }
+                else if (adminValues.adminprogram === 'Information Technology Internship (ITEC 4900)') {
+                    return 'ITEC'
+                }
+            }
             var filters = {
                 proposedinternsemester: adminValues.adminsemester,
-                proposedinternyear: adminValues.adminyear
-            }
+                proposedinternyear: adminValues.adminyear,
+                userdiscipline: getProgram()
+            };
 
                 Bio.find(filters, function (err, bioApplications) {
                     if (err) return console.error(err);
@@ -94,6 +103,7 @@ module.exports.getApplications = function (req, res) {
     }
 };
 
+//2019Com. function to check if aplplicant is itec or bio major and store values into variables for disciple, semester ect.
 function filterApplications(req, res, cb) {
     var discipline;
     var semester = req.body.semester;

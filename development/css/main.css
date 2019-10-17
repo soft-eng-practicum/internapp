@@ -23,7 +23,7 @@ body {
 	display: none;
 	position: fixed;
 	z-index: 1;
-	padding-top: 100px; 
+	padding-top: 100px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -41,7 +41,7 @@ body {
 	padding: 20px;
 	position: absolute;
 	border-radius: 4px;
-} 
+}
 input {
 	margin: 15px auto;
 	display: block;
@@ -84,7 +84,7 @@ input {
 }
 
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
+    from {bottom: 0; opacity: 0;}
     to {bottom: 30px; opacity: 1;}
 }
 
@@ -94,7 +94,7 @@ input {
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
+    from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
 
@@ -141,7 +141,7 @@ dd {
 }
 
 .filters {
-    width: 100% 
+    width: 100%
 }
 
 .filter1 {
@@ -152,4 +152,10 @@ dd {
 .filter2 {
     float: right;
     width: 40%
+}
+
+.rounded-padded-borders {
+    border: 10px solid #38b013;
+    border-radius: 20px;
+    padding: 20px
 }

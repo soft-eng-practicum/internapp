@@ -1,4 +1,5 @@
 <div class="col-sm-6 col-sm-offset-3">
+
    <table class="table table-bordered">
       <tr>
          <td>Application Status:</td>
@@ -94,7 +95,7 @@
       <tr>
          <td>ITEC 3100</td>
          <td>
-            <%= application.itec2150 + ' ' + application.itec2150Year %>
+            <%= application.itec3100 + ' ' + application.itec3100Year %>
          </td>
       </tr>
       <tr>
@@ -109,43 +110,7 @@
             <%= application.itec3900 + ' ' + application.itec3900Year %>
          </td>
       </tr>
-      <tr>
-         <td>Emergency Contact Name</td>
-         <td>
-            <%= application.emergencycontactname %>
-         </td>
-      </tr>
-      <tr>
-         <td>Emergency Contact Address</td>
-         <td>
-            <%= application.emergencycontactaddress %>
-         </td>
-      </tr>
-      <tr>
-         <td>Emergency Contact Email</td>
-         <td>
-            <%= application.emergencycontactemail %>
-         </td>
-      </tr>
-      <tr>
-         <td>Emergency Contact City</td>
-         <td>
-            <%= application.emergencycontactcity %>
-         </td>
-      </tr>
-      <tr>
-         <td>Emergency Contact Zipcode</td>
-         <td>
-            <%= application.emergencycontactzipcode %>
-         </td>
-      </tr>
-      <tr>
-         <td>Emergency Contact Phone</td>
-         <td>
-            <%= application.emergencycontactphone %>
-         </td>
-      </tr>
-      <tr>
+       <tr>
          <td>Mentor Name</td>
          <td>
             <%= application.mentorname %>
@@ -329,13 +294,13 @@
         <div class="form-group">
             <label>Application Status</label>
             <select class="form-control" name="applicationstatus">
-                eoption value="" >Select a status</option>
-                <option value="complete" >Complete</option>
-                <option value="incomplete">Incomplete</option>
-                <option value="further review">Further Review</option>
-                <option value="applicant rescinded">Applicant Rescinded</option>
-                <option value="applicant postponed">Applicant Postponed</option>
-                <option value="site declined">Site Declined</option>
+                <option value="" >Select a status</option>
+                <option value="Complete" >Complete</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Needs further review">Needs further review</option>
+                <option value="Applicant rescinded">Applicant rescinded</option>
+                <option value="Applicant postponed">Applicant postponed</option>
+                <option value="Site declined">Site declined</option>
             </select>
         </div>
         <button type="submit" class="btn btn-success btn-lg">Change Status</button>

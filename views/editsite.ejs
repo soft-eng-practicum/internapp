@@ -9,6 +9,9 @@
 <body>
     <% include partials/nav.ejs %> 
       <div class="container">
+          <form  action="/sites">
+              <input type="submit" value="Back" class="btn btn-success btn-lg" />
+          </form>
           <div class="col-sm-8 col-sm-offset-1" align="center">
               <h1>Edit Site</h1>
               <% include partials/flashMessages.ejs %>

@@ -93,7 +93,8 @@
 
 
               table = $('#sites').DataTable({
-                  "bFilter": true
+                  "bFilter": true,
+                  "pageLength": 50
               });
 
               table.search(program).draw();

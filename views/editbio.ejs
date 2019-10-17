@@ -1,6 +1,5 @@
 <!-- views/edititec.ejs -->
 <!DOCTYPE html>
-<html> 
    <head>
       <title>Edit BIO Application</title>
       <% include partials/headerimports %>
@@ -10,24 +9,20 @@
       <div class="container">
       <div class="col-sm-10 col-sm-offset-1">
       <br>
-      <h1 align="center">Biology Intership application</h1>
+      <h1 align="center">Biology Internship Application</h1>
       <h4 align="center">Submit a typed, completed and signed form with an 
          attached, printed copy of your unofficial academic transcript 
          (obtained from Banner) to the SST Office in the Allied Health 
          and Sciences (H2) Building, Room 3209.<br><br>
-         <strong>IMPORTANT:</strong> Please attach all required supplemental materials 
-         to complete the application packet. Information will be used to determine 
-         if you will be accepted to participate in program. Incomplete application packets
-         <br>
-         Information will be used to determine if you will be accepted to 
-         participate in the internship program. Completion of this application 
-         does not guarantee your acceptance into the internship program and/or 
-         enrollment in bio 4900.
+         <strong>IMPORTANT:</strong> The information you submit will be used to determine if
+         you will be accepted to participate in the Program. Completion of this application does NOT
+         guarantee your acceptance into the Biology Internship Program and/or enrollment in BIOL4800.
       </h4>
       <br>
       <form name="bioEdit" action="/editbio" method="post" class="form-horizontal" _lpchecked="1">
          <fieldset>
             <h2 align = "center">Student Academic Information</h2>
+            <div class="rounded-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
@@ -48,7 +43,7 @@
                   <label for="select" class="col-lg-5 control-label">Concentration</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="concentrationList" name="major">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="Biochemistry">Biochemistry</option>
                         <option value="Cell Biology and Biotechnology">Cell Biology and Biotechnology</option>
                         <option value="General Biology">General Biology</option>
@@ -62,7 +57,7 @@
                   <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="graduationSemesterList" name="expectedGraduationSemester">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
@@ -92,7 +87,7 @@
                <label for="input" class="col-lg-5 control-label">Number of Hours completed within Biology</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="hoursTxt" name="hourscompleted" placeholder="Hours" 
-                  pattern"^(0|[1-9][0-9]*)$"  
+                  pattern="^(0|[1-9][0-9]*)$"
                   required value='<%= application.hourscompleted %>' type="text">
                </div>
             </div>
@@ -104,10 +99,12 @@
                      required value='<%= application.career %>' type="text">
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Emergency Contact Information
             </h3>
+            <div class="rounded-padded-borders">
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
                <div class="col-lg-5">
@@ -167,10 +164,12 @@
                      required value='<%= application.emergencycontactemail %>'>
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Mentor Information
             </h3>
+            <div class="rounded-padded-borders">
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Name</label>
                <div class="col-lg-5">
@@ -203,6 +202,8 @@
                      style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
                      required value='<%= application.mentoremail %>'>
                </div>
+            </div>
+            </div>
             </div>
             <br>
             <h3 align="center">
@@ -313,7 +314,6 @@
                         value='<%= application.proposedsitemanagertitle %>'>
                   </div>
                </div>
-            </div>
             <br>
             <h3 align="center">
                Proposed Preceptor Information
@@ -347,7 +347,7 @@
                   <label for="select" class="col-lg-5 control-label">Is this person a Manager?</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="preceptorManagerList" name="ispreceptormanager">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                      </select>
@@ -362,7 +362,9 @@
                </div>
             </div>
             <br>
-            <!-- -->
+            </div>
+
+               <!-- -->
             <h3 align="center">
                Potential Student Employment Conflicts
             </h3>
@@ -392,7 +394,7 @@
                      <label for="select" class="col-lg-5 control-label">Is this a paid position?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="isPaidList" name="ispaidinternship">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>
@@ -411,7 +413,7 @@
                      <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="internquestion" name="isokseperatehours">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>
@@ -423,7 +425,7 @@
                      <label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control"  id="studentRelationshipList" name="doestudenthavefamilyatsite">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>
@@ -541,11 +543,11 @@
          });
          });
          
-         $('.other').hide();
+         $('.other');
          $(function(){
          $('#additionalInfoList').change(function(){
            var opt = $(this).val();
-            if(opt == 'Other'){
+            if(opt === 'Other'){
                 $('.other').show();
             }else{
             	$('.other').hide();
@@ -565,5 +567,7 @@
         });
     });
       </script>
+      </div>
+      </div>
    </body>
 </html>

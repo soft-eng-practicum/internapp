@@ -66,12 +66,14 @@ a.three:hover {font-size:150%;}
                 <!--<button name="function" value="export" type="submit" class="btn btn-success btn-lg">Export</button>-->
                 <button name="function" value="filter" type="submit" class="btn btn-success btn-lg">Filter</button>
               </div>
+            </fieldset>
+          </fieldset>
             </form>
-          
+
         <br>
           <br>
-
-            <table class="table table-striped table-bordered" id="applications" cellspacing="0" width="100%">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" id="applications">
               <thead>
                 <tr>
                   <th>
@@ -95,7 +97,8 @@ a.three:hover {font-size:150%;}
 
                     </center>
                   </th>
-                  <th>Name</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
                   <th>Email</th>
                   <th>Student ID</th>
                   <th>Major</th>
@@ -115,11 +118,14 @@ a.three:hover {font-size:150%;}
                   <td id="mySelect1">
                     <center>
                       <input id="emailCheckbox" type="checkbox"  value ='<%-application.useremail%>' />
-                       
+
                     </center>
                   </td>
                   <td>
-                    <%= application.userfname %> <%= application.userlname %>
+                    <%= application.userfname %>
+                  </td>
+                  <td>
+                    <%= application.userlname %>
                   </td>
                   <td>
                     <%= application.useremail %>
@@ -152,10 +158,14 @@ a.three:hover {font-size:150%;}
                <% }); %>
               </tbody>
             </table>
-            <form onClick ="displayResult()">
+        </div>
+          <form onClick ="displayResult()">
+            </form>
 <i> <b><a  class="three" id="send1" onclick="displayResult()" href="mailto:" >Send email <br><br><br></a></b></i>
-
+            </form>
+      </h3>
           </div>
+  </body>
 
     <% include partials/footerimports %>
 
@@ -189,11 +199,13 @@ a.three:hover {font-size:150%;}
       var program = prettySection('<%= admin.adminprogram %>');
       var year = '<%= admin.adminyear %>';
 
+      //From datatables.net/reference
       table = $('#applications').DataTable({
-      "bFilter": true
+      "bFilter": true,
+      "pageLength": 50
       });
 
-      table.search(semester + ' ' + year + ' ' + program).draw();
+      // table.search(semester + ' ' + year + ' ' + program).draw();
       });
     </script>
   </body>

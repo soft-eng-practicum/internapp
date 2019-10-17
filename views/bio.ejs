@@ -11,20 +11,15 @@
       <div class="container">
       <div class="col-sm-10 col-sm-offset-1">
       <br>
-      <h1 align="center">Biology Intership application</h1>
-      <h4 align="center">Submit a typed, completed and signed form with an 
-         attached, printed copy of your unofficial academic transcript 
-         (obtained from Banner) to the SST Office in the Allied Health 
-         and Sciences (H2) Building, Room 3209.<br><br>
-         <strong>IMPORTANT:</strong> Please attach all required supplemental materials 
-         to complete the application packet. Information will be used to determine 
-         if you will be accepted to participate in program. Incomplete application packets
-         <br>
-         Information will be used to determine if you will be accepted to 
-         participate in the internship program. Completion of this application 
-         does not guarantee your acceptance into the internship program and/or 
-         enrollment in bio 4900.
-      </h4>
+         <h1 align="center">Biology Internship Application</h1>
+         <h4 align="center">Submit a typed, completed and signed form with an
+            attached, printed copy of your unofficial academic transcript
+            (obtained from Banner) to the SST Office in the Allied Health
+            and Sciences (H2) Building, Room 3209.<br><br>
+            <strong>IMPORTANT:</strong> The information you submit will be used to determine if
+            you will be accepted to participate in the Program. Completion of this application does NOT
+            guarantee your acceptance into the Biology Internship Program and/or enrollment in BIOL4800.
+         </h4>
       <br>
       <div align="center">
         <a href="#" button class="btn btn-success" id="uploadBtn">Upload Documents</a>
@@ -44,7 +39,7 @@
                       <div class="alert alert-success" id="successEssay">
                       <strong>Success!</strong> Your essay was succesfully uploaded!
                       </div>
-                   <input class="btn btn-success" type="submit" value="Upload Essay!"  id="btnSubmitEssay" disabled 
+                   <input class="btn btn-success" type="submit" value="Upload Essay!"  id="btnSubmitEssay" disabled
                         title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay"/>
                     </form>
                 <br>
@@ -52,21 +47,21 @@
                 <h5>Transcript <i class="glyphicon glyphicon-question-sign" title="Please upload a PDF of your unofficial academic transcript. To obtain a PDF of your unofficial academic transcript, open Google Chrome (can be done similarily in other browsers) -> log into banner -> select Student tab -> select View Student Record -> select Unofficial Academic Transcript -> select Submit -> Right click page and select print -> Change destination to Save as PDF (underneath Local Destinations) -> Select Print -> Save and upload the PDF file" data-toggle="tooltip"></i></h5>
                     <input type="file" name="transcript" class="inputfile" id="transcriptFile"/>
                        <div class="alert alert-success" id="successTranscript">
-                      <strong>Success!</strong> Your transcript was succesfully uploaded!
+                      <strong>Success!</strong> Your transcript was successfully uploaded!
                       </div>
-                    <input class="btn btn-success" type="submit" value="Upload Transcript!" id="btnSubmitTranscript" disabled 
+                    <input class="btn btn-success" type="submit" value="Upload Transcript!" id="btnSubmitTranscript" disabled
                         title="Please Click 'Choose File' First, Then Click 'Upload Transcript!' To Upload Transcript"/>
                     </form>
                 <br>
                     <form action="/uploadBioOther" method="POST" enctype="multipart/form-data" id="uploadOther">
                     <h5>Other <i class="glyphicon glyphicon-question-sign" title="Use this upload box for any additional forms you may need to upload for your BIO application." data-toggle="tooltip"></i></h5>
              <input type='text' name="bioOther" class="otherLabel" placeholder="What is the file you're uploading?" id="bioOtherName"/>
-                        <input type="file" name="other" class="inputfile" id="otherBioFile" required/>  
+                        <input type="file" name="other" class="inputfile" id="otherBioFile" required/>
                        <div class="alert alert-success" id="successOther">
-                      <strong>Success!</strong> Your document was succesfully uploaded!
+                      <strong>Success!</strong> Your document was successfully uploaded!
                       </div>
                         <br>
-                <input class="btn btn-success" type="submit" value="Upload Document!" id="btnSubmitOther" disabled 
+                <input class="btn btn-success" type="submit" value="Upload Document!" id="btnSubmitOther" disabled
                         title="Please Click 'Choose File' First, Then Click 'Upload Document!' To Upload Document"/>
                 </form>
             </div>
@@ -81,7 +76,7 @@
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="semesterList" name="proposedinternsemester">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
@@ -96,7 +91,7 @@
                   <label for="select" class="col-lg-5 control-label">Concentration</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="majorTxt" name="major">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="Biochemistry">Biochemistry</option>
                         <option value="Cell Biology and Biotechnology">Cell Biology and Biotechnology</option>
                         <option value="General Biology">General Biology</option>
@@ -110,7 +105,7 @@
                   <label for="select" class="col-lg-5 control-label">Expected Graduation Date</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="graduationSemester" name="expectedGraduationSemester">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="Fall">Fall</option>
                         <option value="Spring">Spring</option>
                         <option value="Summer">Summer</option>
@@ -243,7 +238,7 @@
                   and/or site manager/supervisor. Providing false information about connections between you and site staff would constitute a violation
                   of the GGC Honor Code (see policy on academic honesty).
                </h3>
-            <div class="other">
+               <div class="other">
                <br>
                <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Name of Site</label>
@@ -305,7 +300,7 @@
                      <input class="form-control" rows="3" id="psManagerTitleTxt" placeholder="Title" name="proposedsitemanagertitle" type="text">
                   </div>
                </div>
-            </div>
+
             <br>
             <h3 align="center">
                Proposed Preceptor Information
@@ -333,7 +328,7 @@
                   <label for="select" class="col-lg-5 control-label">Is this person a Manager?</label>
                   <div class="col-lg-5" class>
                      <select class="form-control" id="prceptorManagerList" name="ispreceptormanager">
-                        <option vaule="Select">Select</option>
+                        <option value="Select">Select</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                      </select>
@@ -347,6 +342,7 @@
                </div>
             </div>
             <br>
+               </div>
             <!-- -->
             <h3 align="center">
                Potential Student Employment Conflicts
@@ -376,7 +372,7 @@
                      <label for="select" class="col-lg-5 control-label">Is this a paid position?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="isPaidList" name="ispaidinternship">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>
@@ -394,7 +390,7 @@
                      <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="internquestion" name="isokseperatehours">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>
@@ -406,7 +402,7 @@
                      <label for="select" class="col-lg-5 control-label">Do you have personal or family relationship with anyone employed at this potential internship site?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control"  id="studentRelationshipList" name="doestudenthavefamilyatsite">
-                           <option vaule="Select">Select</option>
+                           <option value="Select">Select</option>
                            <option value="yes">Yes</option>
                            <option value="no">No</option>
                         </select>

@@ -194,7 +194,7 @@ var bioSchema = mongoose.Schema({
         required: false
     },
     applicationstatus: {type: String, required: false},
-    useremail: {
+        useremail: {
             type: String,
             required: false
         },
