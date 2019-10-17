@@ -4,7 +4,7 @@
 
 **Repo Location URL:** [Fall 2019 InternApp Repo](https://github.com/soft-eng-practicum/internapp/tree/fall2019)
 
-**Progress Tracking Tool URL:** JIRA(https://jira.ggc.edu/secure/RapidBoard.jspa?rapidView=34&projectKey=MIC)
+**Progress Tracking Tool URL:** [Jira](https://jira.ggc.edu/secure/RapidBoard.jspa?rapidView=34&projectKey=MIC)
 
 **Communication Tool:** Discord #meraki-sd2-cg
 
