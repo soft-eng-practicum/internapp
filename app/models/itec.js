@@ -21,6 +21,10 @@ var itecSchema = mongoose.Schema({
                 type: String,
                 required: false
         },
+        phonenumber: {
+                type: String,
+                required: false
+        },
         classification: {
                 type: String,
                 required: false
@@ -67,18 +71,6 @@ var itecSchema = mongoose.Schema({
         },
 
         mentorname: {
-                type: String,
-                required: false
-        },
-        mentorcellphone: {
-                type: String,
-                required: false
-        },
-        mentoremail: {
-                type: String,
-                required: false
-        },
-        mentoroffice: {
                 type: String,
                 required: false
         },
