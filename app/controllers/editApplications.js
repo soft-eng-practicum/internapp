@@ -63,6 +63,7 @@ module.exports.updateBioApp = function(req, res) {
 
 module.exports.updateItecApp = function(req, res) {
     var newItecapp = new Itec(req.body);
+    
     newItecapp.useremail = req.user.email;
     newItecapp.userstudentid = req.user.studentid;
     newItecapp.userfname = req.user.fname;
