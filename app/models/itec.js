@@ -151,10 +151,6 @@ var itecSchema = mongoose.Schema({
                 type: String,
                 required: false
         },
-        signature: {
-                type: String,
-                required: false
-        },
         printedname: {
                 type: String,
                 required: false
