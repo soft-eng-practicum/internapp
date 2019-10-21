@@ -53,6 +53,7 @@
               <thead>
                   <tr>
                       <th>Name</th>
+                      <th>Email Address</th>
                       <th>Address</th>
                       <th>City</th>
                       <th>Program</th>
@@ -64,9 +65,17 @@
                   </tr>
               </thead>
               <tbody>
-                  <% siteList.forEach(function(site) { %>
+                  <%siteList.forEach(function(site) { %>
+      
+                
+   
+
                <tr>
-                   <td><%= site.name %></td>
+                    <td><%= site.name %></td>
+                    <td>
+                    <% site.contacts.forEach(function(contact) { %>
+                    <%= contact.email %>
+                    <% }); %> </td>
                    <td><%= site.address %></td>
                    <td><%= site.city %></td>
                    <td><%= site.section %></td>
