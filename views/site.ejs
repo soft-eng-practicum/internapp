@@ -52,6 +52,31 @@
           <table class="table table-bordered" id="sites">
               <thead>
                   <tr>
+                      <th>
+                          <center>Select All</center>
+                          <br/>
+                          <script>
+                              function checkAll()
+                              {
+                                  let checkboxes = document.getElementsByTagName('input'), val = null;
+                                  for (let i = 0; i < checkboxes.length; i++)
+                                  {
+                                      if (checkboxes[i].type == 'checkbox')
+                                      {
+                                          if (val === null) val = checkboxes[i].checked;
+                                          checkboxes[i].checked = val;
+                                      }
+                                  }
+                              }
+
+
+                          </script>
+
+                          <center>
+                              <input id="selectall" type="checkbox" name="mail" value="1" onClick="checkAll()"/>
+
+                          </center>
+                      </th>
                       <th>Name</th>
                       <th>Email Address</th>
                       <th>Address</th>
@@ -66,11 +91,15 @@
               </thead>
               <tbody>
                   <%siteList.forEach(function(site) { %>
-      
-                
-   
-
                <tr>
+                   <td id="mySelect1">
+                       <center>
+                           <input id="emailCheckbox" type="checkbox"  value ='<% site.contacts.forEach(function(contact) { %>
+                    <%= contact.email %>
+                    <% });  %>' />
+
+                       </center>
+                   </td>
                     <td><%= site.name %></td>
                     <td>
                     <% site.contacts.forEach(function(contact) { %>
@@ -92,8 +121,30 @@
                   <% }); %>
               </tbody>
           </table>
+    <form onClick ="displayResult()">
+
+        <i> <b><a  class="three" id="send1" onclick="displayResult()" href="mailto:" >Send email <br><br><br></a></b></i>
+    </form>
       </div>
+
     <% include partials/footerimports %>
+    <script>
+        function displayResult() {
+            var send = document.getElementById("send1"),
+                l = [];
+
+            $("input#emailCheckbox:checked").each(function (index) {
+
+
+                l.push(this.value.trim());
+                send.href = "mailto:" + l.join(",");
+                console.log(this.value);
+                console.log(l);
+            } );
+            return;
+
+        }
+    </script>
       <script type="text/javascript">
           $(document).ready(function () {
 

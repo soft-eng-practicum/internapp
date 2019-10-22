@@ -12,6 +12,7 @@ var fs = require('fs');
 var homeDir = require('home-dir');
 var path = require('path');
 
+
 /*
     HTTP Req: GET
     URL: '/sites'
@@ -380,3 +381,4 @@ function deleteFile(fileName) {
         }
     });
 }
+
