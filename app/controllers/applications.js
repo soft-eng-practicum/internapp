@@ -103,7 +103,7 @@ module.exports.getApplications = function (req, res) {
     }
 };
 
-//2019Com. function to check if aplplicant is itec or bio major and store values into variables for disciple, semester ect.
+//2019Com. function to check if applicant is itec or bio major and store values into variables for disciple, semester ect.
 function filterApplications(req, res, cb) {
     var discipline;
     var semester = req.body.semester;
