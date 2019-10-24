@@ -183,7 +183,31 @@
          <% } %>
          <!-- Show the uploads for ITEC if they have an ITEC application submitted --> 
          <% if (itecApp) { %>
-         <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
+         
+         
+         
+            <div class="container">
+               <div class="row">
+                 <div class="col-md-6 m-auto">
+                   <h1 class="text-center display-4 my-4">Mongo File Uploads</h1>
+                    
+                   <form action="/upload" method="POST" enctype="multipart/form-data">
+                     <div class="homePageSection">
+                       <input type="file" name="file" id="file" class="custom-file-input">
+                       <label for="file" class="custom-file-label">Choose File</label>
+                     </div>
+                     <input type="submit" value="Submit" class="btn btn-primary btn-block">
+                   </form>
+                 </div>
+               </div>
+             </div>
+
+            <form action="/download" method="GET">
+               <input type = "submit" value="Download File" >
+               </form>
+
+
+            <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
             <h3>ITEC Uploads</h3>
             <div class="uploadBox" id="itecBox">
                <form ref='uploadForm'
