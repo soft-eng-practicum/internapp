@@ -22,9 +22,21 @@ var Grid = require('gridfs-stream');
 
 // configuration ===============================================================
 const mongoURI = 'mongodb://meraki:$oftdev2ELKJJ@ds259732.mlab.com:59732/ggcinternapp';
-const connection = mongoose.connect(mongoURI); // connect to our database
-const conn = mongoose.createConnection(mongoURI);
+
+const connection = mongoose.connect(configDB.url);
+const conn = mongoose.createConnection(configDB.url)
 require('./config/passport'); 
+
+mongoose.connection.on('connected', () => {
+    console.log('Connected to database: ' + configDB.url);
+});
+
+mongoose.connection.on('error', (err) => {
+    console.log('Database error: ' + err);
+});
+
+//const connection = mongoose.connect(mongoURI); // connect to our database
+//const conn = mongoose.createConnection(mongoURI);
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -189,13 +201,6 @@ app.get('/', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-mongoose.connection.on('connected', () => {
-    console.log('Connected to database: ' + configDB.url);
-});
-
-mongoose.connection.on('error', (err) => {
-    console.log('Database error: ' + err);
-});
 
 // Set favicon to the SST crest
 app.use(favicon(__dirname + '/public/images/logo.png'));
