@@ -469,7 +469,7 @@ module.exports.deleteItecFeedback = function (req, res) {
             function (err) {
                 if (err) {
                     console.log(err);
-                    req.flash('failure', 'An error has occured, the feedback can not be deleted at this time.')
+                    req.flash('failure', 'An error has occurred, the feedback can not be deleted at this time.')
                     res.redirect('/application/itec/' + itecId);
                 } else {
 
