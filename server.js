@@ -87,7 +87,7 @@ app.get('/', (req, res) => {
   // @desc  Uploads file to DB
   app.post('/upload', upload.single('file'), (req, res) => {
     // res.json({ file: req.file });
-    res.redirect('views/signup.ejs');
+    res.redirect('/');
   });
 
   // @route GET /
@@ -117,7 +117,7 @@ app.get('/', (req, res) => {
   // @desc  Uploads file to DB
   app.post('/upload', upload.single('file'), (req, res) => {
     // res.json({ file: req.file });
-    res.redirect('views/home.ejs');
+    res.redirect('/');
   });
   
   // @route GET /files

@@ -191,7 +191,8 @@
                  <div class="col-md-6 m-auto">
                    <h1 class="text-center display-4 my-4">Mongo File Uploads</h1>
                     
-                   <form action="/upload" method="POST" enctype="multipart/form-data">
+                   <form action="/upload" action='/uploadItecResume'
+                   method="POST" enctype="multipart/form-data">
                      <div class="homePageSection">
                        <input type="file" name="file" id="file" class="custom-file-input">
                        <label for="file" class="custom-file-label">Choose File</label>
@@ -213,7 +214,8 @@
                <form ref='uploadForm'
                   id='uploadForm1'
                   action='/uploadItecResume'
-                  method='post'
+                  action='/upload'
+                  method='POST'
                   encType="multipart/form-data"
                   class="form-inline">
                   <div class="form-group">
