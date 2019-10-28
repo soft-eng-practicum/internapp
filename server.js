@@ -24,7 +24,7 @@ var Grid = require('gridfs-stream');
 const mongoURI = 'mongodb://meraki:$oftdev2ELKJJ@ds259732.mlab.com:59732/ggcinternapp';
 
 const connection = mongoose.connect(configDB.url);
-const conn = mongoose.createConnection(configDB.url)
+const conn = mongoose.createConnection(configDB.url);
 require('./config/passport'); 
 
 mongoose.connection.on('connected', () => {
@@ -72,35 +72,6 @@ const storage = GridFsStorage({
 
 const upload = multer({ storage });
 
-// @route GET /
-// @desc Loads form
-app.get('/', (req, res) => {
-    gfs.files.find().toArray((err, files) => {
-      // Check if files
-      if (!files || files.length === 0) {
-        res.render('index', { files: false });
-      } else {
-        files.map(file => {
-          if (
-            file.contentType === 'image/jpeg' ||
-            file.contentType === 'image/png'
-          ) {
-            file.isImage = true;
-          } else {
-            file.isImage = false;
-          }
-        });
-        res.render('index', { files: files });
-      }
-    });
-  });
-  
-  // @route POST /upload
-  // @desc  Uploads file to DB
-  app.post('/upload', upload.single('file'), (req, res) => {
-    // res.json({ file: req.file });
-    res.redirect('/');
-  });
 
   // @route GET /
 // @desc Loads form
