@@ -25,7 +25,7 @@ var Grid = require('gridfs-stream');
 const mongoURI = 'mongodb://meraki:$oftdev2ELKJJ@ds259732.mlab.com:59732/ggcinternapp';
 
 const connection = mongoose.connect(configDB.url);
-const conn = mongoose.createConnection(configDB.url)
+const conn = mongoose.createConnection(configDB.url);
 require('./config/passport'); 
 
 mongoose.connection.on('connected', () => {
