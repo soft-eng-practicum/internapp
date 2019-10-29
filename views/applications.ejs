@@ -107,6 +107,7 @@ a.three:hover {font-size:150%;}
                   <th>Proposed Semester Year</th>
                   <th>Expected Graduation</th>
                   <th>View Details</th>
+                  <th>Delete Record</th>
                 </tr>
               </thead>
               <tbody>
@@ -151,9 +152,11 @@ a.three:hover {font-size:150%;}
                    <td>
                     <a href="/application/<%= application.userdiscipline %>/<%= application._id %>" >
                         <span class='glyphicon glyphicon-search'></span></a>
-
                    </td>
-
+                  <td>
+                    <a href="/application/<%= application.userdiscipline %>/<%= application._id %>/delete" >
+                      <span class='glyphicon glyphicon-trash'></span></a>
+                  </td>
                </tr>
                <% }); %>
               </tbody>

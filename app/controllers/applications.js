@@ -575,6 +575,35 @@ module.exports.deleteBioFeedback = function (req, res) {
 }
 
 /*
+    HTTP Req: GET
+    URL: 'applications/itec/:applicationid/delete'
+*/
+module.exports.removeItecApplication = function (req, res) {
+    Itec.findOneAndRemove({
+        _id: req.params.applicationid
+    });
+    res.redirect("/applications")
+};
+
+module.exports.removeSpecificItecApplication = function (req, res) {
+    Itec.findOneAndRemove({
+        _id: req.params.applicationid
+    }, function () {});
+    res.redirect("/applications");
+};
+
+/*
+    HTTP Req: GET
+    URL: 'applications/itec/:applicationid/delete'
+*/
+module.exports.removeSpecificBioApplication = function (req, res) {
+    Itec.findOneAndRemove({
+        _id: req.params.applicationid
+    }, function () {});
+    res.redirect("/applications");
+};
+
+/*
     HTTP Req: POST
     URL: '/applications/itec/documents/:applicationid/documentid/:answer'
 */
