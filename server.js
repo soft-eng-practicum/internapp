@@ -20,6 +20,7 @@ var multer = require('multer');
 var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
 
+
 // configuration ===============================================================
 const mongoURI = 'mongodb://meraki:$oftdev2ELKJJ@ds259732.mlab.com:59732/ggcinternapp';
 
@@ -28,15 +29,13 @@ const conn = mongoose.createConnection(configDB.url)
 require('./config/passport'); 
 
 mongoose.connection.on('connected', () => {
-    console.log('Connected to database: ' + configDB.url);
+    console.log('Connected to database!');
 });
 
 mongoose.connection.on('error', (err) => {
     console.log('Database error: ' + err);
 });
 
-//const connection = mongoose.connect(mongoURI); // connect to our database
-//const conn = mongoose.createConnection(mongoURI);
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -47,8 +46,9 @@ let gfs;
 
 conn.once('open', () => {
     gfs = Grid(conn.db, mongoose.mongo);
-    gfs.collection('uploads');
+    gfs.collection('Uploaded');
 });
+
 
 const storage = GridFsStorage({
     url: mongoURI,
@@ -58,10 +58,10 @@ const storage = GridFsStorage({
                 if (err) {
                     return reject(err);
                 }
-                const filename = buf.toString('hex') + path.extname(file.originalname);
+                const filename = req.session.passport.user; //saves as user
                 const fileInfo = {
                     filename: filename,
-                    bucketName: 'uploads'
+                    bucketName: 'Ferpa',
                 };
                 resolve(fileInfo);
             });
@@ -72,66 +72,33 @@ const storage = GridFsStorage({
 
 const upload = multer({ storage });
 
-// @route GET /
-// @desc Loads form
-app.get('/', (req, res) => {
-    gfs.files.find().toArray((err, files) => {
-      // Check if files
-      if (!files || files.length === 0) {
-        res.render('index', { files: false });
-      } else {
-        files.map(file => {
-          if (
-            file.contentType === 'image/jpeg' ||
-            file.contentType === 'image/png'
-          ) {
-            file.isImage = true;
-          } else {
-            file.isImage = false;
-          }
-        });
-        res.render('index', { files: files });
-      }
-    });
-  });
+
   
   // @route POST /upload
   // @desc  Uploads file to DB
+  // When posting, we need a way to know that the file belongs to a specific user, as well as what the document is.  
+  // POTENTIAL SOLUTION: Create seperate upload functions for each form.  
+  // Ex. app.post('uploadFERPA')
   app.post('/upload', upload.single('file'), (req, res) => {
     // res.json({ file: req.file });
-    res.redirect('/');
+    res.redirect('/home');
+
   });
 
-  // @route GET /
-// @desc Loads form
-app.get('/', (req, res) => {
-    gfs.files.find().toArray((err, files) => {
-      // Check if files
-      if (!files || files.length === 0) {
-        res.render('index', { files: false });
-      } else {
-        files.map(file => {
-          if (
-            file.contentType === 'image/jpeg' ||
-            file.contentType === 'image/png'
-          ) {
-            file.isImage = true;
-          } else {
-            file.isImage = false;
-          }
-        });
-        res.render('index', { files: files });
-      }
-    });
-  });
-  
-  // @route POST /upload
-  // @desc  Uploads file to DB
-  app.post('/upload', upload.single('file'), (req, res) => {
-    // res.json({ file: req.file });
-    res.redirect('/');
-  });
-  
+
+  app.get('/download', function (req, res) {
+    // TODO: set proper mime type + filename, handle errors, etc...
+    gfs
+    // create a read stream from gfs...
+    .createReadStream({
+        filename: req.params.filename
+    })
+    // and pipe it to Express' response
+    .pipe(res);
+});  
+
+
+  /*
   // @route GET /files
   // @desc  Display all files in JSON
   app.get('/files', (req, res) => {
@@ -147,7 +114,8 @@ app.get('/', (req, res) => {
       return res.json(files);
     });
   });
-  
+  */
+ 
   // @route GET /files/:filename
   // @desc  Display single file object
   app.get('/files/:filename', (req, res) => {

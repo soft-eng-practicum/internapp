@@ -197,14 +197,15 @@
                        <input type="file" name="file" id="file" class="custom-file-input">
                        <label for="file" class="custom-file-label">Choose File</label>
                      </div>
-                     <input type="submit" value="Submit" class="btn btn-primary btn-block">
+                     <input type="submit" value="Send" class="btn btn-primary btn-block">
                    </form>
                  </div>
                </div>
              </div>
 
-            <form action="/download" method="GET">
-               <input type = "submit" value="Download File" >
+            <form action="/download" method="get">
+               <input type = "text" value="Skull.JPG" >
+               <input type = "submit" value = "download">
                </form>
 
 
@@ -227,6 +228,8 @@
                      <a target="_blank" title="Please Click 'Choose File' First, Then Click 'Upload Resume' To Upload Resume">
                      <i class="glyphicon glyphicon-question-sign" title="Please upload the resume you wish Dr. Pollacia to distribute. Please ensure that your resume has been critiqued by the career development and advising center at GGC, and that it is a PDF or .DOCX format." data-toggle="tooltip"></i></a>
                   </div>
+
+                  
                </form>
                <form ref='uploadForm'
                   id='uploadForm2'
@@ -246,6 +249,7 @@
                   <br>
                   <a href="/downloadFerpa">Click here to download the FERPA document</a> 
                </form>
+
                <form ref='uploadForm'
                   id='uploadForm6'
                   action='/uploadItecOther'
