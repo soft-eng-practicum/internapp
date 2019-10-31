@@ -578,13 +578,6 @@ module.exports.deleteBioFeedback = function (req, res) {
     HTTP Req: GET
     URL: 'applications/itec/:applicationid/delete'
 */
-module.exports.removeItecApplication = function (req, res) {
-    Itec.findOneAndRemove({
-        _id: req.params.applicationid
-    });
-    res.redirect("/applications")
-};
-
 module.exports.removeSpecificItecApplication = function (req, res) {
     Itec.findOneAndRemove({
         _id: req.params.applicationid
@@ -597,7 +590,7 @@ module.exports.removeSpecificItecApplication = function (req, res) {
     URL: 'applications/itec/:applicationid/delete'
 */
 module.exports.removeSpecificBioApplication = function (req, res) {
-    Itec.findOneAndRemove({
+    Bio.findOneAndRemove({
         _id: req.params.applicationid
     }, function () {});
     res.redirect("/applications");
