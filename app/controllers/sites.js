@@ -229,7 +229,7 @@ module.exports.postAddSite = function (req, res) {
     if (section) {
         var site = new Site({
             name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: section,
-            mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus
+            mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus,
         });
 
         site.save(function (err) {
@@ -258,7 +258,8 @@ module.exports.postAddSite = function (req, res) {
     URL: '/site/:siteid'
 */
 module.exports.addSiteContact = function (req, res) {
-    Site.update({ _id: req.params.siteid }, { $push: { "contacts": { fname: req.body.fname, lname: req.body.lname, title: req.body.title, email: req.body.email, office: req.body.office, cell: req.body.cell } } },
+    //var siteId = req.params.siteid;
+    Site.update({ _id: req.params.siteid }, { $push: { "contacts": { fname: req.body.fname, lname: req.body.lname, title: req.body.title, email: req.body.email.trim(), office: req.body.office, cell: req.body.cell } } },
         function (err) {
             if (err) {
                 req.flash('failure', 'The Site Contact can not be added at this time.')
@@ -279,8 +280,8 @@ module.exports.updateSite = function (req, res) {
     var siteId = req.params.siteid;
     Site.update({ _id: req.params.siteid }, {
         name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: req.body.section,
-        mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus
-    },
+        mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus,
+        },
         function (err) {
             if (err) {
                 req.flash('failure', 'The Site update cannot be completed at this time.');
