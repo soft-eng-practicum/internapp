@@ -109,6 +109,7 @@
       <form name="itecEdit" action="/edititec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
          <fieldset>
             <h2 align = "center">Contact Information</h2>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                   <label for="input" class="col-lg-5 control-label">Cell Phone Number</label>
                   <div class="col-lg-5">
@@ -117,7 +118,10 @@
                         required value='<%= application.phonenumber %>' type="text">
                   </div>
                </div>
+            </div>
+               <br>
             <h2 align = "center">Student Academic Information</h2>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
@@ -181,7 +185,9 @@
                </div>
             </div>
             <div class="form-group">
-              <div class="help-tip">
+               <div class="help-tip">
+                  <!-- TODO: the tooltip spawns behind form. Unreadable. Fix this.
+                  -->
                  <p>You can find your ITEC Major GPA by navigating to your Degree Works and locating your GPA under "Major in Info Tech" section.</p>
                </div>
                <label for="input" class="col-lg-5 control-label">ITEC Major GPA</label>
@@ -337,11 +343,12 @@
                   </div>
                </div>
             </div>
-            <br>
+            </div>
             <br>
             <h3 align="center">
                Mentor Information
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Name</label>
                <div class="col-lg-5">
@@ -350,10 +357,12 @@
                      required value='<%= application.mentorname %>' type="text">
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Student internships interests and goals
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <label for="textArea" class="col-lg-5 control-label">Decribe your major interests and strengths</label>
                <div class="col-lg-5">
@@ -378,10 +387,12 @@
                   </div>
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Internship Information
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Do you have a proposed internship with a company or organization?</label>
@@ -532,10 +543,12 @@
                   </div>
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Signature and Review
             </h3>
+            <div class="rounded-solid-padded-borders">
             <h4 align="center">
                I certify that the information contained in this application is true, correct, and complete. I understand that false statements reported on this application may be considered sufficient cause for denial of internship.
             </h4>
@@ -555,10 +568,10 @@
                      type="text">
                </div>
             </div>
-         </fieldset>
          <div align="center">
              <button class="btn btn-success" type="submit" id="updateBtn">Update</button>&nbsp;&nbsp;<a class="btn btn-success" href="/home" id="cancelBtn">Cancel</a>
          </div>
+            </div>
       </form>
       <% include partials/footerimports %>
       <script>
