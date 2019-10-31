@@ -4,7 +4,7 @@
    <head>
       <meta charset='utf-8'>
       <title>BIO Application</title>
-      <% include partials/headerimports %>
+      <% include partials/headerimports.ejs %>
    </head>
    <body>
       <% include partials/nav.ejs %>
@@ -38,8 +38,11 @@
                     <div class="alert alert-danger" id="failUpload">
                    <strong>Error!</strong> Please upload file.
                     </div>
-                <h5>Essay <i class="glyphicon glyphicon-question-sign" title="Please use up to ONE page to describe how the internship experience at your proposed location will help you to achieve your career goals. Please list the name of the site you're applying to at the top of the page." data-toggle="tooltip"></i></h5>
-                    <input type="file" name="essay" class="inputfile" id="essayFile"/>
+                <h5>Essay <i class="glyphicon glyphicon-question-sign" title="Please use up to ONE page and describe clearly and firmly why the site you've selected is important to your career goals (BE SPECIFIC!). Please list the name of the site you're applying to at the top of the page." data-toggle="tooltip"></i></h5>
+                   <h6>Please use up to ONE page and describe clearly and firmly why the site you've selected is important to your career goals (BE SPECIFIC!).
+                      <strong>Your essay will be evaluated both on its merits and proper usage of grammar and spelling. Proofread your essay carefully before submitting.</strong>
+                      Please list the name of the site you're applying to at the top of the page.</h6>
+                   <input type="file" name="essay" class="inputfile" id="essayFile"/>
                       <div class="alert alert-success" id="successEssay">
                       <strong>Success!</strong> Your essay was successfully uploaded!
                       </div>
