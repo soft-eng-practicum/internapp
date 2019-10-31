@@ -424,6 +424,7 @@
                     <th>File Type</th>
                     <th>Date Submitted</th>
                     <th>View Document Details</th>
+                    <th>Delete Document</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -435,6 +436,8 @@
                     <td><%= document.fileType %></td>
                     <td><%= document.prettyUploadDate %></td>
                     <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
+                    <td><a href="/application/bio/<%= application._id %>/document/delete/<%= document._id%>">
+                        <span class='glyphicon glyphicon-trash'></span></a></td>
                 </tr>
                 <% }); %>
                 </tbody>

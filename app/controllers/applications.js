@@ -683,6 +683,49 @@ module.exports.postBioApplication = function (req, res) {
     });
 }
 
+
+/*
+
+    HTTP Req: GET
+    URL: /application/bio/:applicationId/document/delete/:documentId
+
+*/
+module.exports.deleteBioDoc = function (req, res) {
+    var bioId = req.params.applicationId;
+    Document.remove({ _id: req.params.documentId },
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/application/bio/' + bioId);
+            } else {
+                req.flash('success', 'The document has been successfully deleted!')
+                res.redirect('/application/bio/' + bioId);
+            }
+        });
+}
+
+/*
+
+    HTTP Req: GET
+    URL: /application/itec/:applicationId/document/delete/:documentId
+
+*/
+module.exports.deleteItecDoc = function (req, res) {
+    var itecId = req.params.applicationId;
+    Document.remove({ _id: req.params.documentId },
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/application/itec/' + itecId);
+            } else {
+                req.flash('success', 'The document has been successfully deleted!')
+                res.redirect('/application/itec/' + itecId);
+            }
+        });
+}
+
 function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
 
     var emailSubject;
