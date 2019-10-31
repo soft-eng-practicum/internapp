@@ -147,8 +147,6 @@ module.exports = function (app, passport) {
 
 
 
-
-
     /*Export Page*/
     /* Applications pages */
     app.get('/export', isLoggedIn, isAdminOrInstructor, ctrlExport.getExport);
