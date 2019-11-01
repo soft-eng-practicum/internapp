@@ -3,7 +3,7 @@
 <html lang="en-US">
    <head>
       <title>Edit BIO Application</title>
-      <% include partials/headerimports %>
+      <% include partials/headerimports.ejs %>
    </head>
    <body>
       <% include partials/nav.ejs %>
@@ -21,11 +21,22 @@
          <br><br>
          Please remember to upload all required application materials (transcript, essay,
          preceptor form if picking your own site, and other necessary documents) as a part
-         of this application.
+         of your application.
       </h4>
       <br>
       <form name="bioEdit" action="/editbio" method="post" class="form-horizontal" _lpchecked="1">
          <fieldset>
+               <h2 align = "center">Student Contact Information</h2>
+               <div class="rounded-solid-padded-borders">
+               <div class="form-group">
+                     <label for="input" class="col-lg-5 control-label">Cell Phone Number</label>
+                     <div class="col-lg-5">
+                        <input class="form-control" rows="3" id="phonenumberTxt" name="phonenumber" placeholder="XXX-XXX-XXXX"
+                           pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"
+                           required value='<%= application.phonenumber %>' type="text">
+                     </div>
+                  </div>
+                  </div>
             <h2 align = "center">Student Academic Information</h2>
             <div class="rounded-solid-padded-borders">
             <div class="form-group">
@@ -219,13 +230,14 @@
                   <div class="form-inline">
                      <label for="select" class="col-lg-5 control-label">Please select the site you wish to apply to</label>
                      <div class="col-lg-5" class>
-                        <select class="form-control" id="additionalInfoList" name="internsite">
+                        <select class="form-control" id="additionalInfoList" name="internsite" style="max-width: 500px">
                            <option value="Select">Select</option>
                            <option value="Other" >Other</option>
                            <option value="Greening Youth Foundation">Greening Youth Foundation</option>
                            <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
                            <option value="Yerkes Regional Primate Research Center">Yerkes Regional Primate Research Center</option>
-                           <option value="US Department of Agriculture, Food Safety Inspection Services" >US Department of Agriculture, Food Safety Inspection Services</option>
+                           <option value="Covenant Health Pharmacy">Covenant Health Pharmacy</option>
+                           <option value="Gwinnett County (Water Resources, Environmental Health and Police Departments)">Gwinnett County (Water Resources, Environmental Health and Police Departments)</option>
                            <option value="Consultorio Medico Hispano">Consultorio Medico Hispano</option>
                         </select>
                      </div>

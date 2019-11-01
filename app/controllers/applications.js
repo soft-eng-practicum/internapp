@@ -709,10 +709,10 @@ module.exports.deleteBioDoc = function (req, res) {
         function (err) {
             if (err) {
                 console.log(err);
-                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                req.flash('failure', 'An error has occurred, the note can not be deleted at this time.');
                 res.redirect('/application/bio/' + bioId);
             } else {
-                req.flash('success', 'The document has been successfully deleted!')
+                req.flash('success', 'The document has been successfully deleted!');
                 res.redirect('/application/bio/' + bioId);
             }
         });
