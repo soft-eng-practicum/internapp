@@ -110,6 +110,7 @@ module.exports = function (app, passport) {
 
     /* user home page */
     app.get('/home', isLoggedIn, ctrlHome.loadUserHome);
+    app.get('/document/delete/:documentId', isLoggedIn, ctrlApplications.deleteDoc);
 
     /* admin home page */
     app.get('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.loadAdminHome);
