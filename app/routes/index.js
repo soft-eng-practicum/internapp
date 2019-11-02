@@ -144,6 +144,10 @@ module.exports = function (app, passport) {
     app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
 	app.post('/application/:type(itec|bio)/changeSemester/:applicationid', isLoggedIn, ctrlApplications.changeSemester);
 	app.get('/application/:type(itec|bio)/changeSemester/:applicationid', isLoggedIn, ctrlApplications.changeSemester);
+    app.post('/application/changeMultipleSemester', isLoggedIn, ctrlApplications.changeMultipleSemester);
+    app.get('/application/changeMultipleSemester', isLoggedIn, ctrlApplications.changeMultipleSemester);
+
+
 
 
 
