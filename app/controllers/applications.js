@@ -717,7 +717,26 @@ module.exports.postBioApplication = function (req, res) {
     });
 }
 
+/*
 
+    HTTP Req: GET
+    URL: /home/:applicationId/document/delete/:documentId
+    URL: /home/documentDelete
+*/
+module.exports.deleteDoc = function (req, res) {
+    var docId = req.params.applicationId;
+    Document.remove({ _id: req.params.documentId },
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/home/');
+            } else {
+                req.flash('success', 'The document has been successfully deleted!')
+                res.redirect('/home/');
+            }
+        });
+}
 
 /*
 
