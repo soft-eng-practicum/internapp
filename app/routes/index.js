@@ -138,7 +138,7 @@ module.exports = function (app, passport) {
     app.get('/application/bio/:applicationId/notes/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlApplications.deleteBioNote);
     app.post('/application/bio/feedback/:applicationid', isLoggedIn, isAdmin, ctrlApplications.addBioFeedback);
     app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, isAdmin, ctrlApplications.deleteBioFeedback);
-    app.get('/application/bio/:applicationid/delete/', isLoggedIn, ctrlApplications.removeSpecificItecApplication);
+    app.get('/application/bio/:applicationid/delete/', isLoggedIn, ctrlApplications.removeSpecificBioApplication);
     app.get('/application/bio/:applicationId/document/delete/:documentId', isLoggedIn, ctrlApplications.deleteBioDoc);
 
     // BIO & ITEC
