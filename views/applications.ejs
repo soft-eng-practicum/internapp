@@ -79,19 +79,6 @@ a.three:hover {font-size:150%;}
                   <th>
                     <center>Select All</center>
                     <br/>
-                    <script>
-                      function checkAll()
-                      {
-                      var checkboxes = document.getElementsByTagName('input'), val = null;
-                      for (var i = 0; i < checkboxes.length; i++)
-     {
-         if (checkboxes[i].type == 'checkbox')
-         {
-             if (val === null) val = checkboxes[i].checked;
-             checkboxes[i].checked = val;
-         }
-     }
- }</script>
                     <center>
                       <input id="selectall" type="checkbox" name="mail" value="1" onClick="checkAll()"/>
 
@@ -107,6 +94,7 @@ a.three:hover {font-size:150%;}
                   <th>Proposed Semester Year</th>
                   <th>Expected Graduation</th>
                   <th>View Details</th>
+                  <th>Delete Record</th>
                 </tr>
               </thead>
               <tbody>
@@ -151,9 +139,11 @@ a.three:hover {font-size:150%;}
                    <td>
                     <a href="/application/<%= application.userdiscipline %>/<%= application._id %>" >
                         <span class='glyphicon glyphicon-search'></span></a>
-
                    </td>
-
+                  <td>
+                    <a href="/application/<%= application.userdiscipline %>/<%= application._id %>/delete" >
+                      <span class='glyphicon glyphicon-trash'></span></a>
+                  </td>
                </tr>
                <% }); %>
               </tbody>
@@ -208,5 +198,18 @@ a.three:hover {font-size:150%;}
       // table.search(semester + ' ' + year + ' ' + program).draw();
       });
     </script>
+    <script>
+      function checkAll()
+      {
+        var checkboxes = document.getElementsByTagName('input'), val = null;
+        for (var i = 0; i < checkboxes.length; i++)
+        {
+          if (checkboxes[i].type == 'checkbox')
+          {
+            if (val === null) val = checkboxes[i].checked;
+            checkboxes[i].checked = val;
+          }
+        }
+      }</script>
   </body>
 </html>

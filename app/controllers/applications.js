@@ -103,7 +103,7 @@ module.exports.getApplications = function (req, res) {
     }
 };
 
-//2019Com. function to check if aplplicant is itec or bio major and store values into variables for disciple, semester ect.
+//2019Com. function to check if applicant is itec or bio major and store values into variables for disciple, semester ect.
 function filterApplications(req, res, cb) {
     var discipline;
     var semester = req.body.semester;
@@ -575,6 +575,28 @@ module.exports.deleteBioFeedback = function (req, res) {
 }
 
 /*
+    HTTP Req: GET
+    URL: 'applications/itec/:applicationid/delete'
+*/
+module.exports.removeSpecificItecApplication = function (req, res) {
+    Itec.findOneAndRemove({
+        _id: req.params.applicationid
+    }, function () {});
+    res.redirect("/applications");
+};
+
+/*
+    HTTP Req: GET
+    URL: 'applications/itec/:applicationid/delete'
+*/
+module.exports.removeSpecificBioApplication = function (req, res) {
+    Bio.findOneAndRemove({
+        _id: req.params.applicationid
+    }, function () {});
+    res.redirect("/applications");
+};
+
+/*
     HTTP Req: POST
     URL: '/applications/itec/documents/:applicationid/documentid/:answer'
 */
@@ -652,6 +674,50 @@ module.exports.postBioApplication = function (req, res) {
             res.redirect('/applications');
         }
     });
+}
+
+
+
+/*
+
+    HTTP Req: GET
+    URL: /application/bio/:applicationId/document/delete/:documentId
+
+*/
+module.exports.deleteBioDoc = function (req, res) {
+    var bioId = req.params.applicationId;
+    Document.remove({ _id: req.params.documentId },
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/application/bio/' + bioId);
+            } else {
+                req.flash('success', 'The document has been successfully deleted!')
+                res.redirect('/application/bio/' + bioId);
+            }
+        });
+}
+
+/*
+
+    HTTP Req: GET
+    URL: /application/itec/:applicationId/document/delete/:documentId
+
+*/
+module.exports.deleteItecDoc = function (req, res) {
+    var itecId = req.params.applicationId;
+    Document.remove({ _id: req.params.documentId },
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/application/itec/' + itecId);
+            } else {
+                req.flash('success', 'The document has been successfully deleted!')
+                res.redirect('/application/itec/' + itecId);
+            }
+        });
 }
 
 function sendEmail(req, res, typeOfEmail, studentEmail, redirect) {
