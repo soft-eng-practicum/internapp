@@ -383,6 +383,47 @@ module.exports.changeSemester = function (req, res) {
     }
 	};
 /*
+    HTTP Req: POST
+    URL: '/application/changeMultipleSemester'
+*/
+module.exports.changeMultipleSemester = function (req, res) {
+    console.log(req.body.checkboxes);
+    var checkboxes_array = req.body.checkboxes.split(',');
+    console.log(checkboxes_array);
+    var length = checkboxes_array.length;
+    console.log(length);
+    console.log(req.body.proposedinternsemester);
+    console.log(req.body.proposedinternyear);
+
+    if (checkboxes_array[0] != '') {
+        for (var i = 0; i < length; i++) {
+            console.log(checkboxes_array[i]);
+
+            Itec.update({_id: checkboxes_array[i]}, {proposedinternsemester: req.body.proposedinternsemester}, function (err) {
+                if (err) {
+                    console.log("Problem updating " + checkboxes_array[i]);
+                } else {
+                    console.log("No Problem updating " + checkboxes_array[i]);
+                }
+            });
+
+            Itec.update({_id: checkboxes_array[i]}, {proposedinternyear: req.body.proposedinternyear}, function (err) {
+                if (err) {
+                    console.log("Problem updating " + checkboxes_array[i]);
+                } else {
+                    console.log("No Problem updating " + checkboxes_array[i]);
+                }
+            });
+        }
+        req.flash('success', 'The proposed internship semester & year for the selected application(s) has been successfully changed!')
+    } else {
+        if (checkboxes_array[0] == '') {
+        req.flash('failure', 'There were no selected applications to be updated!');
+        }
+    }
+    res.redirect('/applications');
+}
+/*
 
     A note has been added for this app
 
@@ -676,7 +717,26 @@ module.exports.postBioApplication = function (req, res) {
     });
 }
 
+/*
 
+    HTTP Req: GET
+    URL: /home/:applicationId/document/delete/:documentId
+    URL: /home/documentDelete
+*/
+module.exports.deleteDoc = function (req, res) {
+    var docId = req.params.applicationId;
+    Document.remove({ _id: req.params.documentId },
+        function (err) {
+            if (err) {
+                console.log(err);
+                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                res.redirect('/home/');
+            } else {
+                req.flash('success', 'The document has been successfully deleted!')
+                res.redirect('/home/');
+            }
+        });
+}
 
 /*
 
@@ -690,10 +750,10 @@ module.exports.deleteBioDoc = function (req, res) {
         function (err) {
             if (err) {
                 console.log(err);
-                req.flash('failure', 'An error has occured, the note can not be deleted at this time.')
+                req.flash('failure', 'An error has occurred, the note can not be deleted at this time.');
                 res.redirect('/application/bio/' + bioId);
             } else {
-                req.flash('success', 'The document has been successfully deleted!')
+                req.flash('success', 'The document has been successfully deleted!');
                 res.redirect('/application/bio/' + bioId);
             }
         });

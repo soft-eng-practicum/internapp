@@ -9,6 +9,10 @@ var bioSchema = mongoose.Schema({
         type: String,
         default: formatDate(new Date())
     },
+    phonenumber: {
+        type: String,
+        required: false
+},
     emergencycontactname: {
         type: String,
         required: false

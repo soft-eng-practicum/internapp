@@ -4,7 +4,7 @@
    <head>
       <meta charset='utf-8'>
       <title>BIO Application</title>
-      <% include partials/headerimports %>
+      <% include partials/headerimports.ejs %>
    </head>
    <body>
       <% include partials/nav.ejs %>
@@ -18,11 +18,11 @@
             and Sciences (H2) Building, Room 3209.<br><br>
             <strong>IMPORTANT:</strong> The information you submit will be used to determine if
             you will be accepted to participate in the Program. Completion of this application does NOT
-            guarantee your acceptance into the Biology Internship Program and/or enrollment in
+            guarantee your acceptance into the Biology Internship Program and/or enrollment in BIOL4800.
             <br><br>
             Please remember to upload all required application materials (transcript, essay,
             preceptor form if picking your own site, and other necessary documents) as a part
-            of this application.
+            of your application.
          </h4>
       <br>
       <div align="center">
@@ -38,8 +38,11 @@
                     <div class="alert alert-danger" id="failUpload">
                    <strong>Error!</strong> Please upload file.
                     </div>
-                <h5>Essay <i class="glyphicon glyphicon-question-sign" title="Please use up to ONE page to describe how the internship experience at your proposed location will help you to achieve your career goals. Please list the name of the site you're applying to at the top of the page." data-toggle="tooltip"></i></h5>
-                    <input type="file" name="essay" class="inputfile" id="essayFile"/>
+                <h5>Essay <i class="glyphicon glyphicon-question-sign" title="Please use up to ONE page and describe clearly and firmly why the site you've selected is important to your career goals (BE SPECIFIC!). Please list the name of the site you're applying to at the top of the page." data-toggle="tooltip"></i></h5>
+                   <h6>Please use up to ONE page and describe clearly and firmly why the site you've selected is important to your career goals (BE SPECIFIC!).
+                      <strong>Your essay will be evaluated both on its merits and proper usage of grammar and spelling. Proofread your essay carefully before submitting.</strong>
+                      Please list the name of the site you're applying to at the top of the page.</h6>
+                   <input type="file" name="essay" class="inputfile" id="essayFile"/>
                       <div class="alert alert-success" id="successEssay">
                       <strong>Success!</strong> Your essay was successfully uploaded!
                       </div>
@@ -231,14 +234,15 @@
                <div class="form-group">
                   <div class="form-inline">
                      <label for="select" class="col-lg-5 control-label">Approved Internship Committee Sites</label>
-                     <div class="col-lg-5" class>
-                        <select class="form-control" id="additionalInfoList" name="internsite">
+                     <div class="col-lg-5" >
+                        <select class="form-control" id="additionalInfoList" name="internsite" style="max-width: 500px;">
                            <option value="Select">Select</option>
                            <option value="Other" >Other</option>
                            <option value="Greening Youth Foundation">Greening Youth Foundation</option>
                            <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
                            <option value="Yerkes Regional Primate Research Center">Yerkes Regional Primate Research Center</option>
-                           <option value="US Department of Agriculture, Food Safety Inspection Services" >US Department of Agriculture, Food Safety Inspection Services</option>
+                           <option value="Covenant Health Pharmacy">Covenant Health Pharmacy</option>
+                           <option value="Gwinnett County (Water Resources, Environmental Health and Police Departments)">Gwinnett County (Water Resources, Environmental Health and Police Departments)</option>
                            <option value="Consultorio Medico Hispano">Consultorio Medico Hispano</option>
                         </select>
                      </div>
@@ -312,13 +316,10 @@
                      <input class="form-control" rows="3" id="psManagerTitleTxt" placeholder="Title" name="proposedsitemanagertitle" type="text">
                   </div>
                </div>
-               </div>
-               </div>
             <br>
             <h3 align="center">
                Proposed Preceptor Information
             </h3>
-            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Name of Proposed Preceptor</label>
                <div class="col-lg-5">
@@ -356,8 +357,8 @@
                </div>
             </div>
             <br>
+             </div>
                </div>
-         </fieldset>
             <h3 align="center">
                Potential Student Employment Conflicts
             </h3>
@@ -485,14 +486,16 @@
                   <input class="form-control" rows="3" id="printedTxt" name="printedname" required type="text">
                </div>
             </div>
-         </fieldset>
          <div align="center">
             <button class="btn btn-success" type="submit" id="submitBtn" disabled 
                 title="Please make sure you have uploaded required documents before submitting your application.">Submit</button>
          </div>
          </div>
+         </fieldset>
       </form>
       <% include partials/footerimports %>
+      </div>
+      </div>
    </body>
 </html>
 <script>
