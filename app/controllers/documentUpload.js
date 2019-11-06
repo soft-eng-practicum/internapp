@@ -10,6 +10,7 @@ var key = process.env.YAHOO_PASSWORD; // password for ggcinternapp@yahoo.com
 var User = require('../models/user');
 var Document = require('../models/document');
 var Itec = require('./../models/itec');
+var Mongoose = require('../../server.js');
 
 // Setting local env in powershell
 // $env:key="password"
@@ -318,6 +319,8 @@ function addDocumentToUser(fileType, fileName, user, whatIsFile) {
              req.flash('failure', 'File type not recognized');
      }
 
+    var tempFileName = user.studentid;
+
     var document = new Document({
         'user' : {
             'user_id' : user._id,
@@ -327,7 +330,7 @@ function addDocumentToUser(fileType, fileName, user, whatIsFile) {
         },
         'fileType' : recordFileType,
         'fileSection' : recordSection,
-        'documentName' : fileName,
+        'documentName' : tempFileName + recordFileType,
         'documentStatus' : 'submitted'
     });
 

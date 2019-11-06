@@ -19,6 +19,7 @@ var routes = require('./app/routes/index');
 var multer = require('multer');
 var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
+var fs  = require('fs');
 
 
 // configuration ===============================================================
@@ -42,130 +43,38 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 
-let gfs;
 
-conn.once('open', () => {
-    gfs = Grid(conn.db, mongoose.mongo);
-    gfs.collection('Uploaded');
+
+
+
+// NEW GRIDFS STUFF
+module.exports.uploadTest = function(req, res) 
+{
+
+var ferpaPath = path.join(__dirname, 'ferpa.pdf');
+
+Grid.mongo = mongoose.mongo;
+
+conn.once('open', function() {
+    console.log('- Connection open -');
+    var gfs = Grid(conn.db);
+
+    var writestream = gfs.createWriteStream({
+        filename: 'ferpa.pdf'
+    });
+
+    fs.createReadStream(ferpaPath).pipe(writestream);
+
+    writestream.on('close', function(file) {
+        console.log(file.filename + ' Written to db');
+    });
 });
+}
 
 
-const storage = GridFsStorage({
-    url: mongoURI,
-    file: (req, file) => {
-        return new Promise((resolve, reject) => {
-            crypto.randomBytes(16, (err, buf) => {
-                if (err) {
-                    return reject(err);
-                }
-                const filename = req.session.passport.user; //saves as user
-                const fileInfo = {
-                    filename: filename,
-                    bucketName: 'Ferpa',
-                };
-                resolve(fileInfo);
-            });
-        });
-    }
-});
 
 
-const upload = multer({ storage });
 
-
-  
-  // @route POST /upload
-  // @desc  Uploads file to DB
-  // When posting, we need a way to know that the file belongs to a specific user, as well as what the document is.  
-  // POTENTIAL SOLUTION: Create seperate upload functions for each form.  
-  // Ex. app.post('uploadFERPA')
-  app.post('/upload', upload.single('file'), (req, res) => {
-    // res.json({ file: req.file });
-    res.redirect('/home');
-
-  });
-
-
-  app.get('/download', function (req, res) {
-    // TODO: set proper mime type + filename, handle errors, etc...
-    gfs
-    // create a read stream from gfs...
-    .createReadStream({
-        filename: req.params.filename
-    })
-    // and pipe it to Express' response
-    .pipe(res);
-});  
-
-
-  /*
-  // @route GET /files
-  // @desc  Display all files in JSON
-  app.get('/files', (req, res) => {
-    gfs.files.find().toArray((err, files) => {
-      // Check if files
-      if (!files || files.length === 0) {
-        return res.status(404).json({
-          err: 'No files exist'
-        });
-      }
-  
-      // Files exist
-      return res.json(files);
-    });
-  });
-  */
- 
-  // @route GET /files/:filename
-  // @desc  Display single file object
-  app.get('/files/:filename', (req, res) => {
-    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-      // Check if file
-      if (!file || file.length === 0) {
-        return res.status(404).json({
-          err: 'No file exists'
-        });
-      }
-      // File exists
-      return res.json(file);
-    });
-  });
-  
-  // @route GET /image/:filename
-  // @desc Display Image
-  app.get('/image/:filename', (req, res) => {
-    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-      // Check if file
-      if (!file || file.length === 0) {
-        return res.status(404).json({
-          err: 'No file exists'
-        });
-      }
-  
-      // Check if image
-      if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-        // Read output to browser
-        const readstream = gfs.createReadStream(file.filename);
-        readstream.pipe(res);
-      } else {
-        res.status(404).json({
-          err: 'Not an image'
-        });
-      }
-    });
-  });
-  
-  // @route DELETE /files/:id
-  // @desc  Delete file
-  app.delete('/files/:id', (req, res) => {
-    gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
-      if (err) {
-        return res.status(404).json({ err: err });
-      }
-  
-      res.redirect('/');
-    });
-  });
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -186,3 +95,4 @@ require('./app/routes/index.js')(app, passport);
 // launch ======================================================================
 app.listen(port);
 console.log('The magic happens on port ' + port);
+
