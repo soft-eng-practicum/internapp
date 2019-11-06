@@ -117,7 +117,7 @@
          </td>
       </tr>
       <tr>
-         <td>Focus Area</td>
+         <td>Interested in Software Dev. or Programming?</td>
          <td>
             <%= application.focusonsoftdev %>
          </td>
@@ -128,17 +128,18 @@
             <%= application.haveproposedintern %>
          </td>
       </tr>
+       <% if (application.haveproposedintern === "Yes") { %>
       <tr>
-         <td>Proposed Organization Name</td>
-         <td>
-            <%= application.proposedorgname %>
-         </td>
+          <td>Proposed Organization's Internship Focus</td>
+          <td>
+              <%= application.itecfocus %>
+          </td>
       </tr>
       <tr>
-         <td>Itec Focus</td>
-         <td>
-            <%= application.itecfocus %>
-         </td>
+          <td>Proposed Organization Name</td>
+          <td>
+              <%= application.proposedorgname %>
+          </td>
       </tr>
       <tr>
          <td>Proposed Organization Address</td>
@@ -182,6 +183,7 @@
             <%= application.isemployedatsite %>
          </td>
       </tr>
+           <% if (application.isemployedatsite === "Yes") { %>
       <tr>
          <td>Applicant Current Position</td>
          <td>
@@ -212,6 +214,8 @@
             <%= application.isseparatehours %>
          </td>
       </tr>
+           <% } %>
+       <% } %>
       <tr>
          <td>Signature of Applicant</td>
          <td>

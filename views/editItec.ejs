@@ -381,8 +381,8 @@
                   <div class="col-lg-5" class>
                      <select class="form-control" name="focusonsoftdev" id="softwareDevList" novalidate>
                         <option value="Select">Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
                      </select>
                   </div>
                </div>
@@ -601,7 +601,10 @@
       makeOptionSelected('separateHoursList', '<%= application.isseparatehours %>')
       </script>
 <script>
-   $('.existing').hide();
+   if ($('#proposedList').val() == 'No'){
+      $('.existing').hide();
+   }
+
    $(function(){
        $('#proposedList').change(function(){
           var opt = $(this).val();
@@ -610,12 +613,15 @@
            }else{
            	$('.existing').hide();
              $('.employed').hide();
-             document.getElementById('isEmployedList').value="Select";
+             //document.getElementById('isEmployedList').value="Select";
            }
        });
    });
 
-   $('.employed').hide();
+   if ($('#isEmployedList').val() == 'No'){
+      $('.employed').hide();
+   }
+
    $(function(){
        $('#isEmployedList').change(function(){
           var opt = $(this).val();
