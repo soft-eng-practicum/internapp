@@ -29,6 +29,13 @@ const connection = mongoose.connect(configDB.url);
 const conn = mongoose.createConnection(configDB.url);
 require('./config/passport'); 
 
+// set up our express application
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
+
+
+
 mongoose.connection.on('connected', () => {
     console.log('Connected to database!');
 });
@@ -37,27 +44,50 @@ mongoose.connection.on('error', (err) => {
     console.log('Database error: ' + err);
 });
 
+let gfs;
 
-// set up our express application
-app.use(morgan('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+conn.once('open', () => {
+    gfs = Grid(conn.db, mongoose.mongo);
+    gfs.collection('File Uploads');
+});
+
+const  storage = new GridFsStorage({
+    url: mongoURI,
+    file: function(req, file){
+        return{
+             filename: 'file' + Date.now(),
+             metadata: req.body
+        };
+    }
+});
+
+
+const upload = multer ({ storage });
+
+app.post('/uploadTest', upload.single('file'), (req, res) => {
+    console.log('file has been added');
+    res.redirect('/home');
+})
+
+
 
 
 
 // NEW GRIDFS STUFF
 
-Grid.mongo = mongoose.mongo;
-var gfs = Grid(conn.db);
 
 
-app.post('/uploadTest', (req, res) => {
 
+
+/*
+uploadGrid = function(req, res){
 var ferpaPath = path.join(__dirname, 'ferpa.pdf');
-console.log('posted');
+
+Grid.mongo = mongoose.mongo;
 
 conn.once('open', function() {
     console.log('- Connection open -');
+    var gfs = Grid(conn.db);
 
     var writestream = gfs.createWriteStream({
         filename: 'ferpa.pdf'
@@ -69,12 +99,8 @@ conn.once('open', function() {
         console.log(file.filename + ' Written to db');
     });
 });
-});
-
-
-
-
-
+}
+*/
 
 app.use(express.static(path.join(__dirname, 'public')))
 
