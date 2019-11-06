@@ -45,19 +45,19 @@ app.use(bodyParser()); // get information from html forms
 
 
 
-
-
 // NEW GRIDFS STUFF
-module.exports.uploadTest = function(req, res) 
-{
-
-var ferpaPath = path.join(__dirname, 'ferpa.pdf');
 
 Grid.mongo = mongoose.mongo;
+var gfs = Grid(conn.db);
+
+
+app.post('/uploadTest', (req, res) => {
+
+var ferpaPath = path.join(__dirname, 'ferpa.pdf');
+console.log('posted');
 
 conn.once('open', function() {
     console.log('- Connection open -');
-    var gfs = Grid(conn.db);
 
     var writestream = gfs.createWriteStream({
         filename: 'ferpa.pdf'
@@ -69,7 +69,7 @@ conn.once('open', function() {
         console.log(file.filename + ' Written to db');
     });
 });
-}
+});
 
 
 
