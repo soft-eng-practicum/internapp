@@ -127,15 +127,16 @@ app.post('/uploadTest', upload.single('file'), (req, res) => {
     var document = new Document({
         'user' : {
             'user_id' : 'sdf',
-            'fname': 'JOrdan',
+            'fname': req.user,
             'lname': 'VINCENT',
-            'user_email': 'testemail@gmail.com'
+            'user_email': 'ekadmin@gmail.com'
         },
-        'fileType' : 'tempfileInfo',
-        'fileSection' : 'recordSection',
+        'fileType' : 'testFile',
+        'fileSection' : 'fileName.png',
         'documentName' : 'test',
         'documentStatus' : 'submitted',
-        'recordFileType' : 'idk'
+        'recordFileType' : 'RESUME',
+        'gridRefID' : 'TestNo.1'
     });
 
     document.save(function(err) {
