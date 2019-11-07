@@ -21,6 +21,13 @@ var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
 var fs  = require('fs');
 
+//New GridFS Stuff
+var User = require('./app/models/user');
+var Document = require('./app/models/document');
+var Itec = require('./app/models/itec');
+var ctrlDocumentUploads = require('./app/controllers/documentUpload.js');
+var router = express.Router();
+var multiparty = require('connect-multiparty')();
 
 // configuration ===============================================================
 const mongoURI = 'mongodb://meraki:$oftdev2ELKJJ@ds259732.mlab.com:59732/ggcinternapp';
@@ -34,7 +41,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 
-
+var mongoDriver = mongoose.mongo;
 
 mongoose.connection.on('connected', () => {
     console.log('Connected to database!');
@@ -43,6 +50,55 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
     console.log('Database error: ' + err);
 });
+
+/*
+app.post('/uploadTest', multiparty, function(req, res){
+    var gfs = new Grid(conn, mongoDriver);
+    var writestream = gfs.createWriteStream({
+      filename: req.files.file.name,
+      content_type: req.files.file.mimetype,
+      metadata: req.body
+    });
+    fs.createReadStream(req.files.file.path).pipe(writestream);
+    writestream.on('close', function(file) {
+       fs.unlink(req.files.file.path, function(err) {
+         // handle error
+         console.log('success!')
+       });
+    });
+}
+);
+*/
+//NEWER GRIDFS STUFF
+/*
+
+Grid.mongo = mongoose.mongo;
+
+function uploadFileToMongo(req, res) {
+    console.log('Test');
+    var ferpaPath = path.join(__dirname);
+        var gfs = Grid(conn.db);
+    
+        var writestream = gfs.createWriteStream({
+            filename: 'ferpa.pdf'
+        });
+    
+        fs.createReadStream(ferpaPath).pipe(writestream);
+    
+        console.log('file added')
+        res.redirect('/home')
+
+}
+
+app.post('/uploadTest', uploadFileToMongo, (req, res) => {
+    console.log('File Uploaded');
+    res.redirect('/home');
+
+})
+
+
+
+*/
 
 let gfs;
 
@@ -65,7 +121,35 @@ const  storage = new GridFsStorage({
 const upload = multer ({ storage });
 
 app.post('/uploadTest', upload.single('file'), (req, res) => {
-    console.log('file has been added');
+
+    //Test document object to see if you can add a document from inside
+    //this function.  It works.  
+    var document = new Document({
+        'user' : {
+            'user_id' : 'sdf',
+            'fname': 'JOrdan',
+            'lname': 'VINCENT',
+            'user_email': 'testemail@gmail.com'
+        },
+        'fileType' : 'tempfileInfo',
+        'fileSection' : 'recordSection',
+        'documentName' : 'test',
+        'documentStatus' : 'submitted',
+        'recordFileType' : 'idk'
+    });
+
+    document.save(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('document added!!');
+        }
+    });
+    
+
+
+
+    console.log('file HAS been added');
     res.redirect('/home');
 })
 
