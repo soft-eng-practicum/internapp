@@ -108,9 +108,9 @@ app.post('/uploadTest', upload.single('file'), (req, res) => {
             'lname': req.user.lname,
             'user_email': req.user.email,
         },
-        'fileType' : 'FERPA',
-        'fileSection' : 'ITEC',
-        'documentName' : req.user.fname + req.user.lname + 'FERPA',
+        'fileType' : 'testFile',
+        'fileSection' : 'fileName.png',
+        'documentName' : 'test',
         'documentStatus' : 'submitted',
         'recordFileType' : 'RESUME',
         'gridRefID' : 'TestNo.1'
