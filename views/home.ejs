@@ -213,7 +213,7 @@
                   id='uploadForm1'
                   action='/uploadItecResume'
                   action='/upload'
-                  method='post'
+                  method='POST'
                   encType="multipart/form-data"
                   class="form-inline">
                   <div class="form-group">
@@ -336,7 +336,6 @@
                   <tr>
                      <th>Document Status</th>
                      <th>Name</th>
-                     <th>Grid Ref Id</th>
                      <th>Program</th>
                      <th>File Type</th>
                      <th>Date Submitted</th>
@@ -348,7 +347,6 @@
                   <tr>
                      <td><%= document.documentStatus %></td>
                      <td><%= document.documentName %></td>
-                     <td><%= document.gridRefID %></td>
                      <td><%= document.fileSection %></td>
                      <td><%= document.fileType %></td>
                      <td><%= document.prettyUploadDate %></td>
@@ -382,7 +380,6 @@
                               <tr>
                                  <td><%=document.documentName %></td>
                                  <td><%=document.fileType %></td>
-                                 <td><%= document.gridRefID %></td>
                                  <td><%=feedbackEntry.feedback %></td>
                                  <td><%=feedbackEntry.user %></td>
                                  <td><%=feedbackEntry.prettyFeedbackDate %></td>

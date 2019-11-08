@@ -46,8 +46,7 @@ module.exports.getDocumentUpload = function(req, res) {
                         "documentType" : document.fileType,
                         "documentStatus": document.documentStatus,
                         "notes" : document.notes,
-                        "feedback" : document.feedback,
-                        "gridRefID" : document.gridRefID
+                        "feedback" : document.feedback
                     }
                    documentList.push(newDocument);
             });
@@ -332,7 +331,6 @@ function addDocumentToUser(fileType, fileName, user, whatIsFile) {
         'fileType' : recordFileType,
         'fileSection' : recordSection,
         'documentName' : tempFileName + recordFileType,
-        'gridRefID' : gridRefID,
         'documentStatus' : 'submitted'
     });
 

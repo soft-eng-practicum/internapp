@@ -43,10 +43,6 @@ var documentSchema = mongoose.Schema({
         type: String, 
         required: true
     },
-    gridRefID: {
-        type: String,
-        required: true
-    },
     notes: [
                 { 
                     user: {type: String, required: true}, 
