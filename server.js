@@ -40,6 +40,7 @@ require('./config/passport');
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
+app.use(bodyParser.json());
 
 var mongoDriver = mongoose.mongo;
 
@@ -51,55 +52,26 @@ mongoose.connection.on('error', (err) => {
     console.log('Database error: ' + err);
 });
 
-/*
-app.post('/uploadTest', multiparty, function(req, res){
-    var gfs = new Grid(conn, mongoDriver);
-    var writestream = gfs.createWriteStream({
-      filename: req.files.file.name,
-      content_type: req.files.file.mimetype,
-      metadata: req.body
-    });
-    fs.createReadStream(req.files.file.path).pipe(writestream);
-    writestream.on('close', function(file) {
-       fs.unlink(req.files.file.path, function(err) {
-         // handle error
-         console.log('success!')
-       });
-    });
-}
-);
-*/
-//NEWER GRIDFS STUFF
-/*
-
-Grid.mongo = mongoose.mongo;
-
-function uploadFileToMongo(req, res) {
-    console.log('Test');
-    var ferpaPath = path.join(__dirname);
-        var gfs = Grid(conn.db);
-    
-        var writestream = gfs.createWriteStream({
-            filename: 'ferpa.pdf'
-        });
-    
-        fs.createReadStream(ferpaPath).pipe(writestream);
-    
-        console.log('file added')
-        res.redirect('/home')
-
-}
-
-app.post('/uploadTest', uploadFileToMongo, (req, res) => {
-    console.log('File Uploaded');
-    res.redirect('/home');
-
-})
 
 
+app.use(express.static(path.join(__dirname, 'public')))
 
-*/
 
+// Set favicon to the SST crest
+app.use(favicon(__dirname + '/public/images/logo.png'));
+
+app.set('view engine', 'ejs'); // set up ejs for templating
+
+// required for passport
+app.use(session({ secret: 'dfgd5155435445df1gdfgdry5y4345' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require('./app/routes/index.js')(app, passport);
+
+
+// GRID FS STUFF
 let gfs;
 
 conn.once('open', () => {
@@ -120,16 +92,21 @@ const  storage = new GridFsStorage({
 
 const upload = multer ({ storage });
 
+
+    //We want this function to create a new Document object that is populated with
+    //the current session user's information.  For some reason we are unable to access
+    //the User's information.  For testing purposes, all of the fields are populated with
+    //hardcoded data.  The function currently sucessfully uploads a user file to MongoDB and adds
+    //a document object to MongoDB.  
+
 app.post('/uploadTest', upload.single('file'), (req, res) => {
 
-    //Test document object to see if you can add a document from inside
-    //this function.  It works.  
     var document = new Document({
         'user' : {
-            'user_id' : 'sdf',
-            'fname': req.user,
-            'lname': 'VINCENT',
-            'user_email': 'ekadmin@gmail.com'
+            'user_id' : req.user.studentid,
+            'fname': req.user.fname,
+            'lname': req.user.lname,
+            'user_email': req.user.email,
         },
         'fileType' : 'testFile',
         'fileSection' : 'fileName.png',
@@ -143,65 +120,14 @@ app.post('/uploadTest', upload.single('file'), (req, res) => {
         if (err) {
             throw err;
         } else {
-            console.log('document added!!');
+            console.log('document added!');
         }
     });
     
-
-
-
-    console.log('file HAS been added');
+    console.log('file has been added');
     res.redirect('/home');
 })
 
-
-
-
-
-// NEW GRIDFS STUFF
-
-
-
-
-
-/*
-uploadGrid = function(req, res){
-var ferpaPath = path.join(__dirname, 'ferpa.pdf');
-
-Grid.mongo = mongoose.mongo;
-
-conn.once('open', function() {
-    console.log('- Connection open -');
-    var gfs = Grid(conn.db);
-
-    var writestream = gfs.createWriteStream({
-        filename: 'ferpa.pdf'
-    });
-
-    fs.createReadStream(ferpaPath).pipe(writestream);
-
-    writestream.on('close', function(file) {
-        console.log(file.filename + ' Written to db');
-    });
-});
-}
-*/
-
-app.use(express.static(path.join(__dirname, 'public')))
-
-
-// Set favicon to the SST crest
-app.use(favicon(__dirname + '/public/images/logo.png'));
-
-app.set('view engine', 'ejs'); // set up ejs for templating
-
-// required for passport
-app.use(session({ secret: 'dfgd5155435445df1gdfgdry5y4345' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-
-require('./app/routes/index.js')(app, passport);
 
 // launch ======================================================================
 app.listen(port);
