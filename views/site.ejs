@@ -8,14 +8,14 @@
 </head>
 <body>
     <% include partials/nav.ejs %>
-      <div class="container">
+    <div class="container">
           <h2>Site Details</h2>
           <% include partials/flashMessages.ejs %>
           <form name="siteexports" action="/sites" method="post" class="form-horizontal">
-         
+         <fieldset>
         <div class="row col-sm-12">
             <h4 align="center">Select your table/export filters</h4>
-            <div class="col-sm-5">                
+            <div class="col-sm-5">
                     <div class="form-group">
                         <div class="form-inline">
                             <label for="select" class="control-label">Select your program:</label>
@@ -26,14 +26,17 @@
                                 </select>
                             </div>
                         </div>
-                    </div>   
-                    <div align="center">
-                        <button type="submit" class="btn btn-success btn-lg">Export</button>
                     </div>
-                </form>
+                <fieldset>
+                    <div align="center">
+                        <button type="submit" class="btn btn-success btn-sm">Export</button>
+                    </div>
+                </fieldset>
             </div>
-        </form>
-            <div class="col-sm-5 pull-right">
+        </div>
+         </fieldset>
+          <fieldset>
+              <div class="col-sm-5">
                 <div class="form-group">
                     <div class="form-inline">
                         <label for="select" class="control-label">Filter by Company Status:</label>
@@ -46,10 +49,12 @@
                         </div>
                     </div>
                 </div>
-            </div>          
-        </div>
+              </div>
+          </fieldset>
+          </form>
           <br>
-          <table class="table table-bordered" id="sites">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered" id="sites">
               <thead>
                   <tr>
                       <th>
@@ -124,11 +129,12 @@
                   <% }); %>
               </tbody>
           </table>
+        </div>
     <form onClick ="displayResult()">
 
         <i> <b><a  class="three" id="send1" onclick="displayResult()" href="mailto:" >Send email <br><br><br></a></b></i>
     </form>
-      </div>
+
 
     <% include partials/footerimports %>
     <script>
@@ -160,7 +166,9 @@
               var table = $('#sites').DataTable({
                   "bFilter": true,
                   "pageLength": 50,
-
+                  "columnDefs": [
+                      { "orderable": false, "targets": 0 }
+                  ]
               });
 
               table.search(program).draw();
@@ -168,5 +176,6 @@
           });
       </script>
 
+      </div>
 </body>
 </html>
