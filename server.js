@@ -52,8 +52,6 @@ mongoose.connection.on('error', (err) => {
     console.log('Database error: ' + err);
 });
 
-
-
 app.use(express.static(path.join(__dirname, 'public')))
 
 
@@ -68,7 +66,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-require('./app/routes/index.js')(app, passport);
+
+
 
 
 // GRID FS STUFF
@@ -93,12 +92,7 @@ const  storage = new GridFsStorage({
 const upload = multer ({ storage });
 
 
-    //We want this function to create a new Document object that is populated with
-    //the current session user's information.  For some reason we are unable to access
-    //the User's information.  For testing purposes, all of the fields are populated with
-    //hardcoded data.  The function currently sucessfully uploads a user file to MongoDB and adds
-    //a document object to MongoDB.  
-
+//UPLOAD FILES
 app.post('/uploadItecResumeGFS', upload.single('file'), (req, res) => {
 
     var document = new Document({
@@ -273,6 +267,9 @@ app.post('/uploadBioOtherGFS', upload.single('file'), (req, res) => {
     console.log('file has been added');
     res.redirect('/home');
 })
+
+
+require('./app/routes/index.js')(app, passport);
 
 
 // launch ======================================================================
