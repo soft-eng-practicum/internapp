@@ -38,7 +38,7 @@ const mongoURI = 'mongodb://meraki:$oftdev2ELKJJ@ds259732.mlab.com:59732/ggcinte
 
 const connection = mongoose.connect(mongoURI);
 const conn = mongoose.createConnection(configDB.url);
-require('./config/passport'); 
+require('./config/passport');
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -84,13 +84,13 @@ function uploadFileToMongo(req, res) {
     console.log('Test');
     var ferpaPath = path.join(__dirname);
         var gfs = Grid(conn.db);
-    
+
         var writestream = gfs.createWriteStream({
             filename: 'ferpa.pdf'
         });
-    
+
         fs.createReadStream(ferpaPath).pipe(writestream);
-    
+
         console.log('file added')
         res.redirect('/home')
 
@@ -236,7 +236,7 @@ app.post('/uploadTest', upload.single('file'), (req, res) => {
             console.log('document added!!');
         }
     });
-    
+
 
 
 
@@ -284,4 +284,3 @@ require('./app/routes/index.js')(app, passport);
 // launch ======================================================================
 app.listen(port);
 console.log('The magic happens on port ' + port);
-
