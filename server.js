@@ -4,7 +4,6 @@
 // get all the tools we need
 var express  = require('express');
 var app      = express();
-var bodyParser = require('body-parser');
 var path     = require('path');
 var crypto = require('crypto');
 var port     = process.env.PORT || 8000;
@@ -112,36 +111,6 @@ conn.once('open', () => {
     gfs = Grid(conn.db, mongoose.mongo);
 });
 
-// const storage = new GridFsStorage({
-//     url: mongoURI,
-//     file: function(req, file) {
-//         //     // if (file.mimeType === 'application/pdf') {
-//         //     //     console.log("Got application/pdf");
-//         //     //     return {
-//         //     //         filename: 'pdffile' + Date.now()
-//         //     //     };
-//         //     // }
-//         //     // else if (file.mimeType === 'text/plain') {
-//         //     //     console.log("Got text/plain");
-//         //     //     return {
-//         //     //         filename: 'textfile' + Date.now()
-//         //     //     };
-//         //     // }
-//         //     // else if (file.contentType === 'text/plain') {
-//         //     //     console.log("Got text/plain from content type");
-//         //     //     return {
-//         //     //         filename: 'contexttextfile' + Date.now()
-//         //     //     };
-//         //     // }
-//         //     // else {
-//         //     //     console.log("I'm returning null...");
-//         //     //     return 'EKTESTFILENAME_' + Date.now();
-//         //     // }
-//         //     // return {filename:'EKTESTFILENAME_' + Date.now()};
-//         //     return 'file_' + Date.now();
-//     }
-// });
-
 let storage = new GridFsStorage({
     url: mongoURI,
     file: (req, file) => {
@@ -162,29 +131,6 @@ let storage = new GridFsStorage({
                 });
             });
         }
-        return new Promise((resolve, reject) => {
-            crypto.randomBytes(16, (err, buf) => {
-                if (err) {
-                    return reject(err);
-                }
-                const filename = file.originalname + path.extname(file.originalname);
-                const fileInfo = {
-                    filename: 'TESTING UPLOADS',
-                    bucketName: 'uploads'
-                };
-                resolve(fileInfo);
-            });
-        });
-        //
-        // if (file.mimetype === 'image/jpeg') {
-        //
-        //     return {
-        //         bucketName: 'photos',
-        //         filename: file.originalName
-        //     };
-        // } else {
-        //     return '';
-        // }
     }
 });
 
@@ -195,7 +141,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set favicon to the SST crest
 app.use(favicon(__dirname + '/public/images/logo.png'));
-
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
@@ -205,28 +150,23 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.post('/uploadTest', upload.single('file'), (req, res) => {
-    res.json({ file: req.file.grid });
+    // res.json({ file: req.file.grid });
     console.log(req.file.grid);
     //Test document object to see if you can add a document from inside
     //this function.  It works.
 
     var document = new Document({
         'user' : {
-            // 'user_id' : req.user.studentid,
-            // 'user_id' : req.user.studentid,
-            // 'fname': req.user.fname,
-            // 'lname': req.user.lname,
-            // 'user_email': req.user.email
-            'user_id' : req.file.filename,
-            'fname': req.file.originalname,
-            'lname': req.file.grid.contentType,
-            'user_email': req.file.grid.uploadDate
+            'user_id' : req.user.studentid,
+            'fname': req.user.fname,
+            'lname': req.user.lname,
+            'user_email': req.user.email
         },
-        'fileType' : 'tempfileInfo',
-        'fileSection' : 'recordSection',
-        'documentName' : 'test',
+        'documentName' : req.file.originalname,
+        'fileId' : req.file.filename,
+        'fileType' : 'Resume|Transcript|Essay',
+        'fileSection' : 'BIO|ITEC',
         'documentStatus' : 'submitted',
-        'recordFileType' : 'idk'
     });
 
     document.save(function(err) {
@@ -236,16 +176,193 @@ app.post('/uploadTest', upload.single('file'), (req, res) => {
             console.log('document added!!');
         }
     });
+    res.redirect('/home');
+});
+
+app.post('/uploadItecResume', upload.single('itecResume'), (req, res) => {
+    // res.json({ file: req.file.grid });
+    console.log(req.file.grid);
+    //Test document object to see if you can add a document from inside
+    //this function.  It works.
+
+    var document = new Document({
+        'user' : {
+            'user_id' : req.user.studentid,
+            'fname': req.user.fname,
+            'lname': req.user.lname,
+            'user_email': req.user.email
+        },
+        'documentName' : req.file.originalname,
+        'fileId' : req.file.filename,
+        'fileType' : 'Resume',
+        'fileSection' : 'ITEC',
+        'documentStatus' : 'submitted',
+    });
+
+    document.save(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('document added!!');
+        }
+    });
+    res.redirect('/home');
+});
 
 
+app.post('/uploadItecFerpa', upload.single('itecFerpa'), (req, res) => {
+    // res.json({ file: req.file.grid });
+    console.log(req.file.grid);
+    //Test document object to see if you can add a document from inside
+    //this function.  It works.
+
+    var document = new Document({
+        'user' : {
+            'user_id' : req.user.studentid,
+            'fname': req.user.fname,
+            'lname': req.user.lname,
+            'user_email': req.user.email
+        },
+        'documentName' : req.file.originalname,
+        'fileId' : req.file.filename,
+        'fileType' : 'Ferpa',
+        'fileSection' : 'ITEC',
+        'documentStatus' : 'submitted',
+    });
+
+    document.save(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('document added!!');
+        }
+    });
+    res.redirect('/home');
+});
 
 
-    console.log('file HAS been added');
+app.post('/uploadItecOther', upload.single('itecOther'), (req, res) => {
+    // res.json({ file: req.file.grid });
+    console.log(req.file.grid);
+    //Test document object to see if you can add a document from inside
+    //this function.  It works.
+
+    var document = new Document({
+        'user' : {
+            'user_id' : req.user.studentid,
+            'fname': req.user.fname,
+            'lname': req.user.lname,
+            'user_email': req.user.email
+        },
+        'documentName' : req.file.originalname,
+        'fileId' : req.file.filename,
+        'fileType' : req.body.itecOther,
+        'fileSection' : 'ITEC',
+        'documentStatus' : 'submitted',
+    });
+
+    document.save(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('document added!!');
+        }
+    });
+    res.redirect('/home');
+});
+
+
+app.post('/uploadBioEssay', upload.single('bioEssay'), (req, res) => {
+    // res.json({ file: req.file.grid });
+    console.log(req.file.grid);
+    //Test document object to see if you can add a document from inside
+    //this function.  It works.
+
+    var document = new Document({
+        'user' : {
+            'user_id' : req.user.studentid,
+            'fname': req.user.fname,
+            'lname': req.user.lname,
+            'user_email': req.user.email
+        },
+        'documentName' : req.file.originalname,
+        'fileId' : req.file.filename,
+        'fileType' : 'Essay',
+        'fileSection' : 'BIO',
+        'documentStatus' : 'submitted',
+    });
+
+    document.save(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('document added!!');
+        }
+    });
     // res.redirect('/home');
 });
 
 
+app.post('/uploadBioTranscript', upload.single('bioTranscript'), (req, res) => {
+    // res.json({ file: req.file.grid });
+    console.log(req.file.grid);
+    //Test document object to see if you can add a document from inside
+    //this function.  It works.
 
+    var document = new Document({
+        'user' : {
+            'user_id' : req.user.studentid,
+            'fname': req.user.fname,
+            'lname': req.user.lname,
+            'user_email': req.user.email
+        },
+        'documentName' : req.file.originalname,
+        'fileId' : req.file.filename,
+        'fileType' : 'Transcript',
+        'fileSection' : 'BIO',
+        'documentStatus' : 'submitted',
+    });
+
+    document.save(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('document added!!');
+        }
+    });
+    // res.redirect('/home');
+});
+
+
+app.post('/uploadBioOther', upload.single('bioOther'), (req, res) => {
+    // res.json({ file: req.file.grid });
+    console.log(req.file.grid);
+    //Test document object to see if you can add a document from inside
+    //this function.  It works.
+
+    var document = new Document({
+        'user' : {
+            'user_id' : req.user.studentid,
+            'fname': req.user.fname,
+            'lname': req.user.lname,
+            'user_email': req.user.email
+        },
+        'documentName' : req.file.originalname,
+        'fileId' : req.file.filename,
+        'fileType' : req.body.bioOther,
+        'fileSection' : 'BIO',
+        'documentStatus' : 'submitted',
+    });
+
+    document.save(function(err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log('document added!!');
+        }
+    });
+    res.redirect('/home');
+});
 
 // NEW GRIDFS STUFF
 

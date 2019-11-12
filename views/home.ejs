@@ -209,15 +209,19 @@
             <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
             <h3>ITEC Uploads</h3>
             <div class="uploadBox" id="itecBox">
-               <form ref='uploadForm'
-                  id='uploadForm1'
-                  action='/uploadItecResume'
-                  action='/upload'
-                  method='POST'
-                  encType="multipart/form-data"
-                  class="form-inline">
+                <form action="uploadItecResume"
+                      method="POST" enctype="multipart/form-data"
+                      class="form-inline"
+                      ref="uploadForm"
+                      id="uploadForm1">
+<!--                <form ref='uploadForm'-->
+<!--                  id='uploadForm1'-->
+<!--                  action='uploadItecResume'-->
+<!--                  method='POST'-->
+<!--                  encType="multipart/form-data"-->
+<!--                  class="form-inline">-->
                   <div class="form-group">
-                     <input type="file"  name="resume" />
+                     <input type="file"  name="itecResume" class="custom-file-input">
                   </div>
                   <div class="form-group">
                      <input type='submit' id="uploadResume" class="btn btn-success btn-sm" value='Upload Resume!' disabled
@@ -235,12 +239,12 @@
                   encType="multipart/form-data"
                   class="form-inline">
                   <div class="form-group">
-                     <input type="file" name="ferpa" />
+                     <input type="file" name="itecFerpa" />
                   </div>
                   <div class ="form-group">
                      <input type='submit' id="uploadFERPA" class="btn btn-success btn-sm" value='Upload FERPA!' disabled
-                        title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File"/>   
-                     <a target="_blank" title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Uplod FERPA!' To Upload The FERPA File">
+                        title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Upload FERPA!' To Upload The FERPA File"/>
+                     <a target="_blank" title="After Downloading FERPA, Please Click 'Choose File' First, Then Click 'Upload FERPA!' To Upload The FERPA File">
                      <i class="glyphicon glyphicon-question-sign" title="Click the below link to download the FERPA document. After filling out the FERPA document, select it via the 'Choose File' button, and then select 'Upload FERPA!'. After uploading the document your upload will be recorded in your document uploads table below." data-toggle="tooltip"></i></a>
                   </div>
                   <br>
@@ -254,7 +258,7 @@
                   encType="multipart/form-data"
                   class="form-inline">
                   <div class="form-group">
-                     <input type="file" name="other" />
+                     <input type="file" name="itecOther" />
                   </div>
                   <div class ="form-group">
                      <label for="itecOtherName">What is the file you're uploading?</label> 
@@ -281,7 +285,7 @@
                   encType="multipart/form-data"
                   class="form-inline">
                   <div class="form-group">
-                     <input type="file"  name="essay" />
+                     <input type="file"  name="bioEssay" />
                   </div>
                   <div class="form-group">
                      <input type='submit' id="uploadEssay" class="btn btn-success btn-sm" value='Upload Essay!' disabled 
@@ -297,7 +301,7 @@
                   encType="multipart/form-data"
                   class="form-inline">
                   <div class="form-group">
-                     <input type="file" name="transcript" />
+                     <input type="file" name="bioTranscript" />
                   </div>
                   <div class ="form-group">
                      <input type='submit' id="uploadTranscript" class="btn btn-success btn-sm" value='Upload Transcript!' disabled/>
@@ -312,7 +316,7 @@
                   encType="multipart/form-data"
                   class="form-inline">
                   <div class="form-group">
-                     <input type="file" name="other" />
+                     <input type="file" name="bioOther" />
                   </div>
                   <div class ="form-group">
                      <label for="bioOtherName">What is the file you're uploading?</label> 
@@ -340,6 +344,8 @@
                      <th>File Type</th>
                      <th>Date Submitted</th>
                      <th>View Document Details</th>
+                     <th>Download Document</th>
+                     <th>Delete Document</th>
                   </tr>
                </thead>
                <tbody>
@@ -351,6 +357,9 @@
                      <td><%= document.fileType %></td>
                      <td><%= document.prettyUploadDate %></td>
                      <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
+                      <td><a href="/document/download/<%= document._id%>"><span class='glyphicon glyphicon-download'></span></a></td>
+                      <td><a href="/document/<%= document.document._id%>/delete"><span class='glyphicon glyphicon-trash'></span></a></td>
+
                   </tr>
                   <% }); %>
                </tbody>
