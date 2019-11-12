@@ -366,6 +366,9 @@ app.post('/uploadBioOther', upload.single('bioOther'), (req, res) => {
 
 app.get('/getFiles/:filename', (req, res) => {
     gfs.files.findOne({filename : req.params.filename}, (err, file) => {
+        console.log("Req params: " + req.params);
+        console.log("Req params filename: " + req.params.filename);
+        console.log("Req params fileId: " + req.params.fileId);
 
         if (!file || file.length === 0) {
             return res.status(404).json({
