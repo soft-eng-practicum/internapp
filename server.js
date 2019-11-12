@@ -364,6 +364,19 @@ app.post('/uploadBioOther', upload.single('bioOther'), (req, res) => {
     res.redirect('/home');
 });
 
+app.get('/getFiles/:filename', (req, res) => {
+    gfs.files.findOne({filename : req.params.filename}, (err, file) => {
+
+        if (!file || file.length === 0) {
+            return res.status(404).json({
+                err: 'No files exist'
+            });
+        }
+        return res.json(file);
+    })
+})
+
+
 // NEW GRIDFS STUFF
 
 
