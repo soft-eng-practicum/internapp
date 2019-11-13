@@ -382,4 +382,3 @@ function deleteFile(fileName) {
         }
     });
 }
-

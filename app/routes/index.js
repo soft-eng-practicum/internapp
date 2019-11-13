@@ -31,8 +31,6 @@ var fileUpload = require('express-fileupload');
 // For creating csv directory
 var mkdirp = require('mkdirp');
 
-var ctrlSiteNotes = require('../controllers/sitenotes');
-
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on
