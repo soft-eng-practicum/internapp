@@ -317,20 +317,23 @@ a.three:hover {font-size:150%;}
       });
 
       var rollSem = document.getElementById('rollSemester');
+      $(rollSem).val('No');
+
       rollSem.addEventListener("change", function() {
         if(rollSem.value === "Yes") {
           document.querySelector('.bg-modal').style.display = "flex";
+          rollSem.value = "No";
         }
       });
 
       document.querySelector('.close').addEventListener("click", function () {
         document.querySelector('.bg-modal').style.display = "none";
       });
-
       window.onclick = function(event) {
         if (event.target == document.querySelector('.bg-modal')) {
           document.querySelector('.bg-modal').style.display = "none";
         }
+
       }
 
     </script>
