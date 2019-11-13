@@ -9,29 +9,25 @@
 <body>
     <% include partials/nav.ejs %>
     <div class="container">
-          <h2>Site Details</h2>
+          <h2 align="center">Site Details</h2>
           <% include partials/flashMessages.ejs %>
           <form name="siteexports" action="/sites" method="post" class="form-horizontal">
          <fieldset>
         <div class="row col-sm-12">
-            <h4 align="center">Select your table/export filters</h4>
+            <h4 align="center" style="margin-left: 40px">Select your table/export filters</h4>
             <div class="col-sm-5">
                     <div class="form-group">
                         <div class="form-inline">
-                            <label for="select" class="control-label">Select your program:</label>
+                            <label for="select" class="control-label">Select your program for export to csv:</label>
                             <div class="">
                                 <select class="form-control adminProgram" id="programSelect" name="program">
                                     <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
                                     <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
                                 </select>
+                                <button type="submit" class="btn btn-success btn-sm" style="margin-left: 20px">Export</button>
                             </div>
                         </div>
                     </div>
-                <fieldset>
-                    <div align="center">
-                        <button type="submit" class="btn btn-success btn-sm">Export</button>
-                    </div>
-                </fieldset>
             </div>
         </div>
          </fieldset>
@@ -40,8 +36,8 @@
                 <div class="form-group">
                     <div class="form-inline">
                         <label for="select" class="control-label">Filter by Company Status:</label>
-                        <div class="" class>
-                            <select class="form-control adminProgram" id="sitestatusdd" name="sitestatusdd">
+                        <div class="">
+                            <select class="form-control siteStatus" id="sitestatusdd" name="sitestatusdd">
                                     <option selected>Filter by Status</option>
                                 <option value="active" >Active</option>
                                 <option value="inactive">Inactive</option>
