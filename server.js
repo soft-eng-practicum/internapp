@@ -149,35 +149,35 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-app.post('/uploadTest', upload.single('file'), (req, res) => {
-    // res.json({ file: req.file.grid });
-    console.log(req.file.grid);
-    //Test document object to see if you can add a document from inside
-    //this function.  It works.
-
-    var document = new Document({
-        'user' : {
-            'user_id' : req.user.studentid,
-            'fname': req.user.fname,
-            'lname': req.user.lname,
-            'user_email': req.user.email
-        },
-        'documentName' : req.file.originalname,
-        'fileId' : req.file.filename,
-        'fileType' : 'Resume|Transcript|Essay',
-        'fileSection' : 'BIO|ITEC',
-        'documentStatus' : 'submitted',
-    });
-
-    document.save(function(err) {
-        if (err) {
-            throw err;
-        } else {
-            console.log('document added!!');
-        }
-    });
-    res.redirect('/home');
-});
+// app.post('/uploadTest', upload.single('file'), (req, res) => {
+//     // res.json({ file: req.file.grid });
+//     console.log(req.file.grid);
+//     //Test document object to see if you can add a document from inside
+//     //this function.  It works.
+//
+//     var document = new Document({
+//         'user' : {
+//             'user_id' : req.user.studentid,
+//             'fname': req.user.fname,
+//             'lname': req.user.lname,
+//             'user_email': req.user.email
+//         },
+//         'documentName' : req.file.originalname,
+//         'fileId' : req.file.filename,
+//         'fileType' : 'Resume|Transcript|Essay',
+//         'fileSection' : 'BIO|ITEC',
+//         'documentStatus' : 'submitted',
+//     });
+//
+//     document.save(function(err) {
+//         if (err) {
+//             throw err;
+//         } else {
+//             console.log('document added!!');
+//         }
+//     });
+//     res.redirect('/home');
+// });
 
 app.post('/uploadItecResume', upload.single('itecResume'), (req, res) => {
     // res.json({ file: req.file.grid });

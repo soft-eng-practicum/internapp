@@ -8,11 +8,7 @@ var Document = require('../models/document');
 
 module.exports.removeSpecificDocument = function (req, res) {
     Document.findOneAndRemove({
-        _id: req.params
-    }, function () {
-        console.log(req.params);
-        console.log(req.file);
-        console.log(req.fileId);
-    });
+        _id: req.params.fileId
+    }, function () {});
     res.redirect("/home");
 };
