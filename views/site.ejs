@@ -50,81 +50,61 @@
           </form>
           <br>
         <div class="table-responsive">
-          <table class="table table-striped table-bordered" id="sites">
-              <thead>
-                  <tr>
-                      <th>
-                          <center>Select All</center>
-                          <br/>
-                          <script>
-                              function checkAll(ele) {
-                                  var checkboxes = document.getElementsByTagName('input');
-                                  if (ele.checked) {
-                                      for (var i = 0; i < checkboxes.length; i++) {
-                                          if (checkboxes[i].type == 'checkbox') {
-                                              checkboxes[i].checked = true;
-                                          }
-                                      }
-                                  } else {
-                                      for (var i = 0; i < checkboxes.length; i++) {
-                                          console.log(i)
-                                          if (checkboxes[i].type == 'checkbox') {
-                                              checkboxes[i].checked = false;
-                                          }
-                                      }
-                                  }
-                              }
-                          </script>
+            <table class="table table-striped table-bordered" id="sites">
+                <thead>
+                <tr>
+                    <th>
+                        <center>Select All</center>
+                        <br/>
+                        <center>
+                            <input id="selectall" type="checkbox" name="mail" value="1" onClick="checkAll()"/>
 
-                          <center>
-                              <input id="selectall" type="checkbox" name="mail" value="1" onchange="checkAll(this)"/>
-
-                          </center>
-                      </th>
-                      <th>Name</th>
-                      <th>Email Address</th>
-                      <th>Address</th>
-                      <th>City</th>
-                      <th>Program</th>
-                      <th>Valid MOU</th>
-                      <th>MOU Expiration</th>
-                      <th>Edit</th>
-                      <th>View Details</th>
-                      <th>Site Status</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <%siteList.forEach(function(site) { %>
-               <tr>
-                   <td id="mySelect1" >
-                       <center>
-                           <input id="emailCheckbox" type="checkbox"  value ='<% site.contacts.forEach(function(contact) { %>
-                    <% contact.email %>
+                        </center>
+                    </th>
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Program</th>
+                    <th>Valid MOU</th>
+                    <th>MOU Expiration</th>
+                    <th>Edit</th>
+                    <th>View Details</th>
+                    <th>Site Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%siteList.forEach(function(site) { %>
+                    <tr>
+                        <td id="mySelect1">
+                            <center>
+                                <input id="emailCheckbox" type="checkbox"  value ='<% site.contacts.forEach(function(contact) { %>
+                    <%= contact.email %>
                     <% });  %>' />
 
-                       </center>
-                   </td>
-                    <td><%= site.name %></td>
-                    <td>
-                    <% site.contacts.forEach(function(contact) { %>
-                    <%= contact.email %>
-                    <% }); %> </td>
-                   <td><%= site.address %></td>
-                   <td><%= site.city %></td>
-                   <td><%= site.section %></td>
-                   <% if (site.mou==='Yes') { %>
-                  <td><%= site.mou %></td>
-                   <% } else { %>
-                  <td>No</td>
-                   <% } %>
-                  <td><%= site.mouexpiration %></td>
-                   <td><a href="/site/edit/<%= site._id %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
-                   <td><a href="/site/<%= site._id %>"><span class='glyphicon glyphicon-search'></span></a></td>
-                   <td><%= site.sitestatus %></td>
-               </tr>    
-                  <% }); %>
-              </tbody>
-          </table>
+                            </center>
+                        </td>
+                        <td><%= site.name %></td>
+                        <td>
+                            <% site.contacts.forEach(function(contact) { %>
+                                <%= contact.email %>
+                            <% }); %> </td>
+                        <td><%= site.address %></td>
+                        <td><%= site.city %></td>
+                        <td><%= site.section %></td>
+                        <% if (site.mou==='Yes') { %>
+                            <td><%= site.mou %></td>
+                        <% } else { %>
+                            <td>No</td>
+                        <% } %>
+                        <td><%= site.mouexpiration %></td>
+                        <td><a href="/site/edit/<%= site._id %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
+                        <td><a href="/site/<%= site._id %>"><span class='glyphicon glyphicon-search'></span></a></td>
+                        <td><%= site.sitestatus %></td>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table>
         </div>
     <form onClick ="displayResult()">
 
@@ -171,7 +151,20 @@
 
           });
       </script>
-
+        <script>
+            function checkAll()
+            {
+                let checkboxes = document.getElementsByTagName('input'), val = null;
+                for (let i = 0; i < checkboxes.length; i++)
+                {
+                    if (checkboxes[i].type == 'checkbox')
+                    {
+                        if (val === null) val = checkboxes[i].checked;
+                        checkboxes[i].checked = val;
+                    }
+                }
+            }
+        </script>
       </div>
 </body>
 </html>
