@@ -299,7 +299,7 @@ app.post('/uploadBioEssay', upload.single('bioEssay'), (req, res) => {
             console.log('document added!!');
         }
     });
-    // res.redirect('/home');
+    res.redirect('/home');
 });
 
 
@@ -330,7 +330,7 @@ app.post('/uploadBioTranscript', upload.single('bioTranscript'), (req, res) => {
             console.log('document added!!');
         }
     });
-    // res.redirect('/home');
+    res.redirect('/home');
 });
 
 
