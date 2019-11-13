@@ -32,10 +32,10 @@ a.three:hover {font-size:150%;}
 
         <form name="applicationexports" action="/applications" method="post" class="form-horizontal">
           <fieldset>
-            <h4 align="center">Select your exports</h4>
+            <h4 align="center">Select your filters</h4>
             <div class="form-group">
               <div class="form-inline">
-                <label for="select" class="col-lg-5 control-label">Select the semester and year you wish to filter by or export:</label>
+                <label for="select" class="col-lg-5 control-label">Select the semester and year you wish to filter by:</label>
                 <div class="col-lg-5" class="">
                   <select class="form-control adminSemester " id="applicationSemester" name="semester">
                     <option value="Fall">Fall</option>
@@ -48,6 +48,7 @@ a.three:hover {font-size:150%;}
               </div>
             </div>
 
+
             <div class="form-group">
               <div class="form-inline">
                 <label for="select" class="col-lg-5 control-label">Select your program:</label>
@@ -59,7 +60,55 @@ a.three:hover {font-size:150%;}
                 </div>
               </div>
             </div>
+            <div class="form-group">
+              <div class="form-inline">
+                <label for="select" class="col-lg-5 control-label">Would you like to change the checked applicants' proposed internship semester & year? (ITEC applications only):</label>
+                <div class="col-lg-5" class="">
+                  <select class="form-control rollSemester " id="rollSemester" name="rollSemester">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="bg-modal">
+              <div class="modal-contents">
+                <div class="close">+</div>
+              <br>
+              <h3>Change Proposed Intern Date</h3>
+              <form name="proposedinternsemester" action="/application/changeMultipleSemester" method="post">
 
+                <div class="form-group" >
+                  <label>Internship Date</label>
+                  <select class="form-control" name="proposedinternsemester" id="semester">
+
+                    <option value="">Select semester</option>
+                    <option value="Fall" >Fall</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Internship Date</label>
+                  <select class="form-control" name="proposedinternyear" id="year">
+
+                    <option value="">Select Year</option>
+                    <option value="2018" >2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021" >2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024" >2024</option>
+                  </select>
+                </div>
+                <input type="hidden" id= "checkedd" name="checkboxes">
+
+                <button type="submit" class="btn btn-success btn-lg" id="submitBtn">Change Date</button>
+
+              </form>
+            </div>
+            </div>
 
             <fieldset>
               <div align="center">
@@ -155,58 +204,7 @@ a.three:hover {font-size:150%;}
             </form>
       </h3>
 
-      <div class="form-group">
-        <div class="form-inline">
-          <label for="select" class="col-lg-5 control-label">Would you like to change the checked applicants' proposed internship semester & year? (ITEC applications only)</label>
-          <div class="col-lg-5" class="">
-            <select class="form-control adminSemester " id="additionalInfoList" name="semester">
-              <option value="No">No</option>
-              <option value="Yes">Yes</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="other">
-        <br>
-        </br>
-        <h3>Change Proposed Intern Date</h3>
-        <form name="proposedinternsemester" action="/application/changeMultipleSemester" method="post">
 
-          <div class="form-group" >
-            <label>Internship Date</label>
-            <select class="form-control" name="proposedinternsemester" id="semester">
-
-              <option value="">Select semester</option>
-              <option value="Fall" >Fall</option>
-              <option value="Spring">Spring</option>
-              <option value="Summer">Summer</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Internship Date</label>
-            <select class="form-control" name="proposedinternyear" id="year">
-
-              <option value="">Select Year</option>
-              <option value="2018" >2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021" >2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024" >2024</option>
-            </select>
-            </select>
-            </select>
-            </select>
-            </select>
-            </select>
-          </div>
-          <input type="hidden" id= "checkedd" name="checkboxes">
-
-          <button type="submit" class="btn btn-success btn-lg" id="submitBtn">Change Date</button>
-
-        </form>
-      </div>
       <br>
       <br>
       <br>
@@ -295,7 +293,7 @@ a.three:hover {font-size:150%;}
           var semester = $("#semester").val();
           var year = $("#year").val();
           if (semester == '' && year == '') {
-            alert('You did not select neither a semester nor year to update for the chosen application(s)!' + year + semester);
+            alert('You did not select a semester nor year to update for the chosen application(s)!' + year + semester);
             return false;
           } else if (semester == '') {
             alert('You did not select a semester!');
@@ -318,8 +316,22 @@ a.three:hover {font-size:150%;}
         });
       });
 
+      var rollSem = document.getElementById('rollSemester');
+      rollSem.addEventListener("change", function() {
+        if(rollSem.value === "Yes") {
+          document.querySelector('.bg-modal').style.display = "flex";
+        }
+      });
 
+      document.querySelector('.close').addEventListener("click", function () {
+        document.querySelector('.bg-modal').style.display = "none";
+      });
 
+      window.onclick = function(event) {
+        if (event.target == document.querySelector('.bg-modal')) {
+          document.querySelector('.bg-modal').style.display = "none";
+        }
+      }
 
     </script>
   </body>
