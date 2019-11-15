@@ -399,6 +399,23 @@ module.exports.changeMultipleSemester = function (req, res) {
         for (var i = 0; i < length; i++) {
             console.log(checkboxes_array[i]);
 
+
+            Bio.update({_id: checkboxes_array[i]}, {proposedinternsemester: req.body.proposedinternsemester}, function (err) {
+                if (err) {
+                    console.log("Problem updating " + checkboxes_array[i]);
+                } else {
+                    console.log("No Problem updating bbh" + checkboxes_array[i]);
+                }
+            });
+
+            Bio.update({_id: checkboxes_array[i]}, {proposedinternyear: req.body.proposedinternyear}, function (err) {
+                if (err) {
+                    console.log("Problem updating " + checkboxes_array[i]);
+                } else {
+                    console.log("No Problem updating " + checkboxes_array[i]);
+                }
+            });
+
             Itec.update({_id: checkboxes_array[i]}, {proposedinternsemester: req.body.proposedinternsemester}, function (err) {
                 if (err) {
                     console.log("Problem updating " + checkboxes_array[i]);
