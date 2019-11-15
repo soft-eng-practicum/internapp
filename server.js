@@ -25,7 +25,7 @@ require('./config/passport');
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')))
 
 mongoose.connection.on('connected', () => {
     console.log('Connected to database: ' + configDB.url);
