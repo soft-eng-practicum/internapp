@@ -176,9 +176,7 @@ module.exports = function (app, passport) {
 
     /* Sites pages & Add Site page */
     app.get('/sites', isLoggedIn, isAdminOrInstructor, ctrlSites.getSites);
-    app.post('/sites', isLoggedIn, isAdminOrInstructor, makeCSVDirectory, ctrlSites.filterSites);
-    app.post('/sites/export', isLoggedIn, isAdminOrInstructor, makeCSVDirectory, ctrlSites.exportSites);
-
+    app.post('/sites', isLoggedIn, isAdminOrInstructor, makeCSVDirectory, ctrlSites.exportSites);
     app.get('/addsite', isLoggedIn, isAdminOrInstructor, ctrlSites.getAddSite);
     app.get('/site/contacts/:siteid/:documentid', isLoggedIn, isAdminOrInstructor, ctrlSites.deleteSiteContact);
     app.get('/site/edit/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteToEdit);

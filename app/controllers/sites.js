@@ -13,15 +13,17 @@ var homeDir = require('home-dir');
 var path = require('path');
 
 
-
 /*
     HTTP Req: GET
     URL: '/sites'
 */
 module.exports.getSites = function (req, res) {
+    const query = {};
+    if (req.query.status) {
+        query['sitestatus'] = req.query.status
+    }
     User.getAdminValuesForHome(req.user._id, function (adminValues) {
-
-        Site.find(function (err, sites) {
+        Site.find(query, function (err, sites) {
             if (err) return console.error(err);
             res.render('site.ejs', {
                 siteList: sites,
@@ -31,46 +33,8 @@ module.exports.getSites = function (req, res) {
                 admin: adminValues
             });
         });
-
     });
 
-}
-
-module.exports.filterSites = function (req, res) {
-    function getProgram () {
-        if (req.body.program === 'Biology Internship (BIOL 4800)') {
-            return 'Bio'
-        }
-        else if (req.body.program === 'Information Technology Internship (ITEC 4900)') {
-            return 'Itec'
-        }
-    }
-    function getStatus () {
-        if (req.body.sitestatus === 'active') {
-            return 'Active'
-        }
-        else if (req.body.sitestatus === 'inactive') {
-            return 'Inactive'
-        }
-    }
-
-    let filters = {
-        section: getProgram(),
-        sitestatus: getStatus()
-    };
-    User.getAdminValuesForHome(req.user._id, function (adminValues) {
-
-        Site.find(filters, function (err, sites) {
-            if (err) return console.error(err);
-            res.render('site.ejs', {
-                siteList: sites,
-                successMessage: req.flash('success'),
-                failureMessage: req.flash('failure'),
-                user: req.user,
-                admin: adminValues
-            });
-        });
-    })
 }
 
 /*
@@ -79,31 +43,23 @@ module.exports.filterSites = function (req, res) {
 */
 module.exports.exportSites = function (req, res) {
     var discipline = "";
+    var program = req.body.program;
     var siteArray = [];
     var redirect = "/sites";
     var fields = [];
 
-    // switch (req.body.program) {
-    //     case 'Biology Internship (BIOL 4800)':
-    //         discipline = 'Bio';
-    //         break;
-    //     case 'Information Technology Internship (ITEC 4900)':
-    //         discipline = 'Itec';
-    //         break;
-    //     default:
-    //         res.redirect('/sites');
-    //         req.flash('failure', 'Program not recognized');
-    //         break;
-    // }
-    if (req.body.program === 'Biology Internship (BIOL 4800)') {
-        discipline = 'Bio'
+    switch (req.body.program) {
+        case 'Biology Internship (BIOL 4800)':
+            discipline = 'Bio';
+            break;
+        case 'Information Technology Internship (ITEC 4900)':
+            discipline = 'Itec';
+            break;
+        default:
+            res.redirect('/sites');
+            req.flash('failure', 'Program not recognized');
+            break;
     }
-    else if (req.body.program === 'Information Technology Internship (ITEC 4900)') {
-        discipline = 'Itec'
-    }
-    // else {
-    //     discipline = 'Itec'
-    // }
 
     Site.find({
         section: discipline
@@ -426,4 +382,3 @@ function deleteFile(fileName) {
         }
     });
 }
-
