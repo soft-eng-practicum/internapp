@@ -114,16 +114,9 @@
 
 
             $("input#emailCheckbox:checked").each(function (index) {
-
-                l.push( this.value.replace(/\s/g, ";"));
-
-
-                // l.push(this.value.trim());
-                send.href = "mailto:" + l.join("");
-                console.log(this.value);
-                console.log(l);
+                l.push(this.value.trim().replace(/\s/, ";").replace(/\s/g, ""));
             } );
-            return;
+            send.href = "mailto:" + l;
 
         }
 
