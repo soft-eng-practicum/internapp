@@ -114,10 +114,7 @@
 
 
             $("input#emailCheckbox:checked").each(function () {
-                var emails = this.value.trim()
-                emails = emails.replace(/\s+/g, " ")
-                emails = emails.split(" ")
-                l.push(emails)
+                l.push(this.value.trim().replace(/\s+/g, ";"));
             } );
             send.href = "mailto:" + l;
 
