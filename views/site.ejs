@@ -13,31 +13,27 @@
           <% include partials/flashMessages.ejs %>
           <form name="siteexports" action="/sites" method="post" class="form-horizontal">
          <fieldset>
-        <div class="row col-sm-12">
-            <h4 align="center" style="margin-left: 40px">Select your table/export filters</h4>
-            <div class="col-sm-5">
+
+            <h4 align="center">Select your table/export filters</h4>
                     <div class="form-group">
                         <div class="form-inline">
-                            <label for="select" class="control-label">Select your program for export to csv:</label>
-                            <div class="">
+                            <label for="select" class="col-lg-5 control-label">Select your program for export to csv:</label>
+                            <div class="col-lg-5">
                                 <select class="form-control adminProgram" id="programSelect" name="program">
+                                    <option selected>Filter by Program</option>
                                     <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
                                     <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
                                 </select>
-                                <button type="submit" class="btn btn-success btn-sm" style="margin-left: 20px">Export</button>
                             </div>
                         </div>
                     </div>
-            </div>
-        </div>
          </fieldset>
           <fieldset>
-              <div class="col-sm-5">
                 <div class="form-group">
                     <div class="form-inline">
-                        <label for="select" class="control-label">Filter by Company Status:</label>
-                        <div class="">
-                            <select class="form-control siteStatus" id="sitestatusdd" name="sitestatusdd">
+                        <label for="select" class="col-lg-5 control-label">Filter by Company Status:</label>
+                        <div class="col-lg-5">
+                            <select class="form-control siteStatus" id="sitestatus" name="sitestatus">
                                     <option selected>Filter by Status</option>
                                 <option value="active" >Active</option>
                                 <option value="inactive">Inactive</option>
@@ -45,12 +41,13 @@
                         </div>
                     </div>
                 </div>
-              </div>
           </fieldset>
           </form>
           <br>
-
-        <a id="btn" href="mailto:" onclick="sendAll()"><button >Email All</button></a>  
+        <div align="center">
+            <a id="btn" href="mailto:" onclick="sendAll()"><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email All</button></a>
+            <button type="submit" class="btn btn-success btn-md" style="margin-left: 10px">Filter</button>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped table-bordered" id="sites">
                 <thead>
@@ -143,9 +140,6 @@
       <script type="text/javascript">
           $(document).ready(function () {
 
-
-              makeOptionSelected('programSelect', '<%= admin.adminprogram %>');
-              var program = prettySection('<%= admin.adminprogram %>');
 
               var table = $('#sites').DataTable({
                   "bFilter": true,
