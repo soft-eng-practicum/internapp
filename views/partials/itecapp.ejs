@@ -342,34 +342,36 @@
    <h3>Document Uploads table</h3>
    <hr>
 </div>
-<% } else { %>
-   <h3>Document Uploads table</h3>
-   <hr>
-</div>
 <% } %>
-        <div class="col-6 col-md-auto">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th>Document Status</th>
-                    <th>Name</th>
-                    <th>Section</th>
-                    <th>File Type</th>
-                    <th>Date Submitted</th>
-                    <th>View Document Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <% documents.forEach(function(document) { %>
-                <tr>
-                    <td><%= document.documentStatus %></td>
-                    <td><%= document.documentName %></td>
-                    <td><%= document.fileSection %></td>  
-                    <td><%= document.fileType %></td>
-                    <td><%= document.prettyUploadDate %></td>
-                    <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
-                </tr>
-                <% }); %>
-                </tbody>
-            </table>
-        </div>
+<% if (documents.length > 0) { %>
+<div class="col-6 col-md-auto">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Document Status</th>
+            <th>Name</th>
+            <th>Program</th>
+            <th>File Type</th>
+            <th>Date Submitted</th>
+            <th>View Document Details</th>
+            <th>Download Document</th>
+            <th>Delete Document</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% documents.forEach(function(document) { %>
+            <tr>
+                <td><%= document.documentStatus %></td>
+                <td><%= document.documentName %></td>
+                <td><%= document.fileSection %></td>
+                <td><%= document.fileType %></td>
+                <td><%= document.prettyUploadDate %></td>
+                <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
+                <td><a href="/getFiles/<%= document.fileId%>/<%= document.documentName%>"><span class='glyphicon glyphicon-download'></span></a></td>
+                <td><a href="/document/<%= document._id%>/delete"><span class='glyphicon glyphicon-trash'></span></a></td>
+
+            </tr>
+        <% }); } %>
+        </tbody>
+    </table>
+</div>
