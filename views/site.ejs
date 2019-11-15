@@ -11,12 +11,13 @@
     <div class="container">
           <h2 align="center">Site Details</h2>
           <% include partials/flashMessages.ejs %>
-          <form name="sitefilters" action="/sites" method="post" class="form-horizontal">
+          <form name="siteexports" action="/sites" method="post" class="form-horizontal">
          <fieldset>
-            <h4 align="center">Select your site table/exports</h4>
+
+            <h4 align="center">Select your table/export filters</h4>
                     <div class="form-group">
                         <div class="form-inline">
-                            <label for="select" class="col-lg-5 control-label">Filter by Program:</label>
+                            <label for="select" class="col-lg-5 control-label">Select your program for export to csv:</label>
                             <div class="col-lg-5">
                                 <select class="form-control adminProgram" id="programSelect" name="program">
                                     <option selected>Filter by Program</option>
@@ -41,13 +42,18 @@
                     </div>
                 </div>
           </fieldset>
+<<<<<<< HEAD
               <div align="center">
               <div style="display: inline-block; position: absolute; margin-left: 70px">
                   <button type="submit" class="btn btn-success btn-md" style="margin-left: 10px">Filter</button>
               </div>
               </div>
+=======
+>>>>>>> parent of 4713f9a... Re-attached export function to sites page. Standardized button, dropdown, and page layout.
           </form>
+          <br>
         <div align="center">
+<<<<<<< HEAD
         <div style=" display: inline-block">
                 <button type="submit" class="btn btn-success btn-md" data-toggle="modal" data-target="#exportprogram" style="margin-right: 4px">Export</button>
             <div class="modal fade" id="exportprogram" role="dialog">
@@ -86,6 +92,11 @@
         <a id="send1" onclick="displayResult()" href="mailto:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email Selected</button></a>
         <br><br>
             
+=======
+            <a id="btn" href="mailto:" onclick="sendAll()"><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email All</button></a>
+            <button type="submit" class="btn btn-success btn-md" style="margin-left: 10px">Filter</button>
+        </div>
+>>>>>>> parent of 4713f9a... Re-attached export function to sites page. Standardized button, dropdown, and page layout.
         <div class="table-responsive">
             <table class="table table-striped table-bordered" id="sites">
                 <thead>
