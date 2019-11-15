@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Testing functionality of the 'Email All' button to see if all emails have been concatenated correctly.</description>
+   <name>emailAllTest</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>0bc466fe-089f-451b-94da-83bc863b9469</testCaseGuid>
+</TestCaseEntity>
