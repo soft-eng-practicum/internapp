@@ -199,10 +199,6 @@
 
 
 
-            <div class="container">
-               <div class="row">
-                 <div class="col-md-6 m-auto">
-
             <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
             <h3>ITEC Uploads</h3>
             <div class="uploadBox" id="itecBox">
@@ -326,6 +322,7 @@
          <% if (documents.length > 0) { %>
          <div class="homePageSection" id="documentTableOnHomePage">
             <h3>Document Uploads table</h3>
+             <div class="table-responsive">
             <table class="table table-hover">
                <thead>
                   <tr>
@@ -355,6 +352,7 @@
                   <% }); %>
                </tbody>
             </table>
+             </div>
             <button class="btn btn-success" type="button" href="#docFeedbackModal" data-toggle="modal" type="display">View Document Feedback</button>
             <div class="modal fade" id="docFeedbackModal" role="dialog">
                <div class="modal-dialog">
@@ -461,9 +459,7 @@
                </ul>
                </div>-->
          </div>
-      </div>
       <% } %>
-      </div>
       <% include partials/footerimports %>
       <script>
          $(document).ready(function() {
