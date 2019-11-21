@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Tests to verify the default number of applications to view is 50</description>
+   <name>Application View Test Case</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>123bc234-2859-4184-9c5e-7c4ac43a75b4</testCaseGuid>
+</TestCaseEntity>

@@ -151,7 +151,7 @@
             $("input#emailCheckbox:checked").each(function () {
                 l.push(this.value.trim().replace(/\s+/g, ";"));
             } );
-            send.href = "mailto:" + l;
+            send.href = "mailto:?bcc=" + l;
 
         }
 
@@ -170,7 +170,7 @@
         <script>  
           function sendAll() {
             var emailbtn = document.getElementById('btn');
-            emailbtn.href = "mailto: "+ emailList.join(";");
+            emailbtn.href = "mailto:?bcc="+ emailList.join(";");
             return;
           }
     </script>

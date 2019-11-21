@@ -214,7 +214,7 @@ a.three:hover {font-size:150%;}
       $("input#emailCheckbox:checked").each(function (index) {
 
       l.push(this.value);
-      send.href = "mailto:" + l.join(",");
+      send.href = "mailto:?bcc=" + l.join(",");
       } );
       return;
 
@@ -232,7 +232,7 @@ a.three:hover {font-size:150%;}
         <script>  
           function sendAll() {
             var emailbtn = document.getElementById('btn');
-            emailbtn.href = "mailto: "+ emailList.join(";");
+            emailbtn.href = "mailto:?bcc="+ emailList.join(";");
             return;
           }
     </script>
