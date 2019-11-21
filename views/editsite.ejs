@@ -18,7 +18,7 @@
             <!-- LOGIN FORM -->
               <form name="editsite" onsubmit="return validateForm()" class="form-horizontal" method="post">
                   <div class="form-group">
-                      <label for="input" class="col-lg-5 control-label">Site Note</label>
+                      <label for="input" class="col-lg-5 control-label">Site Name</label>
                       <div class="col-lg-5">
                           <input type="text" class="form-control" id="nameTxt" name="name" value="<%= site.name %>" required>
                       </div>
@@ -94,6 +94,83 @@
                   <button type="submit" class="btn btn-success btn-lg" id="saveBtn">Save</button>
               </form>
           </div>
+
+          <div class="col-sm-6 col-sm-offset-3">
+              <br>
+              <h3>Contacts:</h3>
+              <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Title</th>
+                      <th>Email</th>
+                      <th>Number</th>
+                      <th>Cell Number</th>
+                      <th>Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% site.contacts.forEach(function(contact) { %>
+                      <tr>
+                          <td><%= contact.fname %> <%= contact.lname %></td>
+                          <td><%= contact.title %></td>
+                          <td><%= contact.email %></td>
+                          <td><%= contact.office %></td>
+                          <td><%= contact.cell %></td>
+                          <td><a href='/site/contacts/<%= site._id %>/<%= contact._id %>'><span class='glyphicon glyphicon-trash'></span></a></td>
+                      </tr>
+                  <% }); %>
+                  </tbody>
+              </table>
+              <div align="center">
+                  <button type="submit" class="btn btn-success btn-lg" data-toggle="modal" data-target="#siteContactModal">Add Contact</button>
+                  <a href="/site/<%= site._id %>/export/contacts" class="btn btn-success btn-lg" role="button">Export Contacts</a>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade" id="siteContactModal" role="dialog">
+                  <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Add Site Contact</h4>
+                          </div>
+                          <div class="modal-body">
+                              <form name="addsitecontacts" action="/site/<%=site._id %>" method="post" class="form-horizontal">
+                                  <div class="form-group">
+                                      <label class="col-lg-5 control-label">First Name</label>
+                                      <input type="text" class="col-lg-5" class="form-control" name="fname" >
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-lg-5 control-label">Last Name</label>
+                                      <input type="text" class="col-lg-5" class="form-control" name="lname" >
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-lg-5 control-label">Title</label>
+                                      <input type="text" class="col-lg-5" class="form-control" name="title" >
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-lg-5 control-label">Email</label>
+                                      <input type="text" class="col-lg-5" class="form-control" name="email" >
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-lg-5 control-label">Office Phone Number</label>
+                                      <input type="text" class="col-lg-5" class="form-control" name="office" >
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-lg-5 control-label">Cell Phone Number</label>
+                                      <input type="text" class="col-lg-5" class="form-control" name="cell" >
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="submit" class="btn btn-success" onclick="addSiteContact()">Save</button>
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
           <div class="col-sm-6 col-sm-offset-3">
               <h1>Delete Site</h1>
               <!-- LOGIN FORM -->

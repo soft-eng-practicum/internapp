@@ -112,6 +112,7 @@ module.exports = function (app, passport) {
 
     /* user home page */
     app.get('/home', isLoggedIn, ctrlHome.loadUserHome);
+    app.get('/document/delete/:documentId', isLoggedIn, ctrlApplications.deleteDoc);
 
     /* admin home page */
     app.get('/adminhome', isLoggedIn, isAdminOrInstructor, ctrlHome.loadAdminHome);
@@ -129,6 +130,8 @@ module.exports = function (app, passport) {
     app.get('/application/itec/:applicationId/notes/delete/:noteId', isLoggedIn, ctrlApplications.deleteItecNote);
     app.post('/application/itec/feedback/:applicationid', isLoggedIn, ctrlApplications.addItecFeedback);
     app.get('/application/itec/:applicationId/feedback/delete/:feedbackId', isLoggedIn, ctrlApplications.deleteItecFeedback);
+    app.get('/application/itec/:applicationid/delete/', isLoggedIn, ctrlApplications.removeSpecificItecApplication);
+    app.get('/application/itec/:applicationId/document/delete/:documentId', isLoggedIn, ctrlApplications.deleteItecDoc);
     // BIO
     app.get('/bio', isLoggedIn, ctrlApplications.getBioApplication);
     app.post('/bio', isLoggedIn, ctrlApplications.postBioApplication);
@@ -137,10 +140,16 @@ module.exports = function (app, passport) {
     app.get('/application/bio/:applicationId/notes/delete/:noteId', isLoggedIn, isAdminOrInstructor, ctrlApplications.deleteBioNote);
     app.post('/application/bio/feedback/:applicationid', isLoggedIn, isAdmin, ctrlApplications.addBioFeedback);
     app.get('/application/bio/:applicationId/feedback/delete/:feedbackId', isLoggedIn, isAdmin, ctrlApplications.deleteBioFeedback);
+    app.get('/application/bio/:applicationid/delete/', isLoggedIn, ctrlApplications.removeSpecificBioApplication);
+    app.get('/application/bio/:applicationId/document/delete/:documentId', isLoggedIn, ctrlApplications.deleteBioDoc);
+
     // BIO & ITEC
     app.post('/application/:type(itec|bio)/:applicationid', isLoggedIn, ctrlApplications.updateApplicationStatus);
 	app.post('/application/:type(itec|bio)/changeSemester/:applicationid', isLoggedIn, ctrlApplications.changeSemester);
 	app.get('/application/:type(itec|bio)/changeSemester/:applicationid', isLoggedIn, ctrlApplications.changeSemester);
+    app.post('/application/changeMultipleSemester', isLoggedIn, ctrlApplications.changeMultipleSemester);
+    app.get('/application/changeMultipleSemester', isLoggedIn, ctrlApplications.changeMultipleSemester);
+
 
 
 
@@ -171,7 +180,9 @@ module.exports = function (app, passport) {
 
     /* Sites pages & Add Site page */
     app.get('/sites', isLoggedIn, isAdminOrInstructor, ctrlSites.getSites);
-    app.post('/sites', isLoggedIn, isAdminOrInstructor, makeCSVDirectory, ctrlSites.exportSites);
+    app.post('/sites', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlSites.filterSites);
+    app.post('/site/export', isLoggedIn, isAdminOrInstructor, makeCSVDirectory, ctrlSites.exportSites);
+
     app.get('/addsite', isLoggedIn, isAdminOrInstructor, ctrlSites.getAddSite);
     app.get('/site/contacts/:siteid/:documentid', isLoggedIn, isAdminOrInstructor, ctrlSites.deleteSiteContact);
     app.get('/site/edit/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteToEdit);

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Testing button functionality in application details and site detials</description>
+   <name>buttonsTest</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>c815356e-3c19-4742-ad9b-2920c0c36d60</testCaseGuid>
+</TestCaseEntity>

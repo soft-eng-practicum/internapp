@@ -13,17 +13,15 @@ var homeDir = require('home-dir');
 var path = require('path');
 
 
+
 /*
     HTTP Req: GET
     URL: '/sites'
 */
 module.exports.getSites = function (req, res) {
-    const query = {};
-    if (req.query.status) {
-        query['sitestatus'] = req.query.status
-    }
     User.getAdminValuesForHome(req.user._id, function (adminValues) {
-        Site.find(query, function (err, sites) {
+
+        Site.find(function (err, sites) {
             if (err) return console.error(err);
             res.render('site.ejs', {
                 siteList: sites,
@@ -33,8 +31,46 @@ module.exports.getSites = function (req, res) {
                 admin: adminValues
             });
         });
+
     });
 
+}
+
+module.exports.filterSites = function (req, res) {
+    function getProgram () {
+        if (req.body.program === 'Biology Internship (BIOL 4800)') {
+            return 'Bio'
+        }
+        if (req.body.program === 'Information Technology Internship (ITEC 4900)') {
+            return 'Itec'
+        }
+    }
+    function getStatus () {
+        if (req.body.sitestatus === 'active') {
+            return 'Active'
+        }
+        else if (req.body.sitestatus === 'inactive') {
+            return 'Inactive'
+        }
+    }
+
+    let filters = {
+        section: getProgram(),
+        sitestatus: getStatus()
+    };
+    User.getAdminValuesForHome(req.user._id, function (adminValues) {
+
+        Site.find(filters, function (err, sites) {
+            if (err) return console.error(err);
+            res.render('site.ejs', {
+                siteList: sites,
+                successMessage: req.flash('success'),
+                failureMessage: req.flash('failure'),
+                user: req.user,
+                admin: adminValues
+            });
+        });
+    })
 }
 
 /*
@@ -43,23 +79,31 @@ module.exports.getSites = function (req, res) {
 */
 module.exports.exportSites = function (req, res) {
     var discipline = "";
-    var program = req.body.program;
     var siteArray = [];
     var redirect = "/sites";
     var fields = [];
 
-    switch (req.body.program) {
-        case 'Biology Internship (BIOL 4800)':
-            discipline = 'Bio';
-            break;
-        case 'Information Technology Internship (ITEC 4900)':
-            discipline = 'Itec';
-            break;
-        default:
-            res.redirect('/sites');
-            req.flash('failure', 'Program not recognized');
-            break;
+    // switch (req.body.program) {
+    //     case 'Biology Internship (BIOL 4800)':
+    //         discipline = 'Bio';
+    //         break;
+    //     case 'Information Technology Internship (ITEC 4900)':
+    //         discipline = 'Itec';
+    //         break;
+    //     default:
+    //         res.redirect('/sites');
+    //         req.flash('failure', 'Program not recognized');
+    //         break;
+    // }
+    if (req.body.program === 'Biology Internship (BIOL 4800)') {
+        discipline = 'Bio'
     }
+    else if (req.body.program === 'Information Technology Internship (ITEC 4900)') {
+        discipline = 'Itec'
+    }
+    // else {
+    //     discipline = 'Itec'
+    // }
 
     Site.find({
         section: discipline
@@ -229,7 +273,7 @@ module.exports.postAddSite = function (req, res) {
     if (section) {
         var site = new Site({
             name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: section,
-            mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus
+            mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus,
         });
 
         site.save(function (err) {
@@ -258,7 +302,8 @@ module.exports.postAddSite = function (req, res) {
     URL: '/site/:siteid'
 */
 module.exports.addSiteContact = function (req, res) {
-    Site.update({ _id: req.params.siteid }, { $push: { "contacts": { fname: req.body.fname, lname: req.body.lname, title: req.body.title, email: req.body.email, office: req.body.office, cell: req.body.cell } } },
+    //var siteId = req.params.siteid;
+    Site.update({ _id: req.params.siteid }, { $push: { "contacts": { fname: req.body.fname, lname: req.body.lname, title: req.body.title, email: req.body.email.trim(), office: req.body.office, cell: req.body.cell } } },
         function (err) {
             if (err) {
                 req.flash('failure', 'The Site Contact can not be added at this time.')
@@ -279,8 +324,8 @@ module.exports.updateSite = function (req, res) {
     var siteId = req.params.siteid;
     Site.update({ _id: req.params.siteid }, {
         name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, section: req.body.section,
-        mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus
-    },
+        mou: req.body.mou, mouexpiration: req.body.mouexpiration, sitestatus: req.body.sitestatus,
+        },
         function (err) {
             if (err) {
                 req.flash('failure', 'The Site update cannot be completed at this time.');

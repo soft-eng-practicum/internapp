@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Tests to see if application status correctly updates</description>
+   <name>Changing Application Status Test Case</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>5a63fa85-67c7-4a5d-abd3-3432a34bdce2</testCaseGuid>
+</TestCaseEntity>
