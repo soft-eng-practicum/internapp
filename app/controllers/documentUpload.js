@@ -198,16 +198,6 @@ module.exports.deleteDocumentNote = function(req, res) {
         });
 }
 
-// Upload itec resume 
-module.exports.uploadItecResume = function(req, res) {
-    var typeOfFile = 'Resume';
-    if (!req.files.resume) {
-        res.redirect('/home');
-        req.flash('failure', noFilesUploadedError);
-    } else {
-        sendDocument(req.files.resume, typeOfFile, req, res, req.user,req.Itec);
-    }
-}
 
 // Upload bio essay
 module.exports.uploadBioEssay = function(req, res) {

@@ -12,6 +12,7 @@ var ctrlSignUp = require('../controllers/signup');
 var ctrlForgot = require('../controllers/forgot');
 var ctrlHome = require('../controllers/home');
 var ctrlApplications = require('../controllers/applications');
+var ctrlEditApps = require('../controllers/editApplications');
 var ctrlExport = require('../controllers/export');
 var ctrlSites = require('../controllers/sites');
 var ctrlPromote = require('../controllers/promote');
@@ -23,17 +24,16 @@ var ctrlMongoToCsv = require('../controllers/mongoToCsv');
 var ctrlUpload = require('../controllers/documentUpload');
 var ctrlDelete = require('../controllers/documentDelete');
 var ctrlSiteNotes = require('../controllers/sitenotes');
-var ctrlEditApps = require('../controllers/editApplications');
-var ctrlHelp = require('../controllers/help');
 
+
+
+var ctrlHelp = require('../controllers/help');
 
 // For document uploads
 var fileUpload = require('express-fileupload');
 
 // For creating csv directory
 var mkdirp = require('mkdirp');
-
-var ctrlSiteNotes = require('../controllers/sitenotes');
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
@@ -207,15 +207,7 @@ module.exports = function (app, passport) {
     app.post('/document/feedback/:documentId', isLoggedIn, isAdmin, ctrlUpload.addSpecificDocumentFeedback);
 
     /* Document Delete page */
-    app.get('/document/:fileId/delete', isLoggedIn, ctrlDelete.removeSpecificDocument);
-
-    /* Upload routes */
-    // app.post('/uploadItecResume', isLoggedIn, ctrlUpload.uploadItecResume);
-    // app.post('/uploadBioEssay', isLoggedIn, ctrlUpload.uploadBioEssay);
-    // app.post('/uploadBioTranscript', isLoggedIn, ctrlUpload.uploadBioTranscript);
-    // app.post('/uploadItecFerpa', isLoggedIn, ctrlUpload.uploadItecFerpa);
-    // app.post('/uploadBioOther', isLoggedIn, ctrlUpload.uploadBioOther);
-    // app.post('/uploadItecOther', isLoggedIn, ctrlUpload.uploadItecOther);
+    app.get('/document/:documentId/:fileId/delete', isLoggedIn, ctrlDelete.removeSpecificDocument);
 
     /* Site Notes page */
     app.get('/sitenotes', isLoggedIn, isAdminOrInstructor, ctrlSiteNotes.getSiteNotesPage);
@@ -227,4 +219,5 @@ module.exports = function (app, passport) {
     app.get('/editbio', isLoggedIn, ctrlEditApps.getEditBio);
     app.post('/edititec', isLoggedIn, ctrlEditApps.updateItecApp);
     app.post('/editbio', isLoggedIn, ctrlEditApps.updateBioApp);
+
 }

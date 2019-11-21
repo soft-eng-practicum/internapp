@@ -63,7 +63,6 @@ a.three:hover {font-size:150%;}
 
             <fieldset>
               <div align="center">
-                <!--<button name="function" value="export" type="submit" class="btn btn-success btn-lg">Export</button>-->
                 <button name="function" value="filter" type="submit" class="btn btn-success btn-lg">Filter</button>
               </div>
             </fieldset>
@@ -79,19 +78,6 @@ a.three:hover {font-size:150%;}
                   <th>
                     <center>Select All</center>
                     <br/>
-                    <script>
-                      function checkAll()
-                      {
-                      var checkboxes = document.getElementsByTagName('input'), val = null;
-                      for (var i = 0; i < checkboxes.length; i++)
-     {
-         if (checkboxes[i].type == 'checkbox')
-         {
-             if (val === null) val = checkboxes[i].checked;
-             checkboxes[i].checked = val;
-         }
-     }
- }</script>
                     <center>
                       <input id="selectall" type="checkbox" name="mail" value="1" onClick="checkAll()"/>
 
@@ -211,5 +197,18 @@ a.three:hover {font-size:150%;}
       // table.search(semester + ' ' + year + ' ' + program).draw();
       });
     </script>
+  <script>
+    function checkAll()
+    {
+      var checkboxes = document.getElementsByTagName('input'), val = null;
+      for (var i = 0; i < checkboxes.length; i++)
+      {
+        if (checkboxes[i].type == 'checkbox')
+        {
+          if (val === null) val = checkboxes[i].checked;
+          checkboxes[i].checked = val;
+        }
+      }
+    }</script>
   </body>
 </html>

@@ -189,37 +189,15 @@
             <div class="container">
                <div class="row">
                  <div class="col-md-6 m-auto">
-<!--                   <h1 class="text-center display-4 my-4">Mongo File Uploads</h1>-->
-<!--                    -->
-<!--                   <form action="uploadTest"-->
-<!--                   method="POST" enctype="multipart/form-data">-->
-<!--                     <div class="homePageSection">-->
-<!--                       <input type="file" name="file" id="file" class="custom-file-input">-->
-<!--                       <label for="file" class="custom-file-label">Choose File</label>-->
-<!--                     </div>-->
-<!--                     <input type="submit" value="Send" class="btn btn-primary btn-block">-->
-<!--                   </form>-->
-
-<!--            <form action="/getFiles/7a384564bdbf9947e3795a388f4b8bde" method="get">-->
-<!--               <input type = "text" value="Skull.JPG" >-->
-<!--               <input type = "submit" value = "download">-->
-<!--               </form>-->
-
 
             <div class="homePageSection" id="itecDocumentUploadSectionOnHomePage">
             <h3>ITEC Uploads</h3>
             <div class="uploadBox" id="itecBox">
-                <form action="uploadItecResume"
+                <form action="/uploadItecResume"
                       method="POST" enctype="multipart/form-data"
                       class="form-inline"
                       ref="uploadForm"
                       id="uploadForm1">
-<!--                <form ref='uploadForm'-->
-<!--                  id='uploadForm1'-->
-<!--                  action='uploadItecResume'-->
-<!--                  method='POST'-->
-<!--                  encType="multipart/form-data"-->
-<!--                  class="form-inline">-->
                   <div class="form-group">
                      <input type="file"  name="itecResume" class="custom-file-input">
                   </div>
@@ -288,7 +266,7 @@
                      <input type="file"  name="bioEssay" />
                   </div>
                   <div class="form-group">
-                     <input type='submit' id="uploadEssay" class="btn btn-success btn-sm" value='Upload Essay!' disabled 
+                     <input type='submit' id="uploadEssay" class="btn btn-success btn-sm" value='Upload Essay!' disabled
                         title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay"/>
                      <a target="_blank">
                      <i class="glyphicon glyphicon-question-sign" title="Please use up to ONE page to describe how the internship experience at your proposed location will help you to achieve your career goals. Please list the name of the site you're applying to at the top of the page." data-toggle="tooltip"></i></a>
@@ -319,11 +297,11 @@
                      <input type="file" name="bioOther" />
                   </div>
                   <div class ="form-group">
-                     <label for="bioOtherName">What is the file you're uploading?</label> 
+                     <label for="bioOtherName">What is the file you're uploading?</label>
                      <input type='text' name="bioOther" placeholder="What is the file?" id="bioOtherName" required/>
                      &nbsp;&nbsp;
                      <input type='submit' id="uploadBioOther" class="btn btn-success btn-sm" value='Upload Other!' disabled
-                        title="Need to update"/>   
+                        title="Need to update"/>
                         <a target="_blank">
                      <i class="glyphicon glyphicon-question-sign" title="Use this upload box for any additional forms you may need to upload for your BIO application." data-toggle="tooltip"></i></a>
                   </div>
@@ -358,7 +336,7 @@
                      <td><%= document.prettyUploadDate %></td>
                      <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
                       <td><a href="/getFiles/<%= document.fileId%>/<%= document.documentName%>"><span class='glyphicon glyphicon-download'></span></a></td>
-                      <td><a href="/document/<%= document._id%>/delete"><span class='glyphicon glyphicon-trash'></span></a></td>
+                      <td><a href="/document/<%= document._id%>/<%= document.fileId%>/delete"><span class='glyphicon glyphicon-trash'></span></a></td>
 
                   </tr>
                   <% }); %>

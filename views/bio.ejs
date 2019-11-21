@@ -35,9 +35,9 @@
                    <strong>Error!</strong> Please upload file.
                     </div>
                 <h5>Essay <i class="glyphicon glyphicon-question-sign" title="Please use up to ONE page to describe how the internship experience at your proposed location will help you to achieve your career goals. Please list the name of the site you're applying to at the top of the page." data-toggle="tooltip"></i></h5>
-                    <input type="file" name="essay" class="inputfile" id="essayFile"/>
+                    <input type="file" name="bioEssay" class="inputfile" id="essayFile"/>
                       <div class="alert alert-success" id="successEssay">
-                      <strong>Success!</strong> Your essay was succesfully uploaded!
+                      <strong>Success!</strong> Your essay was successfully uploaded!
                       </div>
                    <input class="btn btn-success" type="submit" value="Upload Essay!"  id="btnSubmitEssay" disabled
                         title="Please Click 'Choose File' First, Then Click 'Upload Essay!' To Upload Essay"/>
@@ -45,7 +45,7 @@
                 <br>
                 <form action="/uploadBioTranscript" method="POST" enctype="multipart/form-data" id="uploadTranscript">
                 <h5>Transcript <i class="glyphicon glyphicon-question-sign" title="Please upload a PDF of your unofficial academic transcript. To obtain a PDF of your unofficial academic transcript, open Google Chrome (can be done similarily in other browsers) -> log into banner -> select Student tab -> select View Student Record -> select Unofficial Academic Transcript -> select Submit -> Right click page and select print -> Change destination to Save as PDF (underneath Local Destinations) -> Select Print -> Save and upload the PDF file" data-toggle="tooltip"></i></h5>
-                    <input type="file" name="transcript" class="inputfile" id="transcriptFile"/>
+                    <input type="file" name="bioTranscript" class="inputfile" id="transcriptFile"/>
                        <div class="alert alert-success" id="successTranscript">
                       <strong>Success!</strong> Your transcript was successfully uploaded!
                       </div>
@@ -56,7 +56,7 @@
                     <form action="/uploadBioOther" method="POST" enctype="multipart/form-data" id="uploadOther">
                     <h5>Other <i class="glyphicon glyphicon-question-sign" title="Use this upload box for any additional forms you may need to upload for your BIO application." data-toggle="tooltip"></i></h5>
              <input type='text' name="bioOther" class="otherLabel" placeholder="What is the file you're uploading?" id="bioOtherName"/>
-                        <input type="file" name="other" class="inputfile" id="otherBioFile" required/>
+                        <input type="file" name="bioOther" class="inputfile" id="otherBioFile" required/>
                        <div class="alert alert-success" id="successOther">
                       <strong>Success!</strong> Your document was successfully uploaded!
                       </div>

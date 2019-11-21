@@ -17,6 +17,7 @@
     "express": "^4.16.4",
     "express-fileupload": "^0.1.1",
     "express-session": "^1.17.0",
+    "gridfs-stream": "^1.1.1",
     "gulp-clean-css": "^3.0.4",
     "home-dir": "^1.0.0",
     "jasmine": "^2.5.2",
@@ -35,7 +36,8 @@
     "nodemailer": "^2.6.4",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
-    "serve-favicon": "^2.3.2"
+    "serve-favicon": "^2.3.2",
+    "lodash": "latest"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
