@@ -31,7 +31,7 @@ _Internapp is a web application designed to centralize the application process f
 
 ## Final Reports
 
-**Fall 2019 Final Report:**[Google docs link](https://docs.google.com/document/d/1MQaREmzLE_9U59A04JfEccMAPuCan4-f5sTt4SA3dzQ/edit?usp=sharing)
+**Fall 2019 Final Report:** [Google docs link](https://docs.google.com/document/d/1MQaREmzLE_9U59A04JfEccMAPuCan4-f5sTt4SA3dzQ/edit?usp=sharing)
 
 **Fall 2018 Final Report:** [Google docs link](https://docs.google.com/document/d/14bPVeReTpH6RkloFUZmiIxMZo8cSe6K3K5anvwolyLU/edit?usp=sharing)
 
