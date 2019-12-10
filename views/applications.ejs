@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf-8'>
       <title>Applications</title>
-      <% include partials/headerimports %>
+      <% include partials/headerimports.ejs %>
       <style>
 a.three:link {color:#000000;}
 a.three:visited {color:#0000ff;}
@@ -32,10 +32,10 @@ a.three:hover {font-size:150%;}
 
         <form name="applicationexports" action="/applications" method="post" class="form-horizontal">
           <fieldset>
-            <h4 align="center">Select your exports</h4>
+            <h4 align="center">Select your filters</h4>
             <div class="form-group">
               <div class="form-inline">
-                <label for="select" class="col-lg-5 control-label">Select the semester and year you wish to filter by or export</label>
+                <label for="select" class="col-lg-5 control-label">Select the semester and year you wish to filter by:</label>
                 <div class="col-lg-5" class="">
                   <select class="form-control adminSemester " id="applicationSemester" name="semester">
                     <option value="Fall">Fall</option>
@@ -59,44 +59,78 @@ a.three:hover {font-size:150%;}
                 </div>
               </div>
             </div>
-
-
             <fieldset>
               <div align="center">
-                <!--<button name="function" value="export" type="submit" class="btn btn-success btn-lg">Export</button>-->
                 <button name="function" value="filter" type="submit" class="btn btn-success btn-lg">Filter</button>
               </div>
             </fieldset>
           </fieldset>
-            </form>
+            </form><br><hr>
+    <div align="right">
 
+        <div class="form-group">
+          <div class="form-inline">
+            <label for="select" class="col-lg-5 control-label">Change selected applicants' proposed semester of internship?:</label>
+            <div align="left">
+            <div class="col-lg-5" class="">
+              <select class="form-control rollSemester " id="rollSemester" name="rollSemester">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-modal">
+          <div class="modal-contents">
+            <div class="close">+</div>
+            <br>
+            <h3>Change Proposed Intern Date</h3>
+            <form name="proposedinternsemester" action="/application/changeMultipleSemester" method="post">
+
+              <div class="form-group" >
+                <label>Internship Date</label>
+                <select class="form-control" name="proposedinternsemester" id="semester">
+
+                  <option value="">Select semester</option>
+                  <option value="Fall" >Fall</option>
+                  <option value="Spring">Spring</option>
+                  <option value="Summer">Summer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Internship Date</label>
+                <select class="form-control" name="proposedinternyear" id="year">
+
+                  <option value="">Select Year</option>
+                  <option value="2018" >2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021" >2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024" >2024</option>
+                </select>
+              </div>
+              <input type="hidden" id= "checkedd" name="checkboxes">
+
+              <button type="submit" class="btn btn-success btn-lg" id="submitBtn">Change Date</button>
+
+            </form>
+          </div>
+        </div>
+
+    </div>
+        <br><br><hr>
+        <a id="btn" href="mailto:" onclick="sendAll()"><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email All</button></a>
+        <a id="send1" onclick="displayResult()" href="mailto:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email Selected</button></a>
         <br>
           <br>
         <div class="table-responsive">
             <table class="table table-striped table-bordered" id="applications">
               <thead>
                 <tr>
-                  <th>
-                    <center>Select All</center>
-                    <br/>
-                    <script>
-                      function checkAll()
-                      {
-                      var checkboxes = document.getElementsByTagName('input'), val = null;
-                      for (var i = 0; i < checkboxes.length; i++)
-     {
-         if (checkboxes[i].type == 'checkbox')
-         {
-             if (val === null) val = checkboxes[i].checked;
-             checkboxes[i].checked = val;
-         }
-     }
- }</script>
-                    <center>
-                      <input id="selectall" type="checkbox" name="mail" value="1" onClick="checkAll()"/>
-
-                    </center>
-                  </th>
+                  <th>Select</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Email</th>
@@ -107,6 +141,7 @@ a.three:hover {font-size:150%;}
                   <th>Proposed Semester Year</th>
                   <th>Expected Graduation</th>
                   <th>View Details</th>
+                  <th>Delete Record</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,7 +152,7 @@ a.three:hover {font-size:150%;}
                 <tr>
                   <td id="mySelect1">
                     <center>
-                      <input id="emailCheckbox" type="checkbox"  value ='<%-application.useremail%>' />
+                      <input id="emailCheckbox" type="checkbox"  value ='<%-application.useremail%>' value2='<%-application._id%>'/>
 
                     </center>
                   </td>
@@ -151,23 +186,25 @@ a.three:hover {font-size:150%;}
                    <td>
                     <a href="/application/<%= application.userdiscipline %>/<%= application._id %>" >
                         <span class='glyphicon glyphicon-search'></span></a>
-
                    </td>
-
+                  <td>
+                    <a href="/application/<%= application.userdiscipline %>/<%= application._id %>/delete" >
+                      <span class='glyphicon glyphicon-trash'></span></a>
+                  </td>
                </tr>
                <% }); %>
               </tbody>
             </table>
         </div>
-          <form onClick ="displayResult()">
-            </form>
-<i> <b><a  class="three" id="send1" onclick="displayResult()" href="mailto:" >Send email <br><br><br></a></b></i>
-            </form>
       </h3>
-          </div>
-  </body>
 
-    <% include partials/footerimports %>
+
+      <br>
+      <br>
+      <br>
+          </div>
+
+    <% include partials/footerimports.ejs %>
 
     <script>
       function displayResult() {
@@ -177,13 +214,27 @@ a.three:hover {font-size:150%;}
       $("input#emailCheckbox:checked").each(function (index) {
 
       l.push(this.value);
-      send.href = "mailto:" + l.join(",");
-      console.log(this.value);
-      console.log(l);
+      send.href = "mailto:?bcc=" + l.join(",");
       } );
       return;
 
       }
+    </script>
+
+    <!-- Email All -->
+    <script>var emailList = [];</script>
+        <%applicationList.forEach(function(application) { %>
+            <!-- Concatenate all emails -->
+                <script>
+                    emailList.push('<%= application.useremail %>');
+                </script>
+        <% }); %>
+        <script>
+          function sendAll() {
+            var emailbtn = document.getElementById('btn');
+            emailbtn.href = "mailto:?bcc="+ emailList.join(";");
+            return;
+          }
     </script>
 
     <script type="text/javascript">
@@ -207,6 +258,91 @@ a.three:hover {font-size:150%;}
 
       // table.search(semester + ' ' + year + ' ' + program).draw();
       });
+    </script>
+    <script>
+      function checkAll()
+      {
+        var checkboxes = document.getElementsByTagName('input'), val = null;
+        for (var i = 0; i < checkboxes.length; i++)
+        {
+          if (checkboxes[i].type == 'checkbox')
+          {
+            if (val === null) val = checkboxes[i].checked;
+            checkboxes[i].checked = val;
+          }
+        }
+      }
+
+
+      if ($('#additionalInfoList').val() === 'Yes') {
+        $('.other').show();
+      }
+      else {
+        $('.other').hide();
+      }
+
+      $(function(){
+        $('#additionalInfoList').change(function(){
+          var opt = $(this).val();
+          if(opt == 'Yes'){
+            $('.other').show();
+            alert( "Be careful! \n" +
+                    "If you mistakenly change unintended applications' proposed internship information, it cannot be undone! \n" +
+                    "Make sure the checked applications are the ones you truly want to update!" );
+          }else{
+            $('.other').hide();
+          }
+        });
+      });
+
+      $(function () {
+        $("#submitBtn").click(function () {
+          var semester = $("#semester").val();
+          var year = $("#year").val();
+          if (semester == '' && year == '') {
+            alert('You did not select a semester nor year to update for the chosen application(s)!' + year + semester);
+            return false;
+          } else if (semester == '') {
+            alert('You did not select a semester!');
+            return false;
+          } else if (year == '') {
+            alert('You did not select a year!');
+            return false;
+          }
+          alert("All checked applications are now being updated to have their proposed internship be for: " + semester + " " + year),
+                  l = [];
+
+          $("input#emailCheckbox:checked").each(function (index) {
+
+            l.push(this.getAttribute("value2"));
+
+            var checked = document.getElementById("checkedd").value = l;
+
+          })
+          return true;
+        });
+      });
+
+      var rollSem = document.getElementById('rollSemester');
+      $(rollSem).val('No');
+
+      rollSem.addEventListener("change", function() {
+        if(rollSem.value === "Yes") {
+          document.querySelector('.bg-modal').style.display = "flex";
+          rollSem.value = "No";
+        }
+      });
+
+      document.querySelector('.close').addEventListener("click", function () {
+        document.querySelector('.bg-modal').style.display = "none";
+      });
+      window.onclick = function(event) {
+        if (event.target == document.querySelector('.bg-modal')) {
+          document.querySelector('.bg-modal').style.display = "none";
+        }
+
+      }
+
     </script>
   </body>
 </html>

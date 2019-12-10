@@ -8,6 +8,8 @@ body {
 
 .container{
     background-color: #d3d3d3;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .scrollable {
@@ -154,8 +156,44 @@ dd {
     width: 40%
 }
 
-.rounded-padded-borders {
-    border: 10px solid #38b013;
+.rounded-solid-padded-borders {
+    border: 5px solid #38b013;
     border-radius: 20px;
-    padding: 20px
+    padding: 20px 20px 5px;
+}
+
+.rounded-dotted-padded-borders {
+    border: 5px dotted #38b013;
+    border-radius: 20px;
+    padding: 20px 20px 5px;
+}
+
+.rounded-dashed-padded-borders {
+    border: 5px dashed #38b013;
+    border-radius: 20px;
+    padding: 20px 20px 5px;
+}
+
+.rounded-groove-padded-borders {
+    border: 5px groove #38b013;
+    border-radius: 20px;
+    padding: 20px 20px 5px;
+}
+
+.rounded-ridge-padded-borders {
+    border: 5px ridge #38b013;
+    border-radius: 20px;
+    padding: 20px 20px 5px;
+}
+
+.rounded-inset-padded-borders {
+    border: 5px inset #38b013;
+    border-radius: 20px;
+    padding: 20px 20px 5px;
+}
+
+.rounded-outset-padded-borders {
+    border: 5px outset #38b013;
+    border-radius: 20px;
+    padding: 20px 20px 5px;
 }

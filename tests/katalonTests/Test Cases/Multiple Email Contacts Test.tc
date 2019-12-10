@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>Testing the functionality  of sending an email to a site with multiple emails</description>
+   <name>Multiple Email Contacts Test</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>0bc466fe-089f-451b-94da-83bc863b9469</testCaseGuid>
+</TestCaseEntity>

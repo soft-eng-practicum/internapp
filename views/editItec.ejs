@@ -108,7 +108,20 @@
       <br>
       <form name="itecEdit" action="/edititec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
          <fieldset>
+            <h2 align = "center">Contact Information</h2>
+            <div class="rounded-solid-padded-borders">
+            <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Cell Phone Number</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="phonenumberTxt" name="phonenumber" placeholder="XXX-XXX-XXXX"
+                        pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"
+                        required value='<%= application.phonenumber %>' type="text">
+                  </div>
+               </div>
+            </div>
+               <br>
             <h2 align = "center">Student Academic Information</h2>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
@@ -172,7 +185,9 @@
                </div>
             </div>
             <div class="form-group">
-              <div class="help-tip">
+               <div class="help-tip">
+                  <!-- TODO: the tooltip spawns behind form. Unreadable. Fix this.
+                  -->
                  <p>You can find your ITEC Major GPA by navigating to your Degree Works and locating your GPA under "Major in Info Tech" section.</p>
                </div>
                <label for="input" class="col-lg-5 control-label">ITEC Major GPA</label>
@@ -214,8 +229,18 @@
                         <option value="2015">2015</option>
                         <option value="2016">2016</option>
                         <option value="2017">2017</option>
-                        <option value="2018">2008</option>
+                        <option value="2018">2018</option>
                         <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
                      </select>
                   </div>
                </div>
@@ -250,8 +275,18 @@
                         <option value="2015">2015</option>
                         <option value="2016">2016</option>
                         <option value="2017">2017</option>
-                        <option value="2018">2008</option>
+                        <option value="2018">2018</option>
                         <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
                      </select>
                   </div>
                </div>
@@ -268,26 +303,36 @@
                      </select>                       
                        <select  class="form-control" name="itec3200Year" id="3200Year">
                         <option value="Select">Select</option>
-                        <option value="2000">2000</option>
-                        <option value="2001">2001</option>
-                        <option value="2002">2002</option>
-                        <option value="2003">2003</option>
-                        <option value="2004">2004</option>
-                        <option value="2005">2005</option>
-                        <option value="2006">2006</option>
-                        <option value="2007">2007</option>
-                        <option value="2008">2008</option>
-                        <option value="2009">2009</option>
-                        <option value="2010">2010</option>
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2008</option>
-                        <option value="2019">2019</option>
+                           <option value="2000">2000</option>
+                           <option value="2001">2001</option>
+                           <option value="2002">2002</option>
+                           <option value="2003">2003</option>
+                           <option value="2004">2004</option>
+                           <option value="2005">2005</option>
+                           <option value="2006">2006</option>
+                           <option value="2007">2007</option>
+                           <option value="2008">2008</option>
+                           <option value="2009">2009</option>
+                           <option value="2010">2010</option>
+                           <option value="2011">2011</option>
+                           <option value="2012">2012</option>
+                           <option value="2013">2013</option>
+                           <option value="2014">2014</option>
+                           <option value="2015">2015</option>
+                           <option value="2016">2016</option>
+                           <option value="2017">2017</option>
+                           <option value="2018">2018</option>
+                           <option value="2019">2019</option>
+                           <option value="2020">2020</option>
+                           <option value="2021">2021</option>
+                           <option value="2022">2022</option>
+                           <option value="2023">2023</option>
+                           <option value="2024">2024</option>
+                           <option value="2025">2025</option>
+                           <option value="2026">2026</option>
+                           <option value="2027">2027</option>
+                           <option value="2028">2028</option>
+                           <option value="2029">2029</option>
                      </select>
                   </div>
                </div>
@@ -304,95 +349,46 @@
                      </select>
                        <select  class="form-control" name="itec3900Year" id="3900Year">
                         <option value="Select">Select</option>
-                        <option value="2000">2000</option>
-                        <option value="2001">2001</option>
-                        <option value="2002">2002</option>
-                        <option value="2003">2003</option>
-                        <option value="2004">2004</option>
-                        <option value="2005">2005</option>
-                        <option value="2006">2006</option>
-                        <option value="2007">2007</option>
-                        <option value="2008">2008</option>
-                        <option value="2009">2009</option>
-                        <option value="2010">2010</option>
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2008</option>
-                        <option value="2019">2019</option>
-                     </select>
+                          <option value="2000">2000</option>
+                          <option value="2001">2001</option>
+                          <option value="2002">2002</option>
+                          <option value="2003">2003</option>
+                          <option value="2004">2004</option>
+                          <option value="2005">2005</option>
+                          <option value="2006">2006</option>
+                          <option value="2007">2007</option>
+                          <option value="2008">2008</option>
+                          <option value="2009">2009</option>
+                          <option value="2010">2010</option>
+                          <option value="2011">2011</option>
+                          <option value="2012">2012</option>
+                          <option value="2013">2013</option>
+                          <option value="2014">2014</option>
+                          <option value="2015">2015</option>
+                          <option value="2016">2016</option>
+                          <option value="2017">2017</option>
+                          <option value="2018">2018</option>
+                          <option value="2019">2019</option>
+                          <option value="2020">2020</option>
+                          <option value="2021">2021</option>
+                          <option value="2022">2022</option>
+                          <option value="2023">2023</option>
+                          <option value="2024">2024</option>
+                          <option value="2025">2025</option>
+                          <option value="2026">2026</option>
+                          <option value="2027">2027</option>
+                          <option value="2028">2028</option>
+                          <option value="2029">2029</option>
+                       </select>
                   </div>
                </div>
             </div>
-            <br>
-<!--            <h3 align="center">-->
-<!--               Emergency Contact Information-->
-<!--            </h3>-->
-<!--            <div class="form-group">-->
-<!--               <label for="input" class="col-lg-5 control-label">Name of Emergency Contact</label>-->
-<!--               <div class="col-lg-5">-->
-<!--                  <input class="form-control" rows="3" id="ecNameTxt" name="emergencycontactname" placeholder="Name"-->
-<!--                     pattern="[A-Za-z].{2,}" required value='<%= application.emergencycontactname %>' type="text">-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--               <label for="input" class="col-lg-5 control-label">Mailing address</label>-->
-<!--               <div class="col-lg-5">-->
-<!--                  <input class="form-control" rows="3" id="ecAddressTxt" name="emergencycontactaddress"-->
-<!--                     placeholder="Address" title=" Example: 1227 Rosecliff"  type="text"-->
-<!--                     required value='<%= application.emergencycontactaddress %>'>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--               <label for="input" class="col-lg-5 control-label">Contact City</label>-->
-<!--               <div class="col-lg-5">-->
-<!--                  <input class="form-control" rows="3" id="ecCityTxt" name="emergencycontactcity" placeholder="City"-->
-<!--                     pattern="[A-Za-z].{1,}"  title=" Example: Atlnata" type="text"-->
-<!--                     required value='<%= application.emergencycontactcity %>'>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--               <label for="input" class="col-lg-5 control-label">Contact State</label>-->
-<!--               <div class="col-lg-5">-->
-<!--                  <input class="form-control" rows="3" id="ecState"name="emergencycontactstate" placeholder="State"-->
-<!--                     pattern ="[A-Z]{2}" title=" Example: GA" type="text"-->
-<!--                     required value='<%= application.emergencycontactstate %>'>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--               <label for="input" class="col-lg-5 control-label">Contact Zip Code</label>-->
-<!--               <div class="col-lg-5">-->
-<!--                  <input class="form-control" rows="3" id="ecZipCodeTxt" name="emergencycontactzipcode"  placeholder="Zip Code"-->
-<!--                     pattern="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" type="text"-->
-<!--                     required value='<%= application.emergencycontactzipcode %>'>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--               <label for="input" class="col-lg-5 control-label">Contact Phone Number</label>-->
-<!--               <div class="col-lg-5">-->
-<!--                  <input class="form-control" rows="3" id="ecPhoneTxt" pattern="\d{3}[\-]\d{3}[\-]\d{4}"-->
-<!--                     title="Please follow the format: xxx-xxx-xxxx" name="emergencycontactphone" placeholder="XXX-XXX-XXXX"-->
-<!--                     required type="text" required value='<%= application.emergencycontactphone %>'>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--               <label for="inputEmail" class="col-lg-5 control-label">Contact Email Address</label>-->
-<!--               <div class="col-lg-5">-->
-<!--                  <input type="email"-->
-<!--                     class="form-control" id="ecEmailTxt" name="emergencycontactemail"-->
-<!--                     placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"-->
-<!--                     style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"-->
-<!--                     required value='<%= application.emergencycontactemail %>'>-->
-<!--               </div>-->
-<!--            </div>-->
+            </div>
             <br>
             <h3 align="center">
                Mentor Information
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Name</label>
                <div class="col-lg-5">
@@ -401,35 +397,12 @@
                      required value='<%= application.mentorname %>' type="text">
                </div>
             </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorPhoneTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX"
-                     pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"
-                     required value='<%= application.mentorcellphone %>' type="text">
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder="Ex: H-3241"
-                     title="Example: H-3241"
-                     required value='<%= application.mentoroffice %>' type="text">
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
-               <div class="col-lg-5">
-                  <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail" placeholder="Email"
-                     pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
-                     style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off"
-                     required value='<%= application.mentoremail %>'>
-               </div>
             </div>
             <br>
             <h3 align="center">
                Student internships interests and goals
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <label for="textArea" class="col-lg-5 control-label">Decribe your major interests and strengths</label>
                <div class="col-lg-5">
@@ -448,16 +421,18 @@
                   <div class="col-lg-5" class>
                      <select class="form-control" name="focusonsoftdev" id="softwareDevList" novalidate>
                         <option value="Select">Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
                      </select>
                   </div>
                </div>
+            </div>
             </div>
             <br>
             <h3 align="center">
                Internship Information
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Do you have a proposed internship with a company or organization?</label>
@@ -584,7 +559,7 @@
                   </div>
                   <div class="form-group">
                      <div class="form-inline">
-                        <label for="select" class="col-lg-5 control-label">Will this internship represent a substantial project to be completed, seperate from your normal work duties?</label>
+                        <label for="select" class="col-lg-5 control-label">Will this internship represent a substantial project to be completed, separate from your normal work duties?</label>
                         <div class="col-lg-5" class>
                            <select class="form-control" id="separateProjectList" name="isseparateproject">
                               <option value="Select">Select</option>
@@ -596,7 +571,7 @@
                   </div>
                   <div class="form-group">
                      <div class="form-inline">
-                        <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
+                        <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a separate time from your normal work hours?</label>
                         <div class="col-lg-5" class>
                            <select class="form-control" id="separateHoursList" name="isseparatehours">
                               <option value="Select">Select</option>
@@ -608,10 +583,12 @@
                   </div>
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Signature and Review
             </h3>
+            <div class="rounded-solid-padded-borders">
             <h4 align="center">
                I certify that the information contained in this application is true, correct, and complete. I understand that false statements reported on this application may be considered sufficient cause for denial of internship.
             </h4>
@@ -631,10 +608,10 @@
                      type="text">
                </div>
             </div>
-         </fieldset>
          <div align="center">
              <button class="btn btn-success" type="submit" id="updateBtn">Update</button>&nbsp;&nbsp;<a class="btn btn-success" href="/home" id="cancelBtn">Cancel</a>
          </div>
+            </div>
       </form>
       <% include partials/footerimports %>
       <script>
@@ -664,7 +641,10 @@
       makeOptionSelected('separateHoursList', '<%= application.isseparatehours %>')
       </script>
 <script>
-   $('.existing').hide();
+   if ($('#proposedList').val() == 'No'){
+      $('.existing').hide();
+   }
+
    $(function(){
        $('#proposedList').change(function(){
           var opt = $(this).val();
@@ -673,12 +653,15 @@
            }else{
            	$('.existing').hide();
              $('.employed').hide();
-             document.getElementById('isEmployedList').value="Select";
+             //document.getElementById('isEmployedList').value="Select";
            }
        });
    });
 
-   $('.employed').hide();
+   if ($('#isEmployedList').val() == 'No'){
+      $('.employed').hide();
+   }
+
    $(function(){
        $('#isEmployedList').change(function(){
           var opt = $(this).val();

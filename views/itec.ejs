@@ -27,7 +27,18 @@
       <br>
       <form name="itec" action="/itec" method="post" class="form-horizontal" _lpchecked="1" onsubmit="myFunction()">
          <fieldset>
+            <h2 align = "center">Contact Information</h2>
+            <div class="rounded-solid-padded-borders">
+            <div class="form-group">
+                  <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
+                  <div class="col-lg-5">
+                     <input class="form-control" rows="3" id="phonenumberTxt" name="phonenumber" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" required type="text">
+                  </div>
+               </div>
+            </div>
+            <br>
             <h2 align = "center">Student Academic Information</h2>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
@@ -163,40 +174,25 @@
                </div>
             </div>
             <br>
-            <br>
+            </div>
             <h3 align="center">
                Mentor Information
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Name</label>
                <div class="col-lg-5">
                   <input class="form-control" rows="3" id="mentorNameTxt" name="mentorname" placeholder="Name" pattern="[A-Za-z].{2,}" required title=" Example: Brannock"  required type="text">
                </div>
             </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Mentor Cell Phone Number</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorPhoneTxt" name="mentorcellphone" placeholder="XXX-XXX-XXXX" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx" required type="text">
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="input" class="col-lg-5 control-label">Mentor Office Location</label>
-               <div class="col-lg-5">
-                  <input class="form-control" rows="3" id="mentorOfficeTxt" name="mentoroffice" placeholder="Ex: H-3241" title="Example: H-3241" required type="text">
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="inputEmail" class="col-lg-5 control-label">Mentor Email</label>
-               <div class="col-lg-5">
-                  <input type="text" class="form-control" id="mentorEmailTxt" name="mentoremail" placeholder="Email" pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;" autocomplete="off">
-               </div>
             </div>
             <br>
             <h3 align="center">
-               Student internships interests and goals
+               Student Internships Interests and Goals
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
-               <label for="textArea" class="col-lg-5 control-label">Decribe your major interests and strengths</label>
+               <label for="textArea" class="col-lg-5 control-label">Describe your major interests and strengths</label>
                <div class="col-lg-5">
                   <textarea class="form-control" rows="5" name="interestsandstrengths" id="textArea"></textarea>
                </div>
@@ -213,16 +209,18 @@
                   <div class="col-lg-5" class>
                      <select class="form-control" name="focusonsoftdev" id="softwareDevList">
                         <option value="Select">Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
                      </select>
                   </div>
                </div>
+            </div>
             </div>
             <br>
             <h3 align="center">
                Internship Information
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Do you have a proposed internship with a company or organization?</label>
@@ -319,8 +317,8 @@
                         <div class="col-lg-5" class>
                            <select class="form-control" id="isPaidList" name="ispaidposition">
                               <option value="Select">Select</option>
-                              <option value="yes">Yes</option>
-                              <option value="no">No</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
                            </select>
                         </div>
                      </div>
@@ -333,34 +331,36 @@
                   </div>
                   <div class="form-group">
                      <div class="form-inline">
-                        <label for="select" class="col-lg-5 control-label">Will this internship represent a substantial project to be completed, seperate from your normal work duties?</label>
+                        <label for="select" class="col-lg-5 control-label">Will this internship represent a substantial project to be completed, separate from your normal work duties?</label>
                         <div class="col-lg-5" class>
                            <select class="form-control" id="separateProjectList" name="isseparateproject">
                               <option value="Select">Select</option>
-                              <option value="yes">Yes</option>
-                              <option value="no">No</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
                            </select>
                         </div>
                      </div>
                   </div>
                   <div class="form-group">
                      <div class="form-inline">
-                        <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
+                        <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a separate time from your normal work hours?</label>
                         <div class="col-lg-5" class>
                            <select class="form-control" id="separateHoursList" name="isseparatehours">
                               <option value="Select">Select</option>
-                              <option value="yes">Yes</option>
-                              <option value="no">No</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
                            </select>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Signature and Review
             </h3>
+            <div class="rounded-solid-padded-borders">
             <h4 align="center">
                I certify that the information contained in this application is true, correct, and complete. I understand that false statements reported on this application may be considered sufficient cause for denial of internship.
             </h4>
@@ -376,10 +376,10 @@
                   <input class="form-control" rows="3" id="printedTxt" name="printedname" onkeyup="checkPass(); return false;" required="" type="text">
                </div>              
             </div>
-         </fieldset>
          <div align="center">
             <button class="btn btn-success" type="submit" id="submitBtn">Submit</button>
          </div>
+            </div>
       </form>
       <% include partials/footerimports %>
    </body>

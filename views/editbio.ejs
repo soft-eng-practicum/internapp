@@ -1,8 +1,9 @@
 <!-- views/edititec.ejs -->
 <!DOCTYPE html>
+<html lang="en-US">
    <head>
       <title>Edit BIO Application</title>
-      <% include partials/headerimports %>
+      <% include partials/headerimports.ejs %>
    </head>
    <body>
       <% include partials/nav.ejs %>
@@ -10,19 +11,34 @@
       <div class="col-sm-10 col-sm-offset-1">
       <br>
       <h1 align="center">Biology Internship Application</h1>
-      <h4 align="center">Submit a typed, completed and signed form with an 
+      <h4 align="center">Submit a typed, completed, and signed form with an
          attached, printed copy of your unofficial academic transcript 
          (obtained from Banner) to the SST Office in the Allied Health 
          and Sciences (H2) Building, Room 3209.<br><br>
          <strong>IMPORTANT:</strong> The information you submit will be used to determine if
          you will be accepted to participate in the Program. Completion of this application does NOT
          guarantee your acceptance into the Biology Internship Program and/or enrollment in BIOL4800.
+         <br><br>
+         Please remember to upload all required application materials (transcript, essay,
+         preceptor form if picking your own site, and other necessary documents) as a part
+         of your application.
       </h4>
       <br>
       <form name="bioEdit" action="/editbio" method="post" class="form-horizontal" _lpchecked="1">
          <fieldset>
+               <h2 align = "center">Student Contact Information</h2>
+               <div class="rounded-solid-padded-borders">
+               <div class="form-group">
+                     <label for="input" class="col-lg-5 control-label">Cell Phone Number</label>
+                     <div class="col-lg-5">
+                        <input class="form-control" rows="3" id="phonenumberTxt" name="phonenumber" placeholder="XXX-XXX-XXXX"
+                           pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Please follow the format: xxx-xxx-xxxx"
+                           required value='<%= application.phonenumber %>' type="text">
+                     </div>
+                  </div>
+                  </div>
             <h2 align = "center">Student Academic Information</h2>
-            <div class="rounded-padded-borders">
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Desired Internship Semester and Year</label>
@@ -104,7 +120,7 @@
             <h3 align="center">
                Emergency Contact Information
             </h3>
-            <div class="rounded-padded-borders">
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Name of Parent or Legal Guardian</label>
                <div class="col-lg-5">
@@ -169,7 +185,7 @@
             <h3 align="center">
                Mentor Information
             </h3>
-            <div class="rounded-padded-borders">
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <label for="input" class="col-lg-5 control-label">Mentor Name</label>
                <div class="col-lg-5">
@@ -209,17 +225,19 @@
             <h3 align="center">
                Internship Information
             </h3>
+            <div class="rounded-solid-padded-borders">
                <div class="form-group">
                   <div class="form-inline">
                      <label for="select" class="col-lg-5 control-label">Please select the site you wish to apply to</label>
                      <div class="col-lg-5" class>
-                        <select class="form-control" id="additionalInfoList" name="internsite">
+                        <select class="form-control" id="additionalInfoList" name="internsite" style="max-width: 500px">
                            <option value="Select">Select</option>
                            <option value="Other" >Other</option>
                            <option value="Greening Youth Foundation">Greening Youth Foundation</option>
                            <option value="Good Samaritan Health Center of Gwinnett" >Good Samaritan Health Center of Gwinnett</option>
                            <option value="Yerkes Regional Primate Research Center">Yerkes Regional Primate Research Center</option>
-                           <option value="US Department of Agriculture, Food Safety Inspection Services" >US Department of Agriculture, Food Safety Inspection Services</option>
+                           <option value="Covenant Health Pharmacy">Covenant Health Pharmacy</option>
+                           <option value="Gwinnett County (Water Resources, Environmental Health and Police Departments)">Gwinnett County (Water Resources, Environmental Health and Police Departments)</option>
                            <option value="Consultorio Medico Hispano">Consultorio Medico Hispano</option>
                         </select>
                      </div>
@@ -363,11 +381,11 @@
             </div>
             <br>
             </div>
-
-               <!-- -->
+            </div>
             <h3 align="center">
                Potential Student Employment Conflicts
             </h3>
+            <div class="rounded-solid-padded-borders">
             <div class="form-group">
                <div class="form-inline">
                   <label for="select" class="col-lg-5 control-label">Are you currently employed at this site?</label>
@@ -410,7 +428,7 @@
                </div>
                <div class="form-group">
                   <div class="form-inline">
-                     <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a seperate time from your normal work hours?</label>
+                     <label for="select" class="col-lg-5 control-label">Are you willing to complete your internship hours at a separate time from your normal work hours?</label>
                      <div class="col-lg-5" class>
                         <select class="form-control" id="internquestion" name="isokseperatehours">
                            <option value="Select">Select</option>
@@ -433,10 +451,12 @@
                   </div>
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Education Component
             </h3>
+            <div class="rounded-solid-padded-borders">
             <h4 align="center">
                List 3 major educational objectives that you wish to achieve at the hosting facility. Educational objectives pertain to what you want to learn on-site.
             </h4>
@@ -470,10 +490,12 @@
                      required value='<%= application.educomp3 %>'>
                </div>
             </div>
+            </div>
             <br>
             <h3 align="center">
                Signature and Review
             </h3>
+            <div class="rounded-solid-padded-borders">
             <h4 align="center">
                I certify that the information contained in this application is true, correct, and complete. 
                I understand that, if employed, false statements reported on this application may be considered 
@@ -494,10 +516,11 @@
                      required value='<%= application.printedname %>'>
                </div>
             </div>
+               <div align="center">
+                  <button class="btn btn-success" type="submit" id="submitBtn">Update</button>
+               </div>
+            </div>
          </fieldset>
-         <div align="center">
-          <button class="btn btn-success" type="submit" id="submitBtn">Update</button>
-         </div>
       </form>
       <% include partials/footerimports %>
       <script>
@@ -518,7 +541,6 @@
    
       </script>
       <script>
-             
          $(function(){
          $('#isStudentEmployedList').change(function(){
            var opt = $(this).val();
@@ -529,7 +551,7 @@
             }
          });
          });
-         
+
          $(function(){
          $('#previouslyApplied').change(function(){
            var opt = $(this).val();
@@ -542,12 +564,19 @@
             }
          });
          });
-         
-         $('.other');
+
+
+         if ($('#additionalInfoList').val() === 'Other') {
+            $('.other').show();
+         }
+         else {
+           $('.other').hide();
+         }
+
          $(function(){
          $('#additionalInfoList').change(function(){
            var opt = $(this).val();
-            if(opt === 'Other'){
+            if(opt == 'Other'){
                 $('.other').show();
             }else{
             	$('.other').hide();

@@ -27,6 +27,10 @@ var documentSchema = mongoose.Schema({
         type: Date, 
         default: Date.now
     },
+    fileId: {
+        type: String,
+        required: true
+    },
     fileType: {
         type: String, 
         required: true

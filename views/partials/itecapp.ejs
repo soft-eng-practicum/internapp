@@ -15,6 +15,12 @@
          </td>
       </tr>
       <tr>
+            <td>Applicant Phone Number</td>
+            <td>
+               <%= application.phonenumber %>
+            </td>
+         </tr>
+      <tr>
          <td>Applicant Email</td>
          <td>
             <%= application.useremail %>
@@ -24,24 +30,6 @@
          <td>Applicant Student ID</td>
          <td>
             <%= application.useraddress %>
-         </td>
-      </tr>
-      <tr>
-         <td>Applicant City</td>
-         <td>
-            <%= application.usercity %>
-         </td>
-      </tr>
-      <tr>
-         <td>Applicant State</td>
-         <td>
-            <%= application.userstate %>
-         </td>
-      </tr>
-      <tr>
-         <td>Applicant Zipcode</td>
-         <td>
-            <%= application.userzipcode%>
          </td>
       </tr>
       <tr>
@@ -117,24 +105,6 @@
          </td>
       </tr>
       <tr>
-         <td>Mentor Cell Phone</td>
-         <td>
-            <%= application.mentorcellphone %>
-         </td>
-      </tr>
-      <tr>
-         <td>Mentor Email</td>
-         <td>
-            <%= application.mentoremail %>
-         </td>
-      </tr>
-      <tr>
-         <td>Mentor Office</td>
-         <td>
-            <%= application.mentoroffice %>
-         </td>
-      </tr>
-      <tr>
          <td>Interests and Strengths</td>
          <td>
             <%= application.interestsandstrengths %>
@@ -147,7 +117,7 @@
          </td>
       </tr>
       <tr>
-         <td>Focus Area</td>
+         <td>Interested in Software Dev. or Programming?</td>
          <td>
             <%= application.focusonsoftdev %>
          </td>
@@ -158,17 +128,18 @@
             <%= application.haveproposedintern %>
          </td>
       </tr>
+       <% if (application.haveproposedintern === "Yes") { %>
       <tr>
-         <td>Proposed Organization Name</td>
-         <td>
-            <%= application.proposedorgname %>
-         </td>
+          <td>Proposed Organization's Internship Focus</td>
+          <td>
+              <%= application.itecfocus %>
+          </td>
       </tr>
       <tr>
-         <td>Itec Focus</td>
-         <td>
-            <%= application.itecfocus %>
-         </td>
+          <td>Proposed Organization Name</td>
+          <td>
+              <%= application.proposedorgname %>
+          </td>
       </tr>
       <tr>
          <td>Proposed Organization Address</td>
@@ -212,6 +183,7 @@
             <%= application.isemployedatsite %>
          </td>
       </tr>
+           <% if (application.isemployedatsite === "Yes") { %>
       <tr>
          <td>Applicant Current Position</td>
          <td>
@@ -242,6 +214,8 @@
             <%= application.isseparatehours %>
          </td>
       </tr>
+           <% } %>
+       <% } %>
       <tr>
          <td>Signature of Applicant</td>
          <td>
@@ -307,10 +281,10 @@
     </form>
 
     <% } %>
-      
+
             <h3>Change Proposed Intern Date</h3>
       <form name="proposedinternsemester" action="/application/itec/changeSemester/<%= application._id %>" method="post">
-        
+
         <div class="form-group" >
           <label>Internship Date</label>
           <select class="form-control" name="proposedinternsemester">
@@ -340,10 +314,10 @@
           </select>
           </select>
         </div>
-     
+
         <button type="submit" class="btn btn-success btn-lg">Change Date</button>
       </form>
-      
+
    <h3>Admin and Instructor Notes</h3>
    <table class="table table-bordered">
       <thead>
@@ -378,34 +352,36 @@
    <h3>Document Uploads table</h3>
    <hr>
 </div>
-<% } else { %>
-   <h3>Document Uploads table</h3>
-   <hr>
-</div>
 <% } %>
-        <div class="col-6 col-md-auto">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th>Document Status</th>
-                    <th>Name</th>
-                    <th>Section</th>
-                    <th>File Type</th>
-                    <th>Date Submitted</th>
-                    <th>View Document Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <% documents.forEach(function(document) { %>
-                <tr>
-                    <td><%= document.documentStatus %></td>
-                    <td><%= document.documentName %></td>
-                    <td><%= document.fileSection %></td>  
-                    <td><%= document.fileType %></td>
-                    <td><%= document.prettyUploadDate %></td>
-                    <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
-                </tr>
-                <% }); %>
-                </tbody>
-            </table>
-        </div>
+<% if (documents.length > 0) { %>
+<div class="col-6 col-md-auto">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Document Status</th>
+            <th>Name</th>
+            <th>Program</th>
+            <th>File Type</th>
+            <th>Date Submitted</th>
+            <th>View Document Details</th>
+            <th>Download Document</th>
+            <th>Delete Document</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% documents.forEach(function(document) { %>
+            <tr>
+                <td><%= document.documentStatus %></td>
+                <td><%= document.documentName %></td>
+                <td><%= document.fileSection %></td>
+                <td><%= document.fileType %></td>
+                <td><%= document.prettyUploadDate %></td>
+                <td><a href="/document/<%= document._id%>"><span class='glyphicon glyphicon-search'></span></a></td>
+                <td><a href="/getFiles/<%= document.fileId%>/<%= document.documentName%>"><span class='glyphicon glyphicon-download'></span></a></td>
+                <td><a href="/document/<%= document._id%>/delete"><span class='glyphicon glyphicon-trash'></span></a></td>
+
+            </tr>
+        <% }); } %>
+        </tbody>
+    </table>
+</div>

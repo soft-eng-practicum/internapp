@@ -10,6 +10,7 @@ var key = process.env.YAHOO_PASSWORD; // password for ggcinternapp@yahoo.com
 var User = require('../models/user');
 var Document = require('../models/document');
 var Itec = require('./../models/itec');
+var Mongoose = require('../../server.js');
 
 // Setting local env in powershell
 // $env:key="password"
@@ -197,16 +198,6 @@ module.exports.deleteDocumentNote = function(req, res) {
         });
 }
 
-// Upload itec resume 
-module.exports.uploadItecResume = function(req, res) {
-    var typeOfFile = 'Resume';
-    if (!req.files.resume) {
-        res.redirect('/home');
-        req.flash('failure', noFilesUploadedError);
-    } else {
-        sendDocument(req.files.resume, typeOfFile, req, res, req.user,req.Itec);
-    }
-}
 
 // Upload bio essay
 module.exports.uploadBioEssay = function(req, res) {
@@ -318,6 +309,8 @@ function addDocumentToUser(fileType, fileName, user, whatIsFile) {
              req.flash('failure', 'File type not recognized');
      }
 
+    var tempFileName = user.studentid;
+
     var document = new Document({
         'user' : {
             'user_id' : user._id,
@@ -327,7 +320,7 @@ function addDocumentToUser(fileType, fileName, user, whatIsFile) {
         },
         'fileType' : recordFileType,
         'fileSection' : recordSection,
-        'documentName' : fileName,
+        'documentName' : tempFileName + recordFileType,
         'documentStatus' : 'submitted'
     });
 
