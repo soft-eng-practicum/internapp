@@ -41,9 +41,10 @@ module.exports.filterSites = function (req, res) {
         if (req.body.program === 'Biology Internship (BIOL 4800)') {
             return 'Bio'
         }
-        if (req.body.program === 'Information Technology Internship (ITEC 4900)') {
+        else if (req.body.program === 'Information Technology Internship (ITEC 4900)') {
             return 'Itec'
         }
+        else return { $in: ["Bio", "Itec"] }
     }
     function getStatus () {
         if (req.body.sitestatus === 'active') {
@@ -52,8 +53,8 @@ module.exports.filterSites = function (req, res) {
         else if (req.body.sitestatus === 'inactive') {
             return 'Inactive'
         }
+        else return { $in: ["Active", "Inactive"] };
     }
-
     let filters = {
         section: getProgram(),
         sitestatus: getStatus()
