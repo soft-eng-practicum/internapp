@@ -34,44 +34,7 @@ module.exports.getSites = function (req, res) {
 
     });
 
-}
-
-module.exports.filterSites = function (req, res) {
-    function getProgram () {
-        if (req.body.program === 'Biology Internship (BIOL 4800)') {
-            return 'Bio'
-        }
-        if (req.body.program === 'Information Technology Internship (ITEC 4900)') {
-            return 'Itec'
-        }
-    }
-    function getStatus () {
-        if (req.body.sitestatus === 'active') {
-            return 'Active'
-        }
-        else if (req.body.sitestatus === 'inactive') {
-            return 'Inactive'
-        }
-    }
-
-    let filters = {
-        section: getProgram(),
-        sitestatus: getStatus()
-    };
-    User.getAdminValuesForHome(req.user._id, function (adminValues) {
-
-        Site.find(filters, function (err, sites) {
-            if (err) return console.error(err);
-            res.render('site.ejs', {
-                siteList: sites,
-                successMessage: req.flash('success'),
-                failureMessage: req.flash('failure'),
-                user: req.user,
-                admin: adminValues
-            });
-        });
-    })
-}
+};
 
 /*
     HTTP Req: POST
@@ -83,27 +46,12 @@ module.exports.exportSites = function (req, res) {
     var redirect = "/sites";
     var fields = [];
 
-    // switch (req.body.program) {
-    //     case 'Biology Internship (BIOL 4800)':
-    //         discipline = 'Bio';
-    //         break;
-    //     case 'Information Technology Internship (ITEC 4900)':
-    //         discipline = 'Itec';
-    //         break;
-    //     default:
-    //         res.redirect('/sites');
-    //         req.flash('failure', 'Program not recognized');
-    //         break;
-    // }
-    if (req.body.program === 'Biology Internship (BIOL 4800)') {
+    if (req.body.exportProgram === 'Biology Internship (BIOL 4800)') {
         discipline = 'Bio'
     }
-    else if (req.body.program === 'Information Technology Internship (ITEC 4900)') {
+    else if (req.body.exportProgram === 'Information Technology Internship (ITEC 4900)') {
         discipline = 'Itec'
     }
-    // else {
-    //     discipline = 'Itec'
-    // }
 
     Site.find({
         section: discipline

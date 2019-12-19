@@ -180,7 +180,7 @@ module.exports = function (app, passport) {
 
     /* Sites pages & Add Site page */
     app.get('/sites', isLoggedIn, isAdminOrInstructor, ctrlSites.getSites);
-    app.post('/sites', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlSites.filterSites);
+    app.post('/sites', isLoggedIn, isAdminOrInstructor, ctrlSites.getSites);
     app.post('/site/export', isLoggedIn, isAdminOrInstructor, makeCSVDirectory, ctrlSites.exportSites);
 
     app.get('/addsite', isLoggedIn, isAdminOrInstructor, ctrlSites.getAddSite);
