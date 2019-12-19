@@ -7,7 +7,7 @@
 
 //var Site = require('../../app/models/site');
 
-populateSelectYears('pastAndFutureYearSelect', 2000, new Date().getFullYear());
+populateSelectYears('pastAndFutureYearSelect', 2000, new Date().getFullYear() + 4);
 populateSelectYears('yearSelect', new Date().getFullYear());
 
 populateSelectYears('adminYearSelect', 2010);
@@ -18,7 +18,7 @@ function populateSelectYears(target, min, max) {
       }
       else {
           var min = min || 2000,
-              max = max || new Date().getFullYear() + 6;
+              max = max || new Date().getFullYear() + 15;
 
           select = document.getElementsByClassName(target);
 
