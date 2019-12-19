@@ -18,8 +18,8 @@
                         <div class="form-inline">
                             <label for="select" class="col-lg-5 control-label">Filter by Program:</label>
                             <div class="col-lg-5">
-                                <select class="form-control adminProgram" id="programSelect" name="program">
-                                    <option selected>Filter by Program</option>
+                                <select class="form-control adminProgram" id="selectProgram" name="selectProgram">
+                                    <option selected>All</option>
                                     <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
                                     <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
                                 </select>
@@ -33,23 +33,22 @@
                         <label for="select" class="col-lg-5 control-label">Filter by Company Status:</label>
                         <div class="col-lg-5">
                             <select class="form-control siteStatus" id="sitestatus" name="sitestatus">
-                                    <option selected>Filter by Status</option>
-                                <option value="active" >Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option selected>All</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
                             </select>
                         </div>
                     </div>
                 </div>
           </fieldset>
               <div align="center">
-              <div style="display: inline-block; position: absolute; margin-left: 5px">
-                  <button type="submit" class="btn btn-success btn-md">Filter</button>
+              <div style="display: inline-block; margin-right: 105px">
+                  <button type="submit" class="btn btn-success btn-md" id="filterBtn">Filter</button>
               </div>
               </div>
           </form>
         <div align="center">
         <div style=" display: inline-block">
-                <button type="submit" class="btn btn-success btn-md" data-toggle="modal" data-target="#exportprogram" style="margin-right: 95px">Export</button>
             <div class="modal fade" id="exportprogram" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -63,7 +62,7 @@
                                 <div class="form-group">
                                     <label for="select" class="col-lg-5 control-label">Select Program to Export:</label>
                                     <div class="col-lg-5">
-                                        <select class="form-control adminProgram" id="programSelect" name="program">
+                                        <select class="form-control adminProgram" id="exportProgram" name="exportProgram">
                                             <option value="Biology Internship (BIOL 4800)">Biology Internship (BIOL 4800)</option>
                                             <option value="Information Technology Internship (ITEC 4900)">Information Technology Internship (ITEC 4900)</option>
                                         </select>
@@ -81,7 +80,7 @@
         </div>
         </div>
         <br>
-
+        <button type="submit" class="btn btn-success btn-md" data-toggle="modal" data-target="#exportprogram" style="margin-right: 10px">Export Table</button>
         <a id="btn" href="mailto:" onclick="sendAll()"><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email All</button></a>
         <a id="send1" onclick="displayResult()" href="mailto:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email Selected</button></a>
         <br><br>
@@ -171,25 +170,72 @@
           function sendAll() {
             var emailbtn = document.getElementById('btn');
             emailbtn.href = "mailto:?bcc="+ emailList.join(";");
-            return;
           }
     </script>
 
       <script type="text/javascript">
-          $(document).ready(function () {
+          /*
+          * This function sets sessionStorage for the program and sitestatus keys to
+          * the values obtained from selectProgram (program dropdown) and sitestatus (site status dropdown),
+          * upon a change to the value.
+          *
+          * Then, if the value for the key in sessionStorage is not null, then the dropdown's for selectProgram and
+          * sitestatus are set to the values in their appropriate sessionStorage keys.
+          *
+          * The datatable on the sites page has been given data persistence via the "stateSave" option (default false).
+          * This means the table's state will persist across navigation events. This didn't work for the previous way
+          * of filtering the table by program and sitestatus though, which is the point of sessionStorage here.
+          *
+          * Since the values in sessionStorage for program and sitestatus persist per session, it is leveraged to supply
+          * the values for a 'search()' call directly. The table is drawn afterwards. Please do not remove this. Search()
+          * merely queues the args for changes to the state. Draw() is what loads that state.
+          *
+          * */
 
+          document.getElementById("selectProgram").onchange = function() {
+              sessionStorage.setItem('program', document.getElementById("selectProgram").value)
+          }
+          document.getElementById("sitestatus").onchange = function() {
+              sessionStorage.setItem('sitestatus', document.getElementById("sitestatus").value)
+          }
+
+          $(document).ready(function () {
+              if (sessionStorage['program']) {
+                  document.getElementById("selectProgram").value = sessionStorage.getItem('program')
+              }
+              if (sessionStorage['sitestatus']) {
+                  document.getElementById("sitestatus").value = sessionStorage.getItem('sitestatus')
+              }
 
               var table = $('#sites').DataTable({
                   "bFilter": true,
                   "pageLength": 50,
+                  "stateSave": true,
                   "columnDefs": [
                       { "orderable": false, "targets": 0 }
                   ]
               });
 
-              table.search().draw();
+              if (sessionStorage['program'] === 'Biology Internship (BIOL 4800)') {
+                  table.column(5).search("Bio")
+              }
+              else if (sessionStorage['program'] === 'Information Technology Internship (ITEC 4900)') {
+                  table.column(5).search("Itec")
+              }
+              else {
+                  table.column(5).search("")
+              }
+              if (sessionStorage['sitestatus'] === 'Active' || sessionStorage['sitestatus'] === 'Inactive') {
+                  table.column(10).search('\^'+sessionStorage['sitestatus']+'\$', true, false)
+              }
+              else {
+                  table.column(10).search("")
+              }
+              table.draw()
 
           });
+
+
       </script>
         <script>
             function checkAll()
