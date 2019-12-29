@@ -51,7 +51,7 @@
                             <input type="checkbox" id="bioBox">
                         </div>
                         <br />
-                        <input class="btn btn-success" type="submit" value="Apply Now"  id="bioApply" onclick="window.location.href='/bio'"
+                        <input class="btn btn-success" type="submit" value="Apply Now"  id="bioApply" onclick="window.location.href='/bio'" disabled
                         title="Please verify that you have read and understood the disclaimer."/>
                     </div>
                     <div class="itec">
@@ -75,7 +75,7 @@
                             <input type="checkbox" id="itBox">
                         </div>
                         <br/>
-                        <input class="btn btn-success" type="submit" value="Apply Now"  id="itApply" onclick="window.location.href='/itec'"
+                        <input class="btn btn-success" type="submit" value="Apply Now"  id="itApply" onclick="window.location.href='/itec'" disabled
                         title="Please verify that you have read and understood the disclaimer."/>
                     </div>
                 </div>
@@ -468,19 +468,19 @@
 
              $("#itBox").on('click', function(){
                 if ( $(this).is(':checked') ) {
-                     $('#itApply').attr('', false);
+                     $('#itApply').attr('disabled', false);
                 }
                 else {
-                    $('#itApply').attr('', true);
+                    $('#itApply').attr('disabled', true);
                 }
              });
 
              $("#bioBox").on('click', function(){
                 if ( $(this).is(':checked') ) {
-                     $('#bioApply').attr('', false);
+                     $('#bioApply').attr('disabled', false);
                 }
                 else {
-                    $('#bioApply').attr('', true);
+                    $('#bioApply').attr('disabled', true);
                 }
             });
 
@@ -504,42 +504,42 @@
             submitButt1 = $("#uploadResume");
 
             button1.on("click",function(e) {
-                submitButt1.prop("",false);
+                submitButt1.prop("disabled",false);
             });
 
                 var button2 = $("#uploadForm2"),
             submitButt2 = $("#uploadFERPA");
 
             button2.on("click",function(e) {
-                submitButt2.prop("",false);
+                submitButt2.prop("disabled",false);
             });
 
                 var button3 = $("#uploadForm3"),
             submitButt3 = $("#uploadEssay");
 
             button3.on("click",function(e) {
-                submitButt3.prop("",false);
+                submitButt3.prop("disabled",false);
             });
 
                 var button4 = $("#uploadForm4"),
             submitButt4 = $("#uploadTranscript");
 
             button4.on("click",function(e) {
-                submitButt4.prop("",false);
+                submitButt4.prop("disabled",false);
             });
 
             var button5 = $("#uploadForm5");
             submitButt5 = $("#uploadBioOther");
 
             button5.on("click", function(e) {
-                submitButt5.prop("", false);
+                submitButt5.prop("disabled", false);
             });
 
             var button6 = $("#uploadForm6");
             submitButt6 = $("#uploadItecOther");
 
             button6.on("click", function(e) {
-                submitButt6.prop("", false);
+                submitButt6.prop("disabled", false);
             });
          });
       </script>
