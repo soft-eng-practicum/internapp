@@ -68,6 +68,7 @@ let limits = {
 
 let fileFilter = function(req, file, cb) {
     var allowedMimes = ['application/pdf' ,'application/msword',
+        'image/jpeg', 'image/png',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.template'
     ];
