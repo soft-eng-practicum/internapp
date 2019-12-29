@@ -57,7 +57,7 @@ module.exports.postForgot = function(req, res) {
                 if (err) {
                     console.log('error sending reset email, error: \n' + err);
                     res.redirect('/forgot');
-                    req.flash('failure', 'An error has occured. Your password cannot be reset at this time.');
+                    req.flash('failure', 'An error has occurred. Your password cannot be reset at this time.');
                 } else {
                     console.log('password reset email sent!');
                     res.redirect('/forgot')

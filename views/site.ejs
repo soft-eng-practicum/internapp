@@ -200,13 +200,6 @@
           }
 
           $(document).ready(function () {
-              if (sessionStorage['program']) {
-                  document.getElementById("selectProgram").value = sessionStorage.getItem('program')
-              }
-              if (sessionStorage['sitestatus']) {
-                  document.getElementById("sitestatus").value = sessionStorage.getItem('sitestatus')
-              }
-
               var table = $('#sites').DataTable({
                   "bFilter": true,
                   "pageLength": 50,
@@ -216,6 +209,12 @@
                   ]
               });
 
+              if (sessionStorage['program']) {
+                  document.getElementById("selectProgram").value = sessionStorage.getItem('program')
+              }
+              if (sessionStorage['sitestatus']) {
+                  document.getElementById("sitestatus").value = sessionStorage.getItem('sitestatus')
+              }
               if (sessionStorage['program'] === 'Biology Internship (BIOL 4800)') {
                   table.column(5).search("Bio")
               }
