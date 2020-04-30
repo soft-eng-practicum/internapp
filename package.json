@@ -22,7 +22,7 @@
     "home-dir": "^1.0.0",
     "jasmine": "^2.5.2",
     "jasmine-node": "^1.14.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "json2csv": "^3.7.3",
     "karma-script-launcher": "^1.0.0",
     "lodash": "latest",
