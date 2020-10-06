@@ -23,6 +23,7 @@
     "karma-script-launcher": "^1.0.0",
     "method-override": "~1.0.0",
     "mkdirp": "^0.5.1",
+    "mongodb": "^3.6.2",
     "mongoose": "4.7.2",
     "morgan": "~1.0.0",
     "nodemailer": "^2.6.4",
