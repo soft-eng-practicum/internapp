@@ -1,6 +1,6 @@
 {
   "name": "internshipapplication",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -37,7 +37,6 @@
     "multer-gridfs-storage": "0.0.5",
     "natives": "^1.1.6",
     "nodemailer": "^2.6.4",
-    "nodemon": "^1.19.4",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "serve-favicon": "^2.3.2",
