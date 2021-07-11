@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "async": "^2.6.3",
-    "bcrypt": "latest",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "~0.1.1",
     "connect-multiparty": "^2.2.0",
