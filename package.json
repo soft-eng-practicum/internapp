@@ -2,6 +2,10 @@
   "name": "internshipapplication",
   "version": "1.0.1",
   "main": "server.js",
+  "engines": { 
+      "node": "16.3.0",
+      "npm": "7.16.0"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
