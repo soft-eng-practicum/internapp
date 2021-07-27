@@ -40,7 +40,7 @@
     "multer-gridfs": "0.0.1",
     "multer-gridfs-storage": "0.0.5",
     "natives": "^1.1.6",
-    "nodemailer": "^2.6.4",
+    "nodemailer": "^6.4.16",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "serve-favicon": "^2.3.2",
