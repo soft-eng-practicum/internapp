@@ -65,6 +65,8 @@ _Internapp is a web application designed to centralize the application process f
 ## Fall 2021 Team Members
 1. _Michael Murillo - [@murillomichael](https://github.com/murillomichael):_ **_Team Manager_** &
 **_UI/UX design_** & **_Programmer_**  <br>
+2. _Matthew Rosario - [@mrosario123](https://github.com/mrosario123):_ **_Data Modeler_** &
+**_Documentation Lead_** & **_Programmer_**  <br>
 
 ## Fall 2019 Team Members
 1. _Ethan Kim - [@ekim22](https://github.com/ekim22):_ **_Team lead_** &
