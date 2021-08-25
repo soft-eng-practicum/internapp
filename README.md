@@ -67,7 +67,7 @@ _Internapp is a web application designed to centralize the application process f
 **_UI/UX design_** & **_Programmer_** & **_Client Liaison_** 💰 💰  <br>
 2. _Matthew Rosario - [@mrosario123](https://github.com/mrosario123):_ **_Data Modeler_** & 
 **_Documentation Lead_** & **_Programmer_** 🏦 <br>
-3._Jordan - [@](https://github.com/):_ **_Code architecture/lead programmer_** &
+3. _Jordan Harrison - [@SodaPopSuperStar](https://github.com/jharrison5@ggc.edu):_ **_Code architecture/lead programmer_** &
 **_Testing lead_** & **_Programmer_** 💰 💰  <br>
 
 ## Fall 2019 Team Members
