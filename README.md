@@ -61,7 +61,6 @@ _Internapp is a web application designed to centralize the application process f
 - [Information Technology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#itec4900)
 - [Biology Internship Program](http://www.ggc.edu/academics/schools/school-of-science-and-technology/internships/#biol4800)
 
-
 ## Fall 2021 Team Members :smiley:
 1. _Michael Murillo - [@murillomichael](https://github.com/murillomichael):_ **_Team Manager_** &
 **_UI/UX design_** & **_Programmer_** & **_Client Liaison_** 💰 💰  <br>
