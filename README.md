@@ -26,7 +26,7 @@
 
 ## Overview
 
-_Internapp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs for both student and coordinator. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored._
+_InternApp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs for both student and coordinator. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored._
 
 
 ## Final Reports
@@ -63,18 +63,18 @@ _Internapp is a web application designed to centralize the application process f
 
 ## Fall 2021 Team Members :smiley:
 1. _Michael Murillo - [@murillomichael](https://github.com/murillomichael):_ **_Team Manager_** &
-**_UI/UX design_** & **_Programmer_** & **_Client Liaison_** 💰 💰  <br>
-2. _Matthew Rosario - [@mrosario123](https://github.com/mrosario123):_ **_Data Modeler_** & 
-**_Documentation Lead_** & **_Programmer_** 🏦 <br>
+   **_UI/UX design_** & **_Programmer_** & **_Client Liaison_** 💰 💰  <br>
+2. _Matthew Rosario - [@mrosario123](https://github.com/mrosario123):_ **_Data Modeler_** &
+   **_Documentation Lead_** & **_Programmer_** 🏦 <br>
 3. _Jordan Harrison - [@SodaPopSuperStar](https://github.com/jharrison5@ggc.edu):_ **_Code architecture/lead programmer_** &
-**_Testing lead_** & **_Programmer_** 💰 💰  <br>
+   **_Testing lead_** & **_Programmer_** 💰 💰  <br>
 
 ## Fall 2019 Team Members
 1. _Ethan Kim - [@ekim22](https://github.com/ekim22):_ **_Team lead_** &
-**_Client Liaison_** :smiley: <br>
+   **_Client Liaison_** :smiley: <br>
 2. _Kyle Tate - [@kyletate](https://github.com/kyletate):_ **_UI/UX_** &
-**_Programmer_** :tophat: <br>
-3. _Jordan Vincent - [@jordatvincent](https://github.com/jordantvincent):_ **_UI/UX_** & **_Data Modeler_** :moneybag: <br>
+   **_Programmer_** :tophat: <br>
+3. _Jordan Vincent - [@jordantvincent](https://github.com/jordantvincent):_ **_UI/UX_** & **_Data Modeler_** :moneybag: <br>
 4. _Leon Le - [@weaponized](https://github.com/weaponized):_ **_Testing Lead_** & **_Programmer_** :spider: <br>
 5. _Jose Cantillo - [@jcantillo](https://github.com/jcantillo94):_ **_Programming Lead_** & **_Documentation Lead_** :shipit: <br>
 
@@ -101,12 +101,17 @@ _Internapp is a web application designed to centralize the application process f
 
 ## Running the application on your local machine
 
-1. **[Install Node.js (either version is fine)](https://nodejs.org/en/)**<br>
-
+1. **[Install Node.js (either version is fine)](https://nodejs.org/en/)**
+   <br>
    &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line<br/>
-
-2. **[Clone this github repository to your local machine](https://github.com/soft-eng-practicum/internapp)**<br>
-3. **Navigate to the internapp folder in your terminal/command line**<br>
-4. **Run the command 'npm install'**<br>
-5. **Run the command 'npm start'**<br>
-6. **Navigate to localhost:8000/ within your browser**<br>
+2. **[Clone this github repository to your local machine](https://github.com/soft-eng-practicum/internapp)**
+   <br>
+3. **Navigate to the internapp folder in your terminal/command line (if you don't see a package.json, then you're in the wrong place!)**
+   <br>
+4. **Run the command 'npm install'**
+   <br>
+5. **[Set up a MongoDB instance or cluster](documentation/fall2020/db_setup.md)**
+6. **Run the command 'npm start'**
+   <br>
+7. **Navigate to localhost:8000/ within your browser**
+   <br>
