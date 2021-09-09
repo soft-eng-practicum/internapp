@@ -1,3 +1,21 @@
+# Table of Contents
+___
+- [Choosing between a MongoDB Community Server and MongoDB Atlas](#choosing-between-a-mongodb-community-server-and-mongodb-atlas)
+  * [Setting up a MongoDB Community Server](#setting-up-a-mongodb-community-server)
+    + [Connecting to your instance](#connecting-to-your-instance)
+      - [Setting DB_CONN via Command Prompt/Terminal](#setting-db-conn-via-command-prompt-terminal)
+      - [Setting DB_CONN via the ``dotenv`` package](#setting-db-conn-via-the---dotenv---package)
+      - [Setting DB_CONN in JetBrain's Webstorm configuration settings](#setting-db-conn-in-jetbrain-s-webstorm-configuration-settings)
+      - [Setting DB_CONN via Windows Control Panel](#setting-db-conn-via-windows-control-panel)
+  * [Setting up on MongoDB Atlas](#setting-up-on-mongodb-atlas)
+    + [Creating a cluster](#creating-a-cluster)
+    + [Connecting to your cluster](#connecting-to-your-cluster)
+  * [Update history](#update-history)
+  * [Credits](#credits)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # Choosing between a MongoDB Community Server and MongoDB Atlas
 ___
 Two options for setting up a MongoDB instance for running the app will be explained here. The first option is to use MongoDB's Atlas service, which hosts a cluster on the cloud. The second is to install the MongoDB Community Server and mongoSh (mongo shell) locally on your machine. 
