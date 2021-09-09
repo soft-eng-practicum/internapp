@@ -18,7 +18,7 @@ ___
 
 # Choosing between a MongoDB Community Server and MongoDB Atlas
 ___
-Two options for setting up a MongoDB instance for running the app will be explained here. The first option is to use MongoDB's Atlas service, which hosts a cluster on the cloud. The second is to install the MongoDB Community Server and mongoSh (mongo shell) locally on your machine. 
+Two options for setting up a MongoDB instance for running the app will be explained here. The first option is to install the MongoDB Community Server and mongoSh (mongo shell) locally on your machine. The second option is to use MongoDB's Atlas service, which hosts a cluster on the cloud. 
 
 One is not necessarily better than the other. Atlas will allow your team to easily create and track data in one place while a local community server on your personal machine will allow you to create data that exists only on your computer. There is also nothing preventing you from doing both, though there is little reason to do so. However, if you have trouble maintaining a stable internet connection, setting up a local server might be the best option for you.
 
