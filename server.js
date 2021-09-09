@@ -22,6 +22,7 @@ var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
 var _ = require('lodash');
 var methodOverride = require('method-override');
+require('dotenv').config()
 
 
 //New GridFS Stuff
@@ -31,7 +32,7 @@ var Document = require('./app/models/document');
 const mongoURI = process.env.DB_CONN;
 
 const connection = mongoose.connect(mongoURI);
-const conn = mongoose.createConnection(configDB.url);
+const conn = mongoose.createConnection(mongoURI);
 require('./config/passport');
 
 // set up our express application
