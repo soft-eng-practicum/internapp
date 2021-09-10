@@ -39,43 +39,9 @@ If you opted to not install as a Windows service, or have installed on a differe
 Once you have your server up and running, it's time to connect the InternApp to it. The tutorial [here](https://docs.mongodb.com/mongodb-shell/connect/#local-mongodb-instance-on-default-port) explains how to connect to the local instance via mongoSh, but we won't be connecting to it via mongoSh. Instead, we'll use the default connection address provided on that page (``mongodb://localhost:27017``) to connect the app to the database.
 
 ### Connecting to your instance
-___
-
-The InternApp uses node's process.env in order to provide certain configurable variables to the application at the app's runtime, including the database's address. The name of the environment variable for the database address is called DB_CONN. Therefore, an environment variable named DB_CONN must be set with a valid mongoDB connection string before the app can deploy. There are many ways of setting an environment variable and the ways can differ sometimes substantially from IDE to IDE, Windows or Linux, whether you're operating in the terminal or command prompt, and even between programming languages. In our case, I will detail four different ways of setting environment variables and let you choose.
-
-#### Setting DB_CONN via Command Prompt/Terminal
-Via Command Prompt:
-
-    set DB_CONN=mongodb://localhost:27017
-
-Via terminal (macOS/linux):
-
-    DB_CONN="mongodb://localhost:27017"
-
-This method has the disadvantage of requiring inputting these commands upon every new instance of command prompt or terminal prior to starting the app.
-
-#### Setting DB_CONN via the ``dotenv`` package
-The ``dotenv`` node package is installed in the InternApp upon running npm install. Setting DB_CONN with this method is easy. Simply create a new file called ``.env`` inside the project's root directory (i.e. where your package.json is). Inside this ``.env`` file, write a line like so:
-
-    DB_CONN="mongodb://localhost:27017"
-
-Upon running npm start, ``dotenv`` will scan for the file and read all valid environment variables into node's process.env. This way also ensures you only have to do this once. 
 
 
-#### Setting DB_CONN in JetBrain's Webstorm configuration settings
 
-Under Webstorm version 2021.1.2, navigate to the 'Run' tab at the top of the IDE. From there, find 'Edit Configurations'. Find the + sign at the top left of the popup (or alternatively, press alt + insert) to add a new configuration. Navigate through the dropdown and find npm and select it. Now, on the right side window that starts with the 'Name' field, make sure that the package.json field points to the package.json in your project directory. Make sure the 'Command' field is set to start. Finally, set the 'Environment' field to:
-
-    DB_CONN=mongodb://localhost:27017
-
-Note the lack of double quotes around the address. None of the variations in quote usage so far have been typos. The usage of quotes is particular to each method and you should take care to match the format exactly.
-
-#### Setting DB_CONN via Windows Control Panel 
-Navigate to Control Panel -> System and Security -> System. Under Device Specifications, find the 'Related links' and find the 'Advanced system settings'. A System Properties window should popup. Find the 'Environment Variables' button under the 'Advanced' tab. A new window titled Environment Variables should have opened. Under user variables, click 'New'. For 'Variable name' enter ``DB_CONN``. For variable value enter ``mongodb://localhost:27017``, or whatever your mongoDB's connection address is. Press Ok to all windows.
-
-This method also only needs to be done once, but will mean that a user environment variable called DB_CONN will exist for your Windows profile until you remove it.
-
-This concludes the tutorial for setting up a MongoDB community server and connecting your InternApp to it. The four methods above are also usable for connecting the InternApp to a MongoDB Atlas cluster. The only difference will be in the connection string (i.e. not a localhost address and port but a connection string created by MongoDB for your cluster). Since the Atlas section was written first, its subsection on connecting the cluster only details the terminal method for setting the DB_CONN variable necessary for the app to connect to the database. If you elect to set up an Atlas cluster instead of a local instance of MongoDB, you may wish to return here for information on how to set the variable.
 
 ## Setting up on MongoDB Atlas
 ___
@@ -144,7 +110,6 @@ ___
 ___
 - (Oct 2020): Initial writeup.
 - (Sept 2021): Edits to Atlas section and added instructions for local MongoDB option.
-    + Added more ways of setting the DB_CONN variable.
 
 
 ## Credits
