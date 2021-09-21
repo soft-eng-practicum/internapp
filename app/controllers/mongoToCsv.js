@@ -42,7 +42,9 @@ module.exports.exportItec = function(req, res, next) {
     var itecArray = [];
     Itec.find({
     }, function(err, itecEntries) {
-
+        /*
+         Add  PhoneNumber : itecEntry.userphone
+         */
         itecEntries.forEach(function(itecEntry) {
             // if the user has not entered any notes
             if (itecEntry.notes.length == 0) {

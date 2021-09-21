@@ -29,6 +29,9 @@ module.exports.getEditProfile = function(req, res) {
     HTTP Req: POST
     URL: '/editprofile'
 */
+/*
+Add Phone Number
+*/
 module.exports.updateProfile = function(req, res) {
     User.update({'local.email' : req.user.email}, {
         'local.studentid' : req.body.studentid,

@@ -256,6 +256,15 @@ function deleteFile(fileName) {
         }
     });
 }
+/*
+function mutipleDelete(fileNameArray)
+{
+   for(let i = 0 ; i < 10; i++)
+    {
+        deleteFile(fileName);
+    }
+}
+*/
 
 /*
     HTTP Req: GET
@@ -691,7 +700,7 @@ module.exports.postItecApplication = function (req, res) {
             itecapp.userstate = req.user.state;
             itecapp.userzipcode = req.user.zipcode;
             itecapp.userdiscipline = 'ITEC';
-            itecapp.applicationstatus = 'submitted';
+            itecapp.applicationstatus = '';
             itecapp.documents = [{ item: 'ferpa', status: 'no' }, { item: 'resume', status: 'no' }];
             itecapp.save(function (err) {
                 if (err) {
@@ -723,7 +732,7 @@ module.exports.postBioApplication = function (req, res) {
             bioapp.userstate = req.user.state;
             bioapp.userzipcode = req.user.zipcode;
             bioapp.userdiscipline = 'BIO';
-            bioapp.applicationstatus = 'submitted';
+            bioapp.applicationstatus = '';
             bioapp.save(function (err) {
                 if (err) {
                     console.log(err);
