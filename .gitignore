@@ -6,6 +6,23 @@ npm-debug.log*
 # CSV files and directory
 csv/*.csv
 
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+/.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
 # Runtime data
 pids
@@ -40,5 +57,8 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-#MacOS Desktop Service Store Hidden Files
+# MacOS Desktop Service Store Hidden Files
 .DS_Store
+
+# Local environment variables
+.env
