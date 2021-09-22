@@ -253,13 +253,13 @@
          </tr>
       <% }) %>
       </tbody>
-   </table>
+   </table>-
    <% if (user.role=='admin' || user.role=='instructor') { %>
     <% if (user.role=='admin') { %>
     <form name="itecappadminnotes" action="/application/itec/feedback/<%= application._id %>" method="post">
         <div class="form-group">
             <br>
-            <textarea rows="4" cols="50" name="feedback"></textarea>
+            <textarea rows="4" cols="50" name="feedback" placeholder="These comments are from faculty addressing students directly."></textarea>
         </div>
         <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
     </form>
@@ -344,7 +344,7 @@
       <div class="form-group">
          <h3>Add Note</h3>
          <br>
-         <textarea rows="4" cols="50" name="note"></textarea>
+         <textarea rows="4" cols="50" name="note" placeholder="These comments are from faculty addressing other faculty. Students can not see these messages."></textarea>
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Note</button>
    </form>
