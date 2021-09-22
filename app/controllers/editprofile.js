@@ -41,7 +41,8 @@ module.exports.updateProfile = function(req, res) {
         'local.city' : req.body.city,
         'local.state' : req.body.state,
         'local.zipcode' : req.body.zipcode,
-        'local.discipline' : req.body.discipline
+        'local.discipline' : req.body.discipline,
+        'local.phone' : req.body.phone // Added this so students could update their phone
     }, function(err) {
         if (err) {
             res.flash('failure', 'An error has occured, your profile could not be updated.');
