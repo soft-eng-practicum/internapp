@@ -29,9 +29,7 @@ module.exports.getEditProfile = function(req, res) {
     HTTP Req: POST
     URL: '/editprofile'
 */
-/*
-Add Phone Number
-*/
+
 module.exports.updateProfile = function(req, res) {
     User.update({'local.email' : req.user.email}, {
         'local.studentid' : req.body.studentid,
@@ -42,7 +40,7 @@ module.exports.updateProfile = function(req, res) {
         'local.state' : req.body.state,
         'local.zipcode' : req.body.zipcode,
         'local.discipline' : req.body.discipline,
-        'local.phone' : req.body.phone // Added this so students could update their phone
+        'local.phone' : req.body.phone
     }, function(err) {
         if (err) {
             res.flash('failure', 'An error has occured, your profile could not be updated.');

@@ -1,13 +1,12 @@
 // app/models/user.js
 // load the things we need
 var mongoose = require('mongoose');
-//Matthew Edited This
+
 // define the schema for our user model
 var siteSchema = mongoose.Schema({
 
     name: { type: String, required: true, unique: true },
     address: { type: String, required: true },
-    phone: {type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
     zipcode: { type: String, required: true },

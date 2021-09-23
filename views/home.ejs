@@ -446,18 +446,6 @@
                   <a class="btn btn-success" href="/itec">Apply Now</a>
                </div>
             </div>
-            <div class="dropdown">
-               <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select another program to apply to
-               <span class="caret"></span></button>
-               <ul class="dropdown-menu">
-                   <% if (!bioApp) { %>
-                       <li><a href="/bio">Biology Internship (BIOL 4800)</a></li>
-                   <% } %>
-                   <% if (!itecApp) { %>
-                       <li><a href="/itec">Information Technology Internship (ITEC 4900)</a></li>
-                   <% } %>
-               </ul>
-               </div>
          </div>
       <% } %>
       <% include partials/footerimports %>

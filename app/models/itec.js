@@ -159,11 +159,11 @@ var itecSchema = mongoose.Schema({
                 type: String,
                 required: false
         },
-       /* applicationstatus: {type: String, required: false},
+        applicationstatus: {type: String, required: false},
             useremail: {
             type: String,
             required: false
-        },*/
+        },
         userstudentid: {
             type: String
         },

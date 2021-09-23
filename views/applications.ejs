@@ -124,7 +124,7 @@ a.three:hover {font-size:150%;}
         <br><br><hr>
         <a id="btn" href="mailto:" onclick="sendAll()"><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email All</button></a>
         <a id="send1" onclick="displayResult()" href="mailto:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email Selected</button></a>
-        <a id="send2" onclick="" href="malito:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Download Selected</button> </a>
+        <!--<a id="send2" onclick="" href="malito:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Download Selected</button> </a>-->
         <br>
           <br>
         <div class="table-responsive">
@@ -175,10 +175,10 @@ a.three:hover {font-size:150%;}
                   </td>
                   <td>
                     <%= application.applicationstatus %>
-                    <select class="form-control" name="proposedinternyear" id="year">
+                   <!-- <select class="form-control" name="proposedinternyear" id="year">
                       <option value="submitted">submitted</option>
                       <option value="completed" >completed</option>
-                    </select>
+                    </select>-->
                   </td>
                   <td>
                     <%= application.userdiscipline %>
@@ -201,7 +201,7 @@ a.three:hover {font-size:150%;}
                <% }); %>
               </tbody>
             </table>
-       <!-- </div> -->
+        </div>
       </h3>
 
 
@@ -242,8 +242,6 @@ a.three:hover {font-size:150%;}
             return;
           }
     </script>
-
-    <!--Create function for the download selected button-->
 
 
     <script type="text/javascript">

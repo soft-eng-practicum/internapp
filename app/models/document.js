@@ -1,11 +1,6 @@
 var mongoose = require('mongoose');
 
-/*
-Add phone : {
-        type: String,
-        required: true
-    },
-*/
+
 var documentSchema = mongoose.Schema({
     user: {
         user_id : {

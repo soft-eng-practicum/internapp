@@ -257,15 +257,6 @@ function deleteFile(fileName) {
         }
     });
 }
-/*
-function mutipleDelete(fileNameArray)
-{
-   for(let i = 0 ; i < 10; i++)
-    {
-        deleteFile(fileName);
-    }
-}
-*/
 
 /*
     HTTP Req: GET
