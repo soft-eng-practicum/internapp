@@ -43,6 +43,7 @@ ___
 
 The InternApp uses node's process.env in order to provide certain configurable variables to the application at the app's runtime, including the database's address. The name of the environment variable for the database address is called DB_CONN. Therefore, an environment variable named DB_CONN must be set with a valid mongoDB connection string before the app can deploy. There are many ways of setting an environment variable and the ways can differ sometimes substantially from IDE to IDE, Windows or Linux, whether you're operating in the terminal or command prompt, and even between programming languages. In our case, I will detail four different ways of setting environment variables and let you choose.
 
+<a id="setting-db-conn-via-command-prompt-terminal"></a>
 #### Setting DB_CONN via Command Prompt/Terminal
 Via Command Prompt:
 
@@ -54,6 +55,7 @@ Via terminal (macOS/linux):
 
 This method has the disadvantage of requiring inputting these commands upon every new instance of command prompt or terminal prior to starting the app.
 
+<a id="setting-db-conn-via-the---dotenv---package"></a>
 #### Setting DB_CONN via the ``dotenv`` package
 The ``dotenv`` node package is installed in the InternApp upon running npm install. Setting DB_CONN with this method is easy. Simply create a new file called ``.env`` inside the project's root directory (i.e. where your package.json is). Inside this ``.env`` file, write a line like so:
 
@@ -61,7 +63,7 @@ The ``dotenv`` node package is installed in the InternApp upon running npm insta
 
 Upon running npm start, ``dotenv`` will scan for the file and read all valid environment variables into node's process.env. This way also ensures you only have to do this once. 
 
-
+<a id="setting-db-conn-in-jetbrain-s-webstorm-configuration-settings"></a>
 #### Setting DB_CONN in JetBrain's Webstorm configuration settings
 
 Under Webstorm version 2021.1.2, navigate to the 'Run' tab at the top of the IDE. From there, find 'Edit Configurations'. Find the + sign at the top left of the popup (or alternatively, press alt + insert) to add a new configuration. Navigate through the dropdown and find npm and select it. Now, on the right side window that starts with the 'Name' field, make sure that the package.json field points to the package.json in your project directory. Make sure the 'Command' field is set to start. Finally, set the 'Environment' field to:
@@ -70,6 +72,7 @@ Under Webstorm version 2021.1.2, navigate to the 'Run' tab at the top of the IDE
 
 Note the lack of double quotes around the address. None of the variations in quote usage so far have been typos. The usage of quotes is particular to each method and you should take care to match the format exactly.
 
+<a id="setting-db-conn-via-windows-control-panel"></a>
 #### Setting DB_CONN via Windows Control Panel 
 Navigate to Control Panel -> System and Security -> System. Under Device Specifications, find the 'Related links' and find the 'Advanced system settings'. A System Properties window should popup. Find the 'Environment Variables' button under the 'Advanced' tab. A new window titled Environment Variables should have opened. Under user variables, click 'New'. For 'Variable name' enter ``DB_CONN``. For variable value enter ``mongodb://localhost:27017``, or whatever your mongoDB's connection address is. Press Ok to all windows.
 
