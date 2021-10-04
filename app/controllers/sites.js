@@ -96,41 +96,6 @@ module.exports.exportSites = function (req, res) {
     });
 }
 
-function write(fileName, csv, req, res, redirect) {
-    fs.writeFile(fileName, csv, function (err) {
-        if (err) {
-            req.flash('failure', 'There was an error with the writing of the CSV file');
-        } else {
-            console.log('file successfully saved');
-            csvPath = path.resolve(__dirname + '/../../' + fileName);
-            download(csvPath, req, res, redirect);
-        }
-    });
-}
-
-function download(csvPath, req, res, redirect) {
-    res.download(csvPath, function (err) {
-        if (err) {
-            console.log('Error downloading csv: ', err);
-            req.flash('failure', 'There was an error downloading the csv file');
-        } else {
-            console.log('file successfully written!');
-            deleteFile(csvPath, req, res, redirect);
-        }
-    });
-}
-
-function deleteFile(fileName, req, res, redirect) {
-    fs.unlink(fileName, function (err) {
-        if (err) {
-            console.log('Error deleting the filing after download');
-        } else {
-            console.log(fileName + ' deleted!');
-            res.redirect(redirect);
-        }
-    });
-}
-
 /*
     HTTP Req: GET
     URL: '/site/edit/:siteid'
