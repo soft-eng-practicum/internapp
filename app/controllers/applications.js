@@ -234,6 +234,7 @@ function write(fileName, csv, req, res) {
         }
     });
 }
+//passes in comma seperated file
 
 function download(csvPath, req, res) {
     res.download(csvPath, function (err) {

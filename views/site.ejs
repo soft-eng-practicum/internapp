@@ -81,17 +81,13 @@
         </div>
         <br>
         <button type="submit" class="btn btn-success btn-md" data-toggle="modal" data-target="#exportprogram" style="margin-right: 10px">Export Table</button>
-        <a id="btn" href="mailto:" onclick="sendAll()"><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email All</button></a>
-        <a id="send1" onclick="displayResult()" href="mailto:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email Selected</button></a>
         <br><br>
-
         <div class="table-responsive">
             <table class="table table-striped table-bordered" id="sites">
                 <thead>
                 <tr>
                     <th>Select</th>
                     <th>Name</th>
-                    <th>Email Address</th>
                     <th>Address</th>
                     <th>City</th>
                     <th>Program</th>
@@ -114,10 +110,6 @@
                             </center>
                         </td>
                         <td><%= site.name %></td>
-                        <td>
-                        <% site.contacts.forEach(function(contact) { %>
-                        <%= contact.email %>
-                        <% }); %> </td>
                         <td><%= site.address %></td>
                         <td><%= site.city %></td>
                         <td><%= site.section %></td>

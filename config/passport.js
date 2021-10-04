@@ -23,6 +23,7 @@ var User = require('../app/models/user');
             studentid: user.local.studentid,
             fname: user.local.fname,
             lname: user.local.lname,
+            phone: user.local.phone,
             address: user.local.address,
             city: user.local.city,
             state: user.local.state,
@@ -83,6 +84,7 @@ var User = require('../app/models/user');
                         newUser.local.studentid = req.body.studentid;
                         newUser.local.fname = req.body.fname;
                         newUser.local.lname = req.body.lname;
+                        newUser.local.phone = req.body.phone;
                         newUser.local.address = req.body.address;
                         newUser.local.city = req.body.city;
                         newUser.local.state = req.body.state;
