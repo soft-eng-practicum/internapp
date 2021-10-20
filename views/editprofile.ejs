@@ -62,11 +62,40 @@
                   <input type="text" class="form-control" id="zipcodeTxt" name="zipcode" pattern ="\d{5}([ \-]\d{4})?" title="Not a valid zipcode" required value=<%= profiledetails.local.zipcode %>>
                </div>
             </div>
-            <div>
+<!--            <div class="form-group">-->
+<!--               <div class="modal-contents">-->
+<!--                  <div class="close">+</div>-->
+<!--                  <br>-->
+<!--                  <h3>Change Proposed Intern Date</h3>-->
+<!--                  <form name="proposedinternsemester" action="/application/changeMultipleSemester" method="post">-->
+<!--                     <div class="form-group" >-->
+<!--                        <label>Internship Date</label>-->
+<!--                        <select class="form-control" name="proposedinternsemester" id="semester">-->
+<!--                           <option value="">Select semester</option>-->
+<!--                           <option value="Fall" >Fall</option>-->
+<!--                           <option value="Spring">Spring</option>-->
+<!--                           <option value="Summer">Summer</option>-->
+<!--                        </select>-->
+<!--                     </div>-->
+<!--                     <div class="form-group">-->
+<!--                        <label>Internship Date</label>-->
+<!--                        <select class="form-control" name="proposedinternyear" id="year">-->
+<!--                           <option value="">Select Year</option>-->
+<!--                           <option value="2021" >2021</option>-->
+<!--                           <option value="2022">2022</option>-->
+<!--                           <option value="2023">2023</option>-->
+<!--                           <option value="2024" >2024</option>-->
+<!--                        </select>-->
+<!--                     </div>-->
+<!--                     <input type="hidden" id= "checkedd" name="checkboxes">-->
+<!--                     <button type="submit" class="btn btn-success btn-lg" id="submitBtn">Change Date</button>-->
+<!--                  </form>-->
+<!--               </div>-->
+<!--            </div>-->
+<!--            <div>-->
                <div align="center">
                   <button type="submit" id="submitBtn" class="btn btn-success">Update</button>
                </div>
-            </div>
          </form>
          </div>
       </div>

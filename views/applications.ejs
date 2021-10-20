@@ -203,8 +203,6 @@ a.three:hover {font-size:150%;}
             </table>
         </div>
       </h3>
-
-
       <br>
       <br>
       <br>
@@ -260,7 +258,8 @@ a.three:hover {font-size:150%;}
       //From datatables.net/reference
       table = $('#applications').DataTable({
       "bFilter": true,
-      "pageLength": 50
+      "pageLength": 50,
+        "stateSave": true
       });
 
       // table.search(semester + ' ' + year + ' ' + program).draw();

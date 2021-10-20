@@ -24,6 +24,7 @@ var ctrlMongoToCsv = require('../controllers/mongoToCsv');
 var ctrlUpload = require('../controllers/documentUpload');
 var ctrlDelete = require('../controllers/documentDelete');
 var ctrlSiteNotes = require('../controllers/sitenotes');
+var ctrlSupport = require('../controllers/support');
 //var ctrlMultiDownload  = require('../controllers/ ');
 
 
@@ -188,10 +189,10 @@ module.exports = function (app, passport) {
     app.get('/site/contacts/:siteid/:documentid', isLoggedIn, isAdminOrInstructor, ctrlSites.deleteSiteContact);
     app.get('/site/edit/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteToEdit);
     app.get('/site/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.getSiteDetails);
-    app.post('/addSite', isLoggedIn, isAdmin, ctrlSites.postAddSite);
+    app.post('/addSite', isLoggedIn, isAdminOrInstructor, ctrlSites.postAddSite);
     app.post('/site/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.addSiteContact);
-    app.post('/site/edit/:siteid', isLoggedIn, isAdmin, ctrlSites.updateSite);
-    app.post('/site/delete/:siteid', isLoggedIn, isAdmin, ctrlSites.deleteSite);
+    app.post('/site/edit/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.updateSite);
+    app.post('/site/delete/:siteid', isLoggedIn, isAdminOrInstructor, ctrlSites.deleteSite);
     app.get('/site/:siteId/export/contacts', makeCSVDirectory, isLoggedIn, isAdminOrInstructor, ctrlSites.exportContacts);
 
     /* Promote page */
@@ -204,6 +205,9 @@ module.exports = function (app, passport) {
 
     /* FAQ page */
     app.get('/faq', ctrlFAQ.getFAQ);
+
+    /* Support Page */
+    app.get('/support', ctrlSupport.getSupport);
 
     /* Help page */
     app.get('/help', ctrlHelp.getHelp);

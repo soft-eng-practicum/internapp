@@ -135,6 +135,7 @@ function filterApplications(req, res, cb) {
                         ID: bioApp.userstudentid,
                         FirstName: bioApp.userfname,
                         LastName: bioApp.userlname,
+                        PhoneNumber: bioApp.userphone,
                         'BIO GPA': bioApp.programgpa,
                         Concentration: bioApp.major,
                         'Expected Graduation': bioApp.expectedGraduationSemester + ' ' + bioApp.expectedGraduationYear,
@@ -144,7 +145,7 @@ function filterApplications(req, res, cb) {
                     appArray.push(bioJson);
                 });
 
-                fields = ['ID', 'FirstName', 'LastName', 'BIO GPA', 'Concentration',
+                fields = ['ID', 'FirstName', 'LastName', 'PhoneNumber', 'BIO GPA', 'Concentration',
                     'Expected Graduation', 'Semester', 'Year'];
 
                 cb(null, {
@@ -170,6 +171,7 @@ function filterApplications(req, res, cb) {
                         ID: itecApp.userstudentid,
                         FirstName: itecApp.userfname,
                         LastName: itecApp.userlname,
+                        PhoneNumber: itecApp.userphone,
                         'ITEC GPA': itecApp.itecgpa,
                         Concentration: itecApp.major,
                         'Expected Graduation': itecApp.expectedGraduationSemester + ' ' + itecApp.expectedGraduationYear,
@@ -180,7 +182,7 @@ function filterApplications(req, res, cb) {
                     appArray.push(itecJson);
                 });
 
-                fields = ['ID', 'FirstName', 'LastName', 'ITEC GPA', 'Concentration',
+                fields = ['ID', 'FirstName', 'LastName', 'PhoneNumber', 'ITEC GPA', 'Concentration',
                     'Expected Graduation', 'Programming', 'Semester', 'Year'];
 
                 cb(null, {
@@ -687,6 +689,7 @@ module.exports.postItecApplication = function (req, res) {
             itecapp.userstudentid = req.user.studentid;
             itecapp.userfname = req.user.fname;
             itecapp.userlname = req.user.lname;
+            itecapp.userphone = req.user.phone;
             itecapp.useraddress = req.user.address;
             itecapp.usercity = req.user.city;
             itecapp.userstate = req.user.state;
@@ -719,6 +722,7 @@ module.exports.postBioApplication = function (req, res) {
             bioapp.userstudentid = req.user.studentid;
             bioapp.userfname = req.user.fname;
             bioapp.userlname = req.user.lname;
+            bioapp.userphone = req.user.phone;
             bioapp.useraddress = req.user.address;
             bioapp.usercity = req.user.city;
             bioapp.userstate = req.user.state;
