@@ -7,8 +7,8 @@ Library    SeleniumLibrary
 ${serialNum}
 ${mockFirstName}    Mock Human
 ${mockLastName}     Last Name
-${email}    mock@ggc.edu
-${mockEmail}    ${serialNum} + ${email}
+${email}    new7mock@ggc.edu
+${mockEmail}    ${serialNum}${email}
 ${mockPassword}    fakePass123
 ${mockStudentNum}    900100000
 ${mockPhone}    7700000000
@@ -45,6 +45,8 @@ Input New User Credentials at Signup
 #ZIP
     Input Text    //*[@id="zipTxt"]    ${mockZip}
 
+
+
 *** Test Cases ***
 Open Home Page
     Open Browser    http://localhost:8000/    chrome
@@ -57,5 +59,6 @@ Select Signup
     Mouse Down    xpath:/html/body/div/div/form/button
     Mouse Up    xpath:/html/body/div/div/form/button
 Select Signup as ITEC
-    Select From List By Label    //*[@id="application"]/option[3]
+
+#    Select From List By Label
     Select Checkbox    //*[@id="bioBox"]

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20211109 14:26:12.248" rpa="false" schemaversion="2">
+<suite id="s1" name="signUpIntern" source="C:\Users\Taylor\Documents\OGInternApp\internapp\robot\signUpIntern.robot">
+<test id="s1-t1" name="Open Home Page">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>http://localhost:8000/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211109 14:26:12.548" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8000/'.</msg>
+<status status="PASS" starttime="20211109 14:26:12.548" endtime="20211109 14:26:15.250"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211109 14:26:15.264" endtime="20211109 14:26:17.090"/>
+</kw>
+<status status="PASS" starttime="20211109 14:26:12.546" endtime="20211109 14:26:17.092"/>
+</test>
+<test id="s1-t2" name="Select Signup">
+<kw name="Mouse Down" library="SeleniumLibrary">
+<arg>xpath:/html/body/div/div/a[2]</arg>
+<doc>Simulates pressing the left mouse button on the element ``locator``.</doc>
+<msg timestamp="20211109 14:26:17.099" level="INFO">Simulating Mouse Down on element 'xpath:/html/body/div/div/a[2]'.</msg>
+<status status="PASS" starttime="20211109 14:26:17.098" endtime="20211109 14:26:17.486"/>
+</kw>
+<kw name="Mouse Up" library="SeleniumLibrary">
+<arg>xpath:/html/body/div/div/a[2]</arg>
+<doc>Simulates releasing the left mouse button on the element ``locator``.</doc>
+<msg timestamp="20211109 14:26:17.489" level="INFO">Simulating Mouse Up on element 'xpath:/html/body/div/div/a[2]'.</msg>
+<status status="PASS" starttime="20211109 14:26:17.488" endtime="20211109 14:26:18.079"/>
+</kw>
+<kw name="Input New User Credentials at Signup">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="emailTxt"]</arg>
+<arg>${mockEmail}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:18.081" level="INFO">Typing text 'new7mock@ggc.edu' into text field '//*[@id="emailTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:18.081" endtime="20211109 14:26:19.831"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="cfmEmailTxt"]</arg>
+<arg>${mockEmail}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:19.832" level="INFO">Typing text 'new7mock@ggc.edu' into text field '//*[@id="cfmEmailTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:19.831" endtime="20211109 14:26:20.050"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="passwordTxt"]</arg>
+<arg>${mockPassword}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:20.051" level="INFO">Typing text 'fakePass123' into text field '//*[@id="passwordTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:20.050" endtime="20211109 14:26:20.213"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="cfmPasswordTxt"]</arg>
+<arg>${mockPassword}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:20.214" level="INFO">Typing text 'fakePass123' into text field '//*[@id="cfmPasswordTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:20.213" endtime="20211109 14:26:20.362"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="studentIdTxt"]</arg>
+<arg>${mockStudentNum}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:20.363" level="INFO">Typing text '900100000' into text field '//*[@id="studentIdTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:20.363" endtime="20211109 14:26:20.513"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="fnameTxt"]</arg>
+<arg>${mockFirstName}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:20.514" level="INFO">Typing text 'Mock Human' into text field '//*[@id="fnameTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:20.513" endtime="20211109 14:26:20.664"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="lnameTxt"]</arg>
+<arg>${mockLastName}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:20.665" level="INFO">Typing text 'Last Name' into text field '//*[@id="lnameTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:20.664" endtime="20211109 14:26:20.809"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="phone"]</arg>
+<arg>${mockPhone}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:20.810" level="INFO">Typing text '7700000000' into text field '//*[@id="phone"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:20.810" endtime="20211109 14:26:20.965"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="addressTxt"]</arg>
+<arg>${mockAddress}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:20.966" level="INFO">Typing text '1000 University Parkway' into text field '//*[@id="addressTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:20.965" endtime="20211109 14:26:21.125"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="cityTxt"]</arg>
+<arg>${mockCity}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:21.126" level="INFO">Typing text 'Lawrenceville' into text field '//*[@id="cityTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:21.126" endtime="20211109 14:26:21.275"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="stateTxt"]</arg>
+<arg>${mockState}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:21.275" level="INFO">Typing text 'Georgia' into text field '//*[@id="stateTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:21.275" endtime="20211109 14:26:21.436"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//*[@id="zipTxt"]</arg>
+<arg>${mockZip}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20211109 14:26:21.438" level="INFO">Typing text '30043' into text field '//*[@id="zipTxt"]'.</msg>
+<status status="PASS" starttime="20211109 14:26:21.437" endtime="20211109 14:26:21.582"/>
+</kw>
+<status status="PASS" starttime="20211109 14:26:18.080" endtime="20211109 14:26:21.583"/>
+</kw>
+<kw name="Mouse Down" library="SeleniumLibrary">
+<arg>xpath:/html/body/div/div/form/button</arg>
+<doc>Simulates pressing the left mouse button on the element ``locator``.</doc>
+<msg timestamp="20211109 14:26:21.583" level="INFO">Simulating Mouse Down on element 'xpath:/html/body/div/div/form/button'.</msg>
+<status status="PASS" starttime="20211109 14:26:21.583" endtime="20211109 14:26:21.900"/>
+</kw>
+<kw name="Mouse Up" library="SeleniumLibrary">
+<arg>xpath:/html/body/div/div/form/button</arg>
+<doc>Simulates releasing the left mouse button on the element ``locator``.</doc>
+<msg timestamp="20211109 14:26:21.901" level="INFO">Simulating Mouse Up on element 'xpath:/html/body/div/div/form/button'.</msg>
+<status status="PASS" starttime="20211109 14:26:21.901" endtime="20211109 14:26:24.732"/>
+</kw>
+<status status="PASS" starttime="20211109 14:26:17.097" endtime="20211109 14:26:24.733"/>
+</test>
+<test id="s1-t3" name="Select Signup as ITEC">
+<kw name="Mouse Down" library="SeleniumLibrary">
+<arg>//*[@id="application"]/option[3]</arg>
+<doc>Simulates pressing the left mouse button on the element ``locator``.</doc>
+<msg timestamp="20211109 14:26:24.737" level="INFO">Simulating Mouse Down on element '//*[@id="application"]/option[3]'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20211109 14:26:26.665" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-11.png"&gt;&lt;img src="selenium-screenshot-11.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211109 14:26:24.789" endtime="20211109 14:26:26.665"/>
+</kw>
+<msg timestamp="20211109 14:26:26.674" level="FAIL">ElementNotInteractableException: Message: element not interactable: [object HTMLOptionElement] has no size and location
+  (Session info: chrome=95.0.4638.69)
+</msg>
+<status status="FAIL" starttime="20211109 14:26:24.735" endtime="20211109 14:26:26.674"/>
+</kw>
+<kw name="Mouse Up" library="SeleniumLibrary">
+<arg>//*[@id="application"]/option[3]</arg>
+<doc>Simulates releasing the left mouse button on the element ``locator``.</doc>
+<status status="NOT RUN" starttime="20211109 14:26:26.674" endtime="20211109 14:26:26.674"/>
+</kw>
+<kw name="Select Checkbox" library="SeleniumLibrary">
+<arg>//*[@id="bioBox"]</arg>
+<doc>Selects the checkbox identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20211109 14:26:26.674" endtime="20211109 14:26:26.674"/>
+</kw>
+<status status="FAIL" starttime="20211109 14:26:24.734" endtime="20211109 14:26:26.674">ElementNotInteractableException: Message: element not interactable: [object HTMLOptionElement] has no size and location
+  (Session info: chrome=95.0.4638.69)
+</status>
+</test>
+<doc>Automated signup and creation of a mock student and all its credentials</doc>
+<status status="FAIL" starttime="20211109 14:26:12.251" endtime="20211109 14:26:26.680"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="1" skip="0" id="s1" name="signUpIntern">signUpIntern</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
