@@ -124,7 +124,6 @@ a.three:hover {font-size:150%;}
         <br><br><hr>
         <a id="btn" href="mailto:" onclick="sendAll()"><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email All</button></a>
         <a id="send1" onclick="displayResult()" href="mailto:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Email Selected</button></a>
-        <!--<a id="send2" onclick="" href="malito:" ><button type="submit" class="btn btn-success btn-md" style="margin-right: 10px">Download Selected</button> </a>-->
         <br>
           <br>
         <div class="table-responsive">
@@ -138,12 +137,9 @@ a.three:hover {font-size:150%;}
                   <th>Student ID</th>
                   <th>Major</th>
                   <th>Application Status</th>
-                  <!-- <th>Program</th> Delete This-->
-                  <th>Internship Received</th>
                   <th>Proposed Semester Year</th>
                   <th>Expected Graduation</th>
                   <th>View Details</th>
-                  <!-- <th>Delete</th> Delete This-->
                 </tr>
               </thead>
               <tbody>
@@ -181,9 +177,6 @@ a.three:hover {font-size:150%;}
                     </select>-->
                   </td>
                   <td>
-                    <%= application.userdiscipline %>
-                  </td>
-                  <td>
                     <%= application.proposedinternsemester + " " + application.proposedinternyear %>
                   </td>
                   <td>
@@ -193,10 +186,6 @@ a.three:hover {font-size:150%;}
                     <a href="/application/<%= application.userdiscipline %>/<%= application._id %>" >
                         <span class='glyphicon glyphicon-search'></span></a>
                    </td>
-                  <!--<td>
-                    <a href="/application/<%= application.userdiscipline %>/<%= application._id %>/delete" >
-                      <span class='glyphicon glyphicon-trash'></span></a>
-                  </td>-->
                </tr>
                <% }); %>
               </tbody>

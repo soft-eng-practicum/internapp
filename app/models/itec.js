@@ -21,7 +21,7 @@ var itecSchema = mongoose.Schema({
                 type: String,
                 required: false
         },
-        phone: {
+        phonenumber: {
                 type: String,
                 required: true
         },

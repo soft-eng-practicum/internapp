@@ -9,7 +9,7 @@ var bioSchema = mongoose.Schema({
         type: String,
         default: formatDate(new Date())
     },
-    userphone: {
+    phonenumber: {
         type: String,
         required: true
 },
