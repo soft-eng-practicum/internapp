@@ -7,6 +7,15 @@ Library    SeleniumLibrary
 ${adminUsername}    test@test.com
 ${adminPassword}    123456
 
+*** Keyword ***
+#This is the automated function for making the robot click at a location
+#working on this
+Click at Location
+    [Arguments]    ${Locator}
+    Mouse Down    ${Locator}
+    Mouse Up    ${Locator}
+
+
 *** Test Cases ***
 # Opens a browser with a given Url "localhost:8000" with a specific driver "Chrome"
 
