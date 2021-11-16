@@ -5,6 +5,7 @@
        - Loads the user's submitted bio/itec application and then updates
 */
 
+var User = require('../models/user');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
@@ -21,12 +22,14 @@ module.exports.getEditBio = function(req, res) {
 
 module.exports.getEditItec = function(req, res) {
     Itec.getUsersItecApp(req.user.email, function(foundItecApp) {
-        res.render('editItec', {
-            application: foundItecApp,
-            user : req.user,
-            successMessage: req.flash('success'),
-            failureMessage: req.flash('failure')
-        });
+        User.findOne({_id: req.user._id}, function(err, user) {
+            res.render('editItec', {
+                application: foundItecApp,
+                user : user,
+                successMessage: req.flash('success'),
+                failureMessage: req.flash('failure')
+            });
+        })
     });
 }
 

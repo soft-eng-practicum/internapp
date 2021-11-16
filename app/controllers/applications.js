@@ -296,13 +296,19 @@ module.exports.getSpecificItecApplication = function (req, res) {
         if (err) throw err;
         Document.getItecDocumentsForUser(itecApp.useremail, function (incomingDocuments) {
             documents = incomingDocuments;
-            res.render('applicationdetails.ejs', {
-                application: itecApp,
-                documents: documents,
-                user: req.user,
-                successMessage: req.flash('success'),
-                failureMessage: req.flash('failure')
-            });
+            User.findOne({_id: req.user._id}, function(err, user) {
+                if (err) {
+                    throw err;
+                }
+                res.render('applicationdetails.ejs', {
+                    application: itecApp,
+                    documents: documents,
+                    user: user,
+                    // userPhoneNumber: user.local.phone,
+                    successMessage: req.flash('success'),
+                    failureMessage: req.flash('failure')
+                });
+            })
         });
     });
 }
