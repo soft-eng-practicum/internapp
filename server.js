@@ -2,6 +2,7 @@
 
 // set up ======================================================================
 // get all the tools we need
+var fs = require('fs');
 var express  = require('express');
 var app      = express();
 var path     = require('path');

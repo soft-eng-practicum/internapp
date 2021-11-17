@@ -89,6 +89,7 @@
                     <th>Select</th>
                     <th>Name</th>
                     <th>Address</th>
+                    <th>Email Address</th>
                     <th>City</th>
                     <th>Program</th>
                     <th>Valid MOU</th>
@@ -103,7 +104,7 @@
                     <tr>
                         <td id="mySelect1">
                             <center>
-                                <input id="emailCheckbox" type="checkbox"  value ='<% site.contacts.forEach(function(contact) { %>
+                                <input id="siteCheckbox" type="checkbox"  value ='<% site.contacts.forEach(function(contact) { %>
                     <%= contact.email %>
                     <% });  %>' />
 
@@ -111,6 +112,9 @@
                         </td>
                         <td><%= site.name %></td>
                         <td><%= site.address %></td>
+                        <td><% site.contacts.forEach(function(contact) { %>
+                                <%= contact.email %>
+                            <% }); %></td>
                         <td><%= site.city %></td>
                         <td><%= site.section %></td>
                         <% if (site.mou==='Yes') { %>
