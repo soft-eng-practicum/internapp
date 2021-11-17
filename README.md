@@ -1,5 +1,14 @@
 <div style="text-align:center"><img src ="public/images/logos.png" /></div>
 
+# InternApp - Team Banco Banco
+
+**Repo Location URL:** [Fall 2021 InternApp Repo](https://github.com/soft-eng-practicum/internapp/tree/fall2021)
+
+**Progress Tracking Tool URL:** [Jira](https://jira.ggc.edu/secure/RapidBoard.jspa?rapidView=100&projectKey=IN)
+
+**Communication Tool:** [Discord #bancobacno](https://discord.gg/jQTGz5YJ)
+
+
 # InternApp - Team Meraki
 
 **Repo Location URL:** [Fall 2019 InternApp Repo](https://github.com/soft-eng-practicum/internapp/tree/fall2019)
@@ -24,6 +33,8 @@
 
 **Signed Fall 2019 Intellectual Ownership Agreement:** [Google drive link](https://dochub.com/jcantillo333/3jwyjBJ/internapp-fall-2019-intellectual-property-agreement-pdf?dt=kCxAT_qCa2ezmwysfbsw)
 
+**Signed Fall 2021 Intellectual Ownership Agreement:** [Google drive link](https://docs.google.com/document/d/1EATmHVuKLAbs28_PneQwQznAzzWb67caezYbKiR0QKY/edit?usp=sharing)
+
 ## Overview
 
 _InternApp is a web application designed to centralize the application process for the Information Technology (ITEC 4900) and Biology (BIOL 4800) internship programs for both student and coordinator. The application will allow for students to apply to the ITEC and BIOL internship programs and for the internship program coordinators to view, download, and archive the applications. The coordinators will be able to provide feedback and update the status of a student's application, which the student will be able to view. Information pertaining to possible/current internship job sites will also be stored._
@@ -31,11 +42,17 @@ _InternApp is a web application designed to centralize the application process f
 
 ## Final Reports
 
+**Fall 2021 Final Report:** [Google docs link](https://docs.google.com/document/d/1VYSdfSHJq_sA9U-Z9LirM7KC23HPEmPQZyLbhakamKg/edit?usp=sharing)
+
 **Fall 2019 Final Report:** [Google docs link](https://docs.google.com/document/d/1MQaREmzLE_9U59A04JfEccMAPuCan4-f5sTt4SA3dzQ/edit?usp=sharing)
 
 **Fall 2018 Final Report:** [Google docs link](https://docs.google.com/document/d/14bPVeReTpH6RkloFUZmiIxMZo8cSe6K3K5anvwolyLU/edit?usp=sharing)
 
 ## CREATE Surveys and Results
+
+**Fall 2021 Survey:** [Survey Link](https://ggc.az1.qualtrics.com/jfe/form/SV_5BJMQvsV6yBFHvw)
+
+**Fall 2021 Survey Results:** [Google docs link](https://docs.google.com/spreadsheets/d/1qV4d5iJ_CctE-vi8q52WC2KtWwJ9iTZrR-SAx1I44nw/edit?usp=sharing)
 
 **Fall 2019 Survey:** [Surveymonkey Link](https://www.surveymonkey.com/r/QTLBVFX)
 
@@ -46,6 +63,8 @@ _InternApp is a web application designed to centralize the application process f
 **Fall 2018 Survey Results:** [Google docs link](https://drive.google.com/open?id=1g0W9waGUavpq-RcSLb5mhasSQGrxeIgh)
 
 ## Application Videos
+
+**Fall 2021 Final demo video:** [Youtube link](https://www.youtube.com/watch?v=CgwWW_5bpEQ)
 
 **Fall 2019 Final demo video:** [Google docs link](https://www.youtube.com/watch?v=CB7A34H65l4)
 
@@ -101,7 +120,7 @@ _InternApp is a web application designed to centralize the application process f
 
 ## Running the application on your local machine
 
-1. **[Install Node.js (either version is fine)](https://nodejs.org/en/)**
+1. **[Install Node.js (Has to be version 10.15.1)](https://community.chocolatey.org/packages/nodejs.install/10.15.1)**
    <br>
    &nbsp;&nbsp;&nbsp;&nbsp;a. To ensure you have Node.js installed, run 'node --version' within your terminal/command line<br/>
 2. **[Clone this github repository to your local machine](https://github.com/soft-eng-practicum/internapp)**
