@@ -11,7 +11,7 @@ var Itec = require('../models/itec');
 module.exports.getEditBio = function(req, res) {
     Bio.getUsersBioApp(req.user.email, function(foundBioApp) {
         User.findOne({_id: req.user._id}, function(err, user) {
-            res.render('editBio', {
+            res.render('editbio', {
                 application: foundBioApp,
                 user : user,
                 successMessage: req.flash('success'),
