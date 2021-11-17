@@ -225,6 +225,7 @@ module.exports.filterApplications = function (req, res) {
     }
 }
 
+
 function write(fileName, csv, req, res) {
     fs.writeFile(fileName, csv, function (err) {
         if (err) {
@@ -272,13 +273,19 @@ module.exports.getSpecificBioApplication = function (req, res) {
         if (err) throw err;
         Document.getBioDocumentsForUser(bioApp.useremail, function (incomingDocuments) {
             documents = incomingDocuments;
-            res.render('applicationdetails.ejs', {
-                application: bioApp,
-                documents: documents,
-                user: req.user,
-                successMessage: req.flash('success'),
-                failureMessage: req.flash('failure')
-            });
+            User.findOne({_id: req.user._id}, function(err, user) {
+                if (err) {
+                    throw err;
+                }
+                res.render('applicationdetails.ejs', {
+                    application: bioApp,
+                    documents: documents,
+                    user: user,
+                    // userPhoneNumber: user.local.phone,
+                    successMessage: req.flash('success'),
+                    failureMessage: req.flash('failure')
+                });
+            })
         });
     });
 };
@@ -296,13 +303,19 @@ module.exports.getSpecificItecApplication = function (req, res) {
         if (err) throw err;
         Document.getItecDocumentsForUser(itecApp.useremail, function (incomingDocuments) {
             documents = incomingDocuments;
-            res.render('applicationdetails.ejs', {
-                application: itecApp,
-                documents: documents,
-                user: req.user,
-                successMessage: req.flash('success'),
-                failureMessage: req.flash('failure')
-            });
+            User.findOne({_id: req.user._id}, function(err, user) {
+                if (err) {
+                    throw err;
+                }
+                res.render('applicationdetails.ejs', {
+                    application: itecApp,
+                    documents: documents,
+                    user: user,
+                    // userPhoneNumber: user.local.phone,
+                    successMessage: req.flash('success'),
+                    failureMessage: req.flash('failure')
+                });
+            })
         });
     });
 }
