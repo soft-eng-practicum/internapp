@@ -15,7 +15,6 @@ Click at Location
     Mouse Down    ${Locator}
     Mouse Up    ${Locator}
 
-
 *** Test Cases ***
 # Opens a browser with a given Url "localhost:8000" with a specific driver "Chrome"
 

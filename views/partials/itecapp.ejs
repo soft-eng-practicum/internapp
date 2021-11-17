@@ -1,356 +1,356 @@
 <div class="col-sm-6 col-sm-offset-3">
 
-   <table class="table table-bordered">
-      <tr>
-         <td>Application Status:</td>
-         <td>
-            <%= application.applicationstatus %>
-         </td>
-      </tr>
-      <tr>
-         <td>Applicant Name</td>
-         <td>
-            <%= application.userfname %>
-            <%= application.userlname %>
-         </td>
-      </tr>
-       <tr>
-           <td>Applicant Email</td>
-           <td>
-               <%= application.useremail %>
-           </td>
-       </tr>
-      <tr>
+    <table class="table table-bordered">
+        <tr>
+            <td>Application Status:</td>
+            <td>
+                <%= application.applicationstatus %>
+            </td>
+        </tr>
+        <tr>
+            <td>Applicant Name</td>
+            <td>
+                <%= application.userfname %>
+                <%= application.userlname %>
+            </td>
+        </tr>
+        <tr>
+            <td>Applicant Email</td>
+            <td>
+                <%= application.useremail %>
+            </td>
+        </tr>
+        <tr>
             <td>Applicant Phone Number</td>
             <td>
-               <%= application.phone %>
+                <%= user.local.phone %>
             </td>
-         </tr>
-      <tr>
-         <td>Applicant Student ID</td>
-         <td>
-            <%= application.userstudentid %>
-         </td>
-      </tr>
-      <tr>
-         <td>Applicant Discipline</td>
-         <td>
-            <%= application.userdiscipline %>
-         </td>
-      </tr>
-      <tr>
-         <td>Expected Graduation Date</td>
-         <td>
-            <%= application.expectedGraduationSemester + ' ' + application.expectedGraduationYear %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Internship Date</td>
-         <td>
-            <%= application.proposedinternsemester  + ' ' + application.proposedinternyear %>
-         </td>
-      </tr>
-      <tr>
-         <td>Major</td>
-         <td>
-            <%= application.major %>
-         </td>
-      </tr>
-      <tr>
-         <td>Classification</td>
-         <td>
-            <%= application.classification %>
-         </td>
-      </tr>
-      <tr>
-         <td>GPA</td>
-         <td>
-            <%= application.gpa %>
-         </td>
-      </tr>
-      <tr>
-         <td>ITEC GPA</td>
-         <td>
-            <%= application.itecgpa %>
-         </td>
-      </tr>
-      <tr>
-         <td>ITEC 2150</td>
-         <td>
-            <%= application.itec2150 + ' ' + application.itec2150Year %>
-         </td>
-      </tr>
-      <tr>
-         <td>ITEC 3100</td>
-         <td>
-            <%= application.itec3100 + ' ' + application.itec3100Year %>
-         </td>
-      </tr>
-      <tr>
-         <td>ITEC 3200</td>
-         <td>
-            <%= application.itec3200 + ' ' + application.itec3200Year %>
-         </td>
-      </tr>
-      <tr>
-         <td>ITEC 3900</td>
-         <td>
-            <%= application.itec3900 + ' ' + application.itec3900Year %>
-         </td>
-      </tr>
-       <tr>
-         <td>Mentor Name</td>
-         <td>
-            <%= application.mentorname %>
-         </td>
-      </tr>
-      <tr>
-         <td>Interests and Strengths</td>
-         <td>
-            <%= application.interestsandstrengths %>
-         </td>
-      </tr>
-      <tr>
-         <td>Type of Internship</td>
-         <td>
-            <%= application.typeofinternship %>
-         </td>
-      </tr>
-      <tr>
-         <td>Interested in Software Dev. or Programming?</td>
-         <td>
-            <%= application.focusonsoftdev %>
-         </td>
-      </tr>
-      <tr>
-         <td>Have Proposed Internship?</td>
-         <td>
-            <%= application.haveproposedintern %>
-         </td>
-      </tr>
-       <% if (application.haveproposedintern === "Yes") { %>
-      <tr>
-          <td>Proposed Organization's Internship Focus</td>
-          <td>
-              <%= application.itecfocus %>
-          </td>
-      </tr>
-      <tr>
-          <td>Proposed Organization Name</td>
-          <td>
-              <%= application.proposedorgname %>
-          </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization Address</td>
-         <td>
-            <%= application.proposedorgaddress %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization City</td>
-         <td>
-            <%= application.proposedorgcity %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization State</td>
-         <td>
-            <%= application.proposedorgstate %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization Zipcode</td>
-         <td>
-            <%= application.proposedorgzipcode %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization Phone</td>
-         <td>
-            <%= application.proposedorgphone %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization Manager Name</td>
-         <td>
-            <%= application.proposedorgmanager %>
-         </td>
-      </tr>
-      <tr>
-         <td>Is applicant employed at the site?</td>
-         <td>
-            <%= application.isemployedatsite %>
-         </td>
-      </tr>
-           <% if (application.isemployedatsite === "Yes") { %>
-      <tr>
-         <td>Applicant Current Position</td>
-         <td>
-            <%= application.employedcurrentposition %>
-         </td>
-      </tr>
-      <tr>
-         <td>Is Current Position Paid?</td>
-         <td>
-            <%= application.ispaidposition %>
-         </td>
-      </tr>
-      <tr>
-         <td>Number of hours worked?</td>
-         <td>
-            <%= application.numberofhoursworked %>
-         </td>
-      </tr>
-      <tr>
-         <td>Is the project separate?</td>
-         <td>
-            <%= application.isseparateproject %>
-         </td>
-      </tr>
-      <tr>
-         <td>Does the project have separate hours?</td>
-         <td>
-            <%= application.isseparatehours %>
-         </td>
-      </tr>
-           <% } %>
-       <% } %>
-      <tr>
-         <td>Signature of Applicant</td>
-         <td>
-            <%= application.signature %>
-         </td>
-      </tr>
-      <tr>
-         <td>Printed Name of Applicant</td>
-         <td>
-            <%= application.printedname %>
-         </td>
-      </tr>
-   </table>
-   <h3>Student Feedback</h3>
-   <table class="table table-bordered">
-      <thead>
-         <tr>
+        </tr>
+        <tr>
+            <td>Applicant Student ID</td>
+            <td>
+                <%= application.userstudentid %>
+            </td>
+        </tr>
+        <tr>
+            <td>Applicant Discipline</td>
+            <td>
+                <%= application.userdiscipline %>
+            </td>
+        </tr>
+        <tr>
+            <td>Expected Graduation Date</td>
+            <td>
+                <%= application.expectedGraduationSemester + ' ' + application.expectedGraduationYear %>
+            </td>
+        </tr>
+        <tr>
+            <td>Proposed Internship Date</td>
+            <td>
+                <%= application.proposedinternsemester  + ' ' + application.proposedinternyear %>
+            </td>
+        </tr>
+        <tr>
+            <td>Major</td>
+            <td>
+                <%= application.major %>
+            </td>
+        </tr>
+        <tr>
+            <td>Classification</td>
+            <td>
+                <%= application.classification %>
+            </td>
+        </tr>
+        <tr>
+            <td>GPA</td>
+            <td>
+                <%= application.gpa %>
+            </td>
+        </tr>
+        <tr>
+            <td>ITEC GPA</td>
+            <td>
+                <%= application.itecgpa %>
+            </td>
+        </tr>
+        <tr>
+            <td>ITEC 2150</td>
+            <td>
+                <%= application.itec2150 + ' ' + application.itec2150Year %>
+            </td>
+        </tr>
+        <tr>
+            <td>ITEC 3100</td>
+            <td>
+                <%= application.itec3100 + ' ' + application.itec3100Year %>
+            </td>
+        </tr>
+        <tr>
+            <td>ITEC 3200</td>
+            <td>
+                <%= application.itec3200 + ' ' + application.itec3200Year %>
+            </td>
+        </tr>
+        <tr>
+            <td>ITEC 3900</td>
+            <td>
+                <%= application.itec3900 + ' ' + application.itec3900Year %>
+            </td>
+        </tr>
+        <tr>
+            <td>Mentor Name</td>
+            <td>
+                <%= application.mentorname %>
+            </td>
+        </tr>
+        <tr>
+            <td>Interests and Strengths</td>
+            <td>
+                <%= application.interestsandstrengths %>
+            </td>
+        </tr>
+        <tr>
+            <td>Type of Internship</td>
+            <td>
+                <%= application.typeofinternship %>
+            </td>
+        </tr>
+        <tr>
+            <td>Interested in Software Dev. or Programming?</td>
+            <td>
+                <%= application.focusonsoftdev %>
+            </td>
+        </tr>
+        <tr>
+            <td>Have Proposed Internship?</td>
+            <td>
+                <%= application.haveproposedintern %>
+            </td>
+        </tr>
+        <% if (application.haveproposedintern === "Yes") { %>
+            <tr>
+                <td>Proposed Organization's Internship Focus</td>
+                <td>
+                    <%= application.itecfocus %>
+                </td>
+            </tr>
+            <tr>
+                <td>Proposed Organization Name</td>
+                <td>
+                    <%= application.proposedorgname %>
+                </td>
+            </tr>
+            <tr>
+                <td>Proposed Organization Address</td>
+                <td>
+                    <%= application.proposedorgaddress %>
+                </td>
+            </tr>
+            <tr>
+                <td>Proposed Organization City</td>
+                <td>
+                    <%= application.proposedorgcity %>
+                </td>
+            </tr>
+            <tr>
+                <td>Proposed Organization State</td>
+                <td>
+                    <%= application.proposedorgstate %>
+                </td>
+            </tr>
+            <tr>
+                <td>Proposed Organization Zipcode</td>
+                <td>
+                    <%= application.proposedorgzipcode %>
+                </td>
+            </tr>
+            <tr>
+                <td>Proposed Organization Phone</td>
+                <td>
+                    <%= application.proposedorgphone %>
+                </td>
+            </tr>
+            <tr>
+                <td>Proposed Organization Manager Name</td>
+                <td>
+                    <%= application.proposedorgmanager %>
+                </td>
+            </tr>
+            <tr>
+                <td>Is applicant employed at the site?</td>
+                <td>
+                    <%= application.isemployedatsite %>
+                </td>
+            </tr>
+            <% if (application.isemployedatsite === "Yes") { %>
+                <tr>
+                    <td>Applicant Current Position</td>
+                    <td>
+                        <%= application.employedcurrentposition %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Is Current Position Paid?</td>
+                    <td>
+                        <%= application.ispaidposition %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Number of hours worked?</td>
+                    <td>
+                        <%= application.numberofhoursworked %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Is the project separate?</td>
+                    <td>
+                        <%= application.isseparateproject %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Does the project have separate hours?</td>
+                    <td>
+                        <%= application.isseparatehours %>
+                    </td>
+                </tr>
+            <% } %>
+        <% } %>
+        <tr>
+            <td>Signature of Applicant</td>
+            <td>
+                <%= application.signature %>
+            </td>
+        </tr>
+        <tr>
+            <td>Printed Name of Applicant</td>
+            <td>
+                <%= application.printedname %>
+            </td>
+        </tr>
+    </table>
+    <h3>Student Feedback</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
             <th>Feedback</th>
             <th>Entered By</th>
             <th>Date</th>
             <% if (user.role=='admin') { %>
-            <th>Delete</th>
+                <th>Delete</th>
             <% } %>
-         </tr>
-      </thead>
-      <tbody>
-      <% application.feedback.forEach(function(feedback) { %>
-         <tr>
-            <td><%= feedback.feedback %></td>
-            <td><%= feedback.user %></td>
-            <td><%= feedback.prettyFeedbackDate %></td>
-            <% if (user.role=='admin') { %>
-            <td><a href="/application/itec/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
-            <% } %>
-         </tr>
-      <% }) %>
-      </tbody>
-   </table>
-   <% if (user.role=='admin' || user.role=='instructor') { %>
-    <% if (user.role=='admin') { %>
-    <form name="itecappadminnotes" action="/application/itec/feedback/<%= application._id %>" method="post">
-        <div class="form-group">
-            <br>
-            <textarea rows="4" cols="50" name="feedback" placeholder="These comments are from faculty addressing students directly."></textarea>
-        </div>
-        <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
-    </form>
-    <h3>Change Application Status</h3>
-    <form name="applicationstatus" method="post">
-        <div class="form-group">
-            <label>Application Status</label>
-            <select class="form-control" name="applicationstatus">
-                <option value="" >Select a status</option>
-                <option value="Complete" >Complete</option>
-                <option value="Incomplete">Incomplete</option>
-                <option value="Needs further review">Needs further review</option>
-                <option value="Applicant rescinded">Applicant rescinded</option>
-                <option value="Applicant postponed">Applicant postponed</option>
-                <option value="Site declined">Site declined</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-success btn-lg">Change Status</button>
-    </form>
+        </tr>
+        </thead>
+        <tbody>
+        <% application.feedback.forEach(function(feedback) { %>
+            <tr>
+                <td><%= feedback.feedback %></td>
+                <td><%= feedback.user %></td>
+                <td><%= feedback.prettyFeedbackDate %></td>
+                <% if (user.role=='admin') { %>
+                    <td><a href="/application/itec/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
+                <% } %>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+    <% if (user.role=='admin' || user.role=='instructor') { %>
+        <% if (user.role=='admin') { %>
+            <form name="itecappadminnotes" action="/application/itec/feedback/<%= application._id %>" method="post">
+                <div class="form-group">
+                    <br>
+                    <textarea rows="4" cols="50" name="feedback" placeholder="These comments are from faculty addressing students directly."></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
+            </form>
+            <h3>Change Application Status</h3>
+            <form name="applicationstatus" method="post">
+                <div class="form-group">
+                    <label>Application Status</label>
+                    <select class="form-control" name="applicationstatus">
+                        <option value="" >Select a status</option>
+                        <option value="Complete" >Complete</option>
+                        <option value="Incomplete">Incomplete</option>
+                        <option value="Needs further review">Needs further review</option>
+                        <option value="Applicant rescinded">Applicant rescinded</option>
+                        <option value="Applicant postponed">Applicant postponed</option>
+                        <option value="Site declined">Site declined</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Change Status</button>
+            </form>
 
-    <% } %>
+        <% } %>
 
-            <h3>Change Proposed Intern Date</h3>
-      <form name="proposedinternsemester" action="/application/itec/changeSemester/<%= application._id %>" method="post">
+        <h3>Change Proposed Intern Date</h3>
+        <form name="proposedinternsemester" action="/application/itec/changeSemester/<%= application._id %>" method="post">
 
-        <div class="form-group" >
-          <label>Internship Date</label>
-          <select class="form-control" name="proposedinternsemester">
+            <div class="form-group" >
+                <label>Internship Date</label>
+                <select class="form-control" name="proposedinternsemester">
 
-            <option value="" >Select semester</option>
-            <option value="Fall" >Fall</option>
-            <option value="Spring">Spring</option>
-            <option value="Summer">Summer</option>
-          </select>
-        </div>
-         <div class="form-group">
-          <label>Internship Date</label>
-          <select class="form-control" name="proposedinternyear">
+                    <option value="" >Select semester</option>
+                    <option value="Fall" >Fall</option>
+                    <option value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Internship Date</label>
+                <select class="form-control" name="proposedinternyear">
 
-            <option value="" >Select Year</option>
-            <option value="2018" >2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021" >2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-            <option value="2024" >2024</option>
-          </select>
-          </select>
-          </select>
-          </select>
-          </select>
-          </select>
-        </div>
+                    <option value="" >Select Year</option>
+                    <option value="2018" >2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021" >2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024" >2024</option>
+                </select>
+                </select>
+                </select>
+                </select>
+                </select>
+                </select>
+            </div>
 
-        <button type="submit" class="btn btn-success btn-lg">Change Date</button>
-      </form>
+            <button type="submit" class="btn btn-success btn-lg">Change Date</button>
+        </form>
 
-   <h3>Admin and Instructor Notes</h3>
-   <table class="table table-bordered">
-      <thead>
-         <tr>
-            <th>Note</th>
-            <th>Entered By</th>
-            <th>Date</th>
-            <th>Delete</th>
-         </tr>
-      </thead>
-      <tbody>
-         <% application.notes.forEach(function(note) { %>
-         <tr>
-            <td><%= note.note %></td>
-            <td><%= note.user %></td>
-            <td><%= note.prettyNotesDate %></td>
-            <td><a href="/application/itec/<%= application._id %>/notes/delete/<%= note._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
-         </tr>
-         <% }); %>
-      </tbody>
-   </table>
-   <hr>
-   <form name="applicationstatus" action="/application/itec/notes/<%= application._id %>" method="post">
-      <div class="form-group">
-         <h3>Add Note</h3>
-         <br>
-         <textarea rows="4" cols="50" name="note" placeholder="These comments are from faculty addressing other faculty.."></textarea>
-      </div>
-      <button type="submit" class="btn btn-success btn-lg">Add Note</button>
-   </form>
-   <br>
-   <h3>Document Uploads table</h3>
-   <hr>
+        <h3>Admin and Instructor Notes</h3>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Note</th>
+                <th>Entered By</th>
+                <th>Date</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% application.notes.forEach(function(note) { %>
+                <tr>
+                    <td><%= note.note %></td>
+                    <td><%= note.user %></td>
+                    <td><%= note.prettyNotesDate %></td>
+                    <td><a href="/application/itec/<%= application._id %>/notes/delete/<%= note._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+        <hr>
+        <form name="applicationstatus" action="/application/itec/notes/<%= application._id %>" method="post">
+            <div class="form-group">
+                <h3>Add Note</h3>
+                <br>
+                <textarea rows="4" cols="50" name="note" placeholder="These comments are from faculty addressing other faculty."></textarea>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg">Add Note</button>
+        </form>
+        <br>
+        <h3>Document Uploads table</h3>
+        <hr>
 </div>
 <% } %>
 <% if (documents.length > 0) { %>

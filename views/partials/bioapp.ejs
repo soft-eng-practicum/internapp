@@ -22,7 +22,7 @@
       <tr>
          <td>Applicant Phone Number</td>
          <td>
-            <%= application.userphone %>
+            <%= user.local.phone %>
          </td>
       </tr>
       <tr>
@@ -158,100 +158,100 @@
          </td>
       </tr>
       <% if (application.internsite != "Other") { %>
-      <tr>
-         <td>Chosen pre-approved site</td>
-         <td>
-            <%= application.internsite %>
-         </td>
-      </tr>
+         <tr>
+            <td>Chosen pre-approved site</td>
+            <td>
+               <%= application.internsite %>
+            </td>
+         </tr>
       <% } %>
       <% if (application.internsite === "Other") { %>
-      <tr>
-         <td>Proposed Site Name</td>
-         <td>
-            <%= application.proposedsitename %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Site Speciality</td>
-         <td>
-            <%= application.proposedsitespecialty %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Site Address</td>
-         <td>
-            <%= application.proposedsiteaddress %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization City</td>
-         <td>
-            <%= application.proposedsitecity %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization State</td>
-         <td>
-            <%= application.proposedsitestate %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Organization Zipcode</td>
-         <td>
-            <%= application.proposedsitezipcode %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Site Manager Name</td>
-         <td>
-            <%= application.proposedsitemanagername %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Site Manager Email</td>
-         <td>
-            <%= application.proposedsitemanageremail %>
-         </td>
-      </tr>
-      <tr>
-         <td>Proposed Site Manager Title</td>
-         <td>
-            <%= application.proposedsitemanagertitle %>
-         </td>
-      </tr>
+         <tr>
+            <td>Proposed Site Name</td>
+            <td>
+               <%= application.proposedsitename %>
+            </td>
+         </tr>
+         <tr>
+            <td>Proposed Site Speciality</td>
+            <td>
+               <%= application.proposedsitespecialty %>
+            </td>
+         </tr>
+         <tr>
+            <td>Proposed Site Address</td>
+            <td>
+               <%= application.proposedsiteaddress %>
+            </td>
+         </tr>
+         <tr>
+            <td>Proposed Organization City</td>
+            <td>
+               <%= application.proposedsitecity %>
+            </td>
+         </tr>
+         <tr>
+            <td>Proposed Organization State</td>
+            <td>
+               <%= application.proposedsitestate %>
+            </td>
+         </tr>
+         <tr>
+            <td>Proposed Organization Zipcode</td>
+            <td>
+               <%= application.proposedsitezipcode %>
+            </td>
+         </tr>
+         <tr>
+            <td>Proposed Site Manager Name</td>
+            <td>
+               <%= application.proposedsitemanagername %>
+            </td>
+         </tr>
+         <tr>
+            <td>Proposed Site Manager Email</td>
+            <td>
+               <%= application.proposedsitemanageremail %>
+            </td>
+         </tr>
+         <tr>
+            <td>Proposed Site Manager Title</td>
+            <td>
+               <%= application.proposedsitemanagertitle %>
+            </td>
+         </tr>
       <% } %>
       <% if (application.internsite === "Other") { %>
-      <tr>
-         <td>Preceptor Name</td>
-         <td>
-            <%= application.preceptorname %>
-         </td>
-      </tr>
-      <tr>
-         <td>Preceptor Phone</td>
-         <td>
-            <%= application.preceptorphone %>
-         </td>
-      </tr>
-      <tr>
-         <td>Preceptor Email</td>
-         <td>
-            <%= application.preceptoremail %>
-         </td>
-      </tr>
-      <tr>
-         <td>Preceptor Manager?</td>
-         <td>
-            <%= application.ispreceptormanager %>
-         </td>
-      </tr>
-      <tr>
-         <td>Preceptor Position</td>
-         <td>
-            <%= application.preceptorpostition %>
-         </td>
-      </tr>
+         <tr>
+            <td>Preceptor Name</td>
+            <td>
+               <%= application.preceptorname %>
+            </td>
+         </tr>
+         <tr>
+            <td>Preceptor Phone</td>
+            <td>
+               <%= application.preceptorphone %>
+            </td>
+         </tr>
+         <tr>
+            <td>Preceptor Email</td>
+            <td>
+               <%= application.preceptoremail %>
+            </td>
+         </tr>
+         <tr>
+            <td>Preceptor Manager?</td>
+            <td>
+               <%= application.ispreceptormanager %>
+            </td>
+         </tr>
+         <tr>
+            <td>Preceptor Position</td>
+            <td>
+               <%= application.preceptorpostition %>
+            </td>
+         </tr>
       <% } %>
       <tr>
          <td>Is applicant family employed at the site?</td>
@@ -324,96 +324,96 @@
    <h3>Student Feedback</h3>
    <table class="table table-bordered">
       <thead>
-         <tr>
-            <th>Note</th>
-            <th>Entered By</th>
-            <th>Date</th>
-            <% if (user.role=='admin') { %>
+      <tr>
+         <th>Note</th>
+         <th>Entered By</th>
+         <th>Date</th>
+         <% if (user.role=='admin') { %>
             <th>Delete</th>
-            <% } %>
-         </tr>
+         <% } %>
+      </tr>
       </thead>
       <tbody>
-         <% application.feedback.forEach(function(feedback) { %>
+      <% application.feedback.forEach(function(feedback) { %>
          <tr>
             <td><%= feedback.feedback %></td>
             <td><%= feedback.user %></td>
             <td><%= feedback.prettyFeedbackDate %></td>
             <% if (user.role=='admin') { %>
-            <td><a href="/application/bio/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
+               <td><a href="/application/bio/<%= application._id %>/feedback/delete/<%= feedback._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
             <% } %>
          </tr>
-         <% }) %>
+      <% }) %>
       </tbody>
    </table>
    <% if (user.role=='admin') { %>
-   <form name="bioappfeedback" action="/application/bio/feedback/<%= application._id %>" method="post">
-      <div class="form-group">
-         <br>
-         <textarea rows="4" cols="50" name="feedback" placeholder="These comments are from faculty addressing students directly."></textarea>
-      </div>
-      <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
-   </form>
+      <form name="bioappfeedback" action="/application/bio/feedback/<%= application._id %>" method="post">
+         <div class="form-group">
+            <br>
+            <textarea rows="4" cols="50" name="feedback" placeholder="These comments are from faculty addressing students directly."></textarea>
+         </div>
+         <button type="submit" class="btn btn-success btn-lg">Add Feedback</button>
+      </form>
    <% } %>
 </div>
 <% if (user.role=='admin') { %>
-<div class="col-sm-6 col-sm-offset-3">
-   <h3>Change Application Status</h3>
-   <form name="applicationstatus" method="post">
-      <div class="form-group">
-         <label>Application Status</label>
-         <select class="form-control" name="applicationstatus">
-            <option value="" >Select a status</option>
-            <option value="approved" >Approved</option>
-            <option value="denied">Denied</option>
-            <option value="incomplete">Incomplete</option>
-            <option value="further review">Further Review</option>
-            <option value="applicant rescinded" >Applicant Rescinded</option>
-            <option value="applicant postponed">Applicant Postponed</option>
-            <option value="site declined">Site Declined</option>
-         </select>
-      </div>
-      <button type="submit" class="btn btn-success btn-lg">Change Status</button>
-   </form>
-</div>
+   <div class="col-sm-6 col-sm-offset-3">
+      <h3>Change Application Status</h3>
+      <form name="applicationstatus" method="post">
+         <div class="form-group">
+            <label>Application Status</label>
+            <select class="form-control" name="applicationstatus">
+               <option value="" >Select a status</option>
+               <option value="approved" >Approved</option>
+               <option value="denied">Denied</option>
+               <option value="incomplete">Incomplete</option>
+               <option value="further review">Further Review</option>
+               <option value="applicant rescinded" >Applicant Rescinded</option>
+               <option value="applicant postponed">Applicant Postponed</option>
+               <option value="site declined">Site Declined</option>
+            </select>
+         </div>
+         <button type="submit" class="btn btn-success btn-lg">Change Status</button>
+      </form>
+   </div>
 <% } %>
 <% if (user.role=='admin' || user.role=='instructor') { %>
-<div class="col-sm-6 col-sm-offset-3">
-   <h3>Admin and Instructor Notes</h3>
-   <table class="table table-bordered">
-      <thead>
+   <div class="col-sm-6 col-sm-offset-3">
+      <h3>Admin and Instructor Notes</h3>
+      <table class="table table-bordered">
+         <thead>
          <tr>
             <th>Note</th>
             <th>Entered By</th>
             <th>Date</th>
             <th>Delete</th>
          </tr>
-      </thead>
-      <tbody>
+         </thead>
+         <tbody>
          <% application.notes.forEach(function(note) { %>
-         <tr>
-            <td><%= note.note %></td>
-            <td><%= note.user %></td>
-            <td><%= note.prettyNotesDate %></td>
-            <td><a href="/application/bio/<%= application._id %>/notes/delete/<%= note._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
-         </tr>
+            <tr>
+               <td><%= note.note %></td>
+               <td><%= note.user %></td>
+               <td><%= note.prettyNotesDate %></td>
+               <td><a href="/application/bio/<%= application._id %>/notes/delete/<%= note._id %>"><span class='glyphicon glyphicon-trash'></span></a></td>
+            </tr>
          <% }) %>
-      </tbody>
-   </table>
-   <hr>
-</div>
-<div class="col-sm-6 col-sm-offset-3">
-   <form name="bioappadminnotes" action="/application/bio/notes/<%= application._id %>" method="post">
-      <div class="form-group">
-         <h3>Add Note</h3>
-         <br>
-         <textarea rows="4" cols="50" name="note" placeholder="These comments are from faculty addressing other faculty."></textarea>
-      </div>
-      <button type="submit" class="btn btn-success btn-lg">Add Note</button>
-   </form>
-   <h3>Document Uploads table</h3>
-   <hr>
-</div>
+         </tbody>
+      </table>
+      <hr>
+   </div>
+   <div class="col-sm-6 col-sm-offset-3">
+      <form name="bioappadminnotes" action="/application/bio/notes/<%= application._id %>" method="post">
+         <div class="form-group">
+            <h3>Add Note</h3>
+            <br>
+            <textarea rows="4" cols="50" name="note" placeholder="These comments are from faculty addressing other faculty."></textarea>
+         </div>
+         <button type="submit" class="btn btn-success btn-lg">Add Note</button>
+      </form>
+      <h3>Document Uploads table</h3>
+      <hr>
+   </div>
 <% } else { %>
 
 <% } %>
