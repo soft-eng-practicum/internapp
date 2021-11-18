@@ -95,7 +95,7 @@ app.use(favicon(__dirname + '/public/images/logo.png'));
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-app.use(session({ secret: 'dfgd5155435445df1gdfgdry5y4345' })); // session secret
+app.use(session({ secret: process.env.SECRET_KEY, name: process.env.SESSION_NAME })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
