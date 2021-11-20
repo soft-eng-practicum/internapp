@@ -16,7 +16,7 @@
             <h4 align="center">Select your site table/exports</h4>
                     <div class="form-group">
                         <div class="form-inline">
-                            <label for="select" class="col-lg-5 control-label">Filter by Program:</label>
+                            <label for="select" class="col-lg-5 control-label">Program:</label>
                             <div class="col-lg-5">
                                 <select class="form-control adminProgram" id="selectProgram" name="selectProgram">
                                     <option selected>All</option>
@@ -30,7 +30,7 @@
           <fieldset>
                 <div class="form-group">
                     <div class="form-inline">
-                        <label for="select" class="col-lg-5 control-label">Filter by Company Status:</label>
+                        <label for="select" class="col-lg-5 control-label">Company Status:</label>
                         <div class="col-lg-5">
                             <select class="form-control siteStatus" id="sitestatus" name="sitestatus">
                                 <option selected>All</option>
@@ -89,6 +89,7 @@
                     <th>Select</th>
                     <th>Name</th>
                     <th>Address</th>
+<!--                    <th>Email Address</th>-->
                     <th>City</th>
                     <th>Program</th>
                     <th>Valid MOU</th>
@@ -103,14 +104,18 @@
                     <tr>
                         <td id="mySelect1">
                             <center>
-                                <input id="emailCheckbox" type="checkbox"  value ='<% site.contacts.forEach(function(contact) { %>
+                                <input id="siteCheckbox" type="checkbox"  value ='<% site.contacts.forEach(function(contact) { %>
                     <%= contact.email %>
                     <% });  %>' />
 
                             </center>
+
                         </td>
                         <td><%= site.name %></td>
                         <td><%= site.address %></td>
+<!--                        <td><% site.contacts.forEach(function(contact) { %>-->
+<!--                                <%= contact.email %>-->
+<!--                            <% }); %></td>-->
                         <td><%= site.city %></td>
                         <td><%= site.section %></td>
                         <% if (site.mou==='Yes') { %>
@@ -208,19 +213,19 @@
                   document.getElementById("sitestatus").value = sessionStorage.getItem('sitestatus')
               }
               if (sessionStorage['program'] === 'Biology Internship (BIOL 4800)') {
-                  table.column(5).search("Bio")
+                  table.column(4).search("Bio")
               }
               else if (sessionStorage['program'] === 'Information Technology Internship (ITEC 4900)') {
-                  table.column(5).search("Itec")
+                  table.column(4).search("Itec")
               }
               else {
-                  table.column(5).search("")
+                  table.column(4).search("")
               }
               if (sessionStorage['sitestatus'] === 'Active' || sessionStorage['sitestatus'] === 'Inactive') {
-                  table.column(10).search('\^'+sessionStorage['sitestatus']+'\$', true, false)
+                  table.column(9).search('\^'+sessionStorage['sitestatus']+'\$', true, false)
               }
               else {
-                  table.column(10).search("")
+                  table.column(9).search("")
               }
               table.draw()
 

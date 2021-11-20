@@ -135,6 +135,7 @@ function filterApplications(req, res, cb) {
                         ID: bioApp.userstudentid,
                         FirstName: bioApp.userfname,
                         LastName: bioApp.userlname,
+                        PhoneNumber: bioApp.phonenumber,
                         'BIO GPA': bioApp.programgpa,
                         Concentration: bioApp.major,
                         'Expected Graduation': bioApp.expectedGraduationSemester + ' ' + bioApp.expectedGraduationYear,
@@ -144,7 +145,7 @@ function filterApplications(req, res, cb) {
                     appArray.push(bioJson);
                 });
 
-                fields = ['ID', 'FirstName', 'LastName', 'BIO GPA', 'Concentration',
+                fields = ['ID', 'FirstName', 'LastName', 'PhoneNumber', 'BIO GPA', 'Concentration',
                     'Expected Graduation', 'Semester', 'Year'];
 
                 cb(null, {
@@ -170,6 +171,7 @@ function filterApplications(req, res, cb) {
                         ID: itecApp.userstudentid,
                         FirstName: itecApp.userfname,
                         LastName: itecApp.userlname,
+                        PhoneNumber: itecApp.phonenumber,
                         'ITEC GPA': itecApp.itecgpa,
                         Concentration: itecApp.major,
                         'Expected Graduation': itecApp.expectedGraduationSemester + ' ' + itecApp.expectedGraduationYear,
@@ -180,7 +182,7 @@ function filterApplications(req, res, cb) {
                     appArray.push(itecJson);
                 });
 
-                fields = ['ID', 'FirstName', 'LastName', 'ITEC GPA', 'Concentration',
+                fields = ['ID', 'FirstName', 'LastName', 'PhoneNumber', 'ITEC GPA', 'Concentration',
                     'Expected Graduation', 'Programming', 'Semester', 'Year'];
 
                 cb(null, {
@@ -222,6 +224,7 @@ module.exports.filterApplications = function (req, res) {
         //module.exports.getApplications(req, res);
     }
 }
+
 
 function write(fileName, csv, req, res) {
     fs.writeFile(fileName, csv, function (err) {
@@ -270,13 +273,19 @@ module.exports.getSpecificBioApplication = function (req, res) {
         if (err) throw err;
         Document.getBioDocumentsForUser(bioApp.useremail, function (incomingDocuments) {
             documents = incomingDocuments;
-            res.render('applicationdetails.ejs', {
-                application: bioApp,
-                documents: documents,
-                user: req.user,
-                successMessage: req.flash('success'),
-                failureMessage: req.flash('failure')
-            });
+            User.findOne({_id: req.user._id}, function(err, user) {
+                if (err) {
+                    throw err;
+                }
+                res.render('applicationdetails.ejs', {
+                    application: bioApp,
+                    documents: documents,
+                    user: user,
+                    // userPhoneNumber: user.local.phone,
+                    successMessage: req.flash('success'),
+                    failureMessage: req.flash('failure')
+                });
+            })
         });
     });
 };
@@ -294,13 +303,19 @@ module.exports.getSpecificItecApplication = function (req, res) {
         if (err) throw err;
         Document.getItecDocumentsForUser(itecApp.useremail, function (incomingDocuments) {
             documents = incomingDocuments;
-            res.render('applicationdetails.ejs', {
-                application: itecApp,
-                documents: documents,
-                user: req.user,
-                successMessage: req.flash('success'),
-                failureMessage: req.flash('failure')
-            });
+            User.findOne({_id: req.user._id}, function(err, user) {
+                if (err) {
+                    throw err;
+                }
+                res.render('applicationdetails.ejs', {
+                    application: itecApp,
+                    documents: documents,
+                    user: user,
+                    // userPhoneNumber: user.local.phone,
+                    successMessage: req.flash('success'),
+                    failureMessage: req.flash('failure')
+                });
+            })
         });
     });
 }
@@ -687,6 +702,7 @@ module.exports.postItecApplication = function (req, res) {
             itecapp.userstudentid = req.user.studentid;
             itecapp.userfname = req.user.fname;
             itecapp.userlname = req.user.lname;
+            itecapp.userphone = req.user.phone;
             itecapp.useraddress = req.user.address;
             itecapp.usercity = req.user.city;
             itecapp.userstate = req.user.state;
@@ -719,6 +735,7 @@ module.exports.postBioApplication = function (req, res) {
             bioapp.userstudentid = req.user.studentid;
             bioapp.userfname = req.user.fname;
             bioapp.userlname = req.user.lname;
+            bioapp.userphone = req.user.phone;
             bioapp.useraddress = req.user.address;
             bioapp.usercity = req.user.city;
             bioapp.userstate = req.user.state;

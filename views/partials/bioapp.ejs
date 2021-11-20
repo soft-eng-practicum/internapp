@@ -22,13 +22,19 @@
       <tr>
          <td>Applicant Phone Number</td>
          <td>
-            <%= application.phonenumber %>
+            <%= user.local.phone %>
          </td>
       </tr>
       <tr>
          <td>Applicant Student ID</td>
          <td>
-            <%= application.useraddress %>
+            <%= application.userstudentid %>
+         </td>
+      </tr>
+      <tr>
+         <td>Applicant Discipline</td>
+         <td>
+            <%= application.userdiscipline %>
          </td>
       </tr>
       <tr>
@@ -47,12 +53,6 @@
          <td>Applicant Zipcode</td>
          <td>
             <%= application.userzipcode%>
-         </td>
-      </tr>
-      <tr>
-         <td>Applicant Discipline</td>
-         <td>
-            <%= application.userdiscipline %>
          </td>
       </tr>
       <tr>
@@ -407,7 +407,7 @@
       <div class="form-group">
          <h3>Add Note</h3>
          <br>
-         <textarea rows="4" cols="50" name="note" placeholder="These comments are from faculty addressing other faculty. Students can not see these messages."></textarea>
+         <textarea rows="4" cols="50" name="note" placeholder="These comments are from faculty addressing other faculty."></textarea>
       </div>
       <button type="submit" class="btn btn-success btn-lg">Add Note</button>
    </form>

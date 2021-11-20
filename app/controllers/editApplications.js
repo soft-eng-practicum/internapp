@@ -4,30 +4,43 @@
     - Logic for routes: getEditBio, getEditItec, updateBioApp, updateItecApp
        - Loads the user's submitted bio/itec application and then updates
 */
-
+var User = require('../models/user');
 var Bio = require('../models/bio');
 var Itec = require('../models/itec');
 
 module.exports.getEditBio = function(req, res) {
     Bio.getUsersBioApp(req.user.email, function(foundBioApp) {
-        res.render('editbio', {
-            application: foundBioApp,
-            user : req.user,
-            successMessage: req.flash('success'),
-            failureMessage: req.flash('failure')
-        });
+        User.findOne({_id: req.user._id}, function(err, user) {
+            res.render('editbio', {
+                application: foundBioApp,
+                user : user,
+                successMessage: req.flash('success'),
+                failureMessage: req.flash('failure')
+            });
+        })
     });
 }
 
 module.exports.getEditItec = function(req, res) {
     Itec.getUsersItecApp(req.user.email, function(foundItecApp) {
-        res.render('editItec', {
-            application: foundItecApp,
-            user : req.user,
-            successMessage: req.flash('success'),
-            failureMessage: req.flash('failure')
-        });
+        User.findOne({_id: req.user._id}, function(err, user) {
+            res.render('editItec', {
+                application: foundItecApp,
+                user : user,
+                successMessage: req.flash('success'),
+                failureMessage: req.flash('failure')
+            });
+        })
     });
+}
+
+
+module.exports.updateAppStatusItec = function (req, res){
+    newItecapp.applicationstatus = oldItecApp.applicationstatusItec;
+}
+
+module.exports.updateAppStatusBio = function (req, res){
+    newBioapp.applicationstatus = oldBioApp.applicationstatusBio;
 }
 
 module.exports.updateBioApp = function(req, res) {
@@ -37,6 +50,7 @@ module.exports.updateBioApp = function(req, res) {
     newBioapp.userstudentid = req.user.studentid;
     newBioapp.userfname = req.user.fname;
     newBioapp.userlname = req.user.lname;
+    newBioapp.userphone = req.user.phone;
     newBioapp.useraddress = req.user.address;
     newBioapp.usercity = req.user.city;
     newBioapp.userstate = req.user.state;
@@ -68,6 +82,7 @@ module.exports.updateItecApp = function(req, res) {
     newItecapp.userstudentid = req.user.studentid;
     newItecapp.userfname = req.user.fname;
     newItecapp.userlname = req.user.lname;
+    newItecapp.userphone = req.user.phone;
     newItecapp.useraddress = req.user.address;
     newItecapp.usercity = req.user.city;
     newItecapp.userstate = req.user.state;
