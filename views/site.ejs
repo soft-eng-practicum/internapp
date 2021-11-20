@@ -89,7 +89,7 @@
                     <th>Select</th>
                     <th>Name</th>
                     <th>Address</th>
-                    <th>Email Address</th>
+<!--                    <th>Email Address</th>-->
                     <th>City</th>
                     <th>Program</th>
                     <th>Valid MOU</th>
@@ -113,9 +113,9 @@
                         </td>
                         <td><%= site.name %></td>
                         <td><%= site.address %></td>
-                        <td><% site.contacts.forEach(function(contact) { %>
-                                <%= contact.email %>
-                            <% }); %></td>
+<!--                        <td><% site.contacts.forEach(function(contact) { %>-->
+<!--                                <%= contact.email %>-->
+<!--                            <% }); %></td>-->
                         <td><%= site.city %></td>
                         <td><%= site.section %></td>
                         <% if (site.mou==='Yes') { %>
@@ -213,19 +213,19 @@
                   document.getElementById("sitestatus").value = sessionStorage.getItem('sitestatus')
               }
               if (sessionStorage['program'] === 'Biology Internship (BIOL 4800)') {
-                  table.column(5).search("Bio")
+                  table.column(4).search("Bio")
               }
               else if (sessionStorage['program'] === 'Information Technology Internship (ITEC 4900)') {
-                  table.column(5).search("Itec")
+                  table.column(4).search("Itec")
               }
               else {
-                  table.column(5).search("")
+                  table.column(4).search("")
               }
               if (sessionStorage['sitestatus'] === 'Active' || sessionStorage['sitestatus'] === 'Inactive') {
-                  table.column(10).search('\^'+sessionStorage['sitestatus']+'\$', true, false)
+                  table.column(9).search('\^'+sessionStorage['sitestatus']+'\$', true, false)
               }
               else {
-                  table.column(10).search("")
+                  table.column(9).search("")
               }
               table.draw()
 
