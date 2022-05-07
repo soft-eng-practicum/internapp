@@ -2,6 +2,7 @@
 
 // set up ======================================================================
 // get all the tools we need
+require('dotenv').config();
 var express  = require('express');
 var app      = express();
 var path     = require('path');
@@ -22,7 +23,6 @@ var GridFsStorage = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
 var _ = require('lodash');
 var methodOverride = require('method-override');
-require('dotenv').config();
 
 //New GridFS Stuff
 var Document = require('./app/models/document');
