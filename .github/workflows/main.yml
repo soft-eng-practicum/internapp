@@ -12,6 +12,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+
     env:
       DB_CONN: ${{secrets.DB_CONN}}
 
@@ -28,10 +29,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-        with:
-          start: npm start
-          wait-on: http://localhost:8000
-          wait-on-timeout: 110
 
 
   selenium-pytest:
@@ -41,13 +38,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
+      - name: Start application
+        run: npm start &
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
           python-version: '3.9'
       - name: Install conda and dependencies in conda env
-        run: |
-          $CONDA/bin/conda env update --file $GITHUB_WORKSPACE/tests/pytests/environment.yml --name base
-
+        run: $CONDA/bin/conda env update --file "$GITHUB_WORKSPACE/tests/pytests/environment.yml" --name base
       - name: Test with pytest
         run: $CONDA/bin/pytest -s -n=6 --capture=tee-sys
