@@ -21,7 +21,7 @@ sys.stdout = sys.stderr
 
 
 def pytest_addoption(parser):
-    parser.addoption("--server", action="store", default="localhost:8000")
+    parser.addoption("--server", action="store", default="127.0.0.1:8000")
 
 
 def pytest_generate_tests(metafunc):

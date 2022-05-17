@@ -9,7 +9,7 @@ on:
     branches: [ internapp-pytest ]
 
 jobs:
-  build:
+  Tests:
 
     runs-on: ubuntu-latest
 
@@ -29,18 +29,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-
-
-  selenium-pytest:
-
-    needs: build
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Start application
-        run: npm start &
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
@@ -48,4 +36,6 @@ jobs:
       - name: Install conda and dependencies in conda env
         run: $CONDA/bin/conda env update --file "$GITHUB_WORKSPACE/tests/pytests/environment.yml" --name base
       - name: Test with pytest
-        run: $CONDA/bin/pytest -s -n=6 --capture=tee-sys
+        run: |
+          npm start &
+          $CONDA/bin/pytest -s -n=6 --capture=tee-sys
