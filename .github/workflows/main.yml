@@ -1,6 +1,5 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them,
-# and build the source code across different versions of node and run tests using
-# pytest and Selenium via Conda.
+# and build the source code on node version 10.x and run tests using pytest and Selenium via Conda.
 name: Pytests Using Selenium in Conda
 
 on:
@@ -16,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [10.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
