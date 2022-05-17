@@ -28,7 +28,8 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: '3.9'
-      - run: |
+      - name: Install conda and dependencies in conda env
+        run: |
           $CONDA/bin/conda env update --file tests/pytests/environment.yml --name base
           
       - name: Test with pytest
