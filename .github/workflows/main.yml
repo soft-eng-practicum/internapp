@@ -12,6 +12,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      DB_CONN: ${{secrets.DB_CONN}}
+      run: echo "The DB connection string is:${{secrets.DB_CONN}}"
 
     strategy:
       matrix:
