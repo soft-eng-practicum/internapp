@@ -12,9 +12,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      DB_CONN: ${{secrets.DB_CONN}}
-      run: echo "The DB connection string is:${{secrets.DB_CONN}}"
 
     strategy:
       matrix:
@@ -28,9 +25,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          wait-on: http://localhost:8000
       - run: npm ci
-      - run: npm start
+      - run: npm start & npx wait-on http://localhost:8000
 
 
   selenium-pytest:
