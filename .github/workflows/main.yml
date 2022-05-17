@@ -23,6 +23,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Echo project directory
+        run: echo $GITHUB_WORKSPACE
+      
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
@@ -30,7 +33,7 @@ jobs:
           python-version: '3.9'
       - name: Install conda and dependencies in conda env
         run: |
-          $CONDA/bin/conda env update --file tests/pytests/environment.yml --name base
+          $CONDA/bin/conda env update --file $GITHUB_WORKSPACE/tests/pytests/environment.yml --name base
           
       - name: Test with pytest
         run: $CONDA/bin/pytest -s -n=6 --capture=tee-sys
