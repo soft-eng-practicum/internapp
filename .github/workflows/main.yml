@@ -28,8 +28,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          wait-on: http://localhost:8000
       - run: npm ci
       - run: npm start
+
 
   selenium-pytest:
 
