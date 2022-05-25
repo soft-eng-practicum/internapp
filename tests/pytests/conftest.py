@@ -71,7 +71,7 @@ def driver(server, tmp, request):
     web_driver = webdriver.Chrome(options=opts)
     web_driver.get(server + "/login")
     username = "admin@pytest.com"
-    password = "#6x;46PFyK^z\}v-"
+    password = "#6x;46PFyK^z\\}v-"
 
     username_field = web_driver.find_element_by_xpath("//*[@id='emailTxt']")
     username_field.send_keys(username)
