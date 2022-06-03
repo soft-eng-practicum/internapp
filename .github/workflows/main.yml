@@ -1,49 +1,41 @@
-# This is a basic workflow to help you get started with Actions
-
+# This workflow will do a clean installation of node dependencies, cache/restore them,
+# and build the source code on node version 10.x and run tests using pytest and Selenium via Conda.
 name: Pytests Using Selenium in Conda
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  Tests:
+
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    env:
+      DB_CONN: ${{secrets.DB_CONN}}
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Echo project directory
-        run: echo $GITHUB_WORKSPACE
-      
       - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
           python-version: '3.9'
       - name: Install conda and dependencies in conda env
-        run: |
-          $CONDA/bin/conda env update --file $GITHUB_WORKSPACE/tests/pytests/environment.yml --name base
-          
+        run: $CONDA/bin/conda env update --file "$GITHUB_WORKSPACE/tests/pytests/environment.yml" --name base
       - name: Test with pytest
-        run: $CONDA/bin/pytest -s -n=6 --capture=tee-sys
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          npm start &
+          $CONDA/bin/pytest -s -n=6 --capture=tee-sys
