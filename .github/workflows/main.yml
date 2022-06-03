@@ -15,6 +15,8 @@ jobs:
 
     env:
       DB_CONN: ${{secrets.DB_CONN}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      SESSION_NAME: ${{secrets.SESSION_NAME}}
 
     strategy:
       matrix:
