@@ -34,7 +34,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install conda and dependencies in conda env
-        run: $CONDA/bin/conda env update --file "$GITHUB_WORKSPACE/tests/pytests/environment.yml" --name base
+        run: $CONDA/bin/conda update --file "$GITHUB_WORKSPACE/tests/pytests/environment.yml" --name base
       - name: Test with pytest
         run: |
           npm start &
