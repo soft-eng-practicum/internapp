@@ -1,0 +1,3 @@
+[submodule "pytests"]
+	path = tests/pytests
+	url = https://github.com/ekim22/internapp-tests.git
