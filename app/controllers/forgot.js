@@ -36,6 +36,10 @@ module.exports.postForgot = function(req, res) {
                 user.local.resetPasswordToken = token;
                 user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour
                 user.save(function(err) {
+                    if (err) {
+                      req.flash('failure', 'User account validation error. Check with administrator.');
+                      return res.redirect('/forgot');
+                    }
                     done(err, token, user);
                 });
             });
