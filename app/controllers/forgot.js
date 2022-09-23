@@ -23,7 +23,7 @@ module.exports.postForgot = function(req, res) {
             });
         },
         function(token, done) {
-            console.log("finding user.");
+            console.log("finding user by email: " + req.body.email);
             User.findOne({
                 'local.email': req.body.email
             }, function(err, user) {
@@ -31,6 +31,8 @@ module.exports.postForgot = function(req, res) {
                     req.flash('failure', 'No account with that email address exists.');
                     return res.redirect('/forgot');
                 }
+                console.log("found user: ")
+                console.log(user);
                 user.local.resetPasswordToken = token;
                 user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour
                 user.save(function(err) {
@@ -76,6 +78,8 @@ module.exports.postForgot = function(req, res) {
         console.log(err);
         console.log('Something went wrong! Last result:');
         console.log(result);      
+        res.redirect('/forgot');
+        req.flash('failure', 'An error has occurred. Your password cannot be reset at this time.');
       }
     });
 };
