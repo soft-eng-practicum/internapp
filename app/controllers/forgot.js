@@ -16,12 +16,14 @@ var async = require('async');
 module.exports.postForgot = function(req, res) {
     async.waterfall([
         function(done) {
+            console.log("forgot password requested, making token.");
             crypto.randomBytes(20, function(err, buf) {
                 var token = buf.toString('hex');
                 done(err, token);
             });
         },
         function(token, done) {
+            console.log("finding user.");
             User.findOne({
                 'local.email': req.body.email
             }, function(err, user) {
@@ -37,6 +39,7 @@ module.exports.postForgot = function(req, res) {
             });
         },
         function(token, user, done) {
+            console.log("sending email.");
             transporter = nodemailer.createTransport({
                 service: 'yahoo',
                 auth: {
@@ -58,7 +61,7 @@ module.exports.postForgot = function(req, res) {
                     console.log('error sending reset email, error: \n' + err);
                     res.redirect('/forgot');
                     req.flash('failure', 'An error has occurred. Your password cannot be reset at this time.');
-                    done(err, 'failed ');
+                    done(err, 'failed');
                 } else {
                     console.log('password reset email sent!');
                     res.redirect('/forgot')
@@ -67,7 +70,14 @@ module.exports.postForgot = function(req, res) {
                 }
             });
         }
-    ]);
+    ], function (err, result) {
+      // result now equals 'done'
+      if (result != "done") {
+        console.log(err);
+        console.log('Something went wrong! Last result:');
+        console.log(result);      
+      }
+    });
 };
 
 /*
