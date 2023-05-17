@@ -35,7 +35,7 @@
     "mkdirp": "^0.5.1",
     "mongodb": "^4.8",
     "mongoose": "^6.5",
-    "mongoose-schema-jsonschema": "^1.2.1",
+    "mongoose-schema-jsonschema": "^2.0.0",
     "morgan": "~1.9.1",
     "multer": "^1.0.0",
     "multer-gridfs": "0.0.1",
