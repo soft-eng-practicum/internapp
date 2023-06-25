@@ -382,12 +382,15 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
     }
 
             transporter = nodemailer.createTransport({
-                service: 'yahoo',
+              service: 'yahoo',
+              logger: true,
+              debug: true,
                 auth: {
                     user: 'ggcinternapp@yahoo.com',
                     pass: key
                 }
             });
+            console.log('About to send document email with subject ' + emailSubject);
             var itec = await Itec.getUsersItecAppPromise(user.email);
             var fileName = itec.major ? majorMap[itec.major] + '_' : '';
             fileName += user.fname + '_' + user.lname + '_' + attachmentFileName + '_' + file.name;
@@ -404,6 +407,7 @@ async function sendDocument(file, typeOfFile, req, res, user, whatIsFile) {
                     }
                 ]
             };
+            console.log('sending email');
             transporter.sendMail(mailOptions, function(err) {
                 if (err) {
                     console.log('Error while sending ' + typeOfFile + ':\n' + err);

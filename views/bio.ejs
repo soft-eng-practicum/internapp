@@ -583,21 +583,25 @@
 
             var form = $('#uploadEssay')[0];
             var data = new FormData(form);
+            console.log(data);
 
             $.ajax({
                 type: "POST",
-                enctype: 'multipart/form-data',
+                //contentType: 'multipart/form-data',
                 url: "/uploadBioEssay",
                 data: data,
                 processData: false,
                 contentType: false,
                 cache: false,
+                timeout: 29000, // Heroku timeout is 30s, so fail properly before that
                 success: function (data) {
                     $('#btnSubmitEssay').hide(), $('#successEssay').show(), $('#submitBtn').attr('disabled',false);
                 },
-                error: function (e) {
-                    $('#failUpload').show();
-                }
+              error: function (e) {
+                console.log('error ajax post for upload essay');
+                console.log(e);
+                $('#failUpload').show();
+              }
             });
            });
 

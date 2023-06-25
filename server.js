@@ -19,7 +19,7 @@ var favicon = require('serve-favicon');
 var configDB = require('./config/database.js');
 var routes = require('./app/routes/index');
 var multer = require('multer');
-var GridFsStorage = require('multer-gridfs-storage');
+const {GridFsStorage} = require('multer-gridfs-storage');
 var Grid = require('gridfs-stream');
 var _ = require('lodash');
 var methodOverride = require('method-override');
@@ -29,9 +29,9 @@ var Document = require('./app/models/document');
 
 // configuration ===============================================================
 const mongoURI = process.env.DB_CONN;
-
 const connection = mongoose.connect(mongoURI);
-const conn = mongoose.createConnection(mongoURI);
+const conn =  mongoose.createConnection(mongoURI); // second connection for gridfs
+
 require('./config/passport');
 
 // set up our express application
@@ -49,17 +49,7 @@ mongoose.connection.on('error', (err) => {
     console.log('Database error: ' + err);
 });
 
-
-let gfs;
-conn.once('open', function() {
-    gfs = Grid(conn.db, mongoose.mongo);
-});
-
-let storage = new GridFsStorage({
-    url: mongoURI,
-    file: (req, file) => {}
-});
-
+// multer file upload settings
 let limits = {
     files: 1,
     fileSize:  1024 * 1024,
@@ -81,12 +71,26 @@ let fileFilter = function(req, file, cb) {
     }
 };
 
-let upload = multer ({
-    storage: storage,
-    limits: limits,
-    fileFilter: fileFilter
+// once gridfs database is connected
+let gfs, storage, upload;
+conn.once('open', function() {
+  gfs = Grid(conn.db, mongoose.mongo);
 });
 
+conn.on('dberror', (err) => {
+    console.log('GridFS database error: ' + err);
+});
+
+storage = new GridFsStorage({
+  db: conn,
+  file: (req, file) => {}
+});
+
+upload = multer ({
+  storage: storage,
+  limits: limits,
+  fileFilter: fileFilter
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 

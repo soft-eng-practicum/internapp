@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "main": "server.js",
   "engines": {
-    "node": "19.4.0",
-    "npm": "8.19.2"
+    "node": "^19.4.0",
+    "npm": "^8.19.2"
   },
   "scripts": {
     "start": "node server.js",
@@ -37,9 +37,8 @@
     "mongoose": "^6.5",
     "mongoose-schema-jsonschema": "^2.0.0",
     "morgan": "~1.9.1",
-    "multer": "^1.0.0",
-    "multer-gridfs": "0.0.1",
-    "multer-gridfs-storage": "0.0.5",
+    "multer": "^1.4.4",
+    "multer-gridfs-storage": "^5.0.2",
     "natives": "^1.1.6",
     "nodemailer": "^2.6.4",
     "passport": "~0.1.17",
