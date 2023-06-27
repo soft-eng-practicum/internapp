@@ -8,6 +8,7 @@ var app      = express();
 var path     = require('path');
 var crypto = require('crypto');
 var port     = process.env.PORT || 8000;
+var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -20,7 +21,6 @@ var configDB = require('./config/database.js');
 var routes = require('./app/routes/index');
 var multer = require('multer');
 const {GridFsStorage} = require('multer-gridfs-storage');
-var Grid = require('gridfs-stream');
 var _ = require('lodash');
 var methodOverride = require('method-override');
 
@@ -74,7 +74,11 @@ let fileFilter = function(req, file, cb) {
 // once gridfs database is connected
 let gfs, storage, upload;
 conn.once('open', function() {
-  gfs = Grid(conn.db, mongoose.mongo);
+    gfs = new mongodb.GridFSBucket(conn.db);
+
+    gfs.on('error', (err) => {
+        console.log('GridFS database error: ' + err);
+    });
 });
 
 conn.on('dberror', (err) => {
@@ -291,17 +295,19 @@ app.post('/uploadBioOther', upload.single('bioOther'), (req, res) => {
 
 app.get('/getFiles/:filename/:documentName', (req, res) => {
     console.log("Doc name:" + req.params.documentName);
-    gfs.files.findOne({filename : req.params.filename}, (err, file) => {
-
-        if (!file || file.length === 0) {
+  
+    // first check if file exists
+    const cursor = gfs.find({filename : req.params.filename});
+    gfs.openDownloadStreamByName(req.params.filename)
+        .on('error', (err) => {
             return res.status(404).json({
-                err: 'No files exist'
+              msg: 'Could not find file with id: ' + req.params.filename +
+                ' and with name: ' + req.params.documentName,
+              err: err
             });
-        }
-    const readstream = gfs.createReadStream(file.filename);
-    readstream.pipe(res);
-    })
-})
+        })
+        .pipe(res);
+});
 
 
 require('./app/routes/index.js')(app, passport);

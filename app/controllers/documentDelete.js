@@ -2,32 +2,59 @@
 // get all the tools we need
 
 var mongoose = require('mongoose');
-var Grid = require('gridfs-stream');
+var mongodb = require('mongodb');
 let Document = require('../models/document');
 const conn = mongoose.connection;
 
 let gfs;
 conn.once('open', function () {
-    gfs = Grid(conn.db, mongoose.mongo);
+    gfs = new mongodb.GridFSBucket(conn.db);
+
+    gfs.on('error', (err) => {
+      console.log('GridFS database error: ' + err);
+    });
+
 });
 
 
 module.exports.removeSpecificDocument = function (req, res) {
-    Document.findOneAndRemove({
-        _id: req.params.documentId
-    }, function () {
-        console.log("Document deleted");
-    });
 
-    gfs.remove({filename: req.params.fileId}, function(err, gridStore) {
-    }, function() {
-        console.log("File deleted.");
-    });
+    gfs.find({ 'filename': req.params.fileId}).next()
+        .then(function(doc) {
+            console.log("File to delete found.");
 
-    console.log("File: " + gfs.exist({_id: req.params.fileId}, function (err, found) {
-        if (err) console.log(err);
-        found ? console.log('File found.') : console.log('File not found.');
-    }));
+            gfs.delete(doc._id).then(function() { 
+                console.log("File deleted.");
 
-    res.redirect("/home");
+                // only delete record after it's removed from gridfs
+                Document.findOneAndRemove({
+                    _id: req.params.documentId
+                }, function () {
+                    console.log("Document deleted");
+
+                    res.redirect("/home");
+                });
+
+            }).catch(function(err) {
+                console.log("Error deleting file from GridFS with docid: " + req.params.documentId +
+                            " and fileid: " + req.params.fileId);
+                console.log(err);
+                return res.status(404).json({
+                    msg: 'Could not delete file id: ' + req.params.fileId +
+                        ' and doc id: ' + req.params.documentId,
+                    err: err
+                });
+            });
+
+        }).catch(function(err) {
+            console.log("Can't find file to delete from GridFS with docid: " +
+                        req.params.documentId +
+                        " and fileid: " + req.params.fileId);
+            console.log(err);
+            return res.status(404).json({
+                msg: 'Could not delete file id: ' + req.params.fileId +
+                    ' and doc id: ' + req.params.documentId,
+                err: err
+            });
+        });
 };
