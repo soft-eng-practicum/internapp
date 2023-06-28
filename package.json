@@ -22,7 +22,6 @@
     "express": "^4.17.1",
     "express-fileupload": "^0.1.1",
     "express-session": "^1.17.0",
-    "gulp-clean-css": "^3.0.4",
     "home-dir": "^1.0.0",
     "jasmine": "^2.5.2",
     "jasmine-node": "^1.14.5",
@@ -46,8 +45,8 @@
     "tablesorter": "^2.31.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.0.4",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^3.10.0",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.0.4",
     "gulp-sourcemaps": "^2.6.5",

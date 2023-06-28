@@ -18,29 +18,37 @@ var dest = {
     css: 'public/stylesheet/' 
 };
 
-gulp.task('lint', function() {
-  return gulp.src('./app/controllers/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish))
-});
 
-gulp.task('minify-css', function() {
-  return gulp.src(paths.css)
+function lint(cb) {
+    gulp.src('./app/controllers/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish));
+    cb();
+}
+
+function minify_css(cb) {
+    gulp.src(paths.css)
         .pipe(cleanCSS({compatibility: '*'}))
         .pipe(concat('styles.css'))
-    .pipe(gulp.dest(dest.css));
-});
+        .pipe(gulp.dest(dest.css));
+    cb();
+}
 
-gulp.task('scripts', function() {
-    return gulp.src(paths.scripts)
+function scripts(cb) {
+    gulp.src(paths.scripts)
         .pipe(uglify())
         .pipe(concat('scripts.min.js'))
-        .pipe(gulp.dest(dest.scripts))
-});
+        .pipe(gulp.dest(dest.scripts));
+    cb();
+}
+
+gulp.task('lint-scripts', gulp.series(lint, scripts));
 
 gulp.task('watch', function() {
-    gulp.watch(paths.css, ['minify-css']);
-    gulp.watch(paths.scripts, ['scripts']);
+    gulp.watch([paths.css], minify_css);
+    gulp.watch([paths.scripts], scripts);
 });
 
-gulp.task('default', ['minify-css', 'scripts', 'watch']);
+gulp.task('default',
+          gulp.series( gulp.parallel('lint-scripts', minify_css),
+                       'watch' ));
