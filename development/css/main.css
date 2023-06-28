@@ -12,6 +12,11 @@ body {
     padding-bottom: 10px;
 }
 
+.homePageSection {
+    background-color: #d3d3d3;
+    padding: 10px;
+}
+
 .scrollable {
     overflow-y: scroll;
     height: 100px;
